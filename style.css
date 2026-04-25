@@ -212,7 +212,94 @@ nav#topic-tabs button.drop-target {
   transition: transform 0.1s, background 0.1s;
 }
 
-main { max-width: 920px; margin: 24px auto; padding: 0 24px; }
+main {
+  max-width: 1080px;
+  margin: 24px auto;
+  padding: 0 24px;
+  display: block;
+}
+main.with-sidebar {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 720px) {
+  main.with-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
+#content-col { min-width: 0; }
+
+.date-sidebar {
+  position: sticky;
+  top: 110px;          /* below sticky header */
+  align-self: start;
+  font-size: 13px;
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.date-sidebar h4 {
+  margin: 0 0 6px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--fg-soft);
+  font-weight: 500;
+}
+.date-sidebar a {
+  display: block;
+  padding: 5px 10px;
+  color: var(--fg-soft);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 0.1s, border-color 0.1s;
+  white-space: nowrap;
+}
+.date-sidebar a:hover { color: var(--fg); }
+.date-sidebar a.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+.date-sidebar a .cnt {
+  color: var(--fg-soft);
+  font-size: 11px;
+  margin-left: 4px;
+}
+.date-sidebar a.active .cnt { color: var(--accent); }
+@media (max-width: 720px) {
+  .date-sidebar {
+    position: static;
+    max-height: none;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .date-sidebar h4 { width: 100%; }
+  .date-sidebar a {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+  }
+  .date-sidebar a.active {
+    border-left: none;
+    border-bottom-color: var(--accent);
+  }
+}
+
+/* Date section header within paper-list */
+.date-section { margin-bottom: 8px; scroll-margin-top: 110px; }
+.date-section .date-header {
+  font-size: 13px;
+  color: var(--fg-soft);
+  font-weight: 500;
+  margin: 16px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed var(--border);
+}
+.date-section:first-child .date-header { margin-top: 0; }
 
 #status {
   color: var(--fg-soft);

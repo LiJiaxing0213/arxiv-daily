@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-25.08";  // bump on each frontend change
+const BUILD_ID = "2026-04-25.09";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -43,8 +43,8 @@ const TOPIC_FALLBACK = {
 const state = {
   view: "daily",
   index: null,
-  date: null,
-  data: null,
+  dailyAll: {},          // {date: payload}  loaded all retention dates at once
+  activeDate: null,      // currently scrolled-to date in daily view (sidebar highlight)
   topic: "all",
   query: "",
   saved:  loadJson(LS.saved,  {}),
@@ -224,36 +224,21 @@ async function loadDate(date) {
   return r.json();
 }
 
-async function reloadDate() {
-  setStatus(`加载 ${state.date} …`);
-  try {
-    state.data = await loadDate(state.date);
-    setStatus(`${state.date} · 共 ${state.data.papers.length} 篇`);
-    if (state.view === "daily") {
-      state.topic = "all";
-      renderTopicTabs();
-      renderList();
-    }
-  } catch (e) {
-    setStatus(e.message, true);
+async function loadAllDailyData() {
+  if (!state.index?.dates) return;
+  const dates = state.index.dates;
+  setStatus(`加载 ${dates.length} 天的数据…`);
+  // Fetch in parallel; keep only those that succeeded
+  const results = await Promise.all(
+    dates.map(d => loadDate(d).then(p => [d, p]).catch(() => [d, null]))
+  );
+  state.dailyAll = {};
+  for (const [d, p] of results) {
+    if (p) state.dailyAll[d] = p;
   }
-}
-
-function buildDateSelect() {
-  const sel = $("#date-select");
-  sel.innerHTML = "";
-  for (const d of state.index.dates) {
-    const o = document.createElement("option");
-    o.value = d;
-    const cnt = state.index.counts?.[d] ?? "?";
-    o.textContent = `${d} (${cnt})`;
-    if (d === state.date) o.selected = true;
-    sel.appendChild(o);
-  }
-  sel.onchange = async () => {
-    state.date = sel.value;
-    await reloadDate();
-  };
+  const totalPapers = Object.values(state.dailyAll)
+    .reduce((s, p) => s + (p.papers || []).length, 0);
+  setStatus(`已加载 ${dates.length} 天 · ${totalPapers} 篇`);
 }
 
 // ---------- view switching ----------
@@ -305,7 +290,13 @@ function renderTopicTabs() {
     tabs = state.layout.topicOrder.map(t => [t, topicMeta(t).name_zh]);
     counts = topicCountsForMine();
   } else {
-    const papers = (state.data?.papers || []).filter(p => !state.trash[p.id]);
+    // Daily view: count across all loaded dates
+    const papers = [];
+    for (const d of (state.index?.dates || [])) {
+      for (const p of (state.dailyAll[d]?.papers || [])) {
+        if (!state.trash[p.id]) papers.push(p);
+      }
+    }
     counts = topicCounts(papers);
     counts.all = papers.length;
     const topicsObj = state.index?.topics || TOPIC_FALLBACK;
@@ -357,16 +348,114 @@ function renderList() {
   const list = $("#paper-list");
   list.innerHTML = "";
 
+  // Toggle main grid layout: only daily view gets the date sidebar
+  const main = $("#main");
+  const sidebar = $("#date-sidebar");
+  if (state.view === "daily") {
+    main.classList.add("with-sidebar");
+    sidebar.hidden = false;
+  } else {
+    main.classList.remove("with-sidebar");
+    sidebar.hidden = true;
+  }
+
   if (state.view === "mine") {
     renderMine(list);
   } else if (state.view === "trash") {
     renderFlatList(list, Object.values(state.trash));
   } else {
-    let papers = (state.data?.papers || []).filter(p => !state.trash[p.id]);
+    renderDaily(list);
+  }
+}
+
+function renderDaily(list) {
+  const dates = (state.index?.dates || []).slice().sort().reverse();
+  const sidebarItems = [];
+  let totalShown = 0;
+
+  for (const date of dates) {
+    const all = (state.dailyAll[date]?.papers || []).filter(p => !state.trash[p.id]);
+    let papers = all;
     if (state.topic !== "all") {
       papers = papers.filter(p => (p.topics || []).includes(state.topic));
     }
-    renderFlatList(list, papers);
+    papers = papers.filter(paperMatchesQuery);
+    sidebarItems.push({ date, count: papers.length, totalForDay: all.length });
+    if (!papers.length) continue;
+    totalShown += papers.length;
+
+    const sec = document.createElement("section");
+    sec.className = "date-section";
+    sec.id = `date-section-${date}`;
+    sec.dataset.date = date;
+
+    const h = document.createElement("h3");
+    h.className = "date-header";
+    h.textContent = `${date} · ${papers.length} 篇`;
+    sec.appendChild(h);
+
+    for (const p of papers) sec.appendChild(renderPaper(p));
+    list.appendChild(sec);
+  }
+
+  if (!totalShown) {
+    list.innerHTML = `<p class="muted">没有匹配的论文。</p>`;
+  }
+
+  renderDateSidebar(sidebarItems);
+  setupDateScrollSpy();
+}
+
+function renderDateSidebar(items) {
+  const bar = $("#date-sidebar");
+  bar.innerHTML = "";
+  if (!items.length) return;
+  const header = document.createElement("h4");
+  header.textContent = "日期";
+  bar.appendChild(header);
+  for (const it of items) {
+    const a = document.createElement("a");
+    a.href = `#date-section-${it.date}`;
+    a.dataset.date = it.date;
+    const dateShort = it.date.slice(5);  // "MM-DD"
+    a.innerHTML = `${escapeHtml(dateShort)} <span class="cnt">${it.count}</span>`;
+    if (!it.count) a.style.opacity = "0.4";
+    a.onclick = (e) => {
+      e.preventDefault();
+      const target = document.getElementById(`date-section-${it.date}`);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      _setActiveDate(it.date);
+    };
+    bar.appendChild(a);
+  }
+  if (state.activeDate) _setActiveDate(state.activeDate, false);
+}
+
+function _setActiveDate(date, scroll = false) {
+  state.activeDate = date;
+  const bar = $("#date-sidebar");
+  for (const a of bar.querySelectorAll("a")) {
+    a.classList.toggle("active", a.dataset.date === date);
+  }
+}
+
+let _scrollSpyObserver = null;
+function setupDateScrollSpy() {
+  if (_scrollSpyObserver) _scrollSpyObserver.disconnect();
+  if (!("IntersectionObserver" in window)) return;
+  _scrollSpyObserver = new IntersectionObserver((entries) => {
+    // Pick the topmost intersecting section
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .map(e => e.target.dataset.date)
+      .filter(Boolean);
+    if (visible.length) {
+      const sorted = visible.sort();  // dates are ISO so sort works lexically
+      _setActiveDate(sorted[sorted.length - 1]);
+    }
+  }, { rootMargin: "-100px 0px -60% 0px", threshold: 0 });
+  for (const sec of document.querySelectorAll(".date-section")) {
+    _scrollSpyObserver.observe(sec);
   }
 }
 
@@ -533,14 +622,39 @@ function renderMine(list) {
       onEnd: (evt) => {
         document.removeEventListener("mousemove", _onDragMove, true);
         document.removeEventListener("touchmove", _onDragTouchMove);
-        const dropped = clearTabHover();
-        if (dropped) {
+
+        // Try multiple sources to figure out where the user released the drag.
+        // 1) The originalEvent (mouseup/touchend) coordinates
+        // 2) The currently hovered tab tracked during drag
+        let droppedTopic = null;
+        const orig = evt.originalEvent;
+        let x = null, y = null;
+        if (orig) {
+          if (orig.changedTouches && orig.changedTouches.length) {
+            x = orig.changedTouches[0].clientX;
+            y = orig.changedTouches[0].clientY;
+          } else if (orig.clientX != null) {
+            x = orig.clientX; y = orig.clientY;
+          }
+        }
+        if (x != null && y != null) {
+          const tab = document.elementFromPoint(x, y)?.closest("#topic-tabs button[data-topic]");
+          if (tab) droppedTopic = tab.dataset.topic;
+        }
+        if (!droppedTopic && _hoveredTab) {
+          droppedTopic = _hoveredTab.dataset?.topic || null;
+        }
+        clearTabHover();
+
+        console.log("[drag] onEnd: dropped on", droppedTopic, "from topic", topic, " (mouseXY=", x, y, ")");
+
+        if (droppedTopic && droppedTopic !== topic) {
           const id = evt.item.dataset.id;
-          if (id && dropped !== topic) {
+          if (id) {
             removePaperFromLayout(id);
-            placePaperInLayout(id, dropped, "general");
+            placePaperInLayout(id, droppedTopic, "general");
             persistAll();
-            state.topic = dropped;
+            state.topic = droppedTopic;
             renderTopicTabs();
             renderList();
             return;
@@ -1465,14 +1579,14 @@ async function main() {
     setSyncStatus("idle", "点击配置云同步");
   }
 
-  // Daily data
+  // Daily data: load index then all per-date files in parallel
   try {
     const idx = await loadIndex();
     state.index = idx;
     if (idx.dates && idx.dates.length) {
-      state.date = idx.dates[0];
-      buildDateSelect();
-      await reloadDate();
+      await loadAllDailyData();
+      renderTopicTabs();
+      renderList();
     } else {
       setStatus("还没有任何数据。等 GitHub Actions 第一次跑完后再刷新。", true);
       renderTopicTabs();
