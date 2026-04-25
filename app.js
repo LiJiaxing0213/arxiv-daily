@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-25.15";  // bump on each frontend change
+const BUILD_ID = "2026-04-25.16";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -799,6 +799,123 @@ function hideMovePopup() {
   }
 }
 
+// Show a topic+subcat picker for a paper that's NOT yet in 我的.
+// Pre-selects the auto-classified topic (first match from p.topics).
+// Supports inline "+ 新建子分类".
+function showSavePopup(paper, anchorEl) {
+  hideMovePopup();
+
+  const popup = document.createElement("div");
+  popup.className = "move-popup save-popup";
+
+  const head = document.createElement("div");
+  head.className = "move-popup-head";
+  head.textContent = "收藏到分类...";
+  popup.appendChild(head);
+
+  // Determine the auto-classified topic to pre-highlight
+  let autoTopic = (paper.topics && paper.topics[0]) || "other";
+  if (!DEFAULT_TOPICS.includes(autoTopic)) autoTopic = "other";
+
+  const buildBody = () => {
+    // Clear and rebuild topic sections (used after creating new subcat)
+    [...popup.querySelectorAll(".move-topic")].forEach(n => n.remove());
+
+    for (const topic of state.layout.topicOrder) {
+      const meta = topicMeta(topic);
+      const isAutoTopic = topic === autoTopic;
+      const tEl = document.createElement("div");
+      tEl.className = "move-topic" + (isAutoTopic ? " auto-topic" : "");
+
+      const tName = document.createElement("div");
+      tName.className = "move-topic-name";
+      tName.innerHTML = escapeHtml(meta.name_zh) +
+        (isAutoTopic ? ` <span class="auto-tag">自动归类</span>` : "");
+      tEl.appendChild(tName);
+
+      const wrap = document.createElement("div");
+      wrap.className = "move-subcats";
+      for (const subcat of state.layout.subcats[topic] || ["general"]) {
+        const sc = document.createElement("button");
+        sc.type = "button";
+        sc.className = "move-subcat";
+        sc.textContent = subcat;
+        sc.onclick = (e) => {
+          e.stopPropagation();
+          saveToSubcat(paper, topic, subcat);
+          hideMovePopup();
+        };
+        wrap.appendChild(sc);
+      }
+      // "+ new subcat" inline button
+      const addNew = document.createElement("button");
+      addNew.type = "button";
+      addNew.className = "move-subcat add-new";
+      addNew.textContent = "+ 新建";
+      addNew.title = `在「${meta.name_zh}」下新建子分类`;
+      addNew.onclick = (e) => {
+        e.stopPropagation();
+        const name = prompt(`新子分类名(在「${meta.name_zh}」下):`);
+        if (!name) return;
+        const trimmed = name.trim();
+        if (!trimmed) return;
+        if ((state.layout.subcats[topic] || []).includes(trimmed)) {
+          alert("已存在同名子分类");
+          return;
+        }
+        state.layout.subcats[topic] = state.layout.subcats[topic] || ["general"];
+        state.layout.subcats[topic].push(trimmed);
+        state.layout.paperOrder[`${topic}:${trimmed}`] = [];
+        saveToSubcat(paper, topic, trimmed);
+        hideMovePopup();
+      };
+      wrap.appendChild(addNew);
+
+      tEl.appendChild(wrap);
+      popup.appendChild(tEl);
+    }
+  };
+
+  buildBody();
+  document.body.appendChild(popup);
+
+  // Position
+  const rect = anchorEl.getBoundingClientRect();
+  const pw = popup.offsetWidth, ph = popup.offsetHeight;
+  let left = rect.right - pw;
+  let top = rect.bottom + 6;
+  if (left < 8) left = 8;
+  if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
+  if (top + ph > window.innerHeight - 8) top = Math.max(8, rect.top - ph - 6);
+  popup.style.left = left + "px";
+  popup.style.top = top + "px";
+
+  const closer = (e) => {
+    if (popup.contains(e.target)) return;
+    if (e.target === anchorEl) return;
+    hideMovePopup();
+  };
+  const escCloser = (e) => { if (e.key === "Escape") hideMovePopup(); };
+  setTimeout(() => {
+    document.addEventListener("click", closer, true);
+    document.addEventListener("keydown", escCloser);
+    _movePopupCloser = () => {
+      document.removeEventListener("click", closer, true);
+      document.removeEventListener("keydown", escCloser);
+    };
+  }, 0);
+}
+
+function saveToSubcat(paper, topic, subcat) {
+  const copy = JSON.parse(JSON.stringify(paper));
+  state.saved[paper.id] = ensureClientFields(copy);
+  placePaperInLayout(paper.id, topic, subcat);
+  autoGenIfNeeded(paper.id);
+  persistAll();
+  renderList();
+  renderTopicTabs();
+}
+
 // ---------- Tab hover during paper drag ----------
 //
 // During a paper drag in 我的, we (a) highlight whichever topic tab is under
@@ -964,7 +1081,18 @@ function renderPaper(p) {
 
   // Wire actions
   const starBtn = art.querySelector(".icon-btn.star");
-  if (starBtn) starBtn.onclick = () => toggleSave(p);
+  if (starBtn) {
+    starBtn.onclick = (e) => {
+      // In 每日 view, when starring (not yet saved), show topic/subcat picker.
+      // Otherwise just toggle (works for unsave + already-handled mine view).
+      if (!state.saved[p.id] && state.view === "daily") {
+        e.stopPropagation();
+        showSavePopup(p, starBtn);
+      } else {
+        toggleSave(p);
+      }
+    };
+  }
 
   const deleteBtn = art.querySelector(".icon-btn.delete");
   if (deleteBtn) deleteBtn.onclick = () => isTrash ? hardDelete(p.id) : sendToTrash(p);
