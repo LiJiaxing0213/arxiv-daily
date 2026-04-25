@@ -62,8 +62,17 @@ def main() -> None:
     print(f"[main] {len(cached)} papers cached from previous runs", flush=True)
 
     raw = fetch_recent()
+    print(f"[main] fetched {len(raw)} raw papers across all categories", flush=True)
     tagged = filter_and_tag(raw)
     print(f"[main] {len(tagged)} papers matched topics (across all dates)", flush=True)
+
+    # Show per-date breakdown of what we fetched (helps diagnose backfill issues)
+    pre_grouped: dict[str, int] = {}
+    for p in tagged:
+        d = (p.get("published") or "")[:10]
+        pre_grouped[d] = pre_grouped.get(d, 0) + 1
+    for d in sorted(pre_grouped, reverse=True):
+        print(f"[main]   {d}: {pre_grouped[d]} papers (matched)", flush=True)
 
     # Reuse cached summaries — but skip truncated ones from older buggy runs
     regen = 0

@@ -2,6 +2,13 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
+const BUILD_ID = "2026-04-25.05";  // bump on each frontend change
+console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
+window.addEventListener("DOMContentLoaded", () => {
+  const el = document.getElementById("build-marker");
+  if (el) el.textContent = `frontend build ${BUILD_ID}`;
+});
+
 const $ = (sel) => document.querySelector(sel);
 
 const LS = {
@@ -496,8 +503,11 @@ function renderMine(list) {
     },
   });
 
-  // Wire up Sortable for paper lists, sharing a group so papers can move across subcats
-  const groupName = `papers-${topic}`;
+  // Wire up Sortable for paper lists. Paper lists share a group so papers
+  // can move across subcats. Cross-topic drag is detected via a GLOBAL
+  // mousemove listener attached during the drag (onMove only fires when
+  // hovering another Sortable, so it can't see the tab nav).
+  const groupName = `papers-mine`;
   for (const listEl of sectionsWrap.querySelectorAll(".paper-list")) {
     Sortable.create(listEl, {
       group: groupName,
@@ -505,9 +515,57 @@ function renderMine(list) {
       handle: ".drag-grip",
       ghostClass: "sortable-ghost",
       chosenClass: "sortable-chosen",
-      onEnd: () => updatePaperOrderFromDOM(topic),
+      onStart: () => {
+        document.addEventListener("mousemove", _onDragMove, true);
+        document.addEventListener("touchmove", _onDragTouchMove, { passive: true });
+      },
+      onEnd: (evt) => {
+        document.removeEventListener("mousemove", _onDragMove, true);
+        document.removeEventListener("touchmove", _onDragTouchMove);
+        const dropped = clearTabHover();
+        if (dropped) {
+          const id = evt.item.dataset.id;
+          if (id && dropped !== topic) {
+            removePaperFromLayout(id);
+            placePaperInLayout(id, dropped, "general");
+            persistAll();
+            state.topic = dropped;
+            renderTopicTabs();
+            renderList();
+            return;
+          }
+        }
+        updatePaperOrderFromDOM(topic);
+      },
     });
   }
+}
+
+// ---------- Tab hover during paper drag (global mouse tracking) ----------
+
+let _hoveredTab = null;
+function _onDragMove(e) { _checkHover(e.clientX, e.clientY); }
+function _onDragTouchMove(e) {
+  const t = e.touches && e.touches[0];
+  if (t) _checkHover(t.clientX, t.clientY);
+}
+function _checkHover(x, y) {
+  if (x == null || y == null) return;
+  const target = document.elementFromPoint(x, y);
+  const tab = target?.closest("#topic-tabs button[data-topic]");
+  if (tab !== _hoveredTab) {
+    if (_hoveredTab) _hoveredTab.classList.remove("drop-target");
+    _hoveredTab = tab || null;
+    if (_hoveredTab) _hoveredTab.classList.add("drop-target");
+  }
+}
+function clearTabHover() {
+  const t = _hoveredTab;
+  if (_hoveredTab) {
+    _hoveredTab.classList.remove("drop-target");
+    _hoveredTab = null;
+  }
+  return t?.dataset.topic || null;
 }
 
 function updatePaperOrderFromDOM(topic) {
@@ -559,10 +617,21 @@ function renderPaper(p) {
     ? `<details class="abstract"><summary>原文摘要</summary><p>${escapeHtml(p.abstract)}</p></details>`
     : "";
 
+  const hasNotes = !!(p.notes && p.notes.trim());
   const notesBlock = isMine
-    ? `<div class="notes">
-         <label>我的备注 <span class="saved-mark">已保存</span></label>
-         <textarea placeholder="写下你的见解、要点或问题…">${escapeHtml(p.notes || "")}</textarea>
+    ? `<details class="notes ${hasNotes ? "has-content" : ""}" ${hasNotes ? "open" : ""}>
+         <summary>我的备注<span class="has-dot" title="已记录"></span><span class="saved-mark">已保存</span></summary>
+         <div class="notes-body">
+           <textarea placeholder="写下你的见解、要点或问题…">${escapeHtml(p.notes || "")}</textarea>
+         </div>
+       </details>`
+    : "";
+
+  // Thumbnail (only in mine, only for arxiv papers with a pdf_url)
+  const showThumb = isMine && p.pdf_url && /arxiv\.org\/pdf\//.test(p.pdf_url);
+  const thumbBlock = showThumb
+    ? `<div class="thumb" data-pdf="${p.pdf_url}">
+         <div class="thumb-status">滚到此处加载…</div>
        </div>`
     : "";
 
@@ -588,10 +657,13 @@ function renderPaper(p) {
 
   art.innerHTML = `
     <h2>${dragGrip}${sourceTagHtml}<a href="${p.abs_url || p.pdf_url || "#"}" target="_blank" rel="noopener">${escapeHtml(p.title || "(无标题)")}</a></h2>
-    <div class="authors">${escapeHtml(meta)}</div>
-    ${summaryZh}
-    ${abstractBlock}
-    ${notesBlock}
+    <div class="body">
+      <div class="authors">${escapeHtml(meta)}</div>
+      ${summaryZh}
+      ${abstractBlock}
+      ${notesBlock}
+    </div>
+    ${thumbBlock}
     <div class="row">
       <div class="tags">${topicLabels}</div>
       <div class="links">
@@ -614,6 +686,7 @@ function renderPaper(p) {
   if (isMine) {
     const ta = art.querySelector("textarea");
     const mark = art.querySelector(".saved-mark");
+    const detailsEl = art.querySelector("details.notes");
     let timer = null;
     ta.addEventListener("input", () => {
       clearTimeout(timer);
@@ -621,6 +694,9 @@ function renderPaper(p) {
         const cur = state.saved[p.id];
         if (!cur) return;
         cur.notes = ta.value;
+        // Update the visual indicator immediately
+        if (cur.notes.trim()) detailsEl.classList.add("has-content");
+        else detailsEl.classList.remove("has-content");
         persistAll();
         mark.classList.add("show");
         setTimeout(() => mark.classList.remove("show"), 800);
@@ -628,8 +704,72 @@ function renderPaper(p) {
     });
   }
 
+  // Lazy-load PDF thumbnail when scrolled into view
+  const thumbEl = art.querySelector(".thumb");
+  if (thumbEl && window.pdfjsLib && _thumbObserver) {
+    _thumbObserver.observe(thumbEl);
+  }
+
   return art;
 }
+
+// ---------- PDF thumbnails ----------
+
+const _thumbCache = new Map(); // pdfUrl -> data URL (in-memory only)
+const _thumbInflight = new Map();
+
+async function _renderPdfThumb(pdfUrl) {
+  if (_thumbCache.has(pdfUrl)) return _thumbCache.get(pdfUrl);
+  if (_thumbInflight.has(pdfUrl)) return _thumbInflight.get(pdfUrl);
+
+  // arxiv.org PDFs don't allow CORS — fetch through a proxy.
+  const proxied = `https://corsproxy.io/?${encodeURIComponent(pdfUrl)}`;
+
+  const promise = (async () => {
+    const loadingTask = pdfjsLib.getDocument({ url: proxied });
+    const pdf = await loadingTask.promise;
+    const page = await pdf.getPage(1);
+    const viewport = page.getViewport({ scale: 1.0 });
+    // Scale down so the long edge is ~280 px (renders sharp on retina)
+    const targetWidth = 280;
+    const scale = targetWidth / viewport.width;
+    const v2 = page.getViewport({ scale });
+    const canvas = document.createElement("canvas");
+    canvas.width = v2.width;
+    canvas.height = v2.height;
+    await page.render({ canvasContext: canvas.getContext("2d"), viewport: v2 }).promise;
+    const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+    _thumbCache.set(pdfUrl, dataUrl);
+    return dataUrl;
+  })();
+  _thumbInflight.set(pdfUrl, promise);
+  try {
+    return await promise;
+  } finally {
+    _thumbInflight.delete(pdfUrl);
+  }
+}
+
+const _thumbObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver(async (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const el = entry.target;
+        _thumbObserver.unobserve(el);
+        const pdfUrl = el.dataset.pdf;
+        if (!pdfUrl) continue;
+        el.querySelector(".thumb-status").textContent = "加载中…";
+        try {
+          const dataUrl = await _renderPdfThumb(pdfUrl);
+          el.innerHTML = `<a class="zoom" href="${pdfUrl}" target="_blank" rel="noopener" title="打开 PDF"></a>
+                          <img src="${dataUrl}" alt="封面" />`;
+        } catch (e) {
+          console.warn("thumb fail:", pdfUrl, e);
+          el.innerHTML = `<div class="thumb-status">无预览<br><a href="${pdfUrl}" target="_blank" rel="noopener">打开 PDF</a></div>`;
+        }
+      }
+    }, { rootMargin: "200px" })
+  : null;
 
 // ---------- save / trash ----------
 

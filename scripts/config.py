@@ -11,7 +11,10 @@ LOOKBACK_DAYS = 8  # today + 7 previous days
 RETENTION_DAYS = 8
 
 # Max results to fetch per category per query.
-MAX_RESULTS_PER_CATEGORY = 400
+# Note: cs.LG / cs.CV get ~100 submissions/day; for an 8-day window we need
+# at least 800 per category, so we bump to 1500 with margin for spikes.
+# arxiv API allows up to 2000 per request.
+MAX_RESULTS_PER_CATEGORY = 1500
 
 # Keywords that, if found ANYWHERE in title/abstract, disqualify the paper
 # regardless of topic match. Useful to filter out off-target matches like

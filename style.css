@@ -181,6 +181,14 @@ nav#topic-tabs .count {
 }
 nav#topic-tabs .draggable { cursor: grab; }
 nav#topic-tabs .draggable:active { cursor: grabbing; }
+nav#topic-tabs button.drop-target {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+  transform: scale(1.05);
+  transition: transform 0.1s, background 0.1s;
+}
 
 main { max-width: 920px; margin: 24px auto; padding: 0 24px; }
 
@@ -266,6 +274,54 @@ article.paper {
   border-radius: 8px;
   padding: 16px 18px;
   margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "head      thumb"
+    "body      thumb"
+    "row       row";
+  gap: 8px 12px;
+}
+.paper > h2     { grid-area: head; }
+.paper > .body  { grid-area: body; }
+.paper > .row   { grid-area: row; }
+.paper > .thumb { grid-area: thumb; }
+.paper > .body { display: flex; flex-direction: column; gap: 4px; }
+/* Cards without thumb collapse the column */
+.paper:not(:has(.thumb)) {
+  grid-template-columns: 1fr;
+  grid-template-areas: "head" "body" "row";
+}
+
+.paper .thumb {
+  width: 110px;
+  height: 142px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 11px;
+  color: var(--fg-soft);
+  position: relative;
+}
+.paper .thumb canvas, .paper .thumb img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.paper .thumb .thumb-status {
+  text-align: center;
+  padding: 4px;
+  line-height: 1.4;
+}
+.paper .thumb a.zoom {
+  position: absolute;
+  inset: 0;
+  display: block;
 }
 article.paper.draggable { cursor: grab; }
 article.paper.draggable:active { cursor: grabbing; }
@@ -331,20 +387,32 @@ article.paper.draggable:active { cursor: grabbing; }
 .paper details.abstract summary { cursor: pointer; user-select: none; }
 .paper details.abstract p { margin: 6px 0 0; }
 
-.paper .notes {
-  margin-top: 10px;
+.paper details.notes {
+  margin-top: 6px;
   border: 1px dashed var(--border);
   border-radius: 6px;
-  padding: 8px 10px;
+  padding: 0;
   background: rgba(127, 127, 127, 0.03);
 }
-.paper .notes label {
-  font-size: 11px;
+.paper details.notes summary {
+  cursor: pointer;
+  user-select: none;
+  font-size: 12px;
   color: var(--fg-soft);
-  display: block;
-  margin-bottom: 4px;
+  padding: 6px 10px;
+  list-style: none;
 }
-.paper .notes textarea {
+.paper details.notes summary::-webkit-details-marker { display: none; }
+.paper details.notes summary::before {
+  content: "▶";
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 9px;
+  transition: transform 0.15s;
+}
+.paper details.notes[open] summary::before { transform: rotate(90deg); }
+.paper details.notes .notes-body { padding: 0 10px 8px; }
+.paper details.notes textarea {
   width: 100%;
   min-height: 56px;
   background: transparent;
@@ -355,14 +423,26 @@ article.paper.draggable:active { cursor: grabbing; }
   resize: vertical;
   outline: none;
 }
-.paper .notes .saved-mark {
+.paper details.notes .saved-mark {
   font-size: 11px;
   color: var(--ok);
   margin-left: 6px;
   opacity: 0;
   transition: opacity 0.3s;
 }
-.paper .notes .saved-mark.show { opacity: 1; }
+.paper details.notes .saved-mark.show { opacity: 1; }
+/* "has-notes" indicator dot */
+.paper details.notes summary .has-dot {
+  display: none;
+  width: 7px;
+  height: 7px;
+  background: var(--warn);
+  border-radius: 50%;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.paper details.notes.has-content summary .has-dot { display: inline-block; }
+.paper details.notes.has-content summary { color: var(--fg); font-weight: 500; }
 
 .paper .row {
   display: flex;
