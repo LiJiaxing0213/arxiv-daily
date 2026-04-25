@@ -14,7 +14,7 @@ from pathlib import Path
 from classify import filter_and_tag
 from config import RETENTION_DAYS, TOPICS
 from fetch import fetch_recent
-from summarize import summarize_papers
+from summarize import is_truncated, summarize_papers
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
@@ -65,11 +65,17 @@ def main() -> None:
     tagged = filter_and_tag(raw)
     print(f"[main] {len(tagged)} papers matched topics (across all dates)", flush=True)
 
-    # Reuse cached summaries
+    # Reuse cached summaries — but skip truncated ones from older buggy runs
+    regen = 0
     for p in tagged:
         prev = cached.get(p["id"])
         if prev and prev.get("summary_zh"):
-            p["summary_zh"] = prev["summary_zh"]
+            if is_truncated(prev["summary_zh"]):
+                regen += 1  # leave summary_zh empty -> will be regenerated
+            else:
+                p["summary_zh"] = prev["summary_zh"]
+    if regen:
+        print(f"[main] flagged {regen} cached summaries as truncated, will regenerate", flush=True)
 
     # Group by published date and only keep dates within retention window
     by_date = _group_by_date(tagged)

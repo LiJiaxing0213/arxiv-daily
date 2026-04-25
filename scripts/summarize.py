@@ -22,6 +22,28 @@ TIMEOUT = 90
 # Free tier is 10 RPM => ~6s between requests; we go a bit slower for safety.
 PACE_SECONDS = 6.5
 
+def is_truncated(summary: str) -> bool:
+    """Heuristic: detect summaries that were cut off mid-sentence.
+
+    Older runs (with thinking-tokens bug) often ended in the middle of a phrase.
+    Properly generated Chinese summaries end with terminal punctuation.
+    """
+    if not summary:
+        return True
+    s = summary.strip()
+    if len(s) < 60:
+        return True
+    last = s[-1]
+    # Chinese / English terminal punctuation, including paired closing chars
+    if last in "。！？.!?":
+        return False
+    if last in "\"'\u201d\u2019）)」』】":
+        # If followed by closing quote, also accept if char before is terminal
+        if len(s) >= 2 and s[-2] in "。！？.!?":
+            return False
+    return True
+
+
 SYSTEM_PROMPT = (
     "你是一位 AI 研究领域的论文速读助手。"
     "你将收到一篇 arXiv 论文的英文标题和摘要，"

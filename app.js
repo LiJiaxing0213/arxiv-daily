@@ -717,12 +717,8 @@ function detectSource(url) {
   return "manual";
 }
 
-async function fetchArxivMeta(id) {
-  const url = `https://export.arxiv.org/api/query?id_list=${encodeURIComponent(id)}`;
-  const r = await fetch(url);
-  if (!r.ok) throw new Error(`arXiv API HTTP ${r.status}`);
-  const text = await r.text();
-  const doc = new DOMParser().parseFromString(text, "application/xml");
+function parseArxivXml(xmlText, id) {
+  const doc = new DOMParser().parseFromString(xmlText, "application/xml");
   const entry = doc.querySelector("entry");
   if (!entry) throw new Error("arXiv 没返回这个 ID");
   const get = (sel) => (entry.querySelector(sel)?.textContent || "").trim();
@@ -742,6 +738,32 @@ async function fetchArxivMeta(id) {
   };
 }
 
+async function fetchArxivMeta(id) {
+  const direct = `https://export.arxiv.org/api/query?id_list=${encodeURIComponent(id)}`;
+  // Try direct first, then fall back through CORS / network proxies in order.
+  // (Public proxies are best-effort — if all fail, surface the original error.)
+  const proxies = [
+    direct,
+    `https://corsproxy.io/?${encodeURIComponent(direct)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(direct)}`,
+  ];
+  let lastErr = null;
+  for (const url of proxies) {
+    try {
+      const r = await fetch(url, { mode: "cors" });
+      if (!r.ok) { lastErr = new Error(`HTTP ${r.status} (${url})`); continue; }
+      const text = await r.text();
+      return parseArxivXml(text, id);
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw new Error(
+    `无法连接 arXiv 接口(可能是网络/CORS问题): ${lastErr?.message || "unknown"}。\n` +
+    `你可以直接把这条以「其他」方式添加,标题手动填写。`
+  );
+}
+
 async function handleUpload() {
   const urlInput = $("#upload-url");
   const topicSel = $("#upload-topic");
@@ -756,7 +778,28 @@ async function handleUpload() {
     let savedId;
     if (id) {
       if (state.saved[id]) { alert("这篇 arXiv 论文已经在「我的」里了。"); return; }
-      const meta = await fetchArxivMeta(id);
+      let meta;
+      try {
+        meta = await fetchArxivMeta(id);
+      } catch (e) {
+        const fallback = confirm(
+          `自动获取 arXiv 元数据失败:\n${e.message}\n\n` +
+          `要不要直接以纯 URL 方式添加?(标题手动填,以后能编辑)`
+        );
+        if (!fallback) return;
+        const t = prompt("给这条 arXiv 链接起个标题:", `arXiv:${id}`);
+        if (t === null) return;
+        meta = {
+          id,
+          title: t || `arXiv:${id}`,
+          authors: [],
+          abstract: "",
+          published: "",
+          abs_url: `https://arxiv.org/abs/${id}`,
+          pdf_url: `https://arxiv.org/pdf/${id}`,
+          alphaxiv_url: `https://www.alphaxiv.org/abs/${id}`,
+        };
+      }
       meta.topics = [topicSel.value];
       meta.source = "arxiv";
       state.saved[id] = ensureClientFields(meta);
