@@ -1,0 +1,63 @@
+name: Daily arXiv update
+
+on:
+  schedule:
+    # 每天 UTC 01:30 跑一次（北京时间 09:30）。arXiv 大约 UTC 00:00 发新论文，
+    # 留 1.5h 缓冲让索引就绪。
+    - cron: "30 1 * * *"
+  workflow_dispatch: {}  # 允许手动触发
+
+permissions:
+  contents: write   # 让 Action 能 push 数据回仓库
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-2.5-flash
+        working-directory: scripts
+        run: python main.py
+
+      - name: Commit data
+        run: |
+          git config user.name  "arxiv-daily-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "data: $(date -u +%Y-%m-%d) update"
+            git push
+          fi
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main   # 拿到 update 任务刚 push 的最新数据
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
