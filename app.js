@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-25.11";  // bump on each frontend change
+const BUILD_ID = "2026-04-25.12";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -271,7 +271,6 @@ function setView(view) {
   for (const b of document.querySelectorAll("#view-switch button")) {
     b.classList.toggle("active", b.dataset.view === view);
   }
-  $("#date-select").style.display = view === "daily" ? "" : "none";
   $("#upload-bar").hidden = view !== "mine";
   renderTopicTabs();
   renderList();
