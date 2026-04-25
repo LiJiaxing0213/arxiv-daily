@@ -28,8 +28,13 @@ jobs:
 
       - name: Run pipeline
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-2.5-flash
+          # Primary: viviai (or whichever provider you set in BASE_URL)
+          GEMINI_API_KEY:           ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_BASE_URL:          ${{ vars.GEMINI_BASE_URL || 'https://api.viviai.cc/v1beta' }}
+          # Fallback: when primary runs out of quota
+          GEMINI_API_KEY_FALLBACK:  ${{ secrets.GEMINI_API_KEY_FALLBACK }}
+          GEMINI_FALLBACK_BASE_URL: ${{ vars.GEMINI_FALLBACK_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta' }}
+          GEMINI_MODEL:             gemini-2.5-flash
         working-directory: scripts
         run: python main.py
 

@@ -33,15 +33,31 @@ git remote add origin https://github.com/<你的用户名>/arxiv-daily.git
 git push -u origin main
 ```
 
-### 2. 申请 Gemini API key 并加到仓库 Secrets
+### 2. 配置 LLM API key 到仓库 Secrets
+
+支持两套 key（主用 + fallback），任意一套缺失也能跑（缺则跳过）。
+
+主 key：可以是 Google AI Studio 直发的 Gemini key，也可以是兼容 Gemini 接口
+（如 `viviai.cc`）的中转代理 key。
+
+#### 在仓库设置里加 secrets / variables
+
+仓库 → **Settings** → **Secrets and variables** → **Actions**
+
+| 类型 | 名字 | 值 |
+|---|---|---|
+| Secret | `GEMINI_API_KEY` | 主 key（如 viviai 的 sk-... 或 Google 的 AIza...） |
+| Variable | `GEMINI_BASE_URL` | 主 key 对应的 base URL（如 `https://api.viviai.cc/v1beta`）<br>用 Google 直发就**不用建这个**，默认就是官方地址 |
+| Secret | `GEMINI_API_KEY_FALLBACK` | （可选）备用 key，主 key 配额用完后自动切到这个 |
+| Variable | `GEMINI_FALLBACK_BASE_URL` | （可选）备用 key 的 base URL，留空就是 Google 官方 |
+
+#### 申请 Google 官方 Gemini key（推荐当 fallback）
 
 1. 访问 https://aistudio.google.com/apikey （需要 Google 账号，国内访问需要科学上网）
-2. 点 **Create API key** → 选你的 Google Cloud 项目（或新建一个）→ 复制 key
-3. 仓库页面 → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
-   - Name: `GEMINI_API_KEY`
-   - Secret: 粘贴刚才复制的 key
+2. **Create API key** → 选项目 → 复制
+3. 加到 `GEMINI_API_KEY_FALLBACK`
 
-免费档（gemini-2.5-flash）每分钟 10 次请求、每天 250 次，跑这个项目完全够用。
+免费档（gemini-2.5-flash）每分钟 10 次、每天 250 次，本项目刚好够用。
 
 ### 3. 开启 GitHub Pages
 
