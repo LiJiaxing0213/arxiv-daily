@@ -289,6 +289,80 @@ main.with-sidebar {
   }
 }
 
+/* Cross-topic drop panel (shown during paper drag in 我的) */
+.cross-topic-drop {
+  position: fixed;
+  top: 110px;
+  right: 24px;
+  z-index: 200;
+  background: var(--card);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  min-width: 280px;
+  max-width: 360px;
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+  font-size: 13px;
+  pointer-events: auto;
+}
+.cross-topic-drop .cross-topic-head {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 12px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.cross-topic-drop .drop-topic { margin-bottom: 12px; }
+.cross-topic-drop .drop-topic-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg-soft);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.cross-topic-drop .drop-subcats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cross-topic-drop .drop-subcat {
+  background: var(--hover);
+  border: 1.5px dashed var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  min-width: 90px;
+  text-align: center;
+  transition: background 0.1s, border-color 0.1s, transform 0.1s;
+  user-select: none;
+}
+.cross-topic-drop .drop-subcat:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  border-style: solid;
+  transform: scale(1.05);
+}
+.cross-topic-drop .drop-subcat.sortable-drag-over {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  border-style: solid;
+}
+@media (max-width: 720px) {
+  .cross-topic-drop {
+    right: 12px;
+    top: auto;
+    bottom: 12px;
+    max-height: 50vh;
+    min-width: 240px;
+  }
+}
+
 /* Trash bar */
 .trash-bar {
   display: flex;

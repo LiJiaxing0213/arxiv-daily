@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-25.12";  // bump on each frontend change
+const BUILD_ID = "2026-04-25.13";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -661,82 +661,85 @@ function renderMine(list) {
       handle: ".drag-grip",
       ghostClass: "sortable-ghost",
       chosenClass: "sortable-chosen",
-      onStart: () => {
-        document.addEventListener("mousemove", _onDragMove, true);
-        document.addEventListener("touchmove", _onDragTouchMove, { passive: true });
-      },
+      onStart: () => { showCrossTopicPanel(topic); },
       onEnd: (evt) => {
-        document.removeEventListener("mousemove", _onDragMove, true);
-        document.removeEventListener("touchmove", _onDragTouchMove);
-
-        // Try multiple sources to figure out where the user released the drag.
-        // 1) The originalEvent (mouseup/touchend) coordinates
-        // 2) The currently hovered tab tracked during drag
-        let droppedTopic = null;
-        const orig = evt.originalEvent;
-        let x = null, y = null;
-        if (orig) {
-          if (orig.changedTouches && orig.changedTouches.length) {
-            x = orig.changedTouches[0].clientX;
-            y = orig.changedTouches[0].clientY;
-          } else if (orig.clientX != null) {
-            x = orig.clientX; y = orig.clientY;
-          }
-        }
-        if (x != null && y != null) {
-          const tab = document.elementFromPoint(x, y)?.closest("#topic-tabs button[data-topic]");
-          if (tab) droppedTopic = tab.dataset.topic;
-        }
-        if (!droppedTopic && _hoveredTab) {
-          droppedTopic = _hoveredTab.dataset?.topic || null;
-        }
-        clearTabHover();
-
-        console.log("[drag] onEnd: dropped on", droppedTopic, "from topic", topic, " (mouseXY=", x, y, ")");
-
-        if (droppedTopic && droppedTopic !== topic) {
-          const id = evt.item.dataset.id;
-          if (id) {
-            removePaperFromLayout(id);
-            placePaperInLayout(id, droppedTopic, "general");
-            persistAll();
-            state.topic = droppedTopic;
-            renderTopicTabs();
-            renderList();
-            return;
-          }
-        }
+        hideCrossTopicPanel();
+        // The cross-topic panel handles cross-topic moves via Sortable's onAdd.
+        // If the drop landed within the panel, our state is already updated and
+        // the source DOM still has the (orphaned) original element — that's
+        // fine, renderList in onAdd will rebuild everything cleanly.
+        // Otherwise, just persist the new in-section order.
         updatePaperOrderFromDOM(topic);
       },
     });
   }
 }
 
-// ---------- Tab hover during paper drag (global mouse tracking) ----------
+// ---------- Cross-topic drop panel ----------
+//
+// Shown during a paper drag: a floating panel listing every (topic, subcat)
+// destination as its own Sortable drop target. Drop on a subcat -> move there.
 
-let _hoveredTab = null;
-function _onDragMove(e) { _checkHover(e.clientX, e.clientY); }
-function _onDragTouchMove(e) {
-  const t = e.touches && e.touches[0];
-  if (t) _checkHover(t.clientX, t.clientY);
-}
-function _checkHover(x, y) {
-  if (x == null || y == null) return;
-  const target = document.elementFromPoint(x, y);
-  const tab = target?.closest("#topic-tabs button[data-topic]");
-  if (tab !== _hoveredTab) {
-    if (_hoveredTab) _hoveredTab.classList.remove("drop-target");
-    _hoveredTab = tab || null;
-    if (_hoveredTab) _hoveredTab.classList.add("drop-target");
+let _crossTopicEl = null;
+
+function showCrossTopicPanel(currentTopic) {
+  hideCrossTopicPanel();
+
+  const panel = document.createElement("div");
+  panel.className = "cross-topic-drop";
+  panel.innerHTML = `<div class="cross-topic-head">↪ 拖到目标分类(松开即移动)</div>`;
+  document.body.appendChild(panel);
+  _crossTopicEl = panel;
+
+  for (const topic of state.layout.topicOrder) {
+    if (topic === currentTopic) continue;
+    const meta = topicMeta(topic);
+    const tEl = document.createElement("div");
+    tEl.className = "drop-topic";
+    tEl.innerHTML = `<div class="drop-topic-name">${escapeHtml(meta.name_zh)}</div>`;
+
+    const wrap = document.createElement("div");
+    wrap.className = "drop-subcats";
+    tEl.appendChild(wrap);
+
+    for (const subcat of state.layout.subcats[topic] || ["general"]) {
+      const sc = document.createElement("div");
+      sc.className = "drop-subcat";
+      sc.dataset.topic = topic;
+      sc.dataset.subcat = subcat;
+      sc.textContent = subcat;
+      wrap.appendChild(sc);
+
+      // Each subcat slot is a Sortable that accepts papers from "papers-mine".
+      Sortable.create(sc, {
+        group: { name: "papers-mine", pull: false, put: true },
+        animation: 0,
+        sort: false,
+        onAdd: (evt) => {
+          const id = evt.item.dataset.id;
+          if (id) {
+            removePaperFromLayout(id);
+            placePaperInLayout(id, topic, subcat);
+            persistAll();
+            state.topic = topic;
+            hideCrossTopicPanel();
+            renderTopicTabs();
+            renderList();
+          }
+          // Remove the placeholder Sortable inserted into our drop slot
+          if (evt.item && evt.item.parentNode) evt.item.parentNode.removeChild(evt.item);
+        },
+      });
+    }
+    panel.appendChild(tEl);
   }
 }
-function clearTabHover() {
-  const t = _hoveredTab;
-  if (_hoveredTab) {
-    _hoveredTab.classList.remove("drop-target");
-    _hoveredTab = null;
+
+function hideCrossTopicPanel() {
+  if (_crossTopicEl) {
+    _crossTopicEl.remove();
+    _crossTopicEl = null;
   }
-  return t?.dataset.topic || null;
 }
 
 function updatePaperOrderFromDOM(topic) {
