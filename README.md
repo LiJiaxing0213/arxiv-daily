@@ -77,6 +77,22 @@ python -m http.server 8000
 编辑 `scripts/config.py` 里的 `TOPICS`：增删主题、改关键词都可以。
 注意关键词用整词匹配（`\b...\b`），多词短语（如 `world model`）会按整短语匹配。
 
+## 跨设备同步「我的」
+
+「我的」里的收藏、备注、子分类、排序默认只存在你**当前浏览器** 的 localStorage。
+要在多台设备/多个浏览器之间同步，用 GitHub Gist：
+
+1. 打开网站，右上角点 **☁ 同步**
+2. 模态框里有一个链接，点开 → 在 GitHub 上生成 Personal Access Token
+   - 已为你勾好 `gist` 权限（这是 token 唯一拥有的权限）
+   - 过期时间随你选；点 **Generate token**
+3. 复制以 `ghp_` 开头的字符串 → 粘到模态框 → 点「连接」
+4. 第一次连接会自动建一个 **secret gist** 存放数据
+5. 在另一台设备上访问网站、打开模态框、粘**同一个 token** → 自动拉数据
+
+要撤销/换 token：GitHub 头像 → Settings → Developer settings → Personal access tokens → Revoke。
+撤销后该设备上的「我的」会停止上传，但本地数据还在。
+
 ## 成本估算
 
 `gemini-2.5-flash` 免费档：每分钟 10 RPM、每天 250 RPD、每分钟 250K TPM。

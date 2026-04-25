@@ -5,16 +5,38 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>arXiv Daily · AI 论文速读</title>
 <link rel="stylesheet" href="style.css" />
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 </head>
 <body>
 <header>
   <div class="head-row">
     <h1>arXiv Daily</h1>
+    <nav class="view-switch" id="view-switch">
+      <button data-view="daily" class="active">📅 每日</button>
+      <button data-view="mine">⭐ 我的</button>
+      <button data-view="trash">🗑 回收站</button>
+    </nav>
     <div class="meta">
-      <select id="date-select"></select>
+      <select id="date-select" title="选择日期"></select>
       <input id="search" type="search" placeholder="搜索标题/作者/摘要…" />
+      <button id="sync-status" class="ghost-btn" title="云同步设置">☁ 同步</button>
     </div>
   </div>
+
+  <div id="upload-bar" hidden>
+    <input id="upload-url" type="url"
+           placeholder="粘贴 arXiv / 知乎 / 小红书 / 任意链接,按 Enter 添加" />
+    <select id="upload-topic">
+      <option value="world-model">世界模型</option>
+      <option value="rl">强化学习</option>
+      <option value="distillation">模型蒸馏</option>
+      <option value="video-gen">视频生成</option>
+      <option value="4d-gen">4D 生成</option>
+      <option value="other">其他</option>
+    </select>
+    <button id="upload-btn">添加</button>
+  </div>
+
   <nav id="topic-tabs"></nav>
 </header>
 
@@ -24,8 +46,42 @@
 </main>
 
 <footer>
-  <span id="footer-text">数据来源 arXiv · 每日自动更新</span>
+  <span>数据来源 arXiv · 每日 09:30 (北京时间) 自动更新 · ☁ 配置同步后跨设备共享「我的」</span>
 </footer>
+
+<!-- Sync setup modal -->
+<div id="sync-modal" class="modal" hidden>
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2>云同步设置</h2>
+      <button class="icon-btn modal-close" title="关闭">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="muted">用 GitHub Gist 在多台设备间同步「我的」收藏、备注、子分类、排序。
+        只有你的浏览器知道这把 token,任何时候点 GitHub 头像 → Settings → Developer settings → Tokens 都能撤销。</p>
+
+      <ol>
+        <li>访问 <a href="https://github.com/settings/tokens/new?scopes=gist&description=arxiv-daily-sync"
+                  target="_blank" rel="noopener">github.com/settings/tokens/new</a>(已为你勾好 <code>gist</code> 权限)</li>
+        <li>过期时间随你选 → 拉到底点 <b>Generate token</b></li>
+        <li>复制以 <code>ghp_</code> 开头的那串,粘到下面输入框</li>
+        <li>点「连接」。第一次会自动建一个 secret gist,后续换设备粘同一个 token 就行</li>
+      </ol>
+
+      <label>GitHub Personal Access Token</label>
+      <input id="sync-token" type="password" placeholder="ghp_xxx..." autocomplete="off" />
+
+      <div class="modal-actions">
+        <button id="sync-connect" class="primary">连接</button>
+        <button id="sync-pull"    hidden>立即拉取</button>
+        <button id="sync-push"    hidden>立即上传</button>
+        <button id="sync-disconnect" hidden class="danger">断开</button>
+      </div>
+
+      <div id="sync-info" class="muted small"></div>
+    </div>
+  </div>
+</div>
 
 <script src="app.js"></script>
 </body>

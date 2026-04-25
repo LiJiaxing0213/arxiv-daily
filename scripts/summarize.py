@@ -25,12 +25,12 @@ PACE_SECONDS = 6.5
 SYSTEM_PROMPT = (
     "你是一位 AI 研究领域的论文速读助手。"
     "你将收到一篇 arXiv 论文的英文标题和摘要，"
-    "请用中文输出该论文的简短解读，要求："
-    "1) 用 2-3 句话讲清楚这篇论文做了什么、用了什么方法、得到了什么结果；"
-    "2) 总字数控制在 80-150 字；"
-    "3) 保留必要的英文术语（如模型名、benchmark 名）；"
-    "4) 不要写「这篇论文」「作者」之类的套话，直接讲内容。"
-    "只输出中文摘要正文，不要加任何前缀、标题或 markdown。"
+    "请用中文输出该论文的完整解读，要求："
+    "1) 用 3-4 句话讲清楚：这篇论文要解决什么问题、用了什么方法、关键创新点、实验/结果如何；"
+    "2) 总字数控制在 150-250 字，必须是完整的句子，不要在句子中间结束；"
+    "3) 保留必要的英文术语（如模型名、benchmark 名、关键技术名）；"
+    "4) 不要写「这篇论文」「作者」之类的套话，直接讲内容；"
+    "5) 只输出中文摘要正文，不要加任何前缀、标题或 markdown。"
 )
 
 
@@ -43,8 +43,12 @@ def _call_gemini(api_key: str, title: str, abstract: str) -> str:
             "contents": [{"role": "user", "parts": [{"text": user_msg}]}],
             "generationConfig": {
                 "temperature": 0.3,
-                "maxOutputTokens": 600,
+                "maxOutputTokens": 1024,
                 "responseMimeType": "text/plain",
+                # Gemini 2.5 series enables "thinking" tokens by default which
+                # silently eat into maxOutputTokens, truncating Chinese output
+                # mid-sentence. Disable for this use case.
+                "thinkingConfig": {"thinkingBudget": 0},
             },
         }
     ).encode("utf-8")
