@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-25.09";  // bump on each frontend change
+const BUILD_ID = "2026-04-25.11";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -173,9 +173,31 @@ function reconcileLayout() {
   }
 }
 
+function pruneOldTrash() {
+  // Auto-delete papers from trash that:
+  //   - have been in trash for > 7 days, AND
+  //   - are not currently in the user's saved list
+  const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  let pruned = 0;
+  for (const [id, p] of Object.entries(state.trash)) {
+    if (state.saved[id]) continue;  // user re-saved before pruning kicked in
+    const t = p.deleted_at ? new Date(p.deleted_at).getTime() : 0;
+    if (!t || t < cutoff) {
+      delete state.trash[id];
+      pruned++;
+    }
+  }
+  if (pruned) {
+    console.log(`[trash] auto-pruned ${pruned} entries older than 7 days`);
+    saveJson(LS.trash, state.trash);
+  }
+  return pruned;
+}
+
 migrateLegacyStars();
 ensureLayout();
 reconcileLayout();
+pruneOldTrash();
 saveJson(LS.layout, state.layout);
 saveJson(LS.saved,  state.saved);
 
@@ -362,10 +384,35 @@ function renderList() {
   if (state.view === "mine") {
     renderMine(list);
   } else if (state.view === "trash") {
-    renderFlatList(list, Object.values(state.trash));
+    renderTrash(list);
   } else {
     renderDaily(list);
   }
+}
+
+function renderTrash(list) {
+  const items = Object.values(state.trash);
+  // Header bar with empty-trash button
+  if (items.length) {
+    const bar = document.createElement("div");
+    bar.className = "trash-bar";
+    bar.innerHTML = `
+      <span class="muted small">回收站共 ${items.length} 条 · 超过 7 天且未收藏的条目会自动清理</span>
+      <button id="empty-trash-btn" class="ghost-btn danger-btn">🗑 清空回收站</button>`;
+    list.appendChild(bar);
+    bar.querySelector("#empty-trash-btn").onclick = emptyTrash;
+  }
+  renderFlatList(list, items);
+}
+
+function emptyTrash() {
+  const n = Object.keys(state.trash).length;
+  if (!n) return;
+  if (!confirm(`确认彻底删除回收站里的 ${n} 条?这个操作不可恢复。`)) return;
+  state.trash = {};
+  persistAll();
+  renderList();
+  renderTopicTabs();
 }
 
 function renderDaily(list) {
@@ -777,8 +824,8 @@ function renderPaper(p) {
        </details>`
     : "";
 
-  // Thumbnail for arxiv papers with a pdf_url (lazy-loaded; daily + mine + trash)
-  const showThumb = !!p.pdf_url && /arxiv\.org\/pdf\//.test(p.pdf_url);
+  // Thumbnail only in 我的 (daily has too many cards to fetch PDFs for)
+  const showThumb = isMine && !!p.pdf_url && /arxiv\.org\/pdf\//.test(p.pdf_url);
   const thumbBlock = showThumb
     ? `<div class="thumb" data-pdf="${p.pdf_url}">
          <div class="thumb-status">滚到此处加载…</div>
