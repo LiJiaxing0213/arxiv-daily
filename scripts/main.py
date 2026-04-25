@@ -102,11 +102,12 @@ def main() -> None:
                 needs_summary.append(p)
     summarize_papers(needs_summary)
 
-    # Write one JSON per date
+    # Write one JSON per date in the retention window (always write all
+    # dates, even with 0 papers, so the UI dropdown shows the day).
     topics_meta = {k: {"name_zh": v["name_zh"], "name_en": v["name_en"]} for k, v in TOPICS.items()}
     written_dates: list[str] = []
-    for date, papers in sorted(by_date.items(), reverse=True):
-        # Make sure summary_zh field exists on every paper
+    for date in sorted(retention_dates, reverse=True):
+        papers = by_date.get(date, [])
         for p in papers:
             p.setdefault("summary_zh", "")
         payload = {
@@ -118,27 +119,9 @@ def main() -> None:
         path = DATA_DIR / f"{date}.json"
         with path.open("w", encoding="utf-8") as f:
             json.dump(payload, f, ensure_ascii=False, indent=2)
-        print(f"[main] wrote {path.name} ({len(papers)} papers)", flush=True)
+        marker = "" if papers else "  (empty placeholder)"
+        print(f"[main] wrote {path.name} ({len(papers)} papers){marker}", flush=True)
         written_dates.append(date)
-
-    # Make sure today's file exists even if no papers (so the UI still loads)
-    today_str = today.strftime("%Y-%m-%d")
-    if today_str not in written_dates:
-        empty_path = DATA_DIR / f"{today_str}.json"
-        with empty_path.open("w", encoding="utf-8") as f:
-            json.dump(
-                {
-                    "date": today_str,
-                    "generated_at": datetime.now(timezone.utc).isoformat(),
-                    "topics": topics_meta,
-                    "papers": [],
-                },
-                f,
-                ensure_ascii=False,
-                indent=2,
-            )
-        print(f"[main] wrote empty placeholder for {today_str}", flush=True)
-        written_dates.append(today_str)
 
     # Delete files outside retention window
     for path in DATA_DIR.glob("*.json"):

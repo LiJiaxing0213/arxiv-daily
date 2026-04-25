@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-25.07";  // bump on each frontend change
+const BUILD_ID = "2026-04-25.08";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -663,8 +663,8 @@ function renderPaper(p) {
        </details>`
     : "";
 
-  // Thumbnail (only in mine, only for arxiv papers with a pdf_url)
-  const showThumb = isMine && p.pdf_url && /arxiv\.org\/pdf\//.test(p.pdf_url);
+  // Thumbnail for arxiv papers with a pdf_url (lazy-loaded; daily + mine + trash)
+  const showThumb = !!p.pdf_url && /arxiv\.org\/pdf\//.test(p.pdf_url);
   const thumbBlock = showThumb
     ? `<div class="thumb" data-pdf="${p.pdf_url}">
          <div class="thumb-status">滚到此处加载…</div>
