@@ -289,6 +289,66 @@ main.with-sidebar {
   }
 }
 
+/* Move-to popup (click-based; works on mobile) */
+.move-popup {
+  position: fixed;
+  z-index: 250;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  min-width: 220px;
+  max-width: 320px;
+  max-height: 70vh;
+  overflow-y: auto;
+  font-size: 13px;
+}
+.move-popup .move-popup-head {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+.move-popup .move-topic { margin-bottom: 10px; }
+.move-popup .move-topic-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 5px;
+}
+.move-popup .move-subcats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.move-popup .move-subcat {
+  background: var(--hover);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--fg);
+  min-width: 60px;
+  transition: background 0.1s, border-color 0.1s;
+}
+.move-popup .move-subcat:hover:not(:disabled) {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.move-popup .move-subcat.current,
+.move-popup .move-subcat:disabled {
+  background: transparent;
+  color: var(--fg-soft);
+  cursor: default;
+  font-style: italic;
+}
+
 /* Cross-topic drop panel (shown during paper drag in 我的) */
 .cross-topic-drop {
   position: fixed;
@@ -444,6 +504,26 @@ main.with-sidebar {
   margin-left: auto;
   display: flex;
   gap: 4px;
+}
+.subcat-actions .icon-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--fg-soft);
+  font-family: inherit;
+  line-height: 1.4;
+}
+.subcat-actions .icon-btn:hover { color: var(--fg); background: var(--hover); }
+.subcat-actions .icon-btn.add:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.subcat-actions .icon-btn.delete:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 .subcat-add {
   background: transparent;

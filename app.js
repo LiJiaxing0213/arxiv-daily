@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-25.13";  // bump on each frontend change
+const BUILD_ID = "2026-04-25.15";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -360,6 +360,31 @@ function renderTopicTabs() {
         persistAll();
       },
     });
+
+    // Each tab is also a drop target for paper drags from any subcat list.
+    for (const btn of nav.querySelectorAll("button[data-topic]")) {
+      Sortable.create(btn, {
+        group: { name: `papers-tab-${btn.dataset.topic}`, put: ["papers-mine"], pull: false },
+        sort: false,
+        animation: 0,
+        onAdd: (evt) => {
+          const id = evt.item.dataset.id;
+          const targetTopic = btn.dataset.topic;
+          if (id && targetTopic && targetTopic !== state.topic) {
+            removePaperFromLayout(id);
+            placePaperInLayout(id, targetTopic, "general");
+            persistAll();
+            state.topic = targetTopic;
+            renderTopicTabs();
+            renderList();
+          }
+          // Remove the placeholder element Sortable inserted into the button
+          if (evt.item && evt.item.parentNode) {
+            evt.item.parentNode.removeChild(evt.item);
+          }
+        },
+      });
+    }
   }
 }
 
@@ -563,9 +588,14 @@ function renderMine(list) {
       <input class="subcat-name" value="${escapeHtml(subcat)}" />
       <span class="subcat-count">(${papers.length})</span>
       <div class="subcat-actions">
+        <button class="icon-btn add" title="添加论文到此子分类">+</button>
         ${subcat !== "general" ? `<button class="icon-btn delete" title="删除子分类(论文回到 general)">✕</button>` : ""}
       </div>`;
     section.appendChild(head);
+
+    // Wire "+" button -> upload directly into this (topic, subcat)
+    const addBtn = head.querySelector(".icon-btn.add");
+    if (addBtn) addBtn.onclick = () => handleAddToSubcat(topic, subcat);
 
     const listEl = document.createElement("div");
     listEl.className = "paper-list";
@@ -661,84 +691,141 @@ function renderMine(list) {
       handle: ".drag-grip",
       ghostClass: "sortable-ghost",
       chosenClass: "sortable-chosen",
-      onStart: () => { showCrossTopicPanel(topic); },
-      onEnd: (evt) => {
-        hideCrossTopicPanel();
-        // The cross-topic panel handles cross-topic moves via Sortable's onAdd.
-        // If the drop landed within the panel, our state is already updated and
-        // the source DOM still has the (orphaned) original element — that's
-        // fine, renderList in onAdd will rebuild everything cleanly.
-        // Otherwise, just persist the new in-section order.
+      onStart: () => {
+        document.addEventListener("mousemove", _onDragMove, true);
+        document.addEventListener("touchmove", _onDragTouchMove, { passive: true });
+      },
+      onEnd: () => {
+        document.removeEventListener("mousemove", _onDragMove, true);
+        document.removeEventListener("touchmove", _onDragTouchMove);
+        clearTabHover();
+        // Cross-topic moves are handled by the per-tab Sortable's onAdd.
+        // For drops that stayed within the same paper-list, persist the order.
         updatePaperOrderFromDOM(topic);
       },
     });
   }
 }
 
-// ---------- Cross-topic drop panel ----------
-//
-// Shown during a paper drag: a floating panel listing every (topic, subcat)
-// destination as its own Sortable drop target. Drop on a subcat -> move there.
+// ---------- Click-based move-to picker (works on mobile too) ----------
 
-let _crossTopicEl = null;
+let _movePopupCloser = null;
 
-function showCrossTopicPanel(currentTopic) {
-  hideCrossTopicPanel();
+function showMovePopup(paperId, anchorEl) {
+  hideMovePopup();
 
-  const panel = document.createElement("div");
-  panel.className = "cross-topic-drop";
-  panel.innerHTML = `<div class="cross-topic-head">↪ 拖到目标分类(松开即移动)</div>`;
-  document.body.appendChild(panel);
-  _crossTopicEl = panel;
+  const cur = findPaperLocation(paperId);
+  const popup = document.createElement("div");
+  popup.className = "move-popup";
+
+  const head = document.createElement("div");
+  head.className = "move-popup-head";
+  head.textContent = "移到分类...";
+  popup.appendChild(head);
 
   for (const topic of state.layout.topicOrder) {
-    if (topic === currentTopic) continue;
     const meta = topicMeta(topic);
     const tEl = document.createElement("div");
-    tEl.className = "drop-topic";
-    tEl.innerHTML = `<div class="drop-topic-name">${escapeHtml(meta.name_zh)}</div>`;
+    tEl.className = "move-topic";
+    const tName = document.createElement("div");
+    tName.className = "move-topic-name";
+    tName.textContent = meta.name_zh;
+    tEl.appendChild(tName);
 
     const wrap = document.createElement("div");
-    wrap.className = "drop-subcats";
-    tEl.appendChild(wrap);
-
+    wrap.className = "move-subcats";
     for (const subcat of state.layout.subcats[topic] || ["general"]) {
-      const sc = document.createElement("div");
-      sc.className = "drop-subcat";
-      sc.dataset.topic = topic;
-      sc.dataset.subcat = subcat;
-      sc.textContent = subcat;
+      const isCur = cur?.topic === topic && cur?.subcat === subcat;
+      const sc = document.createElement("button");
+      sc.type = "button";
+      sc.className = "move-subcat" + (isCur ? " current" : "");
+      sc.textContent = isCur ? `${subcat} ✓` : subcat;
+      sc.disabled = isCur;
+      sc.onclick = (e) => {
+        e.stopPropagation();
+        if (isCur) return;
+        removePaperFromLayout(paperId);
+        placePaperInLayout(paperId, topic, subcat);
+        persistAll();
+        state.topic = topic;
+        hideMovePopup();
+        renderTopicTabs();
+        renderList();
+      };
       wrap.appendChild(sc);
-
-      // Each subcat slot is a Sortable that accepts papers from "papers-mine".
-      Sortable.create(sc, {
-        group: { name: "papers-mine", pull: false, put: true },
-        animation: 0,
-        sort: false,
-        onAdd: (evt) => {
-          const id = evt.item.dataset.id;
-          if (id) {
-            removePaperFromLayout(id);
-            placePaperInLayout(id, topic, subcat);
-            persistAll();
-            state.topic = topic;
-            hideCrossTopicPanel();
-            renderTopicTabs();
-            renderList();
-          }
-          // Remove the placeholder Sortable inserted into our drop slot
-          if (evt.item && evt.item.parentNode) evt.item.parentNode.removeChild(evt.item);
-        },
-      });
     }
-    panel.appendChild(tEl);
+    tEl.appendChild(wrap);
+    popup.appendChild(tEl);
+  }
+
+  document.body.appendChild(popup);
+
+  // Position near the anchor button, but keep within viewport
+  const rect = anchorEl.getBoundingClientRect();
+  const pw = popup.offsetWidth;
+  const ph = popup.offsetHeight;
+  let left = rect.right - pw;
+  let top = rect.bottom + 6;
+  if (left < 8) left = 8;
+  if (left + pw > window.innerWidth - 8) left = window.innerWidth - pw - 8;
+  if (top + ph > window.innerHeight - 8) {
+    top = Math.max(8, rect.top - ph - 6);
+  }
+  popup.style.left = left + "px";
+  popup.style.top = top + "px";
+
+  // Close on outside click / escape
+  const closer = (e) => {
+    if (popup.contains(e.target)) return;
+    if (e.target === anchorEl) return;
+    hideMovePopup();
+  };
+  const escCloser = (e) => { if (e.key === "Escape") hideMovePopup(); };
+  setTimeout(() => {
+    document.addEventListener("click", closer, true);
+    document.addEventListener("keydown", escCloser);
+    _movePopupCloser = () => {
+      document.removeEventListener("click", closer, true);
+      document.removeEventListener("keydown", escCloser);
+    };
+  }, 0);
+}
+
+function hideMovePopup() {
+  document.querySelectorAll(".move-popup").forEach(p => p.remove());
+  if (_movePopupCloser) {
+    _movePopupCloser();
+    _movePopupCloser = null;
   }
 }
 
-function hideCrossTopicPanel() {
-  if (_crossTopicEl) {
-    _crossTopicEl.remove();
-    _crossTopicEl = null;
+// ---------- Tab hover during paper drag ----------
+//
+// During a paper drag in 我的, we (a) highlight whichever topic tab is under
+// the cursor and (b) rely on each tab's own Sortable (set up in renderTopicTabs)
+// to receive the drop and call onAdd.
+
+let _hoveredTab = null;
+
+function _onDragMove(e) { _checkHover(e.clientX, e.clientY); }
+function _onDragTouchMove(e) {
+  const t = e.touches && e.touches[0];
+  if (t) _checkHover(t.clientX, t.clientY);
+}
+function _checkHover(x, y) {
+  if (x == null || y == null) return;
+  const target = document.elementFromPoint(x, y);
+  const tab = target?.closest("#topic-tabs button[data-topic]");
+  if (tab !== _hoveredTab) {
+    if (_hoveredTab) _hoveredTab.classList.remove("drop-target");
+    _hoveredTab = tab || null;
+    if (_hoveredTab) _hoveredTab.classList.add("drop-target");
+  }
+}
+function clearTabHover() {
+  if (_hoveredTab) {
+    _hoveredTab.classList.remove("drop-target");
+    _hoveredTab = null;
   }
 }
 
@@ -845,7 +932,11 @@ function renderPaper(p) {
     actionBtns = `<button class="icon-btn restore" title="恢复">↩</button>
                   <button class="icon-btn delete"  title="彻底删除">✕</button>`;
   } else {
+    const moveBtn = isMine
+      ? `<button class="icon-btn move-btn" title="移到其他分类">↪</button>`
+      : "";
     actionBtns = `<button class="icon-btn star ${isSaved ? "on" : ""}" title="${isSaved ? "已收藏" : "收藏到「我的」"}">${isSaved ? "★" : "☆"}</button>
+                  ${moveBtn}
                   <button class="icon-btn delete" title="移到回收站">🗑</button>`;
   }
 
@@ -880,6 +971,14 @@ function renderPaper(p) {
 
   const restoreBtn = art.querySelector(".icon-btn.restore");
   if (restoreBtn) restoreBtn.onclick = () => restoreFromTrash(p.id);
+
+  const moveBtnEl = art.querySelector(".icon-btn.move-btn");
+  if (moveBtnEl) {
+    moveBtnEl.onclick = (e) => {
+      e.stopPropagation();
+      showMovePopup(p.id, moveBtnEl);
+    };
+  }
 
   // Generate-summary button
   const genBtn = art.querySelector(".gen-summary-btn");
@@ -1157,6 +1256,68 @@ async function fetchArxivMeta(id) {
   );
 }
 
+async function addPaperFromUrl(url, topic, subcat = "general") {
+  url = (url || "").trim();
+  if (!url) return false;
+
+  const id = parseArxivId(url);
+  let savedId;
+  if (id) {
+    if (state.saved[id]) { alert("这篇 arXiv 论文已经在「我的」里了。"); return false; }
+    let meta;
+    try {
+      meta = await fetchArxivMeta(id);
+    } catch (e) {
+      const fallback = confirm(
+        `自动获取 arXiv 元数据失败:\n${e.message}\n\n` +
+        `要不要直接以纯 URL 方式添加?(标题手动填,以后能编辑)`
+      );
+      if (!fallback) return false;
+      const t = prompt("给这条 arXiv 链接起个标题:", `arXiv:${id}`);
+      if (t === null) return false;
+      meta = {
+        id,
+        title: t || `arXiv:${id}`,
+        authors: [],
+        abstract: "",
+        published: "",
+        abs_url: `https://arxiv.org/abs/${id}`,
+        pdf_url: `https://arxiv.org/pdf/${id}`,
+        alphaxiv_url: `https://www.alphaxiv.org/abs/${id}`,
+      };
+    }
+    meta.topics = [topic];
+    meta.source = "arxiv";
+    state.saved[id] = ensureClientFields(meta);
+    savedId = id;
+  } else {
+    const sid = "url:" + url;
+    if (state.saved[sid]) { alert("这条链接已经在「我的」里了。"); return false; }
+    const source = detectSource(url);
+    const placeholder = ({ zhihu: "知乎: ", xiaohongshu: "小红书: " })[source] || "";
+    const title = prompt("给这条链接起个标题:", placeholder);
+    if (title === null) return false;
+    state.saved[sid] = ensureClientFields({
+      id: sid,
+      title: title || url,
+      authors: [],
+      abstract: "",
+      summary_zh: "",
+      topics: [topic],
+      published: "",
+      abs_url: url,
+      pdf_url: "",
+      alphaxiv_url: "",
+      source,
+    });
+    savedId = sid;
+  }
+  placePaperInLayout(savedId, topic, subcat);
+  persistAll();
+  autoGenIfNeeded(savedId);
+  return savedId;
+}
+
 async function handleUpload() {
   const urlInput = $("#upload-url");
   const topicSel = $("#upload-topic");
@@ -1167,73 +1328,37 @@ async function handleUpload() {
   const oldText = btn.textContent;
   btn.textContent = "处理中…";
   try {
-    const id = parseArxivId(url);
-    let savedId;
-    if (id) {
-      if (state.saved[id]) { alert("这篇 arXiv 论文已经在「我的」里了。"); return; }
-      let meta;
-      try {
-        meta = await fetchArxivMeta(id);
-      } catch (e) {
-        const fallback = confirm(
-          `自动获取 arXiv 元数据失败:\n${e.message}\n\n` +
-          `要不要直接以纯 URL 方式添加?(标题手动填,以后能编辑)`
-        );
-        if (!fallback) return;
-        const t = prompt("给这条 arXiv 链接起个标题:", `arXiv:${id}`);
-        if (t === null) return;
-        meta = {
-          id,
-          title: t || `arXiv:${id}`,
-          authors: [],
-          abstract: "",
-          published: "",
-          abs_url: `https://arxiv.org/abs/${id}`,
-          pdf_url: `https://arxiv.org/pdf/${id}`,
-          alphaxiv_url: `https://www.alphaxiv.org/abs/${id}`,
-        };
+    const ok = await addPaperFromUrl(url, topicSel.value, "general");
+    if (ok) {
+      urlInput.value = "";
+      if (state.view === "mine") {
+        renderList();
+        renderTopicTabs();
+      } else {
+        alert("已添加到「我的」。切到「我的」标签查看。");
       }
-      meta.topics = [topicSel.value];
-      meta.source = "arxiv";
-      state.saved[id] = ensureClientFields(meta);
-      savedId = id;
-    } else {
-      const sid = "url:" + url;
-      if (state.saved[sid]) { alert("这条链接已经在「我的」里了。"); return; }
-      const source = detectSource(url);
-      const placeholder = ({ zhihu: "知乎: ", xiaohongshu: "小红书: " })[source] || "";
-      const title = prompt("给这条链接起个标题:", placeholder);
-      if (title === null) return;
-      state.saved[sid] = ensureClientFields({
-        id: sid,
-        title: title || url,
-        authors: [],
-        abstract: "",
-        summary_zh: "",
-        topics: [topicSel.value],
-        published: "",
-        abs_url: url,
-        pdf_url: "",
-        alphaxiv_url: "",
-        source,
-      });
-      savedId = sid;
-    }
-    placePaperInLayout(savedId, topicSel.value, "general");
-    persistAll();
-    autoGenIfNeeded(savedId);
-    urlInput.value = "";
-    if (state.view === "mine") {
-      renderList();
-      renderTopicTabs();
-    } else {
-      alert("已添加到「我的」。切到「我的」标签查看。");
     }
   } catch (e) {
     alert("添加失败:" + e.message);
   } finally {
     btn.disabled = false;
     btn.textContent = oldText;
+  }
+}
+
+async function handleAddToSubcat(topic, subcat) {
+  const meta = topicMeta(topic);
+  const url = prompt(`添加论文到「${meta.name_zh} > ${subcat}」\n粘贴 arXiv / 知乎 / 小红书 / 任意 URL:`);
+  if (!url) return;
+  try {
+    const ok = await addPaperFromUrl(url.trim(), topic, subcat);
+    if (ok) {
+      state.topic = topic;
+      renderList();
+      renderTopicTabs();
+    }
+  } catch (e) {
+    alert("添加失败:" + e.message);
   }
 }
 
