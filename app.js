@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-25.16";  // bump on each frontend change
+const BUILD_ID = "2026-04-25.17";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -817,62 +817,90 @@ function showSavePopup(paper, anchorEl) {
   let autoTopic = (paper.topics && paper.topics[0]) || "other";
   if (!DEFAULT_TOPICS.includes(autoTopic)) autoTopic = "other";
 
-  const buildBody = () => {
-    // Clear and rebuild topic sections (used after creating new subcat)
-    [...popup.querySelectorAll(".move-topic")].forEach(n => n.remove());
+  // Default: only show auto-classified topic. User can expand to others.
+  let showAll = false;
 
-    for (const topic of state.layout.topicOrder) {
-      const meta = topicMeta(topic);
-      const isAutoTopic = topic === autoTopic;
-      const tEl = document.createElement("div");
-      tEl.className = "move-topic" + (isAutoTopic ? " auto-topic" : "");
+  const renderTopicSection = (topic, isAutoTopic) => {
+    const meta = topicMeta(topic);
+    const tEl = document.createElement("div");
+    tEl.className = "move-topic" + (isAutoTopic ? " auto-topic" : "");
 
-      const tName = document.createElement("div");
-      tName.className = "move-topic-name";
-      tName.innerHTML = escapeHtml(meta.name_zh) +
-        (isAutoTopic ? ` <span class="auto-tag">自动归类</span>` : "");
-      tEl.appendChild(tName);
+    const tName = document.createElement("div");
+    tName.className = "move-topic-name";
+    tName.innerHTML = escapeHtml(meta.name_zh) +
+      (isAutoTopic ? ` <span class="auto-tag">自动归类</span>` : "");
+    tEl.appendChild(tName);
 
-      const wrap = document.createElement("div");
-      wrap.className = "move-subcats";
-      for (const subcat of state.layout.subcats[topic] || ["general"]) {
-        const sc = document.createElement("button");
-        sc.type = "button";
-        sc.className = "move-subcat";
-        sc.textContent = subcat;
-        sc.onclick = (e) => {
-          e.stopPropagation();
-          saveToSubcat(paper, topic, subcat);
-          hideMovePopup();
-        };
-        wrap.appendChild(sc);
-      }
-      // "+ new subcat" inline button
-      const addNew = document.createElement("button");
-      addNew.type = "button";
-      addNew.className = "move-subcat add-new";
-      addNew.textContent = "+ 新建";
-      addNew.title = `在「${meta.name_zh}」下新建子分类`;
-      addNew.onclick = (e) => {
+    const wrap = document.createElement("div");
+    wrap.className = "move-subcats";
+    for (const subcat of state.layout.subcats[topic] || ["general"]) {
+      const sc = document.createElement("button");
+      sc.type = "button";
+      sc.className = "move-subcat";
+      sc.textContent = subcat;
+      sc.onclick = (e) => {
         e.stopPropagation();
-        const name = prompt(`新子分类名(在「${meta.name_zh}」下):`);
-        if (!name) return;
-        const trimmed = name.trim();
-        if (!trimmed) return;
-        if ((state.layout.subcats[topic] || []).includes(trimmed)) {
-          alert("已存在同名子分类");
-          return;
-        }
-        state.layout.subcats[topic] = state.layout.subcats[topic] || ["general"];
-        state.layout.subcats[topic].push(trimmed);
-        state.layout.paperOrder[`${topic}:${trimmed}`] = [];
-        saveToSubcat(paper, topic, trimmed);
+        saveToSubcat(paper, topic, subcat);
         hideMovePopup();
       };
-      wrap.appendChild(addNew);
+      wrap.appendChild(sc);
+    }
+    // "+ new subcat" inline button
+    const addNew = document.createElement("button");
+    addNew.type = "button";
+    addNew.className = "move-subcat add-new";
+    addNew.textContent = "+ 新建";
+    addNew.title = `在「${meta.name_zh}」下新建子分类`;
+    addNew.onclick = (e) => {
+      e.stopPropagation();
+      const name = prompt(`新子分类名(在「${meta.name_zh}」下):`);
+      if (!name) return;
+      const trimmed = name.trim();
+      if (!trimmed) return;
+      if ((state.layout.subcats[topic] || []).includes(trimmed)) {
+        alert("已存在同名子分类");
+        return;
+      }
+      state.layout.subcats[topic] = state.layout.subcats[topic] || ["general"];
+      state.layout.subcats[topic].push(trimmed);
+      state.layout.paperOrder[`${topic}:${trimmed}`] = [];
+      saveToSubcat(paper, topic, trimmed);
+      hideMovePopup();
+    };
+    wrap.appendChild(addNew);
 
-      tEl.appendChild(wrap);
-      popup.appendChild(tEl);
+    // On the auto-topic only, append "其他分类" (when collapsed)
+    if (isAutoTopic && !showAll) {
+      const otherBtn = document.createElement("button");
+      otherBtn.type = "button";
+      otherBtn.className = "move-subcat show-others";
+      otherBtn.textContent = "其他分类 ▾";
+      otherBtn.title = "展开其他主题";
+      otherBtn.onclick = (e) => {
+        e.stopPropagation();
+        showAll = true;
+        buildBody();
+      };
+      wrap.appendChild(otherBtn);
+    }
+
+    tEl.appendChild(wrap);
+    return tEl;
+  };
+
+  const buildBody = () => {
+    // Clear and rebuild topic sections
+    [...popup.querySelectorAll(".move-topic")].forEach(n => n.remove());
+
+    // Always render auto-classified topic first
+    popup.appendChild(renderTopicSection(autoTopic, true));
+
+    // If expanded, render the rest (skipping auto-topic)
+    if (showAll) {
+      for (const topic of state.layout.topicOrder) {
+        if (topic === autoTopic) continue;
+        popup.appendChild(renderTopicSection(topic, false));
+      }
     }
   };
 
