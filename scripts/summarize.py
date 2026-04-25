@@ -1,19 +1,28 @@
 """Generate concise Chinese summaries via Google Gemini API (or compatible proxy).
 
-Reads two key/base pairs:
-  - GEMINI_API_KEY        + GEMINI_BASE_URL          (primary)
-  - GEMINI_API_KEY_FALLBACK + GEMINI_FALLBACK_BASE_URL  (used when primary
-                                                         hits quota / errors)
+Two key/base pairs are supported. Primary is tried first with configurable
+concurrency; fallback runs serially at a polite pace (suited for the Google
+free tier).
 
-If primary key is missing, the rest of the pipeline still works (papers get
-empty summary_zh).
+Env vars:
+  GEMINI_API_KEY              primary key
+  GEMINI_BASE_URL             primary base URL (default: official Google)
+  GEMINI_CONCURRENCY          primary parallel workers (default: 5)
+  GEMINI_PACE_SECONDS         primary per-call sleep (default: 1.0)
+  GEMINI_API_KEY_FALLBACK     fallback key
+  GEMINI_FALLBACK_BASE_URL    fallback base URL (default: official Google)
+  GEMINI_FALLBACK_CONCURRENCY fallback parallel workers (default: 1)
+  GEMINI_FALLBACK_PACE_SECONDS fallback per-call sleep (default: 6.5)
+  GEMINI_MODEL                model id (default: gemini-2.5-flash)
 """
 
 from __future__ import annotations
 
 import json
 import os
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote
 from urllib.request import Request, urlopen
@@ -22,7 +31,6 @@ DEFAULT_BASE = "https://generativelanguage.googleapis.com/v1beta"
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
 MAX_RETRIES = 3
 TIMEOUT = 90
-PACE_SECONDS = 6.5  # ~9 RPM, under the 10 RPM free-tier limit
 
 SYSTEM_PROMPT = (
     "你是一位 AI 研究领域的论文速读助手。"
@@ -51,6 +59,20 @@ def is_truncated(summary: str) -> bool:
     return True
 
 
+def _env_float(name: str, default: float) -> float:
+    try:
+        return float(os.environ.get(name, "").strip() or default)
+    except ValueError:
+        return default
+
+
+def _env_int(name: str, default: int) -> int:
+    try:
+        return int(os.environ.get(name, "").strip() or default)
+    except ValueError:
+        return default
+
+
 def _call_gemini(api_key: str, base_url: str, title: str, abstract: str) -> str:
     user_msg = f"Title: {title}\n\nAbstract: {abstract}"
     url = f"{base_url.rstrip('/')}/models/{quote(MODEL)}:generateContent?key={quote(api_key)}"
@@ -62,8 +84,6 @@ def _call_gemini(api_key: str, base_url: str, title: str, abstract: str) -> str:
                 "temperature": 0.3,
                 "maxOutputTokens": 1024,
                 "responseMimeType": "text/plain",
-                # Disable Gemini 2.5 "thinking" tokens which silently eat the
-                # output budget and truncate Chinese summaries mid-sentence.
                 "thinkingConfig": {"thinkingBudget": 0},
             },
         }
@@ -120,50 +140,103 @@ def _call_gemini(api_key: str, base_url: str, title: str, abstract: str) -> str:
     raise last_err if last_err else RuntimeError("unknown gemini error")
 
 
-def _summarize_with(papers: list[dict], api_key: str, base_url: str, label: str) -> int:
-    """Try to summarize papers in-place. Returns the index where we bailed
-    (because of quota), or len(papers) if we processed everything.
+def _summarize_pool(
+    papers: list[dict],
+    api_key: str,
+    base_url: str,
+    label: str,
+    concurrency: int,
+    pace: float,
+) -> None:
+    """Summarize papers in parallel with `concurrency` workers.
+
+    Each worker waits `pace` seconds between starting requests so we don't
+    burst all at once. Aborts the rest if we see many consecutive 429s
+    (suggesting daily quota is exhausted).
     """
-    consecutive_429 = 0
-    for i, p in enumerate(papers):
-        if p.get("summary_zh"):
-            continue
+    if not papers:
+        return
+
+    todo = [p for p in papers if not p.get("summary_zh")]
+    if not todo:
+        return
+
+    print(
+        f"[summarize][{label}] {len(todo)} to do, "
+        f"concurrency={concurrency} pace={pace}s, base={base_url}",
+        flush=True,
+    )
+
+    state_lock = threading.Lock()
+    pace_lock = threading.Lock()
+    last_start = [0.0]
+    consecutive_429 = [0]
+    done_count = [0]
+    bail = threading.Event()
+
+    def worker(idx_paper):
+        idx, p = idx_paper
+        if bail.is_set():
+            return
+
+        # Pace: ensure we don't start a new request within `pace` of the last.
+        # This caps the global request rate to ~1/pace per second across all
+        # workers, which is what we actually want.
+        with pace_lock:
+            wait = (last_start[0] + pace) - time.monotonic()
+            if wait > 0:
+                time.sleep(wait)
+            last_start[0] = time.monotonic()
+
+        if bail.is_set():
+            return
+
         try:
-            p["summary_zh"] = _call_gemini(api_key, base_url, p["title"], p["abstract"])
-            print(f"[summarize][{label}] {i+1}/{len(papers)} ok: {p['id']}", flush=True)
-            consecutive_429 = 0
-        except Exception as e:
-            msg = str(e)
-            print(
-                f"[summarize][{label}] {i+1}/{len(papers)} FAIL {p['id']}: {msg[:200]}",
-                flush=True,
-            )
-            p["summary_zh"] = ""
-            if "HTTP 429" in msg or "RESOURCE_EXHAUSTED" in msg or "quota" in msg.lower():
-                consecutive_429 += 1
-                if consecutive_429 >= 3:
+            text = _call_gemini(api_key, base_url, p["title"], p["abstract"])
+            with state_lock:
+                p["summary_zh"] = text
+                consecutive_429[0] = 0
+                done_count[0] += 1
+                if done_count[0] % 10 == 0 or done_count[0] == len(todo):
                     print(
-                        f"[summarize][{label}] hit quota (3 consecutive 429s); "
-                        f"giving up at index {i}",
+                        f"[summarize][{label}] {done_count[0]}/{len(todo)} done",
                         flush=True,
                     )
-                    return i
-            else:
-                consecutive_429 = 0
-        time.sleep(PACE_SECONDS)
-    return len(papers)
+        except Exception as e:
+            msg = str(e)
+            with state_lock:
+                done_count[0] += 1
+                print(
+                    f"[summarize][{label}] FAIL {p['id']}: {msg[:200]}",
+                    flush=True,
+                )
+                if "HTTP 429" in msg or "RESOURCE_EXHAUSTED" in msg or "quota" in msg.lower():
+                    consecutive_429[0] += 1
+                    if consecutive_429[0] >= max(5, concurrency * 2):
+                        print(
+                            f"[summarize][{label}] hit quota "
+                            f"({consecutive_429[0]} 429s); aborting rest",
+                            flush=True,
+                        )
+                        bail.set()
+                else:
+                    consecutive_429[0] = 0
+
+    with ThreadPoolExecutor(max_workers=concurrency) as ex:
+        list(ex.map(worker, list(enumerate(todo))))
 
 
 def summarize_papers(papers: list[dict]) -> list[dict]:
-    """Mutate each paper in-place adding 'summary_zh'.
-
-    Tries primary (GEMINI_API_KEY + GEMINI_BASE_URL) first. On quota
-    exhaustion, falls back to GEMINI_API_KEY_FALLBACK + GEMINI_FALLBACK_BASE_URL.
-    """
+    """Mutate each paper in-place adding 'summary_zh'."""
     primary_key  = os.environ.get("GEMINI_API_KEY", "").strip()
     primary_base = os.environ.get("GEMINI_BASE_URL", DEFAULT_BASE).strip()
+    primary_concurrency = _env_int("GEMINI_CONCURRENCY", 5)
+    primary_pace        = _env_float("GEMINI_PACE_SECONDS", 1.0)
+
     fb_key  = os.environ.get("GEMINI_API_KEY_FALLBACK", "").strip()
     fb_base = os.environ.get("GEMINI_FALLBACK_BASE_URL", DEFAULT_BASE).strip()
+    fb_concurrency = _env_int("GEMINI_FALLBACK_CONCURRENCY", 1)
+    fb_pace        = _env_float("GEMINI_FALLBACK_PACE_SECONDS", 6.5)
 
     if not primary_key and not fb_key:
         print("[summarize] no API key set, skipping summaries", flush=True)
@@ -173,26 +246,22 @@ def summarize_papers(papers: list[dict]) -> list[dict]:
 
     todo = [p for p in papers if not p.get("summary_zh")]
     print(
-        f"[summarize] {len(papers)} papers total, {len(todo)} need summaries via "
-        f"{MODEL} (primary base: {primary_base or '(unset)'})",
+        f"[summarize] {len(papers)} papers total, {len(todo)} need summaries via {MODEL}",
         flush=True,
     )
 
     if primary_key:
-        idx = _summarize_with(todo, primary_key, primary_base, "primary")
-    else:
-        idx = 0
+        _summarize_pool(todo, primary_key, primary_base, "primary",
+                        primary_concurrency, primary_pace)
 
-    # Anything still missing summary_zh after primary -> try fallback
-    leftover = [p for p in todo[idx:] if not p.get("summary_zh")] + \
-               [p for p in todo[:idx] if not p.get("summary_zh")]
+    leftover = [p for p in todo if not p.get("summary_zh")]
     if leftover and fb_key:
         print(
-            f"[summarize] {len(leftover)} papers left after primary, "
-            f"switching to fallback ({fb_base})",
+            f"[summarize] {len(leftover)} left after primary, switching to fallback",
             flush=True,
         )
-        _summarize_with(leftover, fb_key, fb_base, "fallback")
+        _summarize_pool(leftover, fb_key, fb_base, "fallback",
+                        fb_concurrency, fb_pace)
 
     for p in papers:
         p.setdefault("summary_zh", "")

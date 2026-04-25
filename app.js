@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-25.05";  // bump on each frontend change
+const BUILD_ID = "2026-04-25.07";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -16,8 +16,18 @@ const LS = {
   trash:   "arxiv-daily-trash-v2",   // {[id]: paper}
   layout:  "arxiv-daily-layout-v1",  // {topicOrder, subcats, paperOrder}
   sync:    "arxiv-daily-sync-v1",    // {token, gistId, lastSyncedAt}
+  gemini:  "arxiv-daily-gemini-v1",  // {apiKey, baseUrl, model}
   legacy:  "arxiv-daily-stars",      // legacy stars (array of ids)
 };
+
+const GEMINI_SYSTEM_PROMPT =
+  "你是一位 AI 研究领域的论文速读助手。" +
+  "你将收到一篇 arXiv 论文的英文标题和摘要,请用中文输出该论文的完整解读,要求:" +
+  "1) 用 3-4 句话讲清楚:这篇论文要解决什么问题、用了什么方法、关键创新点、实验/结果如何;" +
+  "2) 总字数控制在 150-250 字,必须是完整的句子,不要在句子中间结束;" +
+  "3) 保留必要的英文术语(如模型名、benchmark 名、关键技术名);" +
+  "4) 不要写「这篇论文」「作者」之类的套话,直接讲内容;" +
+  "5) 只输出中文摘要正文,不要加任何前缀、标题或 markdown。";
 
 const DEFAULT_TOPICS = ["world-model", "rl", "distillation", "video-gen", "4d-gen", "other"];
 
@@ -41,6 +51,7 @@ const state = {
   trash:  loadJson(LS.trash,  {}),
   layout: loadJson(LS.layout, null),
   sync:   loadJson(LS.sync,   {}),
+  gemini: loadJson(LS.gemini, {}),
   syncStatus: "idle", // idle | syncing | synced | error | disabled
   syncTimer: null,
 };
@@ -609,9 +620,34 @@ function renderPaper(p) {
 
   const dragGrip = isMine ? `<span class="drag-grip" title="拖动重排">⋮⋮</span>` : "";
 
-  const summaryZh = p.summary_zh
-    ? `<div class="summary-zh">${escapeHtml(p.summary_zh)}</div>`
-    : `<div class="summary-zh empty">${state.view === "daily" ? "（中文摘要未生成）" : ""}</div>`;
+  // Chinese summary block:
+  //  - daily/trash: read-only div
+  //  - mine + has summary: editable textarea (saves on blur)
+  //  - mine + no summary: status message ("生成中…" or "请在设置里配置 key")
+  let summaryZh;
+  if (isMine) {
+    if (p.summary_zh) {
+      summaryZh = `<div class="summary-zh">
+        <textarea class="summary-zh-edit" spellcheck="false"
+          placeholder="中文摘要(可编辑)…">${escapeHtml(p.summary_zh)}</textarea>
+        <span class="saved-mark summary-saved-mark">已保存</span>
+      </div>`;
+    } else if (p._summarizing) {
+      summaryZh = `<div class="summary-zh empty">⏳ 正在生成中文摘要…</div>`;
+    } else if (p.abstract) {
+      const hasKey = !!state.gemini?.apiKey;
+      summaryZh = `<div class="summary-zh empty">
+        <button class="gen-summary-btn">${hasKey ? "重试生成中文摘要" : "生成中文摘要"}</button>
+        ${hasKey ? "" : `<span class="muted small" style="margin-left:8px">先在 ☁ 设置里配 Gemini key</span>`}
+      </div>`;
+    } else {
+      summaryZh = `<div class="summary-zh empty">(无英文摘要可用)</div>`;
+    }
+  } else {
+    summaryZh = p.summary_zh
+      ? `<div class="summary-zh">${escapeHtml(p.summary_zh)}</div>`
+      : `<div class="summary-zh empty">${state.view === "daily" ? "（中文摘要未生成）" : ""}</div>`;
+  }
 
   const abstractBlock = p.abstract
     ? `<details class="abstract"><summary>原文摘要</summary><p>${escapeHtml(p.abstract)}</p></details>`
@@ -682,6 +718,34 @@ function renderPaper(p) {
   const restoreBtn = art.querySelector(".icon-btn.restore");
   if (restoreBtn) restoreBtn.onclick = () => restoreFromTrash(p.id);
 
+  // Generate-summary button
+  const genBtn = art.querySelector(".gen-summary-btn");
+  if (genBtn) genBtn.onclick = () => generateSummaryFor(p.id);
+
+  // Editable summary textarea (mine view, when summary exists)
+  const sumTa = art.querySelector(".summary-zh-edit");
+  if (sumTa) {
+    // Auto-grow on input
+    const grow = () => { sumTa.style.height = "auto"; sumTa.style.height = sumTa.scrollHeight + "px"; };
+    setTimeout(grow, 0);
+    const sumMark = art.querySelector(".summary-saved-mark");
+    let sumTimer = null;
+    sumTa.addEventListener("input", () => {
+      grow();
+      clearTimeout(sumTimer);
+      sumTimer = setTimeout(() => {
+        const cur = state.saved[p.id];
+        if (!cur) return;
+        cur.summary_zh = sumTa.value;
+        persistAll();
+        if (sumMark) {
+          sumMark.classList.add("show");
+          setTimeout(() => sumMark.classList.remove("show"), 800);
+        }
+      }, 350);
+    });
+  }
+
   // Notes auto-save
   if (isMine) {
     const ta = art.querySelector("textarea");
@@ -718,19 +782,47 @@ function renderPaper(p) {
 const _thumbCache = new Map(); // pdfUrl -> data URL (in-memory only)
 const _thumbInflight = new Map();
 
+async function _fetchPdfBytes(pdfUrl) {
+  // arxiv.org doesn't expose CORS on PDFs; try multiple proxies, sanity-check
+  // each response actually starts with %PDF.
+  const candidates = [
+    pdfUrl,  // direct (works on the few arxiv mirrors that allow it)
+    `https://corsproxy.io/?${encodeURIComponent(pdfUrl)}`,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(pdfUrl)}`,
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(pdfUrl)}`,
+  ];
+  let lastErr = null;
+  for (const url of candidates) {
+    try {
+      const r = await fetch(url, { cache: "force-cache" });
+      if (!r.ok) { lastErr = new Error(`HTTP ${r.status} (${url.slice(0, 40)}…)`); continue; }
+      const buf = await r.arrayBuffer();
+      if (buf.byteLength < 1000) {
+        lastErr = new Error(`response too small (${buf.byteLength}b)`);
+        continue;
+      }
+      const head = String.fromCharCode(...new Uint8Array(buf, 0, 5));
+      if (!head.startsWith("%PDF")) {
+        lastErr = new Error(`not a PDF (head: ${JSON.stringify(head)})`);
+        continue;
+      }
+      return new Uint8Array(buf);
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr || new Error("all proxies failed");
+}
+
 async function _renderPdfThumb(pdfUrl) {
   if (_thumbCache.has(pdfUrl)) return _thumbCache.get(pdfUrl);
   if (_thumbInflight.has(pdfUrl)) return _thumbInflight.get(pdfUrl);
 
-  // arxiv.org PDFs don't allow CORS — fetch through a proxy.
-  const proxied = `https://corsproxy.io/?${encodeURIComponent(pdfUrl)}`;
-
   const promise = (async () => {
-    const loadingTask = pdfjsLib.getDocument({ url: proxied });
-    const pdf = await loadingTask.promise;
+    const bytes = await _fetchPdfBytes(pdfUrl);
+    const pdf = await pdfjsLib.getDocument({ data: bytes }).promise;
     const page = await pdf.getPage(1);
     const viewport = page.getViewport({ scale: 1.0 });
-    // Scale down so the long edge is ~280 px (renders sharp on retina)
     const targetWidth = 280;
     const scale = targetWidth / viewport.width;
     const v2 = page.getViewport({ scale });
@@ -743,11 +835,8 @@ async function _renderPdfThumb(pdfUrl) {
     return dataUrl;
   })();
   _thumbInflight.set(pdfUrl, promise);
-  try {
-    return await promise;
-  } finally {
-    _thumbInflight.delete(pdfUrl);
-  }
+  try { return await promise; }
+  finally { _thumbInflight.delete(pdfUrl); }
 }
 
 const _thumbObserver = "IntersectionObserver" in window
@@ -793,6 +882,7 @@ function toggleSave(paper) {
     let topic = (paper.topics && paper.topics[0]) || "other";
     if (!DEFAULT_TOPICS.includes(topic)) topic = "other";
     placePaperInLayout(paper.id, topic, "general");
+    autoGenIfNeeded(paper.id);
   }
   persistAll();
   renderList();
@@ -968,6 +1058,7 @@ async function handleUpload() {
     }
     placePaperInLayout(savedId, topicSel.value, "general");
     persistAll();
+    autoGenIfNeeded(savedId);
     urlInput.value = "";
     if (state.view === "mine") {
       renderList();
@@ -980,6 +1071,112 @@ async function handleUpload() {
   } finally {
     btn.disabled = false;
     btn.textContent = oldText;
+  }
+}
+
+// ---------- Browser-side Gemini summary ----------
+
+async function callGeminiClient(title, abstract) {
+  const cfg = state.gemini || {};
+  if (!cfg.apiKey) throw new Error("尚未配置 Gemini API key,请先在 ☁ 设置里填写。");
+  const baseUrl = (cfg.baseUrl || "https://generativelanguage.googleapis.com/v1beta").replace(/\/$/, "");
+  const model   = cfg.model   || "gemini-2.5-flash";
+  const url = `${baseUrl}/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(cfg.apiKey)}`;
+
+  const body = {
+    systemInstruction: { parts: [{ text: GEMINI_SYSTEM_PROMPT }] },
+    contents: [{ role: "user", parts: [{ text: `Title: ${title}\n\nAbstract: ${abstract}` }] }],
+    generationConfig: {
+      temperature: 0.3,
+      maxOutputTokens: 1024,
+      responseMimeType: "text/plain",
+      thinkingConfig: { thinkingBudget: 0 },
+    },
+  };
+  const headers = { "Content-Type": "application/json" };
+
+  // Try direct first; on CORS/network failure, route through corsproxy.io.
+  const candidates = [
+    url,
+    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  ];
+  let lastErr = null;
+  for (const u of candidates) {
+    try {
+      const r = await fetch(u, { method: "POST", headers, body: JSON.stringify(body) });
+      const txt = await r.text();
+      if (!r.ok) { lastErr = new Error(`HTTP ${r.status}: ${txt.slice(0, 200)}`); continue; }
+      const data = JSON.parse(txt);
+      const cand = (data.candidates || [])[0];
+      if (!cand) throw new Error("no candidates: " + JSON.stringify(data.promptFeedback || {}));
+      const parts = (cand.content?.parts) || [];
+      const text = parts.map(p => p.text || "").join("").trim();
+      if (!text) throw new Error("empty response (finishReason=" + cand.finishReason + ")");
+      return text;
+    } catch (e) { lastErr = e; }
+  }
+  throw lastErr || new Error("unknown");
+}
+
+async function generateSummaryFor(paperId, opts = {}) {
+  const p = state.saved[paperId];
+  if (!p) return;
+  if (!p.abstract) {
+    if (!opts.silent) alert("这篇没有英文摘要,无法生成中文摘要。");
+    return;
+  }
+  if (!state.gemini.apiKey) {
+    if (!opts.silent) {
+      alert("先在 ☁ 设置里配置 Gemini API key。");
+      openSyncModal();
+    }
+    return;
+  }
+  // Mark in-flight so renderList shows "生成中…" placeholder
+  p._summarizing = true;
+  if (!opts.skipRender) renderList();
+  try {
+    const text = await callGeminiClient(p.title, p.abstract);
+    p.summary_zh = text;
+    delete p._summarizing;
+    persistAll();
+    renderList();
+  } catch (e) {
+    delete p._summarizing;
+    if (!opts.silent) {
+      alert("生成失败:" + e.message);
+      renderList();
+    } else {
+      console.warn("[gen] silent fail for", paperId, e);
+      renderList();
+    }
+  }
+}
+
+// Auto-generate summary if Gemini is configured and paper is missing one.
+// Fires for newly starred / newly uploaded papers. Best-effort, never alerts.
+function autoGenIfNeeded(paperId) {
+  const p = state.saved[paperId];
+  if (!p) return;
+  if (p.summary_zh) return;
+  if (!p.abstract) return;
+  if (!state.gemini?.apiKey) return;
+  generateSummaryFor(paperId, { silent: true, skipRender: true });
+}
+
+async function generateAllMissingSummaries() {
+  const missing = Object.values(state.saved).filter(p => !p.summary_zh && p.abstract);
+  if (!missing.length) { alert("所有论文都有摘要了。"); return; }
+  if (!state.gemini.apiKey) { alert("先配置 Gemini API key。"); openSyncModal(); return; }
+  if (!confirm(`将依次为 ${missing.length} 篇论文生成中文摘要,可能耗时几分钟。继续?`)) return;
+  for (const p of missing) {
+    try {
+      p.summary_zh = await callGeminiClient(p.title, p.abstract);
+      persistAll();
+      renderList();
+    } catch (e) {
+      console.warn("[gen] fail:", p.id, e);
+    }
   }
 }
 
@@ -1151,14 +1348,85 @@ function refreshSyncModalUI() {
 
 function openSyncModal() {
   $("#sync-token").value = state.sync.token || "";
+  $("#gemini-key").value   = state.gemini.apiKey || "";
+  $("#gemini-base").value  = state.gemini.baseUrl || "";
+  $("#gemini-model").value = state.gemini.model || "";
   refreshSyncModalUI();
+  refreshGeminiModalUI();
   $("#sync-modal").hidden = false;
 }
 function closeSyncModal() { $("#sync-modal").hidden = true; }
 
+function refreshGeminiModalUI() {
+  const has = !!state.gemini?.apiKey;
+  $("#gemini-clear").hidden = !has;
+  const info = $("#gemini-info");
+  if (has) {
+    info.innerHTML = `已配置 base=<code>${escapeHtml(state.gemini.baseUrl || "(默认 Google)")}</code>
+                      model=<code>${escapeHtml(state.gemini.model || "gemini-2.5-flash")}</code>`;
+  } else {
+    info.textContent = "未配置。";
+  }
+}
+
+function saveGeminiConfig() {
+  const apiKey = $("#gemini-key").value.trim();
+  const baseUrl = $("#gemini-base").value.trim();
+  const model = $("#gemini-model").value.trim();
+  if (!apiKey) { alert("请填写 API key"); return; }
+  state.gemini = { apiKey, baseUrl, model };
+  saveJson(LS.gemini, state.gemini);
+  refreshGeminiModalUI();
+  alert("已保存。手动添加论文时点「生成中文摘要」按钮即可调用。");
+}
+
+function clearGeminiConfig() {
+  if (!confirm("清除浏览器里存的 Gemini key?")) return;
+  state.gemini = {};
+  saveJson(LS.gemini, null);
+  $("#gemini-key").value = "";
+  $("#gemini-base").value = "";
+  $("#gemini-model").value = "";
+  refreshGeminiModalUI();
+}
+
 // ---------- bootstrap ----------
 
+// ---------- Theme toggle ----------
+
+const THEME_LS = "arxiv-daily-theme";
+const THEME_CYCLE = ["auto", "light", "dark"];
+const THEME_LABEL = { auto: "🌗", light: "☀", dark: "🌙" };
+const THEME_TITLE = { auto: "跟随系统(点击切换)", light: "浅色(点击切换)", dark: "深色(点击切换)" };
+
+function applyTheme(theme) {
+  if (theme === "auto") {
+    document.documentElement.removeAttribute("data-theme");
+  } else {
+    document.documentElement.setAttribute("data-theme", theme);
+  }
+  localStorage.setItem(THEME_LS, theme);
+  const btn = $("#theme-toggle");
+  if (btn) {
+    btn.textContent = THEME_LABEL[theme];
+    btn.title = THEME_TITLE[theme];
+  }
+}
+
+function cycleTheme() {
+  const cur = localStorage.getItem(THEME_LS) || "auto";
+  const idx = THEME_CYCLE.indexOf(cur);
+  const next = THEME_CYCLE[(idx + 1) % THEME_CYCLE.length];
+  applyTheme(next);
+}
+
+// Apply saved theme as early as possible to avoid flash
+applyTheme(localStorage.getItem(THEME_LS) || "auto");
+
 async function main() {
+  $("#theme-toggle").onclick = cycleTheme;
+  applyTheme(localStorage.getItem(THEME_LS) || "auto");  // re-apply now that DOM is ready
+
   $("#search").addEventListener("input", e => {
     state.query = e.target.value.trim();
     renderList();
@@ -1186,6 +1454,8 @@ async function main() {
   $("#sync-pull").onclick = syncPull;
   $("#sync-push").onclick = syncPush;
   $("#sync-disconnect").onclick = disconnectSync;
+  $("#gemini-save").onclick = saveGeminiConfig;
+  $("#gemini-clear").onclick = clearGeminiConfig;
 
   // Initial sync status
   if (syncEnabled()) {

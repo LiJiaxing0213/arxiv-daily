@@ -31,10 +31,14 @@ jobs:
           # Primary: viviai (or whichever provider you set in BASE_URL)
           GEMINI_API_KEY:           ${{ secrets.GEMINI_API_KEY }}
           GEMINI_BASE_URL:          ${{ vars.GEMINI_BASE_URL || 'https://api.viviai.cc/v1beta' }}
-          # Fallback: when primary runs out of quota
-          GEMINI_API_KEY_FALLBACK:  ${{ secrets.GEMINI_API_KEY_FALLBACK }}
-          GEMINI_FALLBACK_BASE_URL: ${{ vars.GEMINI_FALLBACK_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta' }}
-          GEMINI_MODEL:             gemini-2.5-flash
+          GEMINI_CONCURRENCY:       ${{ vars.GEMINI_CONCURRENCY || '5' }}
+          GEMINI_PACE_SECONDS:      ${{ vars.GEMINI_PACE_SECONDS || '1.0' }}
+          # Fallback: when primary runs out of quota (default = Google free tier)
+          GEMINI_API_KEY_FALLBACK:     ${{ secrets.GEMINI_API_KEY_FALLBACK }}
+          GEMINI_FALLBACK_BASE_URL:    ${{ vars.GEMINI_FALLBACK_BASE_URL || 'https://generativelanguage.googleapis.com/v1beta' }}
+          GEMINI_FALLBACK_CONCURRENCY: ${{ vars.GEMINI_FALLBACK_CONCURRENCY || '1' }}
+          GEMINI_FALLBACK_PACE_SECONDS: ${{ vars.GEMINI_FALLBACK_PACE_SECONDS || '6.5' }}
+          GEMINI_MODEL:                gemini-2.5-flash
         working-directory: scripts
         run: python main.py
 
