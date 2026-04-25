@@ -996,6 +996,9 @@ async function main() {
   $("#sync-modal").addEventListener("click", e => {
     if (e.target.id === "sync-modal") closeSyncModal();
   });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !$("#sync-modal").hidden) closeSyncModal();
+  });
   $("#sync-connect").onclick = connectSync;
   $("#sync-pull").onclick = syncPull;
   $("#sync-push").onclick = syncPush;
