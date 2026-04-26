@@ -63,8 +63,30 @@ def main() -> None:
 
     raw = fetch_recent()
     print(f"[main] fetched {len(raw)} raw papers across all categories", flush=True)
+
+    # SAFETY: if fetch clearly failed (suspiciously few raw papers), bail out
+    # so we don't overwrite existing good data with empty placeholders.
+    MIN_EXPECTED_RAW = 200  # 5 categories × at least 40 recent papers each
+    if len(raw) < MIN_EXPECTED_RAW:
+        print(
+            f"[main] ABORT: only {len(raw)} raw papers (< {MIN_EXPECTED_RAW}); "
+            f"likely arxiv fetch failure. Existing data will be preserved.",
+            flush=True,
+        )
+        return
+
     tagged = filter_and_tag(raw)
     print(f"[main] {len(tagged)} papers matched topics (across all dates)", flush=True)
+
+    # SAFETY: if zero matched papers, the keyword regex / classifier likely
+    # broke. Abort rather than wipe everything.
+    if len(tagged) == 0:
+        print(
+            "[main] ABORT: 0 papers matched any topic; classifier may be broken. "
+            "Existing data will be preserved.",
+            flush=True,
+        )
+        return
 
     # Show per-date breakdown of what we fetched (helps diagnose backfill issues)
     pre_grouped: dict[str, int] = {}
@@ -102,12 +124,31 @@ def main() -> None:
                 needs_summary.append(p)
     summarize_papers(needs_summary)
 
-    # Write one JSON per date in the retention window (always write all
-    # dates, even with 0 papers, so the UI dropdown shows the day).
+    # Write one JSON per date in the retention window.
+    #   - If we got papers for that date: always overwrite with fresh content.
+    #   - If we got 0 papers but a file already exists: PRESERVE existing
+    #     (don't wipe yesterday's good data with today's empty result).
+    #   - If we got 0 papers and no file exists: write an empty placeholder
+    #     so the UI dropdown still shows the date.
     topics_meta = {k: {"name_zh": v["name_zh"], "name_en": v["name_en"]} for k, v in TOPICS.items()}
     written_dates: list[str] = []
+    preserved = 0
     for date in sorted(retention_dates, reverse=True):
         papers = by_date.get(date, [])
+        path = DATA_DIR / f"{date}.json"
+        if not papers and path.exists():
+            # Preserve existing — but also check it's not a stale empty
+            try:
+                with path.open("r", encoding="utf-8") as f:
+                    existing = json.load(f)
+                if existing.get("papers"):
+                    preserved += 1
+                    print(f"[main] kept {path.name} ({len(existing['papers'])} papers, no new fetch for this date)", flush=True)
+                    written_dates.append(date)
+                    continue
+            except (json.JSONDecodeError, OSError):
+                pass
+
         for p in papers:
             p.setdefault("summary_zh", "")
         payload = {
@@ -116,12 +157,13 @@ def main() -> None:
             "topics": topics_meta,
             "papers": papers,
         }
-        path = DATA_DIR / f"{date}.json"
         with path.open("w", encoding="utf-8") as f:
             json.dump(payload, f, ensure_ascii=False, indent=2)
         marker = "" if papers else "  (empty placeholder)"
         print(f"[main] wrote {path.name} ({len(papers)} papers){marker}", flush=True)
         written_dates.append(date)
+    if preserved:
+        print(f"[main] preserved {preserved} existing files where this run had 0 new papers", flush=True)
 
     # Delete files outside retention window
     for path in DATA_DIR.glob("*.json"):

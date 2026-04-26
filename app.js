@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-25.17";  // bump on each frontend change
+const BUILD_ID = "2026-04-26.18";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -12,12 +12,13 @@ window.addEventListener("DOMContentLoaded", () => {
 const $ = (sel) => document.querySelector(sel);
 
 const LS = {
-  saved:   "arxiv-daily-saved-v2",   // {[id]: paper}
-  trash:   "arxiv-daily-trash-v2",   // {[id]: paper}
-  layout:  "arxiv-daily-layout-v1",  // {topicOrder, subcats, paperOrder}
-  sync:    "arxiv-daily-sync-v1",    // {token, gistId, lastSyncedAt}
-  gemini:  "arxiv-daily-gemini-v1",  // {apiKey, baseUrl, model}
-  legacy:  "arxiv-daily-stars",      // legacy stars (array of ids)
+  saved:    "arxiv-daily-saved-v2",   // {[id]: paper}
+  trash:    "arxiv-daily-trash-v2",   // {[id]: paper}
+  layout:   "arxiv-daily-layout-v1",  // {topicOrder, subcats, paperOrder}
+  sync:     "arxiv-daily-sync-v1",    // {token, gistId, lastSyncedAt}
+  gemini:   "arxiv-daily-gemini-v1",  // {apiKey, baseUrl, model}
+  lastEdit: "arxiv-daily-last-edit",  // ms timestamp of last local mutation
+  legacy:   "arxiv-daily-stars",      // legacy stars (array of ids)
 };
 
 const GEMINI_SYSTEM_PROMPT =
@@ -71,6 +72,9 @@ function persistAll() {
   saveJson(LS.saved,  state.saved);
   saveJson(LS.trash,  state.trash);
   saveJson(LS.layout, state.layout);
+  // Stamp local edit time so syncPull on the next page load can detect that
+  // local changes are newer than the gist and avoid clobbering them.
+  localStorage.setItem(LS.lastEdit, String(Date.now()));
   scheduleSync();
 }
 
@@ -1701,7 +1705,8 @@ async function syncPush() {
   }
 }
 
-async function syncPull() {
+async function syncPull(opts = {}) {
+  // opts.force = true: always apply remote (used by manual "立即拉取")
   if (!syncEnabled()) return;
   setSyncStatus("syncing");
   try {
@@ -1709,6 +1714,20 @@ async function syncPull() {
     const file = data.files?.[GIST_FILENAME];
     if (file) {
       const payload = JSON.parse(file.content || "{}");
+      const remoteTs = payload.updatedAt ? new Date(payload.updatedAt).getTime() : 0;
+      const localTs  = parseInt(localStorage.getItem(LS.lastEdit) || "0", 10);
+
+      if (!opts.force && localTs > remoteTs && localTs > 0) {
+        // Local changes are newer than what's on the gist (e.g. user edited
+        // then refreshed before the debounced push fired). Push instead of
+        // overwriting local with stale remote.
+        console.log(
+          `[sync] skipping pull: local newer (local=${new Date(localTs).toISOString()}, ` +
+          `remote=${payload.updatedAt})`
+        );
+        await syncPush();
+        return;
+      }
       applySyncPayload(payload);
     }
     state.sync.lastSyncedAt = new Date().toISOString();
@@ -1895,7 +1914,9 @@ async function main() {
     if (e.key === "Escape" && !$("#sync-modal").hidden) closeSyncModal();
   });
   $("#sync-connect").onclick = connectSync;
-  $("#sync-pull").onclick = syncPull;
+  $("#sync-pull").onclick = () => {
+    if (confirm("强制拉取会覆盖本地未同步的修改,确定?")) syncPull({ force: true });
+  };
   $("#sync-push").onclick = syncPush;
   $("#sync-disconnect").onclick = disconnectSync;
   $("#gemini-save").onclick = saveGeminiConfig;
