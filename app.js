@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-26.18";  // bump on each frontend change
+const BUILD_ID = "2026-04-26.20";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -80,24 +80,74 @@ function persistAll() {
 
 // ---------- layout init / migration ----------
 
+// Layout v2: 3-level hierarchy Topic > Subcat > Sub-subcat > Papers.
+// paperOrder keys are now "topic:subcat:subsubcat" (3 colon-separated parts).
+// subsubcats[`topic:subcat`] = list of sub-subcat names (always >= 1; first is "general")
+// collapsed[`...`] = bool (UI state, optional)
+
 function freshLayout() {
   const subcats = {};
+  const subsubcats = {};
   const paperOrder = {};
   for (const t of DEFAULT_TOPICS) {
     subcats[t] = ["general"];
-    paperOrder[`${t}:general`] = [];
+    subsubcats[`${t}:general`] = ["general"];
+    paperOrder[`${t}:general:general`] = [];
   }
-  return { topicOrder: [...DEFAULT_TOPICS], subcats, paperOrder };
+  return {
+    version: 2,
+    topicOrder: [...DEFAULT_TOPICS],
+    subcats,
+    subsubcats,
+    paperOrder,
+    collapsed: {},
+  };
 }
 
 function ensureLayout() {
   if (!state.layout) state.layout = freshLayout();
-  // Make sure every default topic exists
+  // Migrate v1 (topic:subcat) -> v2 (topic:subcat:subsubcat)
+  if ((state.layout.version ?? 1) < 2) {
+    const newPaperOrder = {};
+    const newSubsubcats = {};
+    for (const [oldKey, ids] of Object.entries(state.layout.paperOrder || {})) {
+      const parts = oldKey.split(":");
+      if (parts.length === 2) {
+        // v1 key: topic:subcat -> topic:subcat:general
+        const [topic, subcat] = parts;
+        newPaperOrder[`${topic}:${subcat}:general`] = ids;
+        newSubsubcats[`${topic}:${subcat}`] = ["general"];
+      } else if (parts.length === 3) {
+        // already v2
+        newPaperOrder[oldKey] = ids;
+        const [topic, subcat, subsubcat] = parts;
+        const skey = `${topic}:${subcat}`;
+        newSubsubcats[skey] = newSubsubcats[skey] || [];
+        if (!newSubsubcats[skey].includes(subsubcat)) newSubsubcats[skey].push(subsubcat);
+      }
+    }
+    state.layout.paperOrder = newPaperOrder;
+    state.layout.subsubcats = { ...newSubsubcats, ...(state.layout.subsubcats || {}) };
+    state.layout.collapsed = state.layout.collapsed || {};
+    state.layout.version = 2;
+  }
+  if (!state.layout.subsubcats) state.layout.subsubcats = {};
+  if (!state.layout.collapsed) state.layout.collapsed = {};
+
+  // Make sure every default topic + subcat:subsubcat exists
   for (const t of DEFAULT_TOPICS) {
     if (!state.layout.subcats[t]) state.layout.subcats[t] = ["general"];
     if (!state.layout.topicOrder.includes(t)) state.layout.topicOrder.push(t);
-    const key = `${t}:general`;
-    if (!state.layout.paperOrder[key]) state.layout.paperOrder[key] = [];
+    for (const sc of state.layout.subcats[t]) {
+      const sKey = `${t}:${sc}`;
+      if (!state.layout.subsubcats[sKey] || !state.layout.subsubcats[sKey].length) {
+        state.layout.subsubcats[sKey] = ["general"];
+      }
+      for (const ssc of state.layout.subsubcats[sKey]) {
+        const pKey = `${t}:${sc}:${ssc}`;
+        if (!state.layout.paperOrder[pKey]) state.layout.paperOrder[pKey] = [];
+      }
+    }
   }
 }
 
@@ -125,7 +175,7 @@ function migrateLegacyStars() {
   }
 }
 
-function placePaperInLayout(paperId, topic, subcat = "general") {
+function placePaperInLayout(paperId, topic, subcat = "general", subsubcat = "general") {
   ensureLayout();
   if (!DEFAULT_TOPICS.includes(topic) && !state.layout.subcats[topic]) {
     state.layout.subcats[topic] = ["general"];
@@ -134,12 +184,15 @@ function placePaperInLayout(paperId, topic, subcat = "general") {
   if (!state.layout.subcats[topic].includes(subcat)) {
     state.layout.subcats[topic].push(subcat);
   }
-  const key = `${topic}:${subcat}`;
-  if (!state.layout.paperOrder[key]) state.layout.paperOrder[key] = [];
-  // Remove from any other location first
+  const sKey = `${topic}:${subcat}`;
+  if (!state.layout.subsubcats[sKey]) state.layout.subsubcats[sKey] = ["general"];
+  if (!state.layout.subsubcats[sKey].includes(subsubcat)) {
+    state.layout.subsubcats[sKey].push(subsubcat);
+  }
+  const pKey = `${topic}:${subcat}:${subsubcat}`;
+  if (!state.layout.paperOrder[pKey]) state.layout.paperOrder[pKey] = [];
   removePaperFromLayout(paperId);
-  // Add to head (newly added papers go on top)
-  state.layout.paperOrder[key].unshift(paperId);
+  state.layout.paperOrder[pKey].unshift(paperId);
 }
 
 function removePaperFromLayout(paperId) {
@@ -152,26 +205,27 @@ function removePaperFromLayout(paperId) {
 function findPaperLocation(paperId) {
   if (!state.layout) return null;
   for (const [key, ids] of Object.entries(state.layout.paperOrder)) {
-    if (ids.includes(paperId)) {
-      const [topic, subcat] = key.split(":", 2);
-      // Note: split with limit 2 in JS still gives all; use indexOf workaround
-      const i = key.indexOf(":");
-      return { topic: key.slice(0, i), subcat: key.slice(i + 1) };
+    if (!ids.includes(paperId)) continue;
+    const parts = key.split(":");
+    if (parts.length >= 3) {
+      // v2: topic:subcat:subsubcat (subcat name itself can't contain ":" in our UI)
+      return { topic: parts[0], subcat: parts[1], subsubcat: parts.slice(2).join(":") };
+    } else if (parts.length === 2) {
+      return { topic: parts[0], subcat: parts[1], subsubcat: "general" };
     }
   }
   return null;
 }
 
-// Place any saved paper that's not yet in layout into its default slot
 function reconcileLayout() {
   ensureLayout();
   for (const [id, p] of Object.entries(state.saved)) {
     if (findPaperLocation(id)) continue;
     let topic = (p.topics && p.topics[0]) || "other";
     if (!DEFAULT_TOPICS.includes(topic)) topic = "other";
-    placePaperInLayout(id, topic, "general");
+    placePaperInLayout(id, topic, "general", "general");
   }
-  // Remove orphan ids from layout (saved was deleted somehow)
+  // Drop ids from paperOrder that no longer match a saved paper
   for (const k of Object.keys(state.layout.paperOrder)) {
     state.layout.paperOrder[k] = state.layout.paperOrder[k].filter(id => state.saved[id]);
   }
@@ -561,6 +615,16 @@ function renderFlatList(list, papers) {
   for (const p of papers) list.appendChild(renderPaper(p));
 }
 
+function isCollapsed(key) {
+  return !!state.layout.collapsed?.[key];
+}
+function setCollapsed(key, val) {
+  state.layout.collapsed = state.layout.collapsed || {};
+  if (val) state.layout.collapsed[key] = true;
+  else delete state.layout.collapsed[key];
+  persistAll();
+}
+
 function renderMine(list) {
   const topic = state.topic;
   if (!topic || !state.layout.subcats[topic]) {
@@ -568,83 +632,218 @@ function renderMine(list) {
     return;
   }
 
-  // Render each subcategory section
   const subcats = state.layout.subcats[topic];
   const sectionsWrap = document.createElement("div");
   sectionsWrap.id = "subcat-wrap";
   list.appendChild(sectionsWrap);
 
   for (const subcat of subcats) {
-    const ids = state.layout.paperOrder[`${topic}:${subcat}`] || [];
-    const papers = ids
-      .map(id => state.saved[id])
-      .filter(Boolean)
-      .filter(paperMatchesQuery);
+    const subcatKey = `${topic}:${subcat}`;
+    const subsubcats = state.layout.subsubcats[subcatKey] || ["general"];
+
+    // Total papers under this subcat (sum across all subsubcats)
+    let subcatPaperCount = 0;
+    for (const ssc of subsubcats) {
+      subcatPaperCount += (state.layout.paperOrder[`${subcatKey}:${ssc}`] || []).length;
+    }
+
+    const subcatCollapsed = isCollapsed(subcatKey);
 
     const section = document.createElement("section");
-    section.className = "subcat";
+    section.className = "subcat" + (subcatCollapsed ? " collapsed" : "");
     section.dataset.subcat = subcat;
 
     const head = document.createElement("div");
     head.className = "subcat-head";
     head.innerHTML = `
       <span class="subcat-handle" title="拖动重排子分类">⋮⋮</span>
+      <button class="collapse-toggle" title="折叠/展开">${subcatCollapsed ? "▶" : "▼"}</button>
       <input class="subcat-name" value="${escapeHtml(subcat)}" />
-      <span class="subcat-count">(${papers.length})</span>
+      <span class="subcat-count">(${subcatPaperCount})</span>
       <div class="subcat-actions">
-        <button class="icon-btn add" title="添加论文到此子分类">+</button>
+        <button class="icon-btn add" title="添加论文到此子分类(放进 general)">+</button>
+        <button class="icon-btn add-sub" title="新建二级子分类">++</button>
         ${subcat !== "general" ? `<button class="icon-btn delete" title="删除子分类(论文回到 general)">✕</button>` : ""}
       </div>`;
     section.appendChild(head);
 
-    // Wire "+" button -> upload directly into this (topic, subcat)
-    const addBtn = head.querySelector(".icon-btn.add");
-    if (addBtn) addBtn.onclick = () => handleAddToSubcat(topic, subcat);
+    // Subsubcats container
+    const sscWrap = document.createElement("div");
+    sscWrap.className = "subsubcat-wrap";
+    sscWrap.dataset.subcatkey = subcatKey;
+    section.appendChild(sscWrap);
 
-    const listEl = document.createElement("div");
-    listEl.className = "paper-list";
-    listEl.dataset.topic = topic;
-    listEl.dataset.subcat = subcat;
-    section.appendChild(listEl);
+    for (const subsubcat of subsubcats) {
+      const sscKey = `${subcatKey}:${subsubcat}`;
+      const ids = state.layout.paperOrder[sscKey] || [];
+      const sscPapers = ids
+        .map(id => state.saved[id])
+        .filter(Boolean)
+        .filter(paperMatchesQuery);
 
-    for (const p of papers) listEl.appendChild(renderPaper(p));
+      const sscCollapsed = isCollapsed(sscKey);
+
+      const sscEl = document.createElement("div");
+      sscEl.className = "subsubcat" + (sscCollapsed ? " collapsed" : "");
+      sscEl.dataset.subsubcat = subsubcat;
+
+      const sscHead = document.createElement("div");
+      sscHead.className = "subsubcat-head";
+      sscHead.innerHTML = `
+        <span class="subsubcat-handle" title="拖动重排二级子分类">⋮</span>
+        <button class="collapse-toggle" title="折叠/展开">${sscCollapsed ? "▶" : "▼"}</button>
+        <input class="subsubcat-name" value="${escapeHtml(subsubcat)}" />
+        <span class="subsubcat-count">(${sscPapers.length})</span>
+        <div class="subsubcat-actions">
+          <button class="icon-btn add" title="添加论文到此二级子分类">+</button>
+          ${subsubcat !== "general" ? `<button class="icon-btn delete" title="删除二级子分类(论文回到 general)">✕</button>` : ""}
+        </div>`;
+      sscEl.appendChild(sscHead);
+
+      const listEl = document.createElement("div");
+      listEl.className = "paper-list";
+      listEl.dataset.topic = topic;
+      listEl.dataset.subcat = subcat;
+      listEl.dataset.subsubcat = subsubcat;
+      sscEl.appendChild(listEl);
+      for (const p of sscPapers) listEl.appendChild(renderPaper(p));
+
+      sscWrap.appendChild(sscEl);
+
+      // Wire subsubcat collapse
+      sscHead.querySelector(".collapse-toggle").onclick = (e) => {
+        e.stopPropagation();
+        const next = !isCollapsed(sscKey);
+        setCollapsed(sscKey, next);
+        sscEl.classList.toggle("collapsed", next);
+        sscHead.querySelector(".collapse-toggle").textContent = next ? "▶" : "▼";
+      };
+
+      // Wire subsubcat rename
+      const sscNameInput = sscHead.querySelector(".subsubcat-name");
+      sscNameInput.addEventListener("change", () => {
+        const newName = sscNameInput.value.trim();
+        if (!newName || newName === subsubcat) { sscNameInput.value = subsubcat; return; }
+        const arr = state.layout.subsubcats[subcatKey];
+        if (arr.includes(newName)) {
+          alert("已存在同名二级子分类。");
+          sscNameInput.value = subsubcat;
+          return;
+        }
+        const idx = arr.indexOf(subsubcat);
+        arr[idx] = newName;
+        state.layout.paperOrder[`${subcatKey}:${newName}`] =
+          state.layout.paperOrder[sscKey] || [];
+        delete state.layout.paperOrder[sscKey];
+        if (state.layout.collapsed?.[sscKey] !== undefined) {
+          state.layout.collapsed[`${subcatKey}:${newName}`] = state.layout.collapsed[sscKey];
+          delete state.layout.collapsed[sscKey];
+        }
+        persistAll();
+        renderList();
+      });
+
+      // Wire subsubcat "+" button (add paper directly here)
+      sscHead.querySelector(".icon-btn.add").onclick = (e) => {
+        e.stopPropagation();
+        handleAddToLocation(topic, subcat, subsubcat);
+      };
+
+      // Wire subsubcat delete
+      const sscDelBtn = sscHead.querySelector(".icon-btn.delete");
+      if (sscDelBtn) {
+        sscDelBtn.onclick = (e) => {
+          e.stopPropagation();
+          if (!confirm(`删除二级子分类「${subsubcat}」?里面的论文会回到 ${subcat} > general。`)) return;
+          const orphans = state.layout.paperOrder[sscKey] || [];
+          delete state.layout.paperOrder[sscKey];
+          state.layout.subsubcats[subcatKey] =
+            state.layout.subsubcats[subcatKey].filter(s => s !== subsubcat);
+          const genKey = `${subcatKey}:general`;
+          state.layout.paperOrder[genKey] = [
+            ...(state.layout.paperOrder[genKey] || []), ...orphans
+          ];
+          persistAll();
+          renderList();
+        };
+      }
+    }
 
     sectionsWrap.appendChild(section);
+
+    // Wire subcat collapse toggle
+    head.querySelector(".collapse-toggle").onclick = (e) => {
+      e.stopPropagation();
+      const next = !isCollapsed(subcatKey);
+      setCollapsed(subcatKey, next);
+      section.classList.toggle("collapsed", next);
+      head.querySelector(".collapse-toggle").textContent = next ? "▶" : "▼";
+    };
 
     // Wire subcat name rename
     const nameInput = head.querySelector(".subcat-name");
     nameInput.addEventListener("change", () => {
       const newName = nameInput.value.trim();
-      if (!newName || newName === subcat) {
-        nameInput.value = subcat;
-        return;
-      }
+      if (!newName || newName === subcat) { nameInput.value = subcat; return; }
       if (state.layout.subcats[topic].includes(newName)) {
         alert("已存在同名子分类。");
         nameInput.value = subcat;
         return;
       }
-      // Rename: update subcats array and paperOrder key
       const idx = state.layout.subcats[topic].indexOf(subcat);
       state.layout.subcats[topic][idx] = newName;
-      state.layout.paperOrder[`${topic}:${newName}`] =
-        state.layout.paperOrder[`${topic}:${subcat}`] || [];
-      delete state.layout.paperOrder[`${topic}:${subcat}`];
+      // Move all subsubcats and paperOrder keys
+      const oldPrefix = `${topic}:${subcat}`;
+      const newPrefix = `${topic}:${newName}`;
+      state.layout.subsubcats[newPrefix] = state.layout.subsubcats[oldPrefix] || ["general"];
+      delete state.layout.subsubcats[oldPrefix];
+      for (const k of Object.keys(state.layout.paperOrder)) {
+        if (k.startsWith(oldPrefix + ":")) {
+          state.layout.paperOrder[k.replace(oldPrefix, newPrefix)] = state.layout.paperOrder[k];
+          delete state.layout.paperOrder[k];
+        }
+      }
       persistAll();
       renderList();
       renderTopicTabs();
     });
 
-    // Delete subcat button
+    // Wire subcat "+" (add paper to general subsubcat of this subcat)
+    head.querySelector(".icon-btn.add").onclick = () =>
+      handleAddToLocation(topic, subcat, "general");
+
+    // Wire subcat "++" (add new subsubcat)
+    head.querySelector(".icon-btn.add-sub").onclick = () => {
+      const name = prompt(`在「${subcat}」下新建二级子分类:`);
+      if (!name) return;
+      const trimmed = name.trim();
+      if (!trimmed) return;
+      const arr = state.layout.subsubcats[subcatKey] = state.layout.subsubcats[subcatKey] || ["general"];
+      if (arr.includes(trimmed)) { alert("已存在同名二级子分类"); return; }
+      arr.push(trimmed);
+      state.layout.paperOrder[`${subcatKey}:${trimmed}`] = [];
+      persistAll();
+      renderList();
+    };
+
+    // Wire subcat delete
     const delBtn = head.querySelector(".icon-btn.delete");
     if (delBtn) {
       delBtn.onclick = () => {
-        if (!confirm(`删除子分类「${subcat}」?里面的论文会回到 general。`)) return;
-        const orphans = state.layout.paperOrder[`${topic}:${subcat}`] || [];
-        delete state.layout.paperOrder[`${topic}:${subcat}`];
+        if (!confirm(`删除子分类「${subcat}」?里面所有论文会回到 general。`)) return;
+        // Collect all orphan ids from every subsubcat under this subcat
+        const orphans = [];
+        for (const ssc of state.layout.subsubcats[subcatKey] || []) {
+          const k = `${subcatKey}:${ssc}`;
+          orphans.push(...(state.layout.paperOrder[k] || []));
+          delete state.layout.paperOrder[k];
+        }
+        delete state.layout.subsubcats[subcatKey];
         state.layout.subcats[topic] = state.layout.subcats[topic].filter(s => s !== subcat);
-        const genKey = `${topic}:general`;
-        state.layout.paperOrder[genKey] = [...(state.layout.paperOrder[genKey] || []), ...orphans];
+        const genKey = `${topic}:general:general`;
+        state.layout.paperOrder[genKey] = [
+          ...(state.layout.paperOrder[genKey] || []), ...orphans
+        ];
         persistAll();
         renderList();
         renderTopicTabs();
@@ -652,11 +851,11 @@ function renderMine(list) {
     }
   }
 
-  // "+ 新增子分类" button
-  const addBtn = document.createElement("button");
-  addBtn.className = "subcat-add";
-  addBtn.textContent = "+ 新增子分类";
-  addBtn.onclick = () => {
+  // "+ 新增子分类" button at the bottom
+  const addSubcatBtn = document.createElement("button");
+  addSubcatBtn.className = "subcat-add";
+  addSubcatBtn.textContent = "+ 新增子分类";
+  addSubcatBtn.onclick = () => {
     const name = prompt("子分类名称(如:蒸馏理论 / multi-step→few-step):");
     if (!name) return;
     const trimmed = name.trim();
@@ -666,13 +865,14 @@ function renderMine(list) {
       return;
     }
     state.layout.subcats[topic].push(trimmed);
-    state.layout.paperOrder[`${topic}:${trimmed}`] = [];
+    state.layout.subsubcats[`${topic}:${trimmed}`] = ["general"];
+    state.layout.paperOrder[`${topic}:${trimmed}:general`] = [];
     persistAll();
     renderList();
   };
-  list.appendChild(addBtn);
+  list.appendChild(addSubcatBtn);
 
-  // Wire up Sortable for subcategory sections
+  // Sortable for subcat sections (reorder subcats)
   Sortable.create(sectionsWrap, {
     animation: 150,
     handle: ".subcat-handle",
@@ -683,10 +883,24 @@ function renderMine(list) {
     },
   });
 
-  // Wire up Sortable for paper lists. Paper lists share a group so papers
-  // can move across subcats. Cross-topic drag is detected via a GLOBAL
-  // mousemove listener attached during the drag (onMove only fires when
-  // hovering another Sortable, so it can't see the tab nav).
+  // Sortable for subsubcat sections within each subcat (reorder subsubcats)
+  for (const sscWrap of sectionsWrap.querySelectorAll(".subsubcat-wrap")) {
+    const subcatKey = sscWrap.dataset.subcatkey;
+    Sortable.create(sscWrap, {
+      animation: 150,
+      handle: ".subsubcat-handle",
+      onEnd: () => {
+        const newOrder = [...sscWrap.querySelectorAll(".subsubcat")].map(s => s.dataset.subsubcat);
+        state.layout.subsubcats[subcatKey] = newOrder;
+        persistAll();
+      },
+    });
+  }
+
+  // Sortable for paper lists. All paper-lists across subsubcats share the
+  // "papers-mine" group so papers can move freely between any subsubcat
+  // (within or across subcats). Cross-topic drag is detected via global
+  // mousemove + per-tab Sortable onAdd (defined in renderTopicTabs).
   const groupName = `papers-mine`;
   for (const listEl of sectionsWrap.querySelectorAll(".paper-list")) {
     Sortable.create(listEl, {
@@ -703,8 +917,7 @@ function renderMine(list) {
         document.removeEventListener("mousemove", _onDragMove, true);
         document.removeEventListener("touchmove", _onDragTouchMove);
         clearTabHover();
-        // Cross-topic moves are handled by the per-tab Sortable's onAdd.
-        // For drops that stayed within the same paper-list, persist the order.
+        if (state.topic !== topic) return;  // cross-topic handled by tab onAdd
         updatePaperOrderFromDOM(topic);
       },
     });
@@ -982,16 +1195,23 @@ function updatePaperOrderFromDOM(topic) {
   const sectionsWrap = $("#subcat-wrap");
   if (!sectionsWrap) return;
   for (const listEl of sectionsWrap.querySelectorAll(".paper-list")) {
-    const subcat = listEl.dataset.subcat;
+    const subcat    = listEl.dataset.subcat;
+    const subsubcat = listEl.dataset.subsubcat || "general";
     const ids = [...listEl.querySelectorAll("article.paper")].map(a => a.dataset.id);
-    state.layout.paperOrder[`${topic}:${subcat}`] = ids;
+    state.layout.paperOrder[`${topic}:${subcat}:${subsubcat}`] = ids;
   }
   persistAll();
-  // Update only counts in the headers, not full re-render (avoid breaking drag)
-  const sec = sectionsWrap.querySelectorAll("section.subcat");
-  for (const s of sec) {
-    const cnt = s.querySelector(".paper-list").children.length;
-    s.querySelector(".subcat-count").textContent = `(${cnt})`;
+  // Live-update counts in subsubcat and subcat headers
+  for (const sec of sectionsWrap.querySelectorAll("section.subcat")) {
+    let total = 0;
+    for (const sscEl of sec.querySelectorAll(".subsubcat")) {
+      const cnt = sscEl.querySelector(".paper-list").children.length;
+      total += cnt;
+      const cntEl = sscEl.querySelector(".subsubcat-count");
+      if (cntEl) cntEl.textContent = `(${cnt})`;
+    }
+    const subcatCnt = sec.querySelector(".subcat-count");
+    if (subcatCnt) subcatCnt.textContent = `(${total})`;
   }
 }
 
@@ -1416,7 +1636,7 @@ async function fetchArxivMeta(id) {
   );
 }
 
-async function addPaperFromUrl(url, topic, subcat = "general") {
+async function addPaperFromUrl(url, topic, subcat = "general", subsubcat = "general") {
   url = (url || "").trim();
   if (!url) return false;
 
@@ -1472,7 +1692,7 @@ async function addPaperFromUrl(url, topic, subcat = "general") {
     });
     savedId = sid;
   }
-  placePaperInLayout(savedId, topic, subcat);
+  placePaperInLayout(savedId, topic, subcat, subsubcat);
   persistAll();
   autoGenIfNeeded(savedId);
   return savedId;
@@ -1507,11 +1727,18 @@ async function handleUpload() {
 }
 
 async function handleAddToSubcat(topic, subcat) {
+  return handleAddToLocation(topic, subcat, "general");
+}
+
+async function handleAddToLocation(topic, subcat, subsubcat = "general") {
   const meta = topicMeta(topic);
-  const url = prompt(`添加论文到「${meta.name_zh} > ${subcat}」\n粘贴 arXiv / 知乎 / 小红书 / 任意 URL:`);
+  const where = subsubcat === "general"
+    ? `${meta.name_zh} > ${subcat}`
+    : `${meta.name_zh} > ${subcat} > ${subsubcat}`;
+  const url = prompt(`添加论文到「${where}」\n粘贴 arXiv / 知乎 / 小红书 / 任意 URL:`);
   if (!url) return;
   try {
-    const ok = await addPaperFromUrl(url.trim(), topic, subcat);
+    const ok = await addPaperFromUrl(url.trim(), topic, subcat, subsubcat);
     if (ok) {
       state.topic = topic;
       renderList();

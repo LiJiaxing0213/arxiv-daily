@@ -543,7 +543,8 @@ main.with-sidebar {
   display: flex;
   gap: 4px;
 }
-.subcat-actions .icon-btn {
+.subcat-actions .icon-btn,
+.subsubcat-actions .icon-btn {
   background: none;
   border: 1px solid var(--border);
   border-radius: 5px;
@@ -554,15 +555,89 @@ main.with-sidebar {
   font-family: inherit;
   line-height: 1.4;
 }
-.subcat-actions .icon-btn:hover { color: var(--fg); background: var(--hover); }
-.subcat-actions .icon-btn.add:hover {
+.subcat-actions .icon-btn:hover,
+.subsubcat-actions .icon-btn:hover { color: var(--fg); background: var(--hover); }
+.subcat-actions .icon-btn.add:hover,
+.subcat-actions .icon-btn.add-sub:hover,
+.subsubcat-actions .icon-btn.add:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
-.subcat-actions .icon-btn.delete:hover {
+.subcat-actions .icon-btn.delete:hover,
+.subsubcat-actions .icon-btn.delete:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
+
+/* Collapse toggle (▶/▼ next to subcat/subsubcat name) */
+.subcat-head .collapse-toggle,
+.subsubcat-head .collapse-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  color: var(--fg-soft);
+  padding: 0 4px;
+  font-family: inherit;
+  width: 20px;
+  text-align: center;
+}
+.subcat-head .collapse-toggle:hover,
+.subsubcat-head .collapse-toggle:hover { color: var(--fg); }
+
+/* When subcat is collapsed, hide its subsubcat wrap */
+.subcat.collapsed .subsubcat-wrap { display: none; }
+
+/* Subsubcat container & layout */
+.subsubcat-wrap {
+  margin-left: 24px;
+  border-left: 1px dashed var(--border);
+  padding-left: 16px;
+  margin-top: 8px;
+}
+.subsubcat {
+  margin-bottom: 14px;
+}
+.subsubcat-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  margin-bottom: 4px;
+}
+.subsubcat-handle {
+  cursor: grab;
+  user-select: none;
+  color: var(--fg-soft);
+  font-size: 12px;
+  padding: 0 4px;
+}
+.subsubcat-handle:active { cursor: grabbing; }
+.subsubcat-name {
+  font-size: 12.5px;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  color: var(--fg);
+  padding: 2px 4px;
+  border-radius: 3px;
+  outline: none;
+  min-width: 60px;
+  font-family: inherit;
+}
+.subsubcat-name:hover, .subsubcat-name:focus { background: var(--hover); }
+.subsubcat-count {
+  color: var(--fg-soft);
+  font-size: 11px;
+}
+.subsubcat-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 4px;
+}
+
+/* When subsubcat is collapsed, hide its paper-list */
+.subsubcat.collapsed .paper-list { display: none; }
 .subcat-add {
   background: transparent;
   border: 1px dashed var(--border);
