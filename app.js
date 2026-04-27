@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-27.24";  // bump on each frontend change
+const BUILD_ID = "2026-04-27.25";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -374,13 +374,18 @@ function topicCounts(papers) {
 }
 
 function topicCountsForMine() {
-  // v2: count leaf papers across all subsubcats under each (topic, subcat).
+  // v3: count all leaf papers under a topic — both papers sitting directly
+  // under a subcat (2-level key) AND papers under any named subsubcat
+  // (3-level key). Subsubcats are optional in v3, so we must include both.
   const counts = {};
   for (const t of state.layout.topicOrder) {
     let n = 0;
     for (const sc of state.layout.subcats[t] || []) {
       const subcatKey = `${t}:${sc}`;
-      for (const ssc of state.layout.subsubcats[subcatKey] || ["general"]) {
+      // Papers directly under subcat
+      n += (state.layout.paperOrder[subcatKey] || []).length;
+      // Papers under each named subsubcat
+      for (const ssc of state.layout.subsubcats[subcatKey] || []) {
         n += (state.layout.paperOrder[`${subcatKey}:${ssc}`] || []).length;
       }
     }
