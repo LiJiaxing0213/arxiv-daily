@@ -26,6 +26,13 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install pipeline dependencies (best-effort)
+        # gradio_client is needed for NAIP impact scoring. If install fails,
+        # impact scoring will be silently skipped — the rest of the pipeline
+        # still works with stdlib only.
+        continue-on-error: true
+        run: pip install -r scripts/requirements.txt
+
       - name: Run pipeline
         env:
           # Primary: viviai (or whichever provider you set in BASE_URL)

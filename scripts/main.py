@@ -16,6 +16,18 @@ from config import RETENTION_DAYS, TOPICS
 from fetch import fetch_recent
 from summarize import is_truncated, summarize_papers
 
+# LLM relevance filter + NAIP impact scoring are best-effort optional extras.
+try:
+    from llm_filter import filter_papers as llm_filter_papers
+except Exception as _e:
+    llm_filter_papers = None
+    print(f"[main] llm_filter unavailable: {_e}", flush=True)
+try:
+    from impact import score_papers as score_impact
+except Exception as _e:
+    score_impact = None
+    print(f"[main] impact scoring unavailable: {_e}", flush=True)
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
@@ -37,6 +49,46 @@ def _load_all_cached(retention_dates: set[str]) -> dict[str, dict]:
         except (json.JSONDecodeError, OSError):
             continue
     return by_id
+
+
+def _load_full_cache(retention_dates: set[str]) -> dict[str, dict]:
+    """Load every paper from existing date files, indexed by id (used to
+    restore `_passed_llm`, `impact_score`, `keyword_topics` across runs)."""
+    by_id: dict[str, dict] = {}
+    if not DATA_DIR.exists():
+        return by_id
+    for path in DATA_DIR.glob("*.json"):
+        if path.name == "index.json":
+            continue
+        try:
+            with path.open("r", encoding="utf-8") as f:
+                blob = json.load(f)
+            for p in blob.get("papers", []):
+                if p.get("id"):
+                    by_id[p["id"]] = p
+        except (json.JSONDecodeError, OSError):
+            continue
+    return by_id
+
+
+def _hydrate_llm_cache(tagged: list[dict], today, retention_dates: set[str]) -> None:
+    """Reuse `_passed_llm`, `keyword_topics`, `impact_score` from previous runs."""
+    cache = _load_full_cache(retention_dates)
+    for p in tagged:
+        prev = cache.get(p["id"])
+        if not prev:
+            continue
+        # If LLM said "no" before and demoted to 'other', the cached topics will be
+        # ['other']; recover the keyword decision from the previous run instead.
+        if "_passed_llm" not in p:
+            if prev.get("topics") == ["other"] and prev.get("keyword_topics"):
+                p["_passed_llm"] = False
+                p["keyword_topics"] = prev["keyword_topics"]
+                # Don't overwrite p['topics'] yet — we set it after llm_filter runs
+            elif "_passed_llm" in prev:
+                p["_passed_llm"] = prev["_passed_llm"]
+        if prev.get("impact_score") is not None:
+            p["impact_score"] = prev["impact_score"]
 
 
 def _group_by_date(papers: list[dict]) -> dict[str, list[dict]]:
@@ -76,7 +128,26 @@ def main() -> None:
         return
 
     tagged = filter_and_tag(raw)
-    print(f"[main] {len(tagged)} papers matched topics (across all dates)", flush=True)
+    print(f"[main] {len(tagged)} papers matched keyword topics", flush=True)
+
+    # ---- LLM relevance filter (optional) ----
+    # Papers that match keywords but the LLM judges as off-topic get demoted
+    # to a synthetic "other" topic, but their original keyword topics are kept
+    # in `keyword_topics` so the user can restore them by starring.
+    if llm_filter_papers and tagged:
+        # Reuse cached `_passed_llm` decisions across runs to save API calls.
+        _hydrate_llm_cache(tagged, today, retention_dates)
+        try:
+            llm_filter_papers(tagged)
+        except Exception as e:
+            print(f"[main] llm_filter raised: {e}", flush=True)
+        demoted = 0
+        for p in tagged:
+            if p.get("_passed_llm") is False:
+                p["keyword_topics"] = list(p.get("topics", []))
+                p["topics"] = ["other"]
+                demoted += 1
+        print(f"[main] demoted {demoted} keyword-matched papers to 'other' (LLM rejected)", flush=True)
 
     # SAFETY: if zero matched papers, the keyword regex / classifier likely
     # broke. Abort rather than wipe everything.
@@ -124,6 +195,33 @@ def main() -> None:
                 needs_summary.append(p)
     summarize_papers(needs_summary)
 
+    # ---- NAIP impact scoring (optional) ----
+    # Only score papers that passed the LLM filter; demoted-to-"other" papers
+    # are not scored (would waste API calls). Only NEW papers without
+    # impact_score are submitted to the HF Space.
+    if score_impact:
+        scoreable: list[dict] = []
+        for ps in by_date.values():
+            for p in ps:
+                if p.get("topics") == ["other"]:
+                    continue
+                if p.get("impact_score") is not None:
+                    continue
+                if p.get("title") and p.get("abstract"):
+                    scoreable.append(p)
+        # Sort by published desc so newest papers are scored first if quota
+        scoreable.sort(key=lambda p: p.get("published", ""), reverse=True)
+        try:
+            score_impact(scoreable)
+        except Exception as e:
+            print(f"[main] impact scoring raised: {e}", flush=True)
+
+    # Strip ephemeral fields before serialising — `_passed_llm` is only used
+    # within a single pipeline run; keyword_topics & impact_score persist.
+    for ps in by_date.values():
+        for p in ps:
+            p.pop("_passed_llm", None)
+
     # Write one JSON per date in the retention window.
     #   - If we got papers for that date: always overwrite with fresh content.
     #   - If we got 0 papers but a file already exists: PRESERVE existing
@@ -131,6 +229,8 @@ def main() -> None:
     #   - If we got 0 papers and no file exists: write an empty placeholder
     #     so the UI dropdown still shows the date.
     topics_meta = {k: {"name_zh": v["name_zh"], "name_en": v["name_en"]} for k, v in TOPICS.items()}
+    # Synthetic bucket for papers that passed keyword match but failed LLM filter
+    topics_meta["other"] = {"name_zh": "其他", "name_en": "Other"}
     written_dates: list[str] = []
     preserved = 0
     for date in sorted(retention_dates, reverse=True):

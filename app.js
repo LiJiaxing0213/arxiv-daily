@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-27.23";  // bump on each frontend change
+const BUILD_ID = "2026-04-27.24";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -541,6 +541,13 @@ function renderDaily(list) {
       papers = papers.filter(p => (p.topics || []).includes(state.topic));
     }
     papers = papers.filter(paperMatchesQuery);
+    // Within each date, sort by impact_score desc (papers without a score
+    // sink to the bottom). Papers with the same score keep arXiv ordering.
+    papers = papers.slice().sort((a, b) => {
+      const sa = (typeof a.impact_score === "number") ? a.impact_score : -1;
+      const sb = (typeof b.impact_score === "number") ? b.impact_score : -1;
+      return sb - sa;
+    });
     sidebarItems.push({ date, count: papers.length, totalForDay: all.length });
     if (!papers.length) continue;
     totalShown += papers.length;
@@ -1183,9 +1190,9 @@ function showSavePopup(paper, anchorEl) {
   head.textContent = "收藏到分类...";
   popup.appendChild(head);
 
-  // Determine the auto-classified topic to pre-highlight
-  let autoTopic = (paper.topics && paper.topics[0]) || "other";
-  if (!DEFAULT_TOPICS.includes(autoTopic)) autoTopic = "other";
+  // Determine the auto-classified topic to pre-highlight. Prefer the
+  // paper's original keyword_topics over a "other" demotion.
+  let autoTopic = originalTopic(paper);
 
   // Default: only show auto-classified topic. User can expand to others.
   let showAll = false;
@@ -1306,6 +1313,11 @@ function showSavePopup(paper, anchorEl) {
 
 function saveToSubcat(paper, topic, subcat) {
   const copy = JSON.parse(JSON.stringify(paper));
+  // Restore real topic on save (don't carry the "other" demotion forward)
+  if (copy.topics && copy.topics.length === 1 && copy.topics[0] === "other"
+      && copy.keyword_topics && copy.keyword_topics.length) {
+    copy.topics = copy.keyword_topics.slice();
+  }
   state.saved[paper.id] = ensureClientFields(copy);
   placePaperInLayout(paper.id, topic, subcat);
   autoGenIfNeeded(paper.id);
@@ -1387,6 +1399,18 @@ function renderPaper(p) {
     .map(k => topicMeta(k).name_zh)
     .map(n => `<span class="tag">${escapeHtml(n)}</span>`)
     .join("");
+
+  // Impact badge (NAIP score 0-1). Shown when present; tier classes drive color.
+  const impact = (typeof p.impact_score === "number") ? p.impact_score : null;
+  let impactBadge = "";
+  if (impact !== null) {
+    let tier = "low";
+    if (impact >= 0.7) tier = "hot";
+    else if (impact >= 0.5) tier = "mid";
+    impactBadge = `<span class="impact-badge ${tier}" title="NAIP 影响力预测分数 (0-1)">🔥 ${impact.toFixed(2)}</span>`;
+  }
+  // Add a class to the card for high-impact highlighting
+  const hotClass = (impact !== null && impact >= 0.7) ? " hot-impact" : "";
 
   const sourceTag = ({ manual: "手动", zhihu: "知乎", xiaohongshu: "小红书", legacy: "旧版" })[p.source];
   const sourceTagHtml = sourceTag
@@ -1480,12 +1504,13 @@ function renderPaper(p) {
     </div>
     ${thumbBlock}
     <div class="row">
-      <div class="tags">${topicLabels}</div>
+      <div class="tags">${impactBadge}${topicLabels}</div>
       <div class="links">
         ${actionBtns}
         ${linkAbs} ${linkPdf} ${linkAlphax}
       </div>
     </div>`;
+  if (hotClass) art.classList.add("hot-impact");
 
   // Wire actions
   const starBtn = art.querySelector(".icon-btn.star");
@@ -1670,15 +1695,31 @@ function ensureClientFields(p) {
   return p;
 }
 
+function originalTopic(paper) {
+  // When a paper got demoted to "other" by the LLM filter, prefer its
+  // original keyword-matched topic. Falls back to whatever's in topics[].
+  const kw = paper.keyword_topics || [];
+  if (kw.length) {
+    for (const t of kw) if (DEFAULT_TOPICS.includes(t)) return t;
+  }
+  const t = (paper.topics && paper.topics[0]) || "other";
+  return DEFAULT_TOPICS.includes(t) ? t : "other";
+}
+
 function toggleSave(paper) {
   if (state.saved[paper.id]) {
     delete state.saved[paper.id];
     removePaperFromLayout(paper.id);
   } else {
     const copy = JSON.parse(JSON.stringify(paper));
+    // If the paper was demoted to "other", restore its original topics
+    // before saving — so it lives under a real topic in 我的.
+    if (copy.topics && copy.topics.length === 1 && copy.topics[0] === "other"
+        && copy.keyword_topics && copy.keyword_topics.length) {
+      copy.topics = copy.keyword_topics.slice();
+    }
     state.saved[paper.id] = ensureClientFields(copy);
-    let topic = (paper.topics && paper.topics[0]) || "other";
-    if (!DEFAULT_TOPICS.includes(topic)) topic = "other";
+    const topic = originalTopic(paper);
     placePaperInLayout(paper.id, topic, "general");
     autoGenIfNeeded(paper.id);
   }
