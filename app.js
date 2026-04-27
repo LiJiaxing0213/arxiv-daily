@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-26.20";  // bump on each frontend change
+const BUILD_ID = "2026-04-27.21";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -345,12 +345,15 @@ function topicCounts(papers) {
 }
 
 function topicCountsForMine() {
-  // Counts based on layout (each paper lives in one topic in mine)
+  // v2: count leaf papers across all subsubcats under each (topic, subcat).
   const counts = {};
   for (const t of state.layout.topicOrder) {
     let n = 0;
     for (const sc of state.layout.subcats[t] || []) {
-      n += (state.layout.paperOrder[`${t}:${sc}`] || []).length;
+      const subcatKey = `${t}:${sc}`;
+      for (const ssc of state.layout.subsubcats[subcatKey] || ["general"]) {
+        n += (state.layout.paperOrder[`${subcatKey}:${ssc}`] || []).length;
+      }
     }
     counts[t] = n;
   }
@@ -452,10 +455,10 @@ function renderList() {
   const list = $("#paper-list");
   list.innerHTML = "";
 
-  // Toggle main grid layout: only daily view gets the date sidebar
+  // Toggle main grid layout: daily and mine views get a sticky sidebar
   const main = $("#main");
   const sidebar = $("#date-sidebar");
-  if (state.view === "daily") {
+  if (state.view === "daily" || state.view === "mine") {
     main.classList.add("with-sidebar");
     sidebar.hidden = false;
   } else {
@@ -652,6 +655,8 @@ function renderMine(list) {
     const section = document.createElement("section");
     section.className = "subcat" + (subcatCollapsed ? " collapsed" : "");
     section.dataset.subcat = subcat;
+    section.dataset.subcatkey = subcatKey;
+    section.id = `mine-subcat-${state.layout.subcats[topic].indexOf(subcat)}`;
 
     const head = document.createElement("div");
     head.className = "subcat-head";
@@ -686,6 +691,9 @@ function renderMine(list) {
       const sscEl = document.createElement("div");
       sscEl.className = "subsubcat" + (sscCollapsed ? " collapsed" : "");
       sscEl.dataset.subsubcat = subsubcat;
+      sscEl.dataset.subcatkey = subcatKey;
+      const sscIdx = subsubcats.indexOf(subsubcat);
+      sscEl.id = `mine-ssc-${state.layout.subcats[topic].indexOf(subcat)}-${sscIdx}`;
 
       const sscHead = document.createElement("div");
       sscHead.className = "subsubcat-head";
@@ -921,6 +929,82 @@ function renderMine(list) {
         updatePaperOrderFromDOM(topic);
       },
     });
+  }
+
+  renderMineSidebar(topic);
+  setupMineScrollSpy();
+}
+
+function renderMineSidebar(topic) {
+  const bar = $("#date-sidebar");
+  bar.innerHTML = "";
+  const subcats = state.layout.subcats[topic] || [];
+  if (!subcats.length) return;
+
+  const header = document.createElement("h4");
+  header.textContent = "目录";
+  bar.appendChild(header);
+
+  for (const subcat of subcats) {
+    const subcatKey = `${topic}:${subcat}`;
+    const subsubcats = state.layout.subsubcats[subcatKey] || ["general"];
+
+    let subcatCount = 0;
+    for (const ssc of subsubcats) {
+      subcatCount += (state.layout.paperOrder[`${subcatKey}:${ssc}`] || []).length;
+    }
+
+    const subcatLink = document.createElement("a");
+    subcatLink.className = "subcat-link";
+    subcatLink.href = "#";
+    subcatLink.dataset.target = `mine-subcat-${subcats.indexOf(subcat)}`;
+    subcatLink.innerHTML = `<strong>${escapeHtml(subcat)}</strong> <span class="cnt">${subcatCount}</span>`;
+    subcatLink.onclick = (e) => {
+      e.preventDefault();
+      const target = document.getElementById(subcatLink.dataset.target);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    bar.appendChild(subcatLink);
+
+    // Only show subsubcat sub-links if this subcat actually has named ones
+    // beyond "general", or if it has multiple. Single "general" is implicit.
+    if (subsubcats.length > 1 || (subsubcats.length === 1 && subsubcats[0] !== "general")) {
+      for (const ssc of subsubcats) {
+        const cnt = (state.layout.paperOrder[`${subcatKey}:${ssc}`] || []).length;
+        const sscLink = document.createElement("a");
+        sscLink.className = "subsubcat-link";
+        sscLink.href = "#";
+        sscLink.dataset.target = `mine-ssc-${subcats.indexOf(subcat)}-${subsubcats.indexOf(ssc)}`;
+        sscLink.innerHTML = `${escapeHtml(ssc)} <span class="cnt">${cnt}</span>`;
+        sscLink.onclick = (e) => {
+          e.preventDefault();
+          const target = document.getElementById(sscLink.dataset.target);
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        };
+        bar.appendChild(sscLink);
+      }
+    }
+  }
+}
+
+let _mineScrollSpyObserver = null;
+function setupMineScrollSpy() {
+  if (_mineScrollSpyObserver) _mineScrollSpyObserver.disconnect();
+  if (!("IntersectionObserver" in window)) return;
+  _mineScrollSpyObserver = new IntersectionObserver((entries) => {
+    const visible = entries.filter(e => e.isIntersecting).map(e => e.target);
+    if (!visible.length) return;
+    // Pick topmost visible section
+    visible.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+    const top = visible[0];
+    const targetId = top.id;
+    const bar = $("#date-sidebar");
+    for (const a of bar.querySelectorAll("a")) {
+      a.classList.toggle("active", a.dataset.target === targetId);
+    }
+  }, { rootMargin: "-100px 0px -60% 0px", threshold: 0 });
+  for (const sec of document.querySelectorAll("#subcat-wrap section.subcat, #subcat-wrap .subsubcat")) {
+    _mineScrollSpyObserver.observe(sec);
   }
 }
 
