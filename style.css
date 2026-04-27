@@ -655,18 +655,49 @@ main.with-sidebar {
 .subsubcat.collapsed .paper-list { display: none; }
 
 /* Mine sidebar: subcat + subsubcat tree links */
+.date-sidebar .subcat-block {
+  margin-top: 2px;
+}
 .date-sidebar a.subcat-link {
   padding: 7px 10px;
   font-size: 13px;
-  margin-top: 4px;
 }
 .date-sidebar a.subcat-link strong {
   font-weight: 600;
 }
+
+/* Subsubcat group: hidden by default, expands on hover or when block is
+   marked .active (current scrolled-to subcat). */
+.date-sidebar .subsubcat-group {
+  display: none;
+  border-left: 1px dashed var(--border);
+  margin: 2px 0 4px 16px;
+  padding-left: 0;
+}
+.date-sidebar .subcat-block:hover .subsubcat-group,
+.date-sidebar .subcat-block.active .subsubcat-group {
+  display: block;
+}
+/* Subtle hint that the subcat has nested items (small dot when collapsed) */
+.date-sidebar .subcat-block:has(.subsubcat-group) > .subcat-link::after {
+  content: "▸";
+  font-size: 9px;
+  color: var(--fg-soft);
+  margin-left: 6px;
+  opacity: 0.5;
+  transition: transform 0.1s, opacity 0.1s;
+}
+.date-sidebar .subcat-block:hover > .subcat-link::after,
+.date-sidebar .subcat-block.active > .subcat-link::after {
+  transform: rotate(90deg);
+  opacity: 1;
+}
+
 .date-sidebar a.subsubcat-link {
-  padding: 4px 10px 4px 22px;
+  padding: 4px 10px 4px 16px;
   font-size: 12px;
   color: var(--fg-soft);
+  border-left: 2px solid transparent;
 }
 .date-sidebar a.subsubcat-link:hover { color: var(--fg); }
 .date-sidebar a.subsubcat-link.active {

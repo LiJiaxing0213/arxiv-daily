@@ -2,7 +2,7 @@
 // "我的" supports per-topic subcategories with drag-drop reordering.
 // Optional cross-device sync via GitHub Gist.
 
-const BUILD_ID = "2026-04-27.21";  // bump on each frontend change
+const BUILD_ID = "2026-04-27.22";  // bump on each frontend change
 console.log(`[arxiv-daily] frontend build ${BUILD_ID} loaded`);
 window.addEventListener("DOMContentLoaded", () => {
   const el = document.getElementById("build-marker");
@@ -954,6 +954,14 @@ function renderMineSidebar(topic) {
       subcatCount += (state.layout.paperOrder[`${subcatKey}:${ssc}`] || []).length;
     }
 
+    // Wrap each subcat + its subsubcats in a block. Subsubcats are hidden by
+    // default and revealed via CSS when this block is hovered or .active
+    // (active = currently scrolled-to subcat in the main content).
+    const block = document.createElement("div");
+    block.className = "subcat-block";
+    block.dataset.subcatId = `mine-subcat-${subcats.indexOf(subcat)}`;
+    bar.appendChild(block);
+
     const subcatLink = document.createElement("a");
     subcatLink.className = "subcat-link";
     subcatLink.href = "#";
@@ -964,11 +972,15 @@ function renderMineSidebar(topic) {
       const target = document.getElementById(subcatLink.dataset.target);
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     };
-    bar.appendChild(subcatLink);
+    block.appendChild(subcatLink);
 
-    // Only show subsubcat sub-links if this subcat actually has named ones
-    // beyond "general", or if it has multiple. Single "general" is implicit.
+    // Only build subsubcat group if this subcat has anything other than just
+    // an implicit "general" — single "general" stays hidden (no clutter).
     if (subsubcats.length > 1 || (subsubcats.length === 1 && subsubcats[0] !== "general")) {
+      const group = document.createElement("div");
+      group.className = "subsubcat-group";
+      block.appendChild(group);
+
       for (const ssc of subsubcats) {
         const cnt = (state.layout.paperOrder[`${subcatKey}:${ssc}`] || []).length;
         const sscLink = document.createElement("a");
@@ -981,7 +993,7 @@ function renderMineSidebar(topic) {
           const target = document.getElementById(sscLink.dataset.target);
           if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
         };
-        bar.appendChild(sscLink);
+        group.appendChild(sscLink);
       }
     }
   }
@@ -994,13 +1006,27 @@ function setupMineScrollSpy() {
   _mineScrollSpyObserver = new IntersectionObserver((entries) => {
     const visible = entries.filter(e => e.isIntersecting).map(e => e.target);
     if (!visible.length) return;
-    // Pick topmost visible section
     visible.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
     const top = visible[0];
     const targetId = top.id;
     const bar = $("#date-sidebar");
+
+    // Highlight matching link
     for (const a of bar.querySelectorAll("a")) {
       a.classList.toggle("active", a.dataset.target === targetId);
+    }
+
+    // Mark the containing subcat-block as .active so its subsubcat-group
+    // expands. Find which subcat the current section belongs to.
+    let activeSubcatId = null;
+    if (top.classList.contains("subcat")) {
+      activeSubcatId = top.id;
+    } else if (top.classList.contains("subsubcat")) {
+      const parentSec = top.closest("section.subcat");
+      if (parentSec) activeSubcatId = parentSec.id;
+    }
+    for (const block of bar.querySelectorAll(".subcat-block")) {
+      block.classList.toggle("active", block.dataset.subcatId === activeSubcatId);
     }
   }, { rootMargin: "-100px 0px -60% 0px", threshold: 0 });
   for (const sec of document.querySelectorAll("#subcat-wrap section.subcat, #subcat-wrap .subsubcat")) {
