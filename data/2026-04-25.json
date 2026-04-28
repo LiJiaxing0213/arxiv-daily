@@ -1,6 +1,6 @@
 {
   "date": "2026-04-25",
-  "generated_at": "2026-04-27T14:35:19.401884+00:00",
+  "generated_at": "2026-04-28T05:01:43.992034+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,542 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2604.23445",
+      "title": "AI Safety Training Can be Clinically Harmful",
+      "abstract": "Large language models are being deployed as mental health support agents at scale, yet only 16% of LLM-based chatbot interventions have undergone rigorous clinical efficacy testing, and simulations reveal psychological deterioration in over one-third of cases. We evaluate four generative models on 250 Prolonged Exposure (PE) therapy scenarios and 146 CBT cognitive restructuring exercises (plus 29 severity-escalated variants), scored by a three-judge LLM panel. All models scored near-perfectly on surface acknowledgment (~0.91-1.00) while therapeutic appropriateness collapsed to 0.22-0.33 at the highest severity for three of four models, with protocol fidelity reaching zero for two. Under CBT severity escalation, one model's task completeness dropped from 92% to 71% while the frontier model's safety-interference score fell from 0.99 to 0.61. We identify a systematic, modality-spanning failure: RLHF safety alignment disrupts the therapeutic mechanism of action by grounding patients during imaginal exposure, offering false reassurance, inserting crisis resources into controlled exercises, and refusing to challenge distorted cognitions mentioning self-harm in PE; and through task abandonment or safety-preamble insertion during CBT cognitive restructuring. These findings motivate a five-axis evaluation framework (protocol fidelity, hallucination risk, behavioral consistency, crisis safety, demographic robustness), mapped onto FDA SaMD and EU AI Act requirements. We argue that no AI mental health system should proceed to deployment without passing multi-axis evaluation across all five dimensions.",
+      "authors": [
+        "Suhas BN",
+        "Andrew M. Sherrill",
+        "Rosa I. Arriaga",
+        "Chris W. Wiese",
+        "Saeed Abdullah"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.CY",
+        "cs.LG"
+      ],
+      "published": "2026-04-25T21:09:50Z",
+      "updated": "2026-04-25T21:09:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23445v1",
+      "abs_url": "https://arxiv.org/abs/2604.23445",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23445",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "当前大语言模型在心理健康支持中被广泛应用，但由于缺乏临床有效性测试，常导致患者病情恶化。通过对 PE 暴露疗法和 CBT 认知重构场景的评估发现，虽然模型在表面回应上表现优异，但在高严重度案例中，治疗适当性和协议忠诚度会大幅下降甚至归零。研究揭示了一个系统性失效：RLHF 安全对齐机制干扰了治疗的临床作用机制，例如在暴露疗法中错误地安抚患者、在受控练习中插入危机资源，或在认知重构中因触发安全预警而拒绝挑战患者的扭曲认知。为此，研究提出了涵盖协议忠诚度、幻觉风险等维度的五轴评估框架，并强调任何 AI 心理健康系统在通过该多维度评估前都不应投入部署，以符合 FDA SaMD 和欧盟 AI 法案的合规要求。"
+    },
+    {
+      "id": "2604.23424",
+      "title": "Evolve: A Persistent Knowledge Lifecycle for Small Language Models",
+      "abstract": "Evolve pairs a small local language model with a persistent, teacher-compiled knowledge store -- refined through sleep consolidation and usage-driven refresh -- to deliver substantial accuracy gains over the model's parametric baseline while amortizing teacher costs through cross-query knowledge reuse. Rather than retrieving document fragments at query time, Evolve constructs a store of semantically coherent sections compiled by teacher models at natural conceptual boundaries; new sections are staged on acquisition, consolidated offline through teacher-mediated merging, and refreshed inline when expired. A 2B-parameter local model handles classification and generation; large teacher models are invoked only for knowledge operations. Across 750 benchmark queries spanning custom specialist questions, NaturalQuestions, and TriviaQA, the 2B model augmented by Evolve improves from 20-33% baseline accuracy to 60-84% (+40-52pp) while reducing teacher invocations by over 50% through reuse. Post-consolidation compresses the knowledge store by 31-33.5% across three independent benchmarks while preserving accuracy; section-based retrieval outperforms chunk-based retrieval by 5-9pp across every lifecycle condition. The architecture supports two generation modes over the same lifecycle -- suppress (strict section-only grounding, auditable) and augment (section-supplemented responses).",
+      "authors": [
+        "Dikran Hovagimian"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-04-25T19:39:21Z",
+      "updated": "2026-04-25T19:39:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23424v1",
+      "abs_url": "https://arxiv.org/abs/2604.23424",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23424",
+      "summary_zh": "Evolve 旨在解决小参数语言模型（SLM）知识储备不足的问题，通过为 2B 规模的本地模型配备一个由大模型教师编译的持久化知识库，实现了知识的动态获取与长期维护。该系统创新性地采用了基于语义连贯章节（Sections）的检索机制，并引入了“睡眠巩固”与“使用驱动刷新”机制，通过离线合并与在线更新来优化存储效率并保证知识时效性。实验表明，在 NaturalQuestions 和 TriviaQA 等基准测试中，Evolve 将 SLM 的准确率从 20-33% 提升至 60-84%，同时通过跨查询的知识复用将教师模型的调用成本降低了 50% 以上。此外，章节式检索相比传统的块状（Chunk）检索在准确率上提升了 5-9%，且经过巩固后的知识库在保持性能的同时压缩了约 33% 的体积，支持严格溯源的抑制模式和补充增强的生成模式。"
+    },
+    {
+      "id": "2604.23380",
+      "title": "V-GRPO: Online Reinforcement Learning for Denoising Generative Models Is Easier than You Think",
+      "abstract": "Aligning denoising generative models with human preferences or verifiable rewards remains a key challenge. While policy-gradient online reinforcement learning (RL) offers a principled post-training framework, its direct application is hindered by the intractable likelihoods of these models. Prior work therefore either optimizes an induced Markov decision process (MDP) over sampling trajectories, which is stable but inefficient, or uses likelihood surrogates based on the diffusion evidence lower bound (ELBO), which have so far underperformed on visual generation. Our key insight is that the ELBO-based approach can, in fact, be made both stable and efficient. By reducing surrogate variance and controlling gradient steps, we show that this approach can beat MDP-based methods. To this end, we introduce Variational GRPO (V-GRPO), a method that integrates ELBO-based surrogates with the Group Relative Policy Optimization (GRPO) algorithm, alongside a set of simple yet essential techniques. Our method is easy to implement, aligns with pretraining objectives, and avoids the limitations of MDP-based methods. V-GRPO achieves state-of-the-art performance in text-to-image synthesis, while delivering a $2\\times$ speedup over MixGRPO and a $3\\times$ speedup over DiffusionNFT.",
+      "authors": [
+        "Bingda Tang",
+        "Yuhui Zhang",
+        "Xiaohan Wang",
+        "Jiayuan Mao",
+        "Ludwig Schmidt",
+        "Serena Yeung-Levy"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "published": "2026-04-25T17:03:21Z",
+      "updated": "2026-04-25T17:03:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23380v1",
+      "abs_url": "https://arxiv.org/abs/2604.23380",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23380",
+      "summary_zh": "针对去噪生成模型与人类偏好对齐时似然函数难以计算的问题，该研究提出了一种名为 V-GRPO 的在线强化学习框架。该方法摒弃了效率较低的轨迹级 MDP 优化路径，转而采用基于变分证据下界（ELBO）的似然替代方案，并通过引入 Group Relative Policy Optimization (GRPO) 算法以及方差缩减和梯度步数控制技术，解决了以往 ELBO 方案在视觉生成任务中表现不佳且不稳定的难题。V-GRPO 能够直接与预训练目标对齐，在实现简单且无需额外价值模型的情况下，显著提升了文本到图像生成的对齐效果。实验结果表明，V-GRPO 在保持 SOTA 性能的同时，训练速度比 MixGRPO 快 2 倍，比 DiffusionNFT 快 3 倍，证明了基于变分推断的在线强化学习在生成模型微调中的高效性与潜力。"
+    },
+    {
+      "id": "2604.23350",
+      "title": "GeoFunFlow-3D: A Physics-Guided Generative Flow Matching Framework for High-Fidelity 3D Aerodynamic Inference over Complex Geometries",
+      "abstract": "Deep generative models and neural operators have demonstrated significant potential for 3D aerodynamic inference. However, they often face inherent challenges in maintaining physical consistency and preserving high-frequency features, primarily due to spectral bias and gradient conflicts within the governing equations. To address these issues, we propose GeoFunFlow-3D, a physics-guided generative flow matching framework. Temporally, we utilize optimal transport theory to build the generation path, ensuring stable training dynamics. Spectrally, we introduce a high-order discrete engine without automatic differentiation (No-AD) to reduce gradient stiffness. Spatially, a topology-aware super-resolution module (SATO) is employed to rigorously enforce physical laws in localized regions such as shock waves. We evaluated our framework on complex industrial datasets. On the BlendedNet dataset, the model successfully avoids mode collapse even under sparse data conditions. For the NASA Rotor37 test, it accurately captures 3D detached shock structures. Compared to conventional operators, GeoFunFlow-3D significantly improves accuracy, reducing the pressure field error (RRMSE) to 0.0215 while maintaining competitive inference efficiency. Ultimately, this work provides a reliable, geometry-driven approach for generating high-dimensional fluid fields.",
+      "authors": [
+        "Ruiling Jiang",
+        "Yong Zhang",
+        "Houbiao Li"
+      ],
+      "categories": [
+        "math.NA",
+        "cs.LG"
+      ],
+      "published": "2026-04-25T15:24:13Z",
+      "updated": "2026-04-25T15:24:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23350v1",
+      "abs_url": "https://arxiv.org/abs/2604.23350",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23350",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "GeoFunFlow-3D 旨在解决 3D 空气动力学推理中物理一致性差和高频特征丢失的问题，克服了传统模型在处理复杂几何时存在的谱偏差与梯度冲突。该框架在时间维度利用最优传输理论构建 Flow Matching 生成路径以确保训练稳定，在谱维度引入无需自动微分（No-AD）的高阶离散引擎来降低梯度刚度。空间上，通过拓扑感知超分辨率模块（SATO）在激波等局部区域严格执行物理定律。在 BlendedNet 和 NASA Rotor37 等复杂工业数据集上的实验表明，该模型能有效避免模式崩塌并精准捕捉 3D 脱体激波结构，将压力场相对均方根误差（RRMSE）降低至 0.0215，在保持高效推理的同时显著提升了高维流场生成的保真度。"
+    },
+    {
+      "id": "2604.23345",
+      "title": "Bridging Reasoning and Action: Hybrid LLM-RL Framework for Efficient Cross-Domain Task-Oriented Dialogue",
+      "abstract": "Cross-domain task-oriented dialogue requires reasoning over implicit and explicit feasibility constraints while planning long-horizon, multi-turn actions. Large language models (LLMs) can infer such constraints but are unreliable over long horizons, while Reinforcement learning (RL) optimizes long-horizon behavior yet cannot recover constraints from raw dialogue. Naively coupling LLMs with RL is therefore brittle: unverified or unstructured LLM outputs can corrupt state representations and misguide policy learning. Motivated by this, we propose Verified LLM-Knowledge empowered RL (VLK-RL), a hybrid framework that makes LLM-derived constraint reasoning usable for RL. VLK-RL first elicits candidate constraints with an LLM and then verifies them via a dual-role cross-examination procedure to suppress hallucinations and cross-turn inconsistencies. The verified constraints are mapped into ontology-aligned slot-value representations, yielding a structured, constraint-aware state for RL policy optimization. Experiments across multiple benchmarks demonstrate that VLK-RL significantly improves generalization and robustness, outperforming strong single-model baselines on long-horizon tasks.",
+      "authors": [
+        "Yangyang Zhao",
+        "Linfan Dai",
+        "Li Cai",
+        "Bowen Xing",
+        "Libo Qin"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.HC"
+      ],
+      "published": "2026-04-25T15:07:46Z",
+      "updated": "2026-04-25T15:07:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23345v1",
+      "abs_url": "https://arxiv.org/abs/2604.23345",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23345",
+      "summary_zh": "针对跨领域任务型对话中隐式约束推理难与长程规划不稳定的问题，VLK-RL 框架通过融合大语言模型（LLM）的推理能力与强化学习（RL）的决策优势实现了高效协同。该方法首先利用 LLM 诱导生成候选约束，并引入双角色交叉验证机制（Dual-role Cross-examination）来消除幻觉及跨轮次的不一致性，确保推理结果的可靠。随后，经验证的约束被映射为符合本体规范的槽值对表示，构建出结构化的约束感知状态空间，从而引导 RL 策略进行长程优化。在多个 Benchmark 上的实验结果表明，VLK-RL 在处理复杂长程任务时显著提升了模型的泛化性与鲁棒性，性能表现优于现有的强基准单模型方案。"
+    },
+    {
+      "id": "2604.23335",
+      "title": "H-SemiS: Hierarchical Fusion of Semi and Self-Supervised Learning for Knee Osteoarthritis Severity Grading",
+      "abstract": "Knee osteoarthritis (KOA) is a degenerative joint disease that can lead to chronic pain, reduced mobility, and long-term disability. Automated severity grading from knee radiographs can support early assessment, but current methods heavily depend on large labeled datasets and remain sensitive to class imbalance, noisy samples, and variability in clinical annotations. To alleviate these limitations, we propose a Hierarchical fusion of Semi-Supervised framework with Self-Supervision (H-SemiS) for KOA severity grading in knee X-ray samples using limited annotated data. Rather than treating severity grading as a flat multi-class problem, H-SemiS decomposes the task into a sequence of binary sub-tasks within a semi-supervised teacher-student architecture, directly mitigating the impact of class imbalance. To further enhance feature learning from unlabeled data, the framework integrates an adversarial self-supervised reconstruction module that encourages the network to capture robust anatomical structures. In parallel, a teacher-student design with quantum-inspired feature mixing improves discrimination boundaries between adjacent grades when pseudo-labels are noisy. We comprehensively evaluate H-SemiS on two challenging multi-class datasets and assess its generalizability on two binary-class datasets. Our experimental results demonstrate the superiority of the proposed H-SemiS framework across multiple evaluation metrics, consistently outperforming several competing baselines and state-of-the-art methods. The code is publicly available at https://github.com/chandravardhan-singh-raghaw/H-SemiS.",
+      "authors": [
+        "Chandravardhan Singh Raghaw",
+        "Anushka Parwal",
+        "Shahid Shafi Dar",
+        "Prajakta Darade",
+        "Nagendra Kumar"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-25T14:43:30Z",
+      "updated": "2026-04-25T14:43:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23335v1",
+      "abs_url": "https://arxiv.org/abs/2604.23335",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23335",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对膝骨关节炎（KOA）分级任务中大规模标注数据匮乏、类别不平衡及临床标注噪声等挑战，H-SemiS 框架将复杂的多分类任务分解为一系列分层二分类子任务，并集成在半监督的 Teacher-Student 架构中。该方法引入了对抗式自监督重建模块，通过从未标注数据中学习鲁棒的解剖结构特征，同时结合量子启发式特征混合（Quantum-inspired feature mixing）技术，有效增强了模型在伪标签存在噪声时对相邻等级的辨别能力。在两个多分类数据集和两个二分类数据集上的实验结果表明，H-SemiS 在各项评价指标上均显著优于现有的 SOTA 方法，展现出极强的泛化性能和对有限标注数据的利用效率。"
+    },
+    {
+      "id": "2604.23333",
+      "title": "Process Supervision of Confidence Margin for Calibrated LLM Reasoning",
+      "abstract": "Scaling test-time computation with reinforcement learning (RL) has emerged as a reliable path to improve large language models (LLM) reasoning ability. Yet, outcome-based reward often incentivizes models to be overconfident, leading to hallucinations, unreliable confidence-based control, and unnecessary compute allocation. We introduce Reinforcement Learning with Confidence Margin (\\textbf{RLCM}), a calibration-aware RL framework that jointly optimizes correctness and confidence reliability via a margin-enhanced process reward over intermediate-budget completions. Rather than aligning confidence to correctness likelihoods, RLCM encourages to widen the confidence margin between correct and incorrect steps within a single reasoning trajectory. Across mathematical, code, logic and science benchmarks, our method substantially improves calibration while maintaining or improving accuracy. We further show that, with calibrated confidence signals, the resulting models enable more efficient conformal risk control and effective confidence-weighted aggregation.",
+      "authors": [
+        "Liaoyaqi Wang",
+        "Chunsheng Zuo",
+        "William Jurayj",
+        "Benjamin Van Durme",
+        "Anqi Liu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-04-25T14:40:13Z",
+      "updated": "2026-04-25T14:40:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23333v1",
+      "abs_url": "https://arxiv.org/abs/2604.23333",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23333",
+      "summary_zh": "针对强化学习（RL）提升大语言模型推理能力时常导致的过度自信和幻觉问题，该研究提出了 RLCM 框架，旨在通过校准感知的强化学习同时优化推理正确性与置信度的可靠性。RLCM 引入了基于置信度边际（Confidence Margin）的中间过程奖励机制，不再单纯对齐置信度与正确率，而是鼓励模型在推理轨迹中拉大正确步骤与错误步骤之间的置信度差距。在数学、代码、逻辑和科学等多个 Benchmark 的实验表明，该方法在保持或提升模型准确率的同时，显著增强了模型的校准度。此外，经过校准的置信度信号使模型在符合风险控制（Conformal Risk Control）和置信度加权聚合方面表现出更高的效率和有效性。"
+    },
+    {
+      "id": "2604.23325",
+      "title": "EAD-Net: Emotion-Aware Talking Head Generation with Spatial Refinement and Temporal Coherence",
+      "abstract": "Emotionally talking head video generation aims to generate expressive portrait videos with accurate lip synchronization and emotional facial expressions. Current methods rely on simple emotional labels, leading to insufficient semantic information. While introducing high-level semantics enhances expressiveness, it easily causes lip-sync degradation. Furthermore, mainstream generation methods struggle to balance computational efficiency and global motion awareness in long videos and suffer from poor temporal coherence. Therefore, we propose an \\textbf{E}motion-\\textbf{A}ware \\textbf{D}iffusion model-based \\textbf{Net}work, called \\textbf{EAD-Net}. We introduce SyncNet supervision and Temporal Representation Alignment (TREPA) to mitigate lip-sync degradation caused by multi-modal fusion. To model complex spatio-temporal dependencies in long video sequences, we propose a Spatio-Temporal Directional Attention (STDA) mechanism that captures global motion patterns through strip attention. Additionally, we design a Temporal Frame graph Reasoning Module (TFRM) to explicitly model temporal coherence between video frames through graph structure learning. To enhance emotional semantic control, a large language model is employed to extract textual descriptions from real videos, serving as high-level semantic guidance. Experiments on the HDTF and MEAD datasets demonstrate that our method outperforms existing methods in terms of lip-sync accuracy, temporal consistency, and emotional accuracy.",
+      "authors": [
+        "Yahui Li",
+        "Yinfeng Yu",
+        "Liejun Wang",
+        "Shengjie Shen"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "eess.IV"
+      ],
+      "published": "2026-04-25T14:29:58Z",
+      "updated": "2026-04-25T14:29:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23325v1",
+      "abs_url": "https://arxiv.org/abs/2604.23325",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23325",
+      "summary_zh": "EAD-Net 旨在解决情感说话人视频生成中语义表达不足、长视频全局运动感知差以及唇形同步退化的问题。该方法利用大语言模型（LLM）从真实视频中提取高层文本描述作为情感语义引导，并引入 SyncNet 监督与时间表示对齐（TREPA）技术，有效缓解了多模态融合导致的唇形不同步现象。核心架构采用了时空方向注意力机制（STDA）来捕捉长序列中的全局运动模式，并设计了时间帧图推理模块（TFRM），通过图结构学习显式建模视频帧间的时序一致性。在 HDTF 和 MEAD 数据集上的实验结果表明，该模型在唇形同步精度、时序连贯性以及情感表达准确度方面均优于现有方法，实现了更具表现力且自然的视频生成效果。"
+    },
+    {
+      "id": "2604.23318",
+      "title": "Hidden States Know Where Reasoning Diverges: Credit Assignment via Span-Level Wasserstein Distance",
+      "abstract": "Group Relative Policy Optimization (GRPO) performs coarse-grained credit assignment in reinforcement learning with verifiable rewards (RLVR) by assigning the same advantage to all tokens in a rollout. Process reward models can provide finer-grained supervision, but they require step-level annotation or additional reward modeling. We show that hidden-state distributions contain a useful signal for local reasoning quality that can be extracted using only outcome-level correctness labels available in RLVR. Specifically, within each GRPO group, the Wasserstein distance between span-level hidden state distributions of correct and incorrect rollouts increases around regions where their local reasoning quality diverges. This association holds both across examples and within individual trajectories, suggesting that hidden-state distributional divergence can serve as a self-supervision signal for fine-grained credit assignment. We formalize this observation with a separation theorem showing that, under mild structural assumptions, post-divergence spans have larger Wasserstein distances than pre-divergence spans whenever the population-level distributional gap exceeds finite-sample noise. Motivated by this result, we propose \\textbf{S}pan-level \\textbf{H}idden state \\textbf{E}nabled \\textbf{A}dvantage \\textbf{R}eweighting (SHEAR), which modifies GRPO by using span-level Wasserstein distances to scale token-level advantages, amplifying updates on tokens whose hidden states are more separated from the opposing group. The method requires no additional model and only minimal changes to the training pipeline. Experiments on five mathematical reasoning benchmarks and five code generation benchmarks show improvements over standard GRPO and strong performance relative to supervised process reward models, while requiring no additional annotation or reward model training.",
+      "authors": [
+        "Xinzhu Chen",
+        "Wei He",
+        "Huichuan Fan",
+        "Wenzhe Niu",
+        "Zhongxiang Sun",
+        "Xuanru Wang",
+        "Jiuchong Gao",
+        "Jinghua Hao",
+        "Renqing He",
+        "Weijie Yu"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-04-25T14:11:23Z",
+      "updated": "2026-04-25T14:11:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23318v1",
+      "abs_url": "https://arxiv.org/abs/2604.23318",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23318",
+      "summary_zh": "针对强化学习（RLVR）中 GRPO 算法对所有 token 分配统一优势值导致的粗粒度信用分配问题，该研究提出了一种无需额外标注或奖励模型的细粒度优化方法。通过分析发现，在推理过程发生分歧的关键区域，正确与错误样本在隐藏层状态分布上的 Wasserstein 距离会显著增大。基于此观察，研究者提出了 SHEAR 方法，利用片段级（Span-level）的隐藏状态分布差异来动态调整 token 级的优势权重，从而强化对关键推理步骤的学习。在五个数学推理和五个代码生成 Benchmark 上的实验结果表明，SHEAR 在不增加模型参数和标注成本的前提下，性能显著优于标准 GRPO，并达到了与受监督过程奖励模型（PRM）相当的效果。"
+    },
+    {
+      "id": "2604.23312",
+      "title": "GIFT: Global stabilisation via Intrinsic Fine Tuning",
+      "abstract": "Deep reinforcement learning policies achieve strong performance in complex continuous control environments with nonlinear contact forces. However, these policies often produce chaotic state dynamics, with trivially small changes to the initial conditions significantly impacting the long-term behaviour of the control system. This high sensitivity to initial conditions limits the application of Deep RL to real-world control systems where performance and stability guarantees are often required. To address this issue, we propose Global stabilisation via Intrinsic Fine Tuning (GIFT), a general-purpose training framework which directly optimises the global stability of existing high-performing deep RL policies using a custom reward function. We demonstrate that GIFT increase the stability of the control interaction while maintaining comparable task performance, thereby improving the suitability of deep RL policies for real-world control systems.",
+      "authors": [
+        "Rory Young",
+        "Nicolas Pugeault"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-25T13:56:37Z",
+      "updated": "2026-04-25T13:56:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23312v1",
+      "abs_url": "https://arxiv.org/abs/2604.23312",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23312",
+      "summary_zh": "深度强化学习在处理具有非线性接触力的复杂连续控制任务时表现优异，但生成的策略往往表现出混沌的状态动力学，对初始条件的微小变化极度敏感，缺乏稳定性保障。GIFT 框架通过一种通用的内在微调方法，利用自定义奖励函数直接优化现有高性能 RL 策略的全局稳定性。实验证明，该方法在保持任务性能几乎不减的前提下，显著增强了控制交互的稳定性，降低了系统对初始状态的敏感度。这一创新使得 Deep RL 策略在需要性能与稳定性双重保证的真实世界控制系统中更具实用价值。"
+    },
+    {
+      "id": "2604.23309",
+      "title": "STAND: Semantic Anchoring Constraint with Dual-Granularity Disambiguation for Remote Sensing Image Change Captioning",
+      "abstract": "Remote sensing image change captioning (RSICC) aims to describe the difference between two remote sensing images. While recent methods have explored video modeling, they largely overlook the inherent ambiguities in viewpoint, scale, and prior knowledge, lacking effective constraints on the encoder. In this paper, we present STAND, a Semantic Anchoring Constraint with Dual-Granularity Disambiguation for RSICC, to progressively resolve these ambiguities. Specifically, to establish a reliable feature foundation, we first introduce an interpretable constraint to regularize temporal representations. Operating on these purified features, a dual-granularity disambiguation module resolves spatial uncertainties by coupling macro-level global context aggregation for viewpoint confusion with micro-level frequency-refocused attention for small-object scale enhancement. Ultimately, to translate these visually disambiguated features into precise text, a semantic concept anchoring module leverages language categorical priors to tackle knowledge ambiguity during decoding. Extensive experiments verify the superiority of STAND and its effectiveness in addressing ambiguities.",
+      "authors": [
+        "Yanpei Gong",
+        "Beichen Zhang",
+        "Hao Wang",
+        "Zhaobo Qi",
+        "Xinyan Liu",
+        "Yuanrong Xu",
+        "Ruiyang Gao",
+        "Weigang Zhang"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-04-25T13:50:11Z",
+      "updated": "2026-04-25T13:50:11Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23309v1",
+      "abs_url": "https://arxiv.org/abs/2604.23309",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23309",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "遥感图像变化字幕生成（RSICC）旨在描述两幅遥感图像间的差异，但现有方法往往忽视了视点、尺度及先验知识带来的歧义性。STAND 提出了一种双粒度消歧的语义锚定约束框架，通过引入可解释性约束来规范化时空表示，从而建立可靠的特征基础。该模型利用双粒度消歧模块，结合宏观全局上下文聚合与微观频率聚焦注意力机制，有效解决了视点混淆和小目标尺度增强问题。最后，语义概念锚定模块利用语言类别先验在解码阶段处理知识歧义，将视觉特征转化为精准文本。在多个基准数据集上的实验证明，STAND 在处理复杂遥感场景歧义方面具有显著优势，性能达到了领先水平。"
+    },
+    {
+      "id": "2604.23308",
+      "title": "CODA: Coordination via On-Policy Diffusion for Multi-Agent Offline Reinforcement Learning",
+      "abstract": "Offline multi-agent reinforcement learning (MARL) enables policy learning from fixed datasets, but is prone to coordination failure: agents trained on static, off-policy data converge to suboptimal joint behaviours because they cannot co-adapt as their policies change. We introduce CODA (Coordination via On-Policy Diffusion for Multi-Agent Reinforcement Learning), a diffusion-based multi-agent trajectory generator for data augmentation that samples conditioned on the current joint policy, producing synthetic experience which reflects the evolving behaviours of the agents, thereby providing a mechanism for co-adaptation. We find that previous diffusion-based augmentation approaches are insufficient for fostering multi-agent coordination because they produce static augmented datasets that do not evolve as the current joint policy changes during training; CODA resolves this by more closely simulating on-policy learning and is a meaningful step toward coordinated behaviours in the offline setting. CODA is algorithm-agnostic and can be layered onto both model-free and model-based offline reinforcement learning pipelines as an augmentation module. Empirically, CODA not only resolves canonical coordination pathologies in continuous polynomial games but also delivers strong results on the more complex MaMuJoCo continuous-control benchmarks.",
+      "authors": [
+        "Marcel Hedman",
+        "Kale-ab Abebe Tessera",
+        "Juan Claude Formanek",
+        "Anya Sims",
+        "Riccardo Zamboni",
+        "Trevor McInroe",
+        "John Torr",
+        "Elliot Fosong"
+      ],
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-04-25T13:49:43Z",
+      "updated": "2026-04-25T13:49:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23308v1",
+      "abs_url": "https://arxiv.org/abs/2604.23308",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23308",
+      "summary_zh": "离线多智能体强化学习（MARL）常因无法在静态数据中实现策略间的协同演化而导致协调失败。CODA 提出了一种基于扩散模型（Diffusion Model）的多智能体轨迹生成器，通过以当前联合策略为条件进行采样，生成能够反映智能体行为演化的合成经验，从而在离线环境下模拟在线学习的协同适配过程。与以往生成静态增强数据的扩散方法不同，CODA 实现了随训练进程动态更新的数据增强，有效解决了智能体间的协调病态问题。实验表明，CODA 作为一种与算法无关的通用模块，不仅在连续多项式博弈中表现出色，还在复杂的 MaMuJoCo 连续控制基准测试中显著提升了模型性能，为实现离线多智能体协同提供了新路径。"
+    },
+    {
+      "id": "2604.23278",
+      "title": "Active Inference: A method for Phenotyping Agency in AI systems?",
+      "abstract": "The proliferation of agentic artificial intelligence has outpaced the conceptual tools needed to characterize agency in computational systems. Prevailing definitions mainly rely on autonomy and goal-directedness. Here, we argue for a minimal notion open to principled inspection given three criteria: intentionality as action grounded in beliefs and desires, rationality as normatively coherent action entailed by a world model, and explainability as action causally traceable to internal states; we subsequently instantiate these as a partially observable Markov decision process under a variational framework wherein posterior beliefs, prior preferences, and the minimization of expected free energy jointly constitute an agentic action chain. Using a canonical T-maze paradigm, we evidence how empowerment, formulated as the channel capacity between actions and anticipated observations, serves as an operational metric that distinguishes zero-, intermediate-, and high-agency phenotypes through structural manipulations of the generative model. We conclude by arguing that as agents engage in epistemic foraging to resolve ambiguity, the governance controls that remain effective must shift systematically from external constraints to the internal modulation of prior preferences, offering a principled, variational bridge from computational phenotyping to AI governance strategy",
+      "authors": [
+        "Philip Wilson",
+        "Axel Constant",
+        "Mahault Albarracin",
+        "Nicolás Hinrichs",
+        "Jasmine Moore",
+        "Daniel Polani",
+        "Karl Friston"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-25T12:41:53Z",
+      "updated": "2026-04-25T12:41:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23278v1",
+      "abs_url": "https://arxiv.org/abs/2604.23278",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23278",
+      "summary_zh": "针对当前 AI 系统代理性（Agency）定义模糊且缺乏量化工具的问题，该研究提出了一种基于主动推理（Active Inference）的计算表型分析方法。通过将代理性拆解为意图性、理性和可解释性三个核心维度，并将其形式化为变分框架下的部分可观测马尔可夫决策过程（POMDP），实现了从信念、偏好到最小化期望自由能（Expected Free Energy）的动作链建模。在经典的 T-maze 范式实验中，研究利用赋能（Empowerment）作为衡量动作与观测间信道容量的指标，成功区分了零代理、中等代理和高代理的系统表型。结果表明，随着代理系统通过认识性搜索消除环境不确定性，治理策略必须从外部约束转向对内部先验偏好的调节，这为 AI 治理从计算表型分析到策略制定提供了理论桥梁。"
+    },
+    {
+      "id": "2604.23268",
+      "title": "LatentBurst: A Fast and Efficient Multi Frame Super-Resolution for Hexadeca-Bayer Pattern CIS images",
+      "abstract": "This paper introduces a novel multi frame super-resolution network (MFSR) for burst hexadeca Bayer pattern Contact Image Sensor (CIS) images, which includes demosaicing, denoising, multi-frame fusion, and super-resolution. Designing a high-quality reconstruction network poses several challenges as follows: 1) Unlike the Bayer color filter array (CFA) pattern, it is hard to interpolate hexadeca-Bayer pattern since the pixel distance between the same color groups increases; 2) Due to large object motion and camera movements, the final fusion result usually suffers the misalignment resulting a blurry image or ghosting artifacts; 3) The proposed network should be fast and efficient enough to operate in real-time on mobile devices. To overcome these challenges, we propose a novel network, called LatentBurst, which contains: 1) a pyramid align and fusion approach in latent feature to deal with large motion scenario; 2) an efficient UNet-based structure which can run efficiently on mobile device; 3) fine-tuned optical flow estimation and two-step knowledge distillation to reduce domain-gap more effectively. Experimental results in various scenarios demonstrate the effectiveness of our proposed method compared with other state-of-the-art methods.",
+      "authors": [
+        "Sangwook Baek",
+        "Vin Van Duong",
+        "Karam Park",
+        "Pilkyu Park"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-25T12:19:33Z",
+      "updated": "2026-04-25T12:19:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23268v1",
+      "abs_url": "https://arxiv.org/abs/2604.23268",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23268",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "LatentBurst 旨在解决十六进制拜耳（hexadeca-Bayer）模式图像在多帧超分辨率（MFSR）过程中面临的插值困难、运动伪影及移动端实时性要求。该方法通过在潜在特征空间（latent feature）中采用金字塔对齐与融合策略，有效处理了大范围物体运动和相机抖动导致的对齐偏差。为了兼顾性能与速度，模型采用了高效的 UNet 架构，并结合微调的光流估计（optical flow estimation）与两阶段知识蒸馏（knowledge distillation）技术，显著缩小了领域差距。实验结果表明，LatentBurst 在去噪、去马赛克及超分辨率任务中表现优异，在保持高质量重建的同时，能够满足移动设备的实时运行需求。"
+    },
+    {
+      "id": "2604.23264",
+      "title": "MotionHiFlow: Text-to-motion via hierarchical flow matching",
+      "abstract": "Text-to-motion generation aims to generate 3D human motions that are tightly aligned with the input text while remaining physically plausible and rich in fine-grained detail. Although recent approaches can produce complex and natural movements, they usually operate at only one temporal scale, which limits both semantic alignment and temporal coherence. Inspired by the fact that complex motions are conceptualized hierarchically rather than at a single temporal scale in the human cognitive system, we propose \\textit{MotionHiFlow}, a hierarchical flow matching framework to generate motion progressively by constructing flow path from low to high temporal scales. The flows at lower scales capture high-level semantics and coarse motion structures, while flows at higher scales refine temporal details. To link the flows across scales, we introduce a novel cross-scale transition process, ensuring continuity and preserving noise consistency. Furthermore, by integrating a Text-Motion Diffusion Transformer and a topology-aware Motion VAE, MotionHiFlow explicitly models structural dependencies among joints via joint-aware positional encoding and skeletal topology, enabling precise semantic alignment alongside fine-grained motion details. Extensive experiments on HumanML3D and KIT-ML benchmarks demonstrate state-of-the-art performance, with ablation studies confirming the effectiveness of the hierarchical design and key components. Code is available at https://github.com/ai-lh/MotionHiFlow.",
+      "authors": [
+        "Heng Li",
+        "Xiaotong Lin",
+        "Ling-An Zeng",
+        "Yulei Kang",
+        "Shuai Li",
+        "Jian-Fang Hu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-25T12:16:37Z",
+      "updated": "2026-04-25T12:16:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23264v1",
+      "abs_url": "https://arxiv.org/abs/2604.23264",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23264",
+      "summary_zh": "MotionHiFlow 针对文本生成动作任务中语义对齐不足和时间连贯性差的问题，提出了一种基于层级流匹配（hierarchical flow matching）的生成框架。该方法模拟人类认知的层级特性，通过从低到高的时间尺度逐步构建流路径，低尺度捕捉高层语义和粗略结构，高尺度则负责细化动作细节。为了确保不同尺度间的平滑过渡，研究引入了跨尺度转换过程以保持噪声一致性，并结合拓扑感知 Motion VAE 与 Joint-aware 位置编码来增强关节间的结构建模。在 HumanML3D 和 KIT-ML 数据集上的实验表明，该模型在生成动作的物理合理性与细粒度细节方面均达到了 SOTA 水平，有效提升了文本与动作的对齐精度。"
+    },
+    {
+      "id": "2604.23263",
+      "title": "Small Language Model Helps Resolve Semantic Ambiguity of LLM Prompt",
+      "abstract": "Large language models (LLMs) are increasingly utilized in various complex reasoning tasks due to their excellent instruction following capability. However, the model's performance is highly dependent on the open-ended characteristics of the users' input prompt. Natural prompts often do not follow proper syntactic rules, which creates ambiguous queries that yield multiple interpretations. Such ambiguous prompts confuse the model in choosing the correct reasoning paths to answer questions. Prior works address this challenge by applying query editing during the LLM inference process without explicitly solving the root cause of the ambiguity. To address this limitation, we propose a pre-inference prompt optimization mechanism via explicit prompt disambiguation. Particularly, we identify semantic risks in the prompt, check their multi-perspective consistency, and resolve any semantic conflicts that arise. Finally, we organize the resolved ambiguities in a logically structured manner as a clean input to the LLM. By explicitly resolving semantic ambiguity, our method can produce a more focused attention distribution to the semantically essential tokens. We also leverage small language models (SLMs) as the main executor of prompt disambiguation to benefit from their efficient computation. Through comprehensive experiments on multiple benchmarks, we demonstrate that our method improves reasoning performance by 2.5 points at a cost of only \\$0.02. Our study promotes explicit prompt disambiguation as an effective prompt optimization method without disturbing the internal mechanism of LLM inference.",
+      "authors": [
+        "Zhenzhen Huang",
+        "Chaoning Zhang",
+        "Fachrina Dewi Puspitasari",
+        "Jiaquan Zhang",
+        "Yitian Zhou",
+        "Shuxu Chen",
+        "Yang Yang"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-04-25T12:13:26Z",
+      "updated": "2026-04-25T12:13:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23263v1",
+      "abs_url": "https://arxiv.org/abs/2604.23263",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23263",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "大型语言模型（LLM）在处理自然语言提示词时，常因输入存在语法不规范或语义歧义而导致推理路径偏离。该研究提出一种预推理阶段的提示词优化机制，利用轻量级的小语言模型（SLM）作为执行器，通过识别语义风险、检查多视角一致性并解决语义冲突，将模糊的原始输入转化为逻辑结构清晰的提示词。这种显式消除歧义的方法能使模型注意力更集中于关键语义标记，从而在不改变 LLM 内部推理机制的情况下显著提升输出质量。实验结果表明，该方法在多个 Benchmark 上将推理性能平均提升了 2.5 个百分点，且单次处理成本仅为 0.02 美元，证明了在 LLM 推理前引入 SLM 进行语义纠偏是一种高效且经济的优化策略。"
+    },
+    {
+      "id": "2604.23238",
+      "title": "Protecting the Trace: A Principled Black-Box Approach Against Distillation Attacks",
+      "abstract": "Frontier models push the boundaries of what is learnable at extreme computational costs, yet distillation via sampling reasoning traces exposes closed-source frontier models to adversarial third parties who can bypass their guardrails and misappropriate their capabilities, raising safety, security, and intellectual privacy concerns. To address this, there is growing interest in building antidistillation methods, which aim to poison reasoning traces to hinder downstream student model learning while maintaining teacher performance. However, current techniques lack theoretical grounding, requiring either heavy fine-tuning or access to student model proxies for gradient based attacks, and often lead to a significant teacher performance degradation. In this work, we present a theoretical formulation of antidistillation as a Stackelberg game, grounding a problem that has so far largely been approached heuristically. Guided by the desired design properties our formulation reveals, we propose \\texttt{TraceGuard}, an efficient, post-generation black-box method to poison sentences with high importance for teacher reasoning. Our work offers a scalable solution to share model insights safely, ensuring that the advancement of reasoning capabilities does not come at the cost of intellectual privacy or AI safety alignment.",
+      "authors": [
+        "Max Hartman",
+        "Vidhata Jayaraman",
+        "Moulik Choraria",
+        "Lav R. Varshney"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-04-25T10:22:09Z",
+      "updated": "2026-04-25T10:22:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23238v1",
+      "abs_url": "https://arxiv.org/abs/2604.23238",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23238",
+      "summary_zh": "针对闭源前沿模型通过推理链（reasoning traces）被第三方恶意蒸馏而导致的安全与知识产权泄露问题，该研究提出了一种名为 TraceGuard 的黑盒防蒸馏方法。该方法将防蒸馏过程建模为 Stackelberg 博弈，通过理论推导确定了在维持教师模型性能的同时最大化干扰学生模型学习的优化目标。TraceGuard 采用生成后处理机制，精准识别并毒化推理链中对逻辑推导至关重要的关键句子，从而在不依赖梯度信息或代理模型的情况下实现高效防御。实验结果表明，该方法在多种推理任务中能显著降低蒸馏得到的学生模型性能，同时几乎不损害教师模型原始输出的质量，为大规模模型能力的共享提供了兼顾安全与隐私的扩展方案。"
+    },
+    {
+      "id": "2604.23179",
+      "title": "Cooperative Informative Sensing for Monitoring Dynamic Indoor Environments via Multi-Agent Reinforcement Learning",
+      "abstract": "Monitoring human activity in indoor environments is important for applications such as facility management, safety assessment, and space utilization analysis. While mobile robot teams offer the potential to actively improve observation quality, existing multi-robot monitoring and active perception approaches typically rely on coverage or visitation based objectives that are weakly aligned with the accuracy requirements of human-centric monitoring tasks. In this work, we formulate cooperative active observation as a decentralized control problem in which multiple robots adjust their motion to directly optimize monitoring accuracy under partial observability. We propose a learning-based framework for cooperative policies from decentralized observations using multi-agent reinforcement learning (MARL), supported by an architecture that handles variable numbers of humans and temporal dependencies. Simulation results across diverse indoor environments and monitoring tasks show that the proposed approach consistently outperforms classical coverage, persistent monitoring, and learning-free multi-robot baselines, while remaining robust to changes in the number of observed humans.",
+      "authors": [
+        "Kanghoon Lee",
+        "Matthew M. Sato",
+        "Jinnyeong Yang",
+        "Seungro Lee",
+        "Sujin Lee",
+        "Jiachen Li",
+        "Kuk-Jin Yoon",
+        "Jinkyoo Park",
+        "Kincho H. Law",
+        "Yoonjin Yoon"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-04-25T07:20:15Z",
+      "updated": "2026-04-25T07:20:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23179v1",
+      "abs_url": "https://arxiv.org/abs/2604.23179",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23179",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对室内动态环境中的人体活动监测，该研究旨在解决传统多机器人监测方法中覆盖范围或访问频率与实际监测精度需求不匹配的问题。通过将协作主动观测建模为去中心化控制问题，提出了一种基于多智能体强化学习（MARL）的框架，使多个机器人能够根据局部观测自主调整运动路径，以直接优化部分可观测环境下的监测准确性。该框架采用能处理可变数量目标和时间依赖性的架构，增强了系统在复杂场景下的灵活性。在多种室内环境和监测任务的仿真实验中，该方法在监测精度上显著优于传统的覆盖算法、持续监测算法及无学习基准模型，并在人体目标数量变化时表现出极强的鲁棒性。"
+    },
+    {
+      "id": "2604.23106",
+      "title": "No Test Cases, No Problem: Distillation-Driven Code Generation for Scientific Workflows",
+      "abstract": "Existing multi-agent Large Language Model (LLM) frameworks for code generation typically use execution feedback and improve iteratively using Input/Output (I/O) test cases. However, this does not work for scientific workflows, where I/O test cases do not exist, and generating them requires solving the very problem at hand. To address this, we introduce MOSAIC, a training-free multi-agent framework for scientific code generation without I/O supervision. Instead of execution feedback, MOSAIC employs a student-teacher knowledge distillation framework that grounds generation through domain-specific examples and structured problem decomposition. To further mitigate hallucinations across chained subproblems, we introduce a Consolidated Context Window (CCW) for maintaining consistent reasoning across agents. Experiments on the SciCode benchmark show that MOSAIC improves accuracy, executability, and numerical precision over existing approaches while relying on lightweight models.",
+      "authors": [
+        "Siddeshwar Raghavan",
+        "Tanwi Mallick"
+      ],
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-04-25T02:01:54Z",
+      "updated": "2026-04-25T02:01:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23106v1",
+      "abs_url": "https://arxiv.org/abs/2604.23106",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23106",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对科学计算工作流中缺乏输入输出（I/O）测试用例且生成测试代价极高的问题，MOSAIC 提出了一种无需训练且无需 I/O 监督的多智能体框架。该框架摒弃了传统的执行反馈机制，转而采用学生-教师知识蒸馏（Knowledge Distillation）模式，通过领域特定示例和结构化问题分解来引导代码生成。为了解决链式子问题中的幻觉问题，MOSAIC 引入了整合上下文窗口（CCW）技术，确保不同智能体之间推理逻辑的一致性。在 SciCode 基准测试上的实验结果表明，该方法在代码准确性、可执行性和数值精度方面均优于现有方法，且仅需依赖轻量级模型即可实现卓越性能。"
+    },
+    {
+      "id": "2604.23094",
+      "title": "Toward Real-World Adoption of Portrait Relighting via Hybrid Domain Knowledge Fusion",
+      "abstract": "The real-world adoption of portrait relighting is hindered by dataset domain gaps, camera sensitivity, and computational costs. We address these challenges with Hybrid Domain Knowledge Fusion, a paradigm that fuses the specialized strengths of synthetic, One-Light-at-A-Time (OLAT), and real-world datasets into a compact model. Our approach features specialized prior models hardened by domain-aware adaptation, followed by augmented knowledge distillation into a lightweight student model with multi-domain expertise. Our method demonstrates a 6x to 240x inference speedup while maintaining state-of-the-art (SOTA) visual quality in the experiments. Additionally, we construct a massive, high-fidelity synthetic dataset with diverse ground-truth intrinsics to support our training pipeline.",
+      "authors": [
+        "Qian Huang",
+        "Mayoore Selvarasa Jaiswal",
+        "Zhen Zhong",
+        "Rochelle Pereira",
+        "Jianyuan Min"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.LG"
+      ],
+      "published": "2026-04-25T01:16:11Z",
+      "updated": "2026-04-25T01:16:11Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.23094v1",
+      "abs_url": "https://arxiv.org/abs/2604.23094",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.23094",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对人像重光照在实际应用中面临的数据集域差异、相机敏感度及高计算成本等难题，该研究提出了一种名为 Hybrid Domain Knowledge Fusion 的混合域知识融合范式。该方法通过域感知适配技术，将合成数据、OLAT 数据以及真实世界数据集的专业优势融合进一个紧凑模型中，并利用增强知识蒸馏将多域专业知识迁移至轻量化学生模型。实验结果表明，该方法在保持 SOTA 视觉质量的同时，实现了 6 倍至 240 倍的推理加速。此外，研究还构建了一个包含多样化真值属性的大规模高保真合成数据集，为训练流程提供了强力支撑，显著提升了模型在复杂现实场景下的鲁棒性与实用性。"
+    }
+  ]
 }

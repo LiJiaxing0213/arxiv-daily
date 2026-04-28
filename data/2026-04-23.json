@@ -1,6 +1,6 @@
 {
   "date": "2026-04-23",
-  "generated_at": "2026-04-27T14:35:19.409226+00:00",
+  "generated_at": "2026-04-28T05:01:43.994406+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -140,6 +140,31 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.22062",
       "summary_zh": "该研究旨在通过强化学习（Reinforcement Learning）激励多模态大模型（VLMs）利用神经符号语言（Neuro-symbolic Language）进行推理，以提升系统在处理复杂视觉-语言概念时的分析能力与效率。以 Qwen3-VL-2B-Instruct 为基础模型，通过在 4 个 Nvidia H200 GPU 节点上进行训练，使模型能够学习类似非线性逻辑的符号化表达。实验结果显示，该方法在涵盖数学、科学及常识的综合性视觉问答数据集上实现了 3.33% 的准确率提升。关键创新在于，相比于传统的 SymPy 符号计算工具，该方案在增强推理性能的同时，将推理所需的 Token 数量显著减少了 75%，证明了神经符号推理在提升模型“思考”效率和扩展性方面的巨大潜力。"
+    },
+    {
+      "id": "2604.22873",
+      "title": "When Policies Cannot Be Retrained: A Unified Closed-Form View of Post-Training Steering in Offline Reinforcement Learning",
+      "abstract": "Offline reinforcement learning (RL) can learn effective policies from fixed datasets, but deployment objectives may change after training, and in many applications the trained actor cannot be retrained because of data, cost, or governance constraints. We study deployment-time adaptation for frozen offline actors using Product-of-Experts (PoE) composition with a goal-conditioned prior. Our main practical finding is graceful degradation rather than universal performance gain: under degraded or random priors, precision-weighted composition remains anchored to the frozen actor, while additive and prior-only adaptation collapse, and a KL-budget selector often recovers a near-oracle operating point. We also make explicit a closed-form identity in the frozen-actor setting: for diagonal-Gaussian actors and priors, PoE with coefficient alpha yields the same deterministic policy as KL-regularized adaptation with beta = alpha / (1 - alpha), with posterior covariances differing only by a global scalar factor. Empirically, across four D4RL environments (3,900 MuJoCo episodes), we observe a 4/5/3 HELP/FROZEN/HURT split. Extending the analysis to six harder cells and two AntMaze diagnostics reveals an actor-competence ceiling: medium-expert remains HURT in all 9 cells at every tested alpha, while AntMaze with a behavior-cloned frozen actor yields zero success for all composition rules. Overall, PoE and KL-regularized adaptation are best viewed as a single actor-anchored safety mechanism for deployment-time steering.",
+      "authors": [
+        "Elias Hossain",
+        "Mohammad Jahid Ibna Basher",
+        "Ivan Garibay",
+        "Ozlem Garibay",
+        "Niloofar Yousefi"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-23T20:20:11Z",
+      "updated": "2026-04-23T20:20:11Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.22873v1",
+      "abs_url": "https://arxiv.org/abs/2604.22873",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.22873",
+      "summary_zh": "该研究探讨了在离线强化学习（Offline RL）中，当预训练策略模型因成本或监管限制无法重新训练时，如何通过事后引导（Post-Training Steering）使其适应新的部署目标。研究提出了一种基于专家乘积（Product-of-Experts, PoE）的统一闭式解框架，证明了在对角高斯分布假设下，PoE 组合与 KL 正则化适配在数学上具有等价性，均可视为一种以原始策略为锚点的安全机制。通过在 D4RL 和 AntMaze 等基准测试上的大规模实验发现，这种方法在面对退化先验时表现出优雅降级的特性，能有效防止策略崩溃，但也存在明显的性能天花板。实验结果表明，该框架在多数情况下能维持或小幅提升性能，但在高难度任务或基础模型能力不足时难以实现突破，本质上是一种平衡部署目标与原始策略偏差的受限优化手段。"
     },
     {
       "id": "2604.22005",
@@ -542,6 +567,30 @@
       "summary_zh": "该研究将可微动力学下的有限时界轨迹与策略优化问题转化为推断问题，通过最小化KL正则化的期望轨迹代价，推导出一种随温度降低而向低成本方案集中的Boltzmann-tilted目标分布。为了从这种尖锐且可能存在多模态的目标分布中高效采样，研究提出了回火顺序蒙特卡洛（TSMC）框架，利用退火机制沿回火路径对粒子进行自适应重采样。该方法结合了哈密顿蒙特卡洛（HMC）进行粒子复原，通过对轨迹展开进行微分来利用精确梯度信息，从而在保持样本多样性的同时提升搜索效率。在策略优化任务中，通过确定性经验近似和扩展空间构造处理初始状态及滚动随机性，实验证明 TSMC 在多个轨迹和策略优化 benchmark 上均优于现有的先进基准模型。"
     },
     {
+      "id": "2604.22865",
+      "title": "MeshLAM: Feed-Forward One-Shot Animatable Textured Mesh Avatar Reconstruction",
+      "abstract": "We introduce MeshLAM, a feed-forward framework for one-shot animatable mesh head reconstruction that generates high-fidelity, animatable 3D head avatars from a single image. Unlike previous work that relies on time-consuming test-time optimization or extensive multi-view data, our method produces complete mesh representations with inherent animatability from a single image in a single forward pass. Our approach employs a dual shape and texture map architecture that simultaneously processes mesh vertices and texture map with extracted image features from a shared transformer backbone, allowing for coherent shape carving and appearance modeling. To prevent mesh collapse and ensure topological integrity during feed-forward deformation, we propose an iterative GRU-based decoding mechanism with progressive geometry deformation and texture refinement, coupled with a novel reprojection-based texture guidance mechanism that anchors appearance learning to the input image. Extensive experiments demonstrate that our method outperforms state-of-the-art approaches in reconstruction quality, animation capability, and computational efficiency. Project page at https://meshlam.github.io.",
+      "authors": [
+        "Yisheng He",
+        "Steven Hoi"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-23T09:01:27Z",
+      "updated": "2026-04-23T09:01:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.22865v1",
+      "abs_url": "https://arxiv.org/abs/2604.22865",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.22865",
+      "keyword_topics": [
+        "4d-gen"
+      ],
+      "summary_zh": "MeshLAM 提出了一种前馈式框架，旨在从单张图像中快速重建具有高保真度且可驱动的 3D 头部化身。该方法采用双重形状与纹理映射架构，利用共享的 Transformer 骨干网络同时处理网格顶点和纹理图，实现了形状刻画与外观建模的协同。为了解决前馈变形中的网格塌陷和拓扑完整性问题，研究引入了基于 GRU 的迭代解码机制进行渐进式几何变形，并结合重投影纹理引导机制将外观学习锚定在输入图像上。实验结果表明，MeshLAM 在重建质量、动画表现及计算效率方面均优于现有的 SOTA 方法，且无需耗时的测试时优化即可生成完整的可动画化 Mesh 表征。"
+    },
+    {
       "id": "2604.21409",
       "title": "S1-VL: Scientific Multimodal Reasoning Model with Thinking-with-Images",
       "abstract": "We present S1-VL, a multimodal reasoning model for scientific domains that natively supports two complementary reasoning paradigms: Scientific Reasoning, which relies on structured chain-of-thought, and Thinking-with-Images, which enables the model to actively manipulate images through Python code execution during reasoning. In the Thinking-with-Images mode, the model generates and executes image-processing code in a sandbox environment, obtains intermediate visual results, and continues reasoning in a multi-turn iterative manner. This design is particularly effective for challenging scenarios such as high-resolution scientific chart interpretation, microscopic image understanding, and geometry-assisted reasoning. To construct the training data, we collect scientific multimodal datasets spanning six disciplines: mathematics, physics, chemistry, astronomy, geography, and biology. We further develop a six-dimensional quality filtering framework for reasoning trajectories. To mitigate redundant, ineffective, and erroneous visual operations commonly found in existing datasets, we propose a multi-stage filtering pipeline together with an adaptive data routing strategy. This strategy converts samples with low visual information gain into pure Reasoning-mode data, enabling the model to learn when image operations are truly necessary. S1-VL is trained through a four-stage progressive pipeline: scientific multimodal SFT, Thinking-with-Images cold-start SFT, and two stages of reinforcement learning with SAPO. We build S1-VL-32B on top of Qwen3-VL-32B-Thinking and evaluate it on 13 benchmarks. Experimental results show that S1-VL-32B achieves state-of-the-art performance on all five Thinking-with-Images benchmarks, including HRBench-4K, HRBench-8K, MME-RealWorld-CN, MME-RealWorld-Lite, and V*, and outperforms compared systems on scientific reasoning benchmarks such as Physics and VRSBench.",
@@ -562,9 +611,12 @@
       "pdf_url": "https://arxiv.org/pdf/2604.21409v1",
       "abs_url": "https://arxiv.org/abs/2604.21409",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.21409",
+      "keyword_topics": [
+        "rl"
+      ],
       "summary_zh": "S1-VL 旨在解决科学领域多模态推理中复杂视觉信息的精准处理问题，提出了科学推理（Scientific Reasoning）与图像思考（Thinking-with-Images）两种互补范式。该模型通过在推理过程中生成并执行 Python 代码，实现对图像的主动操作与多轮迭代分析，特别擅长处理高分辨率科学图表、显微图像及几何推理任务。研发团队构建了涵盖数学、物理、生物等六大学科的数据集，并利用六维质量过滤框架和自适应数据路由策略，有效减少了冗余的视觉操作，让模型学会判断何时真正需要图像处理。基于 Qwen3-VL-32B-Thinking 构建的 S1-VL-32B 在 HRBench-4K、MME-RealWorld 等 13 个 Benchmark 上进行了评估，在所有图像思考类测试中均达到 SOTA 水平，并在物理及 VRSBench 等科学推理任务中表现卓越。"
     },
     {
@@ -648,9 +700,12 @@
       "pdf_url": "https://arxiv.org/pdf/2604.21330v1",
       "abs_url": "https://arxiv.org/abs/2604.21330",
       "topics": [
-        "distillation"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.21330",
+      "keyword_topics": [
+        "distillation"
+      ],
       "summary_zh": "稀疏混合专家模型（Sparse MoE）在训练中常因梯度阻断导致路由选择不稳定且难以优化。TGR-MoE 提出了一种利用预训练密集教师模型（Dense Teacher）提供监督信号的方法，通过从教师模型的中间表示构建教师路由器，为学生路由器提供伪标签指导。这种机制有效抑制了训练过程中专家分配的频繁波动，使模型在早期就能实现基于知识引导的专家选择。在 ImageNet-1K 和 CIFAR-100 上的实验表明，TGR-MoE 在保持极高稀疏度的同时，显著提升了分类准确率和路由一致性，解决了传统 MoE 训练中的优化难题并增强了系统稳定性。"
     },
     {
