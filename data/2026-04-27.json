@@ -1,6 +1,6 @@
 {
   "date": "2026-04-27",
-  "generated_at": "2026-04-28T05:01:43.989112+00:00",
+  "generated_at": "2026-04-29T04:54:20.304263+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,272 @@
     }
   },
   "papers": [
+    {
+      "id": "2604.25062",
+      "title": "Learning biophysical models of gene regulation with probability flow matching",
+      "abstract": "Cellular differentiation is governed by gene regulatory networks, the high-dimensional stochastic biochemical systems that determine the transcriptional landscape and mediate cellular responses to signals and perturbations. Although single-cell RNA sequencing provides quantitative snapshots of the transcriptome, current methods for inferring gene-regulatory dynamics often lack mechanistic interpretability and fail to generalize to unseen conditions. Here we introduce Probability Flow Matching (PFM), a scalable framework for learning biophysically consistent stochastic processes directly from time-resolved single-cell measurements. Applying PFM to three hematopoiesis datasets, we show that models with similar interpolation accuracy can encode fundamentally different dynamics, with only biophysically consistent formulations accurately capturing mechanisms of lineage transitions, fate specification, and gene perturbation responses. We further demonstrate that PFM accommodates unbalanced populations, enabling simultaneous inference of cellular proliferation and death dynamics. Together, these results establish PFM as a flexible, scalable framework for integrating mechanistic modeling with single-cell omics.",
+      "authors": [
+        "Suryanarayana Maddu",
+        "Victor Chardès",
+        "Michael J. Shelley"
+      ],
+      "categories": [
+        "q-bio.MN",
+        "cs.LG",
+        "physics.bio-ph"
+      ],
+      "published": "2026-04-27T23:30:18Z",
+      "updated": "2026-04-27T23:30:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.25062v1",
+      "abs_url": "https://arxiv.org/abs/2604.25062",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25062",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究针对单细胞转录组数据推断基因调控网络时缺乏机制可解释性且泛化能力差的问题，提出了名为 Probability Flow Matching (PFM) 的可扩展框架。该框架利用概率流匹配技术，直接从时间序列单细胞测量数据中学习符合生物物理一致性的随机过程，能够同时推断细胞的增殖与死亡动态。在三个造血作用数据集上的实验表明，PFM 在保持高精度插值的同时，能准确捕捉谱系转换、命运决定及基因扰动响应等深层生物学机制。相比传统方法，PFM 成功将机制建模与大规模单细胞组学数据集成，为理解复杂生化系统的动态演化提供了兼具物理约束与扩展性的新方案。"
+    },
+    {
+      "id": "2604.25039",
+      "title": "Dual-Track CoT: Budget-Aware Stepwise Guidance for Small LMs",
+      "abstract": "Large Language Models (LLMs) solve many reasoning tasks via chain-of-thought (CoT) prompting, but smaller models (about 7 to 8B parameters) still struggle with multi-step reasoning under tight compute and token budgets. Existing test time reasoning methods such as self consistency (sampling multiple rationales and voting), Tree-of-Thoughts (search over intermediate thoughts), and critique revise loops improve performance, but often at high token cost and without fine-grained step-level control. This project1 aims to address that gap: can Small Language Models (SLMs) reason reliably using the same or fewer tokens? This question is both scientific and practical. Scientifically, it probes whether process supervision and simple test-time controls (such as token budgets and rejection of redundant steps) can substitute for model scale or large sampling counts. Practically, many deployments (on-device, low-latency, or cost-constrained settings) cannot afford huge models or dozens of sampled rationales per query. A method that improves SLM reasoning at fixed cost would therefore be directly useful.",
+      "authors": [
+        "Sagnik Chatterjee",
+        "Atharva Patil",
+        "Sricharan Ramesh"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-04-27T22:43:33Z",
+      "updated": "2026-04-27T22:43:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.25039v1",
+      "abs_url": "https://arxiv.org/abs/2604.25039",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25039",
+      "summary_zh": "针对小型语言模型（SLMs）在有限计算和 Token 预算下难以进行多步推理的问题，Dual-Track CoT 提出了一种具备预算感知能力的逐步引导方法。该方法通过引入过程监督和简单的推理时控制机制，如 Token 预算分配和冗余步骤拒绝，在不增加采样次数的情况下提升推理可靠性。实验表明，这种双轨引导模式能让 7B 到 8B 规模的模型在固定成本下，通过对中间思维过程的精细化控制，达到甚至超越大规模模型在复杂推理任务上的表现。这一创新证明了通过优化推理路径管理而非单纯增加模型参数或采样数量，可以有效解决端侧设备和低延迟场景下的推理瓶颈，为受限资源下的高效推理提供了新路径。"
+    },
+    {
+      "id": "2604.25011",
+      "title": "Why Does Reinforcement Learning Generalize? A Feature-Level Mechanistic Study of Post-Training in Large Language Models",
+      "abstract": "Reinforcement learning (RL)-based post-training often improves the reasoning performance of large language models (LLMs) beyond the training domain, while supervised fine-tuning (SFT) frequently leads to general capabilities forgetting. However, the mechanisms underlying this contrast remain unclear. To bridge this gap, we present a feature-level mechanistic analysis methodology to probe RL generalization using a controlled experimental setup, where RL- and SFT-tuned models are trained from the same base model on identical data. Leveraging our interpretability framework, we align internal activations across models within a shared feature space and analyze how features evolve during post-training. We find that SFT rapidly introduces many highly specialized features that stabilize early in training, whereas RL induces more restrained and continually evolving feature changes that largely preserve base models' representations. Focusing on samples where RL succeeds but the base model fails, we identify a compact, task-agnostic set of features that directly mediate generalization across diverse tasks. Feature-level interventions confirm their causal role: disabling these features significantly degrades RL models' generalization performance, while amplifying them improves base models' performance. The code is available at https://github.com/danshi777/RL-generalization.",
+      "authors": [
+        "Dan Shi",
+        "Zhuowen Han",
+        "Simon Ostermann",
+        "Renren Jin",
+        "Josef van Genabith",
+        "Deyi Xiong"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-04-27T21:22:34Z",
+      "updated": "2026-04-27T21:22:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.25011v1",
+      "abs_url": "https://arxiv.org/abs/2604.25011",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25011",
+      "summary_zh": "针对大语言模型（LLM）在强化学习（RL）后表现出比监督微调（SFT）更强的跨领域泛化能力这一现象，本研究通过特征级机理分析揭示了其底层逻辑。研究发现 SFT 会迅速引入大量高度专门化的特征并导致基础模型表征的剧烈改变，而 RL 则诱导更克制且持续演化的特征变化，从而更好地保留了原始模型的通用能力。通过将不同模型的内部激活对齐到统一特征空间，研究识别出一组与任务无关的关键特征，这些特征直接中介了模型在不同任务间的泛化表现。特征干预实验进一步证实了这些特征的因果作用：禁用这些特征会显著降低 RL 模型的泛化性能，而增强这些特征则能提升基础模型在未见任务上的表现。该研究为理解 RL 训练的优越性提供了机械论解释，并为优化 LLM 后训练过程提供了新视角。"
+    },
+    {
+      "id": "2604.24996",
+      "title": "Sparse Personalized Text Generation with Multi-Trajectory Reasoning",
+      "abstract": "As Large Language Models (LLMs) advance, personalization has become a key mechanism for tailoring outputs to individual user needs. However, most existing methods rely heavily on dense interaction histories, making them ineffective in cold-start scenarios where such data is sparse or unavailable. While external signals (e.g., content of similar users) can offer a potential remedy, leveraging them effectively remains challenging: raw context is often noisy, and existing methods struggle to reason over heterogeneous data sources. To address these issues, we introduce PAT (Personalization with Aligned Trajectories), a reasoning framework for cold-start LLM personalization. PAT first retrieves information along two complementary trajectories: writing-style cues from stylistically similar users and topic-specific context from preference-aligned users. It then employs a reinforcement learning-based, iterative dual-reasoning mechanism that enables the LLM to jointly refine and integrate these signals. Experimental results across real-world personalization benchmarks show that PAT consistently improves generation quality and alignment under sparse-data conditions, establishing a strong solution to the cold-start personalization problem.",
+      "authors": [
+        "Bo Ni",
+        "Haowei Fu",
+        "Qinwen Ge",
+        "Franck Dernoncourt",
+        "Samyadeep Basu",
+        "Nedim Lipka",
+        "Seunghyun Yoon",
+        "Yu Wang",
+        "Nesreen K. Ahmed",
+        "Subhojyoti Mukherjee",
+        "Puneet Mathur",
+        "Ryan A. Rossi",
+        "Tyler Derr"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-27T20:58:49Z",
+      "updated": "2026-04-27T20:58:49Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.24996v1",
+      "abs_url": "https://arxiv.org/abs/2604.24996",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24996",
+      "summary_zh": "针对大语言模型在冷启动场景下因用户历史数据稀缺而难以实现个性化生成的问题，PAT 框架提出了一种基于多轨迹推理的解决方案。该方法通过检索两条互补的路径来弥补数据不足：一是从风格相似的用户中提取写作风格线索，二是从偏好一致的用户中获取特定主题的上下文。PAT 核心创新在于引入了基于强化学习的迭代双重推理机制，使模型能够协同优化并整合这些异构信号。在多个真实世界的个性化 Benchmark 实验中，PAT 在数据稀缺条件下显著提升了生成质量和用户对齐度，为解决冷启动个性化问题提供了高效的推理范式。"
+    },
+    {
+      "id": "2604.24957",
+      "title": "Compute Aligned Training: Optimizing for Test Time Inference",
+      "abstract": "Scaling test-time compute has emerged as a powerful mechanism for enhancing Large Language Model (LLM) performance. However, standard post-training paradigms, Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL), optimize the likelihood of individual samples under a base policy, creating a misalignment with test time procedures that rely on aggregated or filtered outputs. In this work, we propose Compute Aligned Training, which aligns training objectives with test-time strategies. By conceptualizing inference strategies as operators on the base policy, we derive new loss functions that maximize performance when said strategies are applied. We instantiate such loss functions for SFT and RL across common test time strategies. Finally, we provide empirical evidence that this training method substantially improves test time scaling over standard training.",
+      "authors": [
+        "Adam Ousherovitch",
+        "Ambuj Tewari"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-27T19:52:38Z",
+      "updated": "2026-04-27T19:52:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.24957v1",
+      "abs_url": "https://arxiv.org/abs/2604.24957",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24957",
+      "summary_zh": "推理时计算（Test-time compute）的扩展已成为提升大语言模型性能的关键，但传统的监督微调（SFT）和强化学习（RL）仅优化基础策略下单个样本的似然，导致训练目标与推理时聚合或过滤输出的策略不匹配。该研究提出了计算对齐训练（Compute Aligned Training），将推理策略视为基础策略上的算子，并推导出旨在最大化推理性能的新型损失函数。通过在 SFT 和 RL 框架下针对常见的推理策略进行实例化，该方法使模型能够预见并适配推理时的计算分配。实验结果表明，与标准训练方法相比，计算对齐训练能显著提升模型在推理时扩展（Test-time scaling）过程中的性能表现。"
+    },
+    {
+      "id": "2604.24953",
+      "title": "ViPO: Visual Preference Optimization at Scale",
+      "abstract": "While preference optimization is crucial for improving visual generative models, how to effectively scale this paradigm remains largely unexplored. Current open-source preference datasets contain conflicting preference patterns, where winners excel in some dimensions but underperform in others. Naively optimizing on such noisy datasets fails to learn preferences, hindering effective scaling. To enhance robustness against noise, we propose Poly-DPO, which extends the DPO objective with an additional polynomial term that dynamically adjusts model confidence based on dataset characteristics, enabling effective learning across diverse data distributions. Beyond biased patterns, existing datasets suffer from low resolution, limited prompt diversity, and imbalanced distributions. To facilitate large-scale visual preference optimization by tackling data bottlenecks, we construct ViPO, a massive-scale preference dataset with 1M image pairs at 1024px across five categories and 300K video pairs at 720p+ across three categories. State-of-the-art generative models and diverse prompts ensure reliable preference signals with balanced distributions. Remarkably, when applying Poly-DPO to our high-quality dataset, the optimal configuration converges to standard DPO. This convergence validates dataset quality and Poly-DPO's adaptive nature: sophisticated optimization becomes unnecessary with sufficient data quality, yet remains valuable for imperfect datasets. We validate our approach across visual generation models. On noisy datasets like Pick-a-Pic V2, Poly-DPO achieves 6.87 and 2.32 gains over Diffusion-DPO on GenEval for SD1.5 and SDXL, respectively. For ViPO, models achieve performance far exceeding those trained on existing open-source preference datasets. These results confirm that addressing both algorithmic adaptability and data quality is essential for scaling visual preference optimization.",
+      "authors": [
+        "Ming Li",
+        "Jie Wu",
+        "Justin Cui",
+        "Xiaojie Li",
+        "Rui Wang",
+        "Chen Chen"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-04-27T19:49:06Z",
+      "updated": "2026-04-27T19:49:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.24953v1",
+      "abs_url": "https://arxiv.org/abs/2604.24953",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24953",
+      "summary_zh": "针对视觉生成模型偏好优化中存在的噪声数据冲突和数据规模瓶颈，该研究提出了 Poly-DPO 算法和大规模偏好数据集 ViPO。Poly-DPO 通过在 DPO 目标函数中引入多项式项，能够根据数据分布动态调整模型置信度，从而在含有冲突偏好的噪声数据集中实现稳健学习。为了解决现有数据集分辨率低、多样性差的问题，ViPO 构建了包含 100 万对高清图像和 30 万对高质量视频的超大规模数据集。实验结果显示，Poly-DPO 在 Pick-a-Pic V2 等噪声数据集上显著优于 Diffusion-DPO，而在高质量的 ViPO 数据集上，该方法能使模型在 GenEval 等 benchmark 上取得超越现有开源数据集的生成效果，证明了算法自适应性与数据质量对视觉偏好优化规模化的重要性。"
+    },
+    {
+      "id": "2604.24952",
+      "title": "Learning from Noisy Preferences: A Semi-Supervised Learning Approach to Direct Preference Optimization",
+      "abstract": "Human visual preferences are inherently multi-dimensional, encompassing aesthetics, detail fidelity, and semantic alignment. However, existing datasets provide only single, holistic annotations, resulting in severe label noise: images that excel in some dimensions but are deficient in others are simply marked as winner or loser. We theoretically demonstrate that compressing multi-dimensional preferences into binary labels generates conflicting gradient signals that misguide Diffusion Direct Preference Optimization (DPO). To address this, we propose Semi-DPO, a semi-supervised approach that treats consistent pairs as clean labeled data and conflicting ones as noisy unlabeled data. Our method starts by training on a consensus-filtered clean subset, then uses this model as an implicit classifier to generate pseudo-labels for the noisy set for iterative refinement. Experimental results demonstrate that Semi-DPO achieves state-of-the-art performance and significantly improves alignment with complex human preferences, without requiring additional human annotation or explicit reward models during training. We will release our code and models at: https://github.com/L-CodingSpace/semi-dpo",
+      "authors": [
+        "Xinxin Liu",
+        "Ming Li",
+        "Zonglin Lyu",
+        "Yuzhang Shang",
+        "Chen Chen"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-04-27T19:49:04Z",
+      "updated": "2026-04-27T19:49:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.24952v1",
+      "abs_url": "https://arxiv.org/abs/2604.24952",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24952",
+      "summary_zh": "人类视觉偏好具有多维性，但现有数据集通常将其压缩为单一的二元标签，导致 Diffusion DPO 在训练时会接收到相互矛盾的梯度信号，从而误导模型优化。Semi-DPO 提出了一种半监督学习框架，将标注一致的图像对视为干净数据，而将存在多维偏好冲突的图像对视为噪声未标记数据。该方法首先在经过共识过滤的干净子集上进行预训练，随后利用该模型作为隐式分类器，为噪声数据集生成伪标签并进行迭代优化。实验结果表明，Semi-DPO 在不依赖额外人工标注或显式奖励模型的情况下，显著提升了模型与复杂人类偏好的对齐效果，并在多个 benchmark 上达到了 SOTA 性能。"
+    },
+    {
+      "id": "2604.24933",
+      "title": "S-SONDO: Self-Supervised Knowledge Distillation for General Audio Foundation Models",
+      "abstract": "General audio foundation models have recently achieved remarkable progress, enabling strong performance across diverse tasks. However, state-of-the-art models remain extremely large, often with hundreds of millions of parameters, leading to high inference costs and limited deployability on edge devices. Knowledge distillation is a proven strategy for model compression, but prior work in audio has mostly focused on supervised settings, relying on class logits, intermediate features, or architecture-specific techniques. Such assumptions exclude models that output only embeddings, such as self-supervised or metric-learning models. We introduce S-SONDO (Self-Supervised KnOwledge DistillatioN for General AuDio FOundation Models), the first framework to distill general audio models using only their output embeddings. By avoiding the need for logits or layer-level alignment, S-SONDO is architecture-agnostic and broadly applicable to embedding-based teachers. We demonstrate its effectiveness by distilling two audio foundation models into three efficient students that are up to 61 times smaller while retaining up to 96% of teacher performance. We also provide practical insights on loss choice and clustering-based balanced data sampling. Code is available here: https://github.com/MedAliAdlouni/ssondo.",
+      "authors": [
+        "Mohammed Ali El Adlouni",
+        "Aurian Quelennec",
+        "Pierre Chouteau",
+        "Geoffroy Peeters",
+        "Slim Essid"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.SD"
+      ],
+      "published": "2026-04-27T19:20:47Z",
+      "updated": "2026-04-27T19:20:47Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.24933v1",
+      "abs_url": "https://arxiv.org/abs/2604.24933",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24933",
+      "summary_zh": "针对通用音频基础模型参数量巨大、推理成本高且难以部署到边缘设备的问题，S-SONDO 提出了一种仅依赖输出嵌入（Embeddings）的自监督知识蒸馏框架。该方法不要求教师模型提供类别概率或中间层特征，从而实现了架构无关性，能够广泛应用于各类基于嵌入的自监督或度量学习模型。通过引入聚类平衡数据采样和优化的损失函数，S-SONDO 成功将大型音频基础模型压缩至原体积的 1/61，同时在多个音频任务中保留了高达 96% 的教师模型性能。实验证明，该框架在保持模型轻量化的同时，显著提升了通用音频表征学习的效率与可部署性。"
+    },
+    {
+      "id": "2604.24919",
+      "title": "Agentic AI for Remote Sensing: Technical Challenges and Research Directions",
+      "abstract": "Earth Observation (EO) is moving beyond static prediction toward multi-step analytical workflows that require coordinated reasoning over data, tools, and geospatial state. While foundation models and vision-language models have expanded representation learning and language-grounded interaction for remote sensing, and agentic AI has demonstrated long-horizon reasoning and external tool use, EO is not a straightforward extension of generic agentic AI. EO workflows operate over georeferenced, multi-modal, and temporally structured data, where operations such as reprojection, resampling, compositing, and aggregation actively transform the underlying state and can constrain subsequent analysis. As a result, errors may propagate silently across steps, and correctness depends not only on internal coherence, but also on geospatial consistency, temporally valid comparisons, and physical validity. This position paper argues that these challenges are structural rather than incidental. We identify the implicit assumptions commonly made in generic agentic models, analyze how they break in geospatial workflows, and characterize the resulting failure modes in multi-step EO pipelines. We then outline design principles for EO-native agents centered on structured geospatial state, tool-aware reasoning, verifier-guided execution, and learning objectives aligned with geospatial and physical validity. Finally, we present research directions spanning EO-specific benchmarks, hybrid supervised and reinforcement learning, constrained self-improvement, and trajectory-level evaluation beyond final-answer accuracy. Building reliable geospatial agents therefore requires rethinking agent design around the physical, geospatial, and workflow constraints that govern EO analysis.",
+      "authors": [
+        "Muhammad Akhtar Munir",
+        "Muhammad Umer Sheikh",
+        "Akashah Shabbir",
+        "Muhammad Haris Khan",
+        "Fahad Khan",
+        "Xiao Xiang Zhu",
+        "Begum Demir",
+        "Salman Khan"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-27T18:59:49Z",
+      "updated": "2026-04-27T18:59:49Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.24919v1",
+      "abs_url": "https://arxiv.org/abs/2604.24919",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24919",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "遥感领域正从静态预测转向需要协调数据、工具和地理空间状态的多步分析工作流。针对通用智能体在处理地理坐标参考、多模态及时间结构化数据时存在的局限性，该研究深入探讨了遥感智能体（Agentic AI for EO）面临的结构性挑战，如重投影和重采样等操作导致的状态转换及错误传播。通过识别通用模型在地理空间逻辑上的失效模式，提出了以地理状态感知、工具感知推理和物理有效性验证为核心的设计原则。未来研究方向涵盖了开发遥感专用 Benchmark、结合监督学习与强化学习的混合训练、受限自改进机制，以及超越最终答案准确率的轨迹级评估，旨在构建符合物理规律且具备长期推理能力的可靠地理空间智能体。"
+    },
+    {
+      "id": "2604.24916",
+      "title": "asRoBallet: Closing the Sim2Real Gap via Friction-Aware Reinforcement Learning for Underactuated Spherical Dynamics",
+      "abstract": "We introduce asRoBallet, to the best of our knowledge, the first successful deployment of reinforcement learning (RL) on a humanoid ballbot hardware. Historically, ballbots have served as a canonical benchmark for underactuated and nonholonomic control, which are characterized by a reality gap in complex friction models for wheel-sphere-ground interactions. While current literature demonstrates successful handling of 3D balancing with LQR and MPC, transitioning to actual hardware for a humanoid ballbot using RL is currently hindered by critical gaps in contact modeling, actuator latency & jitter, and safe hardware exploration, and safe hardware exploration. This study proposes a high-fidelity MuJoCo simulation that explicitly models the discrete roller mechanics of ETH-type omni-wheels, thereby capturing parasitic vibrations and contact discontinuities that are previously ignored. We also developed a Friction-Aware Reinforcement Learning framework that achieves zero-shot Sim2Real transfer by mastering the coupled rolling, lateral, and torsional friction channels at the wheel-sphere and sphere-ground interfaces. We designed asRoBallet through subtractive reconfiguration, repurposing key components from an overconstrained quadruped and integrating them into a newly designed structural frame to achieve a robust research platform at low cost. We also developed a generalized iOS ecosystem that transforms consumer electronics into a low-latency interface, enabling a single operator to orchestrate expressive humanoid maneuvers via intuitive natural motion.",
+      "authors": [
+        "Fang Wan",
+        "Guangyi Huang",
+        "Tianyu Wu",
+        "Zishang Zhang",
+        "Bangchao Huang",
+        "Haoran Sun",
+        "Mingdong Chen",
+        "Chaoyang Song"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-04-27T18:51:01Z",
+      "updated": "2026-04-27T18:51:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.24916v1",
+      "abs_url": "https://arxiv.org/abs/2604.24916",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24916",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "asRoBallet 实现了强化学习（RL）在人形球轮机器人（Ballbot）硬件上的首次成功部署，解决了欠驱动与非完整约束控制中复杂的摩擦力建模难题。该研究通过在 MuJoCo 中构建高保真仿真环境，精确模拟了全向轮的离散滚子力学，从而捕获了以往被忽视的寄生振动与接触不连续性。核心创新在于提出了一种摩擦感知强化学习框架，通过掌握轮-球及球-地界面间的滚动、侧向和扭转摩擦耦合，实现了零样本（Zero-shot）的 Sim2Real 迁移。实验表明，该系统不仅克服了执行器延迟与抖动，还配合自研的 iOS 生态系统实现了低延迟的人机交互，使单人即可操控人形机器人完成复杂的平衡与表达性动作。"
+    },
     {
       "id": "2604.24764",
       "title": "World-R1: Reinforcing 3D Constraints for Text-to-Video Generation",
@@ -59,8 +325,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24764",
-      "summary_zh": "World-R1 旨在解决视频生成模型中常见的几何不一致性问题，避免了传统方法通过修改架构带来的高昂计算成本。该框架引入了专门用于世界模拟的纯文本数据集，并采用 Flow-GRPO 强化学习算法，利用预训练 3D 基础模型和视觉语言模型的反馈来强化结构相干性。通过周期性解耦训练策略，模型在保持动态场景流动性的同时，显著提升了刚性几何一致性。实验结果表明，World-R1 在不改变底层架构的前提下，有效增强了视频的 3D 约束表现，并保持了原有的视觉质量，为实现可扩展的世界模拟提供了新路径。",
-      "impact_score": null
+      "summary_zh": "World-R1 旨在解决视频生成模型中常见的几何不一致性问题，避免了传统方法通过修改架构带来的高昂计算成本。该框架引入了专门用于世界模拟的纯文本数据集，并采用 Flow-GRPO 强化学习算法，利用预训练 3D 基础模型和视觉语言模型的反馈来强化结构相干性。通过周期性解耦训练策略，模型在保持动态场景流动性的同时，显著提升了刚性几何一致性。实验结果表明，World-R1 在不改变底层架构的前提下，有效增强了视频的 3D 约束表现，并保持了原有的视觉质量，为实现可扩展的世界模拟提供了新路径。"
     },
     {
       "id": "2604.24762",
@@ -194,8 +459,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24583",
-      "summary_zh": "针对视觉语言模型（VLM）在复杂推理中结果级监督过于粗糙、难以纠正推理链中间错误的问题，提出了名为 Perceval 的过程奖励模型（PRM）。该模型能够从响应中提取与图像相关的断言，并逐一与视觉证据对比，实现对感知错误的 Token 级定位。在强化学习阶段，Perceval 被集成到 GRPO 框架中，通过对识别出的幻觉片段施加精细的惩罚信号来优化策略模型。此外，Perceval 还能在推理阶段通过截断错误并引导模型重新生成或反思，实现测试时计算量缩放（Test-time Scaling）。实验结果显示，该方法在多个推理 Benchmark 上显著提升了不同 VLM 的性能，证明了以感知为中心的过程监督在提升模型可靠性方面的巨大潜力。",
-      "impact_score": null
+      "summary_zh": "针对视觉语言模型（VLM）在复杂推理中结果级监督过于粗糙、难以纠正推理链中间错误的问题，提出了名为 Perceval 的过程奖励模型（PRM）。该模型能够从响应中提取与图像相关的断言，并逐一与视觉证据对比，实现对感知错误的 Token 级定位。在强化学习阶段，Perceval 被集成到 GRPO 框架中，通过对识别出的幻觉片段施加精细的惩罚信号来优化策略模型。此外，Perceval 还能在推理阶段通过截断错误并引导模型重新生成或反思，实现测试时计算量缩放（Test-time Scaling）。实验结果显示，该方法在多个推理 Benchmark 上显著提升了不同 VLM 的性能，证明了以感知为中心的过程监督在提升模型可靠性方面的巨大潜力。"
     },
     {
       "id": "2604.24564",
@@ -250,8 +514,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24558",
-      "summary_zh": "分层强化学习在处理预定义选项奖励函数时已展现出处理大规模时间步的能力，但传统方法通常受限于每个选项单一的奖励函数。Hierarchical Behaviour Spaces (HBS) 通过允许控制器指定奖励函数的线性组合，诱导出更具表达力的行为空间，从而显著增强了策略的表征能力。在 NetHack Learning Environment 上的实验结果表明，HBS 展现出了极强的性能优势。通过一系列消融实验发现，该方法的成功并非源于传统认知中的长期推理能力提升，而是主要归功于分层结构带来的更高效的探索机制。这一发现挑战了分层强化学习的常规认知，为未来设计更具探索效率的智能体提供了新思路。",
-      "impact_score": null
+      "summary_zh": "分层强化学习在处理预定义选项奖励函数时已展现出处理大规模时间步的能力，但传统方法通常受限于每个选项单一的奖励函数。Hierarchical Behaviour Spaces (HBS) 通过允许控制器指定奖励函数的线性组合，诱导出更具表达力的行为空间，从而显著增强了策略的表征能力。在 NetHack Learning Environment 上的实验结果表明，HBS 展现出了极强的性能优势。通过一系列消融实验发现，该方法的成功并非源于传统认知中的长期推理能力提升，而是主要归功于分层结构带来的更高效的探索机制。这一发现挑战了分层强化学习的常规认知，为未来设计更具探索效率的智能体提供了新思路。"
     },
     {
       "id": "2604.24549",
@@ -301,8 +564,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24532",
-      "summary_zh": "该研究针对多目标强化学习（MORL）中如何适应不同用户偏好且优化多个冲突目标的问题，创新性地引入了无奖励强化学习（RFRL）的视角。通过将 RFRL 的训练目标作为辅助任务，模型能够学习适用于任何潜在奖励函数的通用策略，从而在训练阶段给定的多目标奖励之外实现更有效的知识共享。研究进一步将先进的 RFRL 算法适配至 MORL 环境，并引入了偏好引导的探索策略，使学习过程能聚焦于环境中的关键部分。在 MO-Gymnasium 基准测试上的实验表明，该方法在性能和数据效率上均显著优于现有的 MORL 算法，证明了 RFRL 在解决多目标策略学习扩展性问题上的巨大潜力。",
-      "impact_score": null
+      "summary_zh": "该研究针对多目标强化学习（MORL）中如何适应不同用户偏好且优化多个冲突目标的问题，创新性地引入了无奖励强化学习（RFRL）的视角。通过将 RFRL 的训练目标作为辅助任务，模型能够学习适用于任何潜在奖励函数的通用策略，从而在训练阶段给定的多目标奖励之外实现更有效的知识共享。研究进一步将先进的 RFRL 算法适配至 MORL 环境，并引入了偏好引导的探索策略，使学习过程能聚焦于环境中的关键部分。在 MO-Gymnasium 基准测试上的实验表明，该方法在性能和数据效率上均显著优于现有的 MORL 算法，证明了 RFRL 在解决多目标策略学习扩展性问题上的巨大潜力。"
     },
     {
       "id": "2604.24403",
@@ -354,8 +616,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24395",
-      "summary_zh": "大型视觉语言模型（LVLMs）常面临幻觉问题，而传统的偏好学习方法过度依赖闭源模型构建数据集，导致训练数据与目标模型之间存在分布失配，阻碍了对齐效率。AVES-DPO 框架通过挖掘模型自身的内在知识，利用基于共识的验证机制来诊断各类幻觉，并引导模型进行自我修正，从而生成与内部分布严格一致的偏好对。这种方法无需外部强模型干预，实现了模型与自身“声音”的对齐。实验结果表明，AVES-DPO 仅需 5.2k 条样本即可在多个 Benchmark 上显著降低幻觉率，性能超越了依赖外部数据的现有基线方法，证明了自验证修正机制在提升视觉理解准确性方面的有效性。",
-      "impact_score": null
+      "summary_zh": "大型视觉语言模型（LVLMs）常面临幻觉问题，而传统的偏好学习方法过度依赖闭源模型构建数据集，导致训练数据与目标模型之间存在分布失配，阻碍了对齐效率。AVES-DPO 框架通过挖掘模型自身的内在知识，利用基于共识的验证机制来诊断各类幻觉，并引导模型进行自我修正，从而生成与内部分布严格一致的偏好对。这种方法无需外部强模型干预，实现了模型与自身“声音”的对齐。实验结果表明，AVES-DPO 仅需 5.2k 条样本即可在多个 Benchmark 上显著降低幻觉率，性能超越了依赖外部数据的现有基线方法，证明了自验证修正机制在提升视觉理解准确性方面的有效性。"
     },
     {
       "id": "2604.24393",
@@ -404,8 +665,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24380",
-      "summary_zh": "针对大型视觉语言模型（LVLMs）部署受限的问题，该研究探索了对语言模型骨干进行结构化剪枝（Structured Pruning）并配合轻量化恢复训练的压缩路径。通过对比层剪枝（Layerwise）与宽度剪枝（Widthwise）两种范式，并结合监督微调（SFT）与知识蒸馏（Knowledge Distillation）技术，发现宽度剪枝在低资源场景下表现更优。实验表明，在低压缩率下仅微调多模态投影器（Projector）即可恢复性能，而结合监督微调与隐藏状态蒸馏在各种剪枝水平下均能达到最优效果。在 3B 到 7B 参数规模的模型上验证显示，仅需 5% 的原始数据即可保留超过 95% 的原始性能，为资源受限环境下的模型压缩提供了高效且低成本的实践指南。",
-      "impact_score": null
+      "summary_zh": "针对大型视觉语言模型（LVLMs）部署受限的问题，该研究探索了对语言模型骨干进行结构化剪枝（Structured Pruning）并配合轻量化恢复训练的压缩路径。通过对比层剪枝（Layerwise）与宽度剪枝（Widthwise）两种范式，并结合监督微调（SFT）与知识蒸馏（Knowledge Distillation）技术，发现宽度剪枝在低资源场景下表现更优。实验表明，在低压缩率下仅微调多模态投影器（Projector）即可恢复性能，而结合监督微调与隐藏状态蒸馏在各种剪枝水平下均能达到最优效果。在 3B 到 7B 参数规模的模型上验证显示，仅需 5% 的原始数据即可保留超过 95% 的原始性能，为资源受限环境下的模型压缩提供了高效且低成本的实践指南。"
     },
     {
       "id": "2604.24374",
@@ -431,8 +691,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24374",
-      "summary_zh": "针对自然语言处理中嵌套嵌入表示在不同计算预算下性能不稳定的问题，MIPIC 框架通过协调嵌入维度与模型深度之间的信息分布，实现了结构相干且语义紧凑的表示学习。该方法引入了自蒸馏内部关系对齐（SIA），利用 top-k CKA 技术对齐全量与截断表示之间的令牌级几何及注意力关系，确保了跨维度的结构一致性。同时，渐进式信息链（PIC）策略通过脚手架式对齐，将深层的成熟任务语义增量传递至浅层，实现了深度维度的语义整合。在 STS、NLI 及分类任务的实验中，MIPIC 在 TinyBERT、BGE-M3 和 Qwen 等模型上均表现优异，尤其在极低维度下展现出显著的性能优势。",
-      "impact_score": null
+      "summary_zh": "针对自然语言处理中嵌套嵌入表示在不同计算预算下性能不稳定的问题，MIPIC 框架通过协调嵌入维度与模型深度之间的信息分布，实现了结构相干且语义紧凑的表示学习。该方法引入了自蒸馏内部关系对齐（SIA），利用 top-k CKA 技术对齐全量与截断表示之间的令牌级几何及注意力关系，确保了跨维度的结构一致性。同时，渐进式信息链（PIC）策略通过脚手架式对齐，将深层的成熟任务语义增量传递至浅层，实现了深度维度的语义整合。在 STS、NLI 及分类任务的实验中，MIPIC 在 TinyBERT、BGE-M3 和 Qwen 等模型上均表现优异，尤其在极低维度下展现出显著的性能优势。"
     },
     {
       "id": "2604.24357",
@@ -637,8 +896,8 @@
         "cs.AI"
       ],
       "published": "2026-04-27T10:11:08Z",
-      "updated": "2026-04-27T10:11:08Z",
-      "pdf_url": "https://arxiv.org/pdf/2604.24278v1",
+      "updated": "2026-04-28T09:38:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.24278v2",
       "abs_url": "https://arxiv.org/abs/2604.24278",
       "topics": [
         "other"
@@ -806,6 +1065,28 @@
       "summary_zh": "视觉文本生成模型在文本准确性与图像整体连贯性之间往往难以兼得，传统的强化学习方法通常采用加权求和的方式处理多奖励目标，导致训练过程不稳定且权重难以平衡。POCA 框架将该问题建模为多目标优化，通过识别帕累托最优集（Pareto-optimal set）来避免简单的标量化处理，从而在统一的奖励空间中消除不一致的信号。同时，该框架引入了自适应课程对齐策略，利用自动难度评估来管理多奖励数据集的学习序列，在受限的数据环境下实现从易到难的最优收敛。实验结果表明，POCA 在 CLIP、HPS 评分以及句子准确度等各项指标上均有显著提升，有效解决了视觉文本生成中的性能权衡难题。"
     },
     {
+      "id": "2604.24809",
+      "title": "Nautile-370M: Spectral Memory Meets Attention in a Small Reasoning Model",
+      "abstract": "We present Nautile-370M, a 371-million-parameter small language model designed for efficient reasoning under strict parameter and inference budgets. Nautile-370M uses a hybrid backbone in which two SeqCond Attention (SCA) layers, a linear-time spectral sequence operator inspired by SeqCondenser, alternate with one transformer layer. This design aims to retain the long-context efficiency and state-tracking benefits of structured sequential models while preserving the expressive token-to-token routing of attention. The model was trained on a single Cloud TPU v4-64 pod slice provided through the Google TPU Research Cloud (TRC) program; the subsequent reinforcement learning stage was carried out on a single NVIDIA DGX Spark. We prove that the SCA readout mechanism can exactly retrieve any individual token from the prefix summary and can reproduce any output of softmax attention as a special case, establishing that SCA is at least as expressive as full self-attention in the continuous limit. We also describe the training data pipeline and outline a reinforcement learning stage specialized for reasoning, verification, and response quality.",
+      "authors": [
+        "Maixent Chenebaux"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-27T08:07:54Z",
+      "updated": "2026-04-27T08:07:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.24809v1",
+      "abs_url": "https://arxiv.org/abs/2604.24809",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24809",
+      "summary_zh": "Nautile-370M 是一款拥有 3.71 亿参数的小型语言模型，旨在严格的参数和推理预算下实现高效推理。该模型采用混合架构，将受 SeqCondenser 启发的线性时间谱序列算子 SeqCond Attention (SCA) 与 Transformer 层交替堆叠，既保留了结构化序列模型的长上下文效率，又兼顾了注意力机制的表达能力。理论证明 SCA 的读取机制能精确检索前缀摘要中的任意 Token，并在连续极限下具有不亚于 Softmax Attention 的表达力。实验通过在 Google TPU 上进行预训练，并结合针对推理、验证和响应质量优化的强化学习阶段，使模型在保持极小规模的同时，展现出卓越的逻辑推理与状态追踪能力。"
+    },
+    {
       "id": "2604.24136",
       "title": "Bridging Restoration and Generation Manifolds in One-Step Diffusion for Real-World Super-Resolution",
       "abstract": "Pretrained diffusion models have revolutionized real-world image super-resolution (Real-ISR) but suffer from computational bottlenecks due to iterative sampling. Recent single-step distillation accelerates inference but faces a stark perception-distortion trade-off due to rigid timestep initialization, distributional trajectory mismatches, and fragile stochastic modulation. To address this, we present Adaptive Inversion and Degradation-aware Sampling for Real-ISR (IDaS-SR), a one-step framework bridging the deterministic restoration and stochastic generation manifolds. At its core, the Manifold Inversion Noise Estimator (MINE) resolves these initialization and trajectory mismatches by predicting a severity-aware timestep and inversion noise, precisely anchoring low-quality latents onto the diffusion trajectory. Furthermore, to mitigate fragile stochastic modulation, we propose CHARIOT, a continuous generative steering mechanism. By rescheduling trajectories and interpolating noise, it enables explicit navigation of the perception-distortion boundary without compromising structural priors. Extensive experiments demonstrate that IDaS-SR outperforms state-of-the-art methods, seamlessly transitioning from a rigorous structural restorer to a sophisticated texture hallucinator in a single inference step.",
@@ -960,6 +1241,31 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24062",
       "summary_zh": "该研究通过 OpenLock 范式评估了 LLMs 和 VLMs 在交互式因果学习中的迁移能力，重点探讨模型能否像人类一样从序列探索中提取抽象因果结构并应用于新情境。实验发现，AI 模型在迁移效率上显著滞后于人类，必须先经历特定环境的映射（即环境落地 Environmental Grounding）才能产生增益，而人类从首次尝试起就能利用先验结构知识。在多模态测试中，视觉信息的加入反而降低了模型的性能，显示出其对符号处理的过度依赖而非真正的多模态推理。此外，模型在 Common Cause 和 Common Effect 结构上表现出的系统性不对称，揭示了其基于启发式偏见而非去情境化因果图式的局限性，证明了当前大规模统计学习尚无法产生类人的抽象类比推理能力。"
+    },
+    {
+      "id": "2604.24804",
+      "title": "Intrinsic Mutual Information as a Modulator for Preference Optimization",
+      "abstract": "Offline preference optimization methods, such as Direct Preference Optimization (DPO), offer significant advantages in aligning Large Language Models (LLMs) with human values. However, achieving optimal performance with these methods typically involves additional hyperparameter tuning, resulting in substantial time overhead. Although prior work has proposed a range of improvements, these methods remain limited in effectiveness and have not fully eliminated reliance on hyperparameter tuning. In this work, we propose RMiPO, a lightweight and efficient framework for offline preference optimization. RMiPO leverages intrinsic Response-level Mutual information for Preference Optimization with hyperparameter modulation, dynamically decoupling preference contributions at negligible additional computational cost. Extensive experimental results demonstrate that RMiPO achieves consistently superior performance over existing methods while reducing training overhead by more than 15\\%. Our code is available at https://github.com/liavonpenn/rmipo.",
+      "authors": [
+        "Peng Liao",
+        "Peijia Zheng",
+        "Lingbo Li",
+        "Shangsong Liang",
+        "Lin Chen"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-04-27T05:22:54Z",
+      "updated": "2026-04-27T05:22:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.24804v1",
+      "abs_url": "https://arxiv.org/abs/2604.24804",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.24804",
+      "summary_zh": "离线偏好优化方法如 DPO 在对齐大语言模型时效果显著，但往往依赖繁琐的超参数微调，导致巨大的时间开销且性能受限。RMiPO 框架通过引入响应级的内在互信息（Intrinsic Mutual Information）作为调节因子，实现了对偏好贡献的动态解耦，从而在几乎不增加计算成本的前提下优化训练过程。该方法的核心创新在于利用互信息自动调节不同样本的权重，有效消除了对特定超参数的过度依赖。在多个基准测试上的实验结果表明，RMiPO 不仅在性能上持续优于现有的主流方法，还能将整体训练开销降低 15% 以上，为高效、自动化的模型对齐提供了新思路。"
     },
     {
       "id": "2604.24029",
