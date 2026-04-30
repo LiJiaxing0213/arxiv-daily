@@ -1,6 +1,6 @@
 {
   "date": "2026-04-29",
-  "generated_at": "2026-04-29T04:54:20.302273+00:00",
+  "generated_at": "2026-04-30T05:10:14.978011+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,1048 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2604.26951",
+      "title": "Turning the TIDE: Cross-Architecture Distillation for Diffusion Large Language Models",
+      "abstract": "Diffusion large language models (dLLMs) offer parallel decoding and bidirectional context, but state-of-the-art dLLMs require billions of parameters for competitive performance. While existing distillation methods for dLLMs reduce inference steps within a single architecture, none address cross-architecture knowledge transfer, in which the teacher and student differ in architecture, attention mechanism, and tokenizer. We present TIDE, the first framework for cross-architecture dLLM distillation, comprising three modular components: (1) TIDAL, which jointly modulates distillation strength across training progress and diffusion timestep to account for the teacher's noise-dependent reliability; (2) CompDemo, which enriches the teacher's context via complementary mask splitting to improve predictions under heavy masking; and (3) Reverse CALM, a cross-tokenizer objective that inverts chunk-level likelihood matching, yielding bounded gradients and dual-end noise filtering. Distilling 8B dense and 16B MoE teachers into a 0.6B student via two heterogeneous pipelines outperforms the baseline by an average of 1.53 points across eight benchmarks, yielding notable gains in code generation, where HumanEval scores reach 48.78 compared to 32.3 for the AR baseline.",
+      "authors": [
+        "Gongbo Zhang",
+        "Wen Wang",
+        "Ye Tian",
+        "Li Yuan"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-04-29T17:59:01Z",
+      "updated": "2026-04-29T17:59:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26951v1",
+      "abs_url": "https://arxiv.org/abs/2604.26951",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26951",
+      "summary_zh": "这篇论文旨在解决扩散大语言模型（dLLMs）在保持高性能的同时，参数量过大且缺乏跨架构知识迁移方法的问题。它提出了TIDE框架，首次实现了dLLM的跨架构蒸馏，即使教师模型和学生模型在架构、注意力机制和分词器上存在差异。TIDE包含三个创新组件：TIDAL根据训练进度和扩散步长调整蒸馏强度，以适应教师模型对噪声的依赖性；CompDemo通过互补掩码分割丰富教师上下文，提升重度掩码下的预测能力；Reverse CALM则是一种跨分词器目标，通过反转块级似然匹配，实现有界梯度和双端噪声过滤。实验结果表明，将8B密集型和16B MoE教师模型蒸馏到0.6B学生模型，在八个基准测试中平均性能提升1.53点，尤其在代码生成任务上表现突出，HumanEval得分达到48.78，远超自回归基线32.3的成绩。",
+      "impact_score": null
+    },
+    {
+      "id": "2604.26940",
+      "title": "Select to Think: Unlocking SLM Potential with Local Sufficiency",
+      "abstract": "Small language models (SLMs) offer computational efficiency for scalable deployment, yet they often fall short of the reasoning power exhibited by their larger counterparts (LLMs). To mitigate this gap, current approaches invoke an LLM to generate tokens at points of reasoning divergence, but these external calls introduce substantial latency and costs. Alternatively, standard distillation is often hindered by the capacity limitation, as SLMs struggle to accurately mimic the LLM's complex generative distribution. We address this dilemma by identifying local sufficiency: at divergence points, the LLM's preferred token consistently resides within the SLM's top-K next-token predictions, even when failing to emerge as the SLM top-1 choice. We therefore propose SELECT TO THINK (S2T), which reframes the LLM's role from open-ended generation to selection among the SLM's proposals, simplifying the supervision signal to discrete candidate rankings. Leveraging this, we introduce S2T-LOCAL, which distills the selection logic into the SLM, empowering it to perform autonomous re-ranking without inference-time LLM dependency. Empirically, we demonstrate that a 1.5B SLM's top-8 candidates capture the 32B LLM's choice with 95% hit rate. Translating this potential into performance, S2T-LOCAL improves greedy decoding by 24.1% on average across benchmarks, effectively matching the efficacy of 8-path self-consistency while operating with single-trajectory efficiency.",
+      "authors": [
+        "Wenxuan Ye",
+        "Yangyang Zhang",
+        "Xueli An",
+        "Georg Carle",
+        "Yunpu Ma"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-04-29T17:51:39Z",
+      "updated": "2026-04-29T17:51:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26940v1",
+      "abs_url": "https://arxiv.org/abs/2604.26940",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26940",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2604.26934",
+      "title": "World2VLM: Distilling World Model Imagination into VLMs for Dynamic Spatial Reasoning",
+      "abstract": "Vision-language models (VLMs) have shown strong performance on static visual understanding, yet they still struggle with dynamic spatial reasoning that requires imagining how scenes evolve under egocentric motion. Recent efforts address this limitation either by scaling spatial supervision with synthetic data or by coupling VLMs with world models at inference time. However, the former often lacks explicit modeling of motion-conditioned state transitions, while the latter incurs substantial computational overhead. In this work, we propose World2VLM, a training framework that distills spatial imagination from a generative world model into a vision-language model. Given an initial observation and a parameterized camera trajectory, we use a view-consistent world model to synthesize geometrically aligned future views and derive structured supervision for both forward (action-to-outcome) and inverse (outcome-to-action) spatial reasoning. We post-train the VLM with a two-stage recipe on a compact dataset generated by this pipeline and evaluate it on multiple spatial reasoning benchmarks. World2VLM delivers consistent improvements over the base model across diverse benchmarks, including SAT-Real, SAT-Synthesized, VSI-Bench, and MindCube. It also outperforms the test-time world-model-coupled methods while eliminating the need for expensive inference-time generation. Our results suggest that world models can serve not only as inference-time tools, but also as effective training-time teachers, enabling VLMs to internalize spatial imagination in a scalable and efficient manner.",
+      "authors": [
+        "Wanyue Zhang",
+        "Wenxiang Wu",
+        "Wang Xu",
+        "Jiaxin Luo",
+        "Helu Zhi",
+        "Yibin Huang",
+        "Shuo Ren",
+        "Zitao Liu",
+        "Jiajun Zhang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-29T17:48:01Z",
+      "updated": "2026-04-29T17:48:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26934v1",
+      "abs_url": "https://arxiv.org/abs/2604.26934",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26934",
+      "summary_zh": "这篇论文旨在解决VLM在动态空间推理方面表现不佳的问题，尤其是在需要想象场景在自我中心运动下如何演变时。它提出了一种名为World2VLM的训练框架，通过将生成式世界模型的空间想象能力蒸馏到VLM中。关键创新在于，该方法利用世界模型根据初始观察和相机轨迹合成几何对齐的未来视图，并从中提取前向（动作到结果）和逆向（结果到动作）空间推理的结构化监督信号，从而在训练阶段而非推理阶段赋予VLM动态推理能力。实验结果表明，World2VLM在SAT-Real、SAT-Synthesized、VSI-Bench和MindCube等多个空间推理基准测试中，相对于基础模型取得了显著改进，并且优于那些在测试时耦合世界模型的方法，同时避免了昂贵的推理时间生成开销。",
+      "impact_score": null
+    },
+    {
+      "id": "2604.26920",
+      "title": "Color-Encoded Illumination for High-Speed Volumetric Scene Reconstruction",
+      "abstract": "The task of capturing and rendering 3D dynamic scenes from 2D images has become increasingly popular in recent years. However, most conventional cameras are bandwidth-limited to 30-60 FPS, restricting these methods to static or slowly evolving scenes. While overcoming bandwidth limitations is difficult for general scenes, recent years have seen a flurry of computational imaging methods that yield high-speed videos using conventional cameras for specific applications (e.g., motion capture and particle image velocimetry). However, most of these methods require modifications to a camera's optics or the addition of mechanically moving components, limiting them to a single-view high-speed capture. Consequently, these methods cannot be readily used to capture a 3D representation of rapid scene motion. In this paper, we propose a novel method to capture and reconstruct a volumetric representation of a high-speed scene using only unaugmented low-speed cameras. Instead of modifying the hardware or optics of each individual camera, we encode high-speed scene dynamics by illuminating the scene with a rapid, sequential color-coded sequence. This results in simultaneous multi-view capture of the scene, where high-speed temporal information is encoded in the spatial intensity and color variations of the captured images. To construct a high-speed volumetric representation of the dynamic scene, we develop a novel dynamic Gaussian Splatting-based approach that decodes the temporal information from the images. We evaluate our approach on simulated scenes and real-world experiments using a multi-camera imaging setup, showing first-of-a-kind high-speed volumetric scene reconstructions.",
+      "authors": [
+        "David Novikov",
+        "Eilon Vaknin",
+        "Narek Tumanyan",
+        "Mark Sheinin"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-29T17:38:11Z",
+      "updated": "2026-04-29T17:38:11Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26920v1",
+      "abs_url": "https://arxiv.org/abs/2604.26920",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26920",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2604.26904",
+      "title": "ClawGym: A Scalable Framework for Building Effective Claw Agents",
+      "abstract": "Claw-style environments support multi-step workflows over local files, tools, and persistent workspace states. However, scalable development around these environments remains constrained by the absence of a systematic framework, especially one for synthesizing verifiable training data and integrating it with agent training and diagnostic evaluation. To address this challenge, we present ClawGym, a scalable framework that supports the full lifecycle of Claw-style personal agent development. Concretely, we construct ClawGym-SynData, a diverse dataset of 13.5K filtered tasks synthesized from persona-driven intents and skill-grounded operations, paired with realistic mock workspaces and hybrid verification mechanisms. We then train a family of capable Claw-style models, termed ClawGym-Agents, through supervised fine-tuning on black-box rollout trajectories, and further explore reinforcement learning via a lightweight pipeline that parallelizes rollouts across per-task sandboxes.To support reliable evaluation, we further construct ClawGym-Bench, a benchmark of 200 instances calibrated through automated filtering and human-LLM review. Relevant resources will be soon released at https://github.com/ClawGym.",
+      "authors": [
+        "Fei Bai",
+        "Huatong Song",
+        "Shuang Sun",
+        "Daixuan Cheng",
+        "Yike Yang",
+        "Chuan Hao",
+        "Renyuan Li",
+        "Feng Chang",
+        "Yuan Wei",
+        "Ran Tao",
+        "Bryan Dai",
+        "Jian Yang",
+        "Wayne Xin Zhao"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-04-29T17:12:22Z",
+      "updated": "2026-04-29T17:12:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26904v1",
+      "abs_url": "https://arxiv.org/abs/2604.26904",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26904",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26857",
+      "title": "Edge AI for Automotive Vulnerable Road User Safety: Deployable Detection via Knowledge Distillation",
+      "abstract": "Deploying accurate object detection for Vulnerable Road User (VRU) safety on edge hardware requires balancing model capacity against computational constraints. Large models achieve high accuracy but fail under INT8 quantization required for edge deployment, while small models sacrifice detection performance. This paper presents a knowledge distillation (KD) framework that trains a compact YOLOv8-S student (11.2M parameters) to mimic a YOLOv8-L teacher (43.7M parameters), achieving 3.9x compression while preserving quantization robustness. We evaluate on full-scale BDD100K (70K training images) with Post-Training Quantization to INT8. The teacher suffers catastrophic degradation under INT8 (-23% mAP), while the KD student retains accuracy (-5.6% mAP). Analysis reveals that KD transfers precision calibration rather than raw detection capacity: the KD student achieves 0.748 precision versus 0.653 for direct training at INT8, a 14.5% gain at equivalent recall, reducing false alarms by 44% versus the collapsed teacher. At INT8, the KD student exceeds the teacher's FP32 precision (0.748 vs. 0.718) in a model 3.9x smaller. These findings establish knowledge distillation as a requirement for deploying accurate, safety-critical VRU detection on edge hardware.",
+      "authors": [
+        "Akshay Karjol",
+        "Darrin M. Hanna"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.LG",
+        "cs.RO",
+        "eess.IV"
+      ],
+      "published": "2026-04-29T16:24:45Z",
+      "updated": "2026-04-29T16:24:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26857v1",
+      "abs_url": "https://arxiv.org/abs/2604.26857",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26857",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26836",
+      "title": "Uncertainty-Aware Predictive Safety Filters for Probabilistic Neural Network Dynamics",
+      "abstract": "Predictive safety filters (PSFs) leverage model predictive control to enforce constraint satisfaction during deep reinforcement learning (RL) exploration, yet their reliance on first-principles models or Gaussian processes limits scalability and broader applicability. Meanwhile, model-based RL (MBRL) methods routinely employ probabilistic ensemble (PE) neural networks to capture complex, high-dimensional dynamics from data with minimal prior knowledge. However, existing attempts to integrate PEs into PSFs lack rigorous uncertainty quantification. We introduce the Uncertainty-Aware Predictive Safety Filter (UPSi), a PSF that provides rigorous safety predictions using PE dynamics models by formulating future outcomes as reachable sets. UPSi introduces an explicit certainty constraint that prevents model exploitation and integrates seamlessly into common MBRL frameworks. We evaluate UPSi within Dyna-style MBRL on standard safe RL benchmarks and report substantial improvements in exploration safety over prior neural network PSFs while maintaining performance on par with standard MBRL. UPSi bridges the gap between the scalability and generality of modern MBRL and the safety guarantees of predictive safety filters.",
+      "authors": [
+        "Bernd Frauenknecht",
+        "Lukas Kesper",
+        "Daniel Mayfrank",
+        "Henrik Hose",
+        "Sebastian Trimpe"
+      ],
+      "categories": [
+        "cs.LG",
+        "eess.SY"
+      ],
+      "published": "2026-04-29T16:01:59Z",
+      "updated": "2026-04-29T16:01:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26836v1",
+      "abs_url": "https://arxiv.org/abs/2604.26836",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26836",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2604.26833",
+      "title": "Rule-based High-Level Coaching for Goal-Conditioned Reinforcement Learning in Search-and-Rescue UAV Missions Under Limited-Simulation Training",
+      "abstract": "This paper presents a hierarchical decision-making framework for unmanned aerial vehicle (UAV) missions motivated by search-and-rescue (SAR) scenarios under limited simulation training. The framework combines a fixed rule-based high-level advisor with an online goal-conditioned low-level reinforcement learning (RL) controller. To stress-test early adaptation, we also consider a strict no-pretraining deployment regime. The high-level advisor is defined offline from a structured task specification and compiled into deterministic rules. It provides interpretable mission- and safety-aware guidance through recommended actions, avoided actions, and regime-dependent arbitration weights. The low-level controller learns online from task-defined dense rewards and reuses experience through a mode-aware prioritized replay mechanism augmented with rule-derived metadata. We evaluate the framework on two tasks: battery-aware multi-goal delivery and moving-target delivery in obstacle-rich environments. Across both tasks, the proposed method improves early safety and sample efficiency primarily by reducing collision terminations, while preserving the ability to adapt online to scenario-specific dynamics.",
+      "authors": [
+        "Mahya Ramezani",
+        "Holger Voos"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-04-29T16:01:22Z",
+      "updated": "2026-04-29T16:01:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26833v1",
+      "abs_url": "https://arxiv.org/abs/2604.26833",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26833",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26805",
+      "title": "Bian Que: An Agentic Framework with Flexible Skill Arrangement for Online System Operations",
+      "abstract": "Operating and maintaining (O&M) large-scale online engine systems (search, recommendation, advertising) demands substantial human effort for release monitoring, alert response, and root cause analysis. While LLM-based agents are a natural fit for these tasks, the deployment bottleneck is not reasoning capability but orchestration: selecting, for each operational event, the relevant data (metrics, logs, change events) and the applicable operational knowledge (handbook rules and practitioner experience). Feeding all signals indiscriminately causes dilution and hallucination, while manually curating the event-to-(data, knowledge) mapping is intractable under dozens of daily releases. We present Bian Que, an agentic framework with three contributions: (i) a \\emph{unified operational paradigm} abstracting day-to-day O&M into three canonical patterns: release interception, proactive inspection, and alert root cause analysis; (ii) \\emph{Flexible Skill Arrangement}, where each Skill specifies which data and knowledge to retrieve for a given business-module context and can be automatically generated and updated by LLMs or iteratively refined through natural-language instructions from on-call engineers; (iii) a \\emph{unified self-evolving mechanism} in which one correction signal drives two parallel pathways, case-memory-to-knowledge distillation and targeted Skill refinement. Deployed on the e-commerce search engine of KuaiShou, the major short-video platform in China, Bian Que reduces alert volume by 75%, achieves 80% root-cause analysis accuracy, and cuts mean time to resolution by over 50%. Our framework achieves 99.0% pass rate on offline evaluations. Our code is available at https://github.com/benchen4395/BianQue_Assistant.",
+      "authors": [
+        "Bochao Liu",
+        "Zhipeng Qian",
+        "Yang Zhao",
+        "Xinyuan Jiang",
+        "Zihan Liang",
+        "Yufei Ma",
+        "Junpeng Zhuang",
+        "Ben Chen",
+        "Shuo Yang",
+        "Hongen Wan",
+        "Yao Wu",
+        "Chenyi Lei",
+        "Xiao Liang"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-04-29T15:35:01Z",
+      "updated": "2026-04-29T15:35:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26805v1",
+      "abs_url": "https://arxiv.org/abs/2604.26805",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26805",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26779",
+      "title": "Accelerating RL Post-Training Rollouts via System-Integrated Speculative Decoding",
+      "abstract": "RL post-training of frontier language models is increasingly bottlenecked by autoregressive rollout generation, making rollout acceleration a central systems challenge. Many existing efficiency methods improve throughput by changing the rollout or optimization regime, for example, through off-policy execution, replay, or lower-precision generation. We study speculative decoding as a lossless acceleration primitive for RL rollouts that preserves the target model's output distribution. We implement speculative decoding in NeMo-RL with a vLLM backend, supporting both synchronous and asynchronous pipelines and enabling speculation during RL rollouts. This benefit is realizable across speculation mechanisms, such as pretrained MTP heads, small external draft models or even techniques such as Eagle3, which are traditionally applied after RL phase. This yields a deployment path for state-of-the-art speculative decoding inside RL training. In a reasoning post-training workload at 8B scale under synchronous RL, speculative decoding improves rollout throughput by 1.8x. Using a high-fidelity performance simulator, we project that combining speculative decoding with asynchronous RL yields up to 2.5x end-to-end training speedup at 235B scale.",
+      "authors": [
+        "Hayate Iso",
+        "Tiyasa Mitra",
+        "Sudipta Mondal",
+        "Rasoul Shafipour",
+        "Venmugil Elango",
+        "Terry Kong",
+        "Yuki Huang",
+        "Seonjin Na",
+        "Izzy Putterman",
+        "Benjamin Chislett",
+        "Maor Ashkenazi",
+        "Joseph Guman",
+        "Gerald Shen",
+        "Tugrul Konuk",
+        "Ashwath Aithal",
+        "Ritika Borkar",
+        "Ran Zilberstein",
+        "Bita Rouhani"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-04-29T15:11:48Z",
+      "updated": "2026-04-29T15:11:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26779v1",
+      "abs_url": "https://arxiv.org/abs/2604.26779",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26779",
+      "summary_zh": "该论文旨在解决前沿语言模型RL后训练中自回归rollout生成效率低下的瓶颈问题，提出将Speculative Decoding作为一种无损加速原语应用于RL rollout，以保持目标模型的输出分布。关键创新点在于将Speculative Decoding集成到RL训练流程中，并在NeMo-RL中实现，支持同步和异步管道，并能利用MTP heads、小型外部草稿模型或Eagle3等多种推测机制。实验结果表明，在8B规模的同步RL推理后训练任务中，Speculative Decoding将rollout吞吐量提高了1.8倍；通过高性能模拟器预测，结合异步RL，在235B规模下可实现高达2.5倍的端到端训练加速。",
+      "impact_score": null
+    },
+    {
+      "id": "2604.26766",
+      "title": "Domain-Adapted Small Language Models for Reliable Clinical Triage",
+      "abstract": "Accurate and consistent Emergency Severity Index (ESI) assignment remains a persistent challenge in emergency departments, where highly variable free-text triage documentation contributes to mistriage and workflow inefficiencies. This study evaluates whether open-source small language models (SLMs) can serve as reliable, privacy-preserving decision-support tools for clinical triage. We systematically compared multiple SLMs across diverse prompting pipelines and found that clinical vignettes, concise summaries of triage narratives, yielded the most accurate predictions. The SLM, Qwen2.5-7B, demonstrated the strongest balance of accuracy, stability, and computational efficiency. Through large-scale domain adaptation using expert-curated and silver-standard pediatric triage data, fine-tuned Qwen2.5-7B models substantially reduced discordance and clinically significant errors, outperforming all baseline SLMs and advanced proprietary large language models (LLMs, e.g., GPT-4o). These findings highlight the feasibility of institution-specific SLMs for reliable, privacy-preserving ESI decision support and underscore the importance of targeted fine-tuning over more complex inference strategies.",
+      "authors": [
+        "Manar Aljohani",
+        "Brandon Ho",
+        "Kenneth McKinley",
+        "Dennis Ren",
+        "Xuan Wang"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-04-29T15:00:09Z",
+      "updated": "2026-04-29T15:00:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26766v1",
+      "abs_url": "https://arxiv.org/abs/2604.26766",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26766",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26762",
+      "title": "Exploring the Potential of Probabilistic Transformer for Time Series Modeling: A Report on the ST-PT Framework",
+      "abstract": "The Probabilistic Transformer (PT) establishes that the Transformer's self-attention plus its feed-forward block is mathematically equivalent to Mean-Field Variational Inference (MFVI) on a Conditional Random Field (CRF). Under this equivalence the Transformer ceases to be a black-box neural network and becomes a programmable factor graph: graph topology, factor potentials, and the message-passing schedule are all explicit and inspectable primitives that can be engineered. PT was originally developed for natural language and in this report we investigate its potential for time series. We first lift PT into the Spatial-Temporal Probabilistic Transformer (ST-PT) to repair PT's missing channel axis and weak per-step semantics, and adopt ST-PT as a shared cornerstone backbone. We then identify three distinct properties that PT/ST-PT offers as a factor-graph model and derive three Research Questions, one per property, that probe how each property can be exploited in time series: RQ1. The graph topology and potentials are direct programmable primitives. Can this be used to inject symbolic time-series priors into ST-PT through structural graph modifications, especially under data scarcity and noise? RQ2. The CRF's factor matrices are the operator's potentials. Can an external condition program these factor matrices on a per-sample basis, so that conditional generation becomes structural rather than feature-level modulation of a fixed one? RQ3. Each MFVI iteration is a Bayesian posterior update on the factor graph. Can this turn the latent transition of latent-space AutoRegressive (AR) forecasting from an opaque MLP into a principled posterior update, and can a CRF teacher distill its latents into the AR student to counter cumulative error? We give one empirical study per question. Together, these three studies position ST-PT as a programmable framework for time-series modeling.",
+      "authors": [
+        "Zhangzhi Xiong",
+        "Haoyi Wu",
+        "You Wu",
+        "Shuqi Gu",
+        "Kan Ren",
+        "Kewei Tu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-29T14:57:21Z",
+      "updated": "2026-04-29T14:57:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26762v1",
+      "abs_url": "https://arxiv.org/abs/2604.26762",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26762",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "这篇论文旨在探索概率 Transformer (PT) 在时间序列建模中的潜力，通过将其扩展为时空概率 Transformer (ST-PT) 来解决其在通道轴和每步语义上的不足。研究方法是将 Transformer 的自注意力机制和前馈网络等同于条件随机场 (CRF) 上的均值场变分推断 (MFVI)，从而将 Transformer 视为可编程的因子图。关键创新点在于提出了 ST-PT 框架，并围绕其作为因子图模型的三个独特属性提出了三个研究问题：如何通过结构图修改注入符号时间序列先验、如何通过外部条件编程因子矩阵实现结构化条件生成，以及如何将潜在空间自回归 (AR) 预测的潜在转换转化为原则性的后验更新并利用 CRF 教师模型进行知识蒸馏。论文通过三个实证研究分别回答了这些问题，结果表明 ST-PT 是一个可编程的时间序列建模框架。"
+    },
+    {
+      "id": "2604.26752",
+      "title": "GLM-5V-Turbo: Toward a Native Foundation Model for Multimodal Agents",
+      "abstract": "We present GLM-5V-Turbo, a step toward native foundation models for multimodal agents. As foundation models are increasingly deployed in real environments, agentic capability depends not only on language reasoning, but also on the ability to perceive, interpret, and act over heterogeneous contexts such as images, videos, webpages, documents, GUIs. GLM-5V-Turbo is built around this objective: multimodal perception is integrated as a core component of reasoning, planning, tool use, and execution, rather than as an auxiliary interface to a language model. This report summarizes the main improvements behind GLM-5V-Turbo across model design, multimodal training, reinforcement learning, toolchain expansion, and integration with agent frameworks. These developments lead to strong performance in multimodal coding, visual tool use, and framework-based agentic tasks, while preserving competitive text-only coding capability. More importantly, our development process offers practical insights for building multimodal agents, highlighting the central role of multimodal perception, hierarchical optimization, and reliable end-to-end verification.",
+      "authors": [
+        "GLM-V Team",
+        ":",
+        "Wenyi Hong",
+        "Xiaotao Gu",
+        "Ziyang Pan",
+        "Zhen Yang",
+        "Yuting Wang",
+        "Yue Wang",
+        "Yuanchang Yue",
+        "Yu Wang",
+        "Yanling Wang",
+        "Yan Wang",
+        "Xijun Liu",
+        "Wenmeng Yu",
+        "Weihan Wang",
+        "Wei Li",
+        "Shuaiqi Duan",
+        "Sheng Yang",
+        "Ruiliang Lv",
+        "Mingdao Liu",
+        "Lihang Pan",
+        "Ke Ning",
+        "Junhui Ji",
+        "Jinjiang Wang",
+        "Jing Chen",
+        "Jiazheng Xu",
+        "Jiale Zhu",
+        "Jiale Cheng",
+        "Ji Qi",
+        "Guobing Gan",
+        "Guo Wang",
+        "Cong Yao",
+        "Zijun Dou",
+        "Zihao Zhou",
+        "Zihan Wang",
+        "Zhiqi Ge",
+        "Zhijie Li",
+        "Zhenyu Hou",
+        "Zhao Xue",
+        "Zehui Wang",
+        "Zehai He",
+        "Yusen Liu",
+        "Yukuo Cen",
+        "Yuchen Li",
+        "Yuan Wang",
+        "Yijian Lu",
+        "Yanzi Wang",
+        "Yadong Xue",
+        "Xinyu Zhang",
+        "Xinyu Liu",
+        "Wenkai Li",
+        "Tianyu Tong",
+        "Tianshu Zhang",
+        "Shengdong Yan",
+        "Qinkai Zheng",
+        "Mingde Xu",
+        "Licheng Bao",
+        "Jiaxing Xu",
+        "Jiaxin Fan",
+        "Jiawen Qian",
+        "Jiali Chen",
+        "Jiahui Lin",
+        "Haozhi Zheng",
+        "Haoran Wang",
+        "Haochen Li",
+        "Fan Yang",
+        "Dan Zhang",
+        "Chuangxin Zhao",
+        "Chengcheng Wu",
+        "Boyan Shi",
+        "Bowei Jia",
+        "Baoxu Wang",
+        "Peng Zhang",
+        "Debing Liu",
+        "Bin Xu",
+        "Juanzi Li",
+        "Minlie Huang",
+        "Yuxiao Dong",
+        "Jie Tang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-29T14:49:37Z",
+      "updated": "2026-04-29T14:49:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26752v1",
+      "abs_url": "https://arxiv.org/abs/2604.26752",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26752",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2604.26733",
+      "title": "FutureWorld: A Live Environment for Training Predictive Agents with Real-World Outcome Rewards",
+      "abstract": "Live future prediction refers to the task of making predictions about real-world events before they unfold. This task is increasingly studied using large language model-based agent systems, and it is important for building agents that can continually learn from real-world. Just as interactive environments have often driven progress in agents, advancing live future prediction naturally motivates viewing it as a learning environment. Prior works have explored future prediction from several different parts, but have generally not framed it as a unified learning environment. This task is appealing for learning because it can provide a large number of prediction questions grounded in diverse real-world events, while preventing answer leakage. To leverage the advantages of live future prediction, we present FutureWorld, a live agentic reinforcement learning environment that closes the training loop between prediction, outcome realization, and parameters update. In our environment, we take three open-source base models and train them for consecutive days. The results show that training is effective. Furthermore, we build a daily benchmark based on the environment and evaluate several frontier agents on it to establish performance baselines for current agent systems.",
+      "authors": [
+        "Zhixin Han",
+        "Yanzhi Zhang",
+        "Chuyang Wei",
+        "Maohang Gao",
+        "Xiawei Yue",
+        "Kefei Chen",
+        "Yu Zhuang",
+        "Haoxiang Guan",
+        "Jiyan He",
+        "Jian Li",
+        "Yitong Duan",
+        "Yu Shi",
+        "Mengting Hu",
+        "Shuxin Zheng"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-04-29T14:34:45Z",
+      "updated": "2026-04-29T14:34:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26733v1",
+      "abs_url": "https://arxiv.org/abs/2604.26733",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26733",
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26694",
+      "title": "Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising",
+      "abstract": "We propose X-WAM, a Unified 4D World Model that unifies real-time robotic action execution and high-fidelity 4D world synthesis (video + 3D reconstruction) in a single framework, addressing the critical limitations of prior unified world models (e.g., UWM) that only model 2D pixel-space and fail to balance action efficiency and world modeling quality. To leverage the strong visual priors of pretrained video diffusion models, X-WAM imagines the future world by predicting multi-view RGB-D videos, and obtains spatial information efficiently through a lightweight structural adaptation: replicating the final few blocks of the pretrained Diffusion Transformer into a dedicated depth prediction branch for the reconstruction of future spatial information. Moreover, we propose Asynchronous Noise Sampling (ANS) to jointly optimize generation quality and action decoding efficiency. ANS applies a specialized asynchronous denoising schedule during inference, which rapidly decodes actions with fewer steps to enable efficient real-time execution, while dedicating the full sequence of steps to generate high-fidelity video. Rather than entirely decoupling the timesteps during training, ANS samples from their joint distribution to align with the inference distribution. Pretrained on over 5,800 hours of robotic data, X-WAM achieves 79.2% and 90.7% average success rate on RoboCasa and RoboTwin 2.0 benchmarks, while producing high-fidelity 4D reconstruction and generation surpassing existing methods in both visual and geometric metrics.",
+      "authors": [
+        "Jun Guo",
+        "Qiwei Li",
+        "Peiyan Li",
+        "Zilong Chen",
+        "Nan Sun",
+        "Yifei Su",
+        "Heyun Wang",
+        "Yuan Zhang",
+        "Xinghang Li",
+        "Huaping Liu"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-04-29T14:01:54Z",
+      "updated": "2026-04-29T14:01:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26694v1",
+      "abs_url": "https://arxiv.org/abs/2604.26694",
+      "topics": [
+        "world-model",
+        "video-gen",
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26694",
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26637",
+      "title": "ATLAS: An Annotation Tool for Long-horizon Robotic Action Segmentation",
+      "abstract": "Annotating long-horizon robotic demonstrations with precise temporal action boundaries is crucial for training and evaluating action segmentation and manipulation policy learning methods. Existing annotation tools, however, are often limited: they are designed primarily for vision-only data, do not natively support synchronized visualization of robot-specific time-series signals (e.g., gripper state or force/torque), or require substantial effort to adapt to different dataset formats. In this paper, we introduce ATLAS, an annotation tool tailored for long-horizon robotic action segmentation. ATLAS provides time-synchronized visualization of multi-modal robotic data, including multi-view video and proprioceptive signals, and supports annotation of action boundaries, action labels, and task outcomes. The tool natively handles widely used robotics dataset formats such as ROS bags and the Reinforcement Learning Dataset (RLDS) format, and provides direct support for specific datasets such as REASSEMBLE. ATLAS can be easily extended to new formats via a modular dataset abstraction layer. Its keyboard-centric interface minimizes annotation effort and improves efficiency. In experiments on a contact-rich assembly task, ATLAS reduced the average per-action annotation time by at least 6% compared to ELAN, while the inclusion of time-series data improved temporal alignment with expert annotations by more than 2.8% and decreased boundary error fivefold compared to vision-only annotation tools.",
+      "authors": [
+        "Sergej Stanovcic",
+        "Daniel Sliwowski",
+        "Dongheui Lee"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-04-29T13:03:58Z",
+      "updated": "2026-04-29T13:03:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26637v1",
+      "abs_url": "https://arxiv.org/abs/2604.26637",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26637",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文提出ATLAS，一个专为长时程机器人动作分割设计的标注工具，旨在解决现有工具在处理机器人多模态数据和不同数据集格式方面的局限性。ATLAS通过时间同步可视化多视角视频和本体感受信号，支持动作边界、动作标签和任务结果的标注，并原生支持ROS bags和RLDS等常用机器人数据集格式，同时提供模块化的数据集抽象层以方便扩展。实验结果表明，ATLAS相比ELAN将平均每次动作标注时间减少至少6%，并且通过整合时间序列数据，将与专家标注的时间对齐度提高了2.8%以上，边界误差比仅视觉标注工具减少了五倍，显著提升了标注效率和准确性。"
+    },
+    {
+      "id": "2604.26597",
+      "title": "Translating Under Pressure: Domain-Aware LLMs for Crisis Communication",
+      "abstract": "Timely and reliable multilingual communication is critical during natural and human-induced disasters, but developing effective solutions for crisis communication is limited by the scarcity of curated parallel data. We propose a domain-adaptive pipeline that expands a small reference corpus, by retrieving and filtering data from general corpora. We use the resulting dataset to fine-tune a small language model for crisis-domain translation and then apply preference optimization to bias outputs toward CEFR A2-level English. Automatic and human evaluation shows that this approach improves readability, while maintaining strong adequacy. Our results indicate that simplified English, combined with domain adaptation, can function as a practical lingua franca for emergency communication when full multilingual coverage is not feasible.",
+      "authors": [
+        "Antonio Castaldo",
+        "Maria Carmen Staiano",
+        "Johanna Monti",
+        "Sheila Castilho",
+        "Francesca Chiusaroli"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-04-29T12:27:56Z",
+      "updated": "2026-04-29T12:27:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26597v1",
+      "abs_url": "https://arxiv.org/abs/2604.26597",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26597",
+      "keyword_topics": [
+        "rl",
+        "distillation"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26573",
+      "title": "PAINT: Partial-Solution Adaptive Interpolated Training for Self-Distilled Reasoners",
+      "abstract": "Improving large language model (LLM) reasoning requires supervision that is both aligned with the model's own test-time states and informative at the token level. Reinforcement learning with verifiable rewards provides on-policy exploration but offers sparse, high-variance credit; supervised fine-tuning and distillation provide dense targets but often train on fixed trajectories or rely on stronger teachers. Recent privileged on-policy self-distillation explores a middle ground by scoring student rollouts with the same model under verified solution context. We revisit this setting through a contextual re-scoring lens: for reasoning, the important choices are not only whether privileged context is available, but how much of it should be revealed and where its distribution should shape the student. We propose PAINT (Partial-solution Adaptive INterpolated Training), which masks the verified solution according to rollout-reference overlap and applies a small energy-space interpolation on a sparse set of entropy-mismatch token positions. Across competition-level math benchmarks, PAINT consistently improves over a strong prior on-policy self-distillation baseline at all three Qwen3 scales. On Qwen3-8B, it raises macro Avg@12 by 2.1 points over this prior baseline and 2.9 points over GRPO.",
+      "authors": [
+        "Zhiquan Tan",
+        "Yinrong Hong"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-29T11:56:07Z",
+      "updated": "2026-04-29T11:56:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26573v1",
+      "abs_url": "https://arxiv.org/abs/2604.26573",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26573",
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26566",
+      "title": "Learning to Route Electric Trucks Under Operational Uncertainty",
+      "abstract": "Electric truck operations require routing decisions that remain feasible under limited battery range, long charging times, travel and energy consumption, and competition for shared charging infrastructure. These features make electric truck routing a coupled logistics and energy problem, limiting the practicality of heuristics-based methods and rendering them computationally infeasible at scale. This paper proposes a learning-based framework for the stochastic electric truck routing under charging constraints and operational uncertainty. The problem, solved by Reinforcement Learning, is formulated as an event-driven semi-Markov decision process with shared charging resources, stochastic travel and energy requirements, and realistic nonlinear fast-charging behavior. To support learning in this setting, a graph-based representation of system state and feasible decisions is introduced, together with a rule-based action mask that restricts policies to operationally admissible actions; thus, improving training efficiency. Building on this formulation, an event-driven simulation environment is developed that supports both Reinforcement Learning and benchmarking against heuristic and mathematical programming baselines. Computational experiments across a range of fleet sizes show that the proposed learning-based algorithm consistently outperforms baselines and attains performance close to optimization benchmarks in many settings, while preserving high success rates under charging congestion and uncertainty.",
+      "authors": [
+        "Stavros Orfanoudakis",
+        "Ziyan Li",
+        "Ruixiao Yang",
+        "Nikolay Aristov",
+        "Pedro P. Vergara",
+        "Chuchu Fan",
+        "Elenna Dugundji"
+      ],
+      "categories": [
+        "eess.SY",
+        "cs.LG"
+      ],
+      "published": "2026-04-29T11:52:00Z",
+      "updated": "2026-04-29T11:52:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26566v1",
+      "abs_url": "https://arxiv.org/abs/2604.26566",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26566",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "电动卡车运营面临电池续航限制、充电时间长、能源消耗以及共享充电基础设施竞争等挑战，这使得路径规划成为一个复杂的物流与能源耦合问题，传统启发式方法难以应对。该研究提出一个基于学习的框架，通过强化学习（Reinforcement Learning）解决充电约束和操作不确定性下的随机电动卡车路径规划问题，将其建模为一个事件驱动的半马尔可夫决策过程，并考虑共享充电资源、随机的行程和能量需求以及非线性快速充电行为。为提高训练效率，引入了图表示系统状态和可行决策，并结合基于规则的动作掩码来限制策略只选择操作上允许的动作，同时开发了一个事件驱动的仿真环境以支持强化学习和基准测试。计算实验表明，该学习算法在不同车队规模下均优于基线方法，并在许多设置中接近优化基准的性能，同时在充电拥堵和不确定性下保持了高成功率。"
+    },
+    {
+      "id": "2604.26553",
+      "title": "TLPO: Token-Level Policy Optimization for Mitigating Language Confusion in Large Language Models",
+      "abstract": "Large language models (LLMs) demonstrate strong multilingual capabilities, yet often fail to consistently generate responses in the intended language, exhibiting a phenomenon known as language confusion. Prior mitigation approaches based on sequence-level fine-tuning, such as DPO, ORPO, and GRPO, operate at the level of entire responses and can lead to unintended degradation of general model capabilities, motivating the need for more fine-grained alternatives. To address this, we introduce Token-Level Policy Optimization (TLPO), a fine-tuning framework designed to mitigate language confusion through localized, token-level updates. TLPO identifies error-prone positions, explores alternative candidate tokens, and updates the policy using a tailored objective to suppress error-inducing outputs at a granular level. This selective intervention enables effective mitigation of language confusion without compromising the model's general abilities. Experiments on multiple multilingual LLMs across diverse languages demonstrate that TLPO significantly outperforms baselines in improving language consistency while preserving downstream task accuracy.",
+      "authors": [
+        "Jinho Choo",
+        "JunSeung Lee",
+        "Jimyeong Kim",
+        "Yeeho Song",
+        "S. K. Hong",
+        "Yeong-Dae Kwon"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-04-29T11:39:43Z",
+      "updated": "2026-04-29T11:39:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26553v1",
+      "abs_url": "https://arxiv.org/abs/2604.26553",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26553",
+      "summary_zh": "大型语言模型（LLMs）在多语言生成中常出现语言混淆问题，即无法持续生成目标语言的文本。针对这一问题，TLPO（Token-Level Policy Optimization）提出了一种细粒度的、基于token级别的策略优化方法，以避免传统序列级微调（如DPO、ORPO、GRPO）可能导致的模型通用能力下降。TLPO通过识别易出错的token位置，探索替代候选token，并利用专门的目标函数在token级别抑制错误输出，从而实现局部化更新。实验结果表明，TLPO在多个多语言LLM和不同语言上显著优于基线方法，在提高语言一致性的同时，有效保持了下游任务的准确性。"
+    },
+    {
+      "id": "2604.26522",
+      "title": "AGEL-Comp: A Neuro-Symbolic Framework for Compositional Generalization in Interactive Agents",
+      "abstract": "Large Language Model (LLM)-based agents exhibit systemic failures in compositional generalization, limiting their robustness in interactive environments. This work introduces AGEL-Comp, a neuro-symbolic AI agent architecture designed to address this challenge by grounding actions of the agent. AGEL-Comp integrates three core innovations: (1) a dynamic Causal Program Graph (CPG) as a world model, representing procedural and causal knowledge as a directed hypergraph; (2) an Inductive Logic Programming (ILP) engine that synthesizes new Horn clauses from experiential feedback, grounding symbolic knowledge through interaction; and (3) a hybrid reasoning core where an LLM proposes a set of candidate sub-goals that are verified for logical consistency by a Neural Theorem Prover (NTP). Together, these components operationalize a deduction--abduction learning cycle: enabling the agent to deduce plans and abductively expand its symbolic world model, while a neural adaptation phase keeps its reasoning engine aligned with new knowledge. We propose an evaluation protocol within the \\texttt{Retro Quest} simulation environment to probe for compositional generalization scenarios to evaluate our AGEL agent. Our findings clearly indicate the better performance of our AGEL model over pure LLM-based models. Our framework presents a principled path toward agents that build an explicit, interpretable, and compositionally structured understanding of their world.",
+      "authors": [
+        "Mahnoor Shahid",
+        "Hannes Rothe"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.LO",
+        "cs.MA",
+        "cs.SC"
+      ],
+      "published": "2026-04-29T10:42:02Z",
+      "updated": "2026-04-29T10:42:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26522v1",
+      "abs_url": "https://arxiv.org/abs/2604.26522",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26522",
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26516",
+      "title": "Lyapunov-Guided Self-Alignment: Test-Time Adaptation for Offline Safe Reinforcement Learning",
+      "abstract": "Offline reinforcement learning (RL) agents often fail when deployed, as the gap between training datasets and real environments leads to unsafe behavior. To address this, we present SAS (Self-Alignment for Safety), a transformer-based framework that enables test-time adaptation in offline safe RL without retraining. In SAS, the main mechanism is self-alignment: at test time, the pretrained agent generates several imagined trajectories and selects those satisfying the Lyapunov condition. These feasible segments are then recycled as in-context prompts, allowing the agent to realign its behavior toward safety while avoiding parameter updates. In effect, SAS turns Lyapunov-guided imagination into control-invariant prompts, and its transformer architecture admits a hierarchical RL interpretation where prompting functions as Bayesian inference over latent skills. Across Safety Gymnasium and MuJoCo benchmarks, SAS consistently reduces cost and failure while maintaining or improving return.",
+      "authors": [
+        "Seungyub Han",
+        "Hyungjin Kim",
+        "Jungwoo Lee"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-29T10:32:18Z",
+      "updated": "2026-04-29T10:32:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26516v1",
+      "abs_url": "https://arxiv.org/abs/2604.26516",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26516",
+      "summary_zh": "这篇论文旨在解决离线强化学习（RL）智能体在部署时因训练数据与真实环境差异导致的不安全行为问题。为此，它提出了一个名为 SAS (Self-Alignment for Safety) 的基于 Transformer 的框架，该框架在测试时进行自适应，而无需重新训练。SAS 的核心机制是自对齐：预训练智能体在测试时生成多个想象轨迹，并选择满足 Lyapunov 条件的轨迹作为可行片段，这些片段被用作上下文提示，引导智能体在不更新参数的情况下重新调整其行为以确保安全。实验结果表明，在 Safety Gymnasium 和 MuJoCo 基准测试中，SAS 持续降低了成本和失败率，同时保持或提高了回报。"
+    },
+    {
+      "id": "2604.26488",
+      "title": "Featurising Pixels from Dynamic 3D Scenes with Linear In-Context Learners",
+      "abstract": "One of the most exciting applications of vision models involve pixel-level reasoning. Despite the abundance of vision foundation models, we still lack representations that effectively embed spatio-temporal properties of visual scenes at the pixel level. Existing frameworks either train on image-based pretext tasks, which do not account for dynamic elements, or on video sequences for action-level reasoning, which does not scale to dense pixel-level prediction. We present a framework that learns pixel-accurate feature descriptors from videos, LILA. The core element of our training framework is linear in-context learning. LILA leverages spatio-temporal cue maps -- depth and motion -- estimated with off-the-shelf networks. Despite the noisy nature of those cues, LILA trains effectively on uncurated video datasets, embedding semantic and geometric properties in a temporally consistent manner. We demonstrate compelling empirical benefits of the learned representation across a diverse suite of vision tasks: video object segmentation, surface normal estimation and semantic segmentation.",
+      "authors": [
+        "Nikita Araslanov",
+        "Martin Sundermeyer",
+        "Hidenobu Matsuki",
+        "David Joseph Tan",
+        "Federico Tombari"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-04-29T09:51:56Z",
+      "updated": "2026-04-29T09:51:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26488v1",
+      "abs_url": "https://arxiv.org/abs/2604.26488",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26488",
+      "keyword_topics": [
+        "4d-gen"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26461",
+      "title": "$\\text{PKS}^4$:Parallel Kinematic Selective State Space Scanners for Efficient Video Understanding",
+      "abstract": "Temporal modeling remains a fundamental challenge in video understanding, particularly as sequence lengths scale. Traditional video models relying on dense spatiotemporal attention suffer from quadratic computational costs for long videos. To circumvent these costs, recent approaches adapt image models for videos via Parameter-Efficient Fine-Tuning (PEFT) methods such as adapters. However, deeply inserting these modules incurs prohibitive activation memory overhead during back-propagation. While recent efficient State Space Models (SSMs) introduce linear complexity, they disrupt 2D spatial relationships and rely on extensive masked pre-training to recover spatial awareness. To overcome these limitations, we propose Parallel Kinematic Selective State Space Scanners (PKS$^4$). We retain a standard 2D vision backbone for spatial semantics and insert a single plug-and-play PKS$^4$ module with linear-complexity temporal scanning, avoiding temporal attention and multi-layer adapters. We first extract kinematic priors via a Kinematic Prior Encoder, which captures local displacements and motion boundaries through inter-frame correlations and differences. These priors drive linear-complexity SSMs to track underlying kinematic states, adaptively modulating update speeds and read-write strategies at each time step. Instead of global scanning, we deploy parallel scanners along the temporal dimension for each spatial location, preserving spatial structures while reducing overhead. Experiments on spatial-heavy and temporal-heavy action recognition benchmarks show that PKS$^4$ achieves state-of-the-art performance. Remarkably, our method converges in merely $20$ epochs, achieving approximately $10\\times$ lower training compute than pure video SSMs, establishing a new paradigm for efficient video understanding.",
+      "authors": [
+        "Lingjie Zeng",
+        "Hailun Zhang",
+        "Xiwen Wang",
+        "Qijun Zhao"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-29T09:17:03Z",
+      "updated": "2026-04-29T09:17:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26461v1",
+      "abs_url": "https://arxiv.org/abs/2604.26461",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26461",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "视频理解中的时间建模面临长序列计算成本高昂的问题，传统密集时空注意力模型和基于PEFT的图像模型适配器都存在二次计算成本或激活内存开销。PKS$^4$（Parallel Kinematic Selective State Space Scanners）提出了一种新颖的方法，通过保留标准2D视觉骨干网络处理空间语义，并插入一个即插即用的线性复杂度时间扫描模块，避免了时间注意力机制和多层适配器。其核心创新在于，通过Kinematic Prior Encoder提取运动学先验（如局部位移和运动边界），这些先验驱动线性复杂度SSM自适应地调制每个时间步的更新速度和读写策略，同时沿时间维度为每个空间位置部署并行扫描器，从而在保持空间结构的同时显著降低开销。实验结果表明，PKS$^4$在时空动作识别基准测试中达到了最先进的性能，并且仅需20个epoch即可收敛，训练计算量比纯视频SSM降低约10倍，为高效视频理解开辟了新范式。"
+    },
+    {
+      "id": "2604.26435",
+      "title": "QYOLO: Lightweight Object Detection via Quantum Inspired Shared Channel Mixing",
+      "abstract": "The rapid advancement of object detection architectures has positioned single stage detectors as the dominant solution for real-time visual perception. A primary source of computational overhead in these models lies in the deep backbone stages, where C2f bottleneck modules at high stride levels accumulate a disproportionate share of parameters due to quadratic scaling with channel width. This work introduces QYOLO, a quantum-inspired channel mixing framework that achieves genuine architectural compression by replacing the two deepest backbone C2f modules at P4/16 (512 channels) and P5/32 (1024 channels) with a compact QMixBlock. The proposed block performs global channel recalibration through a sinusoidal mixing mechanism with shared learnable parameters across both backbone stages, enforcing consistent channel importance without requiring independent per-stage parameter sets. The neck and detection head remain fully classical and unchanged. Evaluation on the VisDrone2019 benchmark demonstrates that QYOLOv8n achieves a 20.2% reduction in parameter count (3.01M to 2.40M) and 12.3% GFLOPs reduction with only 0.4 pp mAP@50 degradation. QYOLOv8s achieves 21.8% reduction with 0.1 pp degradation. When combined with knowledge distillation, full accuracy parity is recovered at no cost to compression. An expanded backbone plus neck variant achieved 38 to 41% reduction at the cost of greater accuracy degradation, motivating the backbone-only final design.",
+      "authors": [
+        "Garvit Kumar Mittal",
+        "Sahil Tomar",
+        "Sandeep Kumar"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.ET"
+      ],
+      "published": "2026-04-29T08:47:27Z",
+      "updated": "2026-04-29T08:47:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26435v1",
+      "abs_url": "https://arxiv.org/abs/2604.26435",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26435",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26419",
+      "title": "Delineating Knowledge Boundaries for Honest Large Vision-Language Models",
+      "abstract": "Large Vision-Language Models (VLMs) have achieved remarkable multimodal performance yet remain prone to factual hallucinations, particularly in long-tail or specialized domains. Moreover, current models exhibit a weak capacity to refuse queries that exceed their parametric knowledge. In this paper, we propose a systematic framework to enhance the refusal capability of VLMs when facing such unknown questions. We first curate a model-specific \"Visual-Idk\" (Visual-I don't know) dataset, leveraging multi-sample consistency probing to distinguish between known and unknown facts. We then align the model using supervised fine-tuning followed by preference-aware optimization (e.g., DPO, ORPO) to effectively delineate its knowledge boundaries. Results on the Visual-Idk dataset show our method improves the Truthful Rate from 57.9\\% to 67.3\\%. Additionally, internal probing also demonstrates that the model genuinely recognizes its boundaries instead of just memorizing refusal patterns. Our framework further generalizes to out-of-distribution medical and perceptual domains, providing a robust path toward more trustworthy and prudent visual assistants.",
+      "authors": [
+        "Junru Song",
+        "Yimeng Hu",
+        "Yijing Chen",
+        "Huining Li",
+        "Qian Li",
+        "Lizhen Cui",
+        "Yuntao Du"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-04-29T08:29:44Z",
+      "updated": "2026-04-29T08:29:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26419v1",
+      "abs_url": "https://arxiv.org/abs/2604.26419",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26419",
+      "summary_zh": "大型视觉语言模型（VLMs）在处理长尾或专业领域问题时容易产生事实性幻觉，且难以拒绝超出其参数知识范围的查询。为解决此问题，研究提出了一种系统性框架，通过构建模型特定的“Visual-Idk”数据集，利用多样本一致性探测区分已知与未知事实，并结合监督微调和偏好感知优化（如DPO、ORPO）来明确模型的知识边界。实验结果表明，该方法将Truthful Rate从57.9%提升至67.3%，且模型能真正识别自身知识边界而非简单记忆拒绝模式，该框架还能泛化到医学和感知等域外场景，为构建更可信赖的视觉助手提供了有效途径。"
+    },
+    {
+      "id": "2604.26412",
+      "title": "When Hidden States Drift: Can KV Caches Rescue Long-Range Speculative Decoding?",
+      "abstract": "Speculative decoding accelerates LLM inference, but SOTA hidden-state-based drafters suffer from long-range decay: draft accuracy degrades as the speculative step increases. Existing work attributes this decay to train-inference mismatch and proposes test-time training (TTT) as a remedy, yet we observe that long-range decay persists even in TTT-trained drafters. We revisit long-range decay from the perspective of context information preservation. In hidden-state reuse, we argue the target hidden state acts as a biased context compression: it aggregates historical token information according to the attention query at the current position, yielding a compact representation optimized for immediate next-token prediction. This compression can suppress information less relevant to the current query but important for later speculative steps. In contrast, the target model's KV cache serves as an explicit context, retaining the complete set of token-wise KV representations. We therefore posit the KV-Reuse Hypothesis: allowing the draft model to reuse the target KV cache can provide richer signals for long-horizon drafting. To test this hypothesis, we introduce KVShot, a diagnostic framework that compares three reuse paradigms: hidden-only, KV-only, and hybrid. Extensive evaluations on Qwen3-8B show that KV-Reuse improves long-range acceptance, although end-to-end speedups remain marginal under current training pipelines. Our analysis identifies two key structural bottlenecks: shallow drafters struggle to estimate target queries accurately, and draft-side KV projections receive sparse gradient signals. These findings suggest that realizing the full potential of KV-aware decoding requires moving beyond TTT toward block-wise training paradigms. By exposing these bottlenecks, KVShot provides a foundational diagnostic testbed and a clear roadmap for designing next-generation inference architectures.",
+      "authors": [
+        "Tianyu Liu",
+        "Yuhao Shen",
+        "Xinyi Hu",
+        "Baolin Zhang",
+        "Hengxin Zhang",
+        "Jun Dai",
+        "Jun Zhang",
+        "Shuang Ge",
+        "Lei Chen",
+        "Yue Li",
+        "MingCheng Wan"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-04-29T08:25:01Z",
+      "updated": "2026-04-29T08:25:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26412v1",
+      "abs_url": "https://arxiv.org/abs/2604.26412",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26412",
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26360",
+      "title": "Uncertainty-Aware Reward Discounting for Mitigating Reward Hacking",
+      "abstract": "Reinforcement learning (RL) systems typically optimize scalar reward functions that assume precise and reliable evaluation of outcomes. However, real-world objectives--especially those derived from human preferences--are often uncertain, context-dependent, and internally inconsistent. This mismatch can lead to alignment failures such as reward hacking, over-optimization, and overconfident behavior. We introduce a dual-source uncertainty-aware reward framework that explicitly models both epistemic uncertainty in value estimation and uncertainty in human preferences. Model uncertainty is captured via ensemble disagreement over value predictions, while preference uncertainty is derived from variability in reward annotations. We combine these signals through a confidence-adjusted Reliability Filter that adaptively modulates action selection, encouraging a balance between exploitation and caution. Empirical results across multiple discrete grid configurations (6x6, 8x8, 10x10) and high-dimensional continuous control environments (Hopper-v4, Walker2d-v4) demonstrate that our approach yields more stable training dynamics and reduces exploitative behaviors under reward ambiguity, achieving a 93.7% reduction in reward-hacking behavior as measured by trap visitation frequency. We demonstrate statistical significance of these improvements and robustness under up to 30% supervisory noise, albeit with a trade-off in peak observed reward compared to unconstrained baselines. By treating uncertainty as a first-class component of the reward signal, this work offers a principled approach toward more reliable and aligned reinforcement learning systems.",
+      "authors": [
+        "Disha Singha"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-29T07:14:01Z",
+      "updated": "2026-04-29T07:14:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26360v1",
+      "abs_url": "https://arxiv.org/abs/2604.26360",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26360",
+      "summary_zh": "强化学习系统在优化不确定、依赖上下文且不一致的奖励函数时，常面临奖励欺骗等对齐失败问题。为解决此问题，该研究提出了一种双源不确定性感知奖励框架，它通过集成模型对价值预测的分歧来捕捉认知不确定性，并通过奖励标注的变异性来推导偏好不确定性。这些不确定性信号通过一个置信度调整的可靠性过滤器（Reliability Filter）结合，以自适应地调节动作选择，平衡探索与谨慎。在离散网格环境和高维连续控制环境（如Hopper-v4, Walker2d-v4）中的实验表明，该方法在奖励模糊性下能产生更稳定的训练动态并减少剥削行为，将奖励欺骗行为（通过陷阱访问频率衡量）降低了93.7%。该方法在高达30%的监督噪声下仍表现出鲁棒性，尽管与无约束基线相比，峰值奖励有所权衡。"
+    },
+    {
+      "id": "2604.26355",
+      "title": "Shorthand for Thought: Compressing LLM Reasoning via Entropy-Guided Supertokens",
+      "abstract": "Reasoning in Large Language Models incurs significant inference-time compute, yet the token-level information structure of reasoning traces remains underexplored. We observe that reasoning tokens split into two functional types: low-entropy \\textit{structural} tokens (recurring phrases that scaffold the reasoning process) and higher-entropy \\textit{organic} tokens (problem-specific content that drives toward a solution). This asymmetry motivates a simple, model-agnostic compression pipeline: apply cross-word BPE merges on a model's own reasoning traces to derive \\textit{supertokens} that capture frequent structural patterns, then teach the model to adopt them via supervised fine-tuning. Across three model families and five mathematical reasoning benchmarks, our approach shortens reasoning traces by 8.1\\% on average with no statistically significant accuracy loss on any model--benchmark pair. Beyond compression, supertokens act as interpretable reasoning-move annotations (backtracking, verification, strategy shifts), exposing the model's high-level strategy at a glance. Analyzing transitions between structural categories reveals systematic differences between correct and incorrect traces: correct traces show productive recovery (backtracking followed by strategy shifts and verification), while incorrect traces are dominated by confusion cycles (repeated hedging and unresolved contradictions). These diagnostic signals suggest applications in reward shaping and early stopping for RL-based reasoning training.",
+      "authors": [
+        "Zhenyu Zhao",
+        "Sander Land",
+        "Dan Bikel",
+        "Waseem Alshikh"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-04-29T07:06:43Z",
+      "updated": "2026-04-29T07:06:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26355v1",
+      "abs_url": "https://arxiv.org/abs/2604.26355",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26355",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决大型语言模型（LLMs）推理过程中计算成本高昂的问题，其核心方法是利用推理痕迹中不同类型token的信息不对称性进行压缩。研究发现推理token可分为低熵的“结构性”token（重复出现的框架性短语）和高熵的“有机”token（问题特定的内容），并基于此提出了一种模型无关的压缩流程：通过对模型自身推理痕迹应用跨词BPE合并，生成捕获频繁结构模式的“supertokens”，然后通过监督微调使模型采用这些supertokens。实验结果表明，在三个模型家族和五个数学推理基准测试上，该方法平均将推理痕迹缩短了8.1%，且未导致任何模型-基准测试对的准确性显著下降。此外，supertokens还提供了可解释的推理步骤注释，揭示了模型的高级策略，并能诊断正确与错误推理痕迹之间的系统性差异，为基于强化学习的推理训练中的奖励塑形和提前停止提供了潜在应用。"
+    },
+    {
+      "id": "2604.26326",
+      "title": "Addressing Performance Saturation for LLM RL via Precise Entropy Curve Control",
+      "abstract": "Reinforcement learning (RL) has unlocked complex reasoning abilities in large language models (LLMs). However, most RL algorithms suffer from performance saturation, preventing further gains as RL training scales. This problem can be characterized by the collapse of entropy, a key diagnostic for exploration in RL. Existing attempts have tried to prevent entropy collapse through regularization or clipping, but their resulting entropy curves often exhibit instability in the long term, which hinders performance gains. In this paper, we introduce Entrocraft, a simple rejection-sampling approach that realizes any user-customized entropy schedule by biasing the advantage distributions. Entrocraft requires no objective regularization and is advantage-estimator-agnostic. Theoretically, we relate per-step entropy change to the advantage distribution under minimal assumptions, which explains the behavior of existing RL and entropy-preserving methods. Entrocraft also enables a systematic study of entropy schedules, where we find that linear annealing, which starts high and decays to a slightly lower target, performs best. Empirically, Entrocraft addresses performance saturation, significantly improving generalization, output diversity, and long-term training. It enables a 4B model to outperform an 8B baseline, sustains improvement for up to 4x longer before plateauing, and raises pass@K by 50% over the baseline.",
+      "authors": [
+        "Bolian Li",
+        "Yifan Wang",
+        "Yi Ding",
+        "Anamika Lochab",
+        "Ananth Grama",
+        "Ruqi Zhang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL",
+        "stat.ML"
+      ],
+      "published": "2026-04-29T06:16:33Z",
+      "updated": "2026-04-29T06:16:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26326v1",
+      "abs_url": "https://arxiv.org/abs/2604.26326",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26326",
+      "summary_zh": "大型语言模型（LLM）的强化学习（RL）训练普遍存在性能饱和问题，这与探索性（entropy）的崩溃密切相关。Entrocraft 提出一种简单的拒绝采样方法，通过偏置优势分布来实现用户自定义的精确熵曲线控制，从而避免了现有方法中熵曲线的不稳定性。该方法无需额外的正则化项，且与优势估计器无关，理论上将每步熵变化与优势分布关联起来，解释了现有RL算法和熵保持方法的行为。实验表明，Entrocraft 显著提升了模型的泛化能力、输出多样性，并延长了训练的有效周期，例如，一个 4B 模型在 Entrocraft 的帮助下超越了 8B 的基线模型，并将 pass@K 提高了 50%。"
+    },
+    {
+      "id": "2604.26283",
+      "title": "MedSynapse-V: Bridging Visual Perception and Clinical Intuition via Latent Memory Evolution",
+      "abstract": "High-precision medical diagnosis relies not only on static imaging features but also on the implicit diagnostic memory experts instantly invoke during image interpretation. We pinpoint a fundamental cognitive misalignment in medical VLMs caused by discrete tokenization, leading to quantization loss, long-range information dissipation, and missing case-adaptive expertise. To bridge this gap, we propose ours, a framework for latent diagnostic memory evolution that simulates the experiential invocation of clinicians by dynamically synthesizing implicit diagnostic memories within the model's hidden stream. Specifically, it begins with a Meta Query for Prior Memorization mechanism, where learnable probes retrieve structured priors from an anatomical prior encoder to generate condensed implicit memories. To ensure clinical fidelity, we introduce Causal Counterfactual Refinement (CCR), which leverages reinforcement learning and counterfactual rewards derived from region-level feature masking to quantify the causal contribution of each memory, thereby pruning redundancies and aligning latent representations with diagnostic logic. This evolutionary process culminates in Intrinsic Memory Transition (IMT), a privileged-autonomous dual-branch paradigm that internalizes teacher-branch diagnostic patterns into the student-branch via full-vocabulary divergence alignment. Comprehensive empirical evaluations across multiple datasets demonstrate that ours, by transferring external expertise into endogenous parameters, significantly outperforms existing state-of-the-art methods, particularly chain-of-thought paradigms, in diagnostic accuracy.",
+      "authors": [
+        "Chunzheng Zhu",
+        "Jiaqi Zeng",
+        "Junyu Jiang",
+        "Jianxin Lin",
+        "Yijun Wang"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-04-29T04:23:35Z",
+      "updated": "2026-04-29T04:23:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26283v1",
+      "abs_url": "https://arxiv.org/abs/2604.26283",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26283",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26256",
+      "title": "DORA: A Scalable Asynchronous Reinforcement Learning System for Language Model Training",
+      "abstract": "Reinforcement learning (RL) has become a critical paradigm for LLM post-training, yet the rollout phase -- accounting for 50--80% of total step time -- is bottlenecked by skewed generation: long-tailed trajectories indispensable for model performance block the entire training pipeline. Asynchronous training offers a natural remedy by overlapping generation with training, but introduces a fundamental tension between efficiency and algorithmic correctness. We identify three constraints in asynchronous training to preserve convergence: intra-trajectory policy consistency, data integrity, and bounded staleness. Existing approaches fail to intrinsically address the long-tailed trajectory problem, which is further exacerbated by the imbalance characteristic of Mix-of-Experts models, or deviate from the standard RL training formulation, thereby hindering model convergence. Therefore, we propose DORA (Dynamic ORchestration for Asynchronous Rollout), which addresses this challenge through algorithm-system co-design. DORA introduces multi-version streaming rollout, a novel asynchronous paradigm that maintains multiple policy versions concurrently -- simultaneously achieving full bubble elimination without compromising algorithmic constraints. Experimental results demonstrate that our DORA system achieves substantial improvements in throughput -- up to 2--3 times higher than state-of-the-art systems on open-source benchmarks -- without compromising convergence. Furthermore, in large-scale industrial applications with tens of thousands of accelerators, DORA accelerates RL training by 2--4 times compared to synchronous training across various scenarios. The resultant open-source models, LongCat-Flash-Thinking, exhibit competitive performance on complex reasoning benchmarks, matching the capability of most advanced LLMs.",
+      "authors": [
+        "Tianhao Hu",
+        "Xiangcheng Liu",
+        "Youshao Xiao",
+        "Yang Zheng",
+        "Xuan Huang",
+        "Jinrui Ding",
+        "Yufei Zhang",
+        "Tao Liang",
+        "Hongyu Zang",
+        "Quan Chen",
+        "Yueqing Sun",
+        "Wenjie Shi",
+        "Chao Zhang",
+        "Wei Wang",
+        "Qi Gu",
+        "Yerui Sun",
+        "Yucheng Xie",
+        "Xunliang Cai"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.DC"
+      ],
+      "published": "2026-04-29T03:25:36Z",
+      "updated": "2026-04-29T03:25:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26256v1",
+      "abs_url": "https://arxiv.org/abs/2604.26256",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26256",
+      "summary_zh": "这篇论文旨在解决大型语言模型（LLM）强化学习（RL）后训练中，rollout阶段因长尾轨迹导致的效率瓶颈，以及异步训练中效率与算法正确性之间的矛盾。它提出了一种名为DORA（Dynamic ORchestration for Asynchronous Rollout）的算法-系统协同设计方案，通过引入多版本流式rollout这一新颖的异步范式，在不牺牲算法约束的前提下，实现了“气泡消除”（full bubble elimination），即完全重叠生成与训练。DORA的关键创新在于它能同时维护多个策略版本，确保了轨迹内策略一致性、数据完整性和有界陈旧性，从而有效处理长尾轨迹问题，并解决了现有方法在处理MoE模型不平衡性或偏离标准RL训练范式的问题。实验结果表明，DORA系统在开源基准测试上实现了2-3倍的吞吐量提升，在大规模工业应用中将RL训练速度提高了2-4倍，并且其训练出的LongCat-Flash-Thinking模型在复杂推理基准上展现出与最先进LLM相当的性能。"
+    },
+    {
+      "id": "2604.26255",
+      "title": "GaitKD: A Universal Decoupled Distillation Framework for Efficient Gait Recognition",
+      "abstract": "Gait recognition is an attractive biometric modality for long-range and contact-free identification, but high-performing gait models often rely on deep and computationally expensive architectures that are difficult to deploy in practice. Knowledge distillation (KD) offers a natural way to transfer knowledge from a powerful teacher to an efficient student; however, standard KD is often less effective for part-structured gait models, where supervision is formed from both part-wise classification logits and part-wise retrieval embeddings. In this paper, we propose GaitKD, a distillation framework that decouples gait knowledge transfer into two complementary components: decision-level distillation and boundary-level distillation. Specifically, GaitKD aligns the teacher and student through part-calibrated logit distillation to transfer inter-class decision relations, while preserving the teacher-induced partitioning of the embedding space through an activation-boundary objective instead of direct feature regression. With a simple aligned part-wise design, GaitKD supports heterogeneous teacher-student gait models without introducing additional inference cost. Experimental results across multiple gait recognition benchmarks and teacher-student configurations show consistent improvements over strong gait baselines. Our study demonstrates that the two transfer components are complementary, and boundary-preserving distillation provides more stable performance than direct feature regression. Source code is available at https://github.com/liyiersan/GaitKD/",
+      "authors": [
+        "Yuqi Li",
+        "Qian Zhou",
+        "Huiran Duan",
+        "Jingjie Wang",
+        "Shunli Zhang",
+        "Chuanguang Yang",
+        "Guoying Zhao",
+        "Yingli Tian"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-29T03:24:38Z",
+      "updated": "2026-04-29T03:24:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26255v1",
+      "abs_url": "https://arxiv.org/abs/2604.26255",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26255",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "步态识别模型因其深度和计算复杂性难以部署，现有知识蒸馏（KD）方法对部分结构化的步态模型效果不佳，因为其监督信号来自部分分类 logits 和部分检索嵌入。GaitKD 提出了一种解耦的蒸馏框架，将步态知识转移分为决策级蒸馏和边界级蒸馏两个互补部分，通过部分校准的 logit 蒸馏来传递类间决策关系，并通过激活边界目标而非直接特征回归来保留教师模型诱导的嵌入空间划分。GaitKD 支持异构的教师-学生步态模型，且不引入额外的推理成本，在多个步态识别基准和教师-学生配置上均显著优于现有基线，证明了其两个转移组件的互补性以及边界保留蒸馏比直接特征回归更稳定。"
+    },
+    {
+      "id": "2604.26232",
+      "title": "DepthPilot: From Controllability to Interpretability in Colonoscopy Video Generation",
+      "abstract": "Controllable medical video generation has achieved remarkable progress, but it still lacks interpretability, which requires the alignment of generated contents with physical priors and faithful clinical manifestations. To push the boundaries from mere controllability to interpretability, we propose DepthPilot, the first interpretable framework for colonoscopy video generation. This work takes a step toward trustworthy generation through two synergistic paradigms. To achieve explicit geometric grounding, DepthPilot devises a prior distribution alignment strategy, injecting depth constraints into the diffusion backbone via parameter-efficient fine-tuning to ensure anatomical fidelity. To enhance intrinsic nonlinear modeling under these geometric constraints, DepthPilot employs an adaptive spline denoising module, replacing fixed linear weights with learnable spline functions to capture complex spatio-temporal dynamics. Extensive evaluations across three public datasets and in-house clinical data confirm DepthPilot's robust ability to produce physically consistent videos. It achieves FID scores below 15 across all benchmarks and ranks first in clinician assessments, bridging the gap between \"visually realistic\" and \"clinically interpretable\". Moreover, DepthPilot-generated videos are expected to enable reliable 3D reconstruction, facilitating surgical navigation and blind region identification, and serve as a foundation toward the colorectal world model.",
+      "authors": [
+        "Junhu Fu",
+        "Ke Chen",
+        "Weidong Guo",
+        "Shuyu Liang",
+        "Jie Xu",
+        "Chen Ma",
+        "Kehao Wang",
+        "Shengli Lin",
+        "Zeju Li",
+        "Yuanyuan Wang",
+        "Yi Guo",
+        "Shuo Li"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-04-29T02:24:28Z",
+      "updated": "2026-04-29T02:24:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26232v1",
+      "abs_url": "https://arxiv.org/abs/2604.26232",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26232",
+      "summary_zh": "该研究旨在解决可控医学视频生成中缺乏可解释性的问题，特别是结肠镜视频生成，通过确保生成内容符合物理先验和真实的临床表现来提升可信度。为此，研究提出了DepthPilot框架，首次实现了结肠镜视频的可解释生成，其核心创新在于两个协同范式：一是通过参数高效微调将深度约束注入扩散骨干网络，实现几何基础的明确对齐，确保解剖学上的真实性；二是通过自适应样条去噪模块，用可学习的样条函数替代固定的线性权重，以捕捉复杂的时空动态。DepthPilot在三个公开数据集和内部临床数据上进行了广泛评估，FID分数均低于15，并在临床医生评估中排名第一，证明了其生成物理一致视频的强大能力，弥合了“视觉真实”与“临床可解释”之间的鸿沟，并有望支持可靠的3D重建和结直肠世界模型的构建。"
+    }
+  ]
 }

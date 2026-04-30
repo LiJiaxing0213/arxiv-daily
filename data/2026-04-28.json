@@ -1,6 +1,6 @@
 {
   "date": "2026-04-28",
-  "generated_at": "2026-04-29T04:54:20.302522+00:00",
+  "generated_at": "2026-04-30T05:10:14.979484+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,159 @@
   },
   "papers": [
     {
+      "id": "2604.26182",
+      "title": "Lifting Embodied World Models for Planning and Control",
+      "abstract": "World models of embodied agents predict future observations conditioned on an action taken by the agent. For complex embodiments, action spaces are high-dimensional and difficult to specify: for example, precisely controlling a human agent requires specifying the motion of each joint. This makes the world model hard to control and expensive to plan with as search-based methods like CEM scale poorly with action dimensionality. To address this issue, we train a lightweight policy that maps high-level actions to sequences of low-level joint actions. Composing this policy with the frozen world model produces a lifted world model that predicts a sequence of future observations from a single high-level action. We instantiate this framework for a human-like embodiment, defining the high-level action space as a small set of 2D waypoints annotated on the current observation frame, each specifying a near-term goal position for a leaf joint (pelvis, head, hands). Waypoints are low-dimensional, visually interpretable, and easy to specify manually or to search over. We show that the lifted world model substantially outperforms searching directly in low-level joint space ($3.8\\times$ lower mean joint error to the goal pose), while remaining more compute-efficient and generalizing to environments unseen by the policy.",
+      "authors": [
+        "Alex N. Wang",
+        "Trevor Darrell",
+        "Pavel Izmailov",
+        "Yutong Bai",
+        "Amir Bar"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-04-28T23:59:19Z",
+      "updated": "2026-04-28T23:59:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26182v1",
+      "abs_url": "https://arxiv.org/abs/2604.26182",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26182",
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26173",
+      "title": "Entropy Centroids as Intrinsic Rewards for Test-Time Scaling",
+      "abstract": "An effective way to scale up test-time compute of large language models is to sample multiple responses and then select the best one, as in Grok Heavy and Gemini Deep Think. Existing selection methods often rely on external reward models, which requires training a strong reward model and introduces additional computation overhead. As an alternative, previous approaches have explored intrinsic signals, such as confidence and entropy, but these signals are noisy with naive aggregation. In this work, we observe that high-entropy tokens tend to cluster into consecutive groups during inference, providing a more stable notion of model uncertainty than individual tokens. Together, these clusters reveal temporal patterns of model uncertainty throughout the inference process. Motivated by this observation, we propose to use the temporal structure of uncertainty as an intrinsic reward. To this end, we first formalize the basic unit of segment-level uncertainty as the High Entropy Phase (HEP), a variable-length segment that begins at a high-entropy token and ends when consecutive low-entropy tokens appear. We then define the Entropy Centroid, inspired by the concept of the center of mass in physics, as the weighted average position of all HEPs along the trajectory. Intuitively, a lower centroid indicates early exploration followed by confident generation, which we find often corresponds to higher response quality. Based on this insight, we propose the Lowest Centroid method, which selects the response with the lowest entropy centroid among multiple candidates. Experiments on mathematics, code generation, logical reasoning, and agentic tasks, across model scales ranging from 14B to 480B, show that Lowest Centroid consistently outperforms existing baselines and delivers stable gains as model size increases. Code is available at https://github.com/hkust-nlp/entropy-centroid.",
+      "authors": [
+        "Wenshuo Zhao",
+        "Qi Zhu",
+        "Xingshan Zeng",
+        "Fei Mi",
+        "Lifeng Shang",
+        "Yiren Feng"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-04-28T23:27:21Z",
+      "updated": "2026-04-28T23:27:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26173v1",
+      "abs_url": "https://arxiv.org/abs/2604.26173",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26173",
+      "summary_zh": "这篇论文提出了一种新的内在奖励机制——Entropy Centroids，用于在大语言模型测试时通过多样本选择来提升性能，旨在解决现有方法依赖外部奖励模型或内在信号噪声大的问题。研究发现，高熵词元在推理过程中倾向于聚集成连续的组，形成“高熵阶段”（High Entropy Phase, HEP），这些阶段的加权平均位置构成了Entropy Centroid。论文提出，较低的Entropy Centroid（即模型早期探索后能自信生成）通常与更高的响应质量相关。基于此，Lowest Centroid方法被提出，用于从多个候选响应中选择Entropy Centroid最低的一个。在数学、代码生成、逻辑推理和智能体任务上，跨越14B到480B的模型规模的实验表明，Lowest Centroid持续优于现有基线，并随着模型规模的增加展现出稳定的性能提升。"
+    },
+    {
+      "id": "2604.26130",
+      "title": "reward-lens: A Mechanistic Interpretability Library for Reward Models",
+      "abstract": "Every RLHF-trained language model is shaped by a reward model, yet the mechanistic interpretability toolkit -- logit lens, direct logit attribution, activation patching, sparse autoencoders -- was built for generative LLMs whose primitives all project onto a vocabulary unembedding. Reward models replace that with a scalar regression head, breaking each tool. We present reward-lens, an open-source library that ports this toolkit to reward models, organised around one observation: the reward head's weight vector $w_r$ is the natural axis for every interpretability question. The library provides a Reward Lens, component attribution, three-mode activation patching, a reward-hacking probe suite, TopK SAE feature attribution, cross-model comparison, and five theory-grounded extensions (distortion index, divergence-aware patching, misalignment cascade detection, reward-term conflict analysis, concept-vector analysis). A ten-method adapter protocol covers Llama, Mistral, Gemma-2, and ArmoRM multi-objective heads, with a generic adapter for any HuggingFace sequence classification model. We validate on two production reward models across ~695 RewardBench pairs. The central empirical finding is negative: linear attribution does not predict causal patching effects (mean Spearman $ρ= -0.256$ on Skywork, $-0.027$ on ArmoRM). The framework treats this disagreement as a property to expose, not a bug -- motivating a design that keeps observational and causal views first-class and directly comparable.",
+      "authors": [
+        "Mohammed Suhail B Nadaf"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-28T21:38:10Z",
+      "updated": "2026-04-28T21:38:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26130v1",
+      "abs_url": "https://arxiv.org/abs/2604.26130",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26130",
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26120",
+      "title": "Hierarchical Multi-Persona Induction from User Behavioral Logs: Learning Evidence-Grounded and Truthful Personas",
+      "abstract": "Behavioral logs provide rich signals for user modeling, but are noisy and interleaved across diverse intents. Recent work uses LLMs to generate interpretable natural-language personas from user logs, yet evaluation often emphasizes downstream utility, providing limited assurance of persona quality itself. We propose a hierarchical framework that aggregates user actions into intent memories and induces multiple evidence-grounded personas by clustering and labeling these memories. We formulate persona induction as an optimization problem over persona quality-captured by cluster cohesion, persona-evidence alignment, and persona truthfulness-and train the persona model using a groupwise extension of Direct Preference Optimization (DPO). Experiments on a large-scale service log and two public datasets show that our method induces more coherent, evidence-grounded, and trustworthy personas, while also improving future interaction prediction.",
+      "authors": [
+        "Nayoung Choi",
+        "Haeyu Jeong",
+        "Changbong Kim",
+        "Hongjun Lim",
+        "Jinho D. Choi"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-28T21:13:16Z",
+      "updated": "2026-04-28T21:13:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26120v1",
+      "abs_url": "https://arxiv.org/abs/2604.26120",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26120",
+      "summary_zh": "该研究旨在从用户行为日志中提取多个人格（personas），以解决现有方法在解释性和真实性方面的不足。它提出了一种分层框架，首先将用户行为聚合为意图记忆（intent memories），然后通过聚类和标注这些记忆来归纳出多个基于证据的人格。关键创新在于将人格归纳建模为一个优化问题，目标是最大化聚类内聚性、人格与证据对齐以及人格真实性，并使用DPO（Direct Preference Optimization）的群组扩展来训练人格模型。在大型服务日志和两个公共数据集上的实验表明，该方法能够生成更连贯、更具证据支持且更可信的人格，同时显著提升了未来交互预测的准确性。"
+    },
+    {
+      "id": "2604.26102",
+      "title": "SWE-Edit: Rethinking Code Editing for Efficient SWE-Agent",
+      "abstract": "Large language model agents have achieved remarkable progress on software engineering tasks, yet current approaches suffer from a fundamental context coupling problem: the standard code editing interface conflates code inspection, modification planning, and edit execution within a single context window, forcing agents to interleave exploratory viewing with strictly formatted edit generation. This causes irrelevant information to accumulate and degrades agent performance. To address this, we propose SWE-Edit, which decomposes code editing into two specialized subagents: a Viewer that extracts task-relevant code on demand, and an Editor that executes modifications from high-level plans--allowing the main agent to focus on reasoning while delegating context-intensive operations to clean context windows. We further investigate what makes an effective editing model: observing that the prevalent find-and-replace format is error-prone, we train Qwen3-8B with GRPO to adaptively select editing modes, yielding improved editing efficiency over single-format baselines. On SWE-bench Verified, SWE-Edit improves resolved rate by 2.1% while reducing inference cost by 17.9%. We additionally propose a code editing benchmark that reliably predicts downstream agentic performance, providing practical guidance for editing model selection. Our code is publicly available at https://github.com/microsoft/SWE-Edit.",
+      "authors": [
+        "Yikai Zhang",
+        "Jiaxin Pei",
+        "Kenan Li",
+        "Maoquan Wang",
+        "Jin Pan",
+        "Yu Kang",
+        "Shengyu Fu",
+        "Elsie Nallipogu",
+        "Junjie Hu",
+        "Yufan Huang",
+        "Zijian Jin"
+      ],
+      "categories": [
+        "cs.SE",
+        "cs.CL"
+      ],
+      "published": "2026-04-28T20:35:09Z",
+      "updated": "2026-04-28T20:35:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26102v1",
+      "abs_url": "https://arxiv.org/abs/2604.26102",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26102",
+      "summary_zh": ""
+    },
+    {
+      "id": "2604.26095",
+      "title": "Distill-Belief: Closed-Loop Inverse Source Localization and Characterization in Physical Fields",
+      "abstract": "{Closed-loop inverse source localization and characterization (ISLC) requires a mobile agent to select measurements that localize sources and infer latent field parameters under strict time constraints.} {The core challenge lies in the belief-space objective: valid uncertainty estimation requires expensive Bayesian inference, whereas using fast learned belief model leads to reward hacking, in which the policy exploits approximation errors rather than actually reducing uncertainty.} {We propose \\textbf{Distill-Belief}, a teacher--student framework that decouples correctness from efficiency. A Bayes-correct particle-filter teacher maintains the posterior and supplies a dense information-gain signal, while a compact student distills the posterior into belief statistics for control and an uncertainty certificate for stopping. At deployment, only the student is used, yielding constant per-step cost.} {Experiments on seven field modalities and two stress tests show that Distill-Belief consistently reduces sensing cost and improves success, posterior contraction, and estimation accuracy over baselines, while mitigating reward hacking.}",
+      "authors": [
+        "Yiwei Shi",
+        "Zixing Song",
+        "Mengyue Yang",
+        "Cunjia Liu",
+        "Weiru Liu"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-28T20:18:29Z",
+      "updated": "2026-04-28T20:18:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.26095v1",
+      "abs_url": "https://arxiv.org/abs/2604.26095",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.26095",
+      "summary_zh": ""
+    },
+    {
       "id": "2604.25907",
       "title": "How Fast Should a Model Commit to Supervision? Training Reasoning Models on the Tsallis Loss Continuum",
       "abstract": "Adapting reasoning models to new tasks during post-training with only output-level supervision stalls under reinforcement learning from verifiable rewards (RLVR) when the initial success probability $p_0$ is small. Using the Tsallis $q$-logarithm, we define a loss family $J_Q$ that interpolates between RLVR (at $q{=}0$, the exploitation pole) and the log-marginal-likelihood over latent trajectories (at $q{=}1$, the density-estimation pole). All members share the same per-example gradient direction, differing only by a scalar amplification $P_{θ^{-q}}$ that reweights each instance independently of the learning rate. This amplification is the mechanism that addresses cold-start stalling: under gradient flow, the exploitation pole requires $Ω(\\frac{1}{p_0})$ time to escape cold start, while the density-estimation pole escapes in $Θ\\big(\\log(\\frac{1}{p_0})\\big)$; intermediate $q$ trades escape speed against noise memorization. Because $P_θ$ is intractable, we derive two Monte Carlo estimators from the two factorizations of the gradient: Gradient-Amplified RL (GARL) samples from the prior and amplifies the RL gradient, and Posterior-Attenuated Fine-Tuning (PAFT) importance-resamples from the posterior and runs standard SFT. Both have bias $O\\big(\\frac{q}{M P_θ^{q+1}}\\big)$; GARL has lower variance, PAFT has semantically coherent gradients. On FinQA, HotPotQA, and MuSiQue, GARL at $q{=}0.75$ substantially mitigates cold-start stalling, escaping cold start where GRPO fails entirely. In warm start, GARL at low $q$ dominates FinQA where training is stable; on HotPotQA and MuSiQue, GARL destabilizes during training, and PAFT at $q{=}0.75$ provides stable gradients (best overall on HotPotQA at 47.9 maj@16, $+14.4$ over GRPO).",
@@ -48,8 +201,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25907",
-      "summary_zh": "针对推理模型在初始成功率极低时面临的冷启动（Cold-start）难题，该研究利用 Tsallis $q$-对数定义了一类损失函数 $J_Q$，实现了从强化学习（RLVR，$q=0$）到对数边际似然（$q=1$）的平滑插值。核心创新在于通过标量放大机制 $P_{\\theta}^{-q}$ 重新平衡梯度，理论证明 $q=1$ 时逃离冷启动的时间复杂度从指数级的 $\\Omega(1/p_0)$ 降低至对数级的 $\\Theta(\\log(1/p_0))$。研究提出了两种蒙特卡洛估计器：GARL 通过放大 RL 梯度降低方差，PAFT 通过后验重要性采样提供语义一致的梯度。在 FinQA、HotPotQA 和 MuSiQue 等 benchmark 上的实验表明，GARL 在 $q=0.75$ 时能显著缓解冷启动停滞，在 GRPO 完全失效的任务中成功训练；而 PAFT 在暖启动场景下表现更稳健，在 HotPotQA 上比 GRPO 提升了 14.4% 的准确率。",
-      "impact_score": null
+      "summary_zh": "针对推理模型在初始成功率极低时面临的冷启动（Cold-start）难题，该研究利用 Tsallis $q$-对数定义了一类损失函数 $J_Q$，实现了从强化学习（RLVR，$q=0$）到对数边际似然（$q=1$）的平滑插值。核心创新在于通过标量放大机制 $P_{\\theta}^{-q}$ 重新平衡梯度，理论证明 $q=1$ 时逃离冷启动的时间复杂度从指数级的 $\\Omega(1/p_0)$ 降低至对数级的 $\\Theta(\\log(1/p_0))$。研究提出了两种蒙特卡洛估计器：GARL 通过放大 RL 梯度降低方差，PAFT 通过后验重要性采样提供语义一致的梯度。在 FinQA、HotPotQA 和 MuSiQue 等 benchmark 上的实验表明，GARL 在 $q=0.75$ 时能显著缓解冷启动停滞，在 GRPO 完全失效的任务中成功训练；而 PAFT 在暖启动场景下表现更稳健，在 HotPotQA 上比 GRPO 提升了 14.4% 的准确率。"
     },
     {
       "id": "2604.25898",
@@ -74,8 +226,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25898",
-      "summary_zh": "TSN-Affinity 旨在解决持续离线强化学习（CORL）中灾难性遗忘与重放方法带来的内存开销及分布偏移问题。该方法结合了 Decision Transformer 与轻量化的 TinySubNetworks 架构，通过为每个任务分配特定的子网络参数来实现高效学习。其核心创新在于引入了一种基于强化学习感知的亲和力重用策略，根据动作兼容性和潜在特征相似度对任务进行路由，从而实现受控的知识共享。在 Atari 游戏和 Franka Emika Panda 机器人操作任务的实验表明，该方法在离散和连续控制场景下均表现优异，不仅能有效保留旧任务性能，还通过相似度引导的架构重用提升了多任务综合表现，证明了其作为重放策略替代方案的强大潜力。",
-      "impact_score": null
+      "summary_zh": "TSN-Affinity 旨在解决持续离线强化学习（CORL）中灾难性遗忘与重放方法带来的内存开销及分布偏移问题。该方法结合了 Decision Transformer 与轻量化的 TinySubNetworks 架构，通过为每个任务分配特定的子网络参数来实现高效学习。其核心创新在于引入了一种基于强化学习感知的亲和力重用策略，根据动作兼容性和潜在特征相似度对任务进行路由，从而实现受控的知识共享。在 Atari 游戏和 Franka Emika Panda 机器人操作任务的实验表明，该方法在离散和连续控制场景下均表现优异，不仅能有效保留旧任务性能，还通过相似度引导的架构重用提升了多任务综合表现，证明了其作为重放策略替代方案的强大潜力。"
     },
     {
       "id": "2604.25895",
@@ -97,8 +248,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25895",
-      "summary_zh": "该研究探讨了基于人类反馈的强化学习（RLHF）中人类判断的规范性作用，并将其划分为三种概念模型：扩展模型（Extension），即标注者代行设计者的意志；证据模型（Evidence），即标注者提供关于道德或社会事实的独立证据；权威模型（Authority），即标注者作为公众代表拥有决定系统输出的独立权力。通过调研 RLHF 领域的里程碑式文献，揭示了现有研究在无意中混淆这些模型所导致的失败模式，并提出了选择不同模型的规范性标准。核心建议是 RLHF 设计者应将标注任务分解为可分离的维度，并针对每个维度匹配最合适的模型，而非追求单一的统一流程。这种分类框架为如何征集、验证和聚合标注提供了明确的理论指导，有助于提升大语言模型对齐过程的透明度与合理性。",
-      "impact_score": null
+      "summary_zh": "该研究探讨了基于人类反馈的强化学习（RLHF）中人类判断的规范性作用，并将其划分为三种概念模型：扩展模型（Extension），即标注者代行设计者的意志；证据模型（Evidence），即标注者提供关于道德或社会事实的独立证据；权威模型（Authority），即标注者作为公众代表拥有决定系统输出的独立权力。通过调研 RLHF 领域的里程碑式文献，揭示了现有研究在无意中混淆这些模型所导致的失败模式，并提出了选择不同模型的规范性标准。核心建议是 RLHF 设计者应将标注任务分解为可分离的维度，并针对每个维度匹配最合适的模型，而非追求单一的统一流程。这种分类框架为如何征集、验证和聚合标注提供了明确的理论指导，有助于提升大语言模型对齐过程的透明度与合理性。"
     },
     {
       "id": "2604.25872",
@@ -124,8 +274,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25872",
-      "summary_zh": "在语言模型强化学习中，代理奖励函数往往无法完全对齐真实意图，但传统的排序准确率等指标将所有奖励错误均视为有害。通过理论分析 Policy Gradient 优化过程中概率质量的转移，该研究将奖励错误根据其对真实奖励增长的影响划分为有害、良性或有益三类，并指出某些错误能有效防止策略陷入中等质量的局部最优。基于此理论，研究者为 RLHF 开发了新的奖励模型评估指标，实验证明这些指标比标准准确率更能预测模型在强化学习后的实际表现。此外，研究还为可验证奖励的设计提供了新见解，强调了代理奖励的有效性高度依赖于其与初始策略及学习算法之间的相互作用。",
-      "impact_score": null
+      "summary_zh": "在语言模型强化学习中，代理奖励函数往往无法完全对齐真实意图，但传统的排序准确率等指标将所有奖励错误均视为有害。通过理论分析 Policy Gradient 优化过程中概率质量的转移，该研究将奖励错误根据其对真实奖励增长的影响划分为有害、良性或有益三类，并指出某些错误能有效防止策略陷入中等质量的局部最优。基于此理论，研究者为 RLHF 开发了新的奖励模型评估指标，实验证明这些指标比标准准确率更能预测模型在强化学习后的实际表现。此外，研究还为可验证奖励的设计提供了新见解，强调了代理奖励的有效性高度依赖于其与初始策略及学习算法之间的相互作用。"
     },
     {
       "id": "2604.25850",
@@ -147,8 +296,8 @@
         "cs.SE"
       ],
       "published": "2026-04-28T16:55:02Z",
-      "updated": "2026-04-28T16:55:02Z",
-      "pdf_url": "https://arxiv.org/pdf/2604.25850v1",
+      "updated": "2026-04-29T17:05:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.25850v2",
       "abs_url": "https://arxiv.org/abs/2604.25850",
       "topics": [
         "other"
@@ -236,12 +385,14 @@
       "pdf_url": "https://arxiv.org/pdf/2604.25819v1",
       "abs_url": "https://arxiv.org/abs/2604.25819",
       "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25819",
+      "keyword_topics": [
         "distillation",
         "video-gen"
       ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25819",
-      "summary_zh": "Mutual Forcing 框架旨在解决音视频角色生成中的长程同步与快速自回归生成难题。该方法采用两阶段训练策略，先训练单模态生成器再通过配对数据进行联合优化，并创新性地在单一权值共享模型中集成了多步与少步生成两种模式。通过多步模式对少步模式进行自监督蒸馏，同时利用少步模式在训练中生成历史上下文以增强推理一致性，该框架摆脱了对双向教师模型的依赖。实验结果表明，Mutual Forcing 仅需 4 到 8 步采样即可达到或超越传统 50 步采样模型的生成质量，在保持音视频高度同步的同时显著提升了推理效率。",
-      "impact_score": null
+      "summary_zh": "Mutual Forcing 框架旨在解决音视频角色生成中的长程同步与快速自回归生成难题。该方法采用两阶段训练策略，先训练单模态生成器再通过配对数据进行联合优化，并创新性地在单一权值共享模型中集成了多步与少步生成两种模式。通过多步模式对少步模式进行自监督蒸馏，同时利用少步模式在训练中生成历史上下文以增强推理一致性，该框架摆脱了对双向教师模型的依赖。实验结果表明，Mutual Forcing 仅需 4 到 8 步采样即可达到或超越传统 50 步采样模型的生成质量，在保持音视频高度同步的同时显著提升了推理效率。"
     },
     {
       "id": "2604.25795",
@@ -265,8 +416,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25795",
-      "summary_zh": "针对黑盒少样本知识蒸馏（Black-box Few-shot KD）中训练数据匮乏且无法访问教师模型内部参数的难题，该研究提出了一种新型的生成对抗网络（GAN）训练方案。该方法通过在教师模型的监督下自适应地筛选高置信度合成图像，并将其动态引入对抗学习过程中，有效解决了现有生成方法缺乏样本多样性的问题。这种策略能够显著扩展蒸馏数据集的覆盖范围并提升数据质量，从而在极少原始图像的条件下大幅增强学生模型的学习效果。实验结果表明，该方法在七个主流图像数据集上均取得了 SOTA 性能，证明了通过提升合成数据多样性来优化黑盒蒸馏过程的有效性。",
-      "impact_score": null
+      "summary_zh": "针对黑盒少样本知识蒸馏（Black-box Few-shot KD）中训练数据匮乏且无法访问教师模型内部参数的难题，该研究提出了一种新型的生成对抗网络（GAN）训练方案。该方法通过在教师模型的监督下自适应地筛选高置信度合成图像，并将其动态引入对抗学习过程中，有效解决了现有生成方法缺乏样本多样性的问题。这种策略能够显著扩展蒸馏数据集的覆盖范围并提升数据质量，从而在极少原始图像的条件下大幅增强学生模型的学习效果。实验结果表明，该方法在七个主流图像数据集上均取得了 SOTA 性能，证明了通过提升合成数据多样性来优化黑盒蒸馏过程的有效性。"
     },
     {
       "id": "2604.25794",
@@ -291,8 +441,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25794",
-      "summary_zh": "DIP-KD 旨在解决黑盒无数据知识蒸馏（Black-box Data-free KD）难题，即在无法获取原始训练数据且仅能访问教师模型 Top-1 预测结果的严苛条件下，实现知识的高效迁移。该框架通过三个阶段的协作流程展开：首先合成具有多样化视觉模式和语义的图像先验（Image Priors），随后利用对比学习（Contrastive Learning）增强合成样本间的区分度，最后引入一种新型的引导学生模型（Primer Student）来实现软概率蒸馏。在 12 个 Benchmark 上的实验结果表明，DIP-KD 达到了最先进的性能水平，证明了数据多样性是受限 AI 环境下获取知识的关键。这种方法有效克服了合成数据多样性不足和蒸馏信号匮乏的局限性，为去中心化或高安全性场景下的模型压缩提供了新方案。",
-      "impact_score": null
+      "summary_zh": "DIP-KD 旨在解决黑盒无数据知识蒸馏（Black-box Data-free KD）难题，即在无法获取原始训练数据且仅能访问教师模型 Top-1 预测结果的严苛条件下，实现知识的高效迁移。该框架通过三个阶段的协作流程展开：首先合成具有多样化视觉模式和语义的图像先验（Image Priors），随后利用对比学习（Contrastive Learning）增强合成样本间的区分度，最后引入一种新型的引导学生模型（Primer Student）来实现软概率蒸馏。在 12 个 Benchmark 上的实验结果表明，DIP-KD 达到了最先进的性能水平，证明了数据多样性是受限 AI 环境下获取知识的关键。这种方法有效克服了合成数据多样性不足和蒸馏信号匮乏的局限性，为去中心化或高安全性场景下的模型压缩提供了新方案。"
     },
     {
       "id": "2604.25783",
@@ -449,7 +598,7 @@
     {
       "id": "2604.25530",
       "title": "The Surprising Effectiveness of Canonical Knowledge Distillation for Semantic Segmentation",
-      "abstract": "Recent knowledge distillation (KD) methods for semantic segmentation introduce increasingly complex hand-crafted objectives, yet are typically evaluated under fixed iteration schedules. These objectives substantially increase per-iteration cost, meaning equal iteration counts do not correspond to equal training budgets. It is therefore unclear whether reported gains reflect stronger distillation signals or simply greater compute. We show that iteration-based comparisons are misleading: when wall-clock compute is matched, \\textit{canonical} logit- and feature-based KD outperform recent segmentation-specific methods. Under extended training, feature-based distillation achieves state-of-the-art ResNet-18 performance on Cityscapes and ADE20K. A PSPNet ResNet-18 student closely approaches its ResNet-101 teacher despite using only one quarter of the parameters, reaching 99\\% of the teacher's mIoU on Cityscapes (79.0 vs.\\ 79.8) and 92\\% on ADE20K. Our results challenge the prevailing assumption that KD for segmentation requires task-specific mechanisms and suggest that scaling, rather than complex hand-crafted objectives, should guide future method design.",
+      "abstract": "Recent knowledge distillation (KD) methods for semantic segmentation introduce increasingly complex hand-crafted objectives, yet are typically evaluated under fixed iteration schedules. These objectives substantially increase per-iteration cost, meaning equal iteration counts do not correspond to equal training budgets. It is therefore unclear whether reported gains reflect stronger distillation signals or simply greater compute. We show that iteration-based comparisons are misleading: when wall-clock compute is matched, canonical logit- and feature-based KD outperform recent segmentation-specific methods. Under extended training, feature-based distillation achieves state-of-the-art ResNet-18 performance on Cityscapes and ADE20K. A PSPNet ResNet-18 student closely approaches its ResNet-101 teacher despite using only one quarter of the parameters, reaching 99% of the teacher's mIoU on Cityscapes (79.0 vs 79.8) and 92% on ADE20K. Our results challenge the prevailing assumption that KD for segmentation requires task-specific mechanisms and suggest that scaling, rather than complex hand-crafted objectives, should guide future method design.",
       "authors": [
         "Muhammad Ali",
         "Kevin Alexander Laube",
@@ -463,8 +612,8 @@
         "cs.AI"
       ],
       "published": "2026-04-28T11:57:57Z",
-      "updated": "2026-04-28T11:57:57Z",
-      "pdf_url": "https://arxiv.org/pdf/2604.25530v1",
+      "updated": "2026-04-29T12:45:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.25530v2",
       "abs_url": "https://arxiv.org/abs/2604.25530",
       "topics": [
         "distillation"
@@ -800,11 +949,35 @@
       "summary_zh": "针对视频生成模型中人体动作自然度难以准确评估的问题，HuM-Eval 提出了一种由粗到细的评价框架，旨在解决现有指标过度关注全局统计而忽视人体细节、导致与人类主观偏好不一致的缺陷。该框架首先利用视觉语言模型（VLM）对视频全局质量进行初步评估，随后通过 2D 姿态检测验证解剖学正确性，并结合 3D 人体运动分析来衡量动作的稳定性。实验结果显示，HuM-Eval 在与人类评价的相关性上达到了 58.2%，显著优于现有的 SOTA 基准指标。此外，该研究还推出了包含 1000 个多样化提示词的 HuM-Bench 基准测试集，对当前主流的文本生成视频模型进行了深度测评，为下一代人体运动生成技术的发展提供了更精准的衡量标准。"
     },
     {
+      "id": "2604.25972",
+      "title": "A Survey of Multi-Agent Deep Reinforcement Learning with Graph Neural Network-Based Communication",
+      "abstract": "In multi-agent reinforcement learning (MARL), the integration of a communication mechanism, allowing agents to better learn to coordinate their actions and converge on their objectives by sharing information. Based on an interaction graph, a subclass of methods employs graph neural networks (GNNs) to learn the communication, enabling agents to improve their internal representations by enriching them with information exchanged. With growing research, we note a lack of explicit structure and framework to distinguish and classify MARL approaches with communication based on GNNs. Thus, this paper surveys recent works in this field. We propose a generalized GNN-based communication process with the goal of making the underlying concepts behind the methods more obvious and accessible.",
+      "authors": [
+        "Valentin Cuzin-Rambaud",
+        "Laetitia Matignon",
+        "Maxime Morge"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-04-28T07:50:24Z",
+      "updated": "2026-04-28T07:50:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.25972v1",
+      "abs_url": "https://arxiv.org/abs/2604.25972",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.25972",
+      "summary_zh": "这篇综述旨在解决多智能体深度强化学习（MARL）中基于图神经网络（GNN）的通信机制缺乏明确分类框架的问题。它通过提出一个通用的GNN通信过程，对该领域近期工作进行系统性梳理和分类，以期使相关概念更清晰易懂。关键创新点在于构建了一个统一的GNN通信模型，将现有方法归纳到该框架下，从而揭示不同方法的共性和差异。该综述没有具体实验结果，而是通过对现有文献的分析和归纳，为研究人员提供了理解和设计GNN-based MARL通信策略的结构化视角。"
+    },
+    {
       "id": "2604.25326",
       "title": "AHASD: Asynchronous Heterogeneous Architecture for LLM Adaptive Drafting Speculative Decoding on Mobile Devices",
       "abstract": "Speculative decoding enhances the inference efficiency of large language models (LLMs) by generating drafts using a small draft language model (DLM) and verifying them in batches with a large target language model (TLM). However, adaptive drafting inference on a mobile single-NPU-PIM system faces idle overhead in traditional operator-level synchronous execution and wasted computation in asynchronous execution due to fluctuations in draft length. This paper introduces AHASD, a task-level asynchronous mobile NPU-PIM heterogeneous architecture for speculative decoding. Notably, AHASD achieves parallel drafting on the PIM and verification on a single NPU through task-level DLM-TLM decoupling and specifically, it incorporates Entropy-History-Aware Drafting Control and Time-Aware Pre-Verification Control to dynamically manage adaptive drafting algorithm execution and pre-verification timing, suppressing invalid drafting based on low-confidence drafts. Additionally, AHASD integrates Attention Algorithm Units and Gated Task Scheduling Units within LPDDR5-PIM to enable attention link localization and sub-microsecond task switching on the PIM side. Experimental results for different LLMs and adaptive drafting algorithms show that AHASD achieves up to 4.2$\\times$ in throughput and 5.6$\\times$ in energy efficiency improvements over a GPU-only baseline, and 1.5$\\times$ in throughput and 1.24$\\times$ in energy efficiency gains over the state-of-the-art GPU+PIM baseline, with hardware overhead below 3\\% of the DRAM area.",
       "authors": [
-        "Ma zirui",
+        "Ma Zirui",
         "Fan Zhihua",
         "Li Wenxing",
         "Wu Haibin",
@@ -817,8 +990,8 @@
         "cs.AI"
       ],
       "published": "2026-04-28T07:42:41Z",
-      "updated": "2026-04-28T07:42:41Z",
-      "pdf_url": "https://arxiv.org/pdf/2604.25326v1",
+      "updated": "2026-04-29T03:26:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.25326v2",
       "abs_url": "https://arxiv.org/abs/2604.25326",
       "topics": [
         "distillation"
@@ -954,7 +1127,8 @@
         "Kaiyu Huang"
       ],
       "categories": [
-        "cs.CL"
+        "cs.CL",
+        "cs.IR"
       ],
       "published": "2026-04-28T03:41:36Z",
       "updated": "2026-04-28T03:41:36Z",
@@ -1059,8 +1233,8 @@
         "cs.AI"
       ],
       "published": "2026-04-28T02:53:27Z",
-      "updated": "2026-04-28T02:53:27Z",
-      "pdf_url": "https://arxiv.org/pdf/2604.25150v1",
+      "updated": "2026-04-29T17:28:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.25150v2",
       "abs_url": "https://arxiv.org/abs/2604.25150",
       "topics": [
         "other"
