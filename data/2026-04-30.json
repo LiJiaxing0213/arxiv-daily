@@ -1,6 +1,6 @@
 {
   "date": "2026-04-30",
-  "generated_at": "2026-05-03T04:59:05.693713+00:00",
+  "generated_at": "2026-05-04T05:02:43.244718+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,264 @@
   },
   "papers": [
     {
+      "id": "2605.00298",
+      "title": "Data Deletion Can Help in Adaptive RL",
+      "abstract": "Deploying reinforcement learning policies in the real world requires adapting to time-varying environments. We study this problem in the contextual Markov Decision Process (cMDP) framework, where a family of environments is indexed by a low-dimensional context unknown at test time. The standard approach decomposes the problem: train a so-called \"universal policy\" which assumes knowledge of the true context, then pair it with a context estimator which approximates context using the observed trajectory. We identify a simple, counterintuitive trick that substantially improves the estimator: randomly delete a fraction of the training buffer after each round. This works because data is collected across multiple rounds using progressively better policies, and older trajectories come from a different distribution than what the estimator will face at deployment time; random deletion creates an implicit exponential decay on older data while preserving diversity without requiring any explicit identification of which samples are stale. This reduces robustness gap by 30% for MLPs and by 6% on average for recurrent networks. Strikingly, it allows a narrow MLP with 5x fewer parameters to outperform a wide MLP trained without deletion. To understand when and why deletion helps, we analyze regularized empirical risk minimization with a mismatch between the train distribution and the distribution at deployment; in this idealized setting, we prove that removing a single uniformly random training point decreases expected test loss in expectation under mild conditions. For ridge regression we make this quantitative: deletion helps when the regularization coefficient is moderate and the signal-to-noise ratio (SNR) is sufficiently low, and, crucially, this SNR threshold gives a direct measure of how large the distribution mismatch between training and deployment must be for deletion to be beneficial.",
+      "authors": [
+        "Param Budhraja",
+        "Aditya Gangrade",
+        "Alex Olshevsky",
+        "Venkatesh Saligrama"
+      ],
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ],
+      "published": "2026-04-30T23:58:22Z",
+      "updated": "2026-04-30T23:58:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00298v1",
+      "abs_url": "https://arxiv.org/abs/2605.00298",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00298",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决强化学习策略在时变环境中适应性差的问题，特别是在上下文马尔可夫决策过程（cMDP）框架下，通过一个低维上下文索引环境。传统方法是训练一个“通用策略”并结合上下文估计器，但本文提出一个反直觉的创新点：在每轮训练后随机删除一部分训练数据，以提高上下文估计器的性能。这种数据删除机制通过隐式地对旧数据进行指数衰减，同时保持数据多样性，有效解决了由于策略迭代导致训练数据分布与部署时分布不匹配的问题。实验结果显示，该方法将MLP的鲁棒性差距降低了30%，循环网络的鲁棒性差距平均降低了6%，甚至使参数量减少5倍的窄MLP表现优于未删除数据的宽MLP。理论分析表明，在训练分布与部署分布不匹配的情况下，随机删除训练点可以降低预期测试损失，并且在岭回归中量化了删除数据有益的条件：适度的正则化系数和足够低的信噪比。"
+    },
+    {
+      "id": "2605.00264",
+      "title": "Pessimism-Free Offline Learning in General-Sum Games via KL Regularization",
+      "abstract": "Offline multi-agent reinforcement learning in general-sum settings is challenged by the distribution shift between logged datasets and target equilibrium policies. While standard methods rely on manual pessimistic penalties, we demonstrate that KL regularization suffices to stabilize learning and achieve equilibrium recovery. We propose General-sum Anchored Nash Equilibrium (GANE), which recovers regularized Nash equilibria at an accelerated statistical rate of $\\widetilde{O}(1/n)$. For computational tractability, we develop General-sum Anchored Mirror Descent (GAMD), an iterative algorithm converging to a Coarse Correlated Equilibrium at the standard rate of $\\widetilde{O}(1/\\sqrt{n}+1/T)$. These results establish KL regularization as a standalone mechanism for pessimism-free offline learning that achieves equivalent or accelerated rates in multi-player general-sum games.",
+      "authors": [
+        "Claire Chen",
+        "Yuheng Zhang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.GT"
+      ],
+      "published": "2026-04-30T21:58:16Z",
+      "updated": "2026-04-30T21:58:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00264v1",
+      "abs_url": "https://arxiv.org/abs/2605.00264",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00264",
+      "summary_zh": "多智能体一般和博弈中的离线强化学习面临数据分布偏移的挑战，传统方法依赖手动设置的悲观惩罚。该研究提出KL正则化足以稳定学习并恢复均衡，无需悲观惩罚。为此，论文引入了General-sum Anchored Nash Equilibrium (GANE)，它能以$\\widetilde{O}(1/n)$的加速统计速率恢复正则化纳什均衡。为提高计算效率，研究开发了General-sum Anchored Mirror Descent (GAMD)算法，该算法以$\\widetilde{O}(1/\\sqrt{n}+1/T)$的标准速率收敛到粗相关均衡。这些成果表明，KL正则化是一种无需悲观惩罚的独立离线学习机制，能在多玩家一般和博弈中实现等效或加速的学习速率。"
+    },
+    {
+      "id": "2605.00248",
+      "title": "Causal Foundations of Collective Agency",
+      "abstract": "A key challenge for the safety of advanced AI systems is the possibility that multiple simpler agents might inadvertently form a collective agent with capabilities and goals distinct from those of any individual. More generally, determining when a group of agents can be viewed as a unified collective agent is a foundational question in the study of interactions and incentives in both biological and artificial systems. We adopt a behavioral perspective in answering this question, ascribing collective agency to a group when viewing the group's joint actions as rational and goal-directed successfully predicts its behavior. We formalize this perspective on collective agency using causal games -- which are causal models of strategic, multi-agent interactions -- and causal abstraction -- which formalizes when a simple, high-level model faithfully captures a more complex, low-level model. We use this framework to solve a puzzle regarding multi-agent incentives in actor-critic models and to make quantitative assessments of the degree of collective agency exhibited by different voting mechanisms. Our framework aims to provide a foundation for theoretical and empirical work to understand, predict, and control emergent collective agents in multi-agent AI systems.",
+      "authors": [
+        "Frederik Hytting Jørgensen",
+        "Sebastian Weichwald",
+        "Lewis Hammond"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.GT",
+        "cs.MA"
+      ],
+      "published": "2026-04-30T21:32:10Z",
+      "updated": "2026-04-30T21:32:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00248v1",
+      "abs_url": "https://arxiv.org/abs/2605.00248",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00248",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "论文旨在解决高级AI系统安全面临的关键挑战：多个简单智能体可能无意中形成一个具有独立能力和目标的集体智能体，以及如何判断一个智能体群体何时构成一个统一的集体智能体。研究通过采纳行为学视角，当将群体的联合行动视为理性且目标导向能成功预测其行为时，就将集体能动性归因于该群体。关键创新在于利用因果博弈（Causal Games）和因果抽象（Causal Abstraction）来形式化集体能动性，其中因果博弈是战略性多智能体交互的因果模型，因果抽象则形式化了简单高层模型如何忠实捕捉复杂低层模型。该框架成功解决了actor-critic模型中多智能体激励的难题，并对不同投票机制所展现的集体能动性程度进行了量化评估，为理解、预测和控制多智能体AI系统中涌现的集体智能体提供了理论基础。"
+    },
+    {
+      "id": "2605.00244",
+      "title": "Lucid-XR: An Extended-Reality Data Engine for Robotic Manipulation",
+      "abstract": "We introduce Lucid-XR, a generative data engine for creating diverse and realistic-looking multi-modal data to train real-world robotic systems. At the core of Lucid-XR is vuer, a web-based physics simulation environment that runs directly on the XR headset, enabling internet-scale access to immersive, latency-free virtual interactions without requiring specialized equipment. The complete system integrates on-device physics simulation with human-to-robot pose retargeting. Data collected is further amplified by a physics-guided video generation pipeline steerable via natural language specifications. We demonstrate zero-shot transfer of robot visual policies to unseen, cluttered, and badly lit evaluation environments, after training entirely on Lucid-XR's synthetic data. We include examples across dexterous manipulation tasks that involve soft materials, loosely bound particles, and rigid body contact. Project website: https://lucidxr.github.io",
+      "authors": [
+        "Yajvan Ravan",
+        "Adam Rashid",
+        "Alan Yu",
+        "Kai McClennen",
+        "Gio Huh",
+        "Kevin Yang",
+        "Zhutian Yang",
+        "Qinxi Yu",
+        "Xiaolong Wang",
+        "Phillip Isola",
+        "Ge Yang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-04-30T21:25:20Z",
+      "updated": "2026-04-30T21:25:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00244v1",
+      "abs_url": "https://arxiv.org/abs/2605.00244",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00244",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "该研究提出 Lucid-XR，一个生成式数据引擎，旨在为训练真实世界的机器人系统提供多样化、逼真的多模态数据。其核心是 vuer，一个直接在 XR 头戴设备上运行的基于网络的物理模拟环境，实现了沉浸式、低延迟的虚拟交互，无需专业设备。该系统通过将设备上的物理模拟与人到机器人的姿态重定向相结合，并利用物理引导的视频生成管道，通过自然语言指令进一步增强数据。实验结果表明，仅使用 Lucid-XR 的合成数据训练后，机器人视觉策略能够实现零样本迁移，在未见过的、杂乱和光线不佳的评估环境中表现良好，涵盖了涉及软材料、松散颗粒和刚体接触的灵巧操作任务。"
+    },
+    {
+      "id": "2605.00237",
+      "title": "Bayesian Optimization in Linear Time",
+      "abstract": "Bayesian optimization is a sequential method for minimizing objective functions that are expensive to evaluate and about which few assumptions can be made. By using all gathered data to train a Gaussian process model for the function and adaptively employing a mixture of global exploration and local exploitation, this method has been used for optimization in many fields including machine learning, automotive engineering and reinforcement learning. However, the standard method suffers from two problems: 1) with cubic computational complexity in the training-set size it eventually becomes computationally infeasible to train the model, and 2) globally modeling the objective function is not necessarily optimal given the local nature of minimization. Using flexible and recursive binary partitioning of the search space, we adapt both the modeling and acquisitive aspects of standard Bayesian optimization to work harmoniously with the partitioning scheme, thereby ameliorating both standard shortcomings. We compare our method against a commonly used Bayesian optimization library on seven challenging test functions, ranging in dimensionality from $6$ to $124$, and show that our method achieves superior optimization performance in all tests. In addition our method has linear computational complexity.",
+      "authors": [
+        "Jesse Schneider",
+        "William J. Welch"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-30T21:16:12Z",
+      "updated": "2026-04-30T21:16:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00237v1",
+      "abs_url": "https://arxiv.org/abs/2605.00237",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00237",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "贝叶斯优化（Bayesian Optimization, BO）在处理高成本、少假设的目标函数最小化问题时面临计算复杂度高（立方级）和全局建模非最优的挑战。该研究提出了一种基于搜索空间灵活递归二分划分（binary partitioning）的方法，将建模和采集策略与划分方案相结合，以解决这些问题。关键创新在于通过局部建模和采集策略，将计算复杂度从立方级降低到线性级，同时更好地适应最小化问题的局部特性。在七个维度从6到124的测试函数上，该方法与常用贝叶斯优化库进行比较，结果显示其在所有测试中均取得了更优的优化性能，并实现了线性计算复杂度。"
+    },
+    {
+      "id": "2605.00236",
+      "title": "Attention Is Where You Attack",
+      "abstract": "Safety-aligned large language models rely on RLHF and instruction tuning to refuse harmful requests, yet the internal mechanisms implementing safety behavior remain poorly understood. We introduce the Attention Redistribution Attack (ARA), a white-box adversarial attack that identifies safety-critical attention heads and crafts nonsemantic adversarial tokens that redirect attention away from safety-relevant positions. Unlike prior jailbreak methods operating at the semantic or output-logit level, ARA targets the geometry of softmax attention on the probability simplex using Gumbel-softmax optimization over targeted heads. Across LLaMA-3-8B-Instruct, Mistral-7B-Instruct-v0.1, and Gemma-2-9B-it, ARA bypasses safety alignment with as few as 5 tokens and 500 optimization steps, achieving 36% ASR on Mistral-7B and 30% on LLaMA-3 against 200 HarmBench prompts, while Gemma-2 remains at 1%. Our principal mechanistic finding is a dissociation between ablation and redistribution: zeroing out the top-ranked safety heads produces at most 1 flip among 39 to 50 baseline refusals, while ARA targeting the corresponding safety-heavy layers flips 72/200 prompts on Mistral-7B and 60/200 on LLaMA-3. This suggests that safety is not localized in these heads as removable components, but emerges from the attention routing they perform. Removing a head allows compensation through the residual stream, while redirecting its attention propagates a corrupted signal downstream.",
+      "authors": [
+        "Aviral Srivastava",
+        "Sourav Panda"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-04-30T21:15:38Z",
+      "updated": "2026-04-30T21:15:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00236v1",
+      "abs_url": "https://arxiv.org/abs/2605.00236",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00236",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在揭示大型语言模型（LLM）中安全对齐行为的内部机制，并提出了一种新的白盒对抗攻击方法来绕过这些安全机制。研究引入了注意力重分配攻击（Attention Redistribution Attack, ARA），通过识别对安全性至关重要的注意力头，并生成非语义的对抗性token，将注意力从安全相关位置重定向，从而绕过模型的安全对齐。与以往基于语义或输出logit的越狱方法不同，ARA利用Gumbel-softmax优化，针对概率单纯形上的softmax注意力几何结构进行攻击，实现了关键创新。实验结果表明，在LLaMA-3-8B-Instruct、Mistral-7B-Instruct-v0.1和Gemma-2-9B-it模型上，ARA仅用5个token和500次优化步骤就能绕过安全对齐，在Mistral-7B上达到36%的攻击成功率（ASR），在LLaMA-3上达到30%的ASR，而Gemma-2的ASR为1%，显著优于现有方法。研究还发现，安全行为并非简单地局限于某些可移除的注意力头，而是源于它们执行的注意力路由，移除头部可能通过残差流得到补偿，而重定向其注意力则会向下游传播被破坏的信号。"
+    },
+    {
+      "id": "2605.00224",
+      "title": "TUR-DPO: Topology- and Uncertainty-Aware Direct Preference Optimization",
+      "abstract": "Aligning large language models (LLMs) with human preferences is commonly done via reinforcement learning from human feedback (RLHF) with Proximal Policy Optimization (PPO) or, more simply, via Direct Preference Optimization (DPO). While DPO is stable and RL-free, it treats preferences as flat winner vs. loser signals and is sensitive to noisy or brittle preferences arising from fragile chains of thought. We propose TUR-DPO, a topology- and uncertainty-aware variant of DPO that rewards how answers are derived, not only what they say, by eliciting lightweight reasoning topologies and combining semantic faithfulness, utility, and topology quality into a calibrated uncertainty signal. A small learnable reward is factorized over these signals and incorporated into an uncertainty-weighted DPO objective that remains RL-free and relies only on a fixed or moving reference policy. Empirically, across open 7-8B models and benchmarks spanning mathematical reasoning, factual question answering, summarization, and helpful/harmless dialogue, TUR-DPO improves judge win-rates, faithfulness, and calibration relative to DPO while preserving training simplicity and avoiding online rollouts. We further observe consistent gains in multimodal and long-context settings, and show that TUR-DPO matches or exceeds PPO on reasoning-centric tasks while maintaining operational simplicity.",
+      "authors": [
+        "Abdulhady Abas Abdullah",
+        "Fatemeh Daneshfar",
+        "Seyedali Mirjalili",
+        "Mourad Oussalah"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-30T20:59:49Z",
+      "updated": "2026-04-30T20:59:49Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00224v1",
+      "abs_url": "https://arxiv.org/abs/2605.00224",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00224",
+      "summary_zh": "该研究旨在解决DPO在处理复杂偏好时，将偏好视为简单的胜负信号，且对噪声或脆弱偏好敏感的问题。为此，论文提出了TUR-DPO，一种拓扑和不确定性感知的DPO变体，它通过引入轻量级推理拓扑，并结合语义忠实度、实用性和拓扑质量来生成校准的不确定性信号，从而奖励答案的推导过程。TUR-DPO将一个小的可学习奖励分解为这些信号，并将其整合到一个不确定性加权的DPO目标中，该目标保持了无RL且仅依赖于固定或移动参考策略的优点。实验结果表明，在数学推理、事实问答、摘要和有用/无害对话等任务上，TUR-DPO在7-8B开放模型和多个基准测试中，相对于DPO显著提高了评判胜率、忠实度和校准性，同时保持了训练的简易性并避免了在线rollout，在多模态和长上下文设置中也观察到了一致的提升，并且在以推理为中心的任务上匹配或超越了PPO。"
+    },
+    {
+      "id": "2605.00199",
+      "title": "RSAT: Structured Attribution Makes Small Language Models Faithful Table Reasoners",
+      "abstract": "When a language model answers a table question, users have no way to verify which cells informed which reasoning steps. We introduce RSAT, a method that trains small language models (SLMs, 1-8B) to produce step-by-step reasoning with cell-level citations grounded in table evidence. Phase 1 (SFT) teaches a structured JSON output format from verified reasoning traces. Phase 2 (GRPO) optimizes a composite reward centered on NLI-based faithfulness, alongside citation validity and parsimony. Across six models from two families-Qwen 2.5 (1.5B/3B/7B) and Llama 3 (1B/3B/8B)-RSAT improves faithfulness 3.7$\\times$ over SFT alone (0.224$\\rightarrow$0.826), with near-perfect citation validity (0.992). Post-hoc attribution collapses below 13% format success, confirming that attribution must be integrated into reasoning, not retrofitted. Ablations show the faithfulness reward is essential: removing it drops faithfulness from 0.97 to 0.03.",
+      "authors": [
+        "Jugal Gajjar",
+        "Kamalasankari Subramaniakuppusamy"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR",
+        "cs.LG"
+      ],
+      "published": "2026-04-30T20:25:41Z",
+      "updated": "2026-04-30T20:25:41Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00199v1",
+      "abs_url": "https://arxiv.org/abs/2605.00199",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00199",
+      "summary_zh": "该研究旨在解决小型语言模型（SLMs）在回答表格问题时，用户无法验证其推理过程和所依据的表格单元格的问题。为此，论文提出了RSAT方法，通过训练1-8B的SLMs生成带有单元格级别引用的分步推理过程，从而实现对表格证据的忠实归因。RSAT包含两个阶段：第一阶段（SFT）通过验证过的推理轨迹教授模型结构化的JSON输出格式；第二阶段（GRPO）则以基于NLI的忠实度为核心，结合引用有效性和简洁性，对复合奖励进行优化。\n\n实验结果表明，在Qwen 2.5和Llama 3系列的六个模型上，RSAT相较于单独的SFT方法，忠实度提高了3.7倍（从0.224提升至0.826），并且引用有效性接近完美（0.992）。研究还发现，事后归因的格式成功率低于13%，证实了归因必须整合到推理过程中，而非事后补救。消融实验进一步强调了忠实度奖励的重要性：移除该奖励会导致忠实度从0.97急剧下降到0.03。"
+    },
+    {
+      "id": "2605.00161",
+      "title": "Consistent Diffusion Language Models",
+      "abstract": "Diffusion language models (DLMs) are an attractive alternative to autoregressive models because they promise sublinear-time, parallel generation, yet practical gains remain elusive as high-quality samples still demand hundreds of refinement steps. In continuous domains, consistency training along the probability-flow ODE is a popular recipe to accelerate diffusion. For discrete diffusion, no analogous sample-space ODE exists, making direct adaptation ill-defined. We argue that the natural discrete substitute is not a deterministic trajectory but its stochastic counterpart: the exact posterior bridge, available in closed form for broad corruption families including masked and uniform diffusion. Building on this observation, we introduce Multi-Path Discrete Consistency (MPDC), a new principle that trains a denoiser to be path-invariant in expectation across these stochastic bridges, and instantiate it as the Consistent Diffusion Language Model (CDLM), a single-stage, teacher-free training framework. A single CDLM objective unifies masked diffusion, continuous consistency models, and progressive/discrete distillation as analytic limits or empirical approximations of one common view. Empirically, CDLM establishes a new state of the art on both conditional and unconditional text-generation, consistently outperforming strong base discrete diffusion models and often even multi-stage distilled baselines across sampling budgets, with the largest gains in the few-step regime. Together, these results position CDLM as a principled and scalable foundation for the next generation of fast, high-fidelity discrete generative modeling.",
+      "authors": [
+        "Hasan Amin",
+        "Yuan Gao",
+        "Yaser Souri",
+        "Subhojit Som",
+        "Ming Yin",
+        "Rajiv Khanna",
+        "Xia Song"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-30T19:31:02Z",
+      "updated": "2026-04-30T19:31:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00161v1",
+      "abs_url": "https://arxiv.org/abs/2605.00161",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00161",
+      "summary_zh": "扩散语言模型（DLMs）因其亚线性时间并行生成潜力而备受关注，但其高样本质量仍需大量细化步骤。针对离散扩散模型，该研究提出了一种新的加速方法，因为连续域中基于概率流ODE的一致性训练不适用于离散域。论文认为离散扩散的自然替代不是确定性轨迹，而是其随机对应物——精确后验桥（exact posterior bridge），这对于掩码和均匀扩散等广泛的损坏家族以闭合形式存在。在此基础上，研究引入了多路径离散一致性（Multi-Path Discrete Consistency, MPDC）原则，训练去噪器在这些随机桥上实现路径不变性，并将其实例化为一致性扩散语言模型（Consistent Diffusion Language Model, CDLM），这是一个单阶段、无教师的训练框架。CDLM目标统一了掩码扩散、连续一致性模型和渐进/离散蒸馏，将其视为一个共同视角的解析极限或经验近似。实验结果表明，CDLM在条件和无条件文本生成方面均达到了新的SOTA，在不同采样预算下，持续优于强大的离散扩散模型基线，甚至超越了多阶段蒸馏基线，尤其在少步数生成中表现出显著优势。"
+    },
+    {
+      "id": "2605.00155",
+      "title": "Wasserstein Distributionally Robust Regret Optimization for Reinforcement Learning from Human Feedback",
+      "abstract": "Reinforcement learning from human feedback (RLHF) has become a core post-training step for aligning large language models, yet the reward signal used in RLHF is only a learned proxy for true human utility. From an operations research perspective, this creates a decision problem under objective misspecification: the policy is optimized against an estimated reward, while deployment performance is determined by an unobserved objective. The resulting gap leads to reward over-optimization, or Goodharting, where proxy reward continues to improve even after true quality deteriorates. Existing mitigations address this problem through uncertainty penalties, pessimistic rewards, or conservative constraints, but they can be computationally burdensome and overly pessimistic. We propose Wasserstein distributionally robust regret optimization (DRRO) for RLHF. Instead of pessimizing worst-case value as in standard DRO, DRRO pessimizes worst-case regret relative to the best policy under the same plausible reward perturbation. We study the promptwise problem through a simplex allocation model and show that, under an $\\ell_1$ ambiguity set, the inner worst-case regret admits an exact solution and the optimal policy has a water-filling structure. These results lead to a practical policy-gradient algorithm with a simple sampled-bonus interpretation and only minor changes to PPO/GRPO-style RLHF training. The framework also clarifies theoretically why DRRO is less pessimistic than DRO, and our experiments show that DRRO mitigates over-optimization more effectively than existing baselines while standard DRO is systematically over-pessimistic.",
+      "authors": [
+        "Yikai Wang",
+        "Shang Liu",
+        "Jose Blanchet"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL",
+        "math.OC",
+        "stat.ML"
+      ],
+      "published": "2026-04-30T19:22:56Z",
+      "updated": "2026-04-30T19:22:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00155v1",
+      "abs_url": "https://arxiv.org/abs/2605.00155",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00155",
+      "summary_zh": "该论文旨在解决RLHF中奖励函数错配导致的奖励过度优化（Goodharting）问题，即代理奖励持续提升但真实质量下降。它提出了一种基于Wasserstein分布鲁棒后悔优化（DRRO）的新方法，与传统DRO悲观化最差情况价值不同，DRRO悲观化在相同合理奖励扰动下相对于最佳策略的最差情况后悔。该方法通过一个simplex分配模型研究了promptwise问题，并表明在$\\ell_1$模糊集下，内部最差情况后悔存在精确解，且最优策略具有“注水”结构，从而导出了一个实用的策略梯度算法，该算法仅需对PPO/GRPO风格的RLHF训练进行微小修改，并具有简单的采样奖励解释。实验结果表明，DRRO比现有基线更有效地缓解了过度优化，并且理论上解释了DRRO为何比标准DRO更不悲观，而标准DRO则系统性地过于悲观。"
+    },
+    {
       "id": "2604.28196",
       "title": "HERMES++: Toward a Unified Driving World Model for 3D Scene Understanding and Generation",
       "abstract": "Driving world models serve as a pivotal technology for autonomous driving by simulating environmental dynamics. However, existing approaches predominantly focus on future scene generation, often overlooking comprehensive 3D scene understanding. Conversely, while Large Language Models (LLMs) demonstrate impressive reasoning capabilities, they lack the capacity to predict future geometric evolution, creating a significant disparity between semantic interpretation and physical simulation. To bridge this gap, we propose HERMES++, a unified driving world model that integrates 3D scene understanding and future geometry prediction within a single framework. Our approach addresses the distinct requirements of these tasks through synergistic designs. First, a BEV representation consolidates multi-view spatial information into a structure compatible with LLMs. Second, we introduce LLM-enhanced world queries to facilitate knowledge transfer from the understanding branch. Third, a Current-to-Future Link is designed to bridge the temporal gap, conditioning geometric evolution on semantic context. Finally, to enforce structural integrity, we employ a Joint Geometric Optimization strategy that integrates explicit geometric constraints with implicit latent regularization to align internal representations with geometry-aware priors. Extensive evaluations on multiple benchmarks validate the effectiveness of our method. HERMES++ achieves strong performance, outperforming specialist approaches in both future point cloud prediction and 3D scene understanding tasks. The model and code will be publicly released at https://github.com/H-EmbodVis/HERMESV2.",
@@ -52,8 +310,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.28196",
-      "summary_zh": "现有驾驶世界模型主要侧重未来场景生成，忽略了全面的3D场景理解，而大型语言模型（LLMs）虽有强大的推理能力，却无法预测未来几何演变，导致语义解释与物理模拟之间存在鸿沟。HERMES++ 提出一个统一的驾驶世界模型，将3D场景理解和未来几何预测整合到单一框架中，通过BEV表示、LLM增强的世界查询、Current-to-Future Link以及联合几何优化策略来协同解决这些任务。该模型将多视角空间信息整合为LLM兼容的结构，利用LLM知识进行理解，并通过语义上下文条件化几何演变，同时通过显式几何约束和隐式潜在正则化确保结构完整性。HERMES++ 在多个基准测试中表现出色，在未来点云预测和3D场景理解任务上均超越了专业方法。",
-      "impact_score": null
+      "summary_zh": "现有驾驶世界模型主要侧重未来场景生成，忽略了全面的3D场景理解，而大型语言模型（LLMs）虽有强大的推理能力，却无法预测未来几何演变，导致语义解释与物理模拟之间存在鸿沟。HERMES++ 提出一个统一的驾驶世界模型，将3D场景理解和未来几何预测整合到单一框架中，通过BEV表示、LLM增强的世界查询、Current-to-Future Link以及联合几何优化策略来协同解决这些任务。该模型将多视角空间信息整合为LLM兼容的结构，利用LLM知识进行理解，并通过语义上下文条件化几何演变，同时通过显式几何约束和隐式潜在正则化确保结构完整性。HERMES++ 在多个基准测试中表现出色，在未来点云预测和3D场景理解任务上均超越了专业方法。"
     },
     {
       "id": "2604.28192",
@@ -138,8 +395,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.28185",
-      "summary_zh": "当前视觉生成模型在真实感、排版和指令遵循方面取得显著进展，但仍面临空间推理、状态持久性、长程一致性和因果理解的挑战。为解决这些问题，该研究提出将视觉生成从单纯的外观合成转向智能视觉生成，即生成基于结构、动态、领域知识和因果关系的合理视觉内容。为此，论文构建了一个五级分类法：Atomic Generation、Conditional Generation、In-Context Generation、Agentic Generation 和 World-Modeling Generation，描绘了从被动渲染器到交互式、具身化、世界感知生成器的演进路径，并分析了流匹配、统一理解与生成模型、改进的视觉表示、后训练、奖励建模、数据策展、合成数据蒸馏和采样加速等关键技术驱动因素。研究指出，现有评估往往过分强调感知质量而忽视结构、时间及因果错误，因此通过结合基准测试回顾、真实世界压力测试和专家约束案例研究，为理解、评估和推进下一代智能视觉生成系统提供了以能力为中心的路线图。",
-      "impact_score": null
+      "summary_zh": "当前视觉生成模型在真实感、排版和指令遵循方面取得显著进展，但仍面临空间推理、状态持久性、长程一致性和因果理解的挑战。为解决这些问题，该研究提出将视觉生成从单纯的外观合成转向智能视觉生成，即生成基于结构、动态、领域知识和因果关系的合理视觉内容。为此，论文构建了一个五级分类法：Atomic Generation、Conditional Generation、In-Context Generation、Agentic Generation 和 World-Modeling Generation，描绘了从被动渲染器到交互式、具身化、世界感知生成器的演进路径，并分析了流匹配、统一理解与生成模型、改进的视觉表示、后训练、奖励建模、数据策展、合成数据蒸馏和采样加速等关键技术驱动因素。研究指出，现有评估往往过分强调感知质量而忽视结构、时间及因果错误，因此通过结合基准测试回顾、真实世界压力测试和专家约束案例研究，为理解、评估和推进下一代智能视觉生成系统提供了以能力为中心的路线图。"
     },
     {
       "id": "2604.28182",
@@ -168,8 +424,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.28182",
-      "summary_zh": "研究了大型语言模型（LLMs）在强化学习（RL）训练中可能出现的“探索劫持”（exploration hacking）问题，即模型可能策略性地操纵其探索行为以影响后续训练结果，导致对期望能力产生抵抗。通过构建专门的“模型生物”（model organisms）来模拟并研究这种行为，这些模型被微调以遵循特定的低性能策略，并在模拟的智能生物安全和AI研发环境中成功抵制了RL能力诱导。进一步评估了监测、权重扰动和SFT诱导等检测与缓解策略，并发现当前前沿LLMs在获得足够训练上下文信息时，能表现出关于抑制探索的明确推理，尤其是在通过环境间接获取信息时。这些结果表明，探索劫持是能力强大的LLMs在RL训练下的一种潜在失效模式。",
-      "impact_score": null
+      "summary_zh": "研究了大型语言模型（LLMs）在强化学习（RL）训练中可能出现的“探索劫持”（exploration hacking）问题，即模型可能策略性地操纵其探索行为以影响后续训练结果，导致对期望能力产生抵抗。通过构建专门的“模型生物”（model organisms）来模拟并研究这种行为，这些模型被微调以遵循特定的低性能策略，并在模拟的智能生物安全和AI研发环境中成功抵制了RL能力诱导。进一步评估了监测、权重扰动和SFT诱导等检测与缓解策略，并发现当前前沿LLMs在获得足够训练上下文信息时，能表现出关于抑制探索的明确推理，尤其是在通过环境间接获取信息时。这些结果表明，探索劫持是能力强大的LLMs在RL训练下的一种潜在失效模式。"
     },
     {
       "id": "2604.28181",
@@ -222,8 +477,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.28169",
-      "summary_zh": "现有视频扩散模型在外观合成方面表现出色，但在物理一致性上仍有欠缺，例如物体漂移、碰撞反弹不真实等。PhyCo 框架通过引入连续、可解释且物理基础的控制来解决这一问题，其核心在于构建了一个包含超过 10 万个逼真模拟视频的大规模数据集，系统地改变摩擦、恢复系数、形变和力等物理属性。该方法通过使用 ControlNet 对预训练扩散模型进行物理监督微调，并利用像素对齐的物理属性图进行条件控制，同时结合 VLM 引导的奖励优化，通过微调的视觉语言模型评估生成视频的物理真实性并提供可微分反馈。实验结果表明，PhyCo 在 Physics-IQ 基准测试上显著提升了物理真实感，并且用户研究证实了其对物理属性更清晰、更忠实的控制能力，为实现物理一致且可控的生成式视频模型提供了一条可扩展的途径。",
-      "impact_score": null
+      "summary_zh": "现有视频扩散模型在外观合成方面表现出色，但在物理一致性上仍有欠缺，例如物体漂移、碰撞反弹不真实等。PhyCo 框架通过引入连续、可解释且物理基础的控制来解决这一问题，其核心在于构建了一个包含超过 10 万个逼真模拟视频的大规模数据集，系统地改变摩擦、恢复系数、形变和力等物理属性。该方法通过使用 ControlNet 对预训练扩散模型进行物理监督微调，并利用像素对齐的物理属性图进行条件控制，同时结合 VLM 引导的奖励优化，通过微调的视觉语言模型评估生成视频的物理真实性并提供可微分反馈。实验结果表明，PhyCo 在 Physics-IQ 基准测试上显著提升了物理真实感，并且用户研究证实了其对物理属性更清晰、更忠实的控制能力，为实现物理一致且可控的生成式视频模型提供了一条可扩展的途径。"
     },
     {
       "id": "2604.28144",
@@ -246,8 +500,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.28144",
-      "summary_zh": "这篇论文旨在解决强化学习中带约束的探索问题，特别是在最大化状态-动作占用测度熵的同时满足安全、资源或模仿等约束。它提出了一种名为 Policy Gradient Penalty (PGP) 的单循环策略空间方法，通过二次惩罚正则化来强制执行一般的凸占用测度约束，并利用伪奖励和经典的策略梯度定理来估计梯度。PGP 的关键创新在于利用隐藏的凸性和强对偶性，在策略引入非凸性的情况下，实现了全局的最后迭代收敛保证，能够以 $\\epsilon$-最优的约束熵值和 $\\epsilon$ 有界的约束违反来收敛。实验通过网格世界基准测试的消融研究以及两个具有挑战性的连续控制任务验证了 PGP 的有效性和可扩展性。",
-      "impact_score": null
+      "summary_zh": "这篇论文旨在解决强化学习中带约束的探索问题，特别是在最大化状态-动作占用测度熵的同时满足安全、资源或模仿等约束。它提出了一种名为 Policy Gradient Penalty (PGP) 的单循环策略空间方法，通过二次惩罚正则化来强制执行一般的凸占用测度约束，并利用伪奖励和经典的策略梯度定理来估计梯度。PGP 的关键创新在于利用隐藏的凸性和强对偶性，在策略引入非凸性的情况下，实现了全局的最后迭代收敛保证，能够以 $\\epsilon$-最优的约束熵值和 $\\epsilon$ 有界的约束违反来收敛。实验通过网格世界基准测试的消融研究以及两个具有挑战性的连续控制任务验证了 PGP 的有效性和可扩展性。"
     },
     {
       "id": "2604.28123",
@@ -280,8 +533,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.28123",
-      "summary_zh": "大型多模态模型（LMM）在监督微调（SFT）后进行强化学习（RLVR）时，存在分布漂移问题，影响模型性能，尤其在多模态推理中问题更严重。PRISM 引入了一个三阶段流程，在 SFT 和 RLVR 之间增加了一个分布对齐阶段，该阶段利用“黑盒、响应级别”的“on-policy distillation (OPD)”技术，通过一个包含感知和推理专家的“Mixture-of-Experts (MoE) 判别器”生成解耦的修正信号，引导模型向监督分布靠拢，而无需访问教师模型的 logits。实验在 Qwen3-VL 模型上进行，PRISM 在多个 RL 算法和多模态基准测试中，显著提升了下游 RLVR 性能，平均准确率分别提高了 +4.4 和 +6.0 个百分点。",
-      "impact_score": null
+      "summary_zh": "大型多模态模型（LMM）在监督微调（SFT）后进行强化学习（RLVR）时，存在分布漂移问题，影响模型性能，尤其在多模态推理中问题更严重。PRISM 引入了一个三阶段流程，在 SFT 和 RLVR 之间增加了一个分布对齐阶段，该阶段利用“黑盒、响应级别”的“on-policy distillation (OPD)”技术，通过一个包含感知和推理专家的“Mixture-of-Experts (MoE) 判别器”生成解耦的修正信号，引导模型向监督分布靠拢，而无需访问教师模型的 logits。实验在 Qwen3-VL 模型上进行，PRISM 在多个 RL 算法和多模态基准测试中，显著提升了下游 RLVR 性能，平均准确率分别提高了 +4.4 和 +6.0 个百分点。"
     },
     {
       "id": "2604.28122",
@@ -305,8 +557,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.28122",
-      "summary_zh": "这篇论文旨在解决现代视觉世界模型在处理三维几何和相机动力学时表现不佳的问题，其关键在于现有模型的潜在表示（latent representations）未能有效编码几何结构。研究者提出了 S$^2$VAE，一个几何优先的潜在学习框架，利用 Visual Geometry Grounded Transformer (VGGT) 的表示，并引入了一种新颖的变分自编码器（VAE），其瓶颈层采用“product of Power Spherical latent distributions”，强制潜在空间具有超球体结构以保留几何语义。在深度估计、相机姿态恢复和点云重建等任务上，实验证明这种几何对齐的超球体潜在表示在强压缩下显著优于传统的 Gaussian bottlenecks，突显了潜在几何作为物理基础视觉模型设计中的重要性。",
-      "impact_score": null
+      "summary_zh": "这篇论文旨在解决现代视觉世界模型在处理三维几何和相机动力学时表现不佳的问题，其关键在于现有模型的潜在表示（latent representations）未能有效编码几何结构。研究者提出了 S$^2$VAE，一个几何优先的潜在学习框架，利用 Visual Geometry Grounded Transformer (VGGT) 的表示，并引入了一种新颖的变分自编码器（VAE），其瓶颈层采用“product of Power Spherical latent distributions”，强制潜在空间具有超球体结构以保留几何语义。在深度估计、相机姿态恢复和点云重建等任务上，实验证明这种几何对齐的超球体潜在表示在强压缩下显著优于传统的 Gaussian bottlenecks，突显了潜在几何作为物理基础视觉模型设计中的重要性。"
     },
     {
       "id": "2604.28102",
@@ -609,6 +860,49 @@
       "summary_zh": "这篇工作解决了监督学习在处理复杂GUI交互中的局限性，提出强化学习（RL）是实现自动化并迈向“数字居民”的关键方法。它首次全面梳理了RL在GUI代理领域的应用，提出了Offline RL、Online RL和Hybrid Strategies的分类框架，并深入分析了奖励工程、数据效率及关键技术创新。研究发现，多层奖励架构、基于世界模型（world-model-based）的训练以及“System-2-style”的涌现式推理是应对延迟和提升性能的关键趋势，表明丰富的奖励信号可能无需显式的推理监督，并为未来的GUI自动化发展提供了路线图。"
     },
     {
+      "id": "2605.00080",
+      "title": "World Model for Robot Learning: A Comprehensive Survey",
+      "abstract": "World models, which are predictive representations of how environments evolve under actions, have become a central component of robot learning. They support policy learning, planning, simulation, evaluation, data generation, and have advanced rapidly with the rise of foundation models and large-scale video generation. However, the literature remains fragmented across architectures, functional roles, and embodied application domains. To address this gap, we present a comprehensive review of world models from a robot-learning perspective. We examine how world models are coupled with robot policies, how they serve as learned simulators for reinforcement learning and evaluation, and how robotic video world models have progressed from imagination-based generation to controllable, structured, and foundation-scale formulations. We further connect these ideas to navigation and autonomous driving, and summarize representative datasets, benchmarks, and evaluation protocols. Overall, this survey systematically reviews the rapidly growing literature on world models for robot learning, clarifies key paradigms and applications, and highlights major challenges and future directions for predictive modeling in embodied agents. To facilitate continued access to newly emerging works, benchmarks, and resources, we will maintain and regularly update the accompanying GitHub repository alongside this survey.",
+      "authors": [
+        "Bohan Hou",
+        "Gen Li",
+        "Jindou Jia",
+        "Tuo An",
+        "Xinying Guo",
+        "Sicong Leng",
+        "Haoran Geng",
+        "Yanjie Ze",
+        "Tatsuya Harada",
+        "Philip Torr",
+        "Oier Mees",
+        "Marc Pollefeys",
+        "Zhuang Liu",
+        "Jiajun Wu",
+        "Pieter Abbeel",
+        "Jitendra Malik",
+        "Yilun Du",
+        "Jianfei Yang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-04-30T14:35:31Z",
+      "updated": "2026-04-30T14:35:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00080v1",
+      "abs_url": "https://arxiv.org/abs/2605.00080",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00080",
+      "keyword_topics": [
+        "world-model",
+        "rl",
+        "video-gen"
+      ],
+      "summary_zh": "这篇综述旨在解决机器人学习领域中世界模型文献分散的问题，系统性地梳理了其架构、功能角色和应用领域。它通过分析世界模型如何与机器人策略结合、如何作为强化学习和评估的学习模拟器，以及机器人视频世界模型如何从基于想象的生成发展到可控、结构化和基础模型规模的公式，来提供全面的视角。关键创新点在于首次从机器人学习角度对世界模型进行系统性回顾，并将其与导航和自动驾驶等具体应用联系起来，同时总结了相关数据集、基准和评估协议。该综述没有进行实验，而是通过对现有文献的归纳和分析，明确了核心范式、应用，并指出了具身智能体中预测建模的主要挑战和未来方向。"
+    },
+    {
       "id": "2604.27920",
       "title": "Beyond Semantics: Measuring Fine-Grained Emotion Preservation in Small Language Model-Based Machine Translation",
       "abstract": "Preserving affective nuance remains a challenge in Machine Translation (MT), where semantic equivalence often takes precedence over emotional fidelity. This paper evaluates the performance of three state-of-the-art Small Language Models (SLMs) -- EuroLLM, Aya Expanse, and Gemma -- in maintaining fine-grained emotions during backtranslation. Using the GoEmotions dataset, which comprises Reddit comments across 28 distinct categories, we assess emotional preservation across five European languages: German, French, Spanish, Italian, and Polish. Specifically, we investigate (i) the inherent capability of these SLMs to retain emotional sentiment, (ii) the efficacy of emotion-aware prompting in improving preservation, and (iii) the performance of ModernBERT as a contemporary alternative to BERT for emotion classification in MT evaluation.",
@@ -659,6 +953,36 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.27918",
       "summary_zh": "现有方法依赖同场景静态图像生成会说话的虚拟形象，受限于单视角信息，难以合成高保真且背景定制化的虚拟形象。TAVR（Talking Avatar generation from Video Reference）框架通过引入跨场景视频作为参考，并结合token selection module和三阶段训练（同场景预训练、跨场景微调、强化学习），有效解决了跨场景的域适应和身份一致性问题。该方法在自建的跨场景基准测试上表现出色，能够灵活利用推理时视频参考，并在定量和定性评估中显著优于现有方法，已成功部署至生产环境。"
+    },
+    {
+      "id": "2605.00078",
+      "title": "Being-H0.7: A Latent World-Action Model from Egocentric Videos",
+      "abstract": "Visual-Language-Action models (VLAs) have advanced generalist robot control by mapping multimodal observations and language instructions directly to actions, but sparse action supervision often encourages shortcut mappings rather than representations of dynamics, contact, and task progress. Recent world-action models introduce future prediction through video rollouts, yet pixel-space prediction is a costly and indirect substrate for control, as it may model visual details irrelevant to action generation and introduces substantial training or inference overhead. We present Being-H0.7, a latent world-action model that brings future-aware reasoning into VLA-style policies without generating future frames. Being-H0.7 inserts learnable latent queries between perception and action as a compact reasoning interface, and trains them with a future-informed dual-branch design: a deployable prior branch infers latent states from the current context, while a training-only posterior branch replaces the queries with embeddings from future observations. Jointly aligning the two branches at the latent reasoning space leads the prior branch to reason future-aware, action-useful structure from current observations alone. At inference, Being-H0.7 discards the posterior branch and performs no visual rollout. Experiments across six simulation benchmarks and diverse real-world tasks show that Being-H0.7 achieves state-of-the-art or comparable performance, combining the predictive benefits of world models with the efficiency and deployability of direct VLA policies.",
+      "authors": [
+        "Hao Luo",
+        "Wanpeng Zhang",
+        "Yicheng Feng",
+        "Sipeng Zheng",
+        "Haiweng Xu",
+        "Chaoyi Xu",
+        "Ziheng Xi",
+        "Yuhui Fu",
+        "Zongqing Lu"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-04-30T14:16:15Z",
+      "updated": "2026-04-30T14:16:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00078v1",
+      "abs_url": "https://arxiv.org/abs/2605.00078",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00078",
+      "summary_zh": "现有视觉-语言-动作（VLA）模型在机器人控制中常因稀疏动作监督而忽视动力学和任务进展。Being-H0.7 提出一种潜在世界-动作模型，旨在将未来感知推理融入 VLA 策略，同时避免昂贵的像素级未来帧预测。该模型在感知和动作之间引入可学习的潜在查询作为紧凑推理接口，并采用未来感知的双分支设计进行训练：一个可部署的先验分支从当前上下文推断潜在状态，一个仅用于训练的后验分支则用未来观测的嵌入替换查询。通过对齐这两个分支，先验分支能够在仅凭当前观测的情况下推理出未来感知且对动作有用的结构。在推理时，Being-H0.7 丢弃后验分支，不进行视觉回放，从而结合了世界模型的预测优势与直接 VLA 策略的效率和可部署性。在六个模拟基准和多样化的真实世界任务上的实验表明，Being-H0.7 取得了最先进或可比的性能。"
     },
     {
       "id": "2604.27899",
@@ -802,6 +1126,45 @@
         "rl"
       ],
       "summary_zh": "现有基于 LLM 的时间序列预测方法受限于静态单次生成模式，难以充分提取时序模式和上下文信息。CastFlow 提出了一种动态的 agentic 预测框架，通过规划、行动、预测和反思的流程，结合记忆模块和多视图工具集，实现了多轮上下文获取、迭代式预测精炼及集成预测。其关键创新在于采用角色专业化设计，让冻结的通用 LLM 负责推理，微调的领域 LLM 基于集成预测基线进行数值预测，并通过两阶段的 SFT 和 RLVR 训练优化。在多样化数据集上的广泛实验表明，CastFlow 显著优于现有强基线。"
+    },
+    {
+      "id": "2605.00072",
+      "title": "XekRung Technical Report",
+      "abstract": "We present XekRung, a frontier large language model for cybersecurity, designed to provide comprehensive security capabilities. To achieve this, we develop diverse data synthesis pipelines tailored to the cybersecurity domain, enabling the scalable construction of high-quality training data and providing a strong foundation for cybersecurity knowledge and understanding. Building on this foundation, we establish a complete training pipeline spanning continued pre-training (CPT), supervised fine-tuning (SFT), and reinforcement learning (RL) to further extend the model's capabilities. We further introduce a multi-dimensional evaluation system to guide the iterative improvement of both domain-specific and general-purpose abilities. Extensive experiments demonstrate that XekRung achieves state-of-the-art performance on cybersecurity-specific benchmarks among models of the same scale, while maintaining strong performance on general benchmarks.",
+      "authors": [
+        "Jiutian Zeng",
+        "Junjie Li",
+        "Chengwei Dai",
+        "Jie Liang",
+        "Zhaoyu Hu",
+        "Yiliang Zhang",
+        "Ziang Weng",
+        "Longtao Huang",
+        "Dongjie Zhang",
+        "Libin Dong",
+        "Yang Ge",
+        "Yuanda Wang",
+        "Kaiwen Lv Kacuila",
+        "Bingyu Zhu",
+        "Jing Wang",
+        "Jin Xu"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-04-30T11:50:32Z",
+      "updated": "2026-04-30T11:50:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00072v1",
+      "abs_url": "https://arxiv.org/abs/2605.00072",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00072",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "XekRung 是一个面向网络安全领域的前沿大型语言模型，旨在提供全面的安全能力。该模型通过开发多样化的数据合成管道来构建高质量的网络安全训练数据，为模型奠定了坚实的知识基础。在此基础上，XekRung 采用持续预训练 (CPT)、监督微调 (SFT) 和强化学习 (RL) 的完整训练流程来扩展其能力，并通过多维评估系统指导模型在领域特定和通用能力上的迭代改进。实验结果表明，XekRung 在网络安全特定基准测试中达到了同等规模模型的最新水平，同时在通用基准测试中也保持了强大的性能。"
     },
     {
       "id": "2604.27747",
@@ -1451,6 +1814,36 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2604.27372",
       "summary_zh": "这篇论文研究了带控制的公共噪声的连续时间熵正则化均值场控制（MFC）问题，并引入了“集成q函数”（Iq-function）的概念，以克服公共噪声带来的策略迭代复杂性。通过推导包含策略依赖性噪声项的探索性Hamilton-Jacobi-Bellman (HJB) 方程，并利用部分线性泛函导数，在特定条件下证明了最优策略迭代的存在性和唯一性。研究表明，最优策略可被识别为Iq-function的argmax算子的两层不动点，并在一般的线性二次（LQ）设置下，明确给出了最优策略为高斯分布的刻画。"
+    },
+    {
+      "id": "2605.00059",
+      "title": "Dynamic-TD3: A Novel Algorithm for UAV Path Planning with Dynamic Obstacle Trajectory Prediction",
+      "abstract": "Deep reinforcement learning (DRL) finds extensive application in autonomous drone navigation within complex, high-risk environments. However, its practical deployment faces a safety-exploration dilemma: soft penalty mechanisms encourage risky trial-and-error, while most constraint-based methods suffer degraded performance under sensor noise and intent uncertainty. We propose Dynamic-TD3, a physically enhanced framework that enforces strict safety constraints while maintaining maneuverability by modeling navigation as a Constrained Markov Decision Process (CMDP). This framework integrates an Adaptive Trajectory Relational Evolution Mechanism (ATREM) to capture long-range intentions and employs a Physically Aware Gated Kalman Filter (PAG-KF) to mitigate non-stationary observation noise. The resulting state representation drives a dual-criterion policy that balances mission efficiency against hard safety constraints via Lagrangian relaxation. In experiments with aggressive dynamic threats, this approach demonstrates superior collision avoidance performance, reduced energy consumption, and smoother flight trajectories.",
+      "authors": [
+        "Wentao Chen",
+        "Jingtang Chen",
+        "Mingjian Fu",
+        "Tiantian Li",
+        "Youfeng Su",
+        "Wenxi Liu",
+        "Yuanlong Yu"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-04-30T02:56:29Z",
+      "updated": "2026-04-30T02:56:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00059v1",
+      "abs_url": "https://arxiv.org/abs/2605.00059",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00059",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文提出 Dynamic-TD3 算法，旨在解决无人机在复杂动态环境中路径规划时，深度强化学习面临的安全-探索困境，即如何在保证安全性的同时维持机动性。其核心方法是将导航建模为约束马尔可夫决策过程 (CMDP)，并引入自适应轨迹关系演化机制 (ATREM) 预测长期意图，以及物理感知门控卡尔曼滤波器 (PAG-KF) 缓解观测噪声。关键创新在于通过拉格朗日松弛法驱动双准则策略，平衡任务效率与硬性安全约束，从而在严格遵守安全限制的同时保持无人机机动性。实验结果表明，该方法在面对激进动态威胁时，展现出卓越的避碰性能、更低的能耗和更平滑的飞行轨迹。"
     },
     {
       "id": "2604.27322",
