@@ -1,6 +1,6 @@
 {
   "date": "2026-04-30",
-  "generated_at": "2026-05-04T05:02:43.244718+00:00",
+  "generated_at": "2026-05-05T04:46:49.746646+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -287,6 +287,30 @@
       "summary_zh": "该论文旨在解决RLHF中奖励函数错配导致的奖励过度优化（Goodharting）问题，即代理奖励持续提升但真实质量下降。它提出了一种基于Wasserstein分布鲁棒后悔优化（DRRO）的新方法，与传统DRO悲观化最差情况价值不同，DRRO悲观化在相同合理奖励扰动下相对于最佳策略的最差情况后悔。该方法通过一个simplex分配模型研究了promptwise问题，并表明在$\\ell_1$模糊集下，内部最差情况后悔存在精确解，且最优策略具有“注水”结构，从而导出了一个实用的策略梯度算法，该算法仅需对PPO/GRPO风格的RLHF训练进行微小修改，并具有简单的采样奖励解释。实验结果表明，DRRO比现有基线更有效地缓解了过度优化，并且理论上解释了DRRO为何比标准DRO更不悲观，而标准DRO则系统性地过于悲观。"
     },
     {
+      "id": "2605.00924",
+      "title": "StyleShield: Exposing the Fragility of AIGC Detectors through Continuous Controllable Style Transfer",
+      "abstract": "AI-generated content (AIGC) detectors are increasingly deployed in high-stakes settings such as academic integrity screening, yet their reliability rests on a fundamental paradox: as language models are trained on human-written corpora, the statistical boundary between AI and human writing will inevitably dissolve as models improve. Commercial incentives have further distorted this landscape -- detection services and \"de-AIification\" tools often operate within the same supply chain, replacing evaluation of content quality with judgment of content origin. We present StyleShield, the first flow matching framework for conditional text style transfer, operating directly in continuous token embedding space via a DiT backbone with zero-initialized cross-attention adapters conditioned on frozen Qwen-7B representations. At inference, we adapt the SDEdit paradigm from image synthesis to text embeddings, with a single parameter gamma providing smooth continuous control over the evasion-preservation trade-off. On a multi-domain Chinese benchmark, StyleShield achieves 94.6% evasion against the training detector and >=99% against three unseen detectors, maintaining 0.928 semantic similarity. We further introduce RateAudit, a document-level scheduling algorithm that demonstrates detection-rate verdicts can be set to arbitrary values, directly questioning the reliability of score-based evaluation.",
+      "authors": [
+        "Guantian Zheng"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-30T18:24:31Z",
+      "updated": "2026-04-30T18:24:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.00924v1",
+      "abs_url": "https://arxiv.org/abs/2605.00924",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.00924",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "AIGC检测器在学术诚信等高风险场景中应用日益广泛，但其可靠性面临挑战，因为随着语言模型进步，AI生成内容与人类写作的统计边界将模糊。StyleShield提出首个用于条件文本风格迁移的流匹配框架，通过DiT骨干网络在连续token嵌入空间操作，并利用零初始化交叉注意力适配器和冻结的Qwen-7B表示进行条件控制。该方法在推理时借鉴SDEdit范式，通过单一参数gamma实现规避-保留权衡的平滑连续控制。在多领域中文基准测试中，StyleShield对训练检测器实现了94.6%的规避率，对三个未见检测器规避率达到99%以上，同时保持0.928的语义相似度。此外，论文引入了RateAudit文档级调度算法，证明检测率结果可以被任意设置，从而质疑了基于分数的评估可靠性。"
+    },
+    {
       "id": "2604.28196",
       "title": "HERMES++: Toward a Unified Driving World Model for 3D Scene Understanding and Generation",
       "abstract": "Driving world models serve as a pivotal technology for autonomous driving by simulating environmental dynamics. However, existing approaches predominantly focus on future scene generation, often overlooking comprehensive 3D scene understanding. Conversely, while Large Language Models (LLMs) demonstrate impressive reasoning capabilities, they lack the capacity to predict future geometric evolution, creating a significant disparity between semantic interpretation and physical simulation. To bridge this gap, we propose HERMES++, a unified driving world model that integrates 3D scene understanding and future geometry prediction within a single framework. Our approach addresses the distinct requirements of these tasks through synergistic designs. First, a BEV representation consolidates multi-view spatial information into a structure compatible with LLMs. Second, we introduce LLM-enhanced world queries to facilitate knowledge transfer from the understanding branch. Third, a Current-to-Future Link is designed to bridge the temporal gap, conditioning geometric evolution on semantic context. Finally, to enforce structural integrity, we employ a Joint Geometric Optimization strategy that integrates explicit geometric constraints with implicit latent regularization to align internal representations with geometry-aware priors. Extensive evaluations on multiple benchmarks validate the effectiveness of our method. HERMES++ achieves strong performance, outperforming specialist approaches in both future point cloud prediction and 3D scene understanding tasks. The model and code will be publicly released at https://github.com/H-EmbodVis/HERMESV2.",
@@ -504,7 +528,7 @@
     },
     {
       "id": "2604.28123",
-      "title": "PRISM: Pre-alignment via Black-box On-policy Distillation for Multimodal Reinforcement Learning",
+      "title": "Beyond SFT-to-RL: Pre-alignment via Black-Box On-Policy Distillation for Multimodal RL",
       "abstract": "The standard post-training recipe for large multimodal models (LMMs) applies supervised fine-tuning (SFT) on curated demonstrations followed by reinforcement learning with verifiable rewards (RLVR). However, SFT introduces distributional drift that neither preserves the model's original capabilities nor faithfully matches the supervision distribution. This problem is further amplified in multimodal reasoning, where perception errors and reasoning failures follow distinct drift patterns that compound during subsequent RL. We introduce PRISM, a three-stage pipeline that mitigates this drift by inserting an explicit distribution-alignment stage between SFT and RLVR. Building on the principle of on-policy distillation (OPD), PRISM casts alignment as a black-box, response-level adversarial game between the policy and a Mixture-of-Experts (MoE) discriminator with dedicated perception and reasoning experts, providing disentangled corrective signals that steer the policy toward the supervision distribution without requiring access to teacher logits. While 1.26M public demonstrations suffice for broad SFT initialization, distribution alignment demands higher-fidelity supervision; we therefore curate 113K additional demonstrations from Gemini 3 Flash, featuring dense visual grounding and step-by-step reasoning on the hardest unsolved problems. Experiments on Qwen3-VL show that PRISM consistently improves downstream RLVR performance across multiple RL algorithms (GRPO, DAPO, GSPO) and diverse multimodal benchmarks, improving average accuracy by +4.4 and +6.0 points over the SFT-to-RLVR baseline on 4B and 8B, respectively. Our code, data, and model checkpoints are publicly available at https://github.com/XIAO4579/PRISM.",
       "authors": [
         "Sudong Wang",
@@ -526,8 +550,8 @@
         "cs.CL"
       ],
       "published": "2026-04-30T17:12:53Z",
-      "updated": "2026-04-30T17:12:53Z",
-      "pdf_url": "https://arxiv.org/pdf/2604.28123v1",
+      "updated": "2026-05-01T18:31:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.28123v2",
       "abs_url": "https://arxiv.org/abs/2604.28123",
       "topics": [
         "rl"
@@ -1115,8 +1139,8 @@
         "cs.AI"
       ],
       "published": "2026-04-30T13:24:42Z",
-      "updated": "2026-04-30T13:24:42Z",
-      "pdf_url": "https://arxiv.org/pdf/2604.27840v1",
+      "updated": "2026-05-04T08:56:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.27840v2",
       "abs_url": "https://arxiv.org/abs/2604.27840",
       "topics": [
         "other"
@@ -1335,8 +1359,8 @@
         "cs.LG"
       ],
       "published": "2026-04-30T08:29:50Z",
-      "updated": "2026-04-30T08:29:50Z",
-      "pdf_url": "https://arxiv.org/pdf/2604.27576v1",
+      "updated": "2026-05-03T15:48:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2604.27576v2",
       "abs_url": "https://arxiv.org/abs/2604.27576",
       "topics": [
         "other"
