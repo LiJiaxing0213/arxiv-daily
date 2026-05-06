@@ -1,6 +1,6 @@
 {
   "date": "2026-05-04",
-  "generated_at": "2026-05-05T04:46:49.739816+00:00",
+  "generated_at": "2026-05-06T04:59:37.858703+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,9 +29,146 @@
   },
   "papers": [
     {
+      "id": "2605.03217",
+      "title": "Moral Sensitivity in LLMs: A Tiered Evaluation of Contextual Bias via Behavioral Profiling and Mechanistic Interpretability",
+      "abstract": "Large language models (LLMs) are increasingly deployed in settings that require nuanced ethical reasoning, yet existing bias evaluations treat model outputs as simply \"biased\" or \"unbiased.\" This binary framing misses the gradual, context-sensitive way bias actually emerges. We address this gap in two stages: behavioral profiling and mechanistic validation. In the behavioral stage, we introduce the Moral Sensitivity Index (MSI), a metric that quantifies the probability of biased output across a graduated, seven-tier stress test ranging from abstract numerical problems to scenarios rooted in historical and socioeconomic injustice. Evaluating four leading models (Claude 3.5, Qwen 3.5, Llama 3, and Gemini 1.5), we identify distinct behavioral signatures shaped by alignment design: for instance, Gemini 1.5 reaches 72.7% MSI by Tier 5 under socioeconomic framing, while Claude exhibits sharp suppression consistent with identity-based safety training. We then verify these behavioral patterns mechanistically. We select criminal-bias scenarios, which produced the highest MSI scores across models, as probes and apply logit lens, attention analysis, activation patching, and semantic probing to a controlled set of six models spanning three capability tiers: small language models (SLMs), instruction-tuned base models, and reasoning-distilled variants. Circuit-level analysis reveals a U-curve of bias: SLMs exhibit strong criminal bias; scaling to instruction-tuned models eliminates it; reasoning distillation reintroduces bias to SLM-like levels despite identical parameter counts, suggesting distillation compresses reasoning traces in ways that reactivate shallow statistical associations. Critically, the socially loaded cues that drive high MSI scores activate the same bias-driving circuits identified mechanistically, providing cross-stage validation.",
+      "authors": [
+        "Yash Aggarwal",
+        "Atmika Gorti",
+        "Vinija Jain",
+        "Aman Chadha",
+        "Krishnaprasad Thirunarayan",
+        "Manas Gaur"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CY"
+      ],
+      "published": "2026-05-04T23:12:32Z",
+      "updated": "2026-05-04T23:12:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.03217v1",
+      "abs_url": "https://arxiv.org/abs/2605.03217",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03217",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在解决现有大语言模型（LLMs）偏见评估过于二元化的问题，提出了一种分层评估方法来捕捉偏见在不同情境下的细微变化。研究引入了道德敏感度指数（MSI），通过七个不同难度的情境压力测试来量化模型产生偏见输出的概率，并对Claude 3.5、Qwen 3.5、Llama 3和Gemini 1.5等领先模型进行了行为分析，发现不同对齐设计导致了独特的偏见行为模式，例如Gemini 1.5在社会经济情境下MSI达到72.7%，而Claude则表现出强烈的抑制。在此基础上，研究通过logit lens、注意力分析、激活补丁和语义探测等方法，对跨越不同能力层级的六个模型进行了机制解释，揭示了偏见呈现U型曲线：小型语言模型（SLMs）表现出强烈的犯罪偏见，指令微调模型消除了偏见，而推理蒸馏模型却重新引入了类似SLM的偏见，这表明蒸馏过程可能重新激活了浅层统计关联。最终，研究通过跨阶段验证，证实了导致高MSI分数的社会性线索激活了机制分析中识别出的偏见驱动回路。"
+    },
+    {
+      "id": "2605.03195",
+      "title": "Terminus-4B: Can a Smaller Model Replace Frontier LLMs at Agentic Execution Tasks?",
+      "abstract": "Modern coding agents increasingly delegate specialized subtasks to subagents, which are smaller, focused agentic loops that handle narrow responsibilities like search, debugging or terminal execution. This architectural pattern keeps the main agent's context window clean by isolating verbose outputs (e.g. build logs, test results, etc.) within the subagent context. Typically when agents employ subagents for such tasks, they use frontier models as these subagents. In this paper, we investigate whether a finetuned small language model (SLM) can achieve comparable performance to frontier models in the task of agentic terminal execution. We present Terminus-4B, which is a post-trained Qwen3-4B model via Supervised Finetuning (SFT) and Reinforcement Learning (RL) using rubric-based LLM-as-judge reward, specifically for this task. In our extensive evaluation spanning various frontier models, training ablations and main agent configurations, we find that Terminus-4B is able to reduce the token usage of the main agent by up to ~30% compared to the No Subagent baseline with no impact to agent performance on benchmarks like SWE-Bench Pro and our internal SWE-Bench C# benchmark, which tends to be heavy in verbose execution tasks. Furthermore, Terminus-4B improves key metrics showing the main agent relying on the outputs of the subagent and doing fewer terminal execution tasks by itself. We see that our model not only closes the gap between the Vanilla Qwen model and frontier models like Claude Sonnet / Opus / GPT-5.3-Codex, but often even exceeds their performance.",
+      "authors": [
+        "Spandan Garg",
+        "Vikram Nitin",
+        "Yufan Huang"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.SE"
+      ],
+      "published": "2026-05-04T22:24:24Z",
+      "updated": "2026-05-04T22:24:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.03195v1",
+      "abs_url": "https://arxiv.org/abs/2605.03195",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03195",
+      "keyword_topics": [
+        "rl",
+        "distillation"
+      ],
+      "summary_zh": "这篇论文旨在解决在代理执行任务中，小型语言模型（SLM）能否替代前沿大型语言模型（LLM）作为子代理的问题。研究提出 Terminus-4B，这是一个基于 Qwen3-4B 经过监督微调（SFT）和基于 LLM-as-judge 奖励的强化学习（RL）训练的模型，专门用于代理终端执行任务。关键创新在于证明了通过特定任务的微调，小型模型可以在不影响主代理性能的前提下，显著降低 token 使用量并提升效率。实验结果表明，Terminus-4B 在 SWE-Bench Pro 和内部 SWE-Bench C# 等基准测试上，相较于无子代理基线，能将主代理的 token 使用量减少约 30%，并且性能超越了如 Claude Sonnet/Opus/GPT-5.3-Codex 等前沿模型，同时促使主代理更多地依赖子代理的输出。"
+    },
+    {
+      "id": "2605.03148",
+      "title": "Boundary-Aware Uncertainty Quantification for Wildfire Spread Prediction",
+      "abstract": "Reliable wildfire spread prediction is vital for risk-aware emergency planning, yet most deep learning models lack principled uncertainty quantification (UQ). Further, for boundary-sensitive cases like wildfire spread, evaluating models with global metrics alone is often insufficient. To shift the focus of UQ evaluation toward a more operationally relevant approach, the Fire-Centered Evaluation Region (FCER) framework is introduced as a spatially conditioned protocol to characterize UQ within critical fire zones. Using FCER, an Ensemble is compared against an distilled single-pass student model on the WildfireSpreadTS dataset. The student model demonstrates comparable calibration and complementary uncertainty ranking in boundary-relevant regimes. Code is available at https://github. com/jonasvilhofunk/WildfireUQ-FCER",
+      "authors": [
+        "Jonas V. Funk"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-04T20:41:51Z",
+      "updated": "2026-05-04T20:41:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.03148v1",
+      "abs_url": "https://arxiv.org/abs/2605.03148",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03148",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "这篇论文致力于解决深度学习模型在野火蔓延预测中缺乏可靠不确定性量化（UQ）的问题，尤其是在对边界敏感的场景下。为此，研究引入了 Fire-Centered Evaluation Region (FCER) 框架，这是一个空间条件协议，用于在关键火灾区域内表征 UQ，从而将 UQ 评估的重点转向更具操作相关性的方法。研究将一个集成模型与一个蒸馏后的单通道学生模型在 WildfireSpreadTS 数据集上进行比较，结果表明学生模型在与边界相关的区域展现出可比的校准性和互补的不确定性排序。"
+    },
+    {
+      "id": "2605.03125",
+      "title": "Taming the Curses of Multiagency in Robust Markov Games with Large State Space through Linear Function Approximation",
+      "abstract": "Multi-agent reinforcement learning (MARL) holds great potential but faces robustness challenges due to environmental uncertainty. To address this, distributionally robust Markov games (RMGs) optimize worst-case performance when the environment deviates from the nominal model within a uncertainty set. Beyond robustness, an equally urgent goal for MARL is data efficiency -- sampling from vast state and action spaces that grow exponentially with the number of agents potentially leads to the curse of multiagency. However, current provably data-efficient algorithms for RMGs are limited to tabular settings with finite state and action spaces, which are only computationally manageable for small-scale problems, leaving RMGs with large-scale (or infinite) state spaces largely unexplored. The only existing work beyond tabular settings focuses on linear function approximation (LFA) for a restrictive class of RMGs using vanish minimal value assumption and still suffers from sample complexity with the curse of multiagency. In this work, we focuses on general RMGs with LFA. For uncertainty sets defined by total variation distance, we develop provably data-efficient algorithms that break the curse of multiagency in both the generative model setting and a newly proposed online interactive setting. To our knowledge, our results are the first to break the curse of multiagency of sample complexity for RMGs with large (possibly infinite) state spaces, regardless of the uncertainty set construction.",
+      "authors": [
+        "Jingchu Gai",
+        "Laixi Shi"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-04T20:04:52Z",
+      "updated": "2026-05-04T20:04:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.03125v1",
+      "abs_url": "https://arxiv.org/abs/2605.03125",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03125",
+      "summary_zh": "多智能体强化学习（MARL）在环境不确定性下存在鲁棒性问题，现有分布鲁棒马尔可夫博弈（RMGs）算法主要局限于表格设置，难以处理大规模状态空间，且在处理线性函数逼近（LFA）时仍受多智能体诅咒（curse of multiagency）影响。该研究针对具有LFA的通用RMGs，提出了一种在生成模型设置和在线交互设置下都具有数据效率的算法，该算法能够打破多智能体诅咒。这是首次在具有大规模（可能无限）状态空间的RMGs中，无论不确定性集如何构建，都能在样本复杂度上克服多智能体诅咒，显著提升了RMGs在复杂环境中的应用潜力。"
+    },
+    {
+      "id": "2605.03065",
+      "title": "OGPO: Sample Efficient Full-Finetuning of Generative Control Policies",
+      "abstract": "Generative control policies (GCPs), such as diffusion- and flow-based control policies, have emerged as effective parameterizations for robot learning. This work introduces Off-policy Generative Policy Optimization (OGPO), a sample-efficient algorithm for finetuning GCPs that maintains off-policy critic networks to maximize data reuse and propagate policy gradients through the full generative process of the policy via a modified PPO objective, using critics as the terminal reward. OGPO achieves state-of-the-art performance on manipulation tasks spanning multi-task settings, high-precision insertion, and dexterous control. To our knowledge, it is also the only method that can fine-tune poorly-initialized behavior cloning policies to near full task-success with no expert data in the online replay buffer, and does so with few task-specific hyperparameter tuning. Through extensive empirical investigations, we demonstrate the OGPO drastically outperforms methods alternatives on policy steering and learning residual corrections, and identify the key mechanisms behind its performance. We further introduce practical stabilizers, including success-buffer regularization, conservative advantages, $χ^2$ regularization, and Q-variance reduction, to mitigate critic over-exploitation across state- and pixel-based settings. Beyond proposing OGPO, we conduct a systematic empirical study of GCP finetuning, identifying the stabilizing mechanisms and failure modes that govern successful off-policy full-policy improvement.",
+      "authors": [
+        "Sarvesh Patil",
+        "Mitsuhiko Nakamoto",
+        "Manan Agarwal",
+        "Shashwat Saxena",
+        "Jesse Zhang",
+        "Giri Anantharaman",
+        "Cleah Winston",
+        "Chaoyi Pan",
+        "Douglas Chen",
+        "Nai-Chieh Huang",
+        "Zeynep Temel",
+        "Oliver Kroemer",
+        "Sergey Levine",
+        "Abhishek Gupta",
+        "Hongkai Da",
+        "Paarth Shah",
+        "Max Simchowitz"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-05-04T18:36:40Z",
+      "updated": "2026-05-04T18:36:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.03065v1",
+      "abs_url": "https://arxiv.org/abs/2605.03065",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03065",
+      "summary_zh": "该研究提出了一种名为 Off-policy Generative Policy Optimization (OGPO) 的算法，旨在高效微调生成式控制策略（GCPs），以解决机器人学习中样本效率低的问题。OGPO 通过维护离线评论网络（off-policy critic networks）最大化数据重用，并利用修改后的 PPO 目标函数，将评论网络作为最终奖励，使策略梯度能通过完整的生成过程进行传播。OGPO 在多任务、高精度插入和灵巧控制等操作任务上取得了最先进的性能，并且是唯一能在在线回放缓冲区没有专家数据的情况下，将初始化不佳的行为克隆策略微调至接近完全任务成功的算法。研究还引入了成功缓冲区正则化、保守优势、$\\chi^2$ 正则化和 Q 方差减少等实用稳定器，以缓解评论网络在状态和像素设置中的过度利用，并通过广泛的实证研究揭示了 OGPO 性能背后的关键机制。"
+    },
+    {
       "id": "2605.02888",
       "title": "SpecKV: Adaptive Speculative Decoding with Compression-Aware Gamma Selection",
-      "abstract": "Speculative decoding accelerates large language model (LLM) inference by using a small draft model to propose candidate tokens that a larger target model verifies. A critical hyperparameter in this process is the speculation length~$γ$, which determines how many tokens the draft model proposes per step. Nearly all existing systems use a fixed~$γ$ (typically~4), yet empirical evidence suggests that the optimal value varies across task types and, crucially, depends on the compression level applied to the target model. In this paper, we present \\textbf{SpecKV}, a lightweight adaptive controller that selects~$γ$ per speculation step using signals extracted from the draft model itself. We profile speculative decoding across 4~task categories, 4~speculation lengths, and 3~compression levels (FP16, INT8, NF4), collecting 5,112 step-level records with per-step acceptance rates, draft entropy, and draft confidence. We demonstrate that the optimal~$γ$ shifts across compression regimes and that draft model confidence and entropy are strong predictors of acceptance rate (correlation~$\\approx 0.56$). SpecKV uses a small MLP trained on these signals to maximize expected tokens per speculation step, achieving a 56.0\\% improvement over the fixed-$γ$=4 baseline with only 0.34\\,ms overhead per decision ($<$0.5\\% of step time). The improvement is statistically significant ($p < 0.001$, paired bootstrap test). We release all profiling data, trained models, and notebooks as open-source artifacts.",
+      "abstract": "Speculative decoding accelerates large language model (LLM) inference by using a small draft model to propose candidate tokens that a larger target model verifies. A critical hyperparameter in this process is the speculation length $γ$, which determines how many tokens the draft model proposes per step. Nearly all existing systems use a fixed $γ$ (typically 4), yet empirical evidence suggests that the optimal value varies across task types and, crucially, depends on the compression level applied to the target model. In this paper, we present SpecKV, a lightweight adaptive controller that selects $γ$ per speculation step using signals extracted from the draft model itself. We profile speculative decoding across 4 task categories, 4 speculation lengths, and 3 compression levels (FP16, INT8, NF4), collecting 5,112 step-level records with per-step acceptance rates, draft entropy, and draft confidence. We demonstrate that the optimal $γ$ shifts across compression regimes and that draft model confidence and entropy are strong predictors of acceptance rate (correlation $\\approx$ 0.56). SpecKV uses a small MLP trained on these signals to maximize expected tokens per speculation step, achieving a 56.0% improvement over the fixed-$γ=4$ baseline with only 0.34 ms overhead per decision (<0.5% of step time). The improvement is statistically significant (p < 0.001, paired bootstrap test). We release all profiling data, trained models, and notebooks as open-source artifacts.",
       "authors": [
         "Shikhar Shukla"
       ],
@@ -43,15 +180,14 @@
         "eess.SY"
       ],
       "published": "2026-05-04T17:55:05Z",
-      "updated": "2026-05-04T17:55:05Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.02888v1",
+      "updated": "2026-05-05T12:57:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.02888v2",
       "abs_url": "https://arxiv.org/abs/2605.02888",
       "topics": [
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.02888",
-      "summary_zh": "该论文旨在解决大型语言模型（LLM）推断中，推测解码（speculative decoding）的关键超参数——推测长度 $γ$ 的固定值问题，并提出一种自适应选择 $γ$ 的方法。现有方法通常使用固定 $γ$ 值，但最佳 $γ$ 值会随任务类型和目标模型的压缩级别而变化。为此，研究者提出了 SpecKV，一个轻量级的自适应控制器，它利用草稿模型（draft model）自身的信号，在每个推测步骤中选择 $γ$。通过对不同任务类别、推测长度和压缩级别进行分析，发现草稿模型的置信度和熵是接受率的强预测因子（相关性约为 0.56）。SpecKV 使用一个小型 MLP 模型，根据这些信号来最大化每个推测步骤的预期令牌数，相比固定 $γ$=4 的基线，实现了 56.0% 的性能提升，而每次决策的开销仅为 0.34 毫秒（小于步骤时间的 0.5%），且该提升具有统计学显著性。",
-      "impact_score": null
+      "summary_zh": "该论文旨在解决大型语言模型（LLM）推断中，推测解码（speculative decoding）的关键超参数——推测长度 $γ$ 的固定值问题，并提出一种自适应选择 $γ$ 的方法。现有方法通常使用固定 $γ$ 值，但最佳 $γ$ 值会随任务类型和目标模型的压缩级别而变化。为此，研究者提出了 SpecKV，一个轻量级的自适应控制器，它利用草稿模型（draft model）自身的信号，在每个推测步骤中选择 $γ$。通过对不同任务类别、推测长度和压缩级别进行分析，发现草稿模型的置信度和熵是接受率的强预测因子（相关性约为 0.56）。SpecKV 使用一个小型 MLP 模型，根据这些信号来最大化每个推测步骤的预期令牌数，相比固定 $γ$=4 的基线，实现了 56.0% 的性能提升，而每次决策的开销仅为 0.34 毫秒（小于步骤时间的 0.5%），且该提升具有统计学显著性。"
     },
     {
       "id": "2605.02867",
@@ -149,15 +285,17 @@
       "pdf_url": "https://arxiv.org/pdf/2605.02801v1",
       "abs_url": "https://arxiv.org/abs/2605.02801",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.02801",
-      "summary_zh": "该研究旨在解决大型语言模型（LLM）多智能体系统中，如何通过强化学习（RL）优化智能体间的协作与任务编排问题。论文提出通过“编排轨迹”（orchestration traces）来分析和优化多智能体系统的行为，这些轨迹是包含子智能体生成、委托、通信、工具使用、结果返回、聚合和停止等事件的时间交互图。研究从三个技术维度进行探讨：奖励设计涵盖八个系列，包括并行加速、拆分正确性和聚合质量等编排奖励；奖励和信用信号附着于从token到团队的八个信用或信号承载单元；编排学习分解为何时生成、委托给谁、如何通信、如何聚合以及何时停止这五个子决策。研究发现，在现有文献中，针对停止决策的显式RL训练方法仍然稀缺，并连接了学术方法与Kimi Agent Swarm、OpenAI Codex和Anthropic Claude Code等工业实践证据，指出公开部署与开放学术评估之间存在规模差距。",
-      "impact_score": null
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决大型语言模型（LLM）多智能体系统中，如何通过强化学习（RL）优化智能体间的协作与任务编排问题。论文提出通过“编排轨迹”（orchestration traces）来分析和优化多智能体系统的行为，这些轨迹是包含子智能体生成、委托、通信、工具使用、结果返回、聚合和停止等事件的时间交互图。研究从三个技术维度进行探讨：奖励设计涵盖八个系列，包括并行加速、拆分正确性和聚合质量等编排奖励；奖励和信用信号附着于从token到团队的八个信用或信号承载单元；编排学习分解为何时生成、委托给谁、如何通信、如何聚合以及何时停止这五个子决策。研究发现，在现有文献中，针对停止决策的显式RL训练方法仍然稀缺，并连接了学术方法与Kimi Agent Swarm、OpenAI Codex和Anthropic Claude Code等工业实践证据，指出公开部署与开放学术评估之间存在规模差距。"
     },
     {
       "id": "2605.02777",
-      "title": "A decoupled diffusion planner that adapts to changing cost limits by using cost-conditioned generation for safety and reward gradients for performance",
+      "title": "Decoupled Guidance Diffusion for Adaptive Offline Safe Reinforcement Learning",
       "abstract": "Offline safe reinforcement learning often requires policies to adapt at deployment time to safety budgets that vary across episodes or change within a single episode. While diffusion-based planners enable flexible trajectory generation, existing guidance schemes often treat reward improvement and constraint satisfaction as competing gradient objectives, which can lead to unreliable safety compliance under cost limits. We reinterpret adaptive safe trajectory generation as sampling from a constrained trajectory distribution, where the budget restricts the trajectory region, and reward shapes preferences within that region. This perspective motivates Safe Decoupled Guidance Diffusion (SDGD), which conditions classifier-free guidance on the cost limit to bias sampling toward trajectories satisfying the specified limit, while using reward-gradient guidance to refine trajectories for higher return. Because direct reward guidance can increase return while also steering samples toward trajectories with higher cumulative cost, we introduce Feasible Trajectory Relabeling (FTR) to reshape reward targets and discourage such directions. We further provide a first-order sampling-time analysis showing that FTR suppresses reward-induced cost drift under a prefix-restorative alignment condition. Extensive evaluations on the DSRL benchmark show that SDGD achieves the strongest safety compliance among baselines, satisfying the constraint on 94.7% of tasks (36/38), while obtaining the highest reward among safe methods on 21 tasks.",
       "authors": [
         "Rufeng Chen",
@@ -171,15 +309,14 @@
         "cs.AI"
       ],
       "published": "2026-05-04T16:19:42Z",
-      "updated": "2026-05-04T16:19:42Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.02777v1",
+      "updated": "2026-05-05T02:44:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.02777v2",
       "abs_url": "https://arxiv.org/abs/2605.02777",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.02777",
-      "summary_zh": "这篇论文旨在解决离线安全强化学习中策略难以适应动态变化的安全预算问题，尤其是在扩散模型规划器中，现有方法常将奖励优化和约束满足视为冲突目标，导致安全合规性不足。研究提出了一种名为 Safe Decoupled Guidance Diffusion (SDGD) 的新方法，通过将自适应安全轨迹生成重新解释为从受限轨迹分布中采样，其中预算限制了轨迹区域，奖励则塑造了该区域内的偏好。SDGD 的关键创新在于，它利用基于成本限制的无分类器引导来偏置采样，确保轨迹满足指定成本限制，同时使用奖励梯度引导来优化轨迹以获得更高回报；此外，引入了可行轨迹重标记 (Feasible Trajectory Relabeling, FTR) 来重塑奖励目标，以抑制奖励引导可能导致的成本漂移。在 DSRL 基准测试上的广泛评估表明，SDGD 在 94.7% 的任务上（38 个任务中的 36 个）实现了最强的安全合规性，并在 21 个任务上取得了安全方法中的最高奖励。",
-      "impact_score": null
+      "summary_zh": "这篇论文旨在解决离线安全强化学习中策略难以适应动态变化的安全预算问题，尤其是在扩散模型规划器中，现有方法常将奖励优化和约束满足视为冲突目标，导致安全合规性不足。研究提出了一种名为 Safe Decoupled Guidance Diffusion (SDGD) 的新方法，通过将自适应安全轨迹生成重新解释为从受限轨迹分布中采样，其中预算限制了轨迹区域，奖励则塑造了该区域内的偏好。SDGD 的关键创新在于，它利用基于成本限制的无分类器引导来偏置采样，确保轨迹满足指定成本限制，同时使用奖励梯度引导来优化轨迹以获得更高回报；此外，引入了可行轨迹重标记 (Feasible Trajectory Relabeling, FTR) 来重塑奖励目标，以抑制奖励引导可能导致的成本漂移。在 DSRL 基准测试上的广泛评估表明，SDGD 在 94.7% 的任务上（38 个任务中的 36 个）实现了最强的安全合规性，并在 21 个任务上取得了安全方法中的最高奖励。"
     },
     {
       "id": "2605.02767",
@@ -207,8 +344,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.02767",
-      "summary_zh": "该论文旨在解决扩散模型在图像超分辨率任务中计算成本高昂、难以实际部署的问题。研究提出了一种名为 TOC-SR 的框架，通过首先发现一个紧凑的扩散骨干网络，然后将其适应于超分辨率任务，并最终蒸馏成单步生成器。其关键创新在于使用特征级生成蒸馏（feature-wise generative distillation）构建参数高效的替代模块，并利用 epsilon 约束贝叶斯优化（epsilon-constrained Bayesian Optimization）进行架构发现，以在保持生成保真度的同时最小化模型复杂度。实验结果表明，所得到的紧凑扩散骨干网络在参数量上减少了 6.6 倍，GMACs 减少了 2.8 倍，并且该方法能够实现高效的超分辨率，同时保持强大的重建质量。",
-      "impact_score": null
+      "summary_zh": "该论文旨在解决扩散模型在图像超分辨率任务中计算成本高昂、难以实际部署的问题。研究提出了一种名为 TOC-SR 的框架，通过首先发现一个紧凑的扩散骨干网络，然后将其适应于超分辨率任务，并最终蒸馏成单步生成器。其关键创新在于使用特征级生成蒸馏（feature-wise generative distillation）构建参数高效的替代模块，并利用 epsilon 约束贝叶斯优化（epsilon-constrained Bayesian Optimization）进行架构发现，以在保持生成保真度的同时最小化模型复杂度。实验结果表明，所得到的紧凑扩散骨干网络在参数量上减少了 6.6 倍，GMACs 减少了 2.8 倍，并且该方法能够实现高效的超分辨率，同时保持强大的重建质量。"
     },
     {
       "id": "2605.02759",
@@ -436,8 +572,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.02641",
-      "summary_zh": "Mamoda2.5 提出了一个统一的 AR-Diffusion 框架，旨在将多模态理解和生成无缝集成到单一架构中。该模型通过在 Diffusion Transformer 主干中引入细粒度的 MoE 设计（128 个专家，Top-8 路由），构建了一个 25B 参数的模型，但在激活时仅使用 3B 参数，显著降低了训练成本并提升了模型容量。Mamoda2.5 在 VBench 2.0 上实现了顶级的生成性能，并在视频编辑质量上创造了新纪录，超越了现有开源模型，并与包括 Kling O1 在内的顶尖专有模型在 OpenVE-Bench 上表现相当。此外，通过联合的少步蒸馏和强化学习框架，该模型将 30 步编辑模型压缩到 4 步，实现了高达 95.9 倍的视频编辑推理加速，并在广告场景的内容审核和创意修复任务中达到了 98% 的成功率。",
-      "impact_score": null
+      "summary_zh": "Mamoda2.5 提出了一个统一的 AR-Diffusion 框架，旨在将多模态理解和生成无缝集成到单一架构中。该模型通过在 Diffusion Transformer 主干中引入细粒度的 MoE 设计（128 个专家，Top-8 路由），构建了一个 25B 参数的模型，但在激活时仅使用 3B 参数，显著降低了训练成本并提升了模型容量。Mamoda2.5 在 VBench 2.0 上实现了顶级的生成性能，并在视频编辑质量上创造了新纪录，超越了现有开源模型，并与包括 Kling O1 在内的顶尖专有模型在 OpenVE-Bench 上表现相当。此外，通过联合的少步蒸馏和强化学习框架，该模型将 30 步编辑模型压缩到 4 步，实现了高达 95.9 倍的视频编辑推理加速，并在广告场景的内容审核和创意修复任务中达到了 98% 的成功率。"
     },
     {
       "id": "2605.02630",
@@ -484,8 +619,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.02626",
-      "summary_zh": "这篇论文旨在解决大型语言模型偏好优化（如DPO）中存在的“挤压效应”（squeezing effect），即负梯度过度抑制被拒绝响应的概率，导致概率分布崩溃的问题。论文提出了一种名为Gradient-Gated Preference Optimization (Gate-DPO) 的新方法，通过根据模型概率几何调整被拒绝响应的梯度来稳定训练。Gate-DPO的关键创新在于引入了一个“门控”机制，当更新目标是极低概率响应时，该机制会衰减有害梯度，同时保持标准优化行为，从而在不修改底层偏好目标的情况下解决优化病态。实验在多个架构和偏好数据集上进行，结果表明Gate-DPO显著减少了挤压效应，提高了选中响应的似然性，并且质量动态分析显示出更健康的优化行为，甚至小型门控模型也能比大型非门控模型展现出更强的选中响应改进。",
-      "impact_score": null
+      "summary_zh": "这篇论文旨在解决大型语言模型偏好优化（如DPO）中存在的“挤压效应”（squeezing effect），即负梯度过度抑制被拒绝响应的概率，导致概率分布崩溃的问题。论文提出了一种名为Gradient-Gated Preference Optimization (Gate-DPO) 的新方法，通过根据模型概率几何调整被拒绝响应的梯度来稳定训练。Gate-DPO的关键创新在于引入了一个“门控”机制，当更新目标是极低概率响应时，该机制会衰减有害梯度，同时保持标准优化行为，从而在不修改底层偏好目标的情况下解决优化病态。实验在多个架构和偏好数据集上进行，结果表明Gate-DPO显著减少了挤压效应，提高了选中响应的似然性，并且质量动态分析显示出更健康的优化行为，甚至小型门控模型也能比大型非门控模型展现出更强的选中响应改进。"
     },
     {
       "id": "2605.02623",
@@ -600,8 +734,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.02537",
-      "summary_zh": "针对非凸房间和紧密空间约束下3D室内场景生成中数据驱动方法缺乏拓扑先验、迭代代理语义碎片化的问题，ZoneMaestro提出了一种从以对象为中心的合成转向区域图编排（Zone-Graph Orchestration）的统一框架。该方法通过引入新颖的基于区域的逻辑，将高级语义意图转化为功能区域和拓扑约束，以适应多样化的建筑形式；同时构建了包含显式Zone-Graph标注的大规模数据集Zone-Scene-10K，并引入了交替对齐策略（Alternating Alignment Strategy）和Zone-Aware Group Relative Policy Optimization (Z-GRPO)来平衡语义丰富性和几何有效性。为评估复杂空间智能，论文定义了Intricate Spatial Orchestration任务并发布了SCALE基准。实验结果表明，ZoneMaestro在结构连贯性和意图遵循方面显著优于现有SOTA基线。",
-      "impact_score": null
+      "summary_zh": "针对非凸房间和紧密空间约束下3D室内场景生成中数据驱动方法缺乏拓扑先验、迭代代理语义碎片化的问题，ZoneMaestro提出了一种从以对象为中心的合成转向区域图编排（Zone-Graph Orchestration）的统一框架。该方法通过引入新颖的基于区域的逻辑，将高级语义意图转化为功能区域和拓扑约束，以适应多样化的建筑形式；同时构建了包含显式Zone-Graph标注的大规模数据集Zone-Scene-10K，并引入了交替对齐策略（Alternating Alignment Strategy）和Zone-Aware Group Relative Policy Optimization (Z-GRPO)来平衡语义丰富性和几何有效性。为评估复杂空间智能，论文定义了Intricate Spatial Orchestration任务并发布了SCALE基准。实验结果表明，ZoneMaestro在结构连贯性和意图遵循方面显著优于现有SOTA基线。"
     },
     {
       "id": "2605.02528",
@@ -1168,8 +1301,8 @@
         "cs.ET"
       ],
       "published": "2026-05-04T05:33:03Z",
-      "updated": "2026-05-04T05:33:03Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.02241v1",
+      "updated": "2026-05-05T04:40:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.02241v2",
       "abs_url": "https://arxiv.org/abs/2605.02241",
       "topics": [
         "other"
