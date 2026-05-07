@@ -1,6 +1,6 @@
 {
   "date": "2026-05-05",
-  "generated_at": "2026-05-06T04:59:37.857189+00:00",
+  "generated_at": "2026-05-07T04:59:48.184327+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,255 @@
     }
   },
   "papers": [
+    {
+      "id": "2605.04356",
+      "title": "Efficiently Aligning Language Models with Online Natural Language Feedback",
+      "abstract": "Reinforcement learning with verifiable rewards has been used to elicit impressive performance from language models in many domains. But, broadly beneficial deployments of AI may require us to train models with strong capabilities in \"fuzzy\", hard-to-supervise domains. In this paper, we develop methods to align language models in fuzzy domains where human experts are still able to provide high-quality supervision signal, but only for a small number of model outputs, using online natural language feedback. Specifically, we train models by iteratively optimizing against proxy reward signals, stopping at the point of over-optimization, collecting fresh expert supervision, and updating the proxy reward. We construct proxy reward models from language models using in-context learning (ICL) and fine-tuning. We test our methods by eliciting creative writing and alignment research capabilities in Qwen3-8B and Haiku 4.5 respectively. For Qwen3-8B, ICL methods recover up to 35% of performance with 50x fewer expert samples, while fine-tuning methods recover 80% with up to 20x fewer samples and 100% with 3x fewer samples. For Haiku 4.5, ICL methods recover up to 35% of performance with 30x fewer samples, and fine-tuning methods recover 100% with 10x fewer samples. Our results suggest that online natural language feedback can substantially improve the data efficiency of expert supervision.",
+      "authors": [
+        "Christine Ye",
+        "Joe Benton"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-05T23:25:00Z",
+      "updated": "2026-05-05T23:25:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04356v1",
+      "abs_url": "https://arxiv.org/abs/2605.04356",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04356",
+      "summary_zh": "该研究旨在解决语言模型在“模糊”领域（如创意写作、对齐研究）中难以通过传统可验证奖励进行对齐的问题，提出了一种利用在线自然语言反馈高效训练模型的方法。核心创新在于通过迭代优化代理奖励信号，并在过优化前停止，收集新的专家监督，然后更新代理奖励模型，其中代理奖励模型通过In-Context Learning (ICL) 和微调语言模型构建。实验在Qwen3-8B和Haiku 4.5模型上进行，结果显示，ICL方法在Qwen3-8B上能以50倍更少的专家样本恢复高达35%的性能，微调方法则能以20倍更少的样本恢复80%，甚至以3倍更少的样本恢复100%；在Haiku 4.5上，ICL方法以30倍更少的样本恢复35%性能，微调方法以10倍更少的样本恢复100%性能，证明了在线自然语言反馈能显著提高专家监督的数据效率。"
+    },
+    {
+      "id": "2605.04341",
+      "title": "Budgeted LoRA: Distillation as Structured Compute Allocation for Efficient Inference",
+      "abstract": "We study distillation for large language models under explicit compute constraints, with the goal of producing student models that are not only cheaper to train, but structurally efficient at inference time. While prior approaches to parameter-efficient distillation, such as LoRA, reduce adaptation cost, they leave the dense backbone unchanged and therefore fail to deliver meaningful inference savings. We propose Budgeted LoRA, a distillation framework that treats model compression as a structured compute allocation problem. Instead of using a fixed student architecture, we introduce a global compute budget that sets the final target fraction of dense computation retained. Under this constraint, the model redistributes capacity across dense and low-rank pathways via (i) module-level dense retention coefficients, (ii) adaptive low-rank allocation, and (iii) post-training compression that selectively removes, approximates, or preserves dense components. This formulation yields a family of students controlled by a single budget dial. Empirically, Budgeted LoRA matches standard LoRA perplexity at a moderate budget with a 1.74x compressed-module speedup; at an aggressive budget it achieves a 4.05x speedup with moderate perplexity degradation, and it preserves higher accuracy on function-style in-context learning probes. These results suggest that, under compute-constrained distillation, retaining behavior is less about matching perplexity or removing more parameters than it is about controlling how dense computation is transferred to low-rank pathways.",
+      "authors": [
+        "Mohammed Sabry",
+        "Anya Belz"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-05T22:59:14Z",
+      "updated": "2026-05-05T22:59:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04341v1",
+      "abs_url": "https://arxiv.org/abs/2605.04341",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04341",
+      "summary_zh": "该论文旨在解决大型语言模型（LLM）在推理阶段的计算效率问题，尤其是在明确的计算预算约束下，通过蒸馏生成结构高效的学生模型。传统参数高效蒸馏方法如LoRA虽然降低了训练成本，但由于保留了密集的骨干网络，未能显著提升推理效率。为此，论文提出了Budgeted LoRA框架，将模型压缩视为结构化的计算分配问题，通过引入全局计算预算，并在此约束下，通过模块级密集保留系数、自适应低秩分配以及训练后压缩来重新分配模型容量，从而在密集和低秩路径之间进行权衡。实验结果显示，在适度预算下，Budgeted LoRA在保持与标准LoRA相当的困惑度（perplexity）的同时，实现了1.74倍的压缩模块加速；在更严格的预算下，可达到4.05倍的加速，且困惑度下降适中，并在函数式上下文学习探针上保持了更高的准确性。这些发现表明，在计算受限的蒸馏中，模型行为的保留关键在于如何控制密集计算向低秩路径的转移，而非简单地匹配困惑度或移除更多参数。"
+    },
+    {
+      "id": "2605.04286",
+      "title": "Probabilistic Classification and Uncertainty Quantification of Sahara Desert Climate Using Feedforward Neural Networks",
+      "abstract": "Climate classification plays a vital role in agricultural planning, hydrological studies, and climate science. One of the most widely used systems for classifying global climate zones is the Köppen-Trewartha (KT) classification. However, the KT classification is fundamentally deterministic, offering discrete labels to spatial locations without accounting for uncertainties in classification. In this paper, we provide a framework for probabilistic modeling of climatic zones. We implement a feedforward artificial neural network (ANN) for classification, allowing for efficient, uncertainty-aware categorization of climatic regions, thereby offering a more nuanced understanding of transitional climate zones compared to traditional deterministic methods. We apply this method to the Sahara Desert region over the 30-year period of 1960 - 1989, using data at more than 400,000 space-time locations from the first 11 years to train our model. We assess the model's short- and long-term classification capabilities to evaluate its stability and accuracy over time. We also compare the probabilistic classification from our model with the traditional KT classification. In addition, we use fluctuation analysis methods to highlight the temporal evolution of climatic zones across the Sahara region and identify areas undergoing significant flux of probabilities of their climate classes, providing insights into broader trends in desertification.",
+      "authors": [
+        "Stephen Tivenan",
+        "Indranil Sahoo",
+        "Yanjun Qian"
+      ],
+      "categories": [
+        "cs.LG",
+        "stat.AP",
+        "stat.CO"
+      ],
+      "published": "2026-05-05T20:44:58Z",
+      "updated": "2026-05-05T20:44:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04286v1",
+      "abs_url": "https://arxiv.org/abs/2605.04286",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04286",
+      "keyword_topics": [
+        "4d-gen"
+      ],
+      "summary_zh": "该研究旨在解决传统气候分类方法（如 Köppen-Trewartha (KT) 分类）的确定性局限，通过引入不确定性量化来更精细地理解气候过渡区域。研究采用前馈神经网络 (ANN) 构建了一个概率模型，对气候区域进行分类，其关键创新在于能够提供具有不确定性意识的分类结果，而非简单的离散标签。该方法应用于撒哈拉沙漠地区1960-1989年的气候数据，利用前11年的数据训练模型，并在短期和长期分类能力上进行了评估，同时与传统KT分类进行了比较。实验结果表明，该模型不仅能有效进行气候分类，还能通过波动分析揭示气候区域的时间演变和荒漠化趋势，为气候变化研究提供了新的视角。"
+    },
+    {
+      "id": "2605.04282",
+      "title": "Hardware-Aware Neural Feature Extraction for Resource-Constrained Devices",
+      "abstract": "Visual SLAM is a core component of spatial computing systems, yet deploying learned local feature extractors on microcontroller-class hardware remains challenging due to memory, bandwidth, and quantization constraints. While modern neural descriptors provide strong robustness, their practical adoption is often hindered by system-level bottlenecks that are not captured by FLOP-based efficiency metrics. In this work, we introduce Gideon, a hardware-aware neural feature extractor explicitly designed for resource-constrained devices. Our approach combines relational knowledge distillation from a SuperPoint teacher with differentiable neural architecture search (DNAS) under strict memory and operator constraints. Unlike conventional design pipelines, we treat quantization stability and dynamic-range compactness as first-class objectives. We show that architectural choices such as replacing Batch Normalization with affine layers significantly improve INT8 robustness, and that descriptor dimensionality directly governs quantization resilience. Deployed on STM32N6, Gideon achieves 9.003 ms inference time (111 fps) while remaining below a 1.5 MB memory footprint. Remarkably, INT8 quantization induces negligible degradation and occasionally matches full-precision performance. These results demonstrate that robust learned feature extraction can be reconciled with embedded hardware constraints through holistic hardware-algorithm co-design.",
+      "authors": [
+        "Francesco Tosini",
+        "Simone Pedroni",
+        "Christian Veronesi",
+        "Pietro Bartoli",
+        "Marco Paracchini",
+        "Marco Marcon",
+        "Diana Trojaniello"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-05T20:32:00Z",
+      "updated": "2026-05-05T20:32:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04282v1",
+      "abs_url": "https://arxiv.org/abs/2605.04282",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04282",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该论文旨在解决在资源受限设备（如微控制器）上部署学习型局部特征提取器时面临的内存、带宽和量化挑战。它提出了一种名为 Gideon 的硬件感知神经特征提取器，通过结合 SuperPoint 教师模型的关联知识蒸馏和在严格内存及操作符约束下的可微分神经架构搜索（DNAS）来优化模型。关键创新点在于将量化稳定性和动态范围紧凑性作为首要设计目标，并发现用仿射层替换 Batch Normalization 能显著提高 INT8 鲁棒性，同时描述符维度直接影响量化弹性。实验结果表明，Gideon 在 STM32N6 上实现了 9.003 毫秒的推理时间（111 fps），内存占用低于 1.5 MB，且 INT8 量化几乎没有性能下降，甚至有时能与全精度性能匹配，证明了通过软硬件协同设计可以在嵌入式硬件上实现鲁棒的学习型特征提取。"
+    },
+    {
+      "id": "2605.04267",
+      "title": "QUIVER: Cost-Aware Adaptive Preference Querying in Surrogate-Assisted Evolutionary Multi-Objective Optimization",
+      "abstract": "Interactive multi-objective optimization systems face a budget allocation dilemma: one can spend resources on expensive objective evaluations or on eliciting decision-maker preferences that identify the relevant region of the Pareto set. Moreover, preference elicitation itself spans modalities with different information content and cognitive burden, ranging from cheap, noisy pairwise preference statements (PS) to richer but costlier indifference adjustments (IA). We study cost-aware optimization under an unknown scalarization and introduce QUIVER (Query-Informed Value Estimation for Regret), a surrogate-assisted evolutionary multi-objective optimizer that adaptively chooses between objective evaluations and heterogeneous preference queries. At each step, QUIVER selects the next action by maximizing the expected decision-quality improvement per unit total cost. Across DTLZ and WFG benchmarks under synthetic decision-maker models, QUIVER achieves the lowest final utility regret on challenging WFG problems (utility regret of 2.14 on WFG4, 2.82 on WFG9: a 25% improvement over baselines), outperforming all single-modality baselines. We analyze how the optimal mix of PS and IA adapts to problem difficulty: on easy problems (DTLZ2), QUIVER selects 80\\% PS queries; on hard problems (WFG9), it shifts to 35% IA queries. This adaptive modality selection demonstrates cost-aware preference learning in action.",
+      "authors": [
+        "Florian A. D. Burnat"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-05T20:02:35Z",
+      "updated": "2026-05-05T20:02:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04267v1",
+      "abs_url": "https://arxiv.org/abs/2605.04267",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04267",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文提出了一种名为 QUIVER 的代理辅助进化多目标优化器，旨在解决交互式多目标优化中资源分配的困境，即如何在昂贵的目标评估和决策者偏好查询之间进行权衡。QUIVER 的关键创新在于它能自适应地选择不同成本和信息量的偏好查询方式（如廉价的成对偏好陈述 PS 和昂贵的无差异调整 IA），并通过最大化单位总成本的预期决策质量改进来指导每一步的行动。在 DTLZ 和 WFG 基准测试中，QUIVER 在具有挑战性的 WFG 问题上取得了最低的最终效用遗憾（例如，WFG4 上效用遗憾为 2.14，WFG9 上为 2.82），比所有单一模式基线提高了 25%，并且能够根据问题难度自适应地调整 PS 和 IA 的查询比例，例如在简单问题上偏好 PS，在困难问题上增加 IA 的使用。"
+    },
+    {
+      "id": "2605.04266",
+      "title": "Explaining and Preventing Alignment Collapse in Iterative RLHF",
+      "abstract": "Reinforcement learning from human feedback (RLHF) typically assumes a static or non-strategic reward model (RM). In iterative deployment, however, the policy generates the data on which the RM is retrained, creating a feedback loop. Building on the Stackelberg game formulation of this interaction, we derive an analytical decomposition of the policy's true optimization gradient into a standard policy gradient and a parameter-steering term that captures the policy's influence on the RM's future parameters. We show that standard iterative RLHF, which drops this steering term entirely, suffers from alignment collapse: the policy systematically exploits the RM's blind spots, producing low-quality, high-reward outputs whose feedback reinforces the very errors it exploits. To mitigate this, we propose foresighted policy optimization (FPO), a mechanism-design intervention that restores the missing steering term by regularizing the policy's parameter-steering effect on RM updates. We instantiate FPO via a scalable first-order approximation and demonstrate that it prevents alignment collapse on both controlled environments and an LLM alignment pipeline using Llama-3.2-1B.",
+      "authors": [
+        "Etienne Gauthier",
+        "Francis Bach",
+        "Michael I. Jordan"
+      ],
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-05-05T20:01:36Z",
+      "updated": "2026-05-05T20:01:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04266v1",
+      "abs_url": "https://arxiv.org/abs/2605.04266",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04266",
+      "summary_zh": "迭代RLHF中，策略生成数据用于奖励模型（RM）的再训练，形成一个反馈循环，但现有方法通常假设RM是静态或非策略性的，导致对齐崩溃（alignment collapse）。论文通过Stackelberg博弈理论，将策略的真实优化梯度分解为标准策略梯度和参数引导项，揭示了标准RLHF因忽略参数引导项而导致策略利用RM盲点，生成低质量高奖励输出，从而加剧错误。为解决此问题，提出了前瞻性策略优化（FPO），通过正则化策略对RM更新的参数引导效应来恢复缺失的引导项。FPO通过可扩展的一阶近似实现，并在受控环境和使用Llama-3.2-1B的大型语言模型对齐管道中成功阻止了对齐崩溃。"
+    },
+    {
+      "id": "2605.04263",
+      "title": "Parallel Prefix Verification for Speculative Generation",
+      "abstract": "We introduce PARSE (PArallel pRefix Speculative Engine), a speculative generation framework that accelerates large language model (LLM) inference by parallelizing prefix verification on a semantic level. Existing speculative decoding methods are fundamentally limited by token-level equivalence: the target model must verify each token, leading to short acceptance lengths and modest speedups. Moving to semantic or segment-level verification can substantially increase acceptance granularity, but prior approaches rely on sequential verification, introducing significant overhead and limiting practical gains. PARSE introduces parallel prefix verification, enabling semantic-level verification without sequential checks. Given a full draft from a draft model, the target model evaluates correctness across multiple prefixes in a single forward pass using a custom attention mask, directly identifying the maximal valid prefix. This eliminates sequential segment verification, and makes verification compute-efficient. PARSE is orthogonal to token-level speculative decoding and can be composed with it for additional gains. Across models and benchmarks, PARSE delivers $1.25\\times$ to $4.3\\times$ throughput gain over the target model, and $1.6\\times$ to $4.5\\times$ when composed with EAGLE-3, all with negligible accuracy degradation. This demonstrates parallel prefix verification as an effective, general approach to accelerating LLM inference.",
+      "authors": [
+        "Yuncheng Yao",
+        "Yuxuan Xia",
+        "Shengjie Wang",
+        "Danyang Zhuo"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-05-05T19:56:37Z",
+      "updated": "2026-05-05T19:56:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04263v1",
+      "abs_url": "https://arxiv.org/abs/2605.04263",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04263",
+      "summary_zh": "PARSE (PArallel pRefix Speculative Engine) 提出了一种并行前缀验证框架，旨在加速大型语言模型（LLM）的推理过程，通过在语义层面并行验证前缀来克服现有推测解码方法的局限性。现有方法受限于逐token验证，导致接受长度短且加速效果有限，而PARSE通过定制的注意力掩码，在一次前向传播中并行评估多个前缀的正确性，直接识别最长有效前缀，从而避免了顺序验证带来的开销。这种并行前缀验证方法与逐token推测解码正交，可以结合使用以获得额外收益，实验结果表明，PARSE在不同模型和基准测试上实现了1.25倍到4.3倍的吞吐量提升，与EAGLE-3结合时可达1.6倍到4.5倍，且几乎没有准确性损失。"
+    },
+    {
+      "id": "2605.04254",
+      "title": "Hierarchical Support Vector State Partitioning for Distilling Black Box Reinforcement Learning Policies",
+      "abstract": "We introduce State Vector Space Partitioning (SVSP), a novel method to mimic a black box reinforcement learning policy using a set of human-interpretable subpolicies. By partitioning a distillation dataset of state action pairs with linear support vector machine splits, SVSP constructs a compact and structured representation of the original policy. Our method improves mean return by +7.4\\% over previous critic driven state partitioning attempts such as Voronoi State Partitioning (VSP) and +2.8\\% over the original TD3 policy, while reducing the number of required subpolicies against VSP by 82.1\\%. Our results pave the path towards a more flexible form of distillation where both the decision boundary and surrogate models can be chosen within a margin of the original black box behavior.",
+      "authors": [
+        "Senne Deproost",
+        "Mehrdad Asadi",
+        "Ann Nowé"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.HC"
+      ],
+      "published": "2026-05-05T19:40:05Z",
+      "updated": "2026-05-05T19:40:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04254v1",
+      "abs_url": "https://arxiv.org/abs/2605.04254",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04254",
+      "summary_zh": "该论文提出了一种名为分层支持向量状态划分（Hierarchical Support Vector State Partitioning, SVSP）的新方法，旨在通过一组人类可解释的子策略来模仿黑盒强化学习策略。SVSP 通过使用线性支持向量机（SVM）对状态-动作对的蒸馏数据集进行划分，构建了原始策略的紧凑且结构化的表示。实验结果表明，SVSP 在平均回报上比之前的基于评论家驱动的状态划分方法（如 Voronoi State Partitioning, VSP）提高了 7.4%，甚至比原始的 TD3 策略高出 2.8%，同时将所需子策略的数量相对于 VSP 减少了 82.1%。这项工作为更灵活的策略蒸馏形式奠定了基础，在这种形式中，决策边界和代理模型都可以在原始黑盒行为的误差范围内进行选择。"
+    },
+    {
+      "id": "2605.04221",
+      "title": "Self-Prompting Small Language Models for Privacy-Sensitive Clinical Information Extraction",
+      "abstract": "Clinical named entity recognition from dental progress notes is challenging because documentation is highly unstructured, domain-specific, and often privacy-sensitive. We developed a locally deployable framework that enables small language models to self-generate, verify, refine, and evaluate entity-specific prompts for extracting multiple clinical entities from dental notes. Using 1,200 annotated notes, we evaluated candidate open-weight models with multi-prompt ensemble inference and further adapted selected models using QLoRA-based supervised fine-tuning and direct preference optimization. Model performance varied substantially, highlighting the need for task-specific evaluation rather than reliance on generic benchmarks. Qwen2.5-14B-Instruct achieved the strongest baseline performance. After DPO, Qwen2.5-14B-Instruct and Llama-3.1-8B-Instruct achieved micro/macro F1 scores of 0.864/0.837 and 0.806/0.797, respectively. These findings suggest that automated prompt optimization combined with lightweight preference-based post-training can support scalable clinical information extraction using locally deployed small language models.",
+      "authors": [
+        "Yao-Shun Chuang",
+        "Tushti Mody",
+        "Uday Pratap Singh",
+        "Shirindokht Shiraz",
+        "Chun-Teh Lee",
+        "Ryan Brandon",
+        "Muhammad F Walji",
+        "Xiaoqian Jiang",
+        "Bunmi Tokede"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-05-05T19:03:40Z",
+      "updated": "2026-05-05T19:03:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04221v1",
+      "abs_url": "https://arxiv.org/abs/2605.04221",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04221",
+      "summary_zh": "针对牙科病程记录中高度非结构化、领域特定且隐私敏感的临床命名实体识别（NER）挑战，研究提出一个本地部署框架，使小型语言模型（SLMs）能自生成、验证、细化和评估实体特定提示。该框架通过多提示集成推理评估候选开源模型，并利用 QLoRA 进行监督微调和直接偏好优化（DPO）来进一步适应模型。在 1200 份标注笔记上，Qwen2.5-14B-Instruct 在 DPO 后达到了 0.864/0.837 的 micro/macro F1 分数，Llama-3.1-8B-Instruct 达到了 0.806/0.797，表明自动提示优化结合轻量级偏好后训练能有效支持使用本地部署 SLMs 进行可扩展的临床信息提取。"
+    },
+    {
+      "id": "2605.04185",
+      "title": "Constraint-Enhanced Reinforcement Learning Based on Dynamic Decoupled Spherical Radial Squashing",
+      "abstract": "When deploying reinforcement learning policies to physical robots, actuator rate constraints -- hard limits on how fast each joint can move per control step -- are unavoidable. These limits vary substantially across joints due to differences in motor inertia, power bandwidth, and transmission stiffness, creating pronounced heterogeneity that existing methods fail to handle geometrically: the per-joint feasible region forms a high-dimensional box in action-increment space, yet QP projection and spherical parameterization methods impose isotropic ball-shaped constraints, exponentially under-covering the true feasible set as heterogeneity grows. This paper proposes Dynamic Decoupled Spherical Radial Squashing (DD-SRad), which resolves this mismatch by computing a position-adaptive radius independently for each actuator, achieving tight alignment with the true per-joint feasible region. DD-SRad satisfies per-step hard constraints with probability~1, preserves well-conditioned gradients throughout training, and admits exact policy gradient backpropagation with zero runtime solver overhead. MuJoCo benchmark experiments demonstrate the highest task return at zero constraint violation -- matching the unconstrained upper bound -- with 30%--50% improvement in constraint-space coverage over spherical baselines. High-fidelity IsaacLab simulations with Unitree H1 and G1 humanoid robots confirm end-to-end optimality parameterized directly from official joint specifications, validating a systematic pathway from hardware datasheets to safe deployment.",
+      "authors": [
+        "Qijun Liao",
+        "Zhaoxin Yu",
+        "Jue Yang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-05-05T18:24:46Z",
+      "updated": "2026-05-05T18:24:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04185v1",
+      "abs_url": "https://arxiv.org/abs/2605.04185",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04185",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文旨在解决物理机器人部署强化学习策略时，执行器速率约束（关节运动速度限制）带来的挑战，特别是现有方法无法有效处理不同关节间异构约束的问题。为此，论文提出了动态解耦球面径向挤压（Dynamic Decoupled Spherical Radial Squashing, DD-SRad）方法，通过为每个执行器独立计算位置自适应半径，使其与真实的、异构的关节可行区域紧密对齐，从而在动作增量空间中实现更精确的约束满足。DD-SRad的关键创新在于其能够以高概率满足每步硬约束，在训练过程中保持良好的梯度条件，并支持精确的策略梯度反向传播，且无运行时求解器开销。实验结果表明，在MuJoCo基准测试中，DD-SRad在零约束违规的情况下实现了最高的任务回报，与无约束上限相当，并在约束空间覆盖率上比球面基线提高了30%-50%；在IsaacLab中使用Unitree H1和G1人形机器人的高保真模拟进一步验证了其端到端的最优性，证明了从硬件数据表到安全部署的有效途径。"
+    },
     {
       "id": "2605.04045",
       "title": "Audio-Visual Intelligence in Large Foundation Models",
@@ -61,8 +310,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04045",
-      "summary_zh": "这篇综述旨在解决大型基础模型时代下，音视频智能（Audio-Visual Intelligence, AVI）领域文献碎片化、任务分类不一致以及评估标准异构的问题，为该领域提供一个统一的框架。它通过建立一个涵盖理解、生成和交互等广泛AVI任务的统一分类法，并综合了模态tokenization、跨模态融合、自回归和扩散生成、大规模预训练等方法论基础。关键创新在于首次全面梳理了大型基础模型背景下的AVI研究，并整理了代表性数据集、基准和评估指标，指出了同步、空间推理、可控性和安全性等开放挑战。该综述旨在为未来大规模AVI研究提供一个基础性参考，促进知识整合和系统比较。",
-      "impact_score": null
+      "summary_zh": "这篇综述旨在解决大型基础模型时代下，音视频智能（Audio-Visual Intelligence, AVI）领域文献碎片化、任务分类不一致以及评估标准异构的问题，为该领域提供一个统一的框架。它通过建立一个涵盖理解、生成和交互等广泛AVI任务的统一分类法，并综合了模态tokenization、跨模态融合、自回归和扩散生成、大规模预训练等方法论基础。关键创新在于首次全面梳理了大型基础模型背景下的AVI研究，并整理了代表性数据集、基准和评估指标，指出了同步、空间推理、可控性和安全性等开放挑战。该综述旨在为未来大规模AVI研究提供一个基础性参考，促进知识整合和系统比较。"
     },
     {
       "id": "2605.04036",
@@ -122,7 +370,7 @@
     },
     {
       "id": "2605.03941",
-      "title": "A Benchmark for Interactive World Models with a Unified Action Generation Framework",
+      "title": "iWorld-Bench: A Benchmark for Interactive World Models with a Unified Action Generation Framework",
       "abstract": "Achieving Artificial General Intelligence (AGI) requires agents that learn and interact adaptively, with interactive world models providing scalable environments for perception, reasoning, and action. Yet current research still lacks large-scale datasets and unified benchmarks to evaluate their physical interaction capabilities. To address this, we propose iWorld-Bench, a comprehensive benchmark for training and testing world models on interaction-related abilities such as distance perception and memory. We construct a diverse dataset with 330k video clips and select 2.1k high-quality samples covering varied perspectives, weather, and scenes. As existing world models differ in interaction modalities, we introduce an Action Generation Framework to unify evaluation and design six task types, generating 4.9k test samples. These tasks jointly assess model performance across visual generation, trajectory following, and memory. Evaluating 14 representative world models, we identify key limitations and provide insights for future research. The iWorld-Bench model leaderboard is publicly available at iWorld-Bench.com.",
       "authors": [
         "Jianjie Fang",
@@ -142,15 +390,56 @@
         "cs.AI"
       ],
       "published": "2026-05-05T16:30:03Z",
-      "updated": "2026-05-05T16:30:03Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.03941v1",
+      "updated": "2026-05-06T03:38:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.03941v2",
       "abs_url": "https://arxiv.org/abs/2605.03941",
       "topics": [
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03941",
-      "summary_zh": "为解决当前交互式世界模型在物理交互能力评估上缺乏大规模数据集和统一基准的问题，iWorld-Bench 提出了一个综合基准，用于训练和测试世界模型在距离感知和记忆等交互相关能力。该方法构建了一个包含33万个视频片段的多样化数据集，并精选出2.1千个高质量样本，涵盖不同视角、天气和场景。为统一不同世界模型的交互模式评估，引入了Action Generation Framework，并设计了六种任务类型，生成4.9千个测试样本，共同评估模型在视觉生成、轨迹跟踪和记忆方面的性能。通过评估14个代表性世界模型，揭示了现有模型的关键局限性，并为未来研究提供了方向。",
-      "impact_score": null
+      "summary_zh": "为解决当前交互式世界模型在物理交互能力评估上缺乏大规模数据集和统一基准的问题，iWorld-Bench 提出了一个综合基准，用于训练和测试世界模型在距离感知和记忆等交互相关能力。该方法构建了一个包含33万个视频片段的多样化数据集，并精选出2.1千个高质量样本，涵盖不同视角、天气和场景。为统一不同世界模型的交互模式评估，引入了Action Generation Framework，并设计了六种任务类型，生成4.9千个测试样本，共同评估模型在视觉生成、轨迹跟踪和记忆方面的性能。通过评估14个代表性世界模型，揭示了现有模型的关键局限性，并为未来研究提供了方向。"
+    },
+    {
+      "id": "2605.04128",
+      "title": "Awaking Spatial Intelligence in Unified Multimodal Understanding and Generation",
+      "abstract": "We present JoyAI-Image, a unified multimodal foundation model for visual understanding, text-to-image generation, and instruction-guided image editing. JoyAI-Image couples a spatially enhanced Multimodal Large Language Model (MLLM) with a Multimodal Diffusion Transformer (MMDiT), allowing perception and generation to interact through a shared multimodal interface. Around this architecture, we build a scalable training recipe that combines unified instruction tuning, long-text rendering supervision, spatially grounded data, and both general and spatial editing signals. This design gives the model broad multimodal capability while strengthening geometry-aware reasoning and controllable visual synthesis. Experiments across understanding, generation, long-text rendering, and editing benchmarks show that JoyAI-Image achieves state-of-the-art or highly competitive performance. More importantly, the bidirectional loop between enhanced understanding, controllable spatial editing, and novel-view-assisted reasoning enables the model to move beyond general visual competence toward stronger spatial intelligence. These results suggest a promising path for unified visual models in downstream applications such as vision-language-action systems and world models.",
+      "authors": [
+        "Lin Song",
+        "Wenbo Li",
+        "Guoqing Ma",
+        "Wei Tang",
+        "Bo Wang",
+        "Yuan Zhang",
+        "Yijun Yang",
+        "Yicheng Xiao",
+        "Jianhui Liu",
+        "Yanbing Zhang",
+        "Guohui Zhang",
+        "Wenhu Zhang",
+        "Hang Xu",
+        "Nan Jiang",
+        "Xin Han",
+        "Haoze Sun",
+        "Maoquan Zhang",
+        "Haoyang Huang",
+        "Nan Duan"
+      ],
+      "categories": [
+        "cs.GR",
+        "cs.AI",
+        "cs.CL",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-05-05T15:49:47Z",
+      "updated": "2026-05-05T15:49:47Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.04128v1",
+      "abs_url": "https://arxiv.org/abs/2605.04128",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.04128",
+      "summary_zh": "JoyAI-Image 提出了一个统一的多模态基础模型，旨在解决视觉理解、文本到图像生成和指令引导的图像编辑问题。该模型通过将一个空间增强型多模态大语言模型（MLLM）与一个多模态扩散Transformer（MMDiT）相结合，实现了感知与生成的交互，共享多模态接口。其关键创新在于构建了一个可扩展的训练范式，融合了统一指令微调、长文本渲染监督、空间接地数据以及通用和空间编辑信号，从而赋予模型广泛的多模态能力，并增强了几何感知推理和可控视觉合成。实验结果表明，JoyAI-Image 在理解、生成、长文本渲染和编辑基准测试中均达到了最先进或极具竞争力的性能，尤其在增强空间智能方面展现出巨大潜力。"
     },
     {
       "id": "2605.03871",
@@ -180,13 +469,12 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03871",
-      "summary_zh": "该论文提出了一种名为 EvoLM 的后训练方法，旨在解决现有语言模型（LM）后训练方法对外部监督（如人工标注、专有模型或标量奖励模型）的依赖，这些外部监督限制了模型的自我提升能力。EvoLM 的核心创新在于利用模型自身的评估能力，通过交替训练两个模块实现自我进化：一个“判别性评估标准生成器”（rubric generator）用于生成实例特定的评估标准，以最大化一个小型冻结判断器区分优劣响应的能力；另一个“策略模型”（policy）则利用这些评估标准作为奖励信号进行训练。所有偏好信号均通过策略模型自身输出与早期检查点的时间对比构建，无需任何人工标注或外部监督。实验结果显示，EvoLM 训练的 Qwen3-8B 模型生成的评估标准在 RewardBench-2 上比 GPT-4.1 高出 25.7%，并且其协同训练的策略模型在 OLMo3-Adapt 套件上平均达到 69.3%，优于使用 GPT-4.1 提示评估标准训练的策略模型 3.9%，以及优于最先进的 8B 奖励模型 SkyWork-RM 16%。",
-      "impact_score": null
+      "summary_zh": "该论文提出了一种名为 EvoLM 的后训练方法，旨在解决现有语言模型（LM）后训练方法对外部监督（如人工标注、专有模型或标量奖励模型）的依赖，这些外部监督限制了模型的自我提升能力。EvoLM 的核心创新在于利用模型自身的评估能力，通过交替训练两个模块实现自我进化：一个“判别性评估标准生成器”（rubric generator）用于生成实例特定的评估标准，以最大化一个小型冻结判断器区分优劣响应的能力；另一个“策略模型”（policy）则利用这些评估标准作为奖励信号进行训练。所有偏好信号均通过策略模型自身输出与早期检查点的时间对比构建，无需任何人工标注或外部监督。实验结果显示，EvoLM 训练的 Qwen3-8B 模型生成的评估标准在 RewardBench-2 上比 GPT-4.1 高出 25.7%，并且其协同训练的策略模型在 OLMo3-Adapt 套件上平均达到 69.3%，优于使用 GPT-4.1 提示评估标准训练的策略模型 3.9%，以及优于最先进的 8B 奖励模型 SkyWork-RM 16%。"
     },
     {
       "id": "2605.03862",
       "title": "Correct Is Not Enough: Training Reasoning Planners with Executor-Grounded Rewards",
-      "abstract": "Reinforcement learning with verifiable rewards has become a common way to improve explicit reasoning in large language models, but final-answer correctness alone does not reveal whether the reasoning trace is faithful, reliable, or useful to the model that consumes it. This outcome-only signal can reinforce traces that are right for the wrong reasons, overstate reasoning gains by rewarding shortcuts, and propagate flawed intermediate states in multi-step systems. To this end, we propose TraceLift, a planner-executor training framework that treats reasoning as a consumable intermediate artifact. During planner training, the planner emits tagged reasoning. A frozen executor turns this reasoning into the final artifact for verifier feedback, while an executor-grounded reward shapes the intermediate trace. This reward multiplies a rubric-based Reasoning Reward Model (RM) score by measured uplift on the same frozen executor, crediting traces that are both high-quality and useful. To make reasoning quality directly learnable, we introduce TRACELIFT-GROUPS, a rubric-annotated reason-only dataset built from math and code seed problems. Each example is a same-problem group containing a high-quality reference trace and multiple plausible flawed traces with localized perturbations that reduce reasoning quality or solution support while preserving task relevance. Extensive experiments on code and math benchmarks show that this executor-grounded reasoning reward improves the two-stage planner-executor system over execution-only training, suggesting that reasoning supervision should evaluate not only whether a trace looks good, but also whether it helps the model that consumes it.",
+      "abstract": "Reinforcement learning with verifiable rewards has become a common way to improve explicit reasoning in large language models, but final-answer correctness alone does not reveal whether the reasoning trace is faithful, reliable, or useful to the model that consumes it. This outcome-only signal can reinforce traces that are right for the wrong reasons, overstate reasoning gains by rewarding shortcuts, and propagate flawed intermediate states in multi-step systems. To this end, we propose TraceLift, a planner-executor training framework that treats reasoning as a consumable intermediate artifact. During planner training, the planner emits tagged reasoning. A frozen executor turns this reasoning into the final artifact for verifier feedback, while an executor-grounded reward shapes the intermediate trace. This reward multiplies a rubric-based Reasoning Reward Model (RM) score by measured uplift on the same frozen executor, crediting traces that are both high-quality and useful. To make reasoning quality directly learnable, we introduce TRACELIFT-GROUPS, a rubric-annotated reason-only dataset built from math and code seed problems. Each example is a same-problem group containing a high-quality reference trace and multiple plausible flawed traces with localized perturbations that reduce reasoning quality or solution support while preserving task relevance. Extensive experiments on code and math benchmarks show that this executor-grounded reasoning reward improves the two-stage planner-executor system over execution-only training, suggesting that reasoning supervision should evaluate not only whether a trace looks good, but also whether it helps the model that consumes it. Our code is available at: https://github.com/MasaiahHan/TraceLift",
       "authors": [
         "Tianyang Han",
         "Hengyu Shi",
@@ -200,8 +488,8 @@
         "cs.CL"
       ],
       "published": "2026-05-05T15:24:40Z",
-      "updated": "2026-05-05T15:24:40Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.03862v1",
+      "updated": "2026-05-06T07:00:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.03862v2",
       "abs_url": "https://arxiv.org/abs/2605.03862",
       "topics": [
         "other"
@@ -237,8 +525,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03849",
-      "summary_zh": "现有自回归流式视频扩散模型在蒸馏加速时，通常采用分布匹配蒸馏（DMD）方法，但其将所有输出视为同等可靠的监督，限制了蒸馏质量。Stream-R1 提出了一种可靠性-困惑度感知奖励蒸馏框架，通过单一共享的奖励引导机制，在 rollout 和时空元素层面自适应地重新加权蒸馏目标，以解决监督可靠性差异和优化重点不均的问题。该方法在 Inter-Reliability 层面，利用预训练视频奖励分数对每个 rollout 的损失进行指数级重加权，使可靠的监督主导优化；在 Intra-Perplexity 层面，通过反向传播同一奖励模型提取每像素梯度显著性，生成时空权重，将优化压力集中在改进效果最大的区域和帧。Stream-R1 在不修改架构或增加推理成本的情况下，在标准流式视频生成基准上，在视觉质量、运动质量和文本对齐方面均优于现有蒸馏基线。",
-      "impact_score": null
+      "summary_zh": "现有自回归流式视频扩散模型在蒸馏加速时，通常采用分布匹配蒸馏（DMD）方法，但其将所有输出视为同等可靠的监督，限制了蒸馏质量。Stream-R1 提出了一种可靠性-困惑度感知奖励蒸馏框架，通过单一共享的奖励引导机制，在 rollout 和时空元素层面自适应地重新加权蒸馏目标，以解决监督可靠性差异和优化重点不均的问题。该方法在 Inter-Reliability 层面，利用预训练视频奖励分数对每个 rollout 的损失进行指数级重加权，使可靠的监督主导优化；在 Intra-Perplexity 层面，通过反向传播同一奖励模型提取每像素梯度显著性，生成时空权重，将优化压力集中在改进效果最大的区域和帧。Stream-R1 在不修改架构或增加推理成本的情况下，在标准流式视频生成基准上，在视觉质量、运动质量和文本对齐方面均优于现有蒸馏基线。"
     },
     {
       "id": "2605.03847",
@@ -328,8 +615,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03821",
-      "summary_zh": "现有机器人视频世界模型在重建和感知相似性等低级目标上训练，但这些目标与机器人决策的关键能力（如指令遵循、操作成功、物理合理性）不符，且在长时程自回归预测中存在误差累积问题。RoboAlign-R1框架通过结合奖励对齐的后训练和稳定的长时程推理来解决这些问题。该框架构建了RobotWorldBench基准，并训练了一个多模态教师判官RoboAlign-Judge对生成视频进行六维细粒度评估，然后将教师模型蒸馏成轻量级学生奖励模型进行强化学习后训练；同时，引入了滑动窗口重编码（SWR）策略以减少长时程预测漂移。RoboAlign-R1在六维综合评分上比最强基线提高了10.1%，其中操作准确性提高7.5%，指令遵循提高4.6%，SWR在仅增加约1%延迟的情况下，使SSIM提高2.8%，LPIPS降低9.8%，显著提升了机器人视频世界模型的任务一致性、物理真实性和长时程预测质量。",
-      "impact_score": null
+      "summary_zh": "现有机器人视频世界模型在重建和感知相似性等低级目标上训练，但这些目标与机器人决策的关键能力（如指令遵循、操作成功、物理合理性）不符，且在长时程自回归预测中存在误差累积问题。RoboAlign-R1框架通过结合奖励对齐的后训练和稳定的长时程推理来解决这些问题。该框架构建了RobotWorldBench基准，并训练了一个多模态教师判官RoboAlign-Judge对生成视频进行六维细粒度评估，然后将教师模型蒸馏成轻量级学生奖励模型进行强化学习后训练；同时，引入了滑动窗口重编码（SWR）策略以减少长时程预测漂移。RoboAlign-R1在六维综合评分上比最强基线提高了10.1%，其中操作准确性提高7.5%，指令遵循提高4.6%，SWR在仅增加约1%延迟的情况下，使SSIM提高2.8%，LPIPS降低9.8%，显著提升了机器人视频世界模型的任务一致性、物理真实性和长时程预测质量。"
     },
     {
       "id": "2605.03799",
@@ -349,8 +635,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03799",
-      "summary_zh": "这篇预印本提供了一个全面的NLP实践指南，旨在解决从文本预处理到大型语言模型微调、检索增强生成（RAG）以及人类反馈强化学习（RLHF）的整个现代NLP流程的实施问题。它通过12个实践环节，结合理论与详细的实现计划、评估指标和评估标准，创新性地将每个环节设计为可复现的研究成果，要求将代码、模型和报告发布到公共仓库。所有实验均在一个不断演进的语料库上进行，并强调使用Hugging Face生态系统中的开源模型，同时还包含了针对塔吉克语和鞑靼语等低资源语言的原创研究，展示了如何在数据稀缺环境下应用现代NLP技术。该指南旨在帮助高年级本科生、研究生和开发人员掌握从传统机器学习到最先进LLM系统的实现、比较和部署方法。",
-      "impact_score": null
+      "summary_zh": "这篇预印本提供了一个全面的NLP实践指南，旨在解决从文本预处理到大型语言模型微调、检索增强生成（RAG）以及人类反馈强化学习（RLHF）的整个现代NLP流程的实施问题。它通过12个实践环节，结合理论与详细的实现计划、评估指标和评估标准，创新性地将每个环节设计为可复现的研究成果，要求将代码、模型和报告发布到公共仓库。所有实验均在一个不断演进的语料库上进行，并强调使用Hugging Face生态系统中的开源模型，同时还包含了针对塔吉克语和鞑靼语等低资源语言的原创研究，展示了如何在数据稀缺环境下应用现代NLP技术。该指南旨在帮助高年级本科生、研究生和开发人员掌握从传统机器学习到最先进LLM系统的实现、比较和部署方法。"
     },
     {
       "id": "2605.03782",
@@ -379,8 +664,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.03782",
-      "summary_zh": "这篇论文旨在解决VLM智能体在部分可观测视觉环境中，面对稀疏奖励任务时，仅依靠被动推理难以有效探索和泛化的问题。它提出了一种名为GLANCE的统一框架，通过将智能体的语言世界模型与一个不断演进的目标网络的稳定视觉表征相结合，从而驱动探索。GLANCE的关键创新在于，它利用语言预测与视觉现实之间的差异作为内在好奇心信号，引导智能体主动探索其内部模型不确定的区域，从而实现“所思即所见”的对齐。实验结果表明，GLANCE在多种智能体任务中表现出色，证明了将智能体的思考与所见对齐对于解决复杂或稀疏奖励任务至关重要。",
-      "impact_score": null
+      "summary_zh": "这篇论文旨在解决VLM智能体在部分可观测视觉环境中，面对稀疏奖励任务时，仅依靠被动推理难以有效探索和泛化的问题。它提出了一种名为GLANCE的统一框架，通过将智能体的语言世界模型与一个不断演进的目标网络的稳定视觉表征相结合，从而驱动探索。GLANCE的关键创新在于，它利用语言预测与视觉现实之间的差异作为内在好奇心信号，引导智能体主动探索其内部模型不确定的区域，从而实现“所思即所见”的对齐。实验结果表明，GLANCE在多种智能体任务中表现出色，证明了将智能体的思考与所见对齐对于解决复杂或稀疏奖励任务至关重要。"
     },
     {
       "id": "2605.03752",
@@ -645,7 +929,7 @@
     {
       "id": "2605.03475",
       "title": "WorldJen: An End-to-End Multi-Dimensional Benchmark for Generative Video Models",
-      "abstract": "Evaluating generative video models remains an open problem. Reference-based metrics such as Structural Similarity Index Measure (SSIM) and Peak Signal to Noise Ratio (PSNR) reward pixel fidelity over semantic correctness, while Frechet Video Distance (FVD) favors distributional textures over physical plausibility. Binary Visual Question Answering (VQA) based benchmarks like VBench~2.0 are prone to yes-bias and rely on low-resolution auditors that miss temporal failures. Moreover, their prompts target a single dimension at a time, multiplying the number of videos required while still not guaranteeing reliable results. WorldJen addresses these limitations directly. Binary VQA is replaced with Likert-scale questionnaires graded by a VLM that receives frames at native video resolution. Video generation costs are addressed by using adversarially curated prompts that are designed to exercise up to 16 quality dimensions simultaneously. The framework is built around two interlocking contributions. First, A blind human preference study is conducted, accumulating (2,696 pairwise annotations from 7 annotators with 100% pair coverage over 50 of the curated prompts $\\times$ 6 state-of-the-art video models. A mean inter-annotator agreement of 66.9% is achieved and the study establishes a human ground-truth Bradley-Terry (BT) rating with a three-tier structure. Second, A VLM-as-a-judge evaluation engine using prompt-specific, dimension-specific Likert questionnaires (10 questions per dimension, 47,160 scored responses) judges the videos and reproduces the human-established three-tier BT rating structure independently. The VLM achieves a Spearman $\\hatρ=1.000,~p=0.0014$ that is interpreted as tier agreement with the human results. Six focused ablation studies validate the robustness of the VLM evaluation framework.",
+      "abstract": "Evaluating generative video models remains an open problem. Reference-based metrics such as Structural Similarity Index Measure (SSIM) and Peak Signal to Noise Ratio (PSNR) reward pixel fidelity over semantic correctness, while Frechet Video Distance (FVD) favors distributional textures over physical plausibility. Binary Visual Question Answering (VQA) based benchmarks like VBench~2.0 are prone to yes-bias and rely on low-resolution auditors that miss temporal failures. Moreover, their prompts target a single dimension at a time, multiplying the number of videos required while still not guaranteeing reliable results. WorldJen addresses these limitations directly. Binary VQA is replaced with Likert-scale questionnaires graded by a VLM that receives frames at native video resolution. Video generation costs are addressed by using adversarially curated prompts that are designed to exercise up to 16 quality dimensions simultaneously. The framework is built around two interlocking contributions. First, A blind human preference study is conducted, accumulating (2,696 pairwise annotations from 7 annotators with 100% pair coverage over 50 of the curated prompts $\\times$ 6 state-of-the-art video models. A mean inter-annotator agreement of 66.9% is achieved and the study establishes a human ground-truth Bradley-Terry (BT) rating with a three-tier structure. Second, A VLM-as-a-judge evaluation engine using prompt-specific, dimension-specific Likert questionnaires (10 questions per dimension, 47,160 scored responses) judges the videos and reproduces the human-established three-tier BT rating structure independently. The VLM achieves a Spearman $\\hatρ=1.000,~p=0.0014$ that is interpreted as tier agreement with the human results. Six focused ablation studies validate the robustness of the VLM evaluation framework. Project page: https://moonmath.ai/worldjen/",
       "authors": [
         "Karthik Inbasekar",
         "Guy Rom",
@@ -655,8 +939,8 @@
         "cs.CV"
       ],
       "published": "2026-05-05T08:03:34Z",
-      "updated": "2026-05-05T08:03:34Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.03475v1",
+      "updated": "2026-05-06T04:45:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.03475v2",
       "abs_url": "https://arxiv.org/abs/2605.03475",
       "topics": [
         "other"
