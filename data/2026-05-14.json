@@ -1,6 +1,6 @@
 {
   "date": "2026-05-14",
-  "generated_at": "2026-05-14T05:22:06.132309+00:00",
+  "generated_at": "2026-05-15T05:13:50.384608+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,468 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2605.15198",
+      "title": "ATLAS: Agentic or Latent Visual Reasoning? One Word is Enough for Both",
+      "abstract": "Visual reasoning, often interleaved with intermediate visual states, has emerged as a promising direction in the field. A straightforward approach is to directly generate images via unified models during reasoning, but this is computationally expensive and architecturally non-trivial. Recent alternatives include agentic reasoning through code or tool calls, and latent reasoning with learnable hidden embeddings. However, agentic methods incur context-switching latency from external execution, while latent methods lack task generalization and are difficult to train with autoregressive parallelization. To combine their strengths while mitigating their limitations, we propose ATLAS, a framework in which a single discrete 'word', termed as a functional token, serves both as an agentic operation and a latent visual reasoning unit. Each functional token is associated with an internalized visual operation, yet requires no visual supervision and remains a standard token in the tokenizer vocabulary, which can be generated via next-token prediction. This design avoids verbose intermediate visual content generation, while preserving compatibility with the vanilla scalable SFT and RL training, without architectural or methodological modifications. To further address the sparsity of functional tokens during RL, we introduce Latent-Anchored GRPO (LA-GRPO), which stabilizes the training by anchoring functional tokens with a statically weighted auxiliary objective, providing stronger gradient updates. Extensive experiments and analyses demonstrate that ATLAS achieves superior performance on challenging benchmarks while maintaining clear interpretability. We hope ATLAS offers a new paradigm inspiring future visual reasoning research.",
+      "authors": [
+        "Ziyu Guo",
+        "Rain Liu",
+        "Xinyan Chen",
+        "Pheng-Ann Heng"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-14T17:59:55Z",
+      "updated": "2026-05-14T17:59:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.15198v1",
+      "abs_url": "https://arxiv.org/abs/2605.15198",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.15198",
+      "summary_zh": "该论文旨在解决视觉推理中中间视觉状态生成计算成本高昂、架构复杂以及现有Agentic和Latent方法各自的局限性。它提出了一种名为ATLAS的框架，其核心创新在于引入了一个离散的“功能词”（functional token），该token既能作为Agentic操作执行内部化的视觉操作，又能作为Latent视觉推理单元，且无需视觉监督，并能通过next-token prediction生成。为解决功能token在强化学习（RL）训练中的稀疏性问题，论文还提出了Latent-Anchored GRPO (LA-GRPO) 训练方法，通过辅助目标稳定训练并提供更强的梯度更新。实验结果表明，ATLAS在多个挑战性基准测试上取得了卓越性能，同时保持了良好的可解释性。",
+      "impact_score": null
+    },
+    {
+      "id": "2605.15155",
+      "title": "Self-Distilled Agentic Reinforcement Learning",
+      "abstract": "Reinforcement learning (RL) has emerged as a central paradigm for post-training LLM agents, yet its trajectory-level reward signal provides only coarse supervision for long-horizon interaction. On-Policy Self-Distillation (OPSD) complements RL by introducing dense token-level guidance from a teacher branch augmented with privileged context. However, transferring OPSD to multi-turn agents proves problematic: compounding multi-turn instability destabilizes supervision, while skill-conditioned privileged guidance requires asymmetric treatment for negative teacher rejections may arise from imperfect skills retrieval or utilization. We introduce SDAR (Self-Distilled Agentic Reinforcement Learning), which treats OPSD as a gated auxiliary objective while keeping RL as the primary optimization backbone. SDAR maps detached token-level signals into a sigmoid gate, strengthening distillation on teacher-endorsed positive-gap tokens and softly attenuating negative teacher rejections. Across the Qwen2.5 and Qwen3 families on ALFWorld, WebShop, and Search-QA, SDAR substantially improves over GRPO (+9.4% on ALFWorld, +7.0% on Search-QA, +10.2% on WebShop-Acc), avoids the instability of naive GRPO+OPSD, and consistently outperforms hybrid RL--OPSD baselines across model scales.",
+      "authors": [
+        "Zhengxi Lu",
+        "Zhiyuan Yao",
+        "Zhuowen Han",
+        "Zi-Han Wang",
+        "Jinyang Wu",
+        "Qi Gu",
+        "Xunliang Cai",
+        "Weiming Lu",
+        "Jun Xiao",
+        "Yueting Zhuang",
+        "Yongliang Shen"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-14T17:51:26Z",
+      "updated": "2026-05-14T17:51:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.15155v1",
+      "abs_url": "https://arxiv.org/abs/2605.15155",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.15155",
+      "summary_zh": "该研究旨在解决大型语言模型（LLM）代理在长程交互中，强化学习（RL）轨迹级奖励信号过于粗糙以及On-Policy Self-Distillation (OPSD) 在多轮交互中稳定性差的问题。为此，论文提出了自蒸馏代理强化学习（SDAR）框架，将OPSD作为门控辅助目标，同时保留RL作为主要优化骨干，通过将分离的token级信号映射到sigmoid门，强化对教师认可的正差距token的蒸馏，并软化负面教师拒绝。关键创新在于其门控机制有效解决了多轮交互中的监督不稳定性和负面教师拒绝问题，显著提升了代理的性能。实验结果表明，在ALFWorld、WebShop和Search-QA等基准测试上，SDAR在Qwen2.5和Qwen3系列模型上均显著优于GRPO及其它混合RL-OPSD基线，例如在ALFWorld上提升9.4%，在Search-QA上提升7.0%，在WebShop-Acc上提升10.2%，并避免了GRPO+OPSD的固有不稳定性。",
+      "impact_score": null
+    },
+    {
+      "id": "2605.15041",
+      "title": "Case-Based Calibration of Adaptive Reasoning and Execution for LLM Tool Use",
+      "abstract": "Tool use extends large language models beyond parametric knowledge, but reliable execution requires balancing appropriate reasoning depth with strict structural validity. We approach this problem from a case-based perspective to present CAST, a case-driven framework that treats historical execution trajectories as structured cases. Instead of reusing raw exemplar outputs, CAST extracts case-derived signals to identify complexity profiles for estimating optimal reasoning strategies, alongside failure profiles to map likely structural breakdowns. The framework translates this knowledge into a fine-grained reward design and adaptive reasoning, enabling the model to autonomously internalize case-based strategies during reinforcement learning. Experiments on BFCLv2 and ToolBench demonstrate that CAST improves both schema-faithful execution and task-level tool-use success while reducing unnecessary deliberation. The approach achieves up to 5.85 percentage points gain in overall execution accuracy and reduces average reasoning length by 26%, significantly mitigating high-impact structural errors. Ultimately, this demonstrates how historical execution cases can provide reusable adaptation knowledge for calibrated tool use.",
+      "authors": [
+        "Renning Pang",
+        "Tian Lan",
+        "Leyuan Liu",
+        "Piao Tong",
+        "Sheng Cao",
+        "Xiaosong Zhang"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-14T16:36:04Z",
+      "updated": "2026-05-14T16:36:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.15041v1",
+      "abs_url": "https://arxiv.org/abs/2605.15041",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.15041",
+      "summary_zh": "大型语言模型（LLMs）在工具使用中面临推理深度与结构有效性之间的平衡挑战。CAST框架通过将历史执行轨迹视为结构化案例，解决了这一问题，它不直接重用示例输出，而是提取案例派生信号来识别复杂性配置文件以估计最佳推理策略，并识别故障配置文件以映射可能的结构性故障。该框架将这些知识转化为精细的奖励设计和自适应推理，使模型能够在强化学习过程中自主内化基于案例的策略。在BFCLv2和ToolBench上的实验表明，CAST在提高模式忠实执行和任务级工具使用成功率的同时，减少了不必要的思考，整体执行准确率提升高达5.85个百分点，平均推理长度减少26%，显著减轻了高影响的结构性错误。",
+      "impact_score": null
+    },
+    {
+      "id": "2605.15040",
+      "title": "Orchard: An Open-Source Agentic Modeling Framework",
+      "abstract": "Agentic modeling aims to transform LLMs into autonomous agents capable of solving complex tasks through planning, reasoning, tool use, and multi-turn interaction with environments. Despite major investment, open research remains constrained by infrastructure and training gaps. Many high-performing systems rely on proprietary codebases, models, or services, while most open-source frameworks focus on orchestration and evaluation rather than scalable agent training. We present Orchard, an open-source framework for scalable agentic modeling. At its core is Orchard Env, a lightweight environment service providing reusable primitives for sandbox lifecycle management across task domains, agent harnesses, and pipeline stages. On top of Orchard Env, we build three agentic modeling recipes. Orchard-SWE targets coding agents. We distill 107K trajectories from MiniMax-M2.5 and Qwen3.5-397B, introduce credit-assignment SFT to learn from productive segments of unresolved trajectories, and apply Balanced Adaptive Rollout for RL. Starting from Qwen3-30B-A3B-Thinking, Orchard-SWE achieves 64.3% on SWE-bench Verified after SFT and 67.5% after SFT+RL, setting a new state of the art among open-source models of comparable size. Orchard-GUI trains a 4B vision-language computer-use agent using only 0.4K distilled trajectories and 2.2K open-ended tasks. It achieves 74.1%, 67.0%, and 64.0% success rates on WebVoyager, Online-Mind2Web, and DeepShop, respectively, making it the strongest open-source model while remaining competitive with proprietary systems. Orchard-Claw targets personal assistant agents. Trained with only 0.2K synthetic tasks, it achieves 59.6% pass@3 on Claw-Eval and 73.9% when paired with a stronger ZeroClaw harness. Collectively, these results show that a lightweight, open, harness-agnostic environment layer enables reusable agentic data, training recipes, and evaluations across domains.",
+      "authors": [
+        "Baolin Peng",
+        "Wenlin Yao",
+        "Qianhui Wu",
+        "Hao Cheng",
+        "Xiao Yu",
+        "Rui Yang",
+        "Tao Ge",
+        "Alessandrio Sordoni",
+        "Xingdi Yuan",
+        "Yelong Shen",
+        "Pengcheng He",
+        "Tong Zhang",
+        "Zhou Yu",
+        "Jianfeng Gao"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-14T16:35:12Z",
+      "updated": "2026-05-14T16:35:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.15040v1",
+      "abs_url": "https://arxiv.org/abs/2605.15040",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.15040",
+      "summary_zh": "该研究提出了Orchard，一个开源的Agentic建模框架，旨在解决大型语言模型（LLMs）在复杂任务中作为自主智能体进行规划、推理和工具使用时面临的基础设施和训练瓶颈。Orchard的核心是Orchard Env，一个轻量级环境服务，为跨任务领域、智能体线束和管道阶段的沙盒生命周期管理提供可重用原语。在此基础上，Orchard构建了三种Agentic建模方案：Orchard-SWE用于编码智能体，通过从MiniMax-M2.5和Qwen3.5-397B蒸馏轨迹并引入credit-assignment SFT和Balanced Adaptive Rollout for RL，使Qwen3-30B-A3B-Thinking在SWE-bench Verified上达到67.5%的SOTA性能；Orchard-GUI训练了一个4B视觉语言计算机使用智能体，在WebVoyager、Online-Mind2Web和DeepShop上取得了74.1%、67.0%和64.0%的成功率，成为最强的开源模型；Orchard-Claw则针对个人助理智能体，在Claw-Eval上实现了59.6%的pass@3。这些结果表明，Orchard提供了一个轻量级、开放且与线束无关的环境层，能够实现跨领域的可重用Agentic数据、训练方案和评估。",
+      "impact_score": null
+    },
+    {
+      "id": "2605.15015",
+      "title": "Small, Private Language Models as Teammates for Educational Assessment Design",
+      "abstract": "Generative AI increasingly supports educational design tasks, e.g., through Large Language Models (LLMs), demonstrating the capability to design assessment questions that are aligned with pedagogical frameworks (e.g., Bloom's taxonomy). However, they often rely on subjective or limited evaluation methods; focus primarily on proprietary models; or rarely systematically examine generation, evaluation, or deployment constraints in real educational settings. Meanwhile, Small Language Models (SLMs) have emerged as local alternatives that better address privacy and resource limitations; yet their effectiveness for assessment tasks remains underexplored. To address this gap, we systematically compare LLMs and SLMs for assessment question design; evaluate generation quality across Bloom's taxonomy levels using reproducible, pedagogically grounded metrics; and further assess model-based judging against expert-informed evaluation by analyzing reliability and agreement patterns. Results show that SLMs achieve competitive performance across key pedagogically motivated quality dimensions while enabling local, privacy-sensitive deployment. However, model-based evaluations also exhibit systematic inconsistencies and bias relative to expert ratings. These findings provide evidence to posit language models as bounded assistants in assessment workflows; underscore the necessity of Human-in-the-Loop; and advance the automated educational question generation field by examining quality, reliability, and deployment-aware trade-offs.",
+      "authors": [
+        "Chris Davis Jaldi",
+        "Anmol Saini",
+        "Shan Zhang",
+        "Noah Schroeder",
+        "Cogan Shimizu",
+        "Eleni Ilkou"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.HC"
+      ],
+      "published": "2026-05-14T16:15:48Z",
+      "updated": "2026-05-14T16:15:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.15015v1",
+      "abs_url": "https://arxiv.org/abs/2605.15015",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.15015",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "这篇论文旨在解决大型语言模型（LLMs）在教育评估设计中存在的隐私、资源限制以及评估方法主观性等问题，并探索小型语言模型（SLMs）作为替代方案的有效性。研究方法是系统地比较LLMs和SLMs在评估问题设计方面的表现，使用可复现的、基于教育学原理的指标（如布鲁姆分类法）评估生成质量，并分析模型评估与专家评估之间的一致性和可靠性。关键创新点在于首次系统地将SLMs应用于教育评估问题设计，并深入探讨了其在隐私保护和本地部署方面的潜力，同时揭示了模型评估与专家评估之间的系统性偏差。实验结果表明，SLMs在关键的教育学质量维度上表现出与LLMs相当的竞争力，且支持本地化、隐私敏感的部署，但模型评估仍存在与专家评估不一致的系统性偏差，强调了在评估工作流中引入人工干预（Human-in-the-Loop）的必要性。"
+    },
+    {
+      "id": "2605.15012",
+      "title": "Boosting Reinforcement Learning with Verifiable Rewards via Randomly Selected Few-Shot Guidance",
+      "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has achieved great success in developing Large Language Models (LLMs) with chain-of-thought rollouts for many tasks such as math and coding. Nevertheless, RLVR struggles with sample efficiency on difficult problems where correct rollouts are hard to generate. Prior works propose to address this issue via demonstration-guided RLVR, i.e., to conduct Supervised FineTuning (SFT) when RL fails; however, SFT often requires a lot of data, which can be expensive to acquire. In this paper, we propose FEST, a FEw-ShoT demonstration-guided RLVR algorithm. It attains compelling results with only 128 demonstrations randomly selected from an SFT dataset. We find that three components are vital for the success: supervised signal, on-policy signal, and decaying weights on the few-shot SFT dataset to prevent overfitting from multiple-epoch training. On several benchmarks, FEST outperforms baselines with magnitudes less SFT data, even matching their performance with full dataset.",
+      "authors": [
+        "Kai Yan",
+        "Alexander G. Schwing",
+        "Yu-Xiong Wang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-14T16:12:30Z",
+      "updated": "2026-05-14T16:12:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.15012v1",
+      "abs_url": "https://arxiv.org/abs/2605.15012",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.15012",
+      "summary_zh": "该论文旨在解决可验证奖励强化学习（RLVR）在大型语言模型（LLM）链式思考（chain-of-thought）生成中，面对复杂问题时样本效率低下的问题，尤其是在难以生成正确推理过程（rollouts）的情况下。为此，论文提出了一种名为 FEST 的少量样本（Few-Shot）演示引导 RLVR 算法。FEST 的关键创新在于，它仅通过从 SFT 数据集中随机选择的 128 个演示样本，就能显著提升性能，并发现监督信号、在线策略（on-policy）信号以及对少量样本 SFT 数据集采用衰减权重以防止多轮训练过拟合是成功的关键。实验结果表明，FEST 在多个基准测试上，使用远少于基线的 SFT 数据，却能超越基线性能，甚至在某些情况下能与使用完整数据集的基线表现持平。",
+      "impact_score": null
+    },
+    {
+      "id": "2605.14978",
+      "title": "Performance-Driven Policy Optimization for Speculative Decoding with Adaptive Windowing",
+      "abstract": "Speculative decoding accelerates LLM inference by having a lightweight draft model propose speculative windows of candidate tokens for parallel verification by a larger target model. In practice, speculative efficiency is often bottlenecked by hard-to-draft positions, where an early mismatch truncates the accepted prefix and invalidates the rest of the speculative window. Most learning-based drafters are still optimized with token-level supervised objectives, even though speculative utility is inherently window-level and prefix-sensitive. We propose PPOW (Performance-Driven Policy Optimization with Adaptive Windowing), a reinforcement learning framework that shifts drafter optimization from token-level imitation to window-level optimization. PPOW combines a Cost-Aware Speedup Reward, a Distribution-Based Proximity Reward, and Adaptive Divergence-Aware Windowing, which prioritizes informative windows with high confidence-weighted draft-target divergence. PPOW achieves average acceptance lengths of 6.29-6.52 and speedups of 3.39-4.36$\\times$ across multiple model families and benchmarks under a unified decoding protocol. These results show that performance-driven window-level optimization is a practical approach to improving speculative decoding efficiency.",
+      "authors": [
+        "Jie Jiang",
+        "Xing Sun"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-05-14T15:41:57Z",
+      "updated": "2026-05-14T15:41:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.14978v1",
+      "abs_url": "https://arxiv.org/abs/2605.14978",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.14978",
+      "summary_zh": "这篇论文旨在解决推测解码（speculative decoding）中轻量级草稿模型（draft model）在难以预测位置（hard-to-draft positions）效率低下的问题，这些位置常导致接受前缀（accepted prefix）过早截断。研究提出了一种名为 PPOW (Performance-Driven Policy Optimization with Adaptive Windowing) 的强化学习框架，将草稿模型的优化从传统的 token 级别监督目标转向窗口级别优化。PPOW 的关键创新在于结合了成本感知加速奖励（Cost-Aware Speedup Reward）、基于分布的接近度奖励（Distribution-Based Proximity Reward）以及自适应发散感知窗口（Adaptive Divergence-Aware Windowing），后者优先处理具有高置信度加权草稿-目标发散的信息窗口。实验结果表明，PPOW 在多个模型家族和基准测试中实现了 6.29-6.52 的平均接受长度和 3.39-4.36 倍的加速，证明了性能驱动的窗口级别优化能有效提升推测解码效率。",
+      "impact_score": null
+    },
+    {
+      "id": "2605.14723",
+      "title": "Agentifying Patient Dynamics within LLMs through Interacting with Clinical World Model",
+      "abstract": "Sepsis management in the ICU requires sequential treatment decisions under rapidly evolving patient physiology. Although large language models (LLMs) encode broad clinical knowledge and can reason over guidelines, they are not inherently grounded in action-conditioned patient dynamics. We introduce SepsisAgent, a world model-augmented LLM agent for sepsis treatment recommendation. SepsisAgent uses a learned Clinical World Model to simulate patient responses under candidate fluid--vasopressor interventions, and follows a propose--simulate--refine workflow before committing to a prescription. We first show that world-model access alone yields inconsistent LLM decision performance, motivating agent-specific training. We then train SepsisAgent through a three-stage curriculum: patient-dynamics supervised fine-tuning, propose--simulate--refine behavior cloning, and world-model-based agentic reinforcement learning. On MIMIC-IV sepsis trajectories, SepsisAgent outperforms all traditional RL and LLM-based baselines in off-policy value while achieving the best safety profile under guideline adherence and unsafe-action metrics. Further analysis shows that repeated interaction with the Clinical World Model enables the agent to learn regularities in patient evolution, which remain useful even when simulator access is removed.",
+      "authors": [
+        "Minghao Wu",
+        "Yuting Yan",
+        "Zhenyang Cai",
+        "Ke Ji",
+        "Chuangsen Fang",
+        "Ziying Sheng",
+        "Xidong Wang",
+        "Rongsheng Wang",
+        "Hejia Zhang",
+        "Shuang Li",
+        "Benyou Wang",
+        "Hongyuan Zha"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-05-14T11:50:00Z",
+      "updated": "2026-05-14T11:50:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.14723v1",
+      "abs_url": "https://arxiv.org/abs/2605.14723",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.14723",
+      "keyword_topics": [
+        "world-model",
+        "rl"
+      ],
+      "summary_zh": "这篇论文旨在解决重症监护室（ICU）脓毒症治疗中，大型语言模型（LLMs）在快速变化的患者生理状况下进行序贯治疗决策时，缺乏对行动条件下的患者动态的内在理解问题。研究引入了SepsisAgent，一个通过与学习到的临床世界模型（Clinical World Model）交互来模拟患者对液体-血管升压药干预反应的LLM智能体，并采用“提出-模拟-优化”的工作流程进行处方决策。关键创新在于，SepsisAgent通过三阶段课程进行训练：患者动态监督微调、提出-模拟-优化行为克隆以及基于世界模型的智能体强化学习，从而使其能够有效利用世界模型进行决策。在MIMIC-IV脓毒症轨迹上的实验结果表明，SepsisAgent在离策略价值方面优于所有传统的强化学习和基于LLM的基线模型，并在指南依从性和不安全行动指标下实现了最佳的安全配置文件。"
+    },
+    {
+      "id": "2605.14558",
+      "title": "Resolving Action Bottleneck: Agentic Reinforcement Learning Informed by Token-Level Energy",
+      "abstract": "Agentic reinforcement learning trains large language models using multi-turn trajectories that interleave long reasoning traces with short environment-facing actions. Common policy-gradient methods, such as PPO and GRPO, treat each token in a trajectory equally, leading to uniform credit assignment. In this paper, we critically demonstrate that such uniform credit assignment largely misallocates token-level training signals. From an energy-based modeling perspective, we show that token-level training signals, quantified by their correlations with reward variance of different rollouts sampled from a given prompt, concentrate sharply on action tokens rather than reasoning tokens, even though action tokens account for only a small fraction of the trajectory. We refer to this phenomenon as the Action Bottleneck. Motivated by this observation, we propose an embarrassingly simple token reweighting approach, ActFocus, that downweights gradients on reasoning tokens, along with an additional energy-based redistribution mechanism that further increases the weights on action tokens with higher uncertainty. Across four environments and different model sizes, ActFocus consistently outperforms PPO and GRPO, yielding final-step gains of up to 65.2 and 63.7 percentage points, respectively, without any additional runtime or memory cost.",
+      "authors": [
+        "Langzhou He",
+        "Junyou Zhu",
+        "Yue Zhou",
+        "Zhengyao Gu",
+        "Junhua Liu",
+        "Wei-Chieh Huang",
+        "Henry Peng Zou",
+        "David Wipf",
+        "Philip S. Yu",
+        "Qitian Wu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-14T08:33:02Z",
+      "updated": "2026-05-14T08:33:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.14558v1",
+      "abs_url": "https://arxiv.org/abs/2605.14558",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.14558",
+      "summary_zh": "该研究旨在解决大型语言模型在智能体强化学习中存在的“行动瓶颈”问题，即传统策略梯度方法（如PPO和GRPO）对轨迹中所有token进行均匀信用分配，导致训练信号分配不均。研究发现，基于能量模型的分析表明，token级别的训练信号主要集中在行动token上，而非推理token，即使行动token只占轨迹的一小部分。为此，研究提出了ActFocus方法，通过简单地降低推理token的梯度权重，并引入一个基于能量的重分配机制，进一步增加不确定性较高的行动token的权重。在四个环境和不同模型尺寸上的实验结果表明，ActFocus显著优于PPO和GRPO，最终步骤的性能提升高达65.2和63.7个百分点，且没有额外的运行时间或内存开销。"
+    },
+    {
+      "id": "2605.14539",
+      "title": "Learning from Failures: Correction-Oriented Policy Optimization with Verifiable Rewards",
+      "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has emerged as an effective paradigm for improving the reasoning capabilities of large language models. However, RLVR training is often hindered by sparse binary rewards and weak credit assignment, resulting in ambiguous optimization signals and underutilization of the useful information embedded in failed trajectories. To address this challenge, we propose Correction-Oriented Policy Optimization (CIPO), a simple and effective extension to RLVR that converts on-policy failed trajectories into correction-oriented supervision, without relying on any external signals. By jointly optimizing correction samples derived from the model's own failed attempts together with the standard RLVR objective, CIPO improves learning effectiveness while explicitly enhancing the model's ability to correct its own errors. Extensive experiments across 11 benchmarks spanning mathematical reasoning and code generation demonstrate that CIPO consistently and significantly outperforms strong baselines in both reasoning and correction performance. Moreover, CIPO yields stronger pass@K gains, indicating that it improves the model's intrinsic reasoning capacity rather than merely redistributing probability mass over existing correct answers.",
+      "authors": [
+        "Mengjie Ren",
+        "Jie Lou",
+        "Boxi Cao",
+        "Xueru Wen",
+        "Hongyu Lin",
+        "Xianpei Han",
+        "Le Sun",
+        "Xing Yu",
+        "Yaojie Lu"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-05-14T08:22:21Z",
+      "updated": "2026-05-14T08:22:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.14539v1",
+      "abs_url": "https://arxiv.org/abs/2605.14539",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.14539",
+      "summary_zh": "这篇论文旨在解决RLVR（Reinforcement Learning with Verifiable Rewards）训练中稀疏二元奖励和弱信用分配导致优化信号模糊的问题，尤其关注如何从失败轨迹中学习。为此，论文提出了CIPO（Correction-Oriented Policy Optimization）方法，通过将模型自身的失败轨迹转化为纠正导向的监督信号，并与标准RLVR目标联合优化，从而在不依赖外部信号的情况下提升学习效率。CIPO的关键创新在于它能显式增强模型自我纠错的能力，实验结果表明，在11个数学推理和代码生成基准测试中，CIPO在推理和纠错性能上均显著优于现有基线，并且获得了更强的pass@K增益，证明其提升了模型的内在推理能力。"
+    },
+    {
+      "id": "2605.14531",
+      "title": "Language Generation as Optimal Control: Closed-Loop Diffusion in Latent Control Space",
+      "abstract": "This work reformulates language generation as a stochastic optimal control problem, providing a unified theoretical perspective to analyze autoregressive and diffusion models and explain their limitations (Efficiency-Fidelity Paradox, Irreversibility Error Propagation, Optimization Tractability and Fidelity) in terms of combination of trajectory singularity, adjoint state vanishing, and gradient absence. To address these issues, we approximate the solution to the Hamilton-Jacobi-Bellman (HJB) equation, yielding an optimal policy that acts as a closed-loop controller. To bypass the intractability of directly solving the HJB PDE, we employ Flow Matching as the optimal trajectory solver within the rectified latent control space. This allows our Manta-LM with Global Integral Operator to approximate the global vector field, effectively realizing a model that simultaneously achieves high-fidelity text generation and efficient, low-cost parallel sampling. Empirically, our method achieves strong performance on language modeling and conditional generation tasks, while exhibiting improved stability, efficiency, and controllability.",
+      "authors": [
+        "ZiYi Dong",
+        "Yuliang Huang",
+        "Weijian Deng",
+        "Xiangyang Ji",
+        "Liang Lin",
+        "Pengxu Wei"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-05-14T08:13:43Z",
+      "updated": "2026-05-14T08:13:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.14531v1",
+      "abs_url": "https://arxiv.org/abs/2605.14531",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.14531",
+      "summary_zh": "该研究将语言生成重新定义为随机最优控制问题，旨在统一分析自回归模型和扩散模型的局限性，如效率-保真度悖论、不可逆误差传播等，并将其归因于轨迹奇异性、伴随状态消失和梯度缺失。为解决这些问题，研究通过近似求解 Hamilton-Jacobi-Bellman (HJB) 方程获得最优策略，该策略作为闭环控制器运行。为避免直接求解 HJB 偏微分方程的困难，研究在修正的潜在控制空间中利用 Flow Matching 作为最优轨迹求解器，使得 Manta-LM 结合全局积分算子能够近似全局向量场。实验结果表明，该方法在语言建模和条件生成任务上表现出色，实现了高保真文本生成和高效、低成本的并行采样，同时提高了模型的稳定性、效率和可控性。"
+    },
+    {
+      "id": "2605.14366",
+      "title": "Reinforcement Learning with Semantic Rewards Enables Low-Resource Language Expansion without Alignment Tax",
+      "abstract": "Extending large language models (LLMs) to low-resource languages often incurs an \"alignment tax\": improvements in the target language come at the cost of catastrophic forgetting in general capabilities. We argue that this trade-off arises from the rigidity of supervised fine-tuning (SFT), which enforces token-level surface imitation on narrow and biased data distributions. To address this limitation, we propose a semantic-space alignment paradigm powered by Group Relative Policy Optimization (GRPO), where the model is optimized using embedding-level semantic rewards rather than likelihood maximization. This objective encourages meaning preservation through flexible realizations, enabling controlled updates that reduce destructive interference with pretrained knowledge. We evaluate our approach on Tibetan-Chinese machine translation and Tibetan headline generation. Experiments show that our method acquires low-resource capabilities while markedly mitigating alignment tax, preserving general competence more effectively than SFT. Despite producing less rigid surface overlap, semantic RL yields higher semantic quality and preference in open-ended generation, and few-shot transfer results indicate that it learns more transferable and robust representations under limited supervision. Overall, our study demonstrates that reinforcement learning with semantic rewards provides a safer and more reliable pathway for inclusive low-resource language expansion.",
+      "authors": [
+        "Zeli Su",
+        "Ziyin Zhang",
+        "Zhou Liu",
+        "Xuexian Song",
+        "Zhankai Xu",
+        "Longfei Zheng",
+        "Xiaolu Zhang",
+        "Rong Fu",
+        "Guixian Xu",
+        "Wentao Zhang"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-05-14T04:47:22Z",
+      "updated": "2026-05-14T04:47:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.14366v1",
+      "abs_url": "https://arxiv.org/abs/2605.14366",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.14366",
+      "summary_zh": "该研究旨在解决大型语言模型（LLMs）扩展到低资源语言时面临的“对齐税”问题，即在目标语言上的改进往往导致通用能力的灾难性遗忘。为克服监督微调（SFT）的局限性，研究提出了一种基于语义空间的对齐范式，利用Group Relative Policy Optimization (GRPO) 和嵌入级语义奖励进行模型优化，而非传统的似然最大化。这种方法鼓励意义的保留，通过灵活的实现方式进行受控更新，从而减少对预训练知识的破坏性干扰。在藏汉机器翻译和藏语标题生成任务上的实验表明，该方法在获得低资源能力的同时显著减轻了对齐税，比SFT更有效地保留了通用能力，并且在开放式生成中产生了更高的语义质量和用户偏好，同时在少样本迁移中学习到更具可迁移性和鲁棒性的表示。"
+    },
+    {
+      "id": "2605.14305",
+      "title": "Factorization-Error-Free Discrete Diffusion Language Model via Speculative Decoding",
+      "abstract": "Discrete diffusion language models improve generation efficiency through parallel token prediction, but standard $X_0$ prediction methods introduce factorization errors by approximating the clean token posterior with independent token-wise distributions. This paper proposes Factorization-Error-Free Discrete Diffusion Language Modeling (FeF-DLLM), which replaces independent clean-token prediction with an exact prefix-conditioned factorization of the clean posterior to better preserve token dependencies. To reduce the sequential cost introduced by prefix conditioning, FeF-DLLM further incorporates speculative decoding within diffusion denoising, accelerating inference while maintaining the parallel prediction and re-masking properties of DLLMs. Theoretically, we prove that FeF-DLLM generates from the true joint distribution and derive its expected acceleration ratio. Experiments on GSM8K, MATH, HumanEval, and MBPP demonstrate that our method improves accuracy by an average of 5.04 percentage points while achieving an average inference speedup of $3.86\\times$.",
+      "authors": [
+        "Xun Fang",
+        "Yunchen Li",
+        "Hang Yuan",
+        "Zhou Yu"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-05-14T03:15:25Z",
+      "updated": "2026-05-14T03:15:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.14305v1",
+      "abs_url": "https://arxiv.org/abs/2605.14305",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.14305",
+      "summary_zh": "离散扩散语言模型（Discrete Diffusion Language Models, DLLMs）通过并行预测提高生成效率，但其$X_0$预测方法因将干净token后验近似为独立分布而引入分解误差。FeF-DLLM通过用精确的前缀条件分解来替代独立的干净token预测，从而更好地保留token依赖性，解决了这一分解误差问题。为了降低前缀条件引入的顺序成本，FeF-DLLM在扩散去噪过程中融入了推测解码（speculative decoding），在保持DLLMs并行预测和重新掩码特性的同时加速了推理。理论上，FeF-DLLM能够从真实的联合分布中生成，并给出了其预期加速比；实验结果表明，该方法在GSM8K、MATH、HumanEval和MBPP等基准测试上平均提高了5.04%的准确率，同时实现了平均3.86倍的推理加速。"
+    },
+    {
+      "id": "2605.14292",
+      "title": "Minimal-Intervention KV Retention: A Design-Space Study and a Diversity-Penalty Survivor",
+      "abstract": "KV-cache compression at small budgets is a crowded design space spanning cache representation, head-wise routing, compression cadence, decoding behavior, and within-budget scoring. We study seven mechanisms across these five families under matched mean cache on long-form mathematical reasoning (MATH-500~\\cite{hendrycks2021math}) with two distilled-reasoning models (Qwen-7B and Llama-8B variants of DeepSeek-R1-Distill~\\cite{deepseek2025r1}) at budgets $b \\in \\{64, 128\\}$. All seven were rejected. We then propose $α$, a one-function modification to the TriAttention~\\cite{mao2026triattention} retention scorer that replaces argmax-top-$k$ with greedy facility-location-inspired selection under a V-space redundancy penalty controlled by a single weight $λ$. A pre-registered protocol tunes $λ$ on a frozen development split and confirms on a disjoint held-out split; with $λ= 0.5$, $α$ clears Bonferroni on two of the four (model, budget) cells (Qwen $b{=}128$ and Llama $b{=}64$), no cell is significantly negative, and the pre-registered Branch~A triggers. The finding is asymmetric: a minimal scoring modification beat heavier structural redesigns in this regime, and the combined matched-memory, sympy-graded, held-out confirmation protocol is the evidence standard that made the asymmetry visible.",
+      "authors": [
+        "Libo Sun",
+        "Po-wei Harn",
+        "Peixiong He",
+        "Xiao Qin"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-05-14T02:50:20Z",
+      "updated": "2026-05-14T02:50:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.14292v1",
+      "abs_url": "https://arxiv.org/abs/2605.14292",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.14292",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在解决在小预算下 KV-cache 压缩的挑战，特别是在长篇数学推理任务中，以提高大型语言模型的推理效率。研究者通过对缓存表示、头部路由、压缩节奏、解码行为和预算内评分等五个方面的七种现有机制进行了设计空间研究，发现它们在 MATH-500 基准测试上均未能有效提升 DeepSeek-R1-Distill 模型的性能。\n\n在此基础上，研究提出了一种名为 $\\alpha$ 的新方法，它通过对 TriAttention 保留评分器进行单函数修改，用受设施选址启发、带有 V-space 冗余惩罚的贪婪选择取代了传统的 argmax-top-$k$ 选择。实验结果显示，在预注册协议下，$\\alpha$ 在 Qwen-7B (b=128) 和 Llama-8B (b=64) 两种模型配置上显著优于现有方法，且没有出现显著的负面影响。这一发现表明，在 KV-cache 压缩中，对评分机制进行微小但关键的修改，比进行大规模结构性重新设计更为有效。"
+    },
+    {
+      "id": "2605.14220",
+      "title": "Diagnosing Training Inference Mismatch in LLM Reinforcement Learning",
+      "abstract": "Modern LLM RL systems separate rollout generation from policy optimization. These two stages are expected to produce token probabilities that match exactly. However, implementation differences can make them assign different values to the same sequence under the same model weights, inducing Training-Inference Mismatch (TIM). TIM is difficult to inspect because it is entangled with off-policy drift and common stabilization mechanisms. In this work, we isolate TIM in a zero-mismatch diagnostic setting (VeXact), and show that small token-level numerical disagreements can independently cause training collapse. We further show that TIM changes the effective optimization problem, and identify a set of remedies that could mitigate TIM. Our results suggest that TIM is not benign numerical noise, but a systems-level perturbation that should be treated as a first-order factor in analyzing LLM RL stability.",
+      "authors": [
+        "Tianle Zhong",
+        "Neiwen Ling",
+        "Yifan Pi",
+        "Zijun Wei",
+        "Tianshu Yu",
+        "Geoffrey Fox",
+        "Peng Wu",
+        "Xiao Yu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-14T00:27:35Z",
+      "updated": "2026-05-14T00:27:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.14220v1",
+      "abs_url": "https://arxiv.org/abs/2605.14220",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.14220",
+      "summary_zh": "大型语言模型（LLM）强化学习（RL）系统中，rollout生成与策略优化阶段的token概率不匹配，导致了训练推理不匹配（TIM）问题，该问题难以诊断且可能导致训练崩溃。研究通过引入零不匹配诊断设置VeXact，成功分离并量化了TIM的影响，发现即使是微小的token级别数值差异也能独立引发训练崩溃。进一步分析表明，TIM改变了实际的优化问题，并提出了一系列缓解TIM的补救措施。这些发现强调TIM并非无害的数值噪声，而是影响LLM RL稳定性的关键系统级扰动。"
+    },
+    {
+      "id": "2605.14217",
+      "title": "PreFT: Prefill-only finetuning for efficient inference",
+      "abstract": "Large language models can now be personalised efficiently at scale using parameter efficient finetuning methods (PEFTs), but serving user-specific PEFTs harms throughput, even with specialised kernels and memory management techniques. This is because, theoretically and empirically, a mismatch exists between prefill (processing a large number of tokens at once) and decode (generating a single token autoregressively): the latter has far lower throughput when serving multiple adapters. Rather than optimising performance relative to parameter count, for efficient multi-adapter serving, we instead ought to optimise performance relative to serving throughput. We therefore propose PreFT (Prefill-only Finetuning), wherein we only apply the adapter to prefill tokens and discard it afterwards. PreFT significantly increases throughput with minimal effect on performance. We develop and release an efficient implementation of two prefill-only PEFTs, LoRA and ReFT, on the vLLM inference engine. We first show that serving multi-user PreFTs is more efficient than traditional PEFTs ($1.9\\times$ the throughput when serving $512$ adapters on Llama 3.1 70B). Then, we compare the performance of prefill-only vs. all-token adapters on a variety of supervised finetuning and reinforcement learning tasks with LMs at varying scales. On SFT, we observe that the evaluation loss of PreFTs is higher than PEFTs, but can be compensated by increasing rank with nearly no reduction in throughput. On RL, we consistently find that PreFTs approach parity with standard PEFTs. Together, this work validates prefill-only adaptation of LLMs as a more favourable accuracy-throughput tradeoff than existing PEFTs for personalised serving.",
+      "authors": [
+        "Andrew Lanpouthakoun",
+        "Aryaman Arora",
+        "Zhengxuan Wu",
+        "Dhruv Pai",
+        "Ben Keigwin",
+        "Dan Jurafsky",
+        "Christopher Potts"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL",
+        "eess.SY"
+      ],
+      "published": "2026-05-14T00:19:41Z",
+      "updated": "2026-05-14T00:19:41Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.14217v1",
+      "abs_url": "https://arxiv.org/abs/2605.14217",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.14217",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文旨在解决大型语言模型（LLMs）个性化服务中，参数高效微调方法（PEFTs）在多适配器服务时吞吐量低的问题，尤其是在解码阶段。为此，论文提出了一种名为 PreFT（Prefill-only Finetuning）的新方法，即仅在处理预填充（prefill）tokens时应用适配器，之后将其丢弃，从而优化了相对于服务吞吐量的性能。关键创新点在于通过将适配器应用限制在预填充阶段，显著提升了多用户服务时的吞吐量，同时对模型性能影响最小。实验结果表明，在Llama 3.1 70B模型上服务512个适配器时，PreFT的吞吐量是传统PEFTs的1.9倍；在SFT任务中，PreFT的评估损失略高，但可通过增加rank弥补且几乎不降低吞吐量，而在RL任务中，PreFTs的性能与标准PEFTs相当，验证了PreFT在个性化服务中提供了更优的准确性-吞吐量权衡。"
+    }
+  ]
 }
