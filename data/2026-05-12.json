@@ -1,6 +1,6 @@
 {
   "date": "2026-05-12",
-  "generated_at": "2026-05-17T05:25:02.720894+00:00",
+  "generated_at": "2026-05-19T05:48:51.026808+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -272,15 +272,15 @@
       "authors": [
         "Nirmal Patel",
         "Fei Wang",
-        "Inderjit Dhillon"
+        "Inderjit S. Dhillon"
       ],
       "categories": [
         "cs.LG",
         "cs.AI"
       ],
       "published": "2026-05-12T19:17:14Z",
-      "updated": "2026-05-12T19:17:14Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.12667v1",
+      "updated": "2026-05-14T18:04:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.12667v2",
       "abs_url": "https://arxiv.org/abs/2605.12667",
       "topics": [
         "rl"
@@ -641,7 +641,7 @@
     {
       "id": "2605.12483",
       "title": "Beyond GRPO and On-Policy Distillation: An Empirical Sparse-to-Dense Reward Principle for Language-Model Post-Training",
-      "abstract": "When labeled verifiable training data is scarce, each checked example should be used where it has the most value. A common approach is to train the deployment student model directly with sparse RL methods such as GRPO. We argue that this is often inefficient. Sparse sequence-level reward is most useful for strong models that can explore and discover better behavior, while dense token-level teacher supervision is better suited for compressing that behavior into a smaller student. This suggests a simple allocation rule: use scarce labeled data upstream to improve the strongest available teacher, then transfer the improved behavior downstream through dense supervision. In this view, GRPO-style sparse RL and OPD-style distillation are not competing methods, but two reward-density regimes used at different stages. We evaluate this rule on verifiable math tasks with Qwen3 and Llama models. For a fixed Qwen3-1.7B deployment student, distilling from an RL-improved 8B teacher outperforms applying GRPO directly to the student with the same labeled data. In contrast, distilling from the same teacher before RL gives weaker results. The transfer bridge is also important: a forward-KL warmup on teacher rollouts followed by OPD on student rollouts performs best on MATH before any later student-side sparse RL, and gives the strongest pre-Stage 3 AIME results for the canonical 8B and 14B teachers. Finally, the bridge makes later student-side RL more effective. GRPO is weak when applied to a cold student, but after the bridge it raises MATH accuracy from 75.4% to 78.5%, outperforming a matched replay control by 2.8 points. Overall, the lesson is to avoid spending scarce labeled data on the least prepared policy: use sparse reward for teacher-side discovery, dense transfer for student compression, and student-side sparse reward only after the student has been bridged.",
+      "abstract": "We present a four-stage post-training workflow for LLM reasoning that allocates scarce labeled training data more effectively than standard recipes. The stages are: (1) sparse-reward RL on a larger teacher; (2a) forward-KL warmup on teacher rollouts; (2b) on-policy distillation under student rollouts; (3) optional sparse-reward RL on the deployment student using any held-out labeled data. On verifiable math with a Qwen3-1.7B deployment student, the workflow reaches $79.3\\%$ MATH and $25.2\\%$ AIME~2024 (avg@16), versus $75.9\\%$ and $19.8\\%$ for direct GRPO on the same student. We justify the workflow through a reward-density principle: each gradient step of on-policy distillation is a local trust-region update under a dense teacher-induced implicit reward, informative only when the teacher is itself reward-shaped (condition C1) and lies within a small KL of the student (condition C2). Stages~1 and~2a are the explicit devices that enforce C1 and C2. A single component ablation confirms that each stage is load-bearing: replacing the RL-improved teacher with a raw teacher costs $7.8$ MATH points, removing the forward-KL warmup costs $1.7$ points, and removing the on-policy distillation stage costs $3.3$ points. The recipe replicates on Llama-3.1-8B-Instruct with a Llama-3.3-70B-Instruct teacher.",
       "authors": [
         "Yuanda Xu",
         "Hejian Sang",
@@ -655,12 +655,11 @@
         "cs.AI"
       ],
       "published": "2026-05-12T17:57:48Z",
-      "updated": "2026-05-14T15:02:43Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.12483v2",
+      "updated": "2026-05-15T15:36:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.12483v3",
       "abs_url": "https://arxiv.org/abs/2605.12483",
       "topics": [
-        "rl",
-        "distillation"
+        "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.12483",
       "summary_zh": "论文提出了一种针对稀疏标注数据下语言模型后训练的经验性稀疏到稠密奖励原则，旨在解决现有稀疏强化学习（如GRPO）在直接训练部署模型时效率低下的问题。核心思想是利用稀疏序列级奖励改进强大的教师模型，然后通过稠密token级监督将改进的行为蒸馏到较小的学生模型，而不是直接对学生模型应用稀疏奖励。实验在Qwen3和Llama模型上进行，针对可验证的数学任务（如MATH benchmark），结果表明，从经过RL改进的8B教师模型蒸馏到Qwen3-1.7B学生模型的性能优于直接对学生模型应用GRPO，并且在蒸馏前对教师模型进行RL改进效果更佳。此外，通过前向KL预热和OPD（On-Policy Distillation）的混合蒸馏策略在学生模型上表现最佳，并能有效提升后续学生端稀疏RL的效果，使GRPO的MATH准确率从75.4%提升到78.5%。该研究强调了将稀疏奖励用于教师模型探索、稠密奖励用于学生模型压缩，以及仅在学生模型经过充分预热后才应用学生端稀疏奖励的策略，从而避免在未准备好的策略上浪费稀缺标注数据。"
@@ -992,8 +991,8 @@
         "cs.CV"
       ],
       "published": "2026-05-12T17:11:17Z",
-      "updated": "2026-05-13T03:40:59Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.12413v2",
+      "updated": "2026-05-18T10:53:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.12413v3",
       "abs_url": "https://arxiv.org/abs/2605.12413",
       "topics": [
         "other"
@@ -1729,6 +1728,33 @@
       "summary_zh": "该研究旨在探究 harness 设计如何影响小型语言模型（SLM，2-3B 参数）的运行性能，特别关注任务成功率和有效任务成功率。通过对 Gemma4 E2B、Qwen3.5:2B 和 LLaMA 3.2 3B 三个模型在 24 项任务上应用三种 harness 条件（仅模型、最小封装、四阶段管道），发现管道式 harness 在 Gemma4 E2B 上实现了 0.952 的任务成功率和 1.000 的有效任务成功率。研究揭示了非单调现象，即在某些情况下，最小封装的成功率低于仅模型的成功率，并且在 LLaMA 3.2 3B 中观察到支架崩溃现象，即模型在复杂格式要求下放弃 JSON 结构。消融实验表明，规划和恢复阶段分别贡献了约 24.7% 的总增益，验证捕获率（VCR）在所有管道运行中达到 0.625。"
     },
     {
+      "id": "2605.16395",
+      "title": "OrbiSim: World Models as Differentiable Physics Engines for Embodied Intelligence",
+      "abstract": "We present OrbiSim, a novel robotic simulation paradigm that redefines world models as a fully differentiable physics engine for embodied intelligence. Unlike prior world models that focus on unconstrained imagination in latent or visual domains, OrbiSim establishes a unified, physically-grounded pathway that bridges structured scene assets, neural dynamics, and downstream reinforcement learning. By enabling end-to-end differentiability throughout the entire simulation loop -- spanning from explicit state transitions to visual observation generation -- OrbiSim supports tasks traditionally intractable for classical simulators, such as differentiable contact modeling, gradient-based policy optimization under sparse rewards, and intuitive physical inference. Empirical results demonstrate that OrbiSim significantly outperforms state-of-the-art world models in both predictive fidelity and control performance. Furthermore, its consistent responsiveness to asset configurations and physical parameters suggests its potential as a differentiable tool for enhancing robot simulation and policy training.",
+      "authors": [
+        "Jiajian Li",
+        "Jingyuan Huang",
+        "Junru Gong",
+        "Qi Wang",
+        "Xiaokang Yang",
+        "Yunbo Wang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-05-12T13:43:53Z",
+      "updated": "2026-05-12T13:43:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.16395v1",
+      "abs_url": "https://arxiv.org/abs/2605.16395",
+      "topics": [
+        "world-model",
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.16395",
+      "summary_zh": "OrbiSim 提出了一种新颖的机器人仿真范式，将世界模型重新定义为具身智能的完全可微分物理引擎。它通过连接结构化场景资产、神经动力学和下游强化学习，建立了一个统一的、基于物理的路径，解决了传统世界模型在无约束想象中缺乏物理基础的问题。关键创新在于实现了整个仿真循环的端到端可微分性，包括显式状态转换和视觉观察生成，从而支持了传统模拟器难以处理的任务，如可微分接触建模和稀疏奖励下的基于梯度的策略优化。实验结果表明，OrbiSim 在预测准确性和控制性能方面显著优于现有世界模型，并且对资产配置和物理参数的响应一致，展现了其作为可微分工具在机器人仿真和策略训练中的巨大潜力。"
+    },
+    {
       "id": "2605.12112",
       "title": "When Policy Entropy Constraint Fails: Preserving Diversity in Flow-based RLHF via Perceptual Entropy",
       "abstract": "RLHF is widely used to align flow-matching text-to-image models with human preferences, but often leads to severe diversity collapse after fine-tuning. In RL, diversity is often assumed to correlate with policy entropy, motivating entropy regularization. However, we show this intuition breaks in flow models: policy entropy remains constant, even while perceptual diversity collapses. We explain this mismatch both theoretically and empirically: the constant entropy arises from the fixed, pre-defined noise schedule, while the diversity collapse is driven by the mode-seeking nature of policy gradients. As a result, policy entropy fails to prevent the model from converging to a narrow high-reward region in the perceptual space. To this end, we introduce perceptual entropy that captures diversity in a perceptual space and maintains the property of standard entropy. Building upon this insight, we propose two entropy-regularized strategies, Perceptual Entropy Constraint and Perceptual Constraints on Generation Space, to preserve perceptual diversity and improve the quality. Experiments across two base models, neural and rule-based rewards, and three perceptual spaces demonstrate consistent gains in the quality-diversity trade-off; PEC achieves the best overall score of 0.734 (vs. baseline's 0.366); a complementary setting of PEC further reaches a diversity average of 0.989 (vs. baseline's 0.047). Our project page (https://xiaofeng-tan.github.io/projects/PEC) is publicly available.",
@@ -1824,15 +1850,15 @@
     {
       "id": "2605.12070",
       "title": "Missing Old Logits in Asynchronous Agentic RL: Semantic Mismatch and Repair Methods for Off-Policy Correction",
-      "abstract": "Asynchronous reinforcement learning improves rollout throughput for large language model agents by decoupling sample generation from policy optimization, but it also introduces a critical failure mode for PPO-style off-policy correction. In heterogeneous training systems, the total importance ratio should ideally be decomposed into two semantically distinct factors: a \\emph{training--inference discrepancy term} that aligns inference-side and training-side distributions at the same behavior-policy version, and a \\emph{policy-staleness term} that constrains the update from the historical policy to the current policy. We show that practical asynchronous pipelines with delayed updates and partial rollouts often lose the required historical training-side logits, or old logits. This missing-old-logit problem entangles discrepancy repair with staleness correction, breaks the intended semantics of decoupled correction, and makes clipping and masking thresholds interact undesirably. To address this issue, we study both exact and approximate correction routes. We propose three exact old-logit acquisition strategies: snapshot-based version tracking, a dedicated old-logit model, and synchronization via partial rollout interruption, and compare their system trade-offs. From the perspective of approximate correction, we focus on preserving the benefits of decoupled correction through a more appropriate approximate policy when exact old logits cannot be recovered at low cost, without incurring extra system overhead. Following this analysis, we adopt a revised PPO-EWMA method, which achieves significant gains in both training speed and optimization performance. Code at https://github.com/millioniron/ROLL.",
+      "abstract": "Asynchronous reinforcement learning improves rollout throughput for large language model agents by decoupling sample generation from policy optimization, but it also introduces a critical failure mode for PPO-style off-policy correction. In heterogeneous training systems, the total importance ratio should ideally be decomposed into two semantically distinct factors: a \\emph{training--inference discrepancy term} that aligns inference-side and training-side distributions at the same behavior-policy version, and a \\emph{policy-staleness term} that constrains the update from the historical policy to the current policy. We show that practical asynchronous pipelines with delayed updates and partial rollouts often lose the required historical training-side logits, or old logits. This missing-old-logit problem entangles discrepancy repair with staleness correction, breaks the intended semantics of decoupled correction, and makes clipping and masking thresholds interact undesirably. To address this issue, we study both exact and approximate correction routes. We propose three exact old-logit acquisition strategies: snapshot-based version tracking, a dedicated old-logit model, and synchronization via partial rollout interruption, and compare their system trade-offs. From the perspective of approximate correction, we focus on preserving the benefits of decoupled correction through a more appropriate approximate policy when exact old logits cannot be recovered at low cost, without incurring extra system overhead. Following this analysis, we adopt a revised PPO-EWMA method, which achieves significant gains in both training speed and optimization performance.",
       "authors": [
         "Zhong Guan",
         "Yongjian Guo",
         "Haoran Sun",
         "Wen Huang",
         "Shuai Di",
-        "Xiong Jun Wu",
         "Likang Wu",
+        "Xiong Jun Wu",
         "Hongke Zhao"
       ],
       "categories": [
@@ -1840,8 +1866,8 @@
         "cs.AI"
       ],
       "published": "2026-05-12T12:57:55Z",
-      "updated": "2026-05-12T12:57:55Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.12070v1",
+      "updated": "2026-05-17T06:02:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.12070v2",
       "abs_url": "https://arxiv.org/abs/2605.12070",
       "topics": [
         "rl"
@@ -2176,8 +2202,8 @@
         "cs.LG"
       ],
       "published": "2026-05-12T11:31:36Z",
-      "updated": "2026-05-12T11:31:36Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.11975v1",
+      "updated": "2026-05-18T06:36:11Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.11975v2",
       "abs_url": "https://arxiv.org/abs/2605.11975",
       "topics": [
         "rl"
@@ -2615,8 +2641,8 @@
         "cs.CL"
       ],
       "published": "2026-05-12T09:39:06Z",
-      "updated": "2026-05-12T09:39:06Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.11854v1",
+      "updated": "2026-05-18T06:27:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.11854v2",
       "abs_url": "https://arxiv.org/abs/2605.11854",
       "topics": [
         "distillation"
@@ -2965,7 +2991,7 @@
     {
       "id": "2605.11651",
       "title": "Hide to See: Reasoning-prefix Masking for Visual-anchored Thinking in VLM Distillation",
-      "abstract": "Recent think-answer approaches in VLMs, such as Qwen3-VL-Thinking, boost reasoning performance by leveraging intermediate thinking steps before the final answer, but their high computational cost limits real-world deployment. To distill such capabilities into compact think-answer VLMs, a primary objective is to improve the student's ability to utilize visual evidence throughout its reasoning trace. To this end, we introduce a novel think-answer distillation framework that encourages the student to anchor its thinking on visual information by masking the student's salient reasoning prefixes. To compensate for such masked textual cues, the student is encouraged to rely more on visual evidence as an alternative source of information during distillation. Our masking strategies include: 1) token-wise salient reasoning-prefix masking, which masks high-influence reasoning prefixes selectively for each next-token prediction, and 2) self-paced masking budget scheduling, which gradually increases the masking scale according to distillation difficulty, {measured by discrepancy between teacher--student distributions. In the distillation phase, the student is guided by our salient reasoning-prefix mask, which blocks both future tokens and salient reasoning cues, in place of the standard causal mask used for auto-regressive language modeling. Experimental results show that our approach outperforms recent open-source VLMs, VLM distillation, and self-distillation methods on multimodal reasoning benchmarks, while further analyses confirm enhanced visual utilization along the student thinking process.",
+      "abstract": "Recent think-answer approaches in VLMs, such as Qwen3-VL-Thinking, boost reasoning performance by leveraging intermediate thinking steps before the final answer, but their computational cost becomes substantial, especially for larger VLMs. To distill such capabilities into compact think-answer VLMs, a primary objective is to improve the student's ability to utilize visual evidence throughout its reasoning trace, as long think-answer traces suffer from visual forgetting issues. To this end, we introduce a novel think-answer distillation framework that encourages the student to anchor its thinking on visual information by masking the student's salient reasoning prefixes. To compensate for such masked textual cues, the student is encouraged to rely more on visual evidence as an alternative source of information during distillation. Our masking strategies include: 1) token-wise salient reasoning-prefix masking, which masks high-influence reasoning prefixes selectively for each next-token prediction, and 2) self-paced masking budget scheduling, which gradually increases the masking scale according to distillation difficulty, measured by the discrepancy between teacher--student distributions. In the distillation phase, the student is guided by our salient reasoning-prefix mask, which blocks both future tokens and salient reasoning cues, in place of the standard causal mask used for auto-regressive language modeling. Experimental results show that our approach outperforms recent open-source VLMs, VLM distillation, and self-distillation methods on multimodal reasoning benchmarks, while further analyzes confirm enhanced visual utilization along the student thinking process.",
       "authors": [
         "Seonghoon Yu",
         "Dongjun Nam",
@@ -2978,8 +3004,8 @@
         "cs.CL"
       ],
       "published": "2026-05-12T07:14:04Z",
-      "updated": "2026-05-13T01:49:55Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.11651v2",
+      "updated": "2026-05-15T06:49:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.11651v3",
       "abs_url": "https://arxiv.org/abs/2605.11651",
       "topics": [
         "other"
@@ -3648,7 +3674,7 @@
     {
       "id": "2605.11461",
       "title": "Breaking $\\textit{Winner-Takes-All}$: Cooperative Policy Optimization Improves Diverse LLM Reasoning",
-      "abstract": "Reinforcement learning with verifiers (RLVR) has become a central paradigm for improving LLM reasoning, yet popular group-based optimization algorithms like GRPO often suffer from exploration collapse, where the models prematurely converge on a narrow set of high-scoring patterns, lacking the ability to explore new solutions. Recent efforts attempt to alleviate this by adding entropy regularization or diversity bonus. However, these approaches do not change the \\textit{winner-takes-all} nature, where rollouts still compete for individual advantage rather than cooperating for maximizing global diversity. In this work, we propose Group Cooperative Policy Optimization (GCPO), which shifts the training paradigm from rollout competition to team cooperation. Specifically, GCPO replaces independent rollout scoring with team-level credit assignment: a rollout is rewarded by how much it contributes to the team's valid solution coverage, rather than its individual accuracy. This coverage is described as a determinant volume over reward-weighted semantic embeddings, where only correct and non-redundant rollouts contribute to this volume. During advantage estimation, GCPO redistributes the collective team reward to each single rollout according to its average marginal contribution to the team. This cooperative training paradigm routes optimization toward non-redundant correct reasoning paths. Experiments across multiple reasoning benchmarks demonstrate that GCPO significantly improves both reasoning accuracy and solution diversity over existing approaches. Code will be released at $\\href{https://github.com/bradybuddiemarch/gcpo}{this}$.",
+      "abstract": "Reinforcement learning with verifiers (RLVR) has become a central paradigm for improving LLM reasoning, yet popular group-based optimization algorithms like GRPO often suffer from exploration collapse, where the models prematurely converge on a narrow set of high-scoring patterns, lacking the ability to explore new solutions. Recent efforts attempt to alleviate this by adding entropy regularization or diversity bonus. However, these approaches do not change the \\textit{winner-takes-all} nature, where rollouts still compete for individual advantage rather than cooperating for maximizing global diversity. In this work, we propose Group Cooperative Policy Optimization (GCPO), which shifts the training paradigm from rollout competition to team cooperation. Specifically, GCPO replaces independent rollout scoring with team-level credit assignment: a rollout is rewarded by how much it contributes to the team's valid solution coverage, rather than its individual accuracy. This coverage is described as a determinant volume over reward-weighted semantic embeddings, where only correct and non-redundant rollouts contribute to this volume. During advantage estimation, GCPO redistributes the collective team reward to each single rollout according to its average marginal contribution to the team. This cooperative training paradigm routes optimization toward non-redundant correct reasoning paths. Experiments across multiple reasoning benchmarks demonstrate that GCPO significantly improves both reasoning accuracy and solution diversity over existing approaches. Code will be released at https://github.com/bradybuddiemarch/gcpo.",
       "authors": [
         "Haoxuan Chen",
         "Tianming Liang",
@@ -3660,8 +3686,8 @@
         "cs.LG"
       ],
       "published": "2026-05-12T03:20:24Z",
-      "updated": "2026-05-12T03:20:24Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.11461v1",
+      "updated": "2026-05-18T07:36:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.11461v2",
       "abs_url": "https://arxiv.org/abs/2605.11461",
       "topics": [
         "rl"
