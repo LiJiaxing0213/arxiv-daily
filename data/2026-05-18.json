@@ -1,6 +1,6 @@
 {
   "date": "2026-05-18",
-  "generated_at": "2026-05-19T05:48:51.008110+00:00",
+  "generated_at": "2026-05-21T05:56:20.156073+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,267 @@
     }
   },
   "papers": [
+    {
+      "id": "2605.19166",
+      "title": "A Heuristic Approach for Performance Tuning in RL-based Quadrotor Control via Reward Design and Termination Conditions",
+      "abstract": "Reinforcement learning (RL)-based quadrotor control policies have achieved impressive performance in tasks such as fast navigation in cluttered environments and drone racing, where the focus is on speed and agility. However, in several applications, such as infrastructure inspection, it is critical to achieve precise, controlled maneuvers with tunable performance. In this article, we present a novel heuristic approach to achieve tunable performance in RL-based Quadrotor control through reward design and termination conditions. We present a novel reward structure containing dual bandwidth exponentials that achieves a baseline critically damped response in setpoint tracking, with low steady-state errors. When trained with a Proximal Policy Optimization (PPO) algorithm, in conjunction with episode truncation conditions, the desired performance is achieved in 6 million time steps in a sample-efficient manner. In order to tune the performance about the baseline behavior, we present intuitive heuristic rules to adjust the reward weights and exponential coefficients to achieve faster (acrobatic-like) and slower (inspection-like) settling time performance, while retaining the baseline critically damped response and approximately 2\\% steady-state error. We evaluate the three RL policies (baseline, acrobatic, and inspection) across 100 trials and show accurate and tunable performance in position and yaw tracking from random initial conditions, thereby demonstrating the effectiveness of the proposed heuristic approach.",
+      "authors": [
+        "Fausto Mauricio Lagos Suarez",
+        "Akshit Saradagi",
+        "Vidya Sumathy",
+        "George Nikolakopoulos"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.LG",
+        "math.OC"
+      ],
+      "published": "2026-05-18T22:40:30Z",
+      "updated": "2026-05-18T22:40:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.19166v1",
+      "abs_url": "https://arxiv.org/abs/2605.19166",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.19166",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "这篇论文提出了一种启发式方法，通过奖励设计和终止条件，实现RL控制四旋翼飞行器可调的性能。该方法引入了一种包含双带宽指数的新型奖励结构，在设定点跟踪中实现了基线临界阻尼响应和低稳态误差，并结合PPO算法和episode截断条件，在600万时间步内高效地完成了训练。关键创新在于提出了直观的启发式规则，用于调整奖励权重和指数系数，从而在保持基线临界阻尼响应和约2%稳态误差的同时，实现更快（特技式）和更慢（检查式）的稳定时间性能。实验评估了基线、特技和检查三种RL策略在100次试验中的表现，证明了该启发式方法在位置和偏航跟踪方面的准确性和可调性。"
+    },
+    {
+      "id": "2605.20270",
+      "title": "Conformal Selective Acting: Anytime-Valid Risk Control for RLVR-Trained LLMs",
+      "abstract": "A local specialist LLM, fine-tuned with reinforcement learning from verifiable rewards (RLVR) on operator-local data, is installed in a regulated organization with per-deployment error budget $α$. The operator needs a safety certificate for this deployment's stream at every round: no pooling across deployments, no waiting for a long-run average. Existing wrappers cannot deliver this on adaptive, online-updated streams: offline conformal-risk methods require exchangeability; online-conformal methods bound only long-run averages; non-exchangeable extensions are marginally valid; and the closest anytime wrapper, A-RCPS, controls marginal rather than selective risk. Using a (test statistic, validity guarantee, deployment rule) framework, we identify one empty cell forced by deployment requirements: e-process per threshold, selective risk, anytime-pathwise validity, max-certified-threshold rule. Conformal Selective Acting (CSA) fills it as a per-round wrapper maintaining a Ville-type e-process per threshold on a Bonferroni grid, evaluated against the RLVR filtration. Under predictable updates and isotonic-calibrated monotone risk we prove (i) an anytime-pathwise selective-risk bound $R_T^{\\mathrm{act}}\\leα+O(N_T^{-1/2})$, (ii) rate-optimal certification matching $Θ(\\barη^{-2}\\log(1/δ))$, and (iii) a horizon-independent release-rate gap. Across eight specialist benchmarks ($480$ streams), sixteen adversarial distribution-shift cells ($160$ streams), and five live Expert-Iteration RLVR cells with online LoRA over four base models in three architecture families ($10{,}300$ rounds), CSA is the only method among ten compared that satisfies pathwise validity and non-refusing deployment on every cell. We do not propose a new LLM, training algorithm, or policy class; CSA is the deployment-side complement, orthogonal to the model, for operators who cannot use a frontier API.",
+      "authors": [
+        "Hamed Khosravi",
+        "Xiaoming Huo"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "stat.ML"
+      ],
+      "published": "2026-05-18T22:20:32Z",
+      "updated": "2026-05-18T22:20:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.20270v1",
+      "abs_url": "https://arxiv.org/abs/2605.20270",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.20270",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决在受监管环境中部署经过 RLVR 训练的 LLM 时，如何实现每轮有效的风险控制问题，以满足严格的部署要求，如不允许跨部署池化和等待长期平均。研究者提出了一种名为 Conformal Selective Acting (CSA) 的新颖包装器方法，它利用 (test statistic, validity guarantee, deployment rule) 框架，通过在 Bonferroni 网格上维护一个 Ville-type e-process 来填补现有方法无法满足的选择性风险和任意路径有效性要求的空白。实验结果表明，CSA 在八个基准测试、十六个对抗性分布偏移场景以及五个实时 RLVR 场景中，是唯一能够满足路径有效性且不拒绝部署的方法，证明了其在实际部署中的有效性和鲁棒性。CSA 作为一种部署端补充，不依赖于新的 LLM 或训练算法，为无法使用前沿 API 的操作员提供了安全保障。"
+    },
+    {
+      "id": "2605.19151",
+      "title": "Progressive Autonomy as Preference Learning: A Formalization of Trust Calibration for Agentic Tool Use",
+      "abstract": "We formalize trust calibration for agentic tool use (deciding when an automated agent's proposed action may execute autonomously versus require human approval) as a preference-learning problem. A policy gateway maintains a Gaussian-process posterior over a latent human risk-tolerance function, observed through a probit likelihood on binary approve/deny feedback, and escalates to the human exactly where the approval outcome is most uncertain. We show this is structurally an instance of Preferential Bayesian Optimization, inheriting its inference machinery (approximate Gaussian-process classification) and its sample-efficiency argument (uncertainty-targeted querying), while differing in objective: classifying an action space into allow/block/ask regions rather than optimizing a design.",
+      "authors": [
+        "Changkun Ou"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.HC"
+      ],
+      "published": "2026-05-18T22:11:15Z",
+      "updated": "2026-05-18T22:11:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.19151v1",
+      "abs_url": "https://arxiv.org/abs/2605.19151",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.19151",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "本研究将代理工具使用中的信任校准问题形式化为偏好学习问题，旨在解决自动化代理在执行建议操作时，何时应自主执行、何时需要人类批准的决策难题。研究者提出了一种策略网关，通过二元批准/拒绝反馈，利用概率似然函数在潜在的人类风险容忍度函数上维护高斯过程后验，并在最不确定的地方将决策上报给人类。关键创新在于将此问题视为偏好贝叶斯优化（Preferential Bayesian Optimization）的一个实例，继承了其近似高斯过程分类（approximate Gaussian-process classification）的推理机制和目标导向的样本效率（uncertainty-targeted querying），但目标不同，即对动作空间进行允许/阻止/询问的区域划分，而非优化设计。实验表明，该方法能够有效地学习人类的偏好并进行信任校准。"
+    },
+    {
+      "id": "2605.19137",
+      "title": "Towards Data-Efficient Video Pre-training with Frozen Image Foundation Models",
+      "abstract": "Video foundation models achieve strong performance across many video understanding tasks, but typically require large-scale pre-training on massive video datasets, resulting in substantial data and compute costs. In contrast, modern image foundation models already provide powerful spatial representations. This raises an important question: can competitive video models be built by reusing these spatial representations and pre-training only for temporal reasoning? We take initial steps toward exploring a lightweight training paradigm that freezes a pre-trained image foundation model and trains only a recurrent temporal module to process streaming video. By reusing an image foundation model as a spatial encoder, this approach could significantly reduce the amount of video data and compute required compared to end-to-end video pre-training. In this work, we explore the feasibility of this approach before investing in computing for video pre-training. Our empirical findings across multiple video understanding tasks suggest that strong temporal performance can emerge without large-scale video pre-training, motivating future work on recurrent video foundation models obtained by pre-training a temporal module on top of a frozen image foundation model. Code: https://github.com/tue-mps/towards-video-image-frozen .",
+      "authors": [
+        "Svetlana Orlova",
+        "Niccolò Cavagnero",
+        "Gijs Dubbelman"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-18T21:35:09Z",
+      "updated": "2026-05-18T21:35:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.19137v1",
+      "abs_url": "https://arxiv.org/abs/2605.19137",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.19137",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "该研究旨在解决视频基础模型预训练对大规模视频数据和计算资源的高度依赖问题，提出了一种数据高效的视频预训练范式。其核心方法是冻结一个预训练的图像基础模型作为空间编码器，并仅训练一个循环时间模块来处理视频流，从而将预训练的重点放在时间推理上。关键创新在于通过重用强大的图像空间表示，显著减少了视频数据和计算需求，实现了在不进行大规模视频预训练的情况下，也能获得强大的时间性能。实验结果表明，这种方法在多个视频理解任务上表现出色，为未来基于冻结图像基础模型预训练循环时间模块的视频基础模型研究提供了有力支持。"
+    },
+    {
+      "id": "2605.19049",
+      "title": "KVBuffer: IO-aware Serving for Linear Attention",
+      "abstract": "Linear attention has recently gained significant attention for long-context inference due to its constant decoding cost with respect to context length. However, existing serving systems typically serve linear attention by recurrently computing and updating a large linear attention state in every decoding step. Since the state is much larger than the per-token key and value, recurrent decoding incurs substantial memory access and becomes inefficient for serving linear attention. In this paper, we propose KVBuffer, an IO-aware serving mechanism for linear attention. By buffering recent keys and values, KVBuffer enables serving systems to compute linear attention outputs in more flexible and memory-efficient ways. For decoding, KVBuffer enables chunkwise computation, which reduces average memory access and decoding latency by deferring state updates and applying them in batch. For speculative decoding, KVBuffer verifies draft tokens in parallel and avoids storing temporary states. For short contexts, KVBuffer computes attention outputs directly from buffered keys and values, without creating or updating the linear attention state. We implement KVBuffer in SGLang for Qwen3-Next. Our evaluations show that KVBuffer can reduce linear attention decoding latency by up to 45.17% and increase the maximum number of serving requests by 5x for speculative decoding when verifying four draft tokens.",
+      "authors": [
+        "Longwei Zou",
+        "Lin Zhong"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-18T19:14:52Z",
+      "updated": "2026-05-18T19:14:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.19049v1",
+      "abs_url": "https://arxiv.org/abs/2605.19049",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.19049",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该论文旨在解决线性注意力（Linear Attention）在长上下文推理中因状态更新频繁导致的内存访问效率低下问题。通过引入 KVBuffer 机制，该方法缓冲最近的键值对，从而实现更灵活和内存高效的线性注意力计算。关键创新点在于 KVBuffer 允许分块计算（chunkwise computation）以减少内存访问和解码延迟，支持并行验证草稿令牌的推测解码（speculative decoding）而无需存储临时状态，并能直接从缓冲的键值对计算短上下文的注意力输出。在 SGLang 中对 Qwen3-Next 的评估显示，KVBuffer 能将线性注意力解码延迟降低高达 45.17%，并在验证四个草稿令牌时将推测解码的最大服务请求数提高 5 倍。"
+    },
+    {
+      "id": "2605.19033",
+      "title": "RLFTSim: Realistic and Controllable Multi-Agent Traffic Simulation via Reinforcement Learning Fine-Tuning",
+      "abstract": "Supervised open-loop training has been widely adopted for training traffic simulation models; however, it fails to capture the inherently dynamic, multi-agent interactions common in complex driving scenarios. We introduce RLFTSim, a reinforcement-learning-based fine-tuning framework that enhances scenario realism by aligning simulator rollouts with real-world data distributions and provides a method for distilling goal-conditioned controllability in scenario generation. We instantiate RLFTSim on top of a pre-trained simulation model, design a reward that balances fidelity and controllability, and perform comprehensive experiments on the Waymo Open Motion Dataset. Our results show improvements in realism, achieving state-of-the-art performance. Compared with other heuristic search-based fine-tuning methods, RLFTSim requires significantly fewer samples due to a proposed low-variance and dense reward signal, and it directly addresses the realism alignment issue by design. We also demonstrate the effectiveness of our approach for distilling traffic simulation controllability through goal conditioning. The project page is available at https://ehsan-ami.github.io/rlftsim.",
+      "authors": [
+        "Ehsan Ahmadi",
+        "Hunter Schofield",
+        "Behzad Khamidehi",
+        "Fazel Arasteh",
+        "Jinjun Shan",
+        "Lili Mou",
+        "Dongfeng Bai",
+        "Kasra Rezaee"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-05-18T18:57:13Z",
+      "updated": "2026-05-18T18:57:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.19033v1",
+      "abs_url": "https://arxiv.org/abs/2605.19033",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.19033",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "现有交通模拟模型多采用监督开环训练，难以捕捉复杂驾驶场景中固有的动态多智能体交互。RLFTSim 提出一种基于强化学习的微调框架，通过将模拟器输出与真实世界数据分布对齐来提升场景真实性，并提供了一种在场景生成中提炼目标条件可控性的方法。该方法在预训练模拟模型基础上，设计了一个平衡保真度和可控性的奖励函数，并在 Waymo Open Motion Dataset 上进行了综合实验，结果表明其在真实性方面达到了最先进水平。与启发式搜索微调方法相比，RLFTSim 因其低方差和密集的奖励信号，显著减少了样本需求，并通过设计直接解决了真实性对齐问题，同时通过目标条件化展示了在交通模拟可控性提炼方面的有效性。"
+    },
+    {
+      "id": "2605.18993",
+      "title": "Distilling Linearized Behavior for Effective Task Arithmetic",
+      "abstract": "Task vector composition has emerged as a promising paradigm for editing pre-trained models, enabling model merging through addition and unlearning through subtraction. Fine-tuning in the tangent space of a pre-trained model (linear fine-tuning) has proven effective, as it produces task vectors that are naturally disentangled and resistant to interference. However, linearized models suffer from limited expressivity during training and incur higher computational costs at inference time, which restrict their practical applicability. In this work, we bridge the gap between linear and standard non-linear fine-tuning. We show that linearity with respect to weight perturbations, a property defined in parameter space, can be enforced through constraints in activation space during training. Concretely, we distill hidden representations from a curvature-regularized linearized teacher into a non-linear student trained via conventional fine-tuning. We find that the resulting model inherits key properties of linearized models for task arithmetic, enabling effective composition of task vectors and achieving strong performance across vision and language benchmarks without incurring any inference-time overhead.",
+      "authors": [
+        "Thomas Sommariva",
+        "Francesca Morandi",
+        "Simone Calderara",
+        "Angelo Porrello"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-18T18:11:34Z",
+      "updated": "2026-05-18T18:11:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18993v1",
+      "abs_url": "https://arxiv.org/abs/2605.18993",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18993",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在解决预训练模型任务向量组合中，线性化微调（linear fine-tuning）虽然能产生解耦且抗干扰的任务向量，但其表达能力有限且推理成本高的问题。研究提出了一种新方法，通过在训练过程中在激活空间施加约束，将参数空间中的线性行为蒸馏到非线性模型中。具体而言，该方法将来自曲率正则化线性教师模型的隐藏表示蒸馏到通过传统微调训练的非线性学生模型中，从而使学生模型继承了线性化模型的关键特性。实验结果表明，这种方法在视觉和语言基准测试中实现了有效的任务向量组合和强大的性能，且没有引入任何推理时间开销。"
+    },
+    {
+      "id": "2605.18984",
+      "title": "Artifact-Bench: Evaluating MLLMs on Detecting and Assessing the Artifacts of AI-Generated Videos",
+      "abstract": "Recent video generative models have greatly improved the realism of AI-generated videos, yet their outputs still exhibit artifacts such as temporal inconsistencies, structural distortions, and semantic incoherence. While Multimodal Large Language Models (MLLMs) show strong visual understanding capabilities, their ability to perceive and reason about such artifacts remains unclear. Existing benchmarks often lack systematic evaluation of artifact-aware perception and fine-grained diagnostic reasoning, especially across diverse AI-generated video domains beyond photorealistic content. To address this gap, we introduce Artifact-Bench, a comprehensive benchmark for evaluating MLLMs on AI-generated video artifact detection and analysis. We first establish a three-level hierarchical taxonomy of realism artifacts, covering photorealistic, animated, and CG-style videos. Based on this taxonomy, Artifact-Bench defines three complementary tasks: real vs. AI-generated video classification, pairwise realism comparison, and fine-grained artifact identification. Experiments on 19 leading MLLMs reveal substantial limitations in artifact perception and reasoning, with many models approaching random or even below-random performance in challenging settings. We further observe significant misalignment between MLLM judgments and human perceptual preferences, highlighting their limited reliability as general evaluators for AI-generated video realism.",
+      "authors": [
+        "Yuqi Tang",
+        "Yang Shi",
+        "Zhuoran Zhang",
+        "Qixun Wang",
+        "Xuehai Bai",
+        "Yue Ding",
+        "Ruizhe Chen",
+        "Bohan Zeng",
+        "Xinlong Chen",
+        "Xuanyu Zhu",
+        "Bozhou Li",
+        "Yuran Wang",
+        "Yifan Dai",
+        "Chengzhuo Tong",
+        "Xinyu Liu",
+        "Yiyan Ji",
+        "Yujie Wei",
+        "Yuhao Dong",
+        "Shilin Yan",
+        "Fengxiang Wang",
+        "Yi-Fan Zhang",
+        "Haotian Wang",
+        "Yuanxing Zhang",
+        "Pengfei Wan"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-18T18:04:54Z",
+      "updated": "2026-05-18T18:04:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18984v1",
+      "abs_url": "https://arxiv.org/abs/2605.18984",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18984",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "AI生成视频的真实感日益提升，但仍存在时间不一致、结构扭曲和语义不连贯等伪影（artifacts）。为评估多模态大语言模型（MLLMs）感知和推理这些伪影的能力，研究者提出了Artifact-Bench，这是一个针对AI生成视频伪影检测和分析的综合基准。该基准基于一个三级伪影分类法，涵盖真实感、动画和CG风格视频，并定义了真实与AI生成视频分类、成对真实感比较以及细粒度伪影识别三个任务。在19个主流MLLMs上的实验结果表明，这些模型在伪影感知和推理方面存在显著局限性，在复杂场景下表现接近随机甚至更差，且其判断与人类感知偏好存在明显偏差，揭示了MLLMs作为AI生成视频真实感评估器的可靠性不足。"
+    },
+    {
+      "id": "2605.18979",
+      "title": "TabQL: In-Context Q-Learning with Tabular Foundation Models",
+      "abstract": "We propose Tabular Q-Learning (TabQL), a reinforcement learning framework that replaces the conventional parametric Q-network in Deep Q-Learning (DQN) with a tabular foundation model endowed with in-context learning capabilities. The key idea is to represent Q-values through a sequence-to-sequence foundation model operating over a tabularized representation of state-action-Q-value tuples, enabling rapid adaptation from limited online interaction by conditioning on recent experience. TabQL departs from classical DQN by leveraging (i) zero- or few-shot Q-value inference via in-context updates, and (ii) a warm-up phase using standard DQN to bootstrap high-quality context. Particularly, to enhance the context quality, new transitions are generated by executing actions output by TabQL with predicted Q values from DQN. We formalize TabQL, analyze its convergence and sample complexity under mild assumptions, and show that TabQL interpolates between vanilla Q-learning and DQN with in-context learning. Our analysis demonstrates that TabQL achieves improved efficiency compared to DQN by amortizing Bellman updates through in-context learning. Extensive numerical experiments with several benchmarks showcase the effectiveness and efficacy of the proposed TabQL.",
+      "authors": [
+        "Qisai Liu",
+        "Zhanhong Jiang",
+        "Timilehin Ayanlade",
+        "Ashutosh Kumar Nirala",
+        "Yang Li",
+        "Aditya Balu",
+        "Soumik Sarkar"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-18T18:03:05Z",
+      "updated": "2026-05-18T18:03:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18979v1",
+      "abs_url": "https://arxiv.org/abs/2605.18979",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18979",
+      "summary_zh": "本研究旨在解决强化学习中样本效率低的问题，提出了一种名为 TabQL 的新框架，它用具备 in-context learning 能力的表格型基础模型（tabular foundation model）取代了传统 DQN 中的参数化 Q 网络。其核心创新在于将 Q 值表示为序列到序列模型处理的状态-动作-Q 值元组，通过 in-context updates 实现零样本或少样本的 Q 值推理，并利用预训练的 DQN 进行预热以生成高质量的上下文。实验表明，TabQL 在多个基准测试中展现出优于 DQN 的样本效率和有效性，并能根据有限的在线交互快速适应。"
+    },
     {
       "id": "2605.18749",
       "title": "WavFlow: Audio Generation in Waveform Space",
@@ -91,7 +352,7 @@
     },
     {
       "id": "2605.18743",
-      "title": "Actionable World Representation",
+      "title": "WorldString: Actionable World Representation",
       "abstract": "Inspired by the emergent behaviors in large language models that generalized human intelligence, the research community is pursuing similar emergent capabilities within world models, with a emphasis on modeling the physical world. Within the scope of physical world model, objects are the fundamental primitives that constitute physical reality. From humans to computers, nearly everything we interact with is an object. These objects are rarely static; they are actionable entities with varying states determined by their intrinsic properties. While current methods approach object action states either via video generation or dynamic scene reconstruction, none explicitly model this basic element in a unified, principled way to build an actionable object representation. We propose WorldString, a neural architecture capable of modeling the state manifold of real-world objects by learning directly from point clouds or RGB-D video streams. Serving as a versatile digital twin, it acts as a foundational building block for physical world models; thus, we name it WorldString. Sweetly, its fully differentiable structure seamlessly enables future integration with policy learning and neural dynamics.",
       "authors": [
         "Kunqi Xu",
@@ -106,8 +367,8 @@
         "cs.AI"
       ],
       "published": "2026-05-18T17:58:51Z",
-      "updated": "2026-05-18T17:58:51Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.18743v1",
+      "updated": "2026-05-20T07:13:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18743v2",
       "abs_url": "https://arxiv.org/abs/2605.18743",
       "topics": [
         "world-model",
@@ -115,8 +376,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18743",
-      "summary_zh": "这篇论文旨在解决现有世界模型在统一、原则性地建模物理世界中可操作对象状态方面的不足。为此，论文提出了WorldString，一个能够直接从点云或RGB-D视频流中学习并建模真实世界对象状态流形的神经网络架构。WorldString的关键创新在于其作为通用数字孪生的能力，为物理世界模型提供了基础构建块，并且其完全可微分的结构便于未来与策略学习和神经动力学无缝集成。实验结果表明，WorldString能够有效地表示和建模对象的动态状态，为构建更智能的物理世界模型奠定了基础。",
-      "impact_score": null
+      "summary_zh": "这篇论文旨在解决现有世界模型在统一、原则性地建模物理世界中可操作对象状态方面的不足。为此，论文提出了WorldString，一个能够直接从点云或RGB-D视频流中学习并建模真实世界对象状态流形的神经网络架构。WorldString的关键创新在于其作为通用数字孪生的能力，为物理世界模型提供了基础构建块，并且其完全可微分的结构便于未来与策略学习和神经动力学无缝集成。实验结果表明，WorldString能够有效地表示和建模对象的动态状态，为构建更智能的物理世界模型奠定了基础。"
     },
     {
       "id": "2605.18740",
@@ -138,15 +398,14 @@
         "cs.LG"
       ],
       "published": "2026-05-18T17:57:04Z",
-      "updated": "2026-05-18T17:57:04Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.18740v1",
+      "updated": "2026-05-19T16:29:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18740v2",
       "abs_url": "https://arxiv.org/abs/2605.18740",
       "topics": [
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18740",
-      "summary_zh": "多模态大型语言模型（MLLMs）在细粒度视觉理解方面表现不佳，其答案往往依赖于图像中细微但关键的证据。研究发现，当 MLLM 基于以证据为中心的裁剪图像而非完整图像进行条件判断时，细粒度问题的回答更准确，这表明许多失败源于难以聚焦相关证据，而非局部识别能力不足。为此，Vision-OPD 提出一种区域到全局的自蒸馏框架，将模型自身的特权区域感知能力转移到其完整图像策略中。Vision-OPD 从同一个 MLLM 中实例化两个条件策略：一个以裁剪图像为条件的教师模型和一个以完整图像为条件的学生模型，学生模型生成 on-policy rollouts，Vision-OPD 最小化教师和学生在这些 rollouts 中下一个 token 分布之间的 token 级差异。该方法使模型无需外部教师模型、真实标签、奖励验证器或推理时工具使用，即可内化视觉缩放的优势。在多个细粒度视觉理解基准上的实验表明，Vision-OPD 模型取得了与更大规模的开源、闭源和“Thinking-with-Images”代理模型相当或更优的性能。",
-      "impact_score": null
+      "summary_zh": "多模态大型语言模型（MLLMs）在细粒度视觉理解方面表现不佳，其答案往往依赖于图像中细微但关键的证据。研究发现，当 MLLM 基于以证据为中心的裁剪图像而非完整图像进行条件判断时，细粒度问题的回答更准确，这表明许多失败源于难以聚焦相关证据，而非局部识别能力不足。为此，Vision-OPD 提出一种区域到全局的自蒸馏框架，将模型自身的特权区域感知能力转移到其完整图像策略中。Vision-OPD 从同一个 MLLM 中实例化两个条件策略：一个以裁剪图像为条件的教师模型和一个以完整图像为条件的学生模型，学生模型生成 on-policy rollouts，Vision-OPD 最小化教师和学生在这些 rollouts 中下一个 token 分布之间的 token 级差异。该方法使模型无需外部教师模型、真实标签、奖励验证器或推理时工具使用，即可内化视觉缩放的优势。在多个细粒度视觉理解基准上的实验表明，Vision-OPD 模型取得了与更大规模的开源、闭源和“Thinking-with-Images”代理模型相当或更优的性能。"
     },
     {
       "id": "2605.18739",
@@ -175,15 +434,14 @@
         "cs.DC"
       ],
       "published": "2026-05-18T17:57:03Z",
-      "updated": "2026-05-18T17:57:03Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.18739v1",
+      "updated": "2026-05-19T17:46:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18739v2",
       "abs_url": "https://arxiv.org/abs/2605.18739",
       "topics": [
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18739",
-      "summary_zh": "该论文提出了 LongLive-2.0，一个基于 NVFP4 的并行基础设施，用于解决长视频生成中的速度和内存瓶颈。它在训练阶段引入了序列并行自回归（AR）训练，即 Balanced SP，通过将干净历史和噪声目标时间块配对到每个 rank 上，实现了高效的 teacher-forcing 布局和 SP 执行，并结合 NVFP4 精度，显著降低了 GPU 内存成本并加速了 GEMM 计算。在推理阶段，LongLive-2.0 在 Blackwell GPU 上支持 W4A4 NVFP4 推理，将 KV cache 量化为 NVFP4 以节省内存，并通过异步流式 VAE 解码提升端到端吞吐量；在非 Blackwell GPU 上则部署 SP 推理以匹配 Blackwell GPU 的速度。实验结果表明，LongLive-2.0 在训练速度上实现了高达 2.15 倍的提升，推理速度提升了 1.84 倍，其 5B 模型在基准测试中达到了 45.7 FPS 的推理速度，同时保持了强大的性能，是首个用于长视频生成的 NVFP4 训练和推理系统。",
-      "impact_score": null
+      "summary_zh": "该论文提出了 LongLive-2.0，一个基于 NVFP4 的并行基础设施，用于解决长视频生成中的速度和内存瓶颈。它在训练阶段引入了序列并行自回归（AR）训练，即 Balanced SP，通过将干净历史和噪声目标时间块配对到每个 rank 上，实现了高效的 teacher-forcing 布局和 SP 执行，并结合 NVFP4 精度，显著降低了 GPU 内存成本并加速了 GEMM 计算。在推理阶段，LongLive-2.0 在 Blackwell GPU 上支持 W4A4 NVFP4 推理，将 KV cache 量化为 NVFP4 以节省内存，并通过异步流式 VAE 解码提升端到端吞吐量；在非 Blackwell GPU 上则部署 SP 推理以匹配 Blackwell GPU 的速度。实验结果表明，LongLive-2.0 在训练速度上实现了高达 2.15 倍的提升，推理速度提升了 1.84 倍，其 5B 模型在基准测试中达到了 45.7 FPS 的推理速度，同时保持了强大的性能，是首个用于长视频生成的 NVFP4 训练和推理系统。"
     },
     {
       "id": "2605.18736",
@@ -199,15 +457,14 @@
         "cs.CV"
       ],
       "published": "2026-05-18T17:55:39Z",
-      "updated": "2026-05-18T17:55:39Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.18736v1",
+      "updated": "2026-05-20T05:57:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18736v2",
       "abs_url": "https://arxiv.org/abs/2605.18736",
       "topics": [
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18736",
-      "summary_zh": "扩散模型在频率域中隐式地自回归生成视觉内容，其中低频分量在去噪过程早期生成，高频细节在后期时间步出现，这为高效生成提供了机会。Spectral Progressive Diffusion 提出了一种通用框架，它沿着预训练扩散模型的去噪轨迹逐步提高分辨率，通过开发一种谱噪声扩展机制并从模型的功率谱推导出最优分辨率调度。该框架支持免训练加速，并提供了一种新颖的微调方法以进一步提高效率和质量。实验结果表明，该方法在保持视觉质量的同时，显著加速了最先进的图像和视频生成模型。",
-      "impact_score": null
+      "summary_zh": "扩散模型在频率域中隐式地自回归生成视觉内容，其中低频分量在去噪过程早期生成，高频细节在后期时间步出现，这为高效生成提供了机会。Spectral Progressive Diffusion 提出了一种通用框架，它沿着预训练扩散模型的去噪轨迹逐步提高分辨率，通过开发一种谱噪声扩展机制并从模型的功率谱推导出最优分辨率调度。该框架支持免训练加速，并提供了一种新颖的微调方法以进一步提高效率和质量。实验结果表明，该方法在保持视觉质量的同时，显著加速了最先进的图像和视频生成模型。"
     },
     {
       "id": "2605.18733",
@@ -234,8 +491,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18733",
-      "summary_zh": "现有自回归视频生成在长视频中存在长期不一致性和记忆衰退问题，尤其是在处理实体引用变化的提示时，会导致身份漂移、角色重复和属性丢失。IAMFlow 提出一个免训练的身份感知记忆框架，通过大型语言模型（LLM）从提示中提取实体及其视觉属性并分配全局ID，同时利用视觉语言模型（VLM）异步验证和细化渲染帧中的属性，从而显式跟踪实体身份，解决了隐式相似性匹配的局限性。为提高计算效率，该框架设计了异步视觉验证、自适应提示转换和模型量化等推理加速策略，并引入了 NarraStream-Bench，一个包含324个多提示脚本和三维评估协议的叙事流媒体视频生成基准。实验结果表明，IAMFlow 在 NarraStream-Bench 上表现最佳，超越最强基线2.56分，并在60秒多提示设置下比最有效基线提速1.39倍。",
-      "impact_score": null
+      "summary_zh": "现有自回归视频生成在长视频中存在长期不一致性和记忆衰退问题，尤其是在处理实体引用变化的提示时，会导致身份漂移、角色重复和属性丢失。IAMFlow 提出一个免训练的身份感知记忆框架，通过大型语言模型（LLM）从提示中提取实体及其视觉属性并分配全局ID，同时利用视觉语言模型（VLM）异步验证和细化渲染帧中的属性，从而显式跟踪实体身份，解决了隐式相似性匹配的局限性。为提高计算效率，该框架设计了异步视觉验证、自适应提示转换和模型量化等推理加速策略，并引入了 NarraStream-Bench，一个包含324个多提示脚本和三维评估协议的叙事流媒体视频生成基准。实验结果表明，IAMFlow 在 NarraStream-Bench 上表现最佳，超越最强基线2.56分，并在60秒多提示设置下比最有效基线提速1.39倍。"
     },
     {
       "id": "2605.18729",
@@ -267,8 +523,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18729",
-      "summary_zh": "这篇论文提出 Robo-Cortex 框架，旨在解决具身智能体在未知环境中导航时遇到的“经验失忆”问题，即现有策略难以从过往经验中学习并泛化。它通过引入自主知识归纳（Autonomous Knowledge Induction, AKI）机制，将多模态轨迹提炼成自然语言的导航启发式规则，并构建了一个包含短期反思记忆（SRM）和长期原则记忆（LPM）的双粒度认知记忆系统，从而使智能体能从被动执行转向主动策略演化。关键创新在于其持续的反射-适应循环，以及一个多模态的“想象-验证”循环，利用世界模型模拟结果并由 VLM 评估行动计划，以实现鲁棒决策。在 IGNav、AR 和 AEQA 等基准测试中，Robo-Cortex 在任务成功率和探索效率上均显著优于现有方法，SPL 提升高达 4.16%，在启发式规则迁移到未知环境时 SPL 提升高达 15.30%，初步的真实机器人实验也验证了其有效性。",
-      "impact_score": null
+      "summary_zh": "这篇论文提出 Robo-Cortex 框架，旨在解决具身智能体在未知环境中导航时遇到的“经验失忆”问题，即现有策略难以从过往经验中学习并泛化。它通过引入自主知识归纳（Autonomous Knowledge Induction, AKI）机制，将多模态轨迹提炼成自然语言的导航启发式规则，并构建了一个包含短期反思记忆（SRM）和长期原则记忆（LPM）的双粒度认知记忆系统，从而使智能体能从被动执行转向主动策略演化。关键创新在于其持续的反射-适应循环，以及一个多模态的“想象-验证”循环，利用世界模型模拟结果并由 VLM 评估行动计划，以实现鲁棒决策。在 IGNav、AR 和 AEQA 等基准测试中，Robo-Cortex 在任务成功率和探索效率上均显著优于现有方法，SPL 提升高达 4.16%，在启发式规则迁移到未知环境时 SPL 提升高达 15.30%，初步的真实机器人实验也验证了其有效性。"
     },
     {
       "id": "2605.18721",
@@ -289,8 +544,8 @@
         "cs.CL"
       ],
       "published": "2026-05-18T17:50:27Z",
-      "updated": "2026-05-18T17:50:27Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.18721v1",
+      "updated": "2026-05-19T20:24:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18721v2",
       "abs_url": "https://arxiv.org/abs/2605.18721",
       "topics": [
         "rl"
@@ -410,8 +665,8 @@
         "cs.AI"
       ],
       "published": "2026-05-18T17:18:24Z",
-      "updated": "2026-05-18T17:18:24Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.18678v1",
+      "updated": "2026-05-20T11:14:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18678v2",
       "abs_url": "https://arxiv.org/abs/2605.18678",
       "topics": [
         "other"
@@ -983,6 +1238,34 @@
       "summary_zh": "该研究旨在解决零售环境中客户轨迹预测的难题，以优化店铺布局，克服了真实轨迹数据收集成本高昂的问题，并改进了传统启发式方法（如TSP和PNN）的准确性不足。通过将客户轨迹预测建模为最大熵强化学习（RL）问题，该方法平衡了奖励最大化与随机性，以更好地模拟客户的有限理性行为。实验结果表明，与TSP和PNN相比，RL生成的轨迹与便利店的真实客户行为更吻合，能更准确地估计冲动购买率和货架客流量密度；更重要的是，只有RL模型能为冲动商品提供与真实数据一致的重新定位建议，并带来可观的利润增长。这项工作提供了一种实用且基于行为的替代方案，弥合了过度简化的启发式方法和数据密集型方法之间的鸿沟，使准确的布局优化更易实现。"
     },
     {
+      "id": "2605.18930",
+      "title": "OEP: Poisoning Self-Evolving LLM Agents via Locally Correct but Non-Transferable Experiences",
+      "abstract": "Memory-augmented large language model (LLM) agents use iterative reflection and self-evolution to solve complex tasks, but these mechanisms introduce security risks. Existing agentic memory attacks require privileged access or explicit malicious content, making them detectable by advanced safety filters. This leaves a subtler attack surface underexplored: whether adversaries can induce agent to generate experiences that appear locally correct and semantically plausible yet induce harmful generalization during reflection. We find that reflective agents are vulnerable to such clean experiences, especially when paired with severe but plausible hypothetical consequences. Based on this observation, we introduce Obsessive Experience Poisoning (OEP), a low-privilege black-box attack requiring no direct control over the system prompt or memory database. OEP constructs adversarial clean edge-cases that combine locally correct solutions, non-transferable methods, and severe consequences, biasing reflection toward risk-averse rule formation. During memory consolidation, agents may over-trust self-generated reflections and distill localized experiences into high-priority but over-generalized rules, causing downstream failures. Evaluations across three domains show that OEP achieves ASR above 50\\% with GPT-4o agents, and outperforms existing attacks under LLM auditing defense.",
+      "authors": [
+        "Kaixiang Wang",
+        "Jiong Lou",
+        "Zhaojiacheng Zhou",
+        "Jie Li"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-05-18T14:08:59Z",
+      "updated": "2026-05-18T14:08:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18930v1",
+      "abs_url": "https://arxiv.org/abs/2605.18930",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18930",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "这篇论文旨在解决内存增强型大语言模型（LLM）智能体在自我演化过程中存在的安全风险，特别是如何利用看似无害但具有潜在危害的“干净”经验来操纵其行为。研究者提出了一种名为 Obsessive Experience Poisoning (OEP) 的低权限黑盒攻击方法，该方法通过构造局部正确但不可迁移的经验，并结合严重的假设性后果，诱导智能体形成过度规避风险的规则。关键创新在于利用了智能体在反思（reflection）和记忆巩固（memory consolidation）过程中容易将局部经验过度泛化（over-generalized）的弱点。实验结果表明，OEP 能够有效地使 GPT-4o 智能体出现攻击成功率（ASR）超过 50%，并且在面对 LLM 审计防御时表现优于现有攻击方法，证明了其在实际应用中的潜在威胁。"
+    },
+    {
       "id": "2605.18437",
       "title": "Heterogeneous Tasks Offloading in Vehicular Edge Computing: A Federated Meta Deep Reinforcement Learning Approach",
       "abstract": "Vehicular edge computing (VEC) enables latency-sensitive vehicular applications by offloading computation-intensive tasks to nearby edge servers. However, real-world vehicular workloads are typically modeled as heterogeneous directed acyclic graph (DAG) tasks with complex dependency structures, making joint offloading and resource allocation highly challenging. Moreover, distributed MEC deployment raises privacy concerns when collaboratively training learning-based policies. In this paper, we propose a Federated Meta Deep Reinforcement Learning framework with GAT-Seq2Seq modeling (FedMAGS) for heterogeneous task offloading in VEC systems. The proposed approach leverages Graph Attention Networks to capture DAG dependencies, a Seq2Seq-based policy to generate structured offloading decisions, and federated meta-learning to enable fast adaptation across distributed MEC servers without sharing raw data. Extensive simulations demonstrate that FedMAGS achieves faster convergence, lower execution delay, and better scalability compared with state-of-the-art baselines. In addition, the federated design preserves data privacy while reducing communication overhead, making the framework well suited for dynamic and large-scale VEC environments.",
@@ -1009,9 +1292,40 @@
       "summary_zh": "该研究旨在解决车载边缘计算（VEC）中异构有向无环图（DAG）任务的联合卸载和资源分配难题，同时兼顾分布式MEC部署下的隐私保护问题。为此，提出了一种名为FedMAGS的联邦元深度强化学习框架，该框架结合了图注意力网络（GAT）来捕捉DAG任务的依赖关系，并利用Seq2Seq策略生成结构化的卸载决策。其关键创新在于通过联邦元学习（Federated Meta-Learning）实现了分布式MEC服务器间的快速适应，且无需共享原始数据，有效解决了隐私和通信开销问题。实验结果表明，FedMAGS相比现有基线方法，在收敛速度、执行延迟和可扩展性方面均表现出显著优势，并且其联邦设计在保护数据隐私的同时降低了通信开销，非常适用于动态大规模的VEC环境。"
     },
     {
+      "id": "2605.20258",
+      "title": "It Takes Two: Complementary Self-Distillation for Contextual Integrity in LLMs",
+      "abstract": "Contextual Integrity (CI) defines privacy not merely as keeping information hidden, but as governing information flows according to the norms of a given context. As large language models are increasingly deployed as personal agents handling sensitive workflows, adhering to CI becomes critical. However, even frontier models remain unreliable in making disclosure decisions, and existing mitigation strategies often degrade underlying task performance. To overcome this privacy-utility trade-off, we propose SELFCI, a complementary self-distillation framework that decouples information suppression from task resolution. SELFCI jointly optimizes two independent reverse KL divergences over distinct teacher distributions derived from feedback: one encourages preserving task-relevant information for utility, while the other enforces minimal and appropriate disclosure. This complementary formulation induces a Product-of-Experts (PoE) target, aligning the policy with the intersection of capability and privacy requirements. Empirical evaluations demonstrate that SELFCI, without relying on costly external supervision, consistently outperforms competitive baselines such as online reinforcement learning algorithms (e.g., GRPO). These trends further extend to out-of-domain settings involving agentic workflows and accumulated private context, suggesting that SELFCI provides a practical path toward CI alignment.",
+      "authors": [
+        "Sangwoo Park",
+        "Woongyeong Yeo",
+        "Seanie Lee",
+        "Yumin Choi",
+        "Hyomin Lee",
+        "Kangsan Kim",
+        "Jinheon Baek",
+        "Seong Joon Oh",
+        "Sung Ju Hwang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CR"
+      ],
+      "published": "2026-05-18T13:57:44Z",
+      "updated": "2026-05-18T13:57:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.20258v1",
+      "abs_url": "https://arxiv.org/abs/2605.20258",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.20258",
+      "summary_zh": "该研究旨在解决大型语言模型（LLMs）在处理敏感信息时，如何平衡上下文完整性（Contextual Integrity, CI）与任务性能的问题，因为现有方法常导致隐私与效用之间的权衡。为此，论文提出了一个名为 SELFCI 的互补自蒸馏框架，其核心创新在于将信息抑制与任务解决解耦，通过联合优化两个独立的逆向 KL 散度，分别从反馈中引导模型保留任务相关信息以提升效用，并强制执行最小且适当的信息披露。这种互补公式诱导了一个专家乘积（Product-of-Experts, PoE）目标，使策略同时满足能力和隐私要求。实验结果表明，SELFCI 在不依赖昂贵外部监督的情况下，持续优于 GRPO 等在线强化学习基线，并且在代理工作流和累积私人上下文等域外设置中也表现出色，为实现 LLMs 的 CI 对齐提供了一条实用途径。"
+    },
+    {
       "id": "2605.18396",
       "title": "NEWTON: Agentic Planning for Physically Grounded Video Generation",
-      "abstract": "Video generation models produce visually compelling results but systematically violate physical commonsense -- on VideoPhy-2, the best model achieves only 32.6% joint accuracy. We identify a specification bottleneck: text prompts are lossy compression of the physical world, omitting the parameters that fully determine dynamics, and no amount of model scaling can recover what was never specified. From this diagnosis we derive three properties that physics conditioning must satisfy -- sufficiency, dynamism, and verifiability -- and show that no existing approach satisfies all three. We present NEWTON, in which video generation is demoted from the system output to one action inside an agent's toolbox: a learned planner orchestrates physics-aware tools (keyframe generation, scientific computation, prompt refinement) to construct rich conditioning, and a verifier closes the loop for iterative re-planning. The planner is the sole trainable component, optimized on-policy via Flow-GRPO inside the live multi-turn loop. On VideoPhy-2, NEWTON improves joint accuracy from 21.4% to 29.7% on LTX-Video and from 30.7% to 37.4% on Veo-3.1, without modifying either generator. Our project page: \\href{https://Newton026.github.io/newton}{https://Newton026.github.io/newton}",
+      "abstract": "Video generation models produce visually compelling results but systematically violate physical commonsense -- on VideoPhy-2, the best model achieves only 32.6% joint accuracy. We identify a specification bottleneck: text prompts are lossy compression of the physical world, omitting the parameters that fully determine dynamics, and no amount of model scaling can recover what was never specified. From this diagnosis we derive three properties that physics conditioning must satisfy -- sufficiency, dynamism, and verifiability -- and show that no existing approach satisfies all three. We present NEWTON, in which video generation is demoted from the system output to one action inside an agent's toolbox: a learned planner orchestrates physics-aware tools (keyframe generation, scientific computation, prompt refinement) to construct rich conditioning, and a verifier closes the loop for iterative re-planning. The planner is the sole trainable component, optimized on-policy via Flow-GRPO inside the live multi-turn loop. On VideoPhy-2, NEWTON improves joint accuracy from 21.4% to 29.7% on LTX-Video and from 30.7% to 37.4% on Veo-3.1, without modifying either generator. Our project page: https://Newton026.github.io/newton",
       "authors": [
         "Yuxiang Feng",
         "Juncheng Wang",
@@ -1028,8 +1342,8 @@
         "cs.CV"
       ],
       "published": "2026-05-18T13:42:24Z",
-      "updated": "2026-05-18T13:42:24Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.18396v1",
+      "updated": "2026-05-19T06:23:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18396v2",
       "abs_url": "https://arxiv.org/abs/2605.18396",
       "topics": [
         "rl",
@@ -1119,6 +1433,35 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18346",
       "summary_zh": "该研究旨在解决自回归视频扩散模型在长视频生成中KV缓存过大导致效率低下的问题，现有方法在历史帧选择和注意力头预算分配上存在局限。研究发现同一生成块内的帧可能依赖不同的历史帧，历史帧的注意力分数会随时间距离变化，且不同注意力头的遮蔽对生成质量影响不均。为此，论文提出了Focused Forcing，一种免训练的KV选择方法，通过结合注意力分数和历史帧多样性分数，为每个生成的帧选择最相关且独特的历史帧，并根据注意力头的重要性分配更大的预算。该方法在多种自回归生成范式下，实现了高达1.48倍的端到端加速，同时提升了视觉质量和文本对齐效果。"
+    },
+    {
+      "id": "2605.20256",
+      "title": "FBOS-RL: Feedback-Driven Bi-Objective Synergistic Reinforcement Learning",
+      "abstract": "Reinforcement learning has become a cornerstone for aligning and unlocking the reasoning capabilities of large-scale models. At its core, the training loop of GRPO and its variants alternates between rollout sampling and policy update. Unlike supervised learning, where each gradient step is anchored to an explicit ground-truth target, the optimal gradient direction for updating model parameters in this setting is not known a priori; the high-quality rollouts drawn during the sampling stage therefore act as the implicit \"teacher\" that guides every parameter update. However, GRPO adopt a simple sampling scheme that conditions all rollouts on the same original prompt. When a task lies beyond the policy model's current capability, this sampling scheme rarely yields a high-quality rollout, leaving the policy model without a meaningful gradient direction when updating its parameters, which causes training to stall. To address this issue, we propose FBOS-RL, a Feedback-Driven Bi-Objective Synergistic reinforcement learning framework. Specifically, we let the model perform Feedback-Guided Exploration Enhancement based on the feedback provided by the environment, and on top of this we design two mutually reinforcing training objectives: Exploitation-oriented Policy Alignment(EPA) and Exploration-oriented Capability Cultivation(ECC). Extensive experiments demonstrate that EPA and ECC can mutually reinforce each other, forming a positive flywheel effect that significantly improves both the training efficiency and the final performance ceiling of reinforcement learning. Specifically, under an identical number of rollouts, FBOS-RL learns substantially faster than GRPO and feedback-based baselines and ultimately attains a higher performance ceiling, while exhibiting higher policy entropy and lower gradient norms throughout training.",
+      "authors": [
+        "Xikai Zhang",
+        "Yongzhi Li",
+        "Likang Xiao",
+        "Yingze Zhang",
+        "Yanhua Cheng",
+        "Quan Chen",
+        "Peng Jiang",
+        "Wenjun Wu",
+        "Liu Liu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-18T12:48:36Z",
+      "updated": "2026-05-18T12:48:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.20256v1",
+      "abs_url": "https://arxiv.org/abs/2605.20256",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.20256",
+      "summary_zh": "该论文旨在解决强化学习（RL）中，当策略模型能力不足时，传统采样方案（如GRPO）难以生成高质量rollout，导致训练停滞的问题。为此，提出了FBOS-RL框架，通过引入反馈驱动的双目标协同强化学习方法。其关键创新点在于，首先通过Feedback-Guided Exploration Enhancement机制，利用环境反馈指导探索，其次设计了两个相互强化的训练目标：Exploitation-oriented Policy Alignment (EPA) 和 Exploration-oriented Capability Cultivation (ECC)。实验结果表明，在相同rollout数量下，FBOS-RL比GRPO和基于反馈的基线模型学习速度显著加快，并达到了更高的性能上限，同时在训练过程中表现出更高的策略熵和更低的梯度范数，验证了EPA和ECC的相互促进作用。"
     },
     {
       "id": "2605.18324",
@@ -1252,6 +1595,35 @@
       "summary_zh": "该论文旨在解决搜索增强推理智能体中，由于轨迹级别奖励导致单个搜索查询缺乏步级信用分配的问题，从而提升查询质量。它提出了一种名为 SD-Search 的方法，通过策略内事后自蒸馏（on-policy hindsight self-distillation）来生成步级监督信号，无需外部教师模型或额外标注。SD-Search 让单个模型扮演学生和教师两个角色，教师模型通过条件化一个包含搜索查询和最终结果的紧凑事后块，隐式地标记有价值的决策，学生模型则通过最小化与教师模型在搜索查询位置的 token 级 Jensen-Shannon 散度来学习这种行为。这种方法在 GRPO 的粗粒度轨迹奖励之上叠加了密集的步级信号，且在标准强化学习训练循环中由策略自身生成，无需外部干预，在 HotpotQA 和 2WikiMultiHop 两个基准测试上取得了显著性能提升。"
     },
     {
+      "id": "2605.20255",
+      "title": "Multi-Agent Reinforcement Learning for Safe Autonomous Driving Under Pedestrian Behavioral Uncertainty",
+      "abstract": "Simulation-based testing of self-driving cars (SDCs) typically relies on scripted or simplified pedestrian models that do not capture the heterogeneity and uncertainty of real human crossing behavior. This limits the realism of safety assessments, especially in scenarios involving jaywalking, which is governed by latent personality traits that the vehicle cannot observe. We hypothesize that jointly training pedestrians and the SDC with multi-agent reinforcement learning (MARL) produces more realistic interaction scenarios than training the SDC against fixed pedestrian policies, and that the resulting behavior gap between predictable and unpredictable crossings can be measured directly from trajectories. This paper describes a MARL environment in which an SDC and 12 pedestrians are co-trained using Multi-Agent Proximal Policy Optimization (MAPPO). Pedestrian locomotion follows scripted Dijkstra pathfinding, while an RL policy controls high-level go/wait decisions. Jaywalking probability depends on a per-pedestrian personality trait sampled at episode start and hidden from the SDC. In 500-episode evaluations, the co-trained SDC reached 78% of goals with a 14% collision rate, compared to 35% goals and 33% collisions for the best rule-based baseline. A speed differential metric shows that the SDC traveled 2.65 m/s faster near jaywalkers than near crosswalk users at close range (0-3 m), indicating that jaywalking encounters were not anticipated. Jaywalking accounted for 13% of crossing events but was associated with 62% of collisions. Co-training with MARL pedestrians reduced collisions by 30% relative to single-agent RL, as pedestrians learned to wait when the SDC approached at speed.",
+      "authors": [
+        "Prakash Aryan",
+        "Kaushik Raghupathruni",
+        "Timo Kehrer",
+        "Sebastiano Panichella"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.HC",
+        "cs.RO"
+      ],
+      "published": "2026-05-18T12:02:41Z",
+      "updated": "2026-05-18T12:02:41Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.20255v1",
+      "abs_url": "https://arxiv.org/abs/2605.20255",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.20255",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决自动驾驶汽车（SDC）在行人行为不确定性（特别是闯红灯行为）下的安全问题，现有模拟测试通常依赖于过于简化的行人模型。通过多智能体强化学习（MARL）共同训练SDC和行人，以生成更真实的交互场景，其中行人的闯红灯概率由隐藏的个性特征决定。研究构建了一个MARL环境，使用Multi-Agent Proximal Policy Optimization (MAPPO) 共同训练SDC和12名行人，行人的高层决策（走/停）由RL策略控制，而低层运动遵循Dijkstra路径规划。实验结果显示，与最佳基于规则的基线相比，共同训练的SDC在500个episode评估中，目标达成率从35%提升到78%，碰撞率从33%降低到14%；同时，MARL行人共同训练将碰撞率相对单智能体RL降低了30%，表明行人学会了在SDC高速接近时等待，从而提高了整体安全性。"
+    },
+    {
       "id": "2605.18261",
       "title": "Knowledge-to-Verification: Exploring RLVR for LLMs in Knowledge-Intensive Domains",
       "abstract": "Reinforcement learning with verifiable rewards (RLVR) has demonstrated promising potential to enhance the reasoning capabilities of large language models (LLMs) in domains such as mathematics and coding. However, its applications on knowledge-intensive domains have not been effectively explored due to the scarcity of high-quality verifiable data. Furthermore, current RLVR focuses solely on the correctness of final answers, leading to the limitations of flawed reasoning and sparse reward signals. In this work, we propose Knowledge-to-Verification (K2V), a framework that extends RLVR to knowledge-intensive domains through automated verifiable data synthesis, while enabling verification of the LLM's reasoning process. Extensive experiments demonstrate that K2V enhances the reasoning of LLM in knowledge-intensive domains without significantly compromising the model's general capabilities. This study also suggests that integrating automated data synthesis with reasoning verification is a promising direction to enhance model capabilities in these broader domains. Code is available at https://github.com/SeedScientist/K2V.",
@@ -1333,32 +1705,6 @@
       "summary_zh": "该论文旨在解决现有无训练长视频生成方法中，帧级自回归模型（如FIFO-diffusion）在生成无限长视频时，面临的训练与推理不匹配以及长期一致性难以维持的问题。为此，论文提出了MIGA（Multi-stage Infinite-frame Generation with Alignment），一种新颖的无限帧长视频生成方法。MIGA的关键创新在于引入了两阶段对齐机制，通过减少输入模型的噪声跨度来弥补训练与推理之间的差距，并设计了双重一致性增强机制，其中自反射方法纠正早期高噪声帧，而长程帧引导方法利用后期低噪声帧来指导生成，共同提升时间一致性。在VBench和NarrLV上的大量实验表明，MIGA取得了最先进的性能。"
     },
     {
-      "id": "2605.18224",
-      "title": "A Simplex Witness Certificate for Constant Collapse in Variational Autoencoders",
-      "abstract": "This note studies exact constant collapse in variational autoencoders, where the encoder mean becomes independent of the input. The goal is to make this specific failure mode pre-designable, monitorable during training, and certifiable after training. The prior is kept as the standard Gaussian. Given a fixed teacher posterior, we attach to the latent mean a fixed simplex witness head. The resulting teacher-student alignment loss has an exact constant-predictor baseline equal to the teacher information. If the alignment loss is below this baseline, the latent mean cannot be input-independent constant collapsed. The simplex witness also has a closed-form inverse. Any full-support teacher posterior can be represented by embedding its centered log-odds into the latent space. This gives an explicit latent energy cost and explains when the alignment loss can be made small. A computable view gap handles the case where teacher targets are computed from a different view. Thus exact constant collapse is converted from an after-the-fact training pathology into a design-and-certificate problem.",
-      "authors": [
-        "Zegu Zhang",
-        "Jianhua Peng",
-        "Jian Zhang"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "published": "2026-05-18T11:09:22Z",
-      "updated": "2026-05-18T11:09:22Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.18224v1",
-      "abs_url": "https://arxiv.org/abs/2605.18224",
-      "topics": [
-        "other"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18224",
-      "keyword_topics": [
-        "distillation"
-      ],
-      "summary_zh": "这篇论文旨在解决变分自编码器（VAEs）中编码器均值与输入无关的“常数坍缩”（constant collapse）问题，将其从训练后的病理现象转化为可设计和认证的问题。研究方法是为潜在均值附加一个固定的 Simplex Witness Head，并引入一个 teacher-student 对齐损失，该损失有一个精确的常数预测器基线。关键创新点在于，如果对齐损失低于此基线，则潜在均值不可能发生输入无关的常数坍缩，并且 Simplex Witness 具有闭合形式的逆，能够将任何全支持的 teacher 后验嵌入到潜在空间中。实验结果表明，这种方法提供了一种可计算的视图差距（view gap），能够解释何时对齐损失可以减小，从而有效地监控和认证 VAEs 中的常数坍缩。"
-    },
-    {
       "id": "2605.18214",
       "title": "EgoInteract: Synthetic Egocentric Videos Generation for Interaction Understanding and Anticipation",
       "abstract": "Collecting large-scale egocentric video datasets with dense spatial and temporal annotations is costly, slow, and often constrained by environmental biases, privacy constraints, and limited coverage of interaction patterns. While synthetic data has shown strong potential in several vision domains, its use for egocentric perception remains relatively underexplored, especially for tasks requiring temporally coherent human-object interactions. In this work, we introduce EgoInteract, a controllable simulator for egocentric video generation designed to model fine-grained egocentric interactions and their temporal dynamics. The simulator enables precise control over camera, human body and hand motion, object manipulation, and scene composition across diverse environments. Building on this framework, we generate a synthetic egocentric video dataset with dense spatial and temporal annotations for temporal action segmentation, next-active object detection, interaction anticipation, and hand-object interaction detection. We evaluate models trained with simulated data on multiple real-world egocentric benchmarks spanning diverse environments, object categories, and interaction patterns. Results show consistent improvements over strong baselines across tasks and datasets, demonstrating the effectiveness and transferability of our simulation-based approach.",
@@ -1406,9 +1752,12 @@
       "pdf_url": "https://arxiv.org/pdf/2605.18204v1",
       "abs_url": "https://arxiv.org/abs/2605.18204",
       "topics": [
-        "distillation"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.18204",
+      "keyword_topics": [
+        "distillation"
+      ],
       "summary_zh": "该论文旨在解决离散扩散模型在生成过程中效率低下的问题，即传统方法因固定马尔可夫前向过程导致需要大量采样步数才能生成高质量样本。为此，论文提出了前向学习离散扩散（Forward-Learned Discrete Diffusion, FLDD）模型，其核心创新在于引入了一个可学习的前向（加噪）过程，而非固定的马尔可夫链，并采用非马尔可夫公式来学习边缘分布和后验分布。这种方法使得生成过程在保持分解性的同时，能更好地匹配由加噪过程定义的目标分布，从而在更少的采样步数下实现高质量生成。实验结果表明，在相同采样步数和反向参数化下，FLDD 在多个基准测试上生成的样本质量优于传统的离散扩散模型。"
     },
     {
@@ -1623,8 +1972,8 @@
         "cs.CV"
       ],
       "published": "2026-05-18T09:46:16Z",
-      "updated": "2026-05-18T09:46:16Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.18137v1",
+      "updated": "2026-05-19T09:33:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.18137v2",
       "abs_url": "https://arxiv.org/abs/2605.18137",
       "topics": [
         "world-model",
@@ -2085,8 +2434,8 @@
         "cs.CV"
       ],
       "published": "2026-05-18T06:25:37Z",
-      "updated": "2026-05-18T06:25:37Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.17916v1",
+      "updated": "2026-05-19T02:30:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.17916v2",
       "abs_url": "https://arxiv.org/abs/2605.17916",
       "topics": [
         "world-model",
@@ -2218,6 +2567,36 @@
       "summary_zh": "针对时间序列预测中小规模数据的问题，DAD4TS提出了一种基于扩散模型并结合强化学习的数据增强方法。该方法通过同时训练数据生成器和时间序列模型，并利用强化学习模型控制生成器，以高效生成能提升预测准确性的样本，其关键创新在于采用数学方法而非传统VAE将时间序列数据投影到几何空间来训练扩散模型，以更好地支持小规模数据。在六个真实世界数据集和八个时间序列模型上，DAD4TS与七种对比方法进行了定性和定量实验，结果表明DAD4TS在五个数据集上均有效提升了预测性能。"
     },
     {
+      "id": "2605.20246",
+      "title": "GROW: Aligning GRPO with State-Action Modeling for Open-World VLM Agents",
+      "abstract": "Recently, vision-language model (VLM) agents have shown promising progress in open-world tasks, where successful task completion often requires multiple turns of visual perception and action execution. However, existing methods still rely primarily on Supervised Fine-Tuning (SFT) with expert demonstrations, while the advanced reinforcement learning (RL) algorithm, specifically Group Relative Policy Optimization (GRPO), has not been effectively employed for multi-turn RL in these tasks because standard GRPO requires full trajectories as training samples which leads to excessively long context and noise. To address this issue, we propose GROW, a RL framework for open-world VLM agents that decomposes collected trajectories into state-action samples, and computes advantages between these samples rather than treating a full trajectory as a single entity. We further provide a surrogate analysis indicating that, even though the grouped samples are conditioned on different local states rather than an identical prompt context, the objective can preserve the core relative policy optimization signal of GRPO under simplifying assumptions. Experiments on more than 800 Minecraft tasks show that our method achieves state-of-the-art (SOTA) performance, demonstrating the effectiveness of our proposed RL framework for open-world VLM agents.",
+      "authors": [
+        "Xiongbin Wu",
+        "Zhihao Luo",
+        "Shanzhe Lei",
+        "Lechao Zhang",
+        "Xuhong Wang",
+        "Jie Yang",
+        "Zhonglong Zheng",
+        "Yuanjie Zheng",
+        "Xin Tan",
+        "Wei Liu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-18T04:56:59Z",
+      "updated": "2026-05-18T04:56:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.20246v1",
+      "abs_url": "https://arxiv.org/abs/2605.20246",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.20246",
+      "summary_zh": "开放世界VLM智能体在多轮视觉感知和动作执行任务中，现有方法主要依赖专家演示的SFT，而GRPO等先进强化学习算法因需要完整轨迹作为训练样本，导致上下文过长且噪声大，未能有效应用于多轮RL。GROW框架通过将收集到的轨迹分解为状态-动作样本，并在这些样本之间计算优势，而非将完整轨迹视为单一实体，从而解决了GRPO在多轮RL中的应用难题。该方法通过替代分析表明，即使分组样本基于不同的局部状态而非相同的提示上下文，其目标函数在简化假设下仍能保留GRPO的核心相对策略优化信号。在超过800个Minecraft任务上的实验结果表明，GROW实现了SOTA性能，验证了其在开放世界VLM智能体中强化学习框架的有效性。"
+    },
+    {
       "id": "2605.17849",
       "title": "Generating Pretraining Tokens from Organic Data for Data-Bound Scaling",
       "abstract": "LLM pretraining is shifting from a compute-bound to a data-bound regime, where available human (organic) text falls far short of scaling demands. However, reaching the data-bound regime does not mean the model has fully utilized its organic corpus. In this paper, we introduce SynPro, a synthetic data generation framework that helps LLMs more thoroughly learn from limited organic data. SynPro applies two operations, rephrasing and reformat, that present the same organic source in diverse forms to facilitate deeper learning without introducing external information. Both generators are optimized via reinforcement learning with quality, faithfulness, and data influence rewards, and are continuously updated as pretraining plateaus to target content the model has yet to absorb. We pretrain 400M and 1.1B models with 10% of their Chinchilla-optimal tokens (0.8B and 2.2B) from DCLM-Baseline, reflecting a realistic data-bound regime in frontier pretraining. Our results reveal that organic data is significantly underutilized by standard repetition: SynPro unlocks 3.7-5.2x the effective tokens of repetition, even surpassing the non-data-bound oracle that trains on equivalent unique data at the 1.1B scale. Analyses confirm that faithful, model-aware synthesis sustains data-bound scaling without causing distribution collapse. We open-source our code at https://github.com/cxcscmu/SynPro.",
@@ -2246,7 +2625,7 @@
     {
       "id": "2605.17839",
       "title": "Balancing Knowledge Distillation for Imbalance Learning with Bilevel Optimization",
-      "abstract": "Knowledge distillation transfers knowledge from a high capacity teacher to a compact student using a mixture of hard and soft losses. On imbalanced data, a fixed weighting between hard and soft losses becomes brittle the learning process. Recent studies try to reweight these components in long-tailed settings. However, most of these meth- ods do not adapt weights at the sample-wise level and do not take into account the students behavior during training. To address this, we pro- pose BiKD - a bilevel framework that dynamically balances hard and soft losses for each sample. We employ a weight generation network that produces adaptive per-sample weights, guided by a small balanced vali- dation set. The student is now trained with an unconstrained combina- tion of weighted hard and soft losses, allowing the student to relax both terms. We further propose a multi-step SGD strategy to optimize the weight model more accurately and efficiently. Experiments on long-tailed CIFAR-10/100 show that our approach surpasses recent balanced distil- lation methods across imbalance factors.",
+      "abstract": "Knowledge distillation transfers knowledge from a high capacity teacher to a compact student using a mixture of hard and soft losses. On imbalanced data, a fixed weighting between hard and soft losses becomes brittle the learning process. Recent studies try to reweight these components in long-tailed settings. However, most of these methods do not adapt weights at the sample-wise level and do not take into account the students behavior during training. To address this, we propose BiKD -- a bilevel framework that dynamically balances hard and soft losses for each sample. We employ a weight generation network that produces adaptive per-sample weights, guided by a small balanced validation set. The student is now trained with an unconstrained combination of weighted hard and soft losses, allowing the student to relax both terms. We further propose a multi-step SGD strategy to optimize the weight model more accurately and efficiently. Experiments on long-tailed CIFAR-10/100 show that our approach surpasses recent balanced distillation methods across imbalance factors.",
       "authors": [
         "Anh B. H. Nguyen",
         "Ba Tho Phan",
@@ -2257,8 +2636,8 @@
         "cs.AI"
       ],
       "published": "2026-05-18T04:19:33Z",
-      "updated": "2026-05-18T04:19:33Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.17839v1",
+      "updated": "2026-05-19T03:57:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.17839v2",
       "abs_url": "https://arxiv.org/abs/2605.17839",
       "topics": [
         "other"
