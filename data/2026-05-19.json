@@ -1,6 +1,6 @@
 {
   "date": "2026-05-19",
-  "generated_at": "2026-05-24T05:35:05.835180+00:00",
+  "generated_at": "2026-05-25T06:05:05.487523+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -80,6 +80,34 @@
         "distillation"
       ],
       "summary_zh": "这篇论文旨在解决视觉地点识别（VPR）中，现有方法在特征聚合时未能充分利用不同特征簇的差异性，以及ViT模型特征提取计算成本高的问题。论文提出了加权聚合描述符（WeiAD），通过在聚合过程中为不同的特征簇分配权重，生成更具判别力的全局描述符；同时引入了WeiToP框架，利用自蒸馏和聚合诱导的token重要性，在早期Transformer层实现token剪枝，从而降低特征提取的计算成本。WeiToP在一次联合训练后，能够在推理时灵活地控制准确性与效率之间的权衡，并且在VPR任务上超越了其他通用的token剪枝方法。"
+    },
+    {
+      "id": "2605.22869",
+      "title": "FuRA: Full-Rank Parameter-Efficient Fine-Tuning with Spectral Preconditioning",
+      "abstract": "Both full fine-tuning (Full FT) and parameter-efficient fine-tuning methods such as LoRA introduce weight updates without accounting for the spectral structure established during pretraining. As a result, noisy gradients from limited fine-tuning data can perturb robust pretrained features. We identify spectral preconditioning as the missing ingredient: reparameterizing each weight matrix through its full-rank singular value decomposition (SVD) and freezing one singular basis constrains updates to the pretrained column space, yielding a preconditioned optimization scheme that outperforms unconstrained Full FT at the same trainable parameter count. Building on this insight, we propose FuRA (Full-Rank Adaptation), an efficient full-rank adaptation framework based on a block tensor-train factorization W = LSR, where the large core L is fixed to the pretrained block-wise SVD basis, while only the compact core R and the block-wise singular values S are optimized. This design simultaneously provides full-rank spectral preconditioning, preserves full-rank update expressivity, and achieves parameter, memory, and step-time efficiency comparable to LoRA. FuRA consistently outperforms Full FT across multiple settings, including LLM fine-tuning (+1.37 on LLaMA-3-8B commonsense reasoning), LLM reinforcement learning for mathematical reasoning, and visual instruction tuning for VLMs. Furthermore, the 4-bit quantized variant, QFuRA, also surpasses QLoRA. Code is available at https://github.com/olokevin/FuRA-NIPS",
+      "authors": [
+        "Yequan Zhao",
+        "Ruijie Zhang",
+        "Liyan Tan",
+        "Niall Moran",
+        "Tong Qin",
+        "Zheng Zhang"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-19T22:11:25Z",
+      "updated": "2026-05-19T22:11:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.22869v1",
+      "abs_url": "https://arxiv.org/abs/2605.22869",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.22869",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "现有微调方法（包括 Full FT 和 LoRA）在更新权重时未考虑预训练阶段建立的谱结构，导致有限的微调数据产生的噪声梯度可能扰乱鲁棒的预训练特征。通过将每个权重矩阵重新参数化为全秩奇异值分解（SVD）并固定一个奇异基，可以实现谱预处理，将更新限制在预训练的列空间内，从而在相同可训练参数量下超越无约束的 Full FT。基于此，FuRA（Full-Rank Adaptation）被提出，它是一种高效的全秩适应框架，通过块张量分解 W = LSR，固定大型核心 L 为预训练的块式 SVD 基，仅优化紧凑核心 R 和块式奇异值 S。FuRA 在提供全秩谱预处理、保留全秩更新表达能力的同时，实现了与 LoRA 相当的参数、内存和步长效率，并在 LLM 微调（LLaMA-3-8B 常识推理提升 1.37）、LLM 强化学习和 VLM 视觉指令微调等多个任务上持续优于 Full FT，其 4 比特量化版本 QFuRA 也超越了 QLoRA。"
     },
     {
       "id": "2605.20506",
@@ -197,7 +225,7 @@
     {
       "id": "2605.20402",
       "title": "Decomposing MXFP4 quantization error for LLM reinforcement learning: reducible bias, recoverable deadzone, and an irreducible floor",
-      "abstract": "MXFP4 arithmetic can dramatically accelerate reinforcement learning (RL) post-training of large language models (LLMs), yet the quantization error introduces severe accuracy degradation. Existing work treats the quantization error as a monolithic noise term, missing the distinct mechanisms upon interpreting how quantization error damages training. We prove an exact three-way decomposition of quantization error and show how each component dominates a distinct RL training pathway. Our theoretical and empirical analysis decomposes the MXFP4 quantization error into three additive components: \"scale bias\" from power-of-two rounding, \"deadzone truncation\" from zeroing small values, and \"grid noise\" from rounding to the nearest 4-bit grid. Each component dominates a distinct RL failure mode: scale bias accumulates multiplicatively through the backward pass, affecting gradient accuracy; deadzone truncation degrades rollout quality; and grid noise raises the policy's entropy. We combine corrections that are RL failure mode-targeted but not component-exclusive: Macro-block scaling to reduce scale bias, Outlier Fallback recovers deadzone entries, but also partially reduces scale bias induced error, and Adaptive Quantization Noise (AQN) for controlling the policy entropy. On Qwen2.5-3B dense and Qwen3-30B-A3B-Base mixture-of-experts model, the targeted corrections recover BF16 accuracy to within 0.7% and 3.0% respectively.",
+      "abstract": "MXFP4 arithmetic can dramatically accelerate reinforcement learning (RL) post-training of large language models (LLMs), yet the quantization error introduces severe accuracy degradation. Existing work treats the quantization error as a monolithic noise term, missing the distinct mechanisms upon interpreting how quantization error damages training. We prove an exact three-way decomposition of quantization error and show how each component dominates a distinct RL training pathway. Our theoretical and empirical analysis decomposes the MXFP4 quantization error into three additive components: \"scale bias\" from power-of-two rounding, \"deadzone truncation\" from zeroing small values, and \"grid noise\" from rounding to the nearest 4-bit grid. Each component dominates a distinct RL failure mode: scale bias accumulates multiplicatively through the backward pass, affecting gradient accuracy; deadzone truncation degrades rollout quality; and grid noise raises the policy's entropy. We combine corrections that are RL failure mode-targeted but not component-exclusive: Macro-block scaling to reduce scale bias, Outlier Fallback recovers deadzone entries, but also partially reduces scale bias induced error, and Adaptive Quantization Noise (AQN) for controlling the policy entropy. On Qwen2.5-3B dense and Qwen3-30B-A3B-Base mixture-of-experts model, the targeted corrections recover BF16 accuracy to within 0.7% and exceed BF16 by +1.0% respectively.",
       "authors": [
         "Xiaocan Li",
         "Shiliang Wu",
@@ -208,8 +236,8 @@
         "cs.AI"
       ],
       "published": "2026-05-19T18:59:26Z",
-      "updated": "2026-05-19T18:59:26Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.20402v1",
+      "updated": "2026-05-22T00:04:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.20402v2",
       "abs_url": "https://arxiv.org/abs/2605.20402",
       "topics": [
         "other"
@@ -1706,8 +1734,8 @@
         "cs.CL"
       ],
       "published": "2026-05-19T06:10:24Z",
-      "updated": "2026-05-19T06:10:24Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.19416v1",
+      "updated": "2026-05-22T09:30:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.19416v2",
       "abs_url": "https://arxiv.org/abs/2605.19416",
       "topics": [
         "rl"
