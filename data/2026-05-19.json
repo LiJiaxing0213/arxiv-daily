@@ -1,6 +1,6 @@
 {
   "date": "2026-05-19",
-  "generated_at": "2026-05-25T06:05:05.487523+00:00",
+  "generated_at": "2026-05-26T05:47:22.525115+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -1084,8 +1084,8 @@
         "cs.CV"
       ],
       "published": "2026-05-19T12:10:09Z",
-      "updated": "2026-05-19T12:10:09Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.19739v1",
+      "updated": "2026-05-25T09:07:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.19739v2",
       "abs_url": "https://arxiv.org/abs/2605.19739",
       "topics": [
         "rl"
@@ -1484,6 +1484,37 @@
       "summary_zh": "本研究旨在解决大型推理模型（LRMs）易受越狱攻击的问题，并发现攻击成功率与LRMs的注意力模式密切相关，即成功的越狱倾向于降低对输入提示中危险词元的注意力，同时提高对推理内容中危险词元的注意力。为此，研究提出了一种基于强化学习（RL）的越狱方法，通过将注意力信号整合到奖励函数中来增强攻击效果，并引入了多样的说服策略来丰富RL的动作空间，从而提高攻击成功率。在五个开源和闭源LRMs以及三个基准测试上的大量实验表明，该方法在有效性、效率和可迁移性方面均显著优于现有方法。"
     },
     {
+      "id": "2605.24005",
+      "title": "LC-ERD: Mining Latent Logic for Self-Evolving Reasoning via Consistency-Regulated Reward Decomposition",
+      "abstract": "The evolution of Large Language Model (LLM) reasoning is bottlenecked by the scarcity of high-quality process data. While self-alignment via endogenous rewards offers a solution, mining valid supervision faces three challenges: (1) Label Noise via Mimetic Bias, where rewards prioritize statistical likelihood over logical truth, creating a \"correctness illusion\" that masks compounding errors; (2) Coarse-Grained Supervision, where sparse global outcomes (e.g., in GRPO) fail to provide granular guidance, treating reasoning chains as monolithic; and (3) Distributional Collapse, where signals fail to generalize without amplifying pre-training biases. To address these, we introduce LC-ERD (Logic-Consistent Endogenous Reward Decomposition), a framework framing self-alignment as latent structure mining. We derive a Variational Logic Potential by aggregating consensus from the model's Latent Logic Expertise (LLE) to denoise the reasoning manifold, and introduce a Multi-Agent Value Decomposition protocol based on the IGM principle to quantify individual step utility. Experiments show LC-ERD delivers a robust self-evolution path, uncovering trade-offs between logic consistency and accuracy while identifying high-value reasoning patterns missed by standard rewards. Our code is available at https://github.com/Reinhardmannn/LC-ERD.",
+      "authors": [
+        "Yanyu Chen",
+        "Jiyue Jiang",
+        "Dianzhi Yu",
+        "Zheng Wu",
+        "Jiahong Liu",
+        "Jiaming Han",
+        "Xiao Guo",
+        "Jinhu Qi",
+        "Yu Li",
+        "Yifei Zhang",
+        "Irwin King"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-19T07:27:50Z",
+      "updated": "2026-05-19T07:27:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.24005v1",
+      "abs_url": "https://arxiv.org/abs/2605.24005",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.24005",
+      "summary_zh": "大型语言模型（LLM）推理能力的提升受限于高质量过程数据的稀缺，现有自对齐方法面临标签噪声（“正确性幻觉”）、粗粒度监督和分布崩溃等挑战。LC-ERD（Logic-Consistent Endogenous Reward Decomposition）框架通过将自对齐视为潜在结构挖掘来解决这些问题，它通过聚合模型潜在逻辑专业知识（LLE）的共识来推导变分逻辑潜力（Variational Logic Potential），以去噪推理流形，并引入基于IGM原则的多智能体价值分解协议来量化每个推理步骤的效用。实验结果表明，LC-ERD提供了一条稳健的自演化路径，揭示了逻辑一致性与准确性之间的权衡，并识别出标准奖励机制可能忽略的高价值推理模式。"
+    },
+    {
       "id": "2605.19469",
       "title": "Sampling-Based Safe Reinforcement Learning",
       "abstract": "Safe exploration remains a fundamental challenge in reinforcement learning (RL), limiting the deployment of RL agents in the real world. We propose Sampling-Based Safe Reinforcement Learning (SBSRL), a model-based RL algorithm that maintains safety throughout the learning process by enforcing constraints jointly across a finite set of dynamics samples. This formulation approximates an intractable worst-case optimization over uncertain dynamics and enables practical safety guarantees in continuous domains. We further introduce an exploration strategy based on constraining epistemic uncertainty, eliminating the need for explicit exploration bonuses. Under regularity conditions, we derive high-probability guarantees of safety throughout learning and a finite-time sample complexity bound for recovering a near-optimal policy. Empirically, SBSRL achieves safe and efficient exploration both in simulation and in real robotic hardware, and readily extends to practical deep-ensemble implementations that scale to high-dimensional continuous control problems.",
@@ -1718,6 +1749,37 @@
       "summary_zh": "这篇论文解决了在强化学习与可验证奖励（RLVR）中，由于采样成本高昂导致样本效率低下的问题，该问题在 LLMs 的高级推理中尤为突出。研究者发现，当对同一个采样批次进行多次梯度更新时，会加剧策略漂移并导致性能下降，而这种下降与 \\texttt{lm\\_head} 权重的剧烈变化同步，中间层则保持稳定，这一现象被命名为“不相称权重发散”（Disproportionate Weight Divergence, DWD）。基于 DWD 现象，论文提出了“动态梯度门控”（Dynamic Gradient Gating, DGG）方法，通过实时监测 \\texttt{lm\\_head} 的梯度范数来判断策略漂移的风险，并及时阻止有害梯度更新优化器。实验结果表明，DGG 在数学、ALFWorld、WebShop 和搜索增强问答等任务上，能够达到与单次使用相当或更好的性能，同时显著提高了样本效率和运行速度。"
     },
     {
+      "id": "2605.24004",
+      "title": "Reason--Imagine--Act: Closed-Loop LLM Decision Making with World Models for Autonomous Driving",
+      "abstract": "Large language models (LLMs) are promising for autonomous driving, but semantics-only decision policies can yield physically unsafe behavior in dynamic traffic. Existing methods either perform online language reasoning without explicit dynamics verification or use world models mainly in offline pipelines, leaving a gap between semantic intent and physical feasibility at decision time. We propose Reason--Imagine--Act (RIA), a closed-loop framework that couples an LLM reasoner with an action-conditioned world model for online safety verification. At each step, the LLM proposes an action template and candidate sub-actions, the world model performs short-horizon rollouts, and a safety scorer selects the safest executable action with feedback to the next reasoning step. Under a unified CARLA point-goal protocol (1000 episodes), RIA achieves 80.05% route completion, 51.10% arrival rate, and 0.20% collision rate. Under the same closed-loop interface, RIA consistently outperforms training-free baselines, including CARLA TM and MADA, on core closed-loop metrics. For reproducibility, code is available at https://github.com/pku-smart-city/source_code/tree/main/RIA.",
+      "authors": [
+        "Zhengqi Sun",
+        "Yiwen Sun",
+        "Boxuan Liu",
+        "Tailai Chen",
+        "Tianxu Guo",
+        "Jiabin Liu"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CV",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-05-19T06:23:14Z",
+      "updated": "2026-05-19T06:23:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.24004v1",
+      "abs_url": "https://arxiv.org/abs/2605.24004",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.24004",
+      "keyword_topics": [
+        "world-model"
+      ],
+      "summary_zh": "针对自动驾驶中大型语言模型（LLM）决策策略在动态交通下可能导致物理不安全行为的问题，该研究提出了一种名为 Reason--Imagine--Act (RIA) 的闭环框架。RIA 将 LLM 推理器与一个动作条件世界模型相结合，用于在线安全验证，其关键创新在于在每个决策步骤中，LLM 提出动作模板和候选子动作，世界模型进行短时程模拟，安全评分器选择最安全的执行动作并反馈给 LLM 进行下一步推理。在统一的 CARLA 点目标协议下，RIA 在 1000 个回合中实现了 80.05% 的路线完成率、51.10% 的到达率和 0.20% 的碰撞率，并且在核心闭环指标上持续优于 CARLA TM 和 MADA 等免训练基线。"
+    },
+    {
       "id": "2605.19416",
       "title": "LambdaPO: A Lambda Style Policy Optimization for Reasoning Language Models",
       "abstract": "Group Relative Policy Optimization(GRPO) has become a cornerstone of modern reinforcement learning alignment, prized for its efficacy in foregoing an explicit value-critic by leveraging reward normalization across sampled trajectory cohorts. However, the method's reliance on a monolithic statistical baseline, such as the group mean, collapses the relational topology of the trajectory space into a single scalar, thereby erasing the fine-grained preference information essential for navigating complex, rank-sensitive reward landscapes. To address this issue, we introduce a novel framework, Lambda Policy Optimization (LambdaPO), that addresses this information-theoretic bottleneck by re-conceptualizing advantage estimation from a scalar value to a decomposed, pairwise preference structure. Specifically, the advantage for any given trajectory is formulated as the integrated sum of reward differentials against all peers in its cohort, where each pairwise comparison is dynamically attenuated by the policy's own probabilistic confidence in the established preference. To further mitigate the sparsity of binary outcome supervision, we augment the objective with a semantic density reward, derived from the precision-recall alignment between generated reasoning traces and ground-truth solutions. As a result, our method can mine more fine-grained optimization signals from a group of rollouts, guiding the LLM to a better optima. Experimental results across challenging math reasoning and question-answering tasks demonstrates that LambdaPO improves performance compared to the baseline methods.",
@@ -1939,8 +2001,8 @@
         "cs.CV"
       ],
       "published": "2026-05-19T04:39:28Z",
-      "updated": "2026-05-19T04:39:28Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.20278v1",
+      "updated": "2026-05-24T12:22:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.20278v2",
       "abs_url": "https://arxiv.org/abs/2605.20278",
       "topics": [
         "rl"

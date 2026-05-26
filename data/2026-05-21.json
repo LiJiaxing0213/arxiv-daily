@@ -1,6 +1,6 @@
 {
   "date": "2026-05-21",
-  "generated_at": "2026-05-25T06:05:05.481409+00:00",
+  "generated_at": "2026-05-26T05:47:22.518481+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -49,8 +49,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.23089",
-      "summary_zh": "现有模型基强化学习（MBRL）中的潜在世界模型，如DreamerV3，未能充分利用转移动态的局部平滑性这一归纳偏置，导致样本效率受限。GPLD（Gradient-Penalized Latent Dynamics）通过引入一种针对DreamerV3的梯度惩罚正则化器来解决此问题，该正则化器对后验潜在分布应用逐行雅可比惩罚，以促进局部平滑的转移学习。这种惩罚可被视为离散嵌入状态MDP中转移律有限差分平滑的连续潜在模拟，并通过Hutchinson式随机探针高效估计。实验结果表明，在DeepMind Control本体感受任务上，GPLD显著提高了整体样本效率，尤其在复杂运动环境中表现出色，并在四足机器人任务中更快达到高回报行为并展现出更稳定的后期学习能力。这表明显式的局部平滑正则化是改进用于平滑连续控制环境的潜在世界模型的一种简单而有效的方法。",
-      "impact_score": null
+      "summary_zh": "现有模型基强化学习（MBRL）中的潜在世界模型，如DreamerV3，未能充分利用转移动态的局部平滑性这一归纳偏置，导致样本效率受限。GPLD（Gradient-Penalized Latent Dynamics）通过引入一种针对DreamerV3的梯度惩罚正则化器来解决此问题，该正则化器对后验潜在分布应用逐行雅可比惩罚，以促进局部平滑的转移学习。这种惩罚可被视为离散嵌入状态MDP中转移律有限差分平滑的连续潜在模拟，并通过Hutchinson式随机探针高效估计。实验结果表明，在DeepMind Control本体感受任务上，GPLD显著提高了整体样本效率，尤其在复杂运动环境中表现出色，并在四足机器人任务中更快达到高回报行为并展现出更稳定的后期学习能力。这表明显式的局部平滑正则化是改进用于平滑连续控制环境的潜在世界模型的一种简单而有效的方法。"
     },
     {
       "id": "2605.23070",
@@ -457,8 +456,8 @@
         "cs.CV"
       ],
       "published": "2026-05-21T17:57:17Z",
-      "updated": "2026-05-21T17:57:17Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.22809v1",
+      "updated": "2026-05-22T21:31:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.22809v2",
       "abs_url": "https://arxiv.org/abs/2605.22809",
       "topics": [
         "4d-gen"
@@ -469,7 +468,7 @@
     {
       "id": "2605.22800",
       "title": "The Matching Principle: A Geometric Theory of Loss Functions for Nuisance-Robust Representation Learning",
-      "abstract": "Robustness, domain adaptation, photometric and occlusion invariance, compositional generalisation, temporal robustness, alignment safety, and classical anisotropic regularisation are usually treated as separate problems with separate method families. This paper argues that much of their shared structure is one statistical problem: estimate the covariance of label-preserving deployment nuisance, then regularise the encoder Jacobian along a matrix whose range covers that covariance (the matching principle). CORAL, adversarial training, IRM, augmentation, metric learning, Jacobian penalties, and alignment-style constraints are different estimators of that object, not independent robustness tricks. In the linear-Gaussian model we prove closed-form optimality (Theorem A), including cube-root water-filling within the matched range; necessity of range coverage for quadratic Jacobian penalties (Theorem G); the same range dichotomy at deep global minima; and two falsification controls (Lemma C; Corollaries E), with seven conditional consistency lemmas (D1-D7) for estimation under standard identifiability assumptions. We introduce the Trajectory Deviation Index (TDI), a label-free probe of embedding sensitivity when task accuracy or Jacobian Frobenius norm is insufficient. Thirteen pre-registered blocks from classical ML through Qwen2.5-7B test the predicted matched, then isotropic, then wrong-W ordering on geometry and deployment drift; twelve pass, and the sole exception (Office-31) is an eigengap failure named before the run. At 7B scale, matched style-PMH improves selective honesty and preserves Style TDI where standard DPO degrades it. The contribution is naming the deployment nuisance covariance, stating what the regulariser must do, and supplying a closed-form falsifiable theory once that object is identified, not universality on every leaderboard.",
+      "abstract": "Robustness, domain adaptation, photometric/occlusion invariance, sensor drift, and alignment style are treated as separate literatures with separate method families. Under label-preserving deployment shift they share one geometric object: the covariance Sigma_task = Cov_{Q_n}(n) of ways inputs can change without changing the label. CORAL, adversarial training, augmentation, metric learning, Jacobian penalties, and alignment constraints are not independent tricks--they are estimators of Sigma_task. Fix that object and the Jacobian penalty is pinned by a matrix Sigma' whose range must cover range(Sigma_task)--the matching principle. We prove optimality in a linear-Gaussian model (Thm. A), necessity of range coverage for any quadratic penalty that zeros deployment drift (Thm. G), and the same dichotomy at global minima (Thm. A*_global). Wrong-direction/signal-aligned controls (Lemma C; Cor. E/E*) and seven estimators (Lemmas D1--D7), plus label-free TDI, yield a falsifiable recipe when Sigma_task must be learned. Thirteen blocks (ML through Qwen2.5-7B) test matched vs isotropic vs wrong-direction penalties on geometry and deployment drift. Twelve match theory where identifiability holds; Office-31 is a named eigengap failure. Partial passes: geometry can improve without every headline task metric moving. A pilot 7B DPO run (one epoch, 240 pairs): matched style-PMH preserves Style TDI where standard DPO degrades it. We do not claim standard training reaches global minima (assumption (O) is open), that estimated Sigma_task is always identifiable, or dominance on every leaderboard. We claim a falsifiable design recipe: estimate Sigma_task, match Sigma', run the controls, report task and geometry separately.",
       "authors": [
         "Vishal Rajput"
       ],
@@ -479,8 +478,8 @@
         "stat.ML"
       ],
       "published": "2026-05-21T17:53:28Z",
-      "updated": "2026-05-21T17:53:28Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.22800v1",
+      "updated": "2026-05-23T08:58:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.22800v2",
       "abs_url": "https://arxiv.org/abs/2605.22800",
       "topics": [
         "other"
@@ -494,7 +493,7 @@
     {
       "id": "2605.22795",
       "title": "Finite-Particle Convergence Rates for Conservative and Non-Conservative Drifting Models",
-      "abstract": "We propose and analyze a conservative drifting method for one-step generative modeling. The method replaces the original displacement-based drifting velocity by a kernel density estimator (KDE)-gradient velocity, namely the difference of the kernel-smoothed data score and the kernel-smoothed model score. This velocity is a gradient field, addressing the non-conservatism issue identified for general displacement-based drifting fields. We prove continuous-time finite-particle convergence bounds for the conservative method on $\\R^d$: a joint-entropy identity yields bounds for the empirical Stein drift, the smoothed Fisher discrepancy of the KDE, and the squared center velocity. The main finite-particle correction is a reciprocal-KDE self-interaction term, and we give deterministic and high-probability local-occupancy conditions under which this term is controlled. We keep the quadrature constants explicit and track their possible bandwidth dependence: the root residual-velocity rate $N^{-1/(d+4)}$ holds under an additional $h$-uniform quadrature regularity condition, while a more general growth condition yields the optimized root rate $N^{-(2-β)/(2(d+4-β))}$, where $0\\le β<2$. We also analyze the non-conservative drifting method with Laplace kernel, corresponding to the original displacement-based velocity proposed in~\\cite{deng2026drifting}. For this method, a sharp companion kernel decomposes the velocity into a positive scalar preconditioning of a sharp-score mismatch plus a Laplace scale-mismatch residual, producing an analogous finite-particle rate with an unavoidable residual term. Finally, we explain how the continuous-time residual-velocity bounds translate into one-step generation guarantees through the explicit drift size $η$.",
+      "abstract": "We propose and analyze a conservative drifting method for one-step generative modeling. The method replaces the original displacement-based drifting velocity by a kernel density estimator (KDE)-gradient velocity, namely the difference of the kernel-smoothed data score and the kernel-smoothed model score. This velocity is a gradient field, addressing the non-conservatism issue identified for general displacement-based drifting fields. We prove continuous-time finite-particle convergence bounds for the conservative method on $\\R^d$: a joint-entropy identity yields bounds for the empirical Stein drift, the smoothed Fisher discrepancy of the KDE, and the squared center velocity. The main finite-particle correction is a reciprocal-KDE self-interaction term, and we give deterministic and high-probability local-occupancy conditions under which this term is controlled. We keep the quadrature constants explicit and track their possible bandwidth dependence: the root residual-velocity rate $N^{-1/(d+4)}$ holds under an additional $h$-uniform quadrature regularity condition, while a more general growth condition yields the optimized root rate $N^{-(2-β)/(2(d+4-β))}$, where $0\\le β<2$. We also analyze the non-conservative drifting method with Laplace kernel, corresponding to the original displacement-based velocity proposed in Deng et al., 2026 (arxiv:2602.04770). For this method, a sharp companion kernel decomposes the velocity into a positive scalar preconditioning of a sharp-score mismatch plus a Laplace scale-mismatch residual, producing an analogous finite-particle rate with an unavoidable residual term. Finally, we explain how the continuous-time residual-velocity bounds translate into one-step generation guarantees through the explicit drift size $η$.",
       "authors": [
         "Krishnakumar Balasubramanian"
       ],
@@ -505,8 +504,8 @@
         "math.ST"
       ],
       "published": "2026-05-21T17:49:09Z",
-      "updated": "2026-05-21T17:49:09Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.22795v1",
+      "updated": "2026-05-25T14:45:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.22795v2",
       "abs_url": "https://arxiv.org/abs/2605.22795",
       "topics": [
         "other"
@@ -1045,7 +1044,7 @@
     },
     {
       "id": "2605.22894",
-      "title": "SCRIPT: Scalable Diffusion Policy with Multi-stage Training for Language-driven Physics-Based Humanoid Control",
+      "title": "SCRIPT: Scalable Diffusion Policy with Multi-stage Training for Language-driven Physics-based Humanoid Control",
       "abstract": "Controlling physics-based humanoids from natural-language instructions is a critical step toward general-purpose embodied agents. However, existing methods remain constrained by a tension between semantic expressiveness and physical feasibility, often failing to jointly achieve faithful instruction following, high-quality motion, and stable long-horizon control. We propose SCRIPT, a scalable diffusion policy with a multi-stage training framework for language-driven physics-based humanoid control. The core of SCRIPT is a Joint Action-State-Text Diffusion Transformer (JAST-DiT), which represents actions, physical states, and text as dedicated token streams and couples them through joint attention, enabling direct interaction between language semantics and control dynamics. To stabilize autoregressive control, we introduce a nonlinear history conditioning mechanism, which preserves the dense recent context and samples increasingly sparse cues from long-term history. Beyond supervised imitation pre-training, we propose a post-training stage, further improving the performance using Reinforcement Learning with Hybrid Rewards (RLHR). By injecting learnable noise into the flow-sampling process, RLHR effectively improves motion quality and instruction following within closed-loop simulations using hybrid physical feedback and text rewards. Quantitative evaluations demonstrate that SCRIPT outperforms prior state-of-the-art methods, with gains across text alignment, motion quality, and physical realism metrics. Furthermore, scaling studies on the 1200-hour MotionMillion dataset demonstrate consistent performance gains with model scaling, highlighting SCRIPT's robust scalability for large-scale pre-training. Our code will be publicly available for future research.",
       "authors": [
         "Jingyan Zhang",
@@ -1064,8 +1063,8 @@
         "cs.RO"
       ],
       "published": "2026-05-21T14:17:21Z",
-      "updated": "2026-05-21T14:17:21Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.22894v1",
+      "updated": "2026-05-25T05:33:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.22894v2",
       "abs_url": "https://arxiv.org/abs/2605.22894",
       "topics": [
         "rl"
