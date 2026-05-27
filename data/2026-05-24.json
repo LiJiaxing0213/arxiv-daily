@@ -1,6 +1,6 @@
 {
   "date": "2026-05-24",
-  "generated_at": "2026-05-26T05:47:22.513209+00:00",
+  "generated_at": "2026-05-27T05:59:21.807209+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -75,10 +75,13 @@
       "pdf_url": "https://arxiv.org/pdf/2605.25294v1",
       "abs_url": "https://arxiv.org/abs/2605.25294",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.25294",
-      "summary_zh": "目前的自然图像生成模型大多局限于欧几里得空间假设，忽视了数据内部蕴含的几何结构潜力。通过研究发现，图像的语义信息主要编码在方向分量中，而范数分量可由全局平均近似，这表明自然图像在 RGB 和潜空间中均可被视为分布在超球面上。据此提出了 SOT-CFM 和 SFM 两种方案，前者利用角度距离优化传输路径，后者直接在流形上约束动力学过程。实验结果证明，这种感知几何结构的方法在生成质量上优于传统的欧几里得基准模型。该研究为黎曼流形建模"
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文旨在解决自然图像生成中未能充分利用数据内在几何结构的问题，指出当前生成模型多基于欧几里得假设。研究发现自然图像的语义信息主要编码在方向分量中，而范数分量可由全局平均近似，表明自然图像可在超球面上有效建模。基于此，论文提出了两种几何感知方法：Spherical Optimal Transport Flow Matching (SOT-CFM) 利用角距离，以及 Spherical Flow Matching (SFM) 直接在流形上约束动态。实验结果表明，这些几何感知方法在性能上优于欧几里得基线，为黎曼流形建模与自然图像生成之间架起了桥梁。"
     },
     {
       "id": "2605.25267",
@@ -451,7 +454,7 @@
       "keyword_topics": [
         "rl"
       ],
-      "summary_zh": "当前主流人工智能范式依赖梯度下降和人类反馈强化学习进行自上而下的优化，这导致了幻觉、投诚性及对齐脆弱性等结构性失效。RECLAIM 框架提出了一种从“工程优化”转向“计算生态培养”的全新范式，通过通用达尔文主义替代梯度算法，利用非智能体涌现和环境物理机制防止奖励作弊。该模型结合了波利亚-赫布桥接动力学以实现路径依赖的特化，并将自由能原理视为环境热力学约束而非代理目标。在由认知食物链和红皇后竞争构成的生态中，受限的计算能源驱动自建构单元自发涌现出双重过程认知、类比推理和内在动机。这一被称为 OMEGA 的"
+      "summary_zh": "当前主流的AI范式通过梯度下降和人类反馈强化学习训练神经网络，但这导致了幻觉、谄媚、奖励欺骗和对齐脆弱性等结构性失效模式。为解决这些问题，RECLAIM（Recursive, Ecological, Cognitive, Lifelike, Adaptive, Intelligent Machine）框架提出通过计算生态学而非严格优化来培养智能，其核心思想是让智能在资源有限的生态系统中自发涌现。该框架基于四个理论支柱：通用达尔文主义用盲变异和选择性保留取代梯度；非代理涌现用环境物理取代评估奖励以防止对齐偏差；Polya-Hebbian桥将Polya瓮动力学应用于Hebbian强化以实现路径依赖的专业化；自由能原理被整合为环境热力学而非代理目标。通过将自创生单元置于由认知食物链和红皇后军备竞赛塑造的数据生态中，RECLAIM旨在促使双重过程认知、感官专业化、类比推理和内在动机等能力自然涌现，标志着从优化到通过生成性自创生实现涌现的“OMEGA”范式转变。"
     },
     {
       "id": "2605.25036",
@@ -881,6 +884,32 @@
       "summary_zh": "这篇论文旨在解决异构跨域离线强化学习中，源域数据集多样性（来自多个源域和不同行为策略）导致的策略学习效率低下问题，特别是发现并解决了“价值错配”（value misassignment）这一关键挑战。研究表明，价值错配会损害价值对齐，导致数据过滤选择次优样本，并扩大次优性差距，从而降低智能体性能。为此，论文提出了V2A框架，该框架创新性地整合了动态对齐、价值对齐和价值分配，首先通过时序一致模态表示学习从源数据集中提取动态模态，然后利用模态感知优势学习来纠正价值对齐，最后采用数据过滤范式选择性地共享源数据进行策略学习。实验结果表明，V2A在异构跨域离线强化学习设置下显著优于现有基线方法。"
     },
     {
+      "id": "2605.26155",
+      "title": "When Does Adaptive Guidance Help? Belief-Aware Privileged Distillation for Autonomous Driving Under Partial Observability",
+      "abstract": "Guided Soft Actor-Critic (GSAC) distills knowledge from a privileged full-state teacher to a partial-observation student for autonomous driving, but uses a fixed distillation coefficient lambda regardless of the agent's uncertainty. We present Belief-Aware GSAC (BA-GSAC), which modulates lambda via ensemble disagreement, and use it as a testbed for a systematic empirical study asking: when does adaptive guidance actually help? Evaluating five strategies (fixed lambda in {0.01, 0.1}, adaptive, linear decay, and vanilla SAC) across three POMDP difficulty levels on Highway-Env, we find that preliminary single-seed runs suggest benefits under mild and moderate partial observability, but under severe occlusion (evaluated with 3 seeds for all methods) the adaptive coefficient collapses to lambda_min within about 3K steps. We trace this to an observability blindness phenomenon: because the ensemble predicts partial observations, it achieves low disagreement even under heavy occlusion, modeling what is visible but unable to detect what is missing. We diagnose the root cause and propose an architectural fix (training the ensemble on full-state predictions using the guiding actor's privileged access); while not validated here, we show that even with current limitations, the warmup phase provides measurable stabilization (CV=13.3% vs. 29.8% for constant lambda=0.01). In fact, a simple deterministic linear decay schedule achieves the best severe-POMDP performance across all metrics (mean 116.5, CV=8.9%), suggesting that the scheduling effect, not the ensemble, drives the stability benefit. These findings provide practical guidance for designing uncertainty-aware teacher-student frameworks and highlight ensemble prediction targets as an important design choice.",
+      "authors": [
+        "Mehmet Haklidir"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-05-24T04:41:30Z",
+      "updated": "2026-05-24T04:41:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.26155v1",
+      "abs_url": "https://arxiv.org/abs/2605.26155",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.26155",
+      "keyword_topics": [
+        "rl",
+        "distillation"
+      ],
+      "summary_zh": "针对自动驾驶中部分可观测（POMDP）环境下的知识蒸馏问题，该研究提出了一种名为 BA-GSAC 的算法，通过集成模型（Ensemble）的不确定性度量来动态调节教师模型的引导系数 $\\lambda$。实验在不同遮挡程度的 Highway-Env 环境中对比了固定系数、线性衰减及自适应引导等五种策略，发现自适应引导在轻中度遮挡下表现优异，但在重度遮挡下会出现“观测盲区”现象，即由于集成模型仅预测局部观测，导致在严重丢失关键信息时仍保持低分歧度。研究进一步发现，简单的线性衰减策略在重度 POMDP 中取得了最佳性能（均值 116.5），而自适应方法的价值主要体现在预热阶段的训练稳定性（变异系数由 29.8% 降至 13.3%）。最终结论指出，在设计不确定性感知的教师-学生框架时，集成模型的预测目标选择比调度机制本身更为关键。"
+    },
+    {
       "id": "2605.24828",
       "title": "Test-Time Deep Thinking to Explore Implicit Rules",
       "abstract": "With the continuous advancement of Large Language Models (LLMs), intelligent agents are becoming increasingly vital. However, these agents often fail in environments governed by implicit rules--hidden constraints that cannot be observed directly and must be inferred through interaction. This causes agents to fall into repetitive trial-and-error loops, ultimately leading to task failure. To address this challenge, we propose Test-Time Exploration (TTExplore), a framework where a thinker component analyzes interaction history to infer these implicit rules and guide an actor. Effective exploration in this setting critically depends on the reasoning ability of the thinker. However, evaluating deep reasoning trajectories is inherently unstable and difficult, which poses a major obstacle to effective training. To overcome this issue, we introduce a novel and stable reinforcement learning pipeline. The core idea is to use accurate task-level scores as indirect rewards to bypass the difficulty of evaluating intermediate reasoning, and to retain only a single thinking node per trajectory to alleviate reward sparsity. Using this pipeline, we train a specialized 7B model, Exp-Thinker. Experiments on five text-based embodied tasks show that TTExplore equipped with Exp-Thinker improves baseline agent performance by an average of $14$-$19$ points, demonstrating the effectiveness of explicitly reasoning about implicit rules.",
@@ -984,7 +1013,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.24810",
-      "summary_zh": "针对离线强化学习中的动力学失配（Off-dynamics）问题，该研究提出了 CEDGE 框架，旨在解决现有方法受限于源数据集分布且在长时程任务中存在累积误差的难题。该方法通过在源领域轨迹上训练扩散模型，并引入跨领域能量引导（Energy Guidance）技术，将生成的样本适配至目标领域。这种引导机制通过最小化分布差异，将优化目标分解为回报、领域和行为三个能量组件，从而在不重新训练模型的情况下实现高效的轨迹级数据合成。在 ODRL 基准测试中的实验结果表明，CEDGE 能有效提升在动力学偏移环境"
+      "summary_zh": "该研究旨在解决异动态（off-dynamics）强化学习中，如何利用大量源域数据和少量目标域数据，在动力学不匹配的情况下学习目标域策略的问题。现有方法在处理长序列轨迹时存在累积误差，且无法生成新的目标行为。为此，研究提出了 CEDGE (Cross-domain Energy-guided Diffusion GEneration) 框架，通过在源域轨迹上训练一个轨迹扩散模型，并利用能量引导将生成的样本适应到目标域。关键创新在于将能量引导分解为回报、领域和行为能量分量，以最小化源域与目标域轨迹之间的分布不匹配，从而实现高效的目标适应，而无需重新训练扩散模型。实验结果表明，CEDGE 在 ODRL benchmark 上，轨迹级别的能量引导生成显著改善了动力学变化下的扩散规划，并为下游目标策略学习提供了有效的合成数据。"
     },
     {
       "id": "2605.24794",
