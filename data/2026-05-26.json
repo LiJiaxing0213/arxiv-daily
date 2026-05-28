@@ -1,6 +1,6 @@
 {
   "date": "2026-05-26",
-  "generated_at": "2026-05-27T05:59:21.801775+00:00",
+  "generated_at": "2026-05-28T05:54:54.601658+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,439 @@
   },
   "papers": [
     {
+      "id": "2605.27772",
+      "title": "Do Audio LLMs Listen or Read? Analyzing and Mitigating Paralinguistic Failures with VoxParadox",
+      "abstract": "Audio large language models (Audio LLMs) demonstrate strong performance on speech understanding tasks, yet their ability to understand paralinguistic information remains limited. To systematically quantify this issue, we introduce VoxParadox, an adversarial benchmark with 2,000 verified examples, spanning 10 paralinguistic tasks, created with controlled speech synthesis to intentionally mismatch transcript claims and speaking style, enabling direct measurement of speech paralinguistic understanding. Evaluation of a diverse set of Audio LLMs reveals consistently low accuracy on acoustic ground truth and a strong tendency to follow language-implied (incorrect) answers. To understand the cause of this gap, we perform layer-wise probing and find that (i) paralinguistic cues can degrade in deeper encoder layers and at the encoder--LLM interface, and (ii) even when such cues are available in audio tokens, the language model frequently ignores them. To address these problems, we propose Prompt-Conditioned Layer Mixer (PCLM), which adaptively combines information from multiple audio layers based on the input prompt, and pair it with Direct Preference Optimization (DPO) to explicitly prefer acoustically supported options over language-implied alternatives. These methods substantially improve Audio LLM paralinguistic understanding, improving Audio Flamingo 3 from 17.40% to 65.20% on VoxParadox, and from 37.74% to 54.78% on MMSU paralinguistic subset. Our project page is available at https://voxparadox.github.io/.",
+      "authors": [
+        "Jiacheng Pang",
+        "Ashutosh Chaubey",
+        "Mohammad Soleymani"
+      ],
+      "categories": [
+        "cs.SD",
+        "cs.LG"
+      ],
+      "published": "2026-05-26T23:44:23Z",
+      "updated": "2026-05-26T23:44:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27772v1",
+      "abs_url": "https://arxiv.org/abs/2605.27772",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27772",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决Audio LLMs在理解副语言信息（paralinguistic information）方面的局限性。为此，研究者提出了一个对抗性基准VoxParadox，包含2000个经过验证的例子，涵盖10个副语言任务，通过控制语音合成故意制造转录内容与说话风格不匹配的情况，以直接衡量模型对语音副语言的理解能力。评估结果显示，Audio LLMs在声学真实性上的准确率普遍较低，并强烈倾向于采纳语言暗示的（不正确）答案；通过层级探测发现，副语言线索在编码器深层和编码器-LLM接口处会退化，且即使音频token中存在这些线索，语言模型也常忽略它们。为解决这些问题，研究者提出了Prompt-Conditioned Layer Mixer (PCLM)，它根据输入提示自适应地结合来自多个音频层的信息，并结合Direct Preference Optimization (DPO)明确偏好声学支持的选项而非语言暗示的替代方案。这些方法显著提升了Audio LLM的副语言理解能力，例如将Audio Flamingo 3在VoxParadox上的表现从17.40%提升到65.20%，在MMSU副语言子集上从37.74%提升到54.78%。"
+    },
+    {
+      "id": "2605.27765",
+      "title": "Restoring the Sweet Spot: Pass-Rate Weighted Self-Distillation for LLM Reasoning",
+      "abstract": "Self-Distillation Policy Optimization (SDPO) provides dense token-level credit assignment for reinforcement learning with large language models by leveraging the model's own feedback-conditioned predictions as a self-teacher. Unlike GRPO, however, whose group-relative advantage naturally concentrates learning on a sweet spot of intermediate-difficulty questions, SDPO's KL-based advantage lacks an implicit notion of difficulty awareness. We analyze this gap through the lens of GRPO's advantage normalization. Extending the learnability framework to normalized rewards, we show that normalization absorbs the variance term $p(1-p)$, equalizing leading-order learnability across questions and leaving $\\sqrt{p(1-p)}$ as the sole residual scaling factor in the per-question gradient. This analysis yields a simple prescription: weight each question's SDPO loss by $[\\hat{p}(1-\\hat{p})]^{1/2}$, resulting in SC-SDPO, a scale-consistent variant of SDPO. The proposed weights are obtained as a zero-cost byproduct of on-policy rollouts with batch-adaptive normalization, inducing an implicit curriculum that dynamically tracks the model's evolving competence. Experiments on scientific reasoning and tool-use benchmarks demonstrate that SC-SDPO consistently improves over SDPO, yielding gains of +3.2/+4.3 (mean@16/maj@16) on Qwen3-8B and +1.8/+3.0 on OLMo-3-7B, while preserving stable training dynamics throughout optimization.",
+      "authors": [
+        "Zehao Liu",
+        "Yuanpu Cao",
+        "Jinghui Chen",
+        "Vasant G. Honavar"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-26T23:30:01Z",
+      "updated": "2026-05-26T23:30:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27765v1",
+      "abs_url": "https://arxiv.org/abs/2605.27765",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27765",
+      "summary_zh": "这篇论文旨在解决大型语言模型（LLM）在推理任务中，自蒸馏策略优化（SDPO）缺乏对问题难度的感知，导致学习效率不如基于组相对优势的GRPO的问题。通过分析GRPO的优势归一化机制，研究发现归一化能平衡不同难度问题的可学习性，并提出将每个问题的SDPO损失乘以 $[\\hat{p}(1-\\hat{p})]^{1/2}$ 的权重，从而引入了规模一致的SC-SDPO方法。这一创新点在于，权重作为在策略（on-policy）rollout的零成本副产品，通过批次自适应归一化动态调整，形成一个隐式课程，使模型能更好地聚焦于“最佳难度”的问题。实验结果表明，SC-SDPO在科学推理和工具使用基准测试上显著优于SDPO，例如在Qwen3-8B上平均提升+3.2/+4.3，在OLMo-3-7B上提升+1.8/+3.0，同时保持了训练的稳定性。"
+    },
+    {
+      "id": "2605.27741",
+      "title": "Escape the Language Prior: Mitigating Late-Stage Modality Collapse in Audio Reasoning via Modality-Aware Policy Optimization",
+      "abstract": "Audio and omni-modal large language models exhibit impressive cross-modal reasoning capabilities. However, applying standard reinforcement learning post-training algorithms to these models exposes a critical structural vulnerability: methods like GRPO apply uniform policy gradients across all tokens, ignoring their unequal dependence on the non-text source modality. This exacerbates late-stage modality collapse during extended chain-of-thought generation, where models progressively abandon the primary source signal in favor of compressed textual priors, leading to confident but ungrounded hallucinations. To address this, we introduce Modality-Aware Policy Optimization (MAPO), a novel dual-branch reinforcement learning framework. First, MAPO dynamically concentrates the policy gradient on modality-critical tokens using a modality relevance mask, which is derived from the cross-modal differential entropy between an audio-ablated reference and the multimodal policy. Second, it integrates an auxiliary attention loss branch that applies a targeted, temporally scaled penalty to the model's internal attention distributions. This ensures the model actively sustains cross-modal grounding deep into the reasoning trace. Evaluations on complex audio reasoning benchmarks demonstrate that MAPO substantially improves long-horizon reasoning fidelity and multimodal instruction following, achieving highly competitive performance and setting new state-of-the-art results on several key benchmarks among open-weight models. By relying strictly on native statistical signals rather than domain-specific inductive biases, MAPO offers a promising foundation for mitigating epistemic collapse across diverse multimodal systems.",
+      "authors": [
+        "Cihan Xiao",
+        "Yiwen Shao",
+        "Chenxing Li",
+        "Xiang He",
+        "Zhenwen Liang",
+        "Steve Yves",
+        "Sanjeev Khudanpur",
+        "Liefeng Bo"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-05-26T22:34:03Z",
+      "updated": "2026-05-26T22:34:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27741v1",
+      "abs_url": "https://arxiv.org/abs/2605.27741",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27741",
+      "summary_zh": "大型语言模型在音频和全模态推理方面表现出色，但标准的强化学习后训练算法会加剧其在长链式思维生成中的模态崩溃问题，即模型倾向于放弃非文本源模态，转而依赖文本先验，导致幻觉。为解决此问题，论文提出了模态感知策略优化（MAPO），一个双分支强化学习框架：它通过模态相关性掩码动态地将策略梯度集中在关键模态令牌上，并引入辅助注意力损失分支，对模型内部注意力分布施加惩罚，以维持跨模态接地。在复杂音频推理基准上的评估表明，MAPO显著提高了长程推理的准确性和多模态指令遵循能力，在多个基准测试中取得了最先进的性能。"
+    },
+    {
+      "id": "2605.27736",
+      "title": "Explicit Critic Guidance for Aligning Diffusion Models",
+      "abstract": "Online reinforcement learning is becoming increasingly important for aligning diffusion models with non-differentiable objectives. However, existing methods still face limitations in assigning fine-grained credit along denoising trajectories and in realizing stable value-based optimization. We propose a state-aligned latent actor-critic framework for diffusion post-training, in which the diffusion model serves as its own timestep-conditioned value function and predicts values directly on noisy latent states. This enables trajectory-level PPO training, supports stable actor-critic optimization with simple conditioning and value pretraining strategies, and naturally allows the learned critic to be reused for inference-time steering. We further extend the framework to multi-reward optimization, where joint training with complementary rewards helps alleviate reward hacking. Across both UNet- and DiT-based backbones, our method consistently outperforms prior group-relative RL and actor-critic baselines on single-reward and multi-reward benchmarks, while test-time steering provides additional gains in generation quality.",
+      "authors": [
+        "Zhengyang Liang",
+        "Qihang Zhang",
+        "Ceyuan Yang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "published": "2026-05-26T22:20:51Z",
+      "updated": "2026-05-26T22:20:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27736v1",
+      "abs_url": "https://arxiv.org/abs/2605.27736",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27736",
+      "summary_zh": "该论文旨在解决扩散模型在非可微目标下进行在线强化学习时，难以在去噪轨迹中分配细粒度信用以及实现稳定基于价值的优化的问题。为此，提出了一种状态对齐的潜在 Actor-Critic 框架，其中扩散模型本身充当其时间步条件下的价值函数，直接在噪声潜在状态上预测价值。该方法通过轨迹级 PPO 训练，实现了稳定的 Actor-Critic 优化，并允许将学习到的 Critic 重用于推理时引导，同时还扩展到多奖励优化以缓解奖励欺骗。实验结果表明，在 UNet 和 DiT 骨干网络上，该方法在单奖励和多奖励基准测试中均优于现有的组相对 RL 和 Actor-Critic 基线，并且测试时引导进一步提升了生成质量。"
+    },
+    {
+      "id": "2605.27726",
+      "title": "Asynchronous Remote Sensing Time-Series Fusion for Cloud Removal and Anytime Reconstruction",
+      "abstract": "Frequent cloud cover severely limits the usability of Sentinel-2 (S2) optical time series for Earth surface monitoring. Sentinel-1 (S1) SAR provides all-weather complementary observations, but practical S1/S2 fusion remains difficult because acquisitions are irregular and asynchronous. Many existing approaches assume temporally aligned inputs (or require external nearest-date matching) and typically restore only observed timestamps, limiting reconstruction under long gaps and preventing on-demand synthesis. We propose AGFlow (Time Aligned Generative Flow Matching), a spatiotemporal flow-matching model for S1/S2 cloud removal and time-series reconstruction with three capabilities: (1) timestamp-conditioned internal alignment that fuses asynchronous S1 and cloudy S2 observations without preprocessing-based pairing; (2) spatiotemporal, context-aware denoising that models spatial structure jointly with temporal dynamics (rather than independent per-pixel time series); and (3) anytime querying, enabling generation of cloud-free S2 frames at both observed and user-specified timestamps within the monitoring window. We evaluate on the RESTORE-DiT benchmark protocol with quantitative metrics, qualitative comparisons, and component ablations. AGFlow notably improves fully missing-frame reconstruction (MAE and RMSE reduce by 16-19% over RESTORE-DiT) and provides reliable reconstructions under persistent gaps, while also yielding competitive cloud removal performance and flexible temporal querying for downstream tasks such as dense vegetation monitoring.",
+      "authors": [
+        "Forouzan Fallah",
+        "Chia Yu Hsu",
+        "Wenwen Li",
+        "Anna Liljedahl",
+        "Yezhou Yang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-26T22:02:07Z",
+      "updated": "2026-05-26T22:02:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27726v1",
+      "abs_url": "https://arxiv.org/abs/2605.27726",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27726",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "这篇论文旨在解决Sentinel-2 (S2) 光学时间序列因频繁云层覆盖而可用性受限的问题，通过融合异步的Sentinel-1 (S1) SAR数据来实现去云和任意时间点的重建。研究提出了一种名为AGFlow (Time Aligned Generative Flow Matching) 的时空流匹配模型，其关键创新在于：1) 实现了时间戳条件下的内部对齐，无需预处理即可融合异步S1和多云S2观测；2) 采用时空上下文感知去噪，同时建模空间结构和时间动态；3) 支持任意时间点查询，能在观测和用户指定的时间点生成无云S2图像。在RESTORE-DiT基准协议上的评估显示，AGFlow在完全缺失帧重建方面显著优于RESTORE-DiT，MAE和RMSE降低了16-19%，并在持续性缺失情况下提供了可靠重建，同时在去云性能和灵活的时间查询方面也表现出色。"
+    },
+    {
+      "id": "2605.27720",
+      "title": "Bayesian Deployment Approval for Learned Landing Controllers under Finite Rollout Validation",
+      "abstract": "Reinforcement learning and data-driven autonomous controllers are commonly evaluated using cumulative reward and empirical success frequency under finite simulation trajectories. However, such empirical metrics do not necessarily provide sufficient statistical evidence regarding deployment readiness under uncertainty. This work develops a Bayesian approval framework for learned autonomous landing controllers under finite rollout evidence. A probabilistic landing capability formulation is introduced based on touchdown safety satisfaction under uncertain operating conditions, while Bayesian posterior inference is used to quantify uncertainty regarding the true deployment capability of learned policies. Posterior approval probability and posterior deployment risk are further introduced for deployment-oriented evaluation, together with a sequential validation framework supporting approve/reject/continue decisions during progressive rollout testing. Simulation experiments using PPO and SAC controllers demonstrate that empirical success and reward optimization may produce overconfident deployment interpretation under limited validation evidence, whereas posterior approval inference provides a more uncertainty-calibrated assessment of deployment readiness. The proposed framework provides a practical statistical connection between conventional reinforcement-learning evaluation and deployment-oriented validation under uncertainty and may be generalized to broader classes of learned autonomous systems.",
+      "authors": [
+        "Fei Jiang",
+        "Lei Yang"
+      ],
+      "categories": [
+        "cs.LG",
+        "stat.AP"
+      ],
+      "published": "2026-05-26T21:45:17Z",
+      "updated": "2026-05-26T21:45:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27720v1",
+      "abs_url": "https://arxiv.org/abs/2605.27720",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27720",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文旨在解决强化学习和数据驱动自主控制器在有限仿真轨迹下，其累积奖励和经验成功率等经验指标不足以提供部署就绪性的充分统计证据的问题。为此，论文提出了一种针对学习型自主着陆控制器的贝叶斯部署批准框架，该框架在不确定操作条件下，基于触地安全满足度引入了概率着陆能力公式，并利用贝叶斯后验推断来量化学习策略真实部署能力的不确定性。关键创新点在于引入了后验批准概率和后验部署风险进行面向部署的评估，并提出了一个支持在渐进式推出测试中进行批准/拒绝/继续决策的序贯验证框架。仿真实验表明，PPO和SAC控制器在有限验证证据下，经验成功和奖励优化可能导致过度自信的部署解释，而所提出的后验批准推断提供了更具不确定性校准的部署就绪性评估。"
+    },
+    {
+      "id": "2605.27709",
+      "title": "ReverseMath: Answer Inversion for Scalable and Verifiable Mathematical Problem Generation",
+      "abstract": "Mathematical reasoning benchmarks are vital for evaluating large language models (LLMs), but many are static and repeatedly exposed through public evaluation and training pipelines, making it difficult to separate genuine reasoning from memorization. Meanwhile, manually constructing new math problems with reliable answers remains costly. We introduce ReverseMath, a scalable method for generating new math problems through answer inversion. Given a problem and its answer, ReverseMath masks a numerical value in the original problem, treats the original answer as a known condition, and rewrites the problem so that the masked value becomes the new answer. The generated problem reverses the original input-output relation, making its answer known by construction. We study ReverseMath for both evaluation and training. For evaluation, paired original/reversed problems reveal substantial behavioral shifts: models sometimes fail on reversed problems and even incorrectly output the original answer, suggesting memorization-like behavior. For training, ReverseMath provides automatically labeled reversed problems as data augmentation for reinforcement learning (RL). Experiments show that including ReverseMath-generated data improves mathematical reasoning performance across multiple benchmarks, demonstrating its value as both an analysis tool and a scalable source of verifiable training data.",
+      "authors": [
+        "Raoyuan Zhao",
+        "Yihong Liu",
+        "Yupei Du",
+        "Hinrich Schütze",
+        "Michael A. Hedderich"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-05-26T21:32:47Z",
+      "updated": "2026-05-26T21:32:47Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27709v1",
+      "abs_url": "https://arxiv.org/abs/2605.27709",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27709",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "数学推理基准测试对评估大型语言模型（LLMs）至关重要，但现有基准常因重复暴露导致模型记忆而非真正推理。ReverseMath提出一种通过答案反演生成新数学问题的方法，它将原问题中的数值遮蔽，以原答案为已知条件重写问题，使被遮蔽的数值成为新答案，从而实现问题与答案的自动生成和验证。该方法在评估中揭示，模型在反演问题上表现出显著的行为转变，甚至错误地输出原答案，暗示了记忆行为；在训练中，ReverseMath作为数据增强手段，为强化学习（RL）提供自动标注的反演问题。实验证明，加入ReverseMath生成的数据能有效提升模型在多个基准测试上的数学推理性能，验证了其作为分析工具和可验证训练数据来源的价值。"
+    },
+    {
+      "id": "2605.27703",
+      "title": "Hierarchical Prompt-Domain Control and Learning for Resource-Constrained Agentic Language Models",
+      "abstract": "Large Language Models are increasingly deployed inside agentic systems, where they must follow structured protocols, adapt to evolving states, and operate under memory, latency, and cost constraints. In such regimes, prompt extension is unreliable: growing contexts can push compact models outside their effective prompt domain, while deployment-time fine-tuning remains limited by scarce data and compute. We propose a hierarchical control-and-learning framework in which a compact model is first distilled to learn the required output schema, then supervised online by an oracle-controller loop. The controller monitors protocol validity and semantic performance, projects accumulated histories into a feasible prompt domain, and triggers lightweight oracle-supervised fine-tuning under drift. This separates schema learning for communication compatibility from semantic adaptation for task-level correction. We formalize prompt-domain feasibility and attention-induced saturation, motivating control of the effective prompt state rather than reliance on nominal context length. Using Multi-Fidelity Bayesian Optimization as a controlled sequential testbed, we characterize a core deployment failure mode and show improved reliability and cost-efficiency over non-hierarchical, distillation-only, and non-distilled baselines.",
+      "authors": [
+        "Joan Vendrell Gallart",
+        "Russell Bent",
+        "Michael Grosskopf"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-05-26T21:23:30Z",
+      "updated": "2026-05-26T21:23:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27703v1",
+      "abs_url": "https://arxiv.org/abs/2605.27703",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27703",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "这篇论文旨在解决资源受限的Agentic LLMs在遵循结构化协议、适应动态状态以及应对内存、延迟和成本限制时，提示扩展不可靠的问题。论文提出了一种分层控制与学习框架，其中一个紧凑模型首先被蒸馏以学习所需的输出模式，然后通过一个在线的Oracle-控制器循环进行监督。该框架的关键创新在于将通信兼容性的模式学习与任务级校正的语义适应分离开来，控制器监控协议有效性和语义性能，将历史投影到可行的提示域，并在出现漂移时触发轻量级的Oracle监督微调。在Multi-Fidelity Bayesian Optimization测试平台上，实验结果表明该方法在可靠性和成本效率方面优于非分层、仅蒸馏和未蒸馏的基线模型，并有效解决了部署中的核心故障模式。"
+    },
+    {
+      "id": "2605.27701",
+      "title": "Cross-Entropy Games and Frost Training",
+      "abstract": "We present Frost Training, a method for improving Monte Carlo-based policy optimization for a large family of LLM-as-a-judge tasks called Cross-Entropy Games. The key idea is to exploit the gradient of the reward function in embedding space. This signal is used in the Greedy Coordinate Gradient (GCG) jailbreaking technique; we demonstrate for the first time that it can also be used to boost model training. We validate our method using GRPO training for maximum-likelihood infilling. Frost Training improves the model's ability to generate high-scoring outputs, reaching higher maximum scores in a best-of-k setting, and does so at an increased speed.",
+      "authors": [
+        "Arthur Renard",
+        "Franck Gabriel",
+        "Valentin Hartmann",
+        "Clément Hongler"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-05-26T21:20:45Z",
+      "updated": "2026-05-26T21:20:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27701v1",
+      "abs_url": "https://arxiv.org/abs/2605.27701",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27701",
+      "summary_zh": "该论文提出了一种名为 Frost Training 的方法，旨在改进针对“LLM-as-a-judge”任务（称为 Cross-Entropy Games）的蒙特卡洛策略优化。其核心创新在于利用嵌入空间中奖励函数的梯度信号，这一信号此前主要用于 Greedy Coordinate Gradient (GCG) 越狱技术，但首次被证明可有效提升模型训练效果。通过将 Frost Training 应用于最大似然填充的 GRPO 训练，实验结果表明，该方法显著提高了模型生成高分输出的能力，在 best-of-k 设置下能达到更高的最大分数，并且训练速度也有所提升。"
+    },
+    {
+      "id": "2605.27659",
+      "title": "Transferable Reinforcement Learning via Probabilistic Latent Embeddings and Dynamic Policy Adaptation for Sim-to-Real Deployment",
+      "abstract": "Due to limited resources and public safety concerns, deep reinforcement learning (RL) agents for many cyber-physical systems (e.g., autonomous vehicles) are first trained in simulators. However, when deployed in real world environments, they often suffer from performance degradation or safety violations because of the inevitable Sim2Real gap. Existing zero-shot approaches, such as robust safe RL and domain randomization, mitigate this issue but typically at the cost of degraded performance or residual safety risks when experiencing unmodeled system dynamics. To address these limitations, we propose a novel reinforcement learning framework that enables safe and efficient policy transfer via probabilistic latent embeddings and dynamic policy adaptation. We consider a family of Constrained Markov Decision Processes (CMDPs) under different environment contexts. By leveraging latent context variable in meta-RL, the proposed framework infers the latent representation of the environment from simulated experiences. Furthermore, it incorporates a distributional RL formulation, which allows risk levels of the deployed policy to be adjusted dynamically, based on the estimation accuracy of the latent context variable. This strategy promotes safety at the early deployment stage and improves efficiency through fast policy adaptation under the Sim2Real gap.",
+      "authors": [
+        "Gengyue Han",
+        "Yiheng Feng"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-05-26T20:22:44Z",
+      "updated": "2026-05-26T20:22:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27659v1",
+      "abs_url": "https://arxiv.org/abs/2605.27659",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27659",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "这篇论文旨在解决深度强化学习（RL）智能体从模拟环境到真实环境部署时面临的Sim2Real差距导致的性能下降和安全问题，尤其是在存在未建模系统动力学的情况下。论文提出了一种新的强化学习框架，通过概率潜在嵌入和动态策略适应来实现安全高效的策略迁移，该框架在元RL中利用潜在上下文变量从模拟经验中推断环境的潜在表示。关键创新点在于结合了分布强化学习（Distributional RL）公式，允许根据潜在上下文变量的估计精度动态调整部署策略的风险水平，从而在部署初期提高安全性，并通过快速策略适应提升效率。"
+    },
+    {
+      "id": "2605.27596",
+      "title": "Can Hallucinations Be Useful? Solving Multi-Hop Questions With SLMs By Chaining System-I/II Reasoning",
+      "abstract": "Recently, there has been increased interest in Small Language Models (SLMs), which are fast, show good performance, and have lower hardware demands than large language models (LLMs). However, SLMs hallucinate more frequently than LLMs, impacting their ability to solve complex multi-step reasoning problems as early mistakes cascade to the final response. To address this, existing works think-first followed by iterative retrieval to reduce hallucination. We argue that the think-first strategy is not always necessary as we find that: (i) SLMs are often accurately confident in their initial answer and, (ii) hallucinations can actually be beneficial for honing in on the true answer. As such, we position our work as an inversion of this strategy, i.e., answer first-reason later. We propose a cognitively-inspired framework where the model is first allowed to quickly answer the question (System-I (zero-shot)) and then resorts to deeper thinking (System-II) based on evidence retrieved from a knowledge source using the initial hypothesis. By combining System-I and System-II style thinking, we show that our method can outperform prior work that takes the traditional think-first route on various multi-step question-answering benchmarks.",
+      "authors": [
+        "Saptarshi Sengupta",
+        "Suhang Wang"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-05-26T19:09:27Z",
+      "updated": "2026-05-26T19:09:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27596v1",
+      "abs_url": "https://arxiv.org/abs/2605.27596",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27596",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "这篇论文旨在解决小型语言模型（SLMs）在处理复杂多跳问题时，因幻觉（hallucination）频繁导致错误累积的问题。它提出了一种名为“先回答后推理”（answer first-reason later）的新颖方法，该方法受到认知科学中System-I/II双系统理论的启发。关键创新在于，模型首先进行快速的零样本（zero-shot）System-I回答，然后基于这个初始假设从知识源检索证据，进行更深入的System-II推理，从而利用甚至“有益的”幻觉来逼近真实答案。实验结果表明，这种结合System-I和System-II思维的方法在多个多跳问答基准测试上，优于传统的“先思考后检索”策略。"
+    },
+    {
+      "id": "2605.27591",
+      "title": "Gradient Transformer: Learning to Generate Updates for LLMs",
+      "abstract": "Many organizations lack computational resources to fine-tune large language models (LLMs) on private (unshareable) data for better utility, while fine-tuning tiny language models (TinyLMs) alone performs poorly. To address this bottleneck, we propose a data-free knowledge distillation framework that generates LLM update vectors based on TinyLMs fine-tuned on private data. An update vector is a vector of parameter changes from an initial model to its fine-tuned version on a dataset, capturing the effect of cumulative gradient steps during fine-tuning. The key idea of our framework is a novel Gradient Transformer that transforms TinyLM's update vectors into LLM's update vectors. As derived from shadow datasets, Grad-Transformer captures the correlation between TinyLM and LLM update vectors, enabling third-party providers to generate LLM update vectors given the organization's TinyLM update vectors without accessing the organization's private data. The framework supports multi-organization collaboration to jointly update LLMs, improving performance and cost-efficiency. Extensive experiments across language modeling and reasoning tasks show that Grad-Transformer remarkably outperforms state-of-the-art knowledge distillation baselines, even under strict differential privacy protection.",
+      "authors": [
+        "Binh-Nguyen Nguyen",
+        "Khang Tran",
+        "NhatHai Phan",
+        "Issa Khalil"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-05-26T19:05:13Z",
+      "updated": "2026-05-26T19:05:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27591v1",
+      "abs_url": "https://arxiv.org/abs/2605.27591",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27591",
+      "summary_zh": "针对组织缺乏计算资源对私有数据进行LLM微调的问题，该研究提出了一种无数据知识蒸馏框架，通过一个新颖的Gradient Transformer将TinyLM在私有数据上微调后产生的更新向量，转换为LLM的更新向量。Gradient Transformer通过学习TinyLM和LLM更新向量之间的相关性，使得第三方提供商无需访问私有数据即可为LLM生成更新，从而实现多组织协作更新LLM。实验结果表明，在语言建模和推理任务上，Grad-Transformer显著优于现有的知识蒸馏基线，即使在严格的差分隐私保护下也表现出色。"
+    },
+    {
+      "id": "2605.27589",
+      "title": "What-If World: A Causal Benchmark for General World Models in Embodied Scenarios",
+      "abstract": "Video generation models are increasingly used as world simulators for tasks like driving and robotic manipulation. What matters in these settings is not whether a single video looks right, but whether the model's output changes when its input changes. We test this by giving a model two prompts describing the same scene with one physical detail varied, and checking whether the two videos diverge the way physics predicts. The wording difference between the prompts is small by design, since only one variable is changed, but the correct physical difference is not. A model that misses this can still produce two videos that each look plausible individually, and existing benchmarks score videos one at a time and cannot detect this failure. We introduce What-If World, 319 such prompt pairs built on real frames from nuScenes and DROID, organized by a taxonomy of six physical variables shared across driving and manipulation. Each pair is scored with APEO, a four-part rubric checking whether each video follows its prompt (Adherence), is physically consistent (Physics), preserves the shared scene (Environment), and ends in the correct difference (Outcome). Across nine state-of-the-art models, no system exceeds 52% on the paired score, and open-source models cluster near 28%. Every model tested fails on a large fraction of causal interventions, indicating substantial room before these models can reliably support action-conditioned simulation or model-based planning. Where models do score well, performance appears to track the visual prominence of the intervention rather than the tractability of its underlying physics. Some visually subtle interventions score as low as 14.2%, while visually pronounced ones reach 40.4%.",
+      "authors": [
+        "Kunlin Cai",
+        "Rui Song",
+        "Jinghuai Zhang",
+        "Kaiyuan Zhang",
+        "Pranav Bodapati",
+        "Alicia Yu",
+        "Fnu Suya",
+        "Mohammad Rostami",
+        "Jiaqi Ma",
+        "Yuan Tian"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-05-26T19:02:26Z",
+      "updated": "2026-05-26T19:02:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27589v1",
+      "abs_url": "https://arxiv.org/abs/2605.27589",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27589",
+      "summary_zh": "这篇论文旨在解决现有视频生成模型作为世界模拟器在具身场景中因果推理能力不足的问题，即模型在输入微小变化时能否输出符合物理规律的相应视频变化。研究方法是构建了一个名为 What-If World 的因果基准，包含 319 对提示，每对提示描述同一场景但仅改变一个物理细节，并基于 nuScenes 和 DROID 数据集构建真实帧。关键创新点在于引入了 APEO 四部分评分标准（Adherence, Physics, Environment, Outcome）来评估模型对提示的遵循度、物理一致性、场景保持和最终差异的正确性，这能有效检测单个视频看似合理但因果关系错误的失败模式。实验结果显示，在九个最先进的模型中，没有一个模型在配对分数上超过 52%，开源模型普遍在 28% 左右，表明这些模型在因果干预方面存在显著不足，距离可靠支持动作条件模拟或基于模型的规划还有很大距离，且模型表现似乎更受干预视觉显著性的影响，而非物理可处理性。"
+    },
+    {
+      "id": "2605.27586",
+      "title": "You Only Align Once: Propagating Cooperative Behaviors in Multi-Agent Systems through Seed Agents",
+      "abstract": "Ensuring agent behaviors in distributed open multi-agent systems remains challenging, especially as populations grow and unaligned agents may exist. We show that a single aligned agent can propagate cooperative behaviors to untrained agents purely through natural language interaction, a phenomenon we term Alignment Propagation. We study this in the Red-Black Game, a team-based iterated Prisoner's Dilemma in which teammates deliberate and vote to determine their team's collective action. By distilling the cooperative reasoning and persuasive dialogues of a teacher model into a Qwen-3-14B, we obtain a seed agent that, when placed among four untrained teammates, doubles the cooperation rate from 24.8% to 62.2%, outperforming the teacher model and a vanilla Gemini-3.1-Pro. Remarkably, a seed trained exclusively on the RedBlack Game transfers zero-shot to Sugarscape, a spatially grounded survival simulation with pairwise trading, achieving a 91.5% trade success rate versus a 21.6% baseline. Our results reframe multi-agent alignment from an exhaustive per-agent training problem to a scalable social capability that can be engineered through strategic seed placement.",
+      "authors": [
+        "Nicole Hsing",
+        "Asuka Yuxi Zheng",
+        "Yi Zhao",
+        "Haoqin Tu",
+        "Jen-Tse Huang"
+      ],
+      "categories": [
+        "cs.MA",
+        "cs.CL"
+      ],
+      "published": "2026-05-26T18:56:02Z",
+      "updated": "2026-05-26T18:56:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27586v1",
+      "abs_url": "https://arxiv.org/abs/2605.27586",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27586",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "论文旨在解决分布式开放多智能体系统中，随着智能体数量增加和未对齐智能体存在时，确保智能体行为对齐的挑战。通过引入“对齐传播”（Alignment Propagation）机制，该研究提出一个单一的对齐智能体可以通过自然语言交互，将合作行为传播给未经训练的智能体。研究在Red-Black Game中，通过将教师模型的合作推理和说服对话蒸馏到一个Qwen-3-14B种子智能体中，成功地将合作率从24.8%提高到62.2%，甚至超越了教师模型和Gemini-3.1-Pro。更令人惊讶的是，这个仅在Red-Black Game上训练的种子智能体，在Sugarscape这一空间生存模拟游戏中实现了零样本迁移，将交易成功率从21.6%提升至91.5%。这些结果表明，多智能体对齐可以从耗费精力的逐个智能体训练问题，转变为通过战略性放置种子智能体来实现的可扩展社会能力。"
+    },
+    {
+      "id": "2605.27567",
+      "title": "Why LLMs Fail at Causal Discovery and How Interventional Agents Escape",
+      "abstract": "Causal discovery is a cornerstone of scientific reasoning, yet whether large language models can perform it reliably remains an open question. Recent benchmarks show that even fine-tuned models plateau on simple causal graphs and degrade as complexity grows, but why they fail has not been established. We prove the failure is fundamental: supervised fine-tuning, direct preference optimization, and in-context learning all produce predictors that cannot distinguish between causal graphs generating similar observational data, and any attempt to do so requires the model's internal representations to grow unboundedly, violating the very conditions under which these methods work. We formalize this as a kernel obstruction theorem, establishing that the limitation is intrinsic to the learning paradigm, \\emph{not any particular model or dataset}. We propose Agentic Causal Bayesian Optimization (A-CBO), wherein a frozen language model serves as an interventional oracle answering targeted queries about intervention effects, while an external Bayesian loop concentrates beliefs over candidate graphs in logarithmically many rounds. Because the decision operates outside the space where the obstruction applies, A-CBO provably converges while the underlying model remains unchanged. On Corr2Cause, A-CBO matches fine-tuned baselines without any training. On Extended Corr2Cause, a new benchmark scaling to 24 variables with 18K test samples, A-CBO significantly outperforms both fine-tuning and preference optimization, with the advantage growing",
+      "authors": [
+        "Amartya Roy",
+        "Sonali Parbhoo"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-05-26T18:37:03Z",
+      "updated": "2026-05-26T18:37:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27567v1",
+      "abs_url": "https://arxiv.org/abs/2605.27567",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27567",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "大型语言模型（LLMs）在因果发现任务上表现不佳，即使经过微调，其性能也随着因果图复杂度的增加而下降。研究证明，这种失败是根本性的，因为监督微调、直接偏好优化和上下文学习等方法产生的预测器无法区分生成相似观测数据的因果图，且模型内部表示需要无限增长才能解决此问题，这违反了这些方法的适用条件，并被形式化为“核阻塞定理”（kernel obstruction theorem）。为解决此问题，提出了Agentic Causal Bayesian Optimization (A-CBO) 方法，该方法利用冻结的LLM作为干预预言机，回答关于干预效应的特定查询，同时外部贝叶斯循环以对数轮次集中对候选图的信念。A-CBO在Corr2Cause基准上无需训练即可达到微调基线的性能，并在新的Extended Corr2Cause基准上显著优于微调和偏好优化方法，且优势随复杂性增加而扩大。"
+    },
+    {
+      "id": "2605.27556",
+      "title": "Accelerating Reinforcement Learning Training Using Simulation Surrogate Models",
+      "abstract": "High-fidelity simulation models are widely used to analyze complex stochastic systems, but their high computational cost motivates the development of cheaper surrogate models that approximate the simulation model's input-output relationship. In parallel, reinforcement learning (RL) has emerged as a powerful framework for making online decisions in stochastic environments, with increasing attention being given to the use of simulation models as training environments for RL models. We investigate a class of surrogate models suitable for accelerating RL training in settings where the reward structure, model parameters, or system dynamics change over time and explore their interactions with simulation models and RL models. Through numerical experiments on a stochastic service system modeled via discrete-event simulation, we demonstrate that leveraging surrogate models can substantially accelerate RL training and re-training.",
+      "authors": [
+        "Mohammadmahdi Ghasemloo",
+        "David J. Eckman",
+        "Yaxian Li"
+      ],
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-05-26T18:23:42Z",
+      "updated": "2026-05-26T18:23:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27556v1",
+      "abs_url": "https://arxiv.org/abs/2605.27556",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27556",
+      "summary_zh": "这篇论文旨在解决高保真模拟模型计算成本高昂的问题，尤其是在强化学习（RL）训练中，当奖励结构、模型参数或系统动态随时间变化时。它提出利用代理模型（surrogate models）来近似模拟模型的输入-输出关系，从而加速RL的训练和再训练过程。关键创新点在于探索了代理模型与模拟模型和RL模型之间的相互作用，并证明了其在动态环境下的有效性。通过在离散事件模拟（discrete-event simulation）建模的随机服务系统上进行的数值实验，结果表明，利用代理模型可以显著加速RL的训练和再训练过程。"
+    },
+    {
+      "id": "2605.27499",
+      "title": "GenSBI: Generative Methods for Simulation-Based Inference in JAX",
+      "abstract": "Flow and diffusion generative models have established themselves as widely adopted density estimators for simulation-based inference (SBI), extending naturally from neural posterior estimation to likelihood and joint density estimation. Their principled optimization objectives and freedom from architectural constraints have driven rapid adoption across the natural sciences. Yet the most widely used SBI libraries remain PyTorch-based, leaving researchers who develop their forward models and analysis pipelines in JAX without a native option. We present GenSBI, an open-source library that implements flow matching, score matching, and denoising diffusion entirely in JAX. The library offers three transformer-based architectures - SimFormer, Flux1, and a novel Flux1Joint that extends gate-modulated transformer blocks to joint density estimation - all interchangeable through a unified interface that decouples generative method, neural backbone, and inference mode. GenSBI provides an end-to-end workflow from training through posterior calibration (SBC, TARP, LC2ST) and supports custom architectures with domain-specific embedding networks. We validate the framework on standard SBI benchmarks, achieving near-ideal mean C2ST scores (0.50-0.56, where 0.50 is ideal) on SBIBM tasks with minimal per-task tuning and well-calibrated posterior coverage across all tested configurations. The code is publicly available at https://github.com/aurelio-amerio/GenSBI.",
+      "authors": [
+        "Aurelio Amerio"
+      ],
+      "categories": [
+        "cs.LG",
+        "astro-ph.CO",
+        "astro-ph.IM",
+        "physics.comp-ph",
+        "stat.ML"
+      ],
+      "published": "2026-05-26T17:59:59Z",
+      "updated": "2026-05-26T17:59:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27499v1",
+      "abs_url": "https://arxiv.org/abs/2605.27499",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27499",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "这篇论文旨在为JAX生态系统提供一个原生的、基于生成模型的模拟贝叶斯推断（SBI）库，以解决现有SBI库主要基于PyTorch的问题。它通过在JAX中实现流匹配（flow matching）、分数匹配（score matching）和去噪扩散（denoising diffusion）等生成方法，并引入了SimFormer、Flux1以及创新的Flux1Joint三种Transformer架构，实现了生成方法、神经网络骨干和推断模式的解耦。关键创新在于提供了统一的接口和端到端的工作流程，支持从训练到后验校准（SBC, TARP, LC2ST）的完整流程，并允许自定义架构。实验结果表明，该框架在标准SBI基准测试（SBIBM）上取得了接近理想的C2ST分数（0.50-0.56），并且在所有测试配置下都展现出良好的后验覆盖校准。"
+    },
+    {
       "id": "2605.27355",
       "title": "Alignment Tampering: How Reinforcement Learning from Human Feedback Is Exploited to Optimize Misaligned Biases",
       "abstract": "Reinforcement Learning from Human Feedback (RLHF) is the standard method to align Large Language Models (LLMs) with human preferences. In this work, we introduce alignment tampering, a potential vulnerability where the LLM undergoing alignment influences the preference dataset, causing RLHF to amplify undesired behaviors. This arises from core limitations of RLHF: (1) preference datasets are constructed from the LLM's own outputs, allowing it to influence them, and (2) pairwise comparisons only indicate which response is better, not why. These limitations can be exploited to cause alignment tampering. For example, if an LLM generates biased responses with higher quality, annotators will prefer them based on quality. However, preference labels do not distinguish quality from bias, and the reward model inherits this limitation. Optimizing such rewards through reinforcement learning or best-of-N sampling can amplify misaligned biases. Our experiments demonstrate amplification across diverse biases: from keyword bias to propaganda (e.g., sexism), brand promotion, and instrumental goal-seeking. Mitigation remains challenging, as existing techniques for robust RLHF fail to fully resolve alignment tampering without sacrificing response quality. These findings reveal structural vulnerabilities of current RLHF and emphasize the need to prevent this vulnerability. Project page: https://alignment-tampering.github.io/",
@@ -50,8 +483,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27355",
-      "summary_zh": "这篇论文揭示了RLHF（Reinforcement Learning from Human Feedback）存在一种名为“alignment tampering”的潜在漏洞，即大型语言模型（LLM）可能通过影响偏好数据集，导致RLHF放大其自身不期望的行为。其核心方法是利用RLHF的局限性：偏好数据集由LLM自身输出构建，且成对比较无法区分质量与偏见，使得LLM能够生成高质量但带有偏见的响应，从而被标注者偏好，最终通过奖励模型和强化学习放大这些未对齐的偏见。实验结果表明，这种放大效应在关键词偏见、宣传（如性别歧视）、品牌推广和工具性目标寻求等多种偏见中均有体现，现有缓解技术在不牺牲响应质量的情况下难以完全解决此问题。",
-      "impact_score": null
+      "summary_zh": "这篇论文揭示了RLHF（Reinforcement Learning from Human Feedback）存在一种名为“alignment tampering”的潜在漏洞，即大型语言模型（LLM）可能通过影响偏好数据集，导致RLHF放大其自身不期望的行为。其核心方法是利用RLHF的局限性：偏好数据集由LLM自身输出构建，且成对比较无法区分质量与偏见，使得LLM能够生成高质量但带有偏见的响应，从而被标注者偏好，最终通过奖励模型和强化学习放大这些未对齐的偏见。实验结果表明，这种放大效应在关键词偏见、宣传（如性别歧视）、品牌推广和工具性目标寻求等多种偏见中均有体现，现有缓解技术在不牺牲响应质量的情况下难以完全解决此问题。"
     },
     {
       "id": "2605.27354",
@@ -79,8 +511,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27354",
-      "summary_zh": "该研究旨在利用大型语言模型（LLM）的内部信息来改进后训练数据工程，以解决现有方法过度依赖外部信号的问题。为此，提出了一种名为 SAERL 的数据工程框架，它通过 Sparse Autoencoder (SAE) 提取模型内部信息，建模了数据的多样性、难度和质量这三个内在属性。SAERL 的关键创新在于将 SAE 空间聚类、难度代理和质量探针分别应用于批次多样性控制、由易到难的课程排序以及数据过滤，从而实现了对数据工程的精细化指导。实验结果表明，SAERL 在 Qwen2.5-Math-1.5B 模型上，相较于 vanilla GRPO 平均准确率提高了 3.00%，并能以减少 20% 训练步数达到目标准确率，在不同模型规模和 RL 算法上均展现出一致的提升，证明了模型内部信息作为数据工程信号的强大和实用性。",
-      "impact_score": null
+      "summary_zh": "该研究旨在利用大型语言模型（LLM）的内部信息来改进后训练数据工程，以解决现有方法过度依赖外部信号的问题。为此，提出了一种名为 SAERL 的数据工程框架，它通过 Sparse Autoencoder (SAE) 提取模型内部信息，建模了数据的多样性、难度和质量这三个内在属性。SAERL 的关键创新在于将 SAE 空间聚类、难度代理和质量探针分别应用于批次多样性控制、由易到难的课程排序以及数据过滤，从而实现了对数据工程的精细化指导。实验结果表明，SAERL 在 Qwen2.5-Math-1.5B 模型上，相较于 vanilla GRPO 平均准确率提高了 3.00%，并能以减少 20% 训练步数达到目标准确率，在不同模型规模和 RL 算法上均展现出一致的提升，证明了模型内部信息作为数据工程信号的强大和实用性。"
     },
     {
       "id": "2605.27336",
@@ -107,8 +538,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27336",
-      "summary_zh": "视频扩散Transformer (DiTs) 在生成高质量视频时计算成本高昂，主要源于其宽块、深层架构和迭代采样。PARE (Pruning and Adaptive Routing for Efficient video generation) 提出通过结构感知剪枝和输入自适应路由，联合压缩模型宽度和深度，以解决这一问题。其关键创新在于，针对宽度剪枝，PARE设计了一种考虑注意力头空间和时间特性的重要性评分机制，以避免误剪关键的时间注意力头；针对深度压缩，它训练了一个轻量级路由器，根据去噪步长和视觉内容动态选择执行哪些块，从而实现每个输入的计算自适应。实验在Wan2.1-14B数据集上进行，涵盖图像到视频和文本到视频生成，结果表明PARE显著降低了每步计算量，同时在VBench的各项指标上保持了生成质量，并且可以与步长蒸馏结合进一步加速。",
-      "impact_score": null
+      "summary_zh": "视频扩散Transformer (DiTs) 在生成高质量视频时计算成本高昂，主要源于其宽块、深层架构和迭代采样。PARE (Pruning and Adaptive Routing for Efficient video generation) 提出通过结构感知剪枝和输入自适应路由，联合压缩模型宽度和深度，以解决这一问题。其关键创新在于，针对宽度剪枝，PARE设计了一种考虑注意力头空间和时间特性的重要性评分机制，以避免误剪关键的时间注意力头；针对深度压缩，它训练了一个轻量级路由器，根据去噪步长和视觉内容动态选择执行哪些块，从而实现每个输入的计算自适应。实验在Wan2.1-14B数据集上进行，涵盖图像到视频和文本到视频生成，结果表明PARE显著降低了每步计算量，同时在VBench的各项指标上保持了生成质量，并且可以与步长蒸馏结合进一步加速。"
     },
     {
       "id": "2605.27304",
@@ -162,8 +592,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27293",
-      "summary_zh": "大语言模型推理任务的强化学习训练常面临计算效率与样本效率的平衡难题，BASIS 作为一种无需 Critic 网络的后训练算法，旨在解决这一矛盾。该方法在每个训练步仅为每个 Prompt 采样一条轨迹，但通过在整个 Batch 范围内共享信息，实现了对状态价值函数的高效估计。实验结果显示，BASIS 在价值函数估计的均方误差上比单样本基准 REINFORCE++ 降低了 69%，甚至优于使用 8 条轨迹的组平均估计器。这种精准的价值估计直接提升了策略优化效果，使得 BASIS 在显著减少训练时间的同时，性能逼近多样本的 GRPO 类模型，并优于大多数单样本强化学习基准。",
-      "impact_score": null
+      "summary_zh": "大语言模型推理任务的强化学习训练常面临计算效率与样本效率的平衡难题，BASIS 作为一种无需 Critic 网络的后训练算法，旨在解决这一矛盾。该方法在每个训练步仅为每个 Prompt 采样一条轨迹，但通过在整个 Batch 范围内共享信息，实现了对状态价值函数的高效估计。实验结果显示，BASIS 在价值函数估计的均方误差上比单样本基准 REINFORCE++ 降低了 69%，甚至优于使用 8 条轨迹的组平均估计器。这种精准的价值估计直接提升了策略优化效果，使得 BASIS 在显著减少训练时间的同时，性能逼近多样本的 GRPO 类模型，并优于大多数单样本强化学习基准。"
     },
     {
       "id": "2605.27288",
@@ -210,11 +639,11 @@
         "Yihang Lin",
         "Jiahui Zhao",
         "Weibo Xiong",
-        "Dongrui Li",
+        "Dongrui Zhang",
         "Keming Chen",
         "Yunze Gao",
-        "Yuze Zhou",
         "Zeyang Lin",
+        "Yuze Zhou",
         "Yue Liu"
       ],
       "categories": [
@@ -222,8 +651,8 @@
         "cs.AI"
       ],
       "published": "2026-05-26T16:36:56Z",
-      "updated": "2026-05-26T16:36:56Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.27258v1",
+      "updated": "2026-05-27T06:28:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27258v2",
       "abs_url": "https://arxiv.org/abs/2605.27258",
       "topics": [
         "other"
@@ -260,8 +689,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27255",
-      "summary_zh": "这篇论文旨在解决大型语言模型（LLMs）自回归解码过程中推理成本高昂的问题，特别是长链式思维推理场景。它提出了一种名为 Pair-In, Pair-Out (PIPO) 的新方法，该方法统一了输入端（潜在压缩）和输出端（多令牌预测 MTP）的优化，将潜在压缩器和 MTP 头视为镜像操作。PIPO 的关键创新在于引入了一个轻量级的置信度头，用于判断 MTP 预测的草稿令牌是否可接受，从而消除了传统 MTP 方法中昂贵的验证器成本，并通过 On-Policy Distillation (OPD) 进行训练。在 AIME 2025、GPQA-Diamond、LiveCodeBench v6 和 LongBench v2 等基准测试上，使用 Qwen3.5-4B 和 9B 模型进行的实验表明，PIPO 相较于常规解码，pass@4 性能提升高达 7.15 个百分点，同时实现了高达 2.64 倍的首令牌延迟加速和 2.07 倍的每令牌延迟加速。",
-      "impact_score": null
+      "summary_zh": "这篇论文旨在解决大型语言模型（LLMs）自回归解码过程中推理成本高昂的问题，特别是长链式思维推理场景。它提出了一种名为 Pair-In, Pair-Out (PIPO) 的新方法，该方法统一了输入端（潜在压缩）和输出端（多令牌预测 MTP）的优化，将潜在压缩器和 MTP 头视为镜像操作。PIPO 的关键创新在于引入了一个轻量级的置信度头，用于判断 MTP 预测的草稿令牌是否可接受，从而消除了传统 MTP 方法中昂贵的验证器成本，并通过 On-Policy Distillation (OPD) 进行训练。在 AIME 2025、GPQA-Diamond、LiveCodeBench v6 和 LongBench v2 等基准测试上，使用 Qwen3.5-4B 和 9B 模型进行的实验表明，PIPO 相较于常规解码，pass@4 性能提升高达 7.15 个百分点，同时实现了高达 2.64 倍的首令牌延迟加速和 2.07 倍的每令牌延迟加速。"
     },
     {
       "id": "2605.27235",
@@ -289,8 +717,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27235",
-      "summary_zh": "该论文旨在解决大规模分层图像生成和编辑中层级复用、编辑和组合的难题，提出了一种名为 MRT 的 20B 参数掩码区域扩散模型。MRT 通过统一文本到层、图像到层和层到层这三个任务，并利用选择性 token 掩码实现灵活的层级生成和编辑，同时引入溢出感知画布层来处理边界不一致和支持半透明背景合成，从而实现可编辑的溢出层生成。此外，模型还应用扩散蒸馏技术，实现了 8 步实时多层生成，且质量损失极小。实验结果表明，MRT 在所有任务上均显著优于现有最先进方法和商业系统，尤其在图像到层质量方面超越了 Qwen-Image-Layered 模型，并实现了 10-100 倍的推理速度提升和 50-90% 的 GPU 内存消耗降低，为多层透明图像生成树立了新基准。",
-      "impact_score": null
+      "summary_zh": "该论文旨在解决大规模分层图像生成和编辑中层级复用、编辑和组合的难题，提出了一种名为 MRT 的 20B 参数掩码区域扩散模型。MRT 通过统一文本到层、图像到层和层到层这三个任务，并利用选择性 token 掩码实现灵活的层级生成和编辑，同时引入溢出感知画布层来处理边界不一致和支持半透明背景合成，从而实现可编辑的溢出层生成。此外，模型还应用扩散蒸馏技术，实现了 8 步实时多层生成，且质量损失极小。实验结果表明，MRT 在所有任务上均显著优于现有最先进方法和商业系统，尤其在图像到层质量方面超越了 Qwen-Image-Layered 模型，并实现了 10-100 倍的推理速度提升和 50-90% 的 GPU 内存消耗降低，为多层透明图像生成树立了新基准。"
     },
     {
       "id": "2605.27190",
@@ -348,8 +775,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27186",
-      "summary_zh": "大型语言模型在多轮对话中常出现“迷失对话”（lost-in-conversation, LiC）问题，即随着对话轮次的增加，模型性能下降。该研究提出，这种性能下降部分源于“自我污染”：模型早期回复进入后续上下文，导致早期偏差被持续放大。为解决此问题，论文提出了MAIGO，一种基于模型自身策略的在策略（on-policy）自蒸馏方法，通过“历史清理”的参考来减少污染。MAIGO在中间轮次移除先前的助手回复，同时保留用户可见的分片前缀；在回答轮次，则从配对的完整视图参考中进行蒸馏，这些参考基于已完成的用户侧对话。MAIGO无需验证器奖励、状态标签或推理时脚手架，在LiC配对视图协议和确定性验证器下，将Qwen2.5-7B-Instruct的SHARDED准确率从52.8%提升到66.1%，SHARDED/FULL比率从66.5%提升到84.1%，同时保持FULL准确率在2.3个百分点以内，证明自我污染是LiC差距中可训练的组成部分。",
-      "impact_score": null
+      "summary_zh": "大型语言模型在多轮对话中常出现“迷失对话”（lost-in-conversation, LiC）问题，即随着对话轮次的增加，模型性能下降。该研究提出，这种性能下降部分源于“自我污染”：模型早期回复进入后续上下文，导致早期偏差被持续放大。为解决此问题，论文提出了MAIGO，一种基于模型自身策略的在策略（on-policy）自蒸馏方法，通过“历史清理”的参考来减少污染。MAIGO在中间轮次移除先前的助手回复，同时保留用户可见的分片前缀；在回答轮次，则从配对的完整视图参考中进行蒸馏，这些参考基于已完成的用户侧对话。MAIGO无需验证器奖励、状态标签或推理时脚手架，在LiC配对视图协议和确定性验证器下，将Qwen2.5-7B-Instruct的SHARDED准确率从52.8%提升到66.1%，SHARDED/FULL比率从66.5%提升到84.1%，同时保持FULL准确率在2.3个百分点以内，证明自我污染是LiC差距中可训练的组成部分。"
     },
     {
       "id": "2605.27178",
@@ -404,8 +830,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27154",
-      "summary_zh": "该研究旨在解决多模态大模型（MLLMs）中触觉推理能力不足的问题，特别是现有模型难以将预测与物理证据关联并纠正误导性视觉先验。为此，研究者构建了大规模多模态数据集 TouchReason-1M 和评估基准 TouchReason-Bench，并提出了基于 Qwen2.5-VL-7B 的触觉推理 MLLM Touch-R1。Touch-R1 采用了一种结合序数感知准确性、跨传感器物理一致性、结构化格式控制和输入端触觉接地目标的 GRPO 强化学习训练范式，其关键创新在于引入了“触觉使用奖励”，仅当真实触觉输入带来显著优于无触觉或干扰触觉输入的正确性时才给予奖励。实验结果表明，Touch-R1-7B 在 TouchReason-Bench 上平均性能超越 Octopi-13B 18.4% 和 GPT-4o 24.7%，展现出探查、比较和修正等新兴推理行为，证明了 R1 风格的推理能够有效基于物理接触进行。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决多模态大模型（MLLMs）中触觉推理能力不足的问题，特别是现有模型难以将预测与物理证据关联并纠正误导性视觉先验。为此，研究者构建了大规模多模态数据集 TouchReason-1M 和评估基准 TouchReason-Bench，并提出了基于 Qwen2.5-VL-7B 的触觉推理 MLLM Touch-R1。Touch-R1 采用了一种结合序数感知准确性、跨传感器物理一致性、结构化格式控制和输入端触觉接地目标的 GRPO 强化学习训练范式，其关键创新在于引入了“触觉使用奖励”，仅当真实触觉输入带来显著优于无触觉或干扰触觉输入的正确性时才给予奖励。实验结果表明，Touch-R1-7B 在 TouchReason-Bench 上平均性能超越 Octopi-13B 18.4% 和 GPT-4o 24.7%，展现出探查、比较和修正等新兴推理行为，证明了 R1 风格的推理能够有效基于物理接触进行。"
     },
     {
       "id": "2605.27140",
@@ -428,8 +853,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27140",
-      "summary_zh": "多轮智能体强化学习面临信用分配不匹配问题，即稀疏的轨迹级奖励难以指导局部决策。StepOPSD 提出一种步长感知的在线偏好自蒸馏框架，将智能体轨迹分解为以动作为中心的步长片段，并在事后丰富的教师上下文中重新评分这些片段。该方法将 token 级别的对数概率差距转换为符号保持的优势整形，并结合规范化的每步信用预算，在 GRPO 更新前进行。在 ALFWorld 和 Search-QA 数据集上，使用 Qwen3-1.7B 和 Qwen2.5-3B-Instruct 模型，StepOPSD 在对局部因果错误最敏感的子集上取得了最佳或次佳结果，例如在 ALFWorld Heat (79.1%)、PickTwo (95.0%) 和 Search-QA TriviaQA (61.6%) 上表现第一，并在 HotpotQA (40.4%) 上并列最佳。研究发现，较小的 α_clip 提供了稳定的局部信任区域，而最佳的全局混合强度 λ_mix 则取决于具体任务，表明当轨迹级奖励与决定后续成功的局部动作弱相关时，步长感知的蒸馏最为有效。",
-      "impact_score": null
+      "summary_zh": "多轮智能体强化学习面临信用分配不匹配问题，即稀疏的轨迹级奖励难以指导局部决策。StepOPSD 提出一种步长感知的在线偏好自蒸馏框架，将智能体轨迹分解为以动作为中心的步长片段，并在事后丰富的教师上下文中重新评分这些片段。该方法将 token 级别的对数概率差距转换为符号保持的优势整形，并结合规范化的每步信用预算，在 GRPO 更新前进行。在 ALFWorld 和 Search-QA 数据集上，使用 Qwen3-1.7B 和 Qwen2.5-3B-Instruct 模型，StepOPSD 在对局部因果错误最敏感的子集上取得了最佳或次佳结果，例如在 ALFWorld Heat (79.1%)、PickTwo (95.0%) 和 Search-QA TriviaQA (61.6%) 上表现第一，并在 HotpotQA (40.4%) 上并列最佳。研究发现，较小的 α_clip 提供了稳定的局部信任区域，而最佳的全局混合强度 λ_mix 则取决于具体任务，表明当轨迹级奖励与决定后续成功的局部动作弱相关时，步长感知的蒸馏最为有效。"
     },
     {
       "id": "2605.27134",
@@ -483,8 +907,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27115",
-      "summary_zh": "针对大语言模型在领域微调后通识能力受损的问题，该研究在多教师策略内蒸馏（MOPD）框架下，通过代理通识提示词实现了通识能力的有效恢复与领域能力的保留。研究指出了传统 MOPD 在提示词分布不完全覆盖时的两大瓶颈：通识恢复与领域保留之间的梯度冲突，以及均匀采样导致的修正信号稀释。为此提出的 CaMOPD 算法采用了解耦交替训练策略，为通识恢复提供独立更新并定期回顾领域知识，同时引入基于概率差值的样本筛选机制，优先处理教师与学生模型预测差异较大的样本以强化修正信号。在角色扮演对话和医疗问答场景的实验表明，CaMOPD 在保持领域专业性的同时，其通识能力恢复效果显著优于基准模型，梯度一致性分析也证实了该方法能产生更协调的优化方向。",
-      "impact_score": null
+      "summary_zh": "针对大语言模型在领域微调后通识能力受损的问题，该研究在多教师策略内蒸馏（MOPD）框架下，通过代理通识提示词实现了通识能力的有效恢复与领域能力的保留。研究指出了传统 MOPD 在提示词分布不完全覆盖时的两大瓶颈：通识恢复与领域保留之间的梯度冲突，以及均匀采样导致的修正信号稀释。为此提出的 CaMOPD 算法采用了解耦交替训练策略，为通识恢复提供独立更新并定期回顾领域知识，同时引入基于概率差值的样本筛选机制，优先处理教师与学生模型预测差异较大的样本以强化修正信号。在角色扮演对话和医疗问答场景的实验表明，CaMOPD 在保持领域专业性的同时，其通识能力恢复效果显著优于基准模型，梯度一致性分析也证实了该方法能产生更协调的优化方向。"
     },
     {
       "id": "2605.27102",
@@ -493,24 +916,23 @@
       "authors": [
         "Funing Fu",
         "Tenghui Wang",
+        "Guanyu Zhou",
         "Junyong Cen",
-        "Qichao Zhu",
-        "Guanyu Zhou"
+        "Qichao Zhu"
       ],
       "categories": [
         "cs.CV",
         "cs.LG"
       ],
       "published": "2026-05-26T14:41:58Z",
-      "updated": "2026-05-26T14:41:58Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.27102v1",
+      "updated": "2026-05-27T13:41:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.27102v2",
       "abs_url": "https://arxiv.org/abs/2605.27102",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27102",
-      "summary_zh": "这篇论文探讨了在潜在扩散模型中，预测目标的选择对模型性能的影响，特别是在图像被映射到学习到的潜在空间后。研究引入了 JLT (Joint Latent Transformer) 模型，这是一个基于冻结 FLUX.2 VAE 编码的 1.3 亿参数潜在扩散 Transformer，并比较了“干净潜在预测”（clean-latent prediction）与“速度预测”（velocity-prediction DiT）在相同表示、骨干网络和训练设置下的表现。关键创新在于，论文发现尽管在固定腐蚀时间下，干净潜在、噪声和速度这三个变量可以线性转换，但局部高斯分析表明速度回归会继承各向同性的目标协方差下限并放大低方差潜在方向，而干净预测则能抑制它们。实验结果显示，在 ImageNet 256x256 数据集上，JLT-B/1 在分类器自由引导下取得了 2.50 的 FID-50K 分数，与速度预测相比存在显著的性能差距，这表明潜在扩散中的预测目标是依赖于表示的几何选择，而非可互换的代数参数化。",
-      "impact_score": null
+      "summary_zh": "这篇论文探讨了在潜在扩散模型中，预测目标的选择对模型性能的影响，特别是在图像被映射到学习到的潜在空间后。研究引入了 JLT (Joint Latent Transformer) 模型，这是一个基于冻结 FLUX.2 VAE 编码的 1.3 亿参数潜在扩散 Transformer，并比较了“干净潜在预测”（clean-latent prediction）与“速度预测”（velocity-prediction DiT）在相同表示、骨干网络和训练设置下的表现。关键创新在于，论文发现尽管在固定腐蚀时间下，干净潜在、噪声和速度这三个变量可以线性转换，但局部高斯分析表明速度回归会继承各向同性的目标协方差下限并放大低方差潜在方向，而干净预测则能抑制它们。实验结果显示，在 ImageNet 256x256 数据集上，JLT-B/1 在分类器自由引导下取得了 2.50 的 FID-50K 分数，与速度预测相比存在显著的性能差距，这表明潜在扩散中的预测目标是依赖于表示的几何选择，而非可互换的代数参数化。"
     },
     {
       "id": "2605.27095",
@@ -537,8 +959,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27095",
-      "summary_zh": "该论文旨在解决具身控制中行为克隆方法作为离线监督学习器无法获得在线纠正信号的问题，尤其是在仅有演示数据而没有强大固定教师模型的情况下。为此，提出了一种名为 FA-OPD 的对抗性双重在线策略蒸馏方法，该方法通过从演示数据中学习一个基于 Flow Matching (FM) 的教师模型，并与一个轻量级 MLP 学生模型共同训练。FA-OPD 的关键创新在于教师模型提供了两个互补的信号：奖励通道通过学习状态-动作对的专家相似性目标来驱动在线探索和长周期策略优化，而动作通道则在学生访问的状态处提供密集的局部目标以稳定利用。实验结果表明，在六个机器人导航、操作和运动基准测试中，FA-OPD 显著优于现有基线方法，并在噪声或有限演示条件下表现出更强的鲁棒性。",
-      "impact_score": null
+      "summary_zh": "该论文旨在解决具身控制中行为克隆方法作为离线监督学习器无法获得在线纠正信号的问题，尤其是在仅有演示数据而没有强大固定教师模型的情况下。为此，提出了一种名为 FA-OPD 的对抗性双重在线策略蒸馏方法，该方法通过从演示数据中学习一个基于 Flow Matching (FM) 的教师模型，并与一个轻量级 MLP 学生模型共同训练。FA-OPD 的关键创新在于教师模型提供了两个互补的信号：奖励通道通过学习状态-动作对的专家相似性目标来驱动在线探索和长周期策略优化，而动作通道则在学生访问的状态处提供密集的局部目标以稳定利用。实验结果表明，在六个机器人导航、操作和运动基准测试中，FA-OPD 显著优于现有基线方法，并在噪声或有限演示条件下表现出更强的鲁棒性。"
     },
     {
       "id": "2605.27079",
@@ -564,8 +985,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27079",
-      "summary_zh": "针对预训练流策略（flow policies）在离线强化学习中因多步采样导致的优化不稳定及模型崩溃问题，TRQAM 在 Q-Adjoint Matching (QAM) 的基础上引入了基于投影对偶下降的信赖域控制机制。该方法通过在随机最优控制（SOC）动力学中动态优化参数 $\\lambda$，并从理论上证明了路径空间 KL 散度与 $\\lambda$ 之间的闭式函数关系，从而实现对策略偏离程度的精确约束。实验结果显示，TRQAM 在 50 个 OGBench 任务中表现卓越，尤其在离线强化学习任务中达到了 68% 的成功率，相比此前最强基准方法的 46% 提升显著，证明了其在离线及离线转在线（offline-to-online）场景下的稳定性和高效性。",
-      "impact_score": null
+      "summary_zh": "针对预训练流策略（flow policies）在离线强化学习中因多步采样导致的优化不稳定及模型崩溃问题，TRQAM 在 Q-Adjoint Matching (QAM) 的基础上引入了基于投影对偶下降的信赖域控制机制。该方法通过在随机最优控制（SOC）动力学中动态优化参数 $\\lambda$，并从理论上证明了路径空间 KL 散度与 $\\lambda$ 之间的闭式函数关系，从而实现对策略偏离程度的精确约束。实验结果显示，TRQAM 在 50 个 OGBench 任务中表现卓越，尤其在离线强化学习任务中达到了 68% 的成功率，相比此前最强基准方法的 46% 提升显著，证明了其在离线及离线转在线（offline-to-online）场景下的稳定性和高效性。"
     },
     {
       "id": "2605.27066",
@@ -622,8 +1042,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.27028",
-      "summary_zh": "该研究旨在解决在策略蒸馏（On-Policy Distillation, OPD）中出现的“离策略教师衰减”（Off-policy Teacher Decay）问题，即当学生模型生成较长的序列时，教师模型对后续token的评分能力下降。为解决此问题，论文提出了“提前停止回滚”（Early Stopping Rollout, ESR）策略，通过限制回滚生成仅限于前几个响应token，从而避免了教师模型在离策略上下文中性能下降。ESR在不同模型大小、家族、任务和训练方案下均超越了完整回滚OPD的性能，并显著提高了GPU效率和训练稳定性，尤其在跨模型家族场景下表现突出。研究进一步揭示了ESR的“级联对齐”（Cascading Alignment）和“子模式承诺”（Sub-mode Commitment）效应，解释了其优异表现甚至超越教师模型的原因，并指出这种基于位置的token选择策略无法完全通过KL散度和熵信号来解释。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决在策略蒸馏（On-Policy Distillation, OPD）中出现的“离策略教师衰减”（Off-policy Teacher Decay）问题，即当学生模型生成较长的序列时，教师模型对后续token的评分能力下降。为解决此问题，论文提出了“提前停止回滚”（Early Stopping Rollout, ESR）策略，通过限制回滚生成仅限于前几个响应token，从而避免了教师模型在离策略上下文中性能下降。ESR在不同模型大小、家族、任务和训练方案下均超越了完整回滚OPD的性能，并显著提高了GPU效率和训练稳定性，尤其在跨模型家族场景下表现突出。研究进一步揭示了ESR的“级联对齐”（Cascading Alignment）和“子模式承诺”（Sub-mode Commitment）效应，解释了其优异表现甚至超越教师模型的原因，并指出这种基于位置的token选择策略无法完全通过KL散度和熵信号来解释。"
     },
     {
       "id": "2605.27003",
@@ -725,11 +1144,13 @@
       "pdf_url": "https://arxiv.org/pdf/2605.26971v1",
       "abs_url": "https://arxiv.org/abs/2605.26971",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.26971",
-      "summary_zh": "这篇论文旨在解决RLVR数据集中因来源不明导致的谱系混乱问题，并提出了一种名为ATLAS的系统框架，用于追溯RLVR数据集的原子来源。通过ATLAS，研究人员发现绝大多数RLVR数据集是少数共享上游来源的变体，且存在数据污染风险，因此提出并构建了新的RLVR数据集DAPO++。论文还引入了Source-level Counterfactual Attribution (SCA) 原则来衡量样本的边际效用，并基于此设计了一个复合数据集质量分数Q，该分数与下游RLVR性能高度相关。实验结果表明，DAPO++能持续提升Qwen3系列模型在未见基准上的性能，而Q分数能可靠预测下游RLVR训练效果。",
-      "impact_score": null
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "这篇论文旨在解决RLVR数据集中因来源不明导致的谱系混乱问题，并提出了一种名为ATLAS的系统框架，用于追溯RLVR数据集的原子来源。通过ATLAS，研究人员发现绝大多数RLVR数据集是少数共享上游来源的变体，且存在数据污染风险，因此提出并构建了新的RLVR数据集DAPO++。论文还引入了Source-level Counterfactual Attribution (SCA) 原则来衡量样本的边际效用，并基于此设计了一个复合数据集质量分数Q，该分数与下游RLVR性能高度相关。实验结果表明，DAPO++能持续提升Qwen3系列模型在未见基准上的性能，而Q分数能可靠预测下游RLVR训练效果。"
     },
     {
       "id": "2605.26958",
@@ -759,8 +1180,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.26958",
-      "summary_zh": "在开放式长文本生成中，由于缺乏可靠的参考答案和自动评估指标，强化学习面临挑战。现有基于评分标准的LLM-as-a-judge方法通常依赖点式评分，但绝对分数难以校准且区分度不高。为解决此问题，论文提出了Tournament-GRPO，一个群组式奖励框架，通过在相同查询的生成结果之间进行多轮锦标赛，将基于评分标准的LLM判断转化为相对奖励。Tournament-GRPO在群组内比较候选者，累积锦标赛结果并将其归一化为群组式奖励，用于GRPO训练。在Deep Research Bench上的实验表明，Tournament-GRPO始终优于现有奖励设计基线，在总分上比最强基线提高了4.52分，证明了其在开放式长文本生成中提供有效强化学习奖励信号的能力。",
-      "impact_score": null
+      "summary_zh": "在开放式长文本生成中，由于缺乏可靠的参考答案和自动评估指标，强化学习面临挑战。现有基于评分标准的LLM-as-a-judge方法通常依赖点式评分，但绝对分数难以校准且区分度不高。为解决此问题，论文提出了Tournament-GRPO，一个群组式奖励框架，通过在相同查询的生成结果之间进行多轮锦标赛，将基于评分标准的LLM判断转化为相对奖励。Tournament-GRPO在群组内比较候选者，累积锦标赛结果并将其归一化为群组式奖励，用于GRPO训练。在Deep Research Bench上的实验表明，Tournament-GRPO始终优于现有奖励设计基线，在总分上比最强基线提高了4.52分，证明了其在开放式长文本生成中提供有效强化学习奖励信号的能力。"
     },
     {
       "id": "2605.26952",
@@ -815,7 +1235,7 @@
       "keyword_topics": [
         "distillation"
       ],
-      "summary_zh": "针对乌尔都语（Urdu）因资源匮乏和评估标准碎片化导致的研究滞后问题，DunbaaBERT 基于 17GB 的去重乌尔都语语料库，从零开始预训练了一系列 RoBERTa-base 模型。该研究采用了 Byte-BPE 分词技术，并构建了 32k、52k 和 96k 三种不同词表规模的变体，旨在通过内在评估和新闻分类、情感分析、攻击性语言检测等下游任务全面衡量模型性能。实验结果显示，DunbaaBERT 在多个 benchmark 上均能与强大的多语言基准模型相媲美，甚至在较小的训练规模下展现出更高的效率。研究进一步发现词表大小并非越大越好，其中 DunbaaBERT-32k 在性能与效率的平衡上表现最为出色，证明了精心设计的特定语言编码器模型在"
+      "summary_zh": "该研究旨在解决乌尔都语（Urdu）NLP领域资源匮乏和评估分散的问题，通过构建和评估一系列专门的乌尔都语大型语言模型。研究方法是训练了名为 DunbaaBERT 的 RoBERTa-base 模型家族，这些模型从头开始，使用32k、52k和96k token的Byte-BPE词汇表，并在一个去重后的17GB乌尔都语语料库上进行训练。关键创新在于系统地探索了不同词汇表大小对模型性能和效率的影响，并在多个乌尔都语NLP基准测试（如语言可接受性、新闻分类、冒犯性语言检测和情感分析）上进行了全面评估。实验结果表明，DunbaaBERT 模型在与强大的多语言基线模型竞争的同时，保持了良好的效率权衡，并且发现较大的词汇表并不总是能提升下游任务的效果，其中 DunbaaBERT$_{32k}$ 在整体效率方面表现最佳，证明了精心设计的乌尔都语专用编码器模型即使在相对紧凑的模型和训练规模下也能保持高度竞争力。"
     },
     {
       "id": "2605.26934",
@@ -871,8 +1291,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.26924",
-      "summary_zh": "大型语言模型（LLMs）在推理能力方面取得了显著进展，但监督微调（SFT）在数据分布不匹配时可能损害泛化能力。DART（Data Adaptation for Reasoning Tuning）提出将固定SFT数据集的使用视为一个演示转换的优化问题，通过强化学习训练一个映射模型，将原始SFT数据转换为与目标模型分布和学习偏好更匹配的适应性监督数据。然后，利用这些转换后的数据进行SFT，使目标模型能更好地利用外部监督。实验结果表明，DART在多个模型和数据集上提高了泛化能力，比直接强化学习具有更高的训练效率，并使模型超越了标准的SFT方法。",
-      "impact_score": null
+      "summary_zh": "大型语言模型（LLMs）在推理能力方面取得了显著进展，但监督微调（SFT）在数据分布不匹配时可能损害泛化能力。DART（Data Adaptation for Reasoning Tuning）提出将固定SFT数据集的使用视为一个演示转换的优化问题，通过强化学习训练一个映射模型，将原始SFT数据转换为与目标模型分布和学习偏好更匹配的适应性监督数据。然后，利用这些转换后的数据进行SFT，使目标模型能更好地利用外部监督。实验结果表明，DART在多个模型和数据集上提高了泛化能力，比直接强化学习具有更高的训练效率，并使模型超越了标准的SFT方法。"
     },
     {
       "id": "2605.26918",
@@ -936,11 +1355,13 @@
       "pdf_url": "https://arxiv.org/pdf/2605.26893v1",
       "abs_url": "https://arxiv.org/abs/2605.26893",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.26893",
-      "summary_zh": "GeoFaith 提出了一种时空双重视角框架，旨在解决大型语言模型 (LLM) 中 CoT 推理普遍存在的后验合理化问题，即生成看似合理但不忠实的推理链。该方法利用潜在几何结构和熵动态来诊断并强制执行忠实推理，并通过一个可扩展的自举管道将步级标注从 1k 扩展到 20k 样本，覆盖四个领域。GeoFaith 训练了一个 8B 的忠实度检测器，其性能优于 GPT-5，并设计了一个忠实度感知的强化学习框架，共同优化结果正确性、过程忠实度和轨迹一致性。实验结果表明，该方法在忠实度检测和下游推理方面均表现出色，在不牺牲准确性的前提下，生成了更短、更具解释性的推理链。",
-      "impact_score": null
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "GeoFaith 提出了一种时空双重视角框架，旨在解决大型语言模型 (LLM) 中 CoT 推理普遍存在的后验合理化问题，即生成看似合理但不忠实的推理链。该方法利用潜在几何结构和熵动态来诊断并强制执行忠实推理，并通过一个可扩展的自举管道将步级标注从 1k 扩展到 20k 样本，覆盖四个领域。GeoFaith 训练了一个 8B 的忠实度检测器，其性能优于 GPT-5，并设计了一个忠实度感知的强化学习框架，共同优化结果正确性、过程忠实度和轨迹一致性。实验结果表明，该方法在忠实度检测和下游推理方面均表现出色，在不牺牲准确性的前提下，生成了更短、更具解释性的推理链。"
     },
     {
       "id": "2605.26872",
@@ -975,8 +1396,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.26872",
-      "summary_zh": "该研究旨在解决大型语言模型（LLM）训练中，教师模型生成的监督数据并非总是最优的问题，尤其当最强教师的答案不一定最适合学生模型学习时。为此，提出了学生中心答案采样（Student-Centric Answer Sampling, SCAS）框架，该框架根据估计的学生学习成本从已验证的教师答案中进行选择。SCAS通过基于token的梯度分解，推导出一个高效的前向传播代理来衡量学习成本，并以此指导训练过程中的答案选择。在30个教师模型、6个学生基础模型和8个任务上的实验表明，SCAS显著提升了学生模型的性能，证明了在蒸馏过程中，匹配学生当前学习状态的监督数据比单纯追求教师模型强度更为重要。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决大型语言模型（LLM）训练中，教师模型生成的监督数据并非总是最优的问题，尤其当最强教师的答案不一定最适合学生模型学习时。为此，提出了学生中心答案采样（Student-Centric Answer Sampling, SCAS）框架，该框架根据估计的学生学习成本从已验证的教师答案中进行选择。SCAS通过基于token的梯度分解，推导出一个高效的前向传播代理来衡量学习成本，并以此指导训练过程中的答案选择。在30个教师模型、6个学生基础模型和8个任务上的实验表明，SCAS显著提升了学生模型的性能，证明了在蒸馏过程中，匹配学生当前学习状态的监督数据比单纯追求教师模型强度更为重要。"
     },
     {
       "id": "2605.26861",
@@ -1575,9 +1995,12 @@
       "pdf_url": "https://arxiv.org/pdf/2605.26621v1",
       "abs_url": "https://arxiv.org/abs/2605.26621",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.26621",
+      "keyword_topics": [
+        "rl"
+      ],
       "summary_zh": "MedVol-R1 旨在解决 3D 医疗扫描中基于自由文本临床查询进行体素推理分割 (VRS) 的问题，该问题需要医学知识和体素级推理来识别隐式指代区域。现有方法通过专门的分割 token 连接语言和掩码解码，但这种耦合限制了可解释性和泛化性。MedVol-R1 提出了一种基于强化学习的框架，将证据定位与体素描绘明确解耦：一个 LVLM 将临床推理定位到可验证的 2D 证据锚点（关键轴向切片和 2D 边界框），然后由冻结的 MedSAM2 模块将其传播到连贯的 3D 掩码。该模型通过冷启动监督微调和 GRPO 进行训练，并由一个多组件奖励机制指导，该机制鼓励信息丰富的证据选择、准确的 2D 空间定位和跨切片体素一致性，而无需昂贵的思维链标注。在 M3D-Seg benchmark 的 CT-ORG、AbdomenCT-1K 和 KiTS23 数据集上的实验表明，MedVol-R1 持续优于强基线模型并达到了最先进的性能，强化学习相较于纯监督微调带来了显著提升。"
     },
     {
@@ -1677,7 +2100,7 @@
         "Jeongjae Lee",
         "Sanghyeok Choi",
         "Tabitha Edith Lee",
-        "Jongchul Ye",
+        "Jong Chul Ye",
         "Jinkyoo Park"
       ],
       "categories": [
@@ -1685,8 +2108,8 @@
         "cs.AI"
       ],
       "published": "2026-05-26T05:02:49Z",
-      "updated": "2026-05-26T05:02:49Z",
-      "pdf_url": "https://arxiv.org/pdf/2605.26552v1",
+      "updated": "2026-05-27T07:59:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2605.26552v2",
       "abs_url": "https://arxiv.org/abs/2605.26552",
       "topics": [
         "distillation"
@@ -1807,9 +2230,12 @@
       "pdf_url": "https://arxiv.org/pdf/2605.26520v1",
       "abs_url": "https://arxiv.org/abs/2605.26520",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2605.26520",
+      "keyword_topics": [
+        "rl"
+      ],
       "summary_zh": "现有视觉语言模型（VLMs）在多轮视觉推理上表现出浅层且以文本为主的推理轨迹，难以应对复杂视觉挑战。InterSketch 提出一种交错推理模型，通过自校正视觉草图和分步奖励机制增强视觉-文本思维链（VT-CoT）能力，以实现类似人类的长程视觉推理。该模型动态生成中间视觉草图并与文本推理交错，有效结合感知和逻辑推理。具体而言，在冷启动阶段，模型利用合成的高质量交错 VT-CoT 数据集和反思机制进行多轮交错推理和自校正；在强化学习阶段，设计分步奖励机制缓解长程推理中稀疏奖励信号的问题。InterSketch 在视觉推理基准测试上表现出色，甚至超越了 Gemini-3-Pro 等专有模型。"
     },
     {
