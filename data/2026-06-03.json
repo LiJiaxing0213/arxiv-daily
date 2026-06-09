@@ -1,6 +1,6 @@
 {
   "date": "2026-06-03",
-  "generated_at": "2026-06-08T06:20:38.009489+00:00",
+  "generated_at": "2026-06-09T05:50:55.827849+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -1085,6 +1085,7 @@
       "abstract": "Generative models -- diffusion and flow matching -- are increasingly used to solve partial differential equation (PDE) inverse problems, enforcing the governing physics as a \\emph{hard constraint} (via projection or guidance) and reporting the resulting samples as a Bayesian posterior with calibrated uncertainty. We show that this widely adopted recipe samples the wrong distribution. Conditioning a generative prior on a hard PDE constraint is conditioning on a measure-zero manifold -- an operation that is intrinsically ambiguous (the Borel--Kolmogorov paradox) and whose physically correct resolution, the small-residual-noise limit, carries a co-area (Fixman) Jacobian factor $[det(JJ^{\\top})]^{-1/2}$ that projection- and guidance-based methods silently omit. We make the bias precise, show that it grows with the heterogeneity of the constraint sensitivity, and validate it on controlled problems against an \\emph{i.i.d.} ground-truth arbiter. The omitted factor is not a second-order detail: removing it inflates the posterior error to $20\\times$ the sampling-noise floor; minimal-displacement projection (as in PCFM) is biased at $9\\times$ the floor; and a naive scalar reweighting does not fix it. We introduce \\textbf{CoCoS}, a measure-aware constrained sampler that targets the correct co-area posterior, and show that it matches the gold-standard posterior to within sampling noise. Our results imply that ``satisfying the physics'' is not the same as ``sampling the posterior,'' and give a principled correction for uncertainty-aware scientific inference.",
       "authors": [
         "Jian Xu",
+        "Yanning Wu",
         "Delu Zeng",
         "John Paisley",
         "Qibin Zhao"
@@ -1093,8 +1094,8 @@
         "cs.LG"
       ],
       "published": "2026-06-03T12:30:03Z",
-      "updated": "2026-06-04T07:47:15Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.04804v2",
+      "updated": "2026-06-07T13:30:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.04804v3",
       "abs_url": "https://arxiv.org/abs/2606.04804",
       "topics": [
         "rl"
@@ -1399,8 +1400,8 @@
         "cs.AI"
       ],
       "published": "2026-06-03T09:01:24Z",
-      "updated": "2026-06-03T09:01:24Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.04627v1",
+      "updated": "2026-06-06T08:34:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.04627v2",
       "abs_url": "https://arxiv.org/abs/2606.04627",
       "topics": [
         "world-model"
@@ -1542,8 +1543,8 @@
         "cs.NI"
       ],
       "published": "2026-06-03T08:16:14Z",
-      "updated": "2026-06-03T08:16:14Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.04581v1",
+      "updated": "2026-06-07T06:19:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.04581v2",
       "abs_url": "https://arxiv.org/abs/2606.04581",
       "topics": [
         "other"
@@ -1974,6 +1975,35 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.04396",
       "summary_zh": "该研究旨在解决扩散大语言模型（dLLMs）在强化学习中对去噪轨迹信号利用不足的问题，现有方法要么是计算成本低的扁平式rollout但信号弱，要么是计算成本高的树状rollout但信号精细。为此，论文提出了CAPR（Cached-Amortized Path Refinement）算法，通过将去噪轨迹总结为紧凑的路径状态，利用缓存的轨迹状态生成廉价的同级延续，并训练一个块级价值头进行局部块级监督。CAPR的关键创新在于，它在块级去掩码调度下，记录路径状态和块进度特征，并根据每个块中揭示的token重新分配最终结果奖励，从而将稀疏奖励转化为块级PPO权重，实现了类似树搜索的粒度监督，同时避免了完整的树扩展。实验结果表明，在4x4数独、Countdown、GSM8K和Math500等任务上，CAPR在256和512 token预算下，为RL调优的dLLMs设定了新的SOTA，其rollout生成成本仅为扁平式rollout的约0.75倍，树状rollout的0.6倍，并在数独任务上以不到三分之一的每步计算成本达到了最强树状基线的性能。"
+    },
+    {
+      "id": "2606.06527",
+      "title": "Characterizing the Impact of NVFP4 Quantization for Low-Power Edge AI Deployment",
+      "abstract": "Energy-efficient neural-network inference at the edge requires reducing arithmetic cost, memory traffic, computation energy, and storage overhead while maintaining acceptable accuracy. This paper presents an ablation-focused study of NVFP4 quantization for edge-efficient neural networks, with emphasis on the relationship between activation precision, weight precision, block-size scaling, retraining, and model accuracy. NVFP4 activations are represented using 4-bit FP4 data, an FP8 block scale, and an FP32 tensor scale, enabling ultra-low precision inference while preserving activation dynamic range. A block-size ablation over six edge-efficient models shows that block size B = 16 provides a practical accuracy/storage trade-off, requiring only 4.5078 bits per input for N = 4096. A weight precision ablation further shows that FP8 and FP16 weights provide only modest gains over FP4 weights under the same NVFP4 activation path, suggesting that activation quantization and scaling dominate much of the accuracy behavior. To isolate the benefit of the NVFP4 data type, this work compares conventional unscaled FP4 activation inference and NVFP4 activation inference with and without retraining. The results show that conventional FP4 inference collapses accuracy for most compact models, while NVFP4 without retraining already recovers substantial accuracy by restoring activation dynamic range through FP8 block scaling and FP32 tensor scaling. When combined with retraining, NVFP4 achieves the best accuracy across the evaluated models, demonstrating the effectiveness of scaling-aware FP4 (NVFP4) inference. These findings provide general design guidance for hardware-software co-design of low power edge inference across a broad range of accelerator platforms, including GPUs, Tensor Cores, FPGAs, domain-specific AI accelerators, near-memory computing systems, and emerging edge-computing architectures.",
+      "authors": [
+        "Ovishake Sen",
+        "Venkata Nithin Kamineni",
+        "Daniel Lobo",
+        "Swarup Bhunia",
+        "Rickard Ewetz",
+        "Baibhab Chatterjee"
+      ],
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "published": "2026-06-03T03:09:59Z",
+      "updated": "2026-06-08T03:25:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.06527v2",
+      "abs_url": "https://arxiv.org/abs/2606.06527",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.06527",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在解决边缘AI部署中神经网络推理的能效问题，通过深入分析NVFP4量化对模型精度的影响，以在降低计算成本、内存流量和存储开销的同时保持可接受的精度。论文提出了一种名为NVFP4的量化方法，它使用4比特FP4数据表示激活值，并结合FP8块尺度和FP32张量尺度来保留激活的动态范围，从而实现超低精度推理。通过对六个边缘高效模型的消融研究，发现块大小B=16在精度和存储之间提供了良好的权衡，且NVFP4激活量化和尺度选择是影响精度的主要因素，即使采用FP8或FP16权重，精度提升也有限。实验结果表明，与传统的FP4推理相比，NVFP4即使不进行重新训练也能显著恢复精度，而结合重新训练后，NVFP4在所有评估模型上均取得了最佳精度，证明了其在低功耗边缘推理硬件-软件协同设计中的有效性。"
     },
     {
       "id": "2606.04389",

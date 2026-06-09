@@ -1,6 +1,6 @@
 {
   "date": "2026-06-05",
-  "generated_at": "2026-06-08T06:20:38.003689+00:00",
+  "generated_at": "2026-06-09T05:50:55.822643+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,197 @@
     }
   },
   "papers": [
+    {
+      "id": "2606.07878",
+      "title": "Still: Amortized KV Cache Compaction in a Single Forward Pass",
+      "abstract": "The KV cache is the memory bottleneck of long-horizon language model deployment. Practically, a deployable compactor must be lightweight enough to call during inference, expressive enough to preserve context under constraint, and reusable across a trajectory. Existing compaction methods satisfy only part of this requirement: selection methods are lightweight but subset-bound, while synthesis methods are expressive but rely on per-context optimization. Here we introduce Still, a small per-layer Perceiver trained once against a frozen base model that produces compact keys and values in a single forward pass. On Qwen and Gemma models, Still occupies the favorable side of the speed--quality frontier across compression ratios from $8\\times$ to $200\\times$ and context lengths from $8$k to $128$k. On the long-context RULER grid, Still exceeds the strongest baseline by 8--22 points. The same compact cache also supports free-form summarization, preserving most of the full-context gain on HELMET and winning a pairwise LongBench summarization comparison against KV-Distill. Because compaction is a forward pass, Still can be applied iteratively, entering a long-horizon regime unavailable to per-context methods. We show that amortization makes long-context cache compaction tractable, and synthesis makes its compact state useful at extreme compression.",
+      "authors": [
+        "Charles O'Neill",
+        "Alex Sandomirsky",
+        "Harry Partridge",
+        "Mudith Jayasekara",
+        "Max Kirkby"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-05T22:21:23Z",
+      "updated": "2026-06-05T22:21:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07878v1",
+      "abs_url": "https://arxiv.org/abs/2606.07878",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07878",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "这篇论文提出了一种名为 Still 的 KV 缓存压缩方法，旨在解决长序列语言模型部署中 KV 缓存的内存瓶颈问题。Still 通过训练一个轻量级的 Perceiver 模型，在单次前向传播中生成压缩的键值对，从而在保持上下文信息的同时实现高效压缩。其关键创新在于将压缩过程转化为一次性的前向计算，避免了现有方法中昂贵的逐上下文优化，并能实现迭代应用。实验结果表明，在 Qwen 和 Gemma 模型上，Still 在 8x 到 200x 的压缩比和 8k 到 128k 的上下文长度下，显著优于现有基线，并在 RULER grid 上超越最强基线 8-22 分，同时在 HELMET 和 LongBench 摘要任务中保持了良好的性能。"
+    },
+    {
+      "id": "2606.07857",
+      "title": "Model Multiplicity for Adversarial Detection in Small Language Model Training on Edge Devices",
+      "abstract": "The rise of edge-based machine learning has enabled distributed adaptation of language models across mobile and IoT devices, offering privacy preservation and real-time responsiveness. However, distributed fine-tuning of language models on untrusted or heterogeneous edge nodes introduces new vulnerabilities. Compromised or unreliable devices can inject poisoned updates, leading to stealthy model manipulation or convergence degradation. Classical defenses such as robust aggregation or temporal anomaly detection operate on a single global model and are therefore limited in detecting coordinated or persistent poisoning. This work proposes a new system-level defense based on model multiplicity. Instead of maintaining one global model, the system rotates or concurrently trains multiple small language models (e.g., DistilGPT-2), each updated by independently sampled subsets of edge nodes. These models evolve under distinct training trajectories, creating multiple independent views of the same distributed population. Divergence between models quantified through gradient similarity, loss evolution, or parameter variance serves as a signal of anomalous or adversarial behavior. When one model deviates significantly from the ensemble mean, the system flags its contributing nodes for isolation or re-weighting. We implement this framework and evaluate it on edge-scale simulations of Small Language Model (SLM) training under varying heterogeneity and attack conditions. Results show that model multiplicity enables earlier and more reliable detection of poisoning compared to classical single-model defenses such as Flanders and Robust methods. Our findings demonstrate that diversity in model evolution can serve as a practical and effective defense mechanism for secure distributed learning on resource-constrained edge devices.",
+      "authors": [
+        "Stefan Behfar",
+        "Richard Mortier"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-06-05T21:38:07Z",
+      "updated": "2026-06-05T21:38:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07857v1",
+      "abs_url": "https://arxiv.org/abs/2606.07857",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07857",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在解决边缘设备上分布式小语言模型（SLM）训练中，恶意节点注入中毒更新导致模型被操纵或收敛退化的问题。它提出了一种基于模型多样性（model multiplicity）的系统级防御方法，通过同时训练或轮换多个SLM，每个模型由独立的边缘节点子集更新，从而创建多个独立的训练轨迹。关键创新点在于利用这些模型之间在梯度相似性、损失演变或参数方差上的差异作为异常或对抗行为的信号，当某个模型显著偏离整体平均时，系统会标记其贡献节点进行隔离或重新加权。实验在边缘规模的SLM训练模拟中进行，结果表明，与Flanders和Robust等经典的单模型防御方法相比，模型多样性能够更早、更可靠地检测到中毒攻击，证明了模型演化多样性在资源受限边缘设备上安全分布式学习的实用性和有效性。"
+    },
+    {
+      "id": "2606.07845",
+      "title": "GRPO Does Not Close the Multi-Agent Coordination Gap",
+      "abstract": "We measure how well current large language models coordinate as multiple agents sharing a common resource, using the dining philosophers problem as a clean test bed. Across 630 episodes spanning seven models and three philosopher counts, four frontier closed-source systems reach mean reward 0.45 to 0.87 and Mistral-Small 24B reaches 0.83 to 0.99, while Qwen3-14B reaches 0.13 to 0.35. We then ask whether group relative policy optimization (GRPO) on rollouts from the task itself can close the gap and find that it cannot: a Welch's t-test on per-episode reward at five philosophers gives p = 0.66 and a Hedges' g of -0.11, with no statistically significant change at ten or fifteen philosophers either. Two further observations qualify the result. The training reward of both 8B and 14B runs peaked at step nine and then declined, so the default saved checkpoint at step 15 is strictly worse than several earlier ones. The four-term reward we use admits a degenerate maximum at zero actions, which DeepSeek-R1-Distill-Qwen-7B and Mistral-Small 24B at five philosophers both inhabit, with mean reward 1.0 and 0.83 respectively at zero meals. The bottleneck for an open-weight 14B model on multi-agent coordination is not training compute but training methodology: reward shaping that does not collapse to a no-action maximum, checkpoint discipline that does not depend on the final step, and curriculum across problem scales.",
+      "authors": [
+        "Najmul Hasan",
+        "Prashanth BusiReddyGari"
+      ],
+      "categories": [
+        "cs.MA",
+        "cs.LG"
+      ],
+      "published": "2026-06-05T21:13:14Z",
+      "updated": "2026-06-05T21:13:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07845v1",
+      "abs_url": "https://arxiv.org/abs/2606.07845",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07845",
+      "keyword_topics": [
+        "rl",
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在评估当前大型语言模型（LLMs）在多智能体共享资源协调任务中的表现，并探究群组相对策略优化（GRPO）能否弥补其协调能力上的不足，以“哲学家就餐问题”作为测试基准。实验结果显示，在七个模型和三种哲学家数量的测试中，前沿闭源系统平均奖励在0.45到0.87之间，Mistral-Small 24B达到0.83到0.99，而Qwen3-14B仅为0.13到0.35。进一步应用GRPO后发现，它未能显著提升模型的协调能力，在五位哲学家的场景下，Welch's t-test的p值为0.66，Hedges' g为-0.11，表明GRPO未能有效缩小差距。研究还发现，训练奖励在早期达到峰值后下降，且某些模型通过采取零行动达到虚假的最高奖励，这表明开放权重模型在多智能体协调方面的瓶颈不在于计算资源，而在于训练方法，包括奖励塑形、检查点管理和跨问题规模的课程设计。"
+    },
+    {
+      "id": "2606.07810",
+      "title": "SLMJury: Can Small Language Models Judge as Well as Large Ones?",
+      "abstract": "Large language models (LLMs) are widely used as judges for evaluating model outputs, but their high cost, latency, and opacity limit scalability. We introduce SLMJury, a framework for evaluating small language models (SLMs) as judges across two paradigms: closed-ended binary correctness and open-ended quality scoring. We benchmark 16 SLM judges (0.6B-14B parameters) from four model families across ten benchmarks: eight closed-ended tasks spanning mathematical, scientific, and general reasoning (N=64,824 judgments per configuration), plus SummEval and MT-Bench for summarization and conversational scoring. We formalize judging as a budget-conditioned function and study five dimensions. Four findings emerge. (1) The overthinking effect is domain-dependent: for most judges quick 10-token verdicts match or beat extended reasoning on mathematical judging (by 2-7% where they help), while reasoning wins on general tasks by up to 23%. (2) Domain generalization separates model families, with math-to-general accuracy gaps ranging from under 10% to nearly 40%. (3) Closed-ended and open-ended judging draw on different capabilities: the best binary judge (Phi-4) drops to rank 9 on MT-Bench, while reasoning-trained models invert this ordering. (4) Under the Reflect-Critique-Refine (RCR) debate protocol, multi-agent debate degrades accuracy across all tested configurations, whereas the top judges resist six adversarial personas with <=0.55% variance. Reliable automated evaluation does not require large proprietary models, yet no single SLM dominates. The leaderboard is available at https://anishh15.github.io/SLMJury/, and our framework code and pip package are publicly available at https://github.com/anishh15/SLMJury and https://pypi.org/project/slmjury/.",
+      "authors": [
+        "Anish Laddha",
+        "Nitesh Pradhan",
+        "Gaurav Srivastava"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-05T19:38:15Z",
+      "updated": "2026-06-05T19:38:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07810v1",
+      "abs_url": "https://arxiv.org/abs/2606.07810",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07810",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在探究小型语言模型（SLMs）能否像大型语言模型（LLMs）一样胜任评估任务，以解决LLMs作为评判者时面临的成本高、延迟大和不透明等问题。研究提出了SLMJury框架，评估了16个SLM（0.6B-14B参数）在封闭式二元正确性判断和开放式质量评分两种范式下的表现，涵盖了十个基准测试，包括数学、科学、通用推理任务以及SummEval和MT-Bench。关键发现包括：过度思考效应具有领域依赖性，快速判断在数学任务中表现更好，而推理在通用任务中更优；模型家族的领域泛化能力差异显著；封闭式和开放式判断依赖不同的能力，最佳二元判断模型在MT-Bench上表现不佳；多智能体辩论（RCR协议）反而降低了准确性，但顶级评判者能抵抗对抗性角色。研究表明，可靠的自动化评估不一定需要大型专有模型，但目前没有单一SLM能全面超越所有任务。"
+    },
+    {
+      "id": "2606.07801",
+      "title": "Improving Multimodal Reasoning via Worst Dimension Optimization",
+      "abstract": "Multimodal reasoning requires a path that retains integrity over a wide range of constraints, from visual grounding to logic consistency. However, the current Process Reward Models focus on heuristically defined rewards that equally weigh these factors, which may lead to the concealment of individual dimension failures by the dominating factors, without guaranteeing the validity of the reasoning process in general.",
+      "authors": [
+        "Haocheng Lv",
+        "Huaping Zhang",
+        "Qiuchi Li",
+        "Lei Li",
+        "Chunxiao Gao"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-05T19:32:23Z",
+      "updated": "2026-06-05T19:32:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07801v1",
+      "abs_url": "https://arxiv.org/abs/2606.07801",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07801",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "多模态推理面临视觉基础和逻辑一致性等多方面约束，现有过程奖励模型（Process Reward Models）通常对这些因素进行启发式等权衡量，导致某些维度上的失败可能被主导因素掩盖，无法保证推理过程的整体有效性。为解决此问题，论文提出了一种名为“最差维度优化”（Worst Dimension Optimization, WDO）的新方法，该方法通过识别并优先改进推理过程中表现最差的维度来提升多模态推理能力。WDO 的核心创新在于其动态调整奖励权重，聚焦于弱点而非平均表现，确保每个关键约束都得到充分满足。实验结果表明，WDO 在多个多模态推理基准测试上显著优于现有方法，有效提升了模型在复杂推理任务中的鲁棒性和准确性。"
+    },
+    {
+      "id": "2606.07778",
+      "title": "Unlocking Latent Value: Taxonomy-Guided Recovery of High-Performing Data from Low-Tier Web Corpora",
+      "abstract": "Dominant web data curation pipelines for pretraining collapse document quality into a single composite score, systematically missing high-value content along dimensions the scorer underweights. We present a taxonomy-driven framework that recovers this value by filtering along semantically meaningful dimensions that composite scores fail to capture. First, building on the ESSENTIAL-WEB taxonomy, we introduce two novel dimensions: timeliness and cultural specificity, both of which show low pairwise NMI with existing ones. We annotate 14M documents using Qwen2.5 32B and distill into a lightweight 0.5B model. To enable rapid corpus-wide annotation, we additionally train a 73M multi-task MLP on E5 embeddings, achieving 50x inference throughput. Second, to navigate the combinatorial explosion of filter configurations, we introduce a compute-efficient two-pass framework: Pass 1 identifies the strongest dimension signals at small scale; Pass 2 constructs and evaluates conjunctive and disjunctive compound filters from the top performers - identifying high-performing configurations at a fraction of full scaling-law cost. Applying the selected filters to deprioritized web data, taxonomy-filtered subsets outperform their unfiltered baselines and even surpass the highest-quality tier. On mid-tier data, our best filter improves over its unfiltered baseline by 12.1% on reasoning, 9.5% on coding, and 2.0% on knowledge benchmarks, exceeding unfiltered top-tier data by 6.7% on reasoning and 13.7% on coding. Furthermore, filtered data from two tiers below the typical production threshold improves by 22.3% on reasoning and 19.5% on coding over its unfiltered baseline, surpassing top-tier data on coding benchmarks. These results establish that vast latent value remains locked in deprioritized web data, and that multi-dimensional taxonomy filtering is a principled, compute-efficient key to unlocking it.",
+      "authors": [
+        "Neeraj Varshney",
+        "Sanket Lokegaonkar",
+        "Nasser Zalmout",
+        "Qingyu Yin",
+        "Priyanka Nigam",
+        "Bing Yin"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-05T18:43:14Z",
+      "updated": "2026-06-05T18:43:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07778v1",
+      "abs_url": "https://arxiv.org/abs/2606.07778",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07778",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "现有预训练数据筛选方法将文档质量简化为单一分数，导致高价值内容被忽略。该研究提出一个分类法驱动的框架，通过沿语义维度过滤来恢复这些被低估的价值。首先，在ESSENTIAL-WEB分类法基础上引入了“及时性”和“文化特异性”两个新维度，并使用Qwen2.5 32B模型标注了14M文档，然后蒸馏成一个轻量级0.5B模型，并训练了一个73M多任务MLP模型以实现快速语料库级标注。其次，为应对过滤配置的组合爆炸问题，设计了一个计算高效的两阶段框架，在小规模数据上识别最强的维度信号，然后构建并评估复合过滤器。实验结果表明，该方法从被低优先级处理的网络数据中筛选出的子集，在推理、编码和知识基准测试上显著优于未过滤基线，甚至超越了最高质量层的数据，证明了多维度分类法过滤是解锁被忽视网络数据中巨大潜在价值的有效且计算高效的关键。"
+    },
+    {
+      "id": "2606.07760",
+      "title": "scCBGM: Interpretable Single-Cell Counterfactual Editing",
+      "abstract": "Understanding cellular phenotypes and how they respond to perturbations is critical for disease biology and therapeutic design. Single-cell RNA sequencing enables characterization at cellular resolution, yet the combinatorial space of conditions makes exhaustive experimental mapping infeasible. We introduce single-cell Concept Bottleneck Generative Models (scCBGM), a framework for interpretable and precise counterfactual editing of individual cells. scCBGM adapts concept bottleneck architectures for single-cell data through decoder skip connections and a cross-covariance penalty that promotes disentanglement without dimensional constraints. We extend the framework to flow matching models, enabling concept-guided editing in both encoding-decoding and generation regimes. To enable rigorous evaluation, we develop a synthetic benchmark with ground-truth counterfactuals. Across multiple real datasets, scCBGM demonstrates superior performance in combinatorial generalization and counterfactual prediction, supported by cell-level validation on synthetic data and population-level benchmarks on real datasets.",
+      "authors": [
+        "Alma Andersson",
+        "Aya Abdelsalam Ismail",
+        "Edward De Brouwer",
+        "Doron Haviv",
+        "Tommaso Biancalani",
+        "Kyunghyun Cho",
+        "Gabriele Scalia",
+        "Aïcha BenTaieb",
+        "Hector Corrada Bravo"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-05T18:17:37Z",
+      "updated": "2026-06-05T18:17:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07760v1",
+      "abs_url": "https://arxiv.org/abs/2606.07760",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07760",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决单细胞RNA测序数据中，由于实验条件组合爆炸导致无法穷尽探索细胞表型对扰动响应的问题，并实现对单个细胞的可解释和精确反事实编辑。为此，提出了单细胞概念瓶颈生成模型（scCBGM），通过在解码器中引入跳跃连接和交叉协方差惩罚，在不限制维度的情况下促进概念解耦，从而将概念瓶颈架构应用于单细胞数据。该框架进一步扩展到流匹配模型，支持在编码-解码和生成两种模式下进行概念引导的编辑。为了严格评估，构建了一个包含真实反事实的合成基准，并在多个真实数据集上，scCBGM在组合泛化和反事实预测方面表现出卓越性能，并通过细胞水平的合成数据验证和群体水平的真实数据集基准测试得到支持。"
+    },
     {
       "id": "2606.07512",
       "title": "MemDreamer: Decoupling Perception and Reasoning for Long Video Understanding via Hierarchical Graph Memory and Agentic Retrieval Mechanism",
@@ -85,8 +276,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07508",
-      "summary_zh": "该论文提出 StreamForce，一个用于流式视频生成的框架，通过连续力输入实现物理接地控制。与以往为不同力类型训练独立模型、假设固定力或依赖非因果处理的视频模型不同，StreamForce 是一个因果且统一的模型，能即时且连贯地响应局部、全局和时变的力。为实现此目标，研究者设计了一种统一的力表示作为控制信号，并开发了一个用于力可控视频生成的蒸馏管道，该模型结合了自回归效率和力响应性，保持了稳定的光度学和动态真实感。StreamForce 在单个 GPU 上运行速度高达 16.6 FPS，在力依从性和运动真实感方面均达到了最先进的性能。",
-      "impact_score": null
+      "summary_zh": "该论文提出 StreamForce，一个用于流式视频生成的框架，通过连续力输入实现物理接地控制。与以往为不同力类型训练独立模型、假设固定力或依赖非因果处理的视频模型不同，StreamForce 是一个因果且统一的模型，能即时且连贯地响应局部、全局和时变的力。为实现此目标，研究者设计了一种统一的力表示作为控制信号，并开发了一个用于力可控视频生成的蒸馏管道，该模型结合了自回归效率和力响应性，保持了稳定的光度学和动态真实感。StreamForce 在单个 GPU 上运行速度高达 16.6 FPS，在力依从性和运动真实感方面均达到了最先进的性能。"
     },
     {
       "id": "2606.07474",
@@ -140,6 +330,35 @@
       "summary_zh": "该论文旨在解决从间接观测数据中推断离散、组合式潜在结构的问题，传统方法如期望最大化无法处理大规模空间，而变分自编码器常生成非真实潜在状态。为此，提出了一种名为 GReinSS 的策略学习框架，它利用动态重标定的奖励机制来学习最大化观测数据似然的潜在状态分布。GReinSS 的关键创新在于其动态策略梯度方法，能够有效地重构模拟的潜在集合和潜在图，并在这些任务上超越了现有的策略学习和生成模型基线。实验结果表明，GReinSS 还能从真实的短读 RNA 测序数据中重构出与正交长读测序结果更匹配的异构体，优于标准 RSEM 算法，证明了其在实际应用中的有效性和优越性。"
     },
     {
+      "id": "2606.07718",
+      "title": "A case study of evaluating AI agents on a neuroscience data-to-discovery pipeline",
+      "abstract": "Agentic AI tools offer a promising path to automating software development bottlenecks in scientific research pipelines, particularly for stages that take domain experts days to months to build, where scientists care about correctness and robustness, not implementation details. We present an empirical study of general-purpose coding agents on a fly optogenetics data-to-discovery pipeline. We assess agents on tasks substantially larger than existing benchmarks, datasets orders of magnitude bigger, and evaluation criteria grounded in domain expert standards. We show that agents can solve several individual pipeline stages, suggesting stage-level automation is tractable. By analyzing agents' code iterations, we show that they struggle most when there is not a pre-defined criterion to iterate on, and they must instead use their scientific judgment to assess their current solution, a key open challenge. Mirroring scientific practice, they sometimes attempt visual inspection of intermediate outputs for self-evaluation, but largely fail to interpret what they see or act on it appropriately. Solving the end-to-end pipeline correctly requires stringing together successes across all pipeline stages, and this is beyond agents' current abilities. We identify challenges largely absent from existing benchmarks, including computational resource management and generalization to large held-out data collections. Finally, we distill principles for constructing scientific tasks and rigorous evaluation criteria for open-ended problems.",
+      "authors": [
+        "Kai A. Horstmann",
+        "Ethan Lin",
+        "Alice A. Robie",
+        "Jennifer J. Sun",
+        "Kristin Branson"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-06-05T15:38:18Z",
+      "updated": "2026-06-05T15:38:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07718v1",
+      "abs_url": "https://arxiv.org/abs/2606.07718",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07718",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在评估通用编码AI智能体在神经科学数据处理流程中的表现，以期自动化科学研究中耗时且复杂的软件开发环节。研究人员通过让AI智能体处理果蝇光遗传学数据到发现的完整流程，评估其在远超现有基准测试规模的任务、数量级更大的数据集以及基于领域专家标准的评估体系下的能力。结果显示，AI智能体能够解决流程中的多个独立阶段，表明阶段级自动化是可行的，但它们在缺乏预定义迭代标准、需要运用科学判断进行自我评估时表现不佳，尽管它们尝试进行视觉检查，但难以正确解释和利用观察结果。研究揭示了现有基准测试中普遍缺失的挑战，如计算资源管理和对大型未见数据集的泛化能力，并提炼了构建科学任务和严格评估开放式问题的原则。"
+    },
+    {
       "id": "2606.07367",
       "title": "Self-evolving LLM agents with in-distribution Optimization",
       "abstract": "Large Language Models (LLMs) have recently emerged as powerful controllers for interactive agents in complex environments, yet training them to perform reliable long-horizon decision making remains a fundamental challenge. A key difficulty lies in credit assignment: agents often receive delayed rewards only at the end of episodes. In this paper, we propose Q-Evolve, a self-evolving framework for LLM agents that unifies automatic process-reward labeling and policy learning within a principled in-distribution reinforcement learning paradigm. In each evolving iteration, our method learns an in-distribution critic from a hybrid off-policy dataset that combines expert demonstrations with agent-generated trajectories, stabilizing Bellman backups in sparse-reward settings via a weighted Implicit Q-Learning objective. The learned value function is then used to derive step-wise process rewards through advantage estimation, enabling dense and reliable supervision without environment backtracking or human annotation. Leveraging these signals, we perform behavior-proximal policy optimization that evolves the agent over the data used for process reward labeling, allowing iterative self-improvement without exacerbating distribution shift. We evaluate our method on AlfWorld, WebShop, and ScienceWorld, showing Q-Evolve outperforms strong baselines in sample efficiency, robustness, and overall task performance. Our results demonstrate that stable agent self-evolution is achievable through the co-evolution of process-level supervision and policy, both grounded within a shared in-distribution learning loop.",
@@ -160,8 +379,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07367",
-      "summary_zh": "该研究旨在解决大型语言模型（LLM）代理在复杂环境中进行长期决策时面临的信用分配难题，即延迟奖励问题。为此，论文提出了Q-Evolve框架，该框架通过统一的in-distribution强化学习范式，实现了自动过程奖励标注和策略学习的自演进。其核心创新在于，每一轮演进都从混合离策略数据集中学习一个in-distribution critic，并利用加权Implicit Q-Learning目标稳定稀疏奖励设置下的Bellman备份，进而通过优势估计生成密集的、无需人工标注的逐步过程奖励。在此基础上，Q-Evolve进行行为近似策略优化，使代理在用于过程奖励标注的数据上迭代自改进，有效避免了分布偏移。在AlfWorld、WebShop和ScienceWorld等基准测试中，Q-Evolve在样本效率、鲁棒性和整体任务性能上均超越了现有强基线，证明了通过过程级监督和策略的共同演进，可以实现稳定的代理自演进。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决大型语言模型（LLM）代理在复杂环境中进行长期决策时面临的信用分配难题，即延迟奖励问题。为此，论文提出了Q-Evolve框架，该框架通过统一的in-distribution强化学习范式，实现了自动过程奖励标注和策略学习的自演进。其核心创新在于，每一轮演进都从混合离策略数据集中学习一个in-distribution critic，并利用加权Implicit Q-Learning目标稳定稀疏奖励设置下的Bellman备份，进而通过优势估计生成密集的、无需人工标注的逐步过程奖励。在此基础上，Q-Evolve进行行为近似策略优化，使代理在用于过程奖励标注的数据上迭代自改进，有效避免了分布偏移。在AlfWorld、WebShop和ScienceWorld等基准测试中，Q-Evolve在样本效率、鲁棒性和整体任务性能上均超越了现有强基线，证明了通过过程级监督和策略的共同演进，可以实现稳定的代理自演进。"
     },
     {
       "id": "2606.07366",
@@ -222,8 +440,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07326",
-      "summary_zh": "该论文旨在解决交互式世界建模中通用可控性不足的问题，特别是在具身自我中心模拟方面。为此，提出了AnchorWorld框架，通过将3D人体运动作为主要交互模式，并引入辅助训练监督来增强交互完整性，该监督利用与智能体第一人称视角分离的外源视角，以弥补自我中心视角中不可见或截断的身体部位，从而实现更鲁棒的人-世界交互空间定位。此外，论文还提出了一种通过在统一世界坐标系中定义锚点视图并结合文本描述来定制自演化世界的机制。实验结果表明，AnchorWorld显著优于现有基线模型，并且其定制方案展现出良好的时空几何一致性并严格遵循预设的演化动态。",
-      "impact_score": null
+      "summary_zh": "该论文旨在解决交互式世界建模中通用可控性不足的问题，特别是在具身自我中心模拟方面。为此，提出了AnchorWorld框架，通过将3D人体运动作为主要交互模式，并引入辅助训练监督来增强交互完整性，该监督利用与智能体第一人称视角分离的外源视角，以弥补自我中心视角中不可见或截断的身体部位，从而实现更鲁棒的人-世界交互空间定位。此外，论文还提出了一种通过在统一世界坐标系中定义锚点视图并结合文本描述来定制自演化世界的机制。实验结果表明，AnchorWorld显著优于现有基线模型，并且其定制方案展现出良好的时空几何一致性并严格遵循预设的演化动态。"
     },
     {
       "id": "2606.07311",
@@ -275,8 +492,43 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07303",
-      "summary_zh": "该论文提出了一种表征涌现的自举理论（Bootstrap Theory of Representational Emergence, TBER），旨在解决现有表征学习研究多关注表征优化而非新表征何时必要的问题。TBER认为，当现有表征在解释观察结果的组织或转换方面变得不足时，新的表征就会涌现，这是一种由解释不足驱动的创新。该理论通过五个阶段（稳定观察、异常检测、解释不足识别、表征涌现、临时稳定）形式化了这一过程，并强调解释不足是表征转换的积极信号。研究结果表明，TBER不仅适用于表征学习、基础模型和世界模型等AI领域，也适用于自适应生物系统和科学发现，为未来AI系统设计检测自身内部表征解释极限的机制提供了新思路。",
-      "impact_score": null
+      "summary_zh": "该论文提出了一种表征涌现的自举理论（Bootstrap Theory of Representational Emergence, TBER），旨在解决现有表征学习研究多关注表征优化而非新表征何时必要的问题。TBER认为，当现有表征在解释观察结果的组织或转换方面变得不足时，新的表征就会涌现，这是一种由解释不足驱动的创新。该理论通过五个阶段（稳定观察、异常检测、解释不足识别、表征涌现、临时稳定）形式化了这一过程，并强调解释不足是表征转换的积极信号。研究结果表明，TBER不仅适用于表征学习、基础模型和世界模型等AI领域，也适用于自适应生物系统和科学发现，为未来AI系统设计检测自身内部表征解释极限的机制提供了新思路。"
+    },
+    {
+      "id": "2606.07712",
+      "title": "MatMind: A Structure-Activity Knowledge-Driven Generative Foundation Model for Materials Science",
+      "abstract": "Progress in AI-driven crystal materials science has so far been carried by narrow architectures purpose-built for individual tasks -- graph neural networks for property prediction, diffusion and flow-matching models for crystal generation -- each excelling within its niche yet unable to act as a shared backbone across the full spectrum of materials problems. Generative large language models offer a fundamentally different paradigm, in which structural representation, quantitative prediction, and structure-activity reasoning can be unified within one model, but the materials community has yet to see this paradigm realized at a level competitive with established narrow specialists. Here we present MatMind, a generative foundation model purpose-built for crystal materials science under this paradigm, developed through the coordinated activation of structure-activity knowledge and physics-informed feedback within a progressive training framework -- combining structure-activity knowledge injection, a dual-head architecture that jointly trains language reasoning and numerical regression in a shared representation space, and multi-objective physics-informed reinforcement learning over stability, novelty, and structural diversity. Across three task families, MatMind attains the lowest mean absolute error on energy above hull, bulk modulus, and band gap -- surpassing graph neural network predictors purpose-built for these tasks -- reaches an S.U.N. rate of 65.3% on unconditional crystal generation, and achieves a comparable multiplicative improvement on magnetization-density-conditioned generation, where only 21 positive samples exist within over 600000 training entries. By matching or surpassing narrow specialists on their own ground while operating within a single unified model, MatMind shows that the LLM-based paradigm can serve as a viable backbone for crystal materials science going forward.",
+      "authors": [
+        "Zhan'ao Yao",
+        "Boxuan Zhang",
+        "Jingyuan Shu",
+        "Xiaoyu Wu",
+        "Rongyan Wang",
+        "Linjing Li",
+        "Dajun Zeng",
+        "Yudong Yao",
+        "Tingwei Chen",
+        "Youwei Wang",
+        "Xiaolin Zhao",
+        "Jiahui Shi",
+        "Jianjun Liu"
+      ],
+      "categories": [
+        "cond-mat.mtrl-sci",
+        "cs.AI"
+      ],
+      "published": "2026-06-05T14:11:43Z",
+      "updated": "2026-06-05T14:11:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07712v1",
+      "abs_url": "https://arxiv.org/abs/2606.07712",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07712",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "MatMind是一个为晶体材料科学设计的生成式基础模型，旨在解决现有AI模型在材料领域各自为政、无法统一处理结构表示、定量预测和结构-活性推理的问题。它通过注入结构-活性知识、采用双头架构（在共享表示空间中联合训练语言推理和数值回归）以及基于稳定性、新颖性和结构多样性的多目标物理信息强化学习，实现了统一的生成和预测能力。MatMind在能量高于凸包、体积模量和带隙的预测任务上取得了最低的平均绝对误差，超越了专门的图神经网络预测器，并在无条件晶体生成中达到了65.3%的S.U.N.率，同时在磁化强度-密度条件生成中也取得了显著改进，证明了LLM范式在晶体材料科学中作为通用骨干的可行性。"
     },
     {
       "id": "2606.07271",
@@ -304,6 +556,31 @@
         "rl"
       ],
       "summary_zh": "该研究旨在探究生成模型（特别是Rectified Flows）如何保留训练数据的痕迹，即使这些痕迹不直接体现在生成输出中，但仍可能被利用，这对于版权和隐私保护具有重要意义。研究方法是分析Rectified Flow训练过程中定义的插值路径 $X_λ= (1-λ)X_0 + λX_1$，发现训练数据和测试数据重建之间存在一个随 $λ$ 呈钟形曲线分布的差异，且这种差异在训练过程中累积，而验证指标保持稳定。关键创新点在于，研究推导出了在高斯假设下，该信号最大值位置的闭式解，并证明了这种钟形结构在音频和图像数据上普遍存在。实验结果验证了这些预测，并进一步利用这种 $λ$ 分辨的结构成功进行了成员推断攻击（Membership Inference Attack），区分了训练集中的成员和非成员。"
+    },
+    {
+      "id": "2606.07710",
+      "title": "WhiFlash: Accelerating Speculative Decoding with Token-Level Cross-Paradigm Routing",
+      "abstract": "The autoregressive nature of large language models (LLMs) remains a significant bottleneck for inference, particularly in complex agentic workloads. While speculative decoding (SD) accelerates inference, current approaches rely on static drafting paradigms, utilising either autoregressive drafting models for reasoning or diffusion-based parallel drafting models for structured outputs. We empirically find that drafting accuracy fluctuates dramatically within a single sequence, leaving significant performance unrealised by static paradigms and coarse-grained routing. To address this volatility, we introduce WhiFlash, the first cross-paradigm SD method that unifies autoregressive and diffusion-based parallel drafting under a single token-level controller. WhiFlash adopts a fine-grained routing mechanism that employs either a lightweight entropy-based or a learned neural policy, both parametrised to provide a tunable balance between expected token gain and latency. To make high-frequency switching computationally viable, we introduce novel cache-management optimisations, Lazy Catch-up and KV-only Prefill, reducing switching overhead to below 7% of per-round latency. By capitalising on the complementary strengths of fundamentally distinct drafting architectures, WhiFlash achieves significantly higher acceptance lengths, yielding category-specific throughput gains of up to 69.6% over the state-of-the-art autoregressive EAGLE-3 and 37.3% over the diffusion-based DFlash.",
+      "authors": [
+        "Young D. Kwon",
+        "Miles Williams",
+        "Rui Li",
+        "Alexandros Kouris",
+        "Stylianos I. Venieris"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-05T13:23:33Z",
+      "updated": "2026-06-05T13:23:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07710v1",
+      "abs_url": "https://arxiv.org/abs/2606.07710",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07710",
+      "summary_zh": "大型语言模型（LLMs）的自回归推理是性能瓶颈，尤其在复杂代理工作负载中，而现有推测解码（SD）方法因其静态草稿范式（自回归或扩散式并行）导致草稿准确率波动大，未能充分发挥性能。WhiFlash 提出首个跨范式 SD 方法，通过一个令牌级的控制器统一自回归和扩散式并行草稿，并采用细粒度路由机制（基于熵或学习到的神经策略）来平衡预期令牌增益和延迟。为实现高频切换，WhiFlash 引入 Lazy Catch-up 和 KV-only Prefill 等缓存管理优化，将切换开销降至每轮延迟的 7% 以下。WhiFlash 显著提高了接受长度，在特定类别上，吞Flash 比最先进的自回归 EAGLE-3 吞吐量提升高达 69.6%，比扩散式 DFlash 提升 37.3%。"
     },
     {
       "id": "2606.07244",
@@ -381,8 +658,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07190",
-      "summary_zh": "该研究旨在解决大型语言模型（LLM）推理过程中，现有过程奖励模型仅通过局部步骤正确性评估推理前缀的局限性，提出了一种基于“前缀增益”（prefix gain）的新评估范式。前缀增益被定义为在给定前缀条件下，轻量级学生模型组解决率的提升，以此直接衡量前缀对最终成功完成任务的效用。研究人员利用这一概念训练了一个前缀效用模型（PUM），该模型通过简单的成对排序目标学习以结果为导向的前缀效用，能够对完整轨迹和部分推理前缀进行评分。在数学推理任务上，通过Best-of-N选择、束搜索和强化学习等实验，PUM在提供前缀级别的监督信号方面表现出强大性能，尤其是在候选池大、搜索预算增加或基于规则的奖励稀疏的情况下，证明了其在提升LLM推理能力方面的有效性。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决大型语言模型（LLM）推理过程中，现有过程奖励模型仅通过局部步骤正确性评估推理前缀的局限性，提出了一种基于“前缀增益”（prefix gain）的新评估范式。前缀增益被定义为在给定前缀条件下，轻量级学生模型组解决率的提升，以此直接衡量前缀对最终成功完成任务的效用。研究人员利用这一概念训练了一个前缀效用模型（PUM），该模型通过简单的成对排序目标学习以结果为导向的前缀效用，能够对完整轨迹和部分推理前缀进行评分。在数学推理任务上，通过Best-of-N选择、束搜索和强化学习等实验，PUM在提供前缀级别的监督信号方面表现出强大性能，尤其是在候选池大、搜索预算增加或基于规则的奖励稀疏的情况下，证明了其在提升LLM推理能力方面的有效性。"
     },
     {
       "id": "2606.07185",
@@ -413,6 +689,36 @@
         "rl"
       ],
       "summary_zh": "该论文旨在解决图像标记化中固定token数量无法适应视觉复杂性异构的问题，导致简单图像资源浪费、复杂图像表示不足。它提出了一种名为AdaTok的自预算离散1D图像tokenizer，其核心创新在于表示-分配协同设计，通过Prioritized Representation Learning确保前缀在不同预算下仍可解码，并利用Multi-Head LoRA解码头解决预算相关的语义偏移，同时通过Adaptive Token Allocation训练轻量级GRPO策略来决定每个图像所需的token预算。实验结果显示，在ImageNet-1K上，AdaTok-Full在256个token时达到1.31的rFID，而AdaTok-Adaptive平均仅用约118个token就达到1.50的rFID，性能优于同等预算下的离散1D基线，并且在自回归图像生成中，自适应表示将吞吐量提高了约2.1倍。"
+    },
+    {
+      "id": "2606.07705",
+      "title": "SAW: Stage-Aware Dynamic Weighting for Multi-Objective Reinforcement Learning in Large Language Models",
+      "abstract": "Although multi-objective reinforcement learning (MORL) is central to aligning large language models with complex human preferences, the prevailing practice of static weighted summation overlooks a more fundamental phenomenon: reward learning is markedly asynchronous across objectives. Well-learned dimensions quickly produce homogeneous, low-variance signals whose residual noise contaminates the aggregated reward (in GRPO) or occupies a fixed share of the advantage budget (in GDPO), interfering with the scarce yet high-value signals carried by under-learned dimensions. To address this asynchrony, we propose Stage-Aware Dynamic Weighting (SAW), a lightweight, algorithm-agnostic dynamic weighting mechanism. SAW utilizes the coefficient of variation (CV) as a scale-invariant proxy for real-time informativeness, reweighting each dimension's reward or advantage contribution by its relative informativeness within the batch. Unlike gradient-based methods that require multiple forward and backward passes, SAW relies solely on batch-level statistics, introducing nearly negligible computational overhead. Experiments on tool-calling and text summarization tasks demonstrate that SAW consistently improves both training efficiency and final performance under both GRPO and GDPO frameworks, confirming it as a general-purpose plug-in for multi-reward LLM alignment. Our code is available at https://github.com/Zhaolutuan/SAW",
+      "authors": [
+        "Yuchen He",
+        "Baolong Bi",
+        "Shenghua Liu",
+        "Huaming Liao",
+        "Yuyao Ge",
+        "Bolin Wan",
+        "Siqian Tong",
+        "Juan Chen",
+        "Jiafeng Guo",
+        "Xueqi Cheng"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-05T10:00:19Z",
+      "updated": "2026-06-05T10:00:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07705v1",
+      "abs_url": "https://arxiv.org/abs/2606.07705",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07705",
+      "summary_zh": "大型语言模型（LLMs）的多目标强化学习（MORL）在对齐复杂人类偏好时，面临奖励学习异步性的挑战，即不同目标学习进度不一致，导致已充分学习的目标产生的噪声信号干扰未充分学习的目标。为解决此问题，论文提出了 Stage-Aware Dynamic Weighting (SAW) 机制，它是一种轻量级、与算法无关的动态加权方法，利用变异系数（CV）作为实时信息量的无标度代理，根据每个维度在批次内的相对信息量重新加权其奖励或优势贡献。SAW仅依赖批次级统计数据，计算开销可忽略不计，且无需额外的梯度计算。在工具调用和文本摘要任务上的实验表明，SAW在GRPO和GDPO框架下均能显著提升训练效率和最终性能，证明了其作为多奖励LLM对齐通用插件的有效性。"
     },
     {
       "id": "2606.07090",
@@ -466,8 +772,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07082",
-      "summary_zh": "该论文旨在深入理解策略蒸馏（On-Policy Distillation, OPD）的训练动态，通过在参数空间中分析其更新轨迹，并与监督微调（SFT）和可验证奖励强化学习（RLVR）进行比较。研究发现，OPD的更新轨迹处于一种“松弛的非主成分”状态：与SFT相比，它影响的权重更少，且更强烈地避免主方向；与RLVR相比，其约束则不那么严格。关键创新在于揭示了OPD的“子空间锁定”现象，即其累积更新迅速进入一个狭窄的低维通道，并且将训练限制在这个早期形成的更新子空间内，可以保持OPD的性能，但会显著降低SFT的性能。实验进一步表明，稀疏化更新tokens和将rollout生成转移到离策略（off-policy）可以保持秩动态，而将OPD目标与RLVR混合则会改变它们，这表明OPD在参数空间中诱导了其独特的更新几何结构，并非仅仅是SFT和RLVR之间的中间状态。",
-      "impact_score": null
+      "summary_zh": "该论文旨在深入理解策略蒸馏（On-Policy Distillation, OPD）的训练动态，通过在参数空间中分析其更新轨迹，并与监督微调（SFT）和可验证奖励强化学习（RLVR）进行比较。研究发现，OPD的更新轨迹处于一种“松弛的非主成分”状态：与SFT相比，它影响的权重更少，且更强烈地避免主方向；与RLVR相比，其约束则不那么严格。关键创新在于揭示了OPD的“子空间锁定”现象，即其累积更新迅速进入一个狭窄的低维通道，并且将训练限制在这个早期形成的更新子空间内，可以保持OPD的性能，但会显著降低SFT的性能。实验进一步表明，稀疏化更新tokens和将rollout生成转移到离策略（off-policy）可以保持秩动态，而将OPD目标与RLVR混合则会改变它们，这表明OPD在参数空间中诱导了其独特的更新几何结构，并非仅仅是SFT和RLVR之间的中间状态。"
     },
     {
       "id": "2606.07074",
@@ -613,8 +918,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07000",
-      "summary_zh": "该论文旨在解决大型视觉语言模型（LVLMs）在复杂多模态推理任务中，RLVR方法因可验证奖励稀疏性导致的探索效率低下问题，以及现有策略蒸馏方法计算开销大或可能泄露答案的局限性。为此，研究者提出了特权辅导蒸馏策略优化（PTD-PO）框架，通过构建空间注意力指导和中间文本推理步骤的结构化特权提示，并利用in-context learning生成分步的token-distribution监督，从而在不暴露答案的情况下提供密集指导。关键创新在于，PTD-PO在原始无答案上下文中优化学生模型，并通过Top-K Jensen-Shannon散度目标将失败的rollouts与提示增强的参考模型在token-distribution层面进行对齐，以稳定蒸馏并减少内存开销。在2B到8B参数的LVLMs上的实验表明，PTD-PO显著优于RLVR和基线蒸馏方法，有效缓解了熵坍塌，并提升了复杂多模态推理性能。",
-      "impact_score": null
+      "summary_zh": "该论文旨在解决大型视觉语言模型（LVLMs）在复杂多模态推理任务中，RLVR方法因可验证奖励稀疏性导致的探索效率低下问题，以及现有策略蒸馏方法计算开销大或可能泄露答案的局限性。为此，研究者提出了特权辅导蒸馏策略优化（PTD-PO）框架，通过构建空间注意力指导和中间文本推理步骤的结构化特权提示，并利用in-context learning生成分步的token-distribution监督，从而在不暴露答案的情况下提供密集指导。关键创新在于，PTD-PO在原始无答案上下文中优化学生模型，并通过Top-K Jensen-Shannon散度目标将失败的rollouts与提示增强的参考模型在token-distribution层面进行对齐，以稳定蒸馏并减少内存开销。在2B到8B参数的LVLMs上的实验表明，PTD-PO显著优于RLVR和基线蒸馏方法，有效缓解了熵坍塌，并提升了复杂多模态推理性能。"
     },
     {
       "id": "2606.06976",
@@ -667,8 +971,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.06967",
-      "summary_zh": "该论文旨在解决在复杂连续控制任务中，基于流的生成策略（flow-based policies）在似然比（likelihood ratio）计算上的困难，现有方法要么使用近似替代，要么通过增加虚拟动作来获取精确似然，但都存在弊端。论文提出 GenPO++ 框架，通过在高阶可逆 ODE 求解器中使用历史状态作为辅助记忆，实现了精确反演，且不改变原始动作维度，从而获得仅由固定求解器系数决定的对数行列式（log-determinant），实现了精确且无 Jacobian 的似然比计算。这一创新设计在保持生成流策略表达能力的同时，避免了动作比偏差和虚拟动作的开销。GenPO++ 在大规模模拟控制、微调和真实世界机器人操作任务中进行了评估，结果显示其性能与最先进的 on-policy RL 方法相当或更优，同时提高了训练稳定性和计算效率。",
-      "impact_score": null
+      "summary_zh": "该论文旨在解决在复杂连续控制任务中，基于流的生成策略（flow-based policies）在似然比（likelihood ratio）计算上的困难，现有方法要么使用近似替代，要么通过增加虚拟动作来获取精确似然，但都存在弊端。论文提出 GenPO++ 框架，通过在高阶可逆 ODE 求解器中使用历史状态作为辅助记忆，实现了精确反演，且不改变原始动作维度，从而获得仅由固定求解器系数决定的对数行列式（log-determinant），实现了精确且无 Jacobian 的似然比计算。这一创新设计在保持生成流策略表达能力的同时，避免了动作比偏差和虚拟动作的开销。GenPO++ 在大规模模拟控制、微调和真实世界机器人操作任务中进行了评估，结果显示其性能与最先进的 on-policy RL 方法相当或更优，同时提高了训练稳定性和计算效率。"
     },
     {
       "id": "2606.06926",
@@ -721,6 +1024,32 @@
         "distillation"
       ],
       "summary_zh": "该研究旨在解决在边缘设备上部署小型语言模型（SLMs）时，如何通过高效微调策略在适应新任务的同时避免模型通用能力下降的问题。研究通过对五种小于10亿参数的模型（135M-1B）进行数学推理任务基准测试，发现了一个关键漏洞：对于3亿参数以下的模型，完全微调（Full Fine-Tuning, Full FT）会显著损害性能，甚至使准确率低于零样本基线，即出现“负迁移”现象。这使得参数高效微调（PEFT）不仅是效率上的偏好，更是模型稳定性的必要条件。研究发现LoRA和DoRA表现相当，但在不同任务上各有优势，DoRA在复杂推理任务（GSM8K）中表现更优，而LoRA在模式匹配任务（OrcaMath）中占据主导。特别地，在对齐模型（Qwen2.5-0.5B）上，LoRA的表现优于Full FT，甚至在最小架构（SmolLM2-135M）上，简单的5次上下文学习（In-Context Learning）也超越了Full FT。基于这些发现，建议所有对齐的子10亿参数模型默认采用PEFT，并警示对于小于5亿参数的任何架构，应避免使用Full FT以防止灾难性遗忘。"
+    },
+    {
+      "id": "2606.07687",
+      "title": "What Makes Video World Model Latents Action-Relevant: Prediction over Reconstruction",
+      "abstract": "Video world models are increasingly used to provide predictive visual representations, yet it remains unclear which pretraining signals induce action-relevant structure in their latent spaces. We study this question through a unified probe-based evaluation across diverse encoder families, including image-only self-supervision, video pretraining with and without latent prediction, reconstruction-based autoencoders, diffusion models, and shortcut-forcing dynamics models. Using a common inverse-dynamics probing objective, we find that action-relevant structure is driven primarily by temporal video pretraining rather than pixel reconstruction fidelity: models with strong pixel decoding quality can exhibit near-zero action recoverability, while video-pretrained self-supervised encoders consistently achieve the best Pareto trade-off between visual fidelity and action prediction. Comparing V-JEPA and VideoMAE further shows that most gains arise from natural-video temporal context, with feature-level latent prediction providing a smaller additional benefit. These trends transfer across robotic benchmarks, though CALVIN reveals that static-environment tasks can partially mask the importance of temporal structure by allowing strong image priors to suffice. Finally, inverse-dynamics supervision substantially improves robustness to visual corruption, suggesting that action-aware objectives regularize latent geometry beyond clean-setting performance. Our results identify temporal predictive structure -- not reconstruction fidelity -- as the primary ingredient underlying action-relevant video representations.",
+      "authors": [
+        "Jewon Yeom",
+        "Hanseul Kim",
+        "Jeongjae Park",
+        "Sungmok Jung",
+        "Jaejin Lee",
+        "Taesup Kim"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-05T04:43:02Z",
+      "updated": "2026-06-05T04:43:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07687v1",
+      "abs_url": "https://arxiv.org/abs/2606.07687",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07687",
+      "summary_zh": "该研究旨在探究视频世界模型中哪些预训练信号能使其潜在空间产生与动作相关的结构。研究通过统一的基于探针的评估方法，比较了多种编码器家族（包括图像自监督、视频预训练、重构自编码器、扩散模型和强制快捷动力学模型），发现与动作相关的结构主要由时间视频预训练驱动，而非像素重构保真度。具体而言，即使像素解码质量高，动作可恢复性也可能接近零，而视频预训练的自监督编码器在视觉保真度和动作预测之间实现了最佳的帕累托权衡。进一步比较V-JEPA和VideoMAE表明，大部分性能提升来自自然视频的时间上下文，而特征级潜在预测带来的额外收益较小。这些趋势在机器人基准测试中也得到验证，尽管CALVIN任务显示静态环境可能部分掩盖了时间结构的重要性。最后，逆动力学监督显著提高了模型对视觉损坏的鲁棒性，表明动作感知目标在清理设置性能之外还能规范潜在几何结构。研究结果强调，时间预测结构而非重构保真度是生成与动作相关的视频表示的关键要素。"
     },
     {
       "id": "2606.06872",
@@ -801,8 +1130,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.06853",
-      "summary_zh": "针对现有视觉语言模型（VLMs）在理解视频中精细运动细节方面的不足，该研究提出 MotionEnhancer，通过利用视频扩散模型（VDMs）中提炼出的运动先验作为辅助监督，以注意力对齐的方式增强 VLM 的运动理解能力。其关键创新在于引入了两个无参数模块：Motion-sensitive Head Selection (MHS) 和 Motion-salient Text Token Identification (MTTI)，这些模块以纯计算方式直接从 VDM 中提取并优化与运动相关的注意力。实验结果表明，MotionEnhancer 在两个运动级别的视频理解基准测试中，尤其是在运动相关指标上，显著提升了最先进 VLM 的性能，且无需额外训练参数、修改现有架构或进行工具调用，提供了一种可扩展的运动理解解决方案。",
-      "impact_score": null
+      "summary_zh": "针对现有视觉语言模型（VLMs）在理解视频中精细运动细节方面的不足，该研究提出 MotionEnhancer，通过利用视频扩散模型（VDMs）中提炼出的运动先验作为辅助监督，以注意力对齐的方式增强 VLM 的运动理解能力。其关键创新在于引入了两个无参数模块：Motion-sensitive Head Selection (MHS) 和 Motion-salient Text Token Identification (MTTI)，这些模块以纯计算方式直接从 VDM 中提取并优化与运动相关的注意力。实验结果表明，MotionEnhancer 在两个运动级别的视频理解基准测试中，尤其是在运动相关指标上，显著提升了最先进 VLM 的性能，且无需额外训练参数、修改现有架构或进行工具调用，提供了一种可扩展的运动理解解决方案。"
     },
     {
       "id": "2606.06840",
@@ -826,8 +1154,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.06840",
-      "summary_zh": "针对需要从海量候选标签中选择少量相关选项的多标签任务，现代推理模型展现出惊人的零样本性能。研究发现，这类模型的推理过程可分为两个阶段：首先是广泛的“短名单筛选”，从数百万候选标签中初步筛选出相关性较高的子集；其次是对该子集进行细致的推理。实验证明，这两个阶段可以独立存在且相互补充，并且基于这种两阶段特性，提出了一种新的机械蒸馏策略，该策略在多个数据集上均显著优于标准蒸馏方法，为理解和优化大型输出空间下的推理模型提供了新思路。",
-      "impact_score": null
+      "summary_zh": "针对需要从海量候选标签中选择少量相关选项的多标签任务，现代推理模型展现出惊人的零样本性能。研究发现，这类模型的推理过程可分为两个阶段：首先是广泛的“短名单筛选”，从数百万候选标签中初步筛选出相关性较高的子集；其次是对该子集进行细致的推理。实验证明，这两个阶段可以独立存在且相互补充，并且基于这种两阶段特性，提出了一种新的机械蒸馏策略，该策略在多个数据集上均显著优于标准蒸馏方法，为理解和优化大型输出空间下的推理模型提供了新思路。"
     },
     {
       "id": "2606.06835",

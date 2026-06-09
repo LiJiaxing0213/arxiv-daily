@@ -1,6 +1,6 @@
 {
   "date": "2026-06-06",
-  "generated_at": "2026-06-08T06:20:38.003458+00:00",
+  "generated_at": "2026-06-09T05:50:55.817327+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,734 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2606.08346",
+      "title": "CATPO: Critique-Augmented Tree Policy Optimization",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) has become a dominant paradigm for improving the reasoning capabilities of large language models (LLMs). Recent tree-based methods such as TreeRPO extend flat trajectory sampling with tree-structured rollouts to obtain dense, step-level reward signals without a separate process reward model. However, not all trees are equally informative: trees where all leaves succeed, all leaves fail, or the policy already predicts the reward distribution contribute little to gradient updates, wasting compute. We introduce CATPO (Critique-Augmented Tree Policy Optimization), which diagnoses and addresses this waste at the tree level. CATPO first scores each tree via a tree informativeness score, F(T), combining leaf-outcome diversity with policy-reward decorrelation at zero extra compute. For dead-wrong trees where all branches fail, CATPO applies critique-guided healing: it locates the shallowest failure point, generates a natural-language critique, and grafts refined continuations to recover training signal. Finally, an informativeness-weighted loss scales each tree's gradient contribution by its normalized score, concentrating parameter updates on the most informative trees while preserving overall gradient magnitude. Experiments on Qwen2.5-Math-1.5B trained with the MATH dataset show that CATPO achieves 37.5% macro accuracy across four benchmarks (AIME24, MATH-500, OlympiadBench, and MinervaMath), improving over TreeRPO by 1.9% and GRPO by 4.8%.",
+      "authors": [
+        "Ayush Singh",
+        "Umang Goyal",
+        "Ankur Dahiya"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-06-06T21:29:01Z",
+      "updated": "2026-06-06T21:29:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08346v1",
+      "abs_url": "https://arxiv.org/abs/2606.08346",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08346",
+      "summary_zh": "该论文旨在解决LLM推理中，现有基于树的强化学习方法（如TreeRPO）在生成不具信息量的树（所有叶子成功、所有叶子失败或策略已预测奖励分布）时计算效率低下的问题。为此，提出了CATPO (Critique-Augmented Tree Policy Optimization) 方法，其核心创新在于引入了树信息量评分 F(T) 来评估每棵树的价值，并在“完全错误”的树上应用批判引导修复机制，通过定位浅层失败点、生成自然语言批判并嫁接改进的续接来恢复训练信号。最后，通过信息量加权损失，根据每棵树的标准化分数调整其梯度贡献，将参数更新集中在最具信息量的树上。在Qwen2.5-Math-1.5B模型和MATH数据集上的实验结果表明，CATPO在四个基准测试（AIME24, MATH-500, OlympiadBench, MinervaMath）上实现了37.5%的宏观准确率，相较于TreeRPO提升了1.9%，相较于GRPO提升了4.8%。"
+    },
+    {
+      "id": "2606.08312",
+      "title": "Neuro-Symbolic Injection of LTLf Constraints in Autoregressive Reinforcement Learning Policies",
+      "abstract": "In this work we study offline reinforcement learning (RL) under temporally extended task constraints expressed in Linear Temporal Logic over finite traces (LTLf). Recently, transformer-based approaches such as Trajectory Transformers and Decision Transformers have been adopted to address RL as a sequence modeling problem. However, these methods optimize purely for reward and do not account for high-level temporal requirements. Here, we introduce a neurosymbolic framework that injects LTLf background knowledge into such transformer-based RL policies. Our approach compiles LTLf formulas into deterministic finite automata (DFAs) and integrates them into the learning process through a differentiable representation and a logic-based loss function. In particular, we derive differentiable satisfaction signals from DFA progression and use them as a regularization term during training. The resulting method is architecture-agnostic across different models. We evaluate the proposed framework on navigation environments with specification suites covering combinations of safety and reachability temporal properties. Experimental results show that incorporating background knowledge not only improves constraint satisfaction, but also maintains competitive return compared to vanilla baselines.",
+      "authors": [
+        "Ashkan Ansarifard",
+        "Matteo Mancanelli",
+        "Elena Umili",
+        "Fabio Patrizi"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.FL"
+      ],
+      "published": "2026-06-06T19:55:54Z",
+      "updated": "2026-06-06T19:55:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08312v1",
+      "abs_url": "https://arxiv.org/abs/2606.08312",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08312",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决离线强化学习（RL）中，如何将有限迹上的线性时序逻辑（LTLf）约束注入到基于Transformer的自回归策略中，以应对现有方法仅优化奖励而忽略高层时序需求的问题。研究提出了一种神经符号框架，通过将LTLf公式编译成确定性有限自动机（DFA），并将其以可微分表示集成到学习过程中，同时引入基于逻辑的损失函数进行正则化。关键创新在于从DFA的进展中推导出可微分的满足度信号，并将其作为训练过程中的正则化项，该方法与具体模型架构无关。在导航环境上进行的实验表明，注入背景知识不仅显著提高了约束满足度，而且在保持与基线方法相当的奖励回报方面也表现出色。"
+    },
+    {
+      "id": "2606.08260",
+      "title": "TIDE: Task-Isolated Diffusion for Unified Video Editing and Generation",
+      "abstract": "Recent advances in Diffusion Transformers have driven rapid progress in video generation and editing, yet these capabilities are still handled by separate, task-specific models. Building a unified framework that supports diverse video tasks remains an open challenge: existing unified attempts either require dedicated auxiliary encoders or lack explicit mechanisms to distinguish heterogeneous conditioning tokens, struggling when the number and type of visual conditions vary across tasks. We propose TIDE, a unified framework that integrates instruction-based editing, reference-guided editing, and multi-reference generation. At its core, we introduce per-token task embeddings that assign each input token a task-specific identifier, enabling the model to explicitly disambiguate target, source, and reference tokens. To simultaneously capture high-level semantic understanding and fine-grained structural fidelity, we design a dual-path conditioning scheme that couples a vision-language model with a VAE latent path for complementary signals. We further devise a multi-task progressive training strategy that incrementally introduces tasks of increasing complexity, effectively harmonizing diverse objectives and enabling smooth generalization across heterogeneous task distributions. Extensive experiments on multiple video editing and generation benchmarks demonstrate that TIDE achieves state-of-the-art performance across all evaluated tasks. Our project page is available at https://LittleWork123.github.io/tide.",
+      "authors": [
+        "Qi Liu",
+        "Gang Yue",
+        "Mingyu Yin",
+        "Lisai Zhang",
+        "Yidi Wu",
+        "Yaole Wang",
+        "Yaohui Wang",
+        "Chang Yao",
+        "Jingyuan Chen",
+        "Lin Ma"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-06T17:11:13Z",
+      "updated": "2026-06-06T17:11:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08260v1",
+      "abs_url": "https://arxiv.org/abs/2606.08260",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08260",
+      "summary_zh": "该论文旨在解决视频生成和编辑领域中，现有模型通常针对特定任务设计，缺乏统一框架支持多种视频任务的问题。为此，论文提出了 TIDE 框架，通过引入 per-token task embeddings 为每个输入 token 分配任务特定标识符，明确区分目标、源和参考 token，从而实现指令编辑、参考引导编辑和多参考生成等多种任务的统一处理。TIDE 还设计了结合视觉-语言模型和 VAE 潜在路径的双路径条件方案，以同时捕捉高级语义理解和细粒度结构保真度，并采用多任务渐进式训练策略，逐步引入复杂任务以协调不同目标。实验结果表明，TIDE 在多个视频编辑和生成基准测试中均达到了最先进的性能。"
+    },
+    {
+      "id": "2606.08253",
+      "title": "Mind Your Steps: A General Learning Framework for Accurate Humanoid Foothold Tracking",
+      "abstract": "Enabling humanoid robots to operate in complex, dynamic environments remains a critical challenge, fundamentally limited by the ability to navigate robustly, safely, and accurately. While reinforcement learning with velocity-commanded policies has achieved remarkable robustness in humanoid locomotion, this approach lacks explicit control of the foothold placement, leading to unsafe behavior, such as stepping onto human feet, or imprecise navigation, hindering the following manipulation task. Conversely, explicit foothold-tracking policies offer a promising alternative by directly being commanded with target foot poses. However, existing approaches are often limited by unrealistic state assumptions, compromising real-world deployment, or they are part of staged pipelines, making them tied to specific downstream tasks. In this work, we introduce a novel, lightweight framework for training general-purpose 3D foothold-tracking policies. By dynamically providing footstep support through a goal sampler, this method enables the learned policy to be agnostic to specific terrains. Our new target representation effectively mitigates challenges arising in the real world, such as noisy and inaccurate pose estimation and foot contact estimation. Designed for direct real-world transfer, our policy acts as a standalone low-level controller that can be seamlessly paired with various high-level foothold generators. We demonstrate the effectiveness of our framework through extensive experiments in simulation and in the real world. By coupling our policy with different upstream planners, we achieve natural and accurate locomotion in challenging settings, paving the way for loco-manipulation tasks in complex environments.",
+      "authors": [
+        "Alessandro Montenegro",
+        "Shihao Li",
+        "Puze Liu",
+        "Alberto Maria Metelli",
+        "Jan Peters"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-06-06T16:44:56Z",
+      "updated": "2026-06-06T16:44:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08253v1",
+      "abs_url": "https://arxiv.org/abs/2606.08253",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08253",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "这篇论文提出了一种通用的 3D 拟人机器人落足点跟踪学习框架，旨在解决现有方法在复杂动态环境中导航时缺乏精确落足点控制的问题，避免不安全行为或不精确导航。该框架通过动态提供落足点支持的“目标采样器”来训练策略，使其能够适应不同地形，并引入新的目标表示来应对真实世界中姿态和足部接触估计的噪声和不准确性。关键创新在于其轻量级设计和对特定地形的无关性，以及作为独立低级控制器与各种高级落足点生成器无缝结合的能力。实验结果表明，该框架在模拟和真实世界中都能实现自然准确的运动，为复杂环境中的移动操作任务奠定了基础。"
+    },
+    {
+      "id": "2606.08251",
+      "title": "Contemporary AI lacks the imagination to diverge or negate in science",
+      "abstract": "Bold projections that artificial intelligence will accelerate scientific discovery have raced ahead of evidence from working scientists, and the field still lacks large-scale, scientist-in-the-loop tests of these claims. Here we mount the largest such evaluation to date and map what AI cannot yet do for science. We invited authors of 121,640 recent preprints across biology, medicine, chemistry, and the social sciences to judge follow-up ideas that large language models (LLMs) generated from the context and puzzles of their own papers. 6,749 scientists returned 25,139 sets of ratings on novelty, empirical feasibility, probability of being true, and favorability of adoption. Three patterns emerge. First, non-reasoning LLMs collapse into a narrow \"hivemind\" of similar ideas; reasoning models roam a wider hypothesis space, yet no model class spontaneously proposes null hypotheses -- a move humans make more freely. Second, scientists reward ideas that resemble their own and prize probability over novelty, though social scientists tolerate risk more readily than life scientists. Senior social scientists are the harshest critics, and their skepticism is well-earned: LLMs falter most in pluralistic fields like the social sciences that demand context-aware interpretation and evolving theories. Third, automated evaluators on which the community currently relies -- LLM-as-a-judge, artificial metrics, and even state-of-the-art (SOTA) models -- agree weakly with expert judgment, and retrieval augmentation and scientist persona prompting yield only marginal gains. A Qwen3-14B reward model we post-trained on human ratings captures field taste nuances, beats SOTA models by up to 27%, and closes the gap to the inter-rater consistency of independent peer reviewers. For all the hype, today's scientific AI still represents a collaborator whose imagination, outputs and judgment benefit from human grounding.",
+      "authors": [
+        "Honglin Bao",
+        "Siyang Wu",
+        "Xiao Liu",
+        "Sida Li",
+        "Shiyun Cao",
+        "James A. Evans"
+      ],
+      "categories": [
+        "cs.CY",
+        "cs.AI"
+      ],
+      "published": "2026-06-06T16:39:28Z",
+      "updated": "2026-06-06T16:39:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08251v1",
+      "abs_url": "https://arxiv.org/abs/2606.08251",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08251",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在评估当前AI在科学发现中的能力，特别是其在生成新颖、可行且有价值的科学假设方面的表现，并揭示AI在发散性思维和提出否定假设方面的不足。研究邀请了来自生物学、医学、化学和社会科学领域的6,749名科学家，对大型语言模型（LLMs）根据其论文生成的25,139个后续想法进行评估，评估维度包括新颖性、实证可行性、真实性概率和采纳意愿。结果发现，非推理LLMs倾向于产生相似的想法，而推理模型虽然探索的假设空间更广，但都未能自发提出人类更常提出的零假设；科学家更偏爱与自身想法相似且真实性概率高的想法，且AI在需要上下文解释和演进理论的社会科学领域表现最差；此外，现有的自动化评估器与专家判断一致性较弱，但通过人类评分训练的Qwen3-14B奖励模型在捕捉领域偏好方面表现出色，并显著优于SOTA模型。研究表明，尽管AI潜力巨大，但其在科学想象力、产出和判断方面仍需人类的指导和校准。"
+    },
+    {
+      "id": "2606.08153",
+      "title": "LogNEO: A GPT-Neo Reinforcement Learning Framework for Accurate Real-Time Log Anomaly Detection",
+      "abstract": "Detecting anomalies in large-scale system logs is critical for the reliability and security of modern computing infrastructure. We present LogNEO, a log anomaly detector built on EleutherAI's GPT-Neo (1.3B parameters) and fine-tuned with a novel partial-credit, exponentially decaying position-aware reward scheme combined with cross-entropy regularisation via Proximal Policy Optimisation (PPO). The position-aware reward explicitly models prediction difficulty: early positions receive higher rewards for correct predictions, while later positions incur stronger penalties for errors. LogNEO attains F1-scores of 0.927, 0.913, and 0.984 on the HDFS, BGL, and Thunderbird benchmarks, improving recall by up to 6 percentage points over the prior state-of-the-art LogGPT while maintaining comparable precision. A production microservice deployment over Apache Kafka, Redis, and TensorRT-accelerated inference demonstrates 45 ms end-to-end latency at 15,000 events per second.",
+      "authors": [
+        "David Eje",
+        "Tanmay Sharma",
+        "Khush Patel",
+        "Manuel Mazzara",
+        "Leonard Johard"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-06T13:08:14Z",
+      "updated": "2026-06-06T13:08:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08153v1",
+      "abs_url": "https://arxiv.org/abs/2606.08153",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08153",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决大规模系统日志中的异常检测问题，以提升现代计算基础设施的可靠性和安全性。它提出了LogNEO，一个基于EleutherAI的GPT-Neo (1.3B参数) 构建的日志异常检测器，并通过一种新颖的、结合了部分信用、指数衰减的位置感知奖励机制和通过近端策略优化 (PPO) 进行交叉熵正则化的方法进行微调。关键创新在于其位置感知奖励机制，该机制明确地模拟了预测难度：早期位置的正确预测获得更高奖励，而后期位置的错误则受到更强的惩罚。LogNEO在HDFS、BGL和Thunderbird基准测试上分别取得了0.927、0.913和0.984的F1分数，与先前的最先进模型LogGPT相比，召回率提高了多达6个百分点，同时保持了可比的精度。在基于Apache Kafka、Redis和TensorRT加速推理的生产微服务部署中，LogNEO实现了45毫秒的端到端延迟，处理速度达到每秒15,000个事件。"
+    },
+    {
+      "id": "2606.08147",
+      "title": "Biological Reasoning-Informed Regression for Interpretable Regulatory DNA Activity Prediction",
+      "abstract": "DNA cis-regulatory elements (CREs) such as enhancers control gene expression levels. Accurately predicting regulatory activity from DNA sequences is valuable but challenging, as it requires understanding complex biological regulatory processes. Existing methods typically regress activity scores from sequences in a black-box manner, limiting both interpretability and regression performance. Meanwhile, large language models (LLMs) benefit from explicit reasoning processes, yet directly applying LLMs to raw DNA sequences performs poorly. In this paper, we bridge this gap by introducing R3LM, a framework that teaches LLMs reasoning-informed regression on regulatory DNA through structured biological knowledge. Specifically, we design a biologically grounded data format that structures DNA's regulatory information for improved LLM understanding, and construct CRE-ReasonBench, the first dataset that associates DNA sequences and activity scores with mechanistic reasoning traces. Through two-stage training that first teaches LLMs reasoning over structured biological information then performs regression, R3LM achieves state-of-the-art performance on enhancer prediction across three cell types, outperforming both LLMs with raw sequence input and specialized DNA models while providing interpretable mechanistic explanations. We expect R3LM as an interpretable reward model that can effectively assist biologists in CRE design. Code is available at https://github.com/DuanYi516/R3LM.",
+      "authors": [
+        "Yi Duan",
+        "Zhao Yang",
+        "Jiwei Zhu",
+        "Ying Ba",
+        "Chuan Cao",
+        "Bing Su"
+      ],
+      "categories": [
+        "q-bio.GN",
+        "cs.LG"
+      ],
+      "published": "2026-06-06T12:56:08Z",
+      "updated": "2026-06-06T12:56:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08147v1",
+      "abs_url": "https://arxiv.org/abs/2606.08147",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08147",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决从DNA序列准确预测调控活性（如增强子功能）的挑战，现有方法多为黑盒回归，缺乏可解释性且性能受限，而大型语言模型（LLMs）直接处理原始DNA序列效果不佳。为此，研究引入了R3LM框架，通过结构化的生物学知识，教导LLMs进行推理驱动的回归。关键创新在于设计了一种生物学基础的数据格式，用于组织DNA调控信息以增强LLM理解，并构建了首个将DNA序列、活性分数与机制推理轨迹关联起来的CRE-ReasonBench数据集。R3LM采用两阶段训练，首先让LLMs学习结构化生物信息推理，然后进行回归，在三种细胞类型的增强子预测任务上取得了最先进的性能，超越了直接输入原始序列的LLMs和专门的DNA模型，同时提供了可解释的机制解释。"
+    },
+    {
+      "id": "2606.08131",
+      "title": "LCAM: A Framework for Diagnosing Interactional Alignment Failures in Con-versational AI",
+      "abstract": "Conversational AI is increasingly used for advice, interpretation, reassurance, and decision support in contexts where users may be vulnerable, uncertain, or dependent on the system's apparent competence. Existing alignment work often focuses on model objectives, preference optimization, or output correctness. Yet, many harms arise through interaction: how systems frame authority, express uncertainty, simulate empathy, support reasoning, and make boundaries legible. This paper introduces the Layered Cognitive Alignment Model (LCAM), a conceptual and normative framework for diagnosing interac-tional alignment failures in conversational AI. LCAM defines alignment as a calibrated fit among system behavior, user goals, task demands, and normative context. It distinguishes five layers of fit: perceptual, semantic, affective, cognitive, and ethical, and two diagnostic polarities of misalignment: underfit and overreach. We apply LCAM to a published LLM counseling example, showing how an apparently supportive response can reinforce harmful beliefs, simulate inappropriate care, and obscure role boundaries. By translating conversational failures into audit and governance questions concerning over-reliance, false intimacy, autonomy erosion, boundary confusion, and inappropriate trust, LCAM offers a theoretical and normative lens for evaluating conversational AI beyond accuracy, helpfulness, or trust.",
+      "authors": [
+        "Manuele Reani",
+        "Hongyu Tian"
+      ],
+      "categories": [
+        "cs.HC",
+        "cs.AI"
+      ],
+      "published": "2026-06-06T12:15:09Z",
+      "updated": "2026-06-06T12:15:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08131v1",
+      "abs_url": "https://arxiv.org/abs/2606.08131",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08131",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文旨在诊断对话式AI中交互对齐失败的问题，尤其是在用户可能脆弱或依赖系统能力的场景。它提出了一种名为分层认知对齐模型（LCAM）的框架，该框架将对齐定义为系统行为、用户目标、任务需求和规范背景之间的校准匹配，并区分了感知、语义、情感、认知和伦理五个对齐层，以及欠拟合（underfit）和过度延伸（overreach）两种失调极性。LCAM的关键创新在于提供了一个概念性和规范性框架，用于评估对话式AI在准确性、有用性或信任之外的交互失败，例如过度依赖、虚假亲密、自主性侵蚀、边界混淆和不当信任。通过将LCAM应用于一个已发表的LLM咨询案例，研究展示了即使是看似支持性的回应也可能强化有害信念、模拟不当关怀并模糊角色边界，从而揭示了现有对齐工作侧重于模型目标或输出正确性的局限性。"
+    },
+    {
+      "id": "2606.08102",
+      "title": "Continual Quadruped Robots Coordination via Semantic Skill Discovery",
+      "abstract": "Multi-quadruped coordination has attracted increasing attention due to its enhanced payload capacity, broader contact coverage, and improved adaptability to challenging tasks. Existing methods for multi-quadruped manipulation typically focus on predefined or closed task families, often relying on multi-agent reinforcement learning (MARL) to train task-specific coordination policies. However, such methods struggle in open-ended continual learning settings, where tasks arrive sequentially and robots are expected to acquire new coordination skills while reusing previously learned ones without catastrophic forgetting. To address this challenge, we propose Conquer, a semantic skill-library framework that formulates continual multi-quadruped coordination as a retrieve-adapt-update process. First, to accommodate varying team sizes across tasks, we design a team-structured Self-Allies-Goal (SAG) backbone that supports variable-cardinality robot teams by explicitly modeling each robot's own state, teammate context, and task goal. For each incoming task, Conquer constructs a task-level semantic descriptor from pre-execution information and retrieves a relevant skill from the library for adaptation. After successful execution, Conquer updates the skill library by extracting trajectory-level semantic descriptors and organizing them according to semantic distance, thereby enabling continual skill accumulation and cross-task knowledge transfer. Simulation experiments show that Conquer achieves a final average success rate of 95.6%, demonstrating strong forward transfer and negligible catastrophic forgetting. Real-world rollouts on Unitree Go2 teams further validate the deployment feasibility of Conquer for practical multi-quadruped coordination. Simulation and real-robot demonstration videos are available at: https://conquer-project.pages.dev/.",
+      "authors": [
+        "Daoqing Wang",
+        "Yuchen Xiao",
+        "Weixuan Huang",
+        "Zhilong Zhang",
+        "Shenghua Wan",
+        "Meng Li",
+        "Lei Yuan",
+        "Yang Yu"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-06-06T11:07:13Z",
+      "updated": "2026-06-06T11:07:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08102v1",
+      "abs_url": "https://arxiv.org/abs/2606.08102",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08102",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决多足机器人（quadruped robots）在开放式持续学习环境中进行协调操作时，如何避免灾难性遗忘并有效积累新技能的问题。为此，提出了一种名为 Conquer 的语义技能库框架，将持续多足协调建模为检索-适应-更新过程。其关键创新在于设计了支持可变团队规模的 Self-Allies-Goal (SAG) 主干网络，并利用任务级语义描述符从技能库中检索相关技能进行适应，执行成功后通过轨迹级语义描述符更新技能库，实现技能的持续积累和跨任务知识迁移。仿真实验表明，Conquer 取得了 95.6% 的平均成功率，展现出强大的正向迁移能力和可忽略的灾难性遗忘，并通过在 Unitree Go2 机器人团队上的真实世界部署验证了其可行性。"
+    },
+    {
+      "id": "2606.08091",
+      "title": "VideoWeaver: Evaluating and Evolving Skills for Agentic Long Video Generation",
+      "abstract": "Recent agent frameworks such as Claude Code, Codex, and OpenClaw are strong at tool use and orchestration, but whether they can handle long video generation, a long-horizon multimodal task, remains underexplored. Unlike earlier video agents whose pipeline is handcrafted, these frameworks can build and refine their own workflows. We introduce VideoWeaver, an agent harness and benchmark that evaluates and evolves skills for long video generation, where an agent turns a single instruction into a long video by composing foundation skills into its own workflow rather than following a predefined pipeline. The benchmark has 16 task categories and 285 cases, with references spanning text, image, audio, video, and their combinations. Because errors can arise at any stage and not just in the final video, we propose an agent-as-judge that inspects both the execution trace and the final video, grounding its scores in evidence such as metadata and intermediate files. Using this feedback, we further design a skill evolution algorithm that refines and merges the agent's skills. Across multiple frameworks and models, we find that an explicit composition skill improves the generation process over using foundation skills alone, that skill evolution further improves output quality, and that performance varies notably across harness and model choices. The proposed agent-as-judge also aligns well with human judgments, especially on process metrics. Code and dataset is available at https://github.com/JianhuiWei7/VideoWeaver",
+      "authors": [
+        "Jianhui Wei",
+        "Jie Tan",
+        "Hengchuan Zhu",
+        "Xiaotian Zhang",
+        "Yan Zhang",
+        "Ziyi Chen",
+        "Daoan Zhang",
+        "Wei Xu",
+        "Zuozhu Liu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-06T10:35:28Z",
+      "updated": "2026-06-06T10:35:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08091v1",
+      "abs_url": "https://arxiv.org/abs/2606.08091",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08091",
+      "summary_zh": "该研究旨在探索大型语言模型（LLMs）驱动的智能体在长视频生成这一长周期多模态任务中的能力，并解决现有视频智能体管道手工化的问题。为此，论文提出了VideoWeaver，一个用于评估和演进智能体长视频生成技能的基准测试和工具集，它允许智能体根据单一指令，通过组合基础技能而非预定义管道来构建自己的工作流。VideoWeaver包含16个任务类别和285个案例，涵盖文本、图像、音频、视频及其组合的参考，并引入了一个“智能体即评判者”（agent-as-judge）机制，通过检查执行轨迹和最终视频，并基于元数据和中间文件提供证据来评估结果。在此基础上，论文还设计了一种技能演进算法来优化和融合智能体的技能。实验结果表明，显式的组合技能比单独使用基础技能能显著改善生成过程，技能演进进一步提升了输出质量，并且性能因不同的工具集和模型选择而异，同时，所提出的agent-as-judge与人类判断高度一致，尤其在过程指标上表现突出。"
+    },
+    {
+      "id": "2606.08088",
+      "title": "ConSteer-RL: Steering Reasoning Capabilities in Large Language Models via Confidence-Aware Reinforcement Learning",
+      "abstract": "Reinforcement Learning from Verifiable Rewards (RLVR) has recently become a key paradigm for improving the reasoning abilities of Large Language Models (LLMs), yet it remains limited by sparse binary rewards and its ignorance of model-internal uncertainty. In this paper, we propose ConSteer-RL, a simple yet effective framework that integrates token-level confidence signals derived from model log-probabilities into RLVR training. Specifically, building upon the Group Relative Policy Optimization (GRPO) framework, we construct a confidence-aware reward by aggregating per-token probabilities into a scalar confidence score and incorporating it into an awareness-based reward shaping mechanism that penalizes overconfident errors while reinforcing correct and confident reasoning. Experimental results demonstrate that ConSteer-RL consistently outperforms strong GRPO baselines, achieving average improvements of 2.3%-4.0% across different model scales.",
+      "authors": [
+        "Qing Miao",
+        "Yiming Zhao",
+        "Jing Yang",
+        "Chenxi Liu",
+        "Yuehai Chen",
+        "Yuewen Liu",
+        "Shaoyi Du",
+        "Badong Chen"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-06-06T10:23:24Z",
+      "updated": "2026-06-06T10:23:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08088v1",
+      "abs_url": "https://arxiv.org/abs/2606.08088",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08088",
+      "summary_zh": "该研究旨在解决大型语言模型（LLMs）在推理能力方面，通过可验证奖励进行强化学习（RLVR）时，面临的稀疏二元奖励和对模型内部不确定性忽视的问题。为此，论文提出了ConSteer-RL框架，它通过将模型对每个token的log-probabilities聚合为标量置信度分数，并将其融入到基于意识的奖励塑形机制中，从而构建置信度感知的奖励。该方法在Group Relative Policy Optimization (GRPO) 框架的基础上，通过惩罚过度自信的错误并强化正确且自信的推理，有效提升了LLMs的推理能力。实验结果表明，ConSteer-RL在不同模型规模上均持续优于强大的GRPO基线，平均性能提升了2.3%至4.0%。"
+    },
+    {
+      "id": "2606.08077",
+      "title": "Support Vector Rubrics: Closing the Gap Between Self-Generated and Human Rubrics",
+      "abstract": "Rubric-based evaluation is a promising paradigm for judging large language model (LLM) outputs, yet self-generated rubrics lag human-annotated criteria on hard instances. We argue this discriminative gap reflects an objective mismatch: self-generated rubrics describe good responses, whereas effective criteria must discriminate between close candidates. To close this gap, we introduce SVR (Support Vector Rubrics), a framework that recasts rubric construction as max-margin boundary learning over preference data. SVR mines contrastive features from preference pairs into a rubric bank, learns a prompt-conditioned selector together with global rubric weights, and iteratively refines the bank through support-pair selection and adversarial probing of hard negatives. At inference, given only the prompt, SVR retrieves the top-rubrics from the bank and scores responses. On RubricBench, SVR narrows the gap to human reference rubrics from 24.1 to 0.3 points and outperforms strong self-rubric and judge baselines, and the learned bank transfers across judges without retraining. On RewardBench 1&2, and RM-Bench, it remains competitive with dedicated reward models, demonstrating broader reward modeling capability. Overall, boundary-defining rubrics offer a principled route to closing the discriminative gap in LLM evaluation.",
+      "authors": [
+        "Mengyuan Sun",
+        "Yu Li",
+        "Zhuohao Yu",
+        "Shikun Zhang",
+        "Wei Ye"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-06T09:55:22Z",
+      "updated": "2026-06-06T09:55:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08077v1",
+      "abs_url": "https://arxiv.org/abs/2606.08077",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08077",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决大型语言模型（LLM）评估中，自生成评估标准（rubrics）在区分困难案例时不如人工标注标准的问题，其核心观点是自生成标准侧重描述“好”的响应，而有效标准应能区分相似候选。为此，论文提出了SVR（Support Vector Rubrics）框架，将评估标准构建重新定义为基于偏好数据的最大间隔边界学习问题，通过从偏好对中挖掘对比特征构建评估标准库，并学习一个提示条件选择器和全局评估标准权重，同时通过支持对选择和对抗性探测迭代优化评估标准库。实验结果显示，在RubricBench上，SVR将与人工参考评估标准的差距从24.1分缩小到0.3分，并超越了强大的自生成评估标准和判别基线；在RewardBench 1&2和RM-Bench上，SVR也与专门的奖励模型表现相当，证明了其更广泛的奖励建模能力。"
+    },
+    {
+      "id": "2606.08063",
+      "title": "Robust-U1: Can MLLMs Self-Recover Corrupted Visual Content for Robust Understanding?",
+      "abstract": "Multimodal Large Language Models (MLLMs) have demonstrated remarkable success in visual understanding, yet their performance degrades significantly under real-world visual corruptions. While existing robustness enhancement approaches exist, they are limited: black-box feature alignment lacks interpretability, and white-box text-based reasoning cannot restore lost pixel-level details. This work investigates a fundamental research question: Can MLLMs recover corrupted visual content by themselves? To address this, we propose Robust-U1, a novel framework that equips MLLMs with explicit visual self-recovery capability for robust understanding. The approach comprises three core stages: supervised fine-tuning for initial reconstruction, reinforcement learning with dual rewards (pixel-level SSIM and semantic-level CLIP similarity) for aligning high visual quality, and multimodal reasoning that jointly considers both the corrupted input and the recovered image. Extensive experiments demonstrate that Robust-U1 achieves state-of-the-art robustness on the real-world corruption benchmark and maintains superior performance under adversarial corruptions on general VQA benchmarks. Analysis confirms that high-quality visual recovery directly enhances reasoning performance, establishing self-recovery as a critical mechanism for robust visual understanding. The source code is available at https://github.com/jqtangust/Robust-U1.",
+      "authors": [
+        "Jiaqi Tang",
+        "Jianmin Chen",
+        "Youyang Zhai",
+        "Wei Wei",
+        "Runtao Liu",
+        "Mengjie Zhao",
+        "Xiangyu Wu",
+        "Qingfa Xiao",
+        "Qifeng Chen"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-06-06T08:58:12Z",
+      "updated": "2026-06-06T08:58:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08063v1",
+      "abs_url": "https://arxiv.org/abs/2606.08063",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08063",
+      "summary_zh": "多模态大语言模型（MLLMs）在真实世界视觉损坏下性能显著下降，现有方法或缺乏可解释性，或无法恢复像素级细节。Robust-U1 旨在解决 MLLMs 在视觉损坏下的鲁棒性问题，探索 MLLMs 是否能自主恢复损坏的视觉内容以实现鲁棒理解。该方法通过三阶段框架实现：首先进行监督微调以实现初步重建，然后利用强化学习结合像素级 SSIM 和语义级 CLIP 相似度双重奖励来优化视觉质量，最后通过多模态推理同时考虑损坏输入和恢复图像。实验结果表明，Robust-U1 在真实世界损坏基准上达到了最先进的鲁棒性，并在通用 VQA 基准上对抗性损坏下保持了卓越性能，证实了高质量视觉恢复能直接提升推理表现，将自恢复确立为鲁棒视觉理解的关键机制。"
+    },
+    {
+      "id": "2606.08035",
+      "title": "DyCo-RL: Dynamic Cross-Modal Coordination for Visual Reasoning",
+      "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has emerged as a leading paradigm for enhancing visual reasoning in Multimodal Large Language Models (MLLMs). However, existing RLVR methods optimize primarily for the reasoning outcome, fundamentally overlooking the fine-grained cross-modal coordination required during the generation process. Through token-level analyses and controlled interventions, we reveal that during Chain-of-Thought (CoT) reasoning, MLLMs frequently fail to dynamically alternate between extracting visual evidence and synthesizing textual context-a coordination breakdown that is causally linked to reasoning failures. Motivated by these findings, we propose DyCo-RL, which integrates dynamic cross-modal coordination into RLVR optimization. Specifically, DyCo-RL uses the Fisher-Rao geodesic distance to measure within-modality attention shifts, assigning tokens to either visually-oriented or text-oriented functional roles. It then evaluates the alignment between a token's actual attention allocation and its assigned role, leveraging this score for alignment-guided advantage reweighting during policy optimization. Extensive experiments demonstrate that the algorithm-agnostic DyCo-RL, when applied to Qwen2.5-VL-3B/7B, consistently improves four representative RLVR algorithms across seven benchmarks spanning visual-centric and mathematical reasoning.",
+      "authors": [
+        "Hangui Lin",
+        "Yan Shu",
+        "Zhengyang Liang",
+        "Chi Liu",
+        "Xiangrui Liu",
+        "Minghao Qin",
+        "Teng Long",
+        "Zheng Liu",
+        "Nicu Sebe"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-06T07:56:25Z",
+      "updated": "2026-06-06T07:56:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08035v1",
+      "abs_url": "https://arxiv.org/abs/2606.08035",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08035",
+      "summary_zh": "现有RLVR方法在多模态大语言模型（MLLMs）的视觉推理中，主要关注推理结果，却忽略了生成过程中细粒度的跨模态协调。通过对CoT推理的token级分析，发现MLLMs在提取视觉证据和合成文本上下文之间动态切换时常出现协调故障，导致推理失败。DyCo-RL提出将动态跨模态协调整合到RLVR优化中，利用Fisher-Rao测地距离衡量模态内注意力偏移，将token分配为视觉导向或文本导向的功能角色，并评估token实际注意力分配与其分配角色之间的一致性。该一致性分数用于策略优化中的对齐引导优势重加权。实验证明，DyCo-RL在Qwen2.5-VL-3B/7B上，能持续改进四种代表性RLVR算法在七个视觉中心和数学推理基准上的表现。"
+    },
+    {
+      "id": "2606.08032",
+      "title": "Variational Proximal Policy Optimization",
+      "abstract": "Reinforcement Learning from Human Feedback via Proximal Policy Optimization often suffers from policy mode collapse, brittle exploration loops, and distribution drift. This paper introduces Variational Proximal Policy Optimization (\\(\\textsc{VP}_2\\textsc{O}\\)), a particle-based variational inference framework that maps policy optimization to Stein Variational Gradient Descent within a Mixture-of-Experts architecture. By leveraging functional kernels over localized expert prototypes alongside an expert orthogonalization loss, \\(\\textsc{VP}_2\\textsc{O}\\) introduces a geometry-based proximal-control mechanism that can reduce reliance on fixed clipping or KL schedules. Our results on a 33B/4B sparse Mixture-of-Experts model show several improvements across complex reasoning benchmarks, establishing a \\(+\\mathbf{179}\\) ELO gain on Codeforces and a \\(\\mathbf{32\\%}\\) reduction in token count on AIME mathematical reasoning tasks.",
+      "authors": [
+        "Ousmane Amadou Dia"
+      ],
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-06-06T07:50:50Z",
+      "updated": "2026-06-06T07:50:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08032v1",
+      "abs_url": "https://arxiv.org/abs/2606.08032",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08032",
+      "summary_zh": "该论文旨在解决基于人类反馈的强化学习（RLHF）中近端策略优化（PPO）面临的策略模式崩溃、探索循环脆弱和分布漂移问题。为此，论文提出了变分近端策略优化（Variational Proximal Policy Optimization, $\\textsc{VP}_2\\textsc{O}$），这是一个基于粒子的变分推断框架，它将策略优化映射到混合专家（Mixture-of-Experts）架构内的Stein变分梯度下降。关键创新在于利用了局部专家原型上的函数核以及专家正交化损失，引入了一种基于几何的近端控制机制，从而减少了对固定裁剪或KL调度器的依赖。实验结果表明，在一个33B/4B稀疏混合专家模型上，$\\textsc{VP}_2\\textsc{O}$在复杂推理基准测试中取得了显著改进，在Codeforces上获得了+179的ELO增益，并在AIME数学推理任务中将token计数减少了32%。"
+    },
+    {
+      "id": "2606.08016",
+      "title": "IEA: Amateur-Friendly Conversational Image Editing Agent via Three Stages of Multitask Alignment",
+      "abstract": "Current image editing software often hinges on fixed filters or expert tuning, leaving a gap between amateur users' intent and outcomes. Creations by generative models may contain artifacts, implausible details, or stylistic drift away from photorealism and offer little insight into why an edit was made. We propose IEA, a conversational Image Editing Agent that learns to operate parameterized tools in an explicit, interpretable action space. IEA is trained via a three-stage multitask pipeline: (1) SFT on distilled expert edits, (2) GRPO with rewards for likeness improvement, tool usefulness, and intent summarization, and (3) large-scale synthetic fine-tuning to jointly master image editing, refinement, and user intent summarization. By manipulating 16 editing tools step by step, IEA produces transparent edit traces that can be inspected and debugged. In quantitative experiments, it attains a lower pixel distance on the edit task and a higher ROUGE-L on the summary task than strong baselines. In user studies, it ranks best among tool-calling methods for instruction following while surpassing generative methods in overall perceptual quality. Our results validate interpretable, tool-centric VLMs as a reliable path to human instruction-guided image retouching.",
+      "authors": [
+        "Zichen Zhu",
+        "Yuheng Sun",
+        "Mingxuan Zhu",
+        "Wenjie Ma",
+        "Situo Zhang",
+        "Zhexiang Wang",
+        "Ziyue Yang",
+        "Danyang Zhang",
+        "Kunyao Lan",
+        "Zihan Zhao",
+        "Dingye Liu",
+        "Siqi Xiang",
+        "Lu Chen",
+        "Kai Yu"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-06-06T07:11:08Z",
+      "updated": "2026-06-06T07:11:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08016v1",
+      "abs_url": "https://arxiv.org/abs/2606.08016",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08016",
+      "summary_zh": "现有图像编辑软件和生成模型难以满足非专业用户对图像编辑的意图，且生成结果可能存在伪影或不真实细节。IEA 提出了一种会话式图像编辑代理，通过操作参数化工具实现可解释的图像编辑。该模型采用三阶段多任务对齐训练：首先对专家编辑进行 SFT，然后通过 GRPO 优化图像相似度、工具效用和意图总结，最后进行大规模合成数据微调以同时掌握编辑、优化和意图总结。IEA 通过逐步操作 16 种编辑工具，生成透明的编辑轨迹，便于检查和调试。定量实验表明，IEA 在编辑任务上实现了更低的像素距离，在总结任务上获得了更高的 ROUGE-L 分数，并在用户研究中超越了现有基线模型，证明了其在遵循指令和感知质量方面的优越性。"
+    },
+    {
+      "id": "2606.08011",
+      "title": "Rewrite to Translate, Translate to Reward: Reinforcement Learning for Source Rewriting in Machine Translation",
+      "abstract": "Although directly prompting off-the-shelf Large Language Models (LLMs) to generate meaning-preserving source rewrites can effectively enhance Machine Translation (MT) quality, doing so requires manually tuning prompts for different MT models. In this work, we propose RLSR (Reinforcement Learning for Source Rewriting), a novel RL-based framework for training a source rewriting model without tuning prompts for each MT model. RLSR optimizes the rewriting model by directly using the improvement in downstream translation quality yielded by each rewritten source as the reward. Extensive experiments across six MT models and 16 language pairs demonstrate that our 4B rewriting models trained via RLSR significantly outperform the no-rewriting baseline and existing same-scale prompt-based rewriting baselines, while achieving competitive performance against prompt-based baselines based on the 235B LLM.",
+      "authors": [
+        "Boxuan Lyu",
+        "Haiyue Song",
+        "Zhi Qu",
+        "Hidetaka Kamigaito",
+        "Kotaro Funakoshi",
+        "Manabu Okumura"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-06-06T07:00:44Z",
+      "updated": "2026-06-06T07:00:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.08011v1",
+      "abs_url": "https://arxiv.org/abs/2606.08011",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.08011",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决机器翻译（MT）中源语言重写（source rewriting）模型需要针对不同MT模型手动调优提示（prompts）的问题。为此，提出了一种名为RLSR（Reinforcement Learning for Source Rewriting）的强化学习框架，通过将重写后的源语言对下游翻译质量的提升作为奖励信号，直接优化重写模型。关键创新在于RLSR无需为每个MT模型调整提示，而是通过端到端的强化学习训练重写模型。实验结果表明，在六个MT模型和16个语言对上，RLSR训练的4B重写模型显著优于无重写基线和现有同等规模的基于提示的重写基线，并且与基于235B大型语言模型的提示基线相比，性能也具有竞争力。"
+    },
+    {
+      "id": "2606.07999",
+      "title": "Efficient Skill Grounding via Code Refactoring with Small Language Models",
+      "abstract": "Effective skill grounding is essential for deploying reusable skills in embodied agents, as even minor embodiment or environmental differences can render an entire skill incompatible. This challenge is particularly pronounced in embodied settings, where agents must operate in dynamic, partially observable environments without access to large language models (LLMs). In this setting, reliance on LLMs is impractical, while small language models (sLMs) remain insufficient for the effective skill grounding required for reliable long-horizon control. We present RECENT, a refactoring-centric agent framework that enables efficient skill grounding with sLMs by decoupling skill semantics from embodiment- and environment-specific execution binding. By representing skills as executable code, RECENT preserves the semantic intent encoded in a skill's control structure while grounding it by modifying only execution bindings through localized refactoring, rather than regenerating code from scratch. We evaluate RECENT across diverse skill grounding scenarios spanning multiple robot embodiments in dynamic environments, demonstrating robust long-horizon performance when deployed with an sLM. Across all scenarios, RECENT achieves the best performance among sLM-based Code-as-Policies (CaP) methods and matches the task performance of LLM-based CaP.",
+      "authors": [
+        "Sera Choi",
+        "Wonje Choi",
+        "Saehun Chun",
+        "Daehee Lee",
+        "Jooyoung Kim",
+        "Chaeun Lee",
+        "Honguk Woo"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-06T06:33:51Z",
+      "updated": "2026-06-06T06:33:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07999v1",
+      "abs_url": "https://arxiv.org/abs/2606.07999",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07999",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "这篇论文旨在解决具身智能体中技能接地的效率问题，尤其是在动态、部分可观察的环境中，大型语言模型（LLMs）不实用而小型语言模型（sLMs）不足以有效接地技能的挑战。论文提出了一个以重构为中心的智能体框架RECENT，通过将技能语义与具身和环境特定的执行绑定解耦，实现了sLMs的高效技能接地。关键创新点在于RECENT将技能表示为可执行代码，并通过局部重构修改执行绑定来接地技能，而非从头开始重新生成代码，从而保留了技能控制结构中的语义意图。实验结果表明，RECENT在多种机器人具身和动态环境下的技能接地场景中，使用sLM部署时展现了稳健的长期性能，并且在所有场景中均优于基于sLM的Code-as-Policies (CaP) 方法，并达到了基于LLM的CaP的任务性能。"
+    },
+    {
+      "id": "2606.07995",
+      "title": "Customer-Agent: Overcoming Context Limitations in Ultra-Long Shopping Trajectories via Tool-Augmented Agents and RLVR",
+      "abstract": "Understanding customer shopping trajectories is essential for enabling personalized shopping experiences. However, shopping records (i.e., customer's search, clicks, purchases, etc.) often span long time horizons over multiple years, resulting in extremely long trajectories that pose significant challenges for existing large language models (LLMs). Despite the importance of this problem, existing benchmarks are limited to short customer trajectories, while real-world trajectories from large e-commerce platforms are rarely accessible due to data privacy constraints. To address this gap, we introduce ShopTrajQA, a long-context evaluation benchmark constructed from real-world product information and simulated shopping trajectories. The dataset includes variants of up to 32k and 64k tokens, enabling systematic evaluation of model robustness under varying context lengths. Through comprehensive benchmarking of frontier LLMs, we identify critical performance gaps in reasoning over long shopping trajectory data. To address these challenges, we propose a Customer Agent Framework for ultra-long context management. Leveraging a Reinforcement Learning with Verifiable Rewards (RLVR) agentic training paradigm, our approach stores trajectories as external local files and trains the agent to autonomously retrieve and parse them through code-interpreter interactions (e.g., SQL queries), effectively bypassing the fixed in-context window constraints of LLMs. Experimental results demonstrate that our framework achieves strong performance for ShopTrajQA and shows generalization to other complex reasoning tasks.",
+      "authors": [
+        "Hongye Liu",
+        "Rongmei Lin",
+        "Anurag Kashyap",
+        "Hejie Cui",
+        "Ricardo Henao",
+        "Besnik Fetahu",
+        "Bing Yin"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-06T06:22:07Z",
+      "updated": "2026-06-06T06:22:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07995v1",
+      "abs_url": "https://arxiv.org/abs/2606.07995",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07995",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "为解决现有大语言模型（LLMs）在处理超长购物轨迹（可达数年）时面临的上下文限制问题，该研究引入了ShopTrajQA基准，该基准基于真实商品信息和模拟购物轨迹构建，包含长达32k和64k token的变体，用于评估模型在不同上下文长度下的鲁棒性。研究发现当前LLMs在处理长购物轨迹数据时存在显著的推理性能差距，为此提出了一种Customer Agent框架。该框架通过工具增强的智能体（Tool-Augmented Agents）和可验证奖励强化学习（RLVR）范式，将购物轨迹存储为外部本地文件，并训练智能体通过代码解释器（如SQL查询）自主检索和解析这些文件，从而有效绕过LLMs固有的上下文窗口限制。实验结果表明，该框架在ShopTrajQA上表现出色，并能泛化到其他复杂的推理任务。"
+    },
+    {
+      "id": "2606.07988",
+      "title": "PAFO: Pareto Fairness Optimization for Personalized Reward Modeling",
+      "abstract": "Large language models (LLMs) increasingly rely on reward models to align their outputs with diverse user preferences. While personalized reward models aim to capture such heterogeneity, they are often trained on imbalanced user preference data and may therefore favor users whose preferences are more common in the training population. In this paper, we identify this failure mode as personalized reward bias, where reward modeling quality varies systematically with preference support rate. We formulate its mitigation as a Pareto fairness problem over group utilities, aiming to improve under-served users without degrading other user groups. To this end, we propose PAFO, a Pareto fairness optimization framework for personalized reward modeling. PAFO first trains group-specialized reward models for majority and minority preference groups, then constructs conditional margin-level supervision to distill their heterogeneous preference boundaries into a single unified model. The resulting model uses group information only during training and requires no explicit group labels at inference time. Experiments on Personal-LLM and DSP show that PAFO improves both minority-group and majority-group accuracy while reducing user-level unfairness across multiple metrics, demonstrating its effectiveness for fairer LLM personalization.",
+      "authors": [
+        "Xiaoyan Zhao",
+        "Haoting Ni",
+        "Yang Zhang",
+        "Chunyuan Zheng",
+        "Haoxuan Li",
+        "Fuli Feng"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-06T05:35:31Z",
+      "updated": "2026-06-06T05:35:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07988v1",
+      "abs_url": "https://arxiv.org/abs/2606.07988",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07988",
+      "keyword_topics": [
+        "rl",
+        "distillation"
+      ],
+      "summary_zh": "大型语言模型（LLMs）的个性化奖励模型在处理不平衡的用户偏好数据时，容易出现偏向主流用户的“个性化奖励偏差”问题。为解决此问题，论文提出将其建模为一个帕累托公平性问题，旨在提升服务不足用户群体的效用，同时不损害其他用户群体。为此，PAFO（Pareto Fairness Optimization）框架被提出，它首先为多数和少数偏好群体训练专门的奖励模型，然后通过条件边际级监督将这些异构偏好边界蒸馏到一个统一模型中。实验在Personal-LLM和DSP数据集上进行，结果表明PAFO在提高少数群体和多数群体准确性的同时，显著降低了用户层面的不公平性，有效实现了更公平的LLM个性化。"
+    },
+    {
+      "id": "2606.07985",
+      "title": "FMRFusion: Frequency-Aware Multi-View Representation Learning for Heterogeneous Image Fusion",
+      "abstract": "Infrared and visible image fusion aims to generate a composite image that retains significant target information and preserves detailed textures, integrating two heterogeneous modalities. Previous image fusion methods typically adopt a single-module stacking approach to extract features from the two modalities. However, these approaches may result in incomplete learning of their distinct characteristics, thereby limiting the fusion effectiveness and constrain ing robustness in real-world heterogeneous data scenarios. To address these challenges, we propose FMRFusion, a frequency-aware multi-view representation learning network for Heterogeneous Image Fusion. A Multi-Scale Struc tural Perception Module is introduced to effectively capture discriminative structures, extracting fine-grained local structures and essential contextual information. A bilinear frequency decomposition mechanism is employed to sepa rate features into high-frequency and low-frequency components, enabling joint modeling of local details and global representations across different frequency domains. Moreover, a Cross-View Complementary Interaction is incorpo rated to explicitly model and fuse the complementary characteristics between reflected light information and radiative intensity responses, facilitating effective cross-view interaction. We further improve the Performance of the fused results by flow matching, which progressively refines the fused features by learning the transformation from coarse data to high-quality representations. Extensive experiments conducted on multiple benchmark datasets demonstrate that FMRFusion achieves superior and consistent performance across a range of fusion tasks, especially in nighttime scenarios",
+      "authors": [
+        "Tao Zhoua",
+        "Yunlong Liu",
+        "Qinghui Chen",
+        "Zekai Zhang",
+        "Minlong Sun",
+        "Changlin Biana",
+        "Dagang Li",
+        "Wenmin Wang",
+        "Jinglin Zhang"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.CL"
+      ],
+      "published": "2026-06-06T05:23:06Z",
+      "updated": "2026-06-06T05:23:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07985v1",
+      "abs_url": "https://arxiv.org/abs/2606.07985",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07985",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "红外与可见光图像融合旨在生成兼具目标信息和纹理细节的复合图像，但现有方法常因单模块堆叠导致异构模态特征学习不充分。FMRFusion提出一种频率感知的多视角表示学习网络，通过多尺度结构感知模块捕获判别性结构，并利用双线性频率分解机制将特征分离为高频和低频分量，从而联合建模局部细节和全局表示。此外，FMRFusion引入跨视角互补交互来显式建模并融合反射光信息与辐射强度响应的互补特性，并通过流匹配进一步细化融合特征。在多个基准数据集上的广泛实验表明，FMRFusion在各种融合任务中，尤其是在夜间场景下，取得了卓越且一致的性能。"
+    },
+    {
+      "id": "2606.07982",
+      "title": "Overcoming the Limits of Finite Difference Method; Physics-Informed Neural Network for Noisy High-Dimensional Heat Diffusion",
+      "abstract": "High-dimensional transient heat diffusion under noisy boundary conditions exposes a fundamental limitation of classical numerical methods: accuracy degrades catastrophically where physical noise is unavoidable. This paper presents a Physics-Informed Neural Network (PINN) framework as a systematic solution to this problem across one, two, and three spatial dimensions, establishing clear operational regimes that redefine solver selection in noisy thermal systems. Under 20% boundary noise in 3D, PINN sustains approximately 91% accuracy while Finite Difference Method (FDM) collapses to 36%, a clear decisive advantage. This is further confirmed in a physical copper thermal system, where PINN reduces boundary reconstruction error by 3.3 times under realistic noise conditions. This noise resilience is accompanied by a dimensionality-driven efficiency crossover: PINN requires fewer spacetime nodes than FDM in 3D while achieving superior accuracy, exposing the true cost of classical discretization at scale. These findings reframe solver selection: the decisive axis is not accuracy alone, but noise exposure and dimensionality jointly. When noise and dimensionality are both high, the classical solver paradigm is insufficient; this work provides the foundation to justify PINN as the operational standard in such regimes.",
+      "authors": [
+        "Shreesh Bhattarai",
+        "Harish Chandra Bhandari"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-06T05:13:47Z",
+      "updated": "2026-06-06T05:13:47Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07982v1",
+      "abs_url": "https://arxiv.org/abs/2606.07982",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07982",
+      "keyword_topics": [
+        "4d-gen"
+      ],
+      "summary_zh": "针对高维瞬态热扩散在噪声边界条件下传统数值方法精度急剧下降的问题，该研究提出了一种基于物理信息神经网络（PINN）的框架。该方法通过将物理定律编码到神经网络中，有效克服了有限差分法（FDM）在噪声环境下的局限性，并在1D、2D和3D空间维度上进行了验证。关键创新在于PINN在噪声和高维度场景下展现出卓越的鲁棒性和效率，例如在3D空间20%边界噪声下，PINN能保持约91%的精度，而FDM仅为36%，并在实际铜热系统中将边界重建误差降低了3.3倍。研究结果表明，当噪声和维度都较高时，PINN比FDM更具优势，甚至在3D情况下能以更少的时空节点实现更高的精度，为高噪声、高维度热系统中的求解器选择提供了新的标准。"
+    },
+    {
+      "id": "2606.07974",
+      "title": "PRISM: PRior-guided Imagination Sampling in world Models",
+      "abstract": "A learned world model provides a powerful physical intuition for evaluating future states. But its effectiveness in continuous control also depends critically on how candidate actions are generated for model-based planning. Rather than solely asking how accurately a model can simulate the future, we ask: which candidate actions are worth evaluating in the first place? Existing planners typically search arbitrarily or use expert demonstrations only to initialize a sampling mean, discarding the expert's state-conditioned confidence. Properly guiding this search requires a robust action prior, yet current approaches often rely on independent visual encoders or large-scale VLMs to obtain one. We argue that this architectural bloat is unnecessary: the exact same data - and the learned representations of the world model itself - inherently encode the agent's action intuition. We introduce PRISM, a task-agnostic framework that extracts both from a single dataset while maintaining strict architectural simplicity. Building on a standard JEPA-style latent world model, PRISM attaches a lightweight MLP directly to its frozen encoder to predict a state-conditioned Gaussian prior. At plan time, PRISM fuses this prior into the planner's sampling distribution via a precision-weighted Product-of-Gaussians update. This parameter-free, closed-form integration steers the sampling process, making the prior confident where it is and ceding control where it is not. PRISM improves success rates by 35 percentage points over vanilla world-model-based MPC on Cube and 32 percentage points on PushT, without introducing significant inference overhead.",
+      "authors": [
+        "Yuhai Wang",
+        "Jiawei Xia",
+        "Rongxuan Zhou",
+        "Xiao Hu",
+        "Yongliang Shi",
+        "Jing Du",
+        "Yang Ye"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-06-06T04:18:10Z",
+      "updated": "2026-06-06T04:18:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07974v1",
+      "abs_url": "https://arxiv.org/abs/2606.07974",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07974",
+      "summary_zh": "该论文旨在解决世界模型在连续控制中生成有效候选动作的挑战，尤其是在模型规划阶段如何高效地引导动作采样。它提出了一种名为 PRISM 的任务无关框架，通过利用世界模型自身学习到的表示来提取动作先验，而不是依赖独立的视觉编码器或大型 VLM。PRISM 的关键创新在于，它在一个标准的 JEPA-style 潜在世界模型上，直接在其冻结编码器上附加一个轻量级 MLP 来预测状态条件高斯先验，并在规划时通过精度加权的 Product-of-Gaussians 更新将此先验融入规划器的采样分布中。实验结果表明，PRISM 在 Cube 任务上将成功率提高了 35 个百分点，在 PushT 任务上提高了 32 个百分点，且没有引入显著的推理开销。"
+    },
+    {
+      "id": "2606.07967",
+      "title": "DisCo: World Models with Discrete Camera Motion Control",
+      "abstract": "Controllable video world models target interactive world exploration, where models must faithfully execute explicit action commands while preserving visual quality and temporal coherence. However, most existing approaches rely on continuous camera trajectories as action conditions, which often lead to unreliable action following, especially under complex motion sequences. In this work, we identify action representation entanglement as a key bottleneck in controllable video generation, and show that continuous camera representations lead to high feature similarity across distinct motion patterns, degrading action controllability. Based on this insight, we propose DisCo, a controllable video world model that conditions generation on a compact set of discrete action primitives to improve action separability. We further introduce DisCoBench, a comprehensive benchmark for evaluating the ability of models in short-term, long-horizon, and highly dynamic exploration scenarios. Extensive experiments demonstrate that DisCo achieves significantly more reliable action following while preserving visual quality.",
+      "authors": [
+        "Hongrui Huang",
+        "Junke Wang",
+        "Quanhao Li",
+        "Yu-Gang Jiang",
+        "Zuxuan Wu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-06T03:50:45Z",
+      "updated": "2026-06-06T03:50:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07967v1",
+      "abs_url": "https://arxiv.org/abs/2606.07967",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07967",
+      "summary_zh": "现有可控视频世界模型在复杂运动序列下，由于依赖连续相机轨迹作为动作条件，导致动作执行不可靠。论文提出 DisCo 模型，通过使用一组紧凑的离散动作原语来条件化生成，从而提高动作的可分离性，解决了连续相机表示导致不同运动模式之间特征相似度高、降低动作可控性的问题。关键创新在于识别并解决了动作表示纠缠这一瓶颈，并引入了 DisCoBench 基准来全面评估模型在短期、长程和高动态探索场景中的能力。实验结果表明，DisCo 在保持视觉质量的同时，显著提高了动作执行的可靠性。"
+    },
+    {
+      "id": "2606.07950",
+      "title": "The Easy, the Hard, and the Learnable: Confidence and Difficulty-Adaptive Policy Optimization for LLM Reasoning",
+      "abstract": "RL with verifiable rewards can substantially improve LLM reasoning, yet standard GRPO-style training often treats easy, hard, and learnable questions alike through uniform sampling and weighting, leading to inefficient compute allocation. We study GRPO by tracking token log-probabilities, group-normalized advantages, and the induced token-level update weights. This reveals three recurring dynamics as training proceeds: (1) confidence inflation, (2) advantage contraction, and (3) hierarchical convergence. These findings suggest that the utility of each update depends strongly on both question difficulty and the model's current competence. Motivated by this, we propose Confidence and Difficulty-adaptive Policy Optimization (CoDaPO), which assigns each question a bounded value from rollout confidence and empirical difficulty. CoDaPO then uses this value to reweight policy updates and resample high-value learnable questions within mini-batches, thereby increasing discovery within the learnable band under a fixed compute budget. Across twelve benchmarks, CoDaPO consistently improves accuracy over existing RL methods. Our code is publicly available at https://github.com/tmlr-group/CoDaPO.",
+      "authors": [
+        "Zhanke Zhou",
+        "Xiangyu Lu",
+        "Chentao Cao",
+        "Brando Miranda",
+        "Tongliang Liu",
+        "Bo Han",
+        "Sanmi Koyejo"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-06T02:51:33Z",
+      "updated": "2026-06-06T02:51:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07950v1",
+      "abs_url": "https://arxiv.org/abs/2606.07950",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07950",
+      "summary_zh": "大型语言模型（LLM）的推理能力通过可验证奖励的强化学习（RL）可以显著提升，但现有GRPO等方法在训练中对不同难度的题目一视同仁，导致计算资源分配效率低下。研究通过追踪token对数概率、组归一化优势和token级更新权重，揭示了训练中的三个动态：置信度膨胀、优势收缩和分层收敛，表明更新的有效性与问题难度和模型能力密切相关。为此，提出了置信度和难度自适应策略优化（CoDaPO）方法，该方法根据rollout置信度和经验难度为每个问题分配一个有界值，并利用此值重新加权策略更新，并在mini-batch内重新采样高价值的可学习问题，从而在固定计算预算下提高可学习区间的发现效率。CoDaPO在十二个基准测试中均持续优于现有RL方法。"
+    },
+    {
+      "id": "2606.07909",
+      "title": "MemToolAgent overview with a simple restaurant booking scenario where the agent retrieves similar memories, receives feedback on an invalid time format, and generates a reflection to update its memory",
+      "abstract": "Modern large language model (LLM) agents can use external tools to help users solve complex tasks. However, for problems that require learning from long-term historical events or from previous agent-environment interactions, LLM agents are required to use memory mechanisms to store and retrieve experiences. While sophisticated memory systems exist for dialogue agents, few studies have empirically examined how to improve agents' tool-using capabilities through past user-agent conversations. We propose MemToolAgent, a framework that improves tool use through memory management. Our approach contains a memory extraction module that processes past experiences into structured memory entries, and a retrieval module that dynamically selects a subset of the stored memory entries. This enables more personalized and accurate responses aligned with user preferences and feedback without requiring LLM fine-tuning. In summary, this work has three main contributions: (1) a unified memory entry format that improves both general-purpose and personalized tool use without LLM fine-tuning, (2) a reflection-based memory extraction that uses environment and user feedback to distill wrong executions into critiques to store, and (3) a retrieval module that chooses how many past experiences to use based on the memory similarity distribution. MemToolAgent achieves 29%, 80%, and 17% relative improvements compared to strong baselines on the WorkBench, NESTFUL, and PEToolBench benchmarks, respectively.",
+      "authors": [
+        "Suleyman Armagan Er",
+        "Danilo Ribeiro",
+        "Yogesh Virkar",
+        "Surafel Lakew",
+        "Adi Kalyanpur",
+        "James Gung",
+        "Thomas Delteil",
+        "Arshit Gupta"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-06-06T00:15:00Z",
+      "updated": "2026-06-06T00:15:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.07909v1",
+      "abs_url": "https://arxiv.org/abs/2606.07909",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.07909",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该论文旨在解决大型语言模型（LLM）代理在需要长期记忆和从过往交互中学习的复杂任务中，如何有效利用记忆机制提升工具使用能力的问题。为此，论文提出了 MemToolAgent 框架，其核心创新在于：1) 统一的记忆条目格式，无需微调 LLM 即可提升通用和个性化工具使用；2) 基于反思的记忆提取模块，能将环境和用户反馈中的错误执行提炼成批评并存储；3) 动态检索模块，根据记忆相似度分布选择使用多少过往经验。MemToolAgent 在 WorkBench、NESTFUL 和 PEToolBench 基准测试上，相较于强基线模型分别取得了 29%、80% 和 17% 的相对性能提升。"
+    }
+  ]
 }
