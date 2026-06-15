@@ -1,6 +1,6 @@
 {
   "date": "2026-06-11",
-  "generated_at": "2026-06-14T06:15:37.085910+00:00",
+  "generated_at": "2026-06-15T06:50:33.128656+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,292 @@
   },
   "papers": [
     {
+      "id": "2606.13971",
+      "title": "Prompt2Effect: Training-Free Image-to-Video Model Specialization via LoRA Generation",
+      "abstract": "Personalizing Image-to-Video (I2V) diffusion models with specific visual effects is increasingly demanded for high-end video generation. Current practice requires training a separate Low-Rank Adaptation (LoRA) module for each effect, incurring substantial data curation and iterative optimization costs that hinder interactive control. We present Prompt2Effect, a weight-driven hypernetwork that amortizes per-effect training by directly synthesizing effect-specific LoRA weights in a single forward pass. Unlike prior hypernetworks that regress adapter weights purely from semantics, Prompt2Effect is explicitly conditioned on the frozen base model weights, grounding weight prediction in the structural geometry of each layer. Furthermore, instead of predicting raw LoRA matrices, we introduce an SVD-canonicalized parameterization that resolves factorization ambiguity and stabilizes large-scale weight synthesis. Together, these design principles enable accurate and scalable LoRA prediction for high-dimensional I2V diffusion models. Extensive experiments demonstrate that Prompt2Effect achieves on-par or superior video quality and effect alignment compared to conventional LoRA fine-tuning, while reducing the computational cost from 56 GPU training hours to 3.3 seconds of hypernetwork inference. When used as initialization for subsequent fine-tuning, our predicted weights further improve final performance and accelerate optimization by approximately 10x.",
+      "authors": [
+        "Xiaomeng Yang",
+        "Yanyu Li",
+        "Gordon Guocheng Qian",
+        "Ivan Skorokhodov",
+        "Viacheslav Ivanov",
+        "Avalon Vinella",
+        "Xuan Zhang",
+        "Yanzhi Wang",
+        "Sergey Tulyakov",
+        "Anil Kag"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-11T23:26:44Z",
+      "updated": "2026-06-11T23:26:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13971v1",
+      "abs_url": "https://arxiv.org/abs/2606.13971",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13971",
+      "summary_zh": "该论文旨在解决图像到视频 (I2V) 扩散模型中，为特定视觉效果定制模型需要为每个效果训练单独 LoRA 模块，导致数据收集和优化成本高昂的问题。为此，论文提出了 Prompt2Effect，一个权重驱动的超网络，通过在一次前向传播中直接合成特定效果的 LoRA 权重，从而分摊了每个效果的训练成本。其关键创新在于，Prompt2Effect 不仅基于语义条件，还明确地以冻结的基础模型权重为条件来预测 LoRA 权重，并引入了 SVD 规范化参数化来解决因子分解模糊性并稳定大规模权重合成。实验结果表明，Prompt2Effect 在视频质量和效果对齐方面与传统 LoRA 微调相当或更优，同时将计算成本从 56 GPU 训练小时降低到 3.3 秒的超网络推理时间；作为后续微调的初始化，预测权重还能进一步提高最终性能并加速优化约 10 倍。",
+      "impact_score": null
+    },
+    {
+      "id": "2606.13940",
+      "title": "Can Post-Training Turn LLMs into Good Medical Coders? An Empirical Study of Generative ICD Coding",
+      "abstract": "Automated International Classification of Diseases (ICD) coding is a core medical-coding task for billing, epidemiology, and clinical decision support. Generative large language models (LLMs) are often reported as weak medical coders, but this finding mainly comes from inference-time settings such as prompting, retrieval, reranking, or tool use, leaving the role of task-specific post-training underexplored. We present a controlled empirical study of post-training for generative ICD coding, comparing discriminative baselines with LLM coders across prompting, supervised fine-tuning, and reinforcement learning under a common protocol and metric set. To our knowledge, this is the first study to evaluate RL-based post-training for generative LLM coders in ICD coding. We further introduce PHI, a diagnostic curriculum that extends GRPO to refine missed-code cases. Our results show that prompting-only evaluation substantially underestimates the potential of LLMs for ICD coding. SFT provides the main capability jump, GRPO further improves code-set prediction beyond SFT, and PHI provides targeted gains on macro-level performance. These findings suggest that the main bottleneck is not the generative formulation alone, but how the model is adapted and optimized for full-taxonomy recall. We release our code, data splits, and checkpoints at https://github.com/AlexandreWANG915/LLM4ICD.",
+      "authors": [
+        "Ziqing Wang",
+        "Weihao Li",
+        "Shijie Chen",
+        "Yuan Luo",
+        "Kaize Ding"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-11T22:04:50Z",
+      "updated": "2026-06-11T22:04:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13940v1",
+      "abs_url": "https://arxiv.org/abs/2606.13940",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13940",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "这篇论文旨在探究通过后训练（post-training）能否显著提升大型语言模型（LLMs）在国际疾病分类（ICD）编码任务上的表现，以解决现有研究多集中于推理时设置（如提示、检索）而低估LLMs潜力的问题。研究通过对比判别式基线模型与LLM编码器在提示、监督微调（SFT）和强化学习（RL）等不同后训练方法下的性能，并引入了基于GRPO的诊断性课程PHI来改进漏编码情况，首次评估了RL在生成式LLM ICD编码中的应用。实验结果表明，仅通过提示评估会严重低估LLMs的潜力，SFT能带来主要的能力提升，GRPO进一步改善了代码集预测，而PHI则在宏观性能上提供了针对性增益，这表明生成式LLM在ICD编码中的主要瓶颈并非生成式本身，而是模型如何针对全分类召回进行适应和优化。"
+    },
+    {
+      "id": "2606.13872",
+      "title": "Avatar V: Scaling Video-Reference Avatar Video Generation",
+      "abstract": "Generating avatar videos that are not merely visually similar to a target individual but behaviorally recognizable, faithfully reproducing their talking rhythm, gestural tendencies, and expression dynamics, remains an open challenge. Existing methods predominantly condition on single static images, which provide insufficient identity information and cannot capture dynamic motion traits, while standard pixel-level objectives underserve the perceptually critical facial regions that determine avatar fidelity. We present Avatar V, a production-scale framework that addresses these limitations through video-reference-conditioned identity modeling. Rather than compressing identity into fixed-size embeddings, the model conditions directly on the full token sequence of a reference video, learning to reproduce both static identity attributes (facial geometry, skin texture) and dynamic behavioral patterns (talking rhythm, micro-expressions) through attention over the reference context. We introduce Sparse Reference Attention, an asymmetric mechanism achieving linear-complexity conditioning on arbitrarily long references; a motion representation stream enabling closed-loop talking style transfer; and an identity-aware super-resolution refiner inheriting the full reference conditioning. These are supported by a data engine curating 100M+ training clips from 50M raw videos, and a five-stage training pipeline with flow matching pre-training, personality fine-tuning, two-phase distillation (>10x acceleration), and RLHF alignment, deployed across thousands of GPUs. Avatar V generates 1080p videos of unlimited duration, achieving state-of-the-art identity preservation, lip synchronization, and generation quality on our cross-scene benchmark, consistently outperforming leading systems including Seedance 2.0, Kling O3 Pro, Veo 3.1, and OmniHuman 1.5 in both automated metrics and human evaluation.",
+      "authors": [
+        "Benjamin Liang",
+        "Ce Chen",
+        "Desmond Lin",
+        "Ivan Somov",
+        "Jiajun Zhao",
+        "Jiewei Yuan",
+        "Jingfeng Zhang",
+        "Junhao Huang",
+        "Nik Nolte",
+        "Pedram Haqiqi",
+        "Penghan Wang",
+        "Rong Yan",
+        "Rui Zhang",
+        "Sam Prokopchuk",
+        "Sivan Wang",
+        "Viktor Goriachko",
+        "Yi Ren",
+        "Yuanming Li",
+        "Yutao Chen",
+        "Zhenhui Ye",
+        "Zhibin Hong",
+        "Zilong Nie",
+        "Zujin Guo"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-11T19:55:39Z",
+      "updated": "2026-06-11T19:55:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13872v1",
+      "abs_url": "https://arxiv.org/abs/2606.13872",
+      "topics": [
+        "rl",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13872",
+      "summary_zh": "生成不仅视觉相似而且行为可识别的数字人视频是一个开放挑战，现有方法主要依赖单张静态图像，无法捕捉动态行为特征。Avatar V 提出了一种生产规模的框架，通过视频参考条件下的身份建模来解决这些限制，它直接以参考视频的完整 token 序列为条件，学习重现静态身份属性和动态行为模式。该框架引入了稀疏参考注意力机制以实现线性复杂度的长参考条件处理，以及一个运动表示流和身份感知的超分辨率细化器，并由一个包含超过 1 亿个训练片段的数据引擎和五阶段训练流程支持。Avatar V 能够生成无限时长的 1080p 视频，在身份保留、唇形同步和生成质量方面均达到最先进水平，在自动化指标和人工评估中持续优于 Seedance 2.0、Kling O3 Pro、Veo 3.1 和 OmniHuman 1.5 等领先系统。",
+      "impact_score": null
+    },
+    {
+      "id": "2606.13861",
+      "title": "Temporal Backtracking Search for Test-time Generative Video Reasoning",
+      "abstract": "While test-time scaling has revolutionized reasoning in large language models, generative video reasoning remains bottlenecked by a single-shot paradigm. We demonstrate that searching over denoising steps cannot rescue logically flawed rollouts because spatial trajectories commit early in the diffusion process. Root-level Best-of-N (BoN) sampling is similarly inefficient: reasoning errors cluster early in the temporal axis, and resampling blindly discards verified upstream progress. To unlock effective test-time scaling for video models, we introduce Temporal Backtracking Search (TBS), which shifts the search space to the temporal axis. TBS transforms video generation into an iterative generate-verify-restart loop via three core mechanisms: (1) variable-K conditioning to resume generation from arbitrary clean prefixes; (2) temporal process verification to localize failures and extract valid restart anchors; and (3) prefix-based search to reallocate compute toward extending correct trajectories rather than root resampling. Across algorithmic, navigation, and robotics domains, TBS Pareto-dominates matched-budget BoN. In a strict out-of-distribution setting where one-shot generation collapses (0.7% for BoN), TBS achieves 22.7%, with every solved episode stemming from a restarted branch. Ultimately, TBS reveals that the local reasoning competence of video models far exceeds what single-shot rollouts indicate, providing a scalable test-time framework to unlock it.",
+      "authors": [
+        "Sejoon Jun",
+        "Zheng Ding",
+        "Huangyuan Su",
+        "Weirui Ye",
+        "Yilun Du"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-11T19:41:18Z",
+      "updated": "2026-06-11T19:41:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13861v1",
+      "abs_url": "https://arxiv.org/abs/2606.13861",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13861",
+      "summary_zh": "生成式视频推理在测试时面临单次生成范式的瓶颈，导致逻辑错误和低效采样。该研究提出了一种名为 Temporal Backtracking Search (TBS) 的方法，通过将搜索空间转移到时间轴来解决这一问题，它将视频生成转化为迭代的“生成-验证-重启”循环。TBS 的核心创新在于：1) 引入可变 K 条件来从任意干净前缀恢复生成；2) 通过时间过程验证来定位失败并提取有效的重启锚点；3) 基于前缀的搜索，将计算资源重新分配给扩展正确轨迹而非根部重采样。实验结果表明，在算法、导航和机器人领域，TBS 在相同预算下优于 Best-of-N (BoN) 方法，尤其在严格的分布外设置中，当单次生成几乎失效时（BoN 仅为 0.7%），TBS 达到了 22.7% 的成功率，且每个成功案例都源于重启分支，这揭示了视频模型局部推理能力远超单次生成所展现的水平。",
+      "impact_score": null
+    },
+    {
+      "id": "2606.13848",
+      "title": "Temporally Consistent Graph Q-Networks for Intelligent Network Control",
+      "abstract": "Mobile networks continue to grow in complexity and next generation networks are expected to support both increasing traffic loads and more diverse services. As network complexity rises, optimizing antenna parameters under dynamic or changing objectives becomes increasingly challenging. We propose a novel multi-agent reinforcement learning (MARL) algorithm for high-level control and orchestration of mobile networks. The Temporally Consistent Graph Q-Network (TC-GQN) algorithm learns a self-predicting representation of the whole network that is task-independent and aggregates information from all base-stations. A graph neural network is trained using a global reward function to assign coordinated local actions based on the learned encoding of the global network state. We evaluate the algorithm in a simulated environment to orchestrate an energy-saving feature across multiple sectors and multiple carriers under different quality of service (QoS) constraints. The proposed algorithm outperforms state-of-the-art graph-based baselines and a competitive rule-based controller by improving hardware sleep time while maintaining QoS. Moreover, the learned representation enables rapid adaptation to changing intents.",
+      "authors": [
+        "Zacharias Veiksaar",
+        "Maxime Bouton"
+      ],
+      "categories": [
+        "cs.NI",
+        "cs.LG"
+      ],
+      "published": "2026-06-11T19:25:57Z",
+      "updated": "2026-06-11T19:25:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13848v1",
+      "abs_url": "https://arxiv.org/abs/2606.13848",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13848",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "移动网络日益复杂，优化天线参数在动态目标下变得更具挑战性，因此提出了一种新颖的多智能体强化学习 (MARL) 算法，用于移动网络的高级控制和编排。该算法名为 Temporally Consistent Graph Q-Network (TC-GQN)，它学习一个任务无关的、自预测的整个网络表示，并聚合所有基站的信息，然后利用图神经网络根据学习到的全局网络状态编码，通过全局奖励函数分配协调的局部动作。在模拟环境中，TC-GQN 算法在多扇区、多载波和不同 QoS 约束下，用于编排节能功能，其性能优于最先进的基于图的基线和基于规则的控制器，在保持 QoS 的同时提高了硬件休眠时间，并且学习到的表示能够快速适应不断变化的目标。"
+    },
+    {
+      "id": "2606.13840",
+      "title": "Multi-Agent Embodied Autonomous Driving: From V2X Information Exchange to Shared World Models",
+      "abstract": "Autonomous driving is shifting from isolated vehicle intelligence toward multi-agent embodied systems that share perception, infer intent, and coordinate action under uncertainty. This survey examines this transition through the lens of Shared World Models (SWMs): predictive cross-agent representations maintained across vehicles, infrastructure, and other traffic participants. We review more than 380 publications spanning vehicle-to-everything (V2X) communication, collaborative perception, inter-agent cognition, cooperative planning, end-to-end cooperative driving, and simulation and data engines for closed-loop validation. The organizing question is how exchanged observations become aligned state, intent-aware interaction, and coordinated downstream action. Across the surveyed literature, evaluation remains concentrated in simulation, curated benchmarks, and offline protocols. Foundation-model-based coordination also lacks verified real-time safety guarantees in open traffic. These gaps motivate key research priorities for multi-agent embodied autonomous driving (MAEAD): verifiable shared-state maintenance, robust intent and plan alignment, and safe coordinated action under communication, latency, and deployment constraints.",
+      "authors": [
+        "Senkang Hu",
+        "Zhengru Fang",
+        "Yihang Tao",
+        "Zihan Fang",
+        "Sam Tak Wu Kwong",
+        "Yuguang Fang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-06-11T19:10:13Z",
+      "updated": "2026-06-11T19:10:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13840v1",
+      "abs_url": "https://arxiv.org/abs/2606.13840",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13840",
+      "summary_zh": "自动驾驶正从单车智能转向多智能体具身系统，该综述旨在探讨多智能体具身自动驾驶（MAEAD）中共享世界模型（SWMs）的关键作用，即车辆、基础设施和其他交通参与者之间共享的预测性跨智能体表示。论文回顾了380多篇关于V2X通信、协同感知、智能体间认知、合作规划、端到端合作驾驶以及仿真和数据引擎的文献，核心问题是探讨如何将交换的观测数据转化为对齐的状态、意图感知交互和协调的下游行动。研究发现，现有评估主要集中在仿真、精选基准和离线协议，且基于基础模型的协调缺乏实时安全保证，因此未来的研究重点应放在可验证的共享状态维护、鲁棒的意图和规划对齐，以及在通信、延迟和部署限制下的安全协调行动。",
+      "impact_score": null
+    },
+    {
+      "id": "2606.13832",
+      "title": "Safety-Contract Graph Multi-Agent Reinforcement Learning for Autonomous Network Security Response",
+      "abstract": "Autonomous network-security response systems promise to reduce Security Operations Centre (SOC) reaction latency, but reward-only multi-agent reinforcement learning (MARL) can improve security reward while remaining non-deployable. We present a safety-contract graph MARL framework and instantiate it as ACD$^3$-GAT (Adaptive Constrained Counterfactual Decisioning with a Graph Attention Network encoder), an architecture that separates simulator observations from reusable operational budgets, constrained optimization, graph state encoding, and counterfactual action screening. We evaluate the method in CAGE Challenge 4, where agents operate under budgets for Mean Time to Recover (MTTR), false-positive response, and firewall change-management disruption. Across the benchmark, every unconstrained method violates the SOC downtime budget in 100% of evaluated episodes, with mean downtime proxy costs of 311-430 against a budget of 50. This complements prior CAGE Challenge 4 findings by showing that reward-only learning lacks operational discipline. Constrained MAPPO-GAT (C-MAPPO-GAT) isolates Lagrangian operational-cost control and budget-aware screening, while ACD$^3$-GAT adds budget context, CVaR tail-risk estimation, opponent-belief state, and Graph Counterfactual Risk Propagation (G-CRP). The replicated comparison includes three 200-episode seeds for IPPO, MAPPO-GAT, C-MAPPO-GAT, and ACD$^3$-GAT. C-MAPPO-GAT reduces downtime violation from 100% to 0.3% and mean downtime cost from 355.4 to 15.5 relative to MAPPO-GAT. ACD$^3$-GAT reduces mean downtime cost to 48.2 with a 13.8% violation rate, placing it on the safety-contract frontier rather than at the most conservative compliance point. Topology-seed and coupled adaptive Red-process stress tests preserve this contrast and show lower worst adaptive degradation for safety-constrained policies than reward-only MAPPO-GAT.",
+      "authors": [
+        "Jose Luis Lima de Jesus Silva"
+      ],
+      "categories": [
+        "cs.MA",
+        "cs.AI",
+        "cs.CR",
+        "cs.LG"
+      ],
+      "published": "2026-06-11T19:02:48Z",
+      "updated": "2026-06-11T19:02:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13832v1",
+      "abs_url": "https://arxiv.org/abs/2606.13832",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13832",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对自主网络安全响应系统中多智能体强化学习（MARL）在提高安全回报的同时可能不具备可部署性的问题，研究提出了一种名为 ACD$^3$-GAT 的安全契约图 MARL 框架。该框架通过分离模拟器观测、可重用操作预算、约束优化、图状态编码和反事实动作筛选，解决了纯奖励 MARL 无法满足操作约束的挑战。在 CAGE Challenge 4 基准测试中，所有无约束方法在100%的评估回合中都违反了 SOC 停机时间预算，而 C-MAPPO-GAT 将停机时间违规率从 100% 降低到 0.3%，平均停机时间成本从 355.4 降至 15.5。ACD$^3$-GAT 则在安全契约前沿实现了 48.2 的平均停机时间成本和 13.8% 的违规率，表明该方法在保证安全约束的同时，能够有效平衡性能与风险。"
+    },
+    {
+      "id": "2606.13817",
+      "title": "FlowMo-WM: A World Model with Object Momentum and Hidden Ambient Drift",
+      "abstract": "World models in robot learning predict future states from visual observations and actions, enabling agents to reason about the consequences of their controls. However, many action-conditioned models are evaluated in settings where motion is dominated by immediate control, whereas aquatic surface vehicles and other real-world objects continue moving under inertia and are displaced by hidden ambient drift, such as water currents or wind. We propose FlowMo-WM, an end-to-end trainable visual world model that infers object-centric motion state and a predictive long-history context associated with hidden drift from image-action histories without direct supervision of flow fields. FlowMo-WM factorizes image-action history into a short-history latent state, trained to summarize object-centric motion, and a longer-history context, trained to summarize slowly varying exogenous influences. A zero-context residual transition separates action-conditioned base dynamics from context-dependent drift effects during latent rollout. In simulated aquatic surface-vehicle environments with diverse hidden flows, disturbances, and randomized vehicle dynamics, FlowMo-WM improves long-horizon rollout accuracy over representative action-conditioned latent world models. Prediction-time context ablations, in which the inferred context is zeroed or shuffled during rollout, show that the ambient context is important for stable prediction under hidden drift, while frozen linear probes characterize information encoded in the learned factors.",
+      "authors": [
+        "Yitao Jiang",
+        "Luyang Zhao",
+        "Muhao Chen",
+        "Devin Balkcom"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-06-11T18:46:43Z",
+      "updated": "2026-06-11T18:46:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13817v1",
+      "abs_url": "https://arxiv.org/abs/2606.13817",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13817",
+      "summary_zh": "该论文提出 FlowMo-WM，一个端到端可训练的视觉世界模型，旨在解决机器人学习中现有世界模型在处理惯性运动和隐藏环境漂移（如水流或风）时预测能力不足的问题。FlowMo-WM 的关键创新在于它能从图像-动作历史中推断出以物体为中心的运动状态和与隐藏漂移相关的长期上下文，而无需直接监督流场。模型将图像-动作历史分解为总结物体运动的短期潜在状态和总结缓慢变化的外部影响的长期上下文，并通过零上下文残差转换将动作条件下的基础动力学与上下文相关的漂移效应分离。在模拟水面车辆环境中，FlowMo-WM 在长时程预测精度上优于其他动作条件下的潜在世界模型，并通过预测时上下文消融实验证明了环境上下文对于在隐藏漂移下稳定预测的重要性。",
+      "impact_score": null
+    },
+    {
+      "id": "2606.13795",
+      "title": "Diffusion Policy Optimization without Drifting Apart",
+      "abstract": "RL post-training has become increasingly pivotal for improving diffusion policies, but existing diffusion policy-gradient methods are often unstable and cannot achieve reliable policy improvement. We identify the cause as the double-drift phenomenon: optimizing a variational surrogate can let the ELBO separate from the true log-likelihood, which then makes the resulting proxy policy gradient misaligned with the true policy gradient of expected return. We propose \\textbf{DiPOD}, a diffusion policy optimization framework that maintains tight-bound behavior throughout training by interleaving self-distillation with policy-improving gradient updates. This leads to a simple and practical algorithm: augmenting each diffusion policy-gradient update with an on-policy ELBO regularizer. Across diffusion language model post-training and continuous-control diffusion policies, DiPOD substantially stabilizes training and reaches higher rewards than previous methods.",
+      "authors": [
+        "Haozhe Jiang",
+        "Haiwen Feng",
+        "Pieter Abbeel",
+        "Jiantao Jiao",
+        "Angjoo Kanazawa",
+        "Nika Haghtalab"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-11T18:06:04Z",
+      "updated": "2026-06-11T18:06:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13795v1",
+      "abs_url": "https://arxiv.org/abs/2606.13795",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13795",
+      "summary_zh": "在扩散策略（diffusion policies）的后训练（post-training）中，现有的策略梯度方法常因“双重漂移”（double-drift）现象导致不稳定且难以可靠提升性能。该现象源于变分代理（variational surrogate）优化过程中，ELBO与真实对数似然（true log-likelihood）分离，进而使代理策略梯度与真实期望回报的策略梯度不一致。为解决此问题，DiPOD框架通过交替进行自蒸馏（self-distillation）和策略改进梯度更新，在整个训练过程中保持紧密的边界行为。具体而言，DiPOD在每次扩散策略梯度更新中增加了一个在策略ELBO正则化项，从而显著稳定了训练过程。在扩散语言模型后训练和连续控制扩散策略的实验中，DiPOD均展现出比现有方法更高的奖励。"
+    },
+    {
+      "id": "2606.13769",
+      "title": "$μ_0$: A Scalable 3D Interaction-Trace World Model",
+      "abstract": "World models that capture how actions induce physical change enable scalable robot learning without reliance on embodiment-specific action labels. Pixel-space video models provide broad visual priors but expend model capacity on dense appearance reconstruction, while direct action models require embodiment-specific labels that hinder scalability. We present $μ_0$, a scalable world model based on 3D traces. Rather than predicting dense pixels or directly modeling actions, $μ_0$ forecasts smooth 3D trajectories for salient interaction points such as objects, tools, hands, and contact regions, yielding a compact, embodiment-agnostic motion interface. To enable training from diverse video sources, our TraceExtract system automatically extracts 3D supervision by selecting keypoints, constructing globally aligned traces, and associating motion segments with hierarchical language captions. This TraceExtract supervision pretrains $μ_0$ by combining a pretrained vision-language backbone with a modular trace expert, which represents each query via B-spline control points and predicts future traces. Experiments show that $μ_0$ outperforms baselines in both 2D and 3D trace prediction, including trace prediction models and tokenized VLM methods. Because $μ_0$ is frozen and reusable, it can be paired with action experts for downstream robot embodiments. Despite action-free pretraining, the resulting trace-conditioned policies achieve performance competitive with VLA models pretrained with action supervision, such as $π_0$. These results establish 3D traces as a scalable and transferable representation for cross-embodiment manipulation.",
+      "authors": [
+        "Seungjae Lee",
+        "Yoonkyo Jung",
+        "Jusuk Lee",
+        "Jonghun Shin",
+        "Amir Hossein Shahidzadeh",
+        "Yao-Chih Lee",
+        "H. Jin Kim",
+        "Jia-Bin Huang",
+        "Furong Huang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-06-11T17:59:56Z",
+      "updated": "2026-06-11T17:59:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13769v1",
+      "abs_url": "https://arxiv.org/abs/2606.13769",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13769",
+      "summary_zh": "该论文提出了一种名为 $\\mu_0$ 的可扩展世界模型，旨在解决机器人学习中动作诱导物理变化的建模问题，避免了对具体机器人动作标签的依赖。$\\mu_0$ 的核心创新在于它不预测密集的像素或直接建模动作，而是通过预测关键交互点（如物体、工具、手和接触区域）的平滑 3D 轨迹，提供了一种紧凑、与具体机器人无关的运动接口。为了从多样化的视频源中进行训练，论文引入了 TraceExtract 系统，该系统自动提取 3D 监督信息，包括选择关键点、构建全局对齐的轨迹以及将运动片段与分层语言描述相关联。实验结果表明，$\\mu_0$ 在 2D 和 3D 轨迹预测方面均优于现有基线模型，包括其他轨迹预测模型和 tokenized VLM 方法，并且尽管经过无动作预训练，其轨迹条件策略在下游机器人任务中达到了与带有动作监督预训练的 VLA 模型（如 $\\pi_0$）相当的性能，证明了 3D 轨迹作为可扩展和可迁移表示在跨机器人操作中的有效性。"
+    },
+    {
       "id": "2606.13680",
       "title": "Learning to Reason by Analogy via Retrieval-Augmented Reinforcement Fine-Tuning",
       "abstract": "Retrieval-augmented generation (RAG) has become a standard mechanism for grounding language models in external knowledge, yet conventional retrieval based on lexical or semantic similarity is poorly suited for complex reasoning tasks: a semantically similar problem may demand an entirely different solution strategy, while a superficially different problem may share the same underlying reasoning pattern. We propose Retrieval-Augmented Reinforcement Fine-Tuning (RA-RFT), a post-training framework that teaches language models to reason by analogy. RA-RFT uses gold-relevance distillation to train a retriever that ranks contexts by expected reasoning benefit rather than semantic overlap, and then fine-tunes the policy model via reinforcement fine-tuning methods with retrieved analogous demonstrations, so the model learns to leverage reasoning traces under verifiable outcome rewards. We further analyze the diversity of retrieved contexts and find that reasoning-aware retrieval surfaces complementary solution strategies that provide distinct reasoning scaffolds for individual problems. Across challenging mathematical reasoning benchmarks, RA-RFT consistently outperforms standard reinforcement fine-tuning methods. For example, it improves AIME 2025 average@32 accuracy by 7.1 and 2.8 points over GRPO for Qwen3-1.7B and Qwen3-4B respectively -- suggesting that reasoning-aware retrieval is a complementary axis of improvement and orthogonal to advances in reward design or training curricula.",
@@ -53,8 +339,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13680",
-      "summary_zh": "该研究旨在解决传统检索增强生成（RAG）在复杂推理任务中因语义相似性与推理模式不匹配而导致的局限性。为此，研究提出了检索增强强化微调（Retrieval-Augmented Reinforcement Fine-Tuning, RA-RFT）框架，通过金标相关性蒸馏训练一个基于预期推理效益而非语义重叠的检索器，并利用强化微调方法，结合检索到的类比示例来微调策略模型，使其学习利用可验证结果奖励下的推理轨迹。关键创新在于其推理感知的检索机制，能够发现互补的解决方案策略，为特定问题提供不同的推理支架。实验结果表明，在具有挑战性的数学推理基准测试中，RA-RFT显著优于标准强化微调方法，例如在AIME 2025 benchmark上，相较于GRPO，Qwen3-1.7B和Qwen3-4B模型的平均@32准确率分别提高了7.1和2.8个百分点，证明了推理感知检索是模型改进的有效途径。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决传统检索增强生成（RAG）在复杂推理任务中因语义相似性与推理模式不匹配而导致的局限性。为此，研究提出了检索增强强化微调（Retrieval-Augmented Reinforcement Fine-Tuning, RA-RFT）框架，通过金标相关性蒸馏训练一个基于预期推理效益而非语义重叠的检索器，并利用强化微调方法，结合检索到的类比示例来微调策略模型，使其学习利用可验证结果奖励下的推理轨迹。关键创新在于其推理感知的检索机制，能够发现互补的解决方案策略，为特定问题提供不同的推理支架。实验结果表明，在具有挑战性的数学推理基准测试中，RA-RFT显著优于标准强化微调方法，例如在AIME 2025 benchmark上，相较于GRPO，Qwen3-1.7B和Qwen3-4B模型的平均@32准确率分别提高了7.1和2.8个百分点，证明了推理感知检索是模型改进的有效途径。"
     },
     {
       "id": "2606.13679",
@@ -73,15 +358,14 @@
         "cs.CV"
       ],
       "published": "2026-06-11T17:59:50Z",
-      "updated": "2026-06-11T17:59:50Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.13679v1",
+      "updated": "2026-06-12T06:34:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13679v2",
       "abs_url": "https://arxiv.org/abs/2606.13679",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13679",
-      "summary_zh": "InterleaveThinker 旨在解决现有图像生成器在交错生成（文本-图像序列）方面的局限性，这些生成器通常只能处理单图像生成或编辑。它提出了一种多智能体流水线，通过引入一个规划器智能体来组织图像-文本输入序列并指导图像生成器执行，以及一个评论家智能体来评估生成器输出并修正指令以进行再生成。关键创新在于其分阶段的强化学习方法，通过构建 Interleave-Planner-SFT 和 Interleave-Critic-SFT 进行格式冷启动，并利用 Interleave-Critic-RL 和 GRPO 强化逐步指令修正能力，同时引入准确性奖励和逐步奖励来有效指导整个生成轨迹。实验结果表明，InterleaveThinker 显著提升了各种图像生成器在交错生成基准上的性能，甚至在推理型基准如 4-step FLUX.2-klein 上也实现了显著提升，表现出与 Nano Banana 和 GPT-5 相当的性能。",
-      "impact_score": null
+      "summary_zh": "InterleaveThinker 旨在解决现有图像生成器在交错生成（文本-图像序列）方面的局限性，这些生成器通常只能处理单图像生成或编辑。它提出了一种多智能体流水线，通过引入一个规划器智能体来组织图像-文本输入序列并指导图像生成器执行，以及一个评论家智能体来评估生成器输出并修正指令以进行再生成。关键创新在于其分阶段的强化学习方法，通过构建 Interleave-Planner-SFT 和 Interleave-Critic-SFT 进行格式冷启动，并利用 Interleave-Critic-RL 和 GRPO 强化逐步指令修正能力，同时引入准确性奖励和逐步奖励来有效指导整个生成轨迹。实验结果表明，InterleaveThinker 显著提升了各种图像生成器在交错生成基准上的性能，甚至在推理型基准如 4-step FLUX.2-klein 上也实现了显著提升，表现出与 Nano Banana 和 GPT-5 相当的性能。"
     },
     {
       "id": "2606.13677",
@@ -137,8 +421,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13674",
-      "summary_zh": "RepWAM提出了一种以表征为中心的世界动作模型（WAM），旨在解决现有WAMs在学习指令遵循动态时，仅依赖像素重建视频tokenizer的局限性。该方法通过训练一个表征视觉-动作tokenizer，将视觉输入映射到对齐的视觉和潜在动作token，从而构建一个语义视觉-动作潜在空间。关键创新在于，RepWAM预训练其WAM模型，在语言指令下联合建模未来的视觉状态和连接这些状态的潜在动作，随后适应真实机器人轨迹以实现闭环操作。实验结果表明，RepWAM在真实世界操作任务和模拟基准上表现出色，消融研究也证实了语义视觉-动作tokenization相比重建导向方法的优越性，为通用机器人策略奠定了基础。",
-      "impact_score": null
+      "summary_zh": "RepWAM提出了一种以表征为中心的世界动作模型（WAM），旨在解决现有WAMs在学习指令遵循动态时，仅依赖像素重建视频tokenizer的局限性。该方法通过训练一个表征视觉-动作tokenizer，将视觉输入映射到对齐的视觉和潜在动作token，从而构建一个语义视觉-动作潜在空间。关键创新在于，RepWAM预训练其WAM模型，在语言指令下联合建模未来的视觉状态和连接这些状态的潜在动作，随后适应真实机器人轨迹以实现闭环操作。实验结果表明，RepWAM在真实世界操作任务和模拟基准上表现出色，消融研究也证实了语义视觉-动作tokenization相比重建导向方法的优越性，为通用机器人策略奠定了基础。"
     },
     {
       "id": "2606.13673",
@@ -173,6 +456,33 @@
         "4d-gen"
       ],
       "summary_zh": "该论文旨在解决视觉语言模型（VLMs）在开放式空间推理（即确定物体位置、关系和运动）方面的挑战，特别是现有工具增强型智能体在动作接口设计上的局限性。它提出了一种名为 SpatialClaw 的无训练框架，该框架采用代码作为动作接口，通过让 VLM 支持的智能体在预加载了感知和几何原语的状态化 Python 内核中，每一步编写一个可执行单元格，并根据所有先前的输出进行条件化，从而实现灵活的感知结果组合和分析适应。关键创新在于其代码作为动作接口的设计，允许智能体根据中间文本和视觉观察以及任务需求，动态地组合和操作感知结果，从而克服了现有单次代码执行或结构化工具调用接口的局限性。在涵盖静态和动态 3D/4D 空间推理任务的 20 个基准测试中，SpatialClaw 取得了 59.9% 的平均准确率，比现有空间智能体高出 11.2 个百分点，并且在六个 VLM 主干模型上都表现出了一致的提升。"
+    },
+    {
+      "id": "2606.13768",
+      "title": "CineOrchestra: Unified Entity-Centric Conditioning for Cinematic Video Generation",
+      "abstract": "Cinematic video depicts multiple subjects acting or interacting at specific moments, captured with deliberate camera movement, and stitched together by shot transitions. Together, these elements demand a level of fine-grained control beyond current text-to-video models. Existing work addresses each axis in isolation: multi-subject personalization, temporal control, multi-shot synthesis, or camera control; no prior framework jointly integrates all four. We present CineOrchestra, a unified video diffusion model that controls subjects, events, cameras, and shot transitions simultaneously. Our key insight is that these heterogeneous cinematic elements share a fundamental structure: each is an entity acting over a specific temporal interval, which can therefore all be expressed through one shared structure of entity-centric conditioning primitives, augmented with reference images for visual entities. This formulation reduces the architectural challenge to a single positional encoding problem, which we solve with two parameter-free coordinated rotary embeddings: (a) an interval-sampled temporal RoPE that yields consistent attention behavior across events of dramatically varying duration, and (b) a 2D entity-temporal cross-attention RoPE that disambiguates per-entity conditions and routes each to its corresponding spatiotemporal region. On two new benchmarks, CineOrchestra outperforms six per-axis specialists on dense caption following and shot-transition timing, with consistent gains in a pairwise user study and component ablations.",
+      "authors": [
+        "Sharath Girish",
+        "Tsai-Shien Chen",
+        "Zhikang Dong",
+        "Mukesh Singhal",
+        "Hao Chen",
+        "Sergey Tulyakov",
+        "Aliaksandr Siarohin"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-11T17:59:10Z",
+      "updated": "2026-06-11T17:59:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13768v1",
+      "abs_url": "https://arxiv.org/abs/2606.13768",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13768",
+      "summary_zh": "CineOrchestra 提出了一种统一的视频扩散模型，旨在解决现有文本到视频模型在生成电影级视频时缺乏精细控制的问题，特别是多主体个性化、时间控制、多镜头合成和摄像机控制这四个方面。该模型的核心创新在于将所有异构的电影元素（主体、事件、摄像机、镜头切换）统一为“实体中心条件原语”的共享结构，并通过参考图像增强视觉实体，从而将复杂的控制问题简化为单一的位置编码问题。为解决此问题，CineOrchestra 引入了两种无参数的协调旋转嵌入（RoPE）：一种是针对不同事件持续时间提供一致注意力行为的间隔采样时间 RoPE，另一种是用于区分每个实体条件并将其路由到相应时空区域的 2D 实体-时间交叉注意力 RoPE。在两个新基准测试中，CineOrchestra 在密集字幕跟随和镜头切换时序方面均优于六个单轴专家模型，并在用户研究和组件消融实验中展现出显著的性能提升。"
     },
     {
       "id": "2606.13669",
@@ -222,6 +532,31 @@
       "summary_zh": "现有大型语言模型（LLM）驱动的研究代理在代理编排方面有所进展，但未能充分利用科学知识编排，通常将论文简化为摘要和简单的引用关系，忽略了科学推理所需的关键实体、主张、证据、机制和方法谱系。Agents-K1 提出了一个端到端的知识编排管道，将原始文档转换为代理原生的科学知识图谱，其核心是一个多模态解析器，包含五个模块，能从整篇论文中捕获实体、多模态证据、引用和类型化实体间关系，并结合一个在规则奖励下通过 GRPO 训练的 4B 信息提取骨干网络。在此基础上，Agents-K1 处理了 246 万篇科学论文，构建了 Scholar-KG，并发布了其中一百万篇论文的子集，实验证明 Agents-K1 在科学信息提取、知识图谱构建和多跳科学推理方面表现优异。"
     },
     {
+      "id": "2606.13657",
+      "title": "Dense Supervision, Sparse Updates: On the Sparsity and Geometry of On-Policy Distillation",
+      "abstract": "On-policy distillation (\\textsc{OPD}) has recently become a prominent post-training recipe by combining two desirable ingredients: on-policy student trajectories and dense teacher supervision. However, how this hybrid changes a model's parameters remains unclear. Across several language and vision-language model pairs and \\textsc{OPD} use cases, our analysis yields two main findings. On sparsity, \\textsc{OPD} updates are small and coordinate-sparse. They are distributed across layers, with the largest relative movement usually appearing in FFN modules. This sparse structure is operationally useful: training only the discovered subnetwork nearly recovers full-training performance. The sparse support does not remove the need for adaptive optimization: SGD, previously reported to be competitive in \\textsc{RLVR}, underperforms AdamW in our \\textsc{OPD} optimizer ablation, suggesting that dense teacher supervision preserves useful momentum structure and heterogeneous second-moment scales. On geometry, the updates are numerically full-rank but spectrally concentrated; they lie mostly away from the principal singular subspaces of the source weights and fall disproportionately on coordinates where the source weights are close to zero. These findings suggest that dense teacher supervision does not turn \\textsc{OPD} into ordinary dense parameter rewriting; instead, \\textsc{OPD} retains important geometric signatures of on-policy post-training.",
+      "authors": [
+        "Guo Yu",
+        "Wenlin Liu",
+        "Yulan Hu",
+        "Hao-Xuan Ma",
+        "Jun-Peng Jiang",
+        "Han-Jia Ye"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-11T17:54:09Z",
+      "updated": "2026-06-12T11:39:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13657v2",
+      "abs_url": "https://arxiv.org/abs/2606.13657",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13657",
+      "summary_zh": "这篇论文研究了 On-Policy Distillation (OPD) 过程中模型参数更新的稀疏性和几何特性，旨在阐明这种结合了 on-policy student 轨迹和 dense teacher supervision 的后训练方法如何改变模型参数。通过对多个语言和视觉-语言模型对进行分析，发现 OPD 更新是小而坐标稀疏的，主要分布在 FFN 模块中，并且这种稀疏结构允许仅训练发现的子网络就能接近全训练性能。尽管更新稀疏，但自适应优化器如 AdamW 仍优于 SGD，表明 dense teacher supervision 保留了有用的动量结构和异构二阶矩尺度；同时，更新在数值上是满秩但谱集中的，主要作用于源权重接近零的坐标，这表明 OPD 保持了 on-policy 后训练的重要几何特征。"
+    },
+    {
       "id": "2606.13655",
       "title": "Flex4DHuman: Flexible Multi-view Video Diffusion for 4D Human Reconstruction",
       "abstract": "We present Flex4DHuman, a multi-view video diffusion model that transforms a monocular or sparse multi-view video of a dynamic subject into synchronized dense multi-view videos using only relative camera-pose conditioning. Unlike prior human-centric methods that rely on skeletons, depth maps, normals, or rendered target-view geometry, Flex4DHuman requires no explicit geometry priors and instead conditions generation through relative camera-pose positional encoding. The generated videos can be directly ingested by downstream reconstruction pipelines to create dynamic 4D Gaussian splats. Built on the Wan 2.1 1.3B text-to-video model, Flex4DHuman preserves the backbone architecture and encodes camera and view information through a five-axis positional encoding that extends spatio-temporal RoPE with view indices and continuous SE(3) relative camera geometry. A three-stage curriculum progressively trains the model for pose following, flexible reference-to-target view generation, and temporal rollout. To support temporal rollout, we train with clean historical target-view tokens. We also add multi-view captions to enable test-time text control. Combined with an off-the-shelf 4D Gaussian Splatting stage, our framework lifts monocular static-camera videos into dynamic 4D Gaussian splats. Experiments on DNA-Rendering and ActorsHQ show that Flex4DHuman surpasses prior state-of-the-art methods, while the same formulation generalizes to animal categories after mixed human-animal training. These capabilities make Flex4DHuman a practical step toward scalable 4D content creation from casual monocular videos for simulation, gaming, AR/VR, and video re-shooting.",
@@ -245,8 +580,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13655",
-      "summary_zh": "Flex4DHuman提出了一种多视角视频扩散模型，旨在将单目或稀疏多视角视频转换为同步的密集多视角视频，以实现动态4D人体重建。该方法不依赖骨架、深度图或法线等显式几何先验，而是通过相对相机姿态位置编码来条件化生成过程。Flex4DHuman基于Wan 2.1 1.3B文本到视频模型，通过扩展时空RoPE的五轴位置编码来编码相机和视角信息，并采用三阶段课程训练，逐步实现姿态跟随、灵活的参考到目标视角生成以及时间展开。结合现成的4D Gaussian Splatting，该框架能将单目静态相机视频提升为动态4D Gaussian Splats，在DNA-Rendering和ActorsHQ数据集上的实验表明，Flex4DHuman超越了现有最先进的方法，并且通过混合人-动物训练，该模型也能泛化到动物类别。",
-      "impact_score": null
+      "summary_zh": "Flex4DHuman提出了一种多视角视频扩散模型，旨在将单目或稀疏多视角视频转换为同步的密集多视角视频，以实现动态4D人体重建。该方法不依赖骨架、深度图或法线等显式几何先验，而是通过相对相机姿态位置编码来条件化生成过程。Flex4DHuman基于Wan 2.1 1.3B文本到视频模型，通过扩展时空RoPE的五轴位置编码来编码相机和视角信息，并采用三阶段课程训练，逐步实现姿态跟随、灵活的参考到目标视角生成以及时间展开。结合现成的4D Gaussian Splatting，该框架能将单目静态相机视频提升为动态4D Gaussian Splats，在DNA-Rendering和ActorsHQ数据集上的实验表明，Flex4DHuman超越了现有最先进的方法，并且通过混合人-动物训练，该模型也能泛化到动物类别。"
     },
     {
       "id": "2606.13652",
@@ -276,8 +610,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13652",
-      "summary_zh": "该研究旨在解决图像到3D方法中保真度与完整性之间的矛盾，即深度估计器虽与输入像素对齐但仅限于可见表面，而图像到3D模型虽能生成完整形状但常与输入不一致。为此，论文提出了World Tracing，一种生成式像素对齐几何表示，它为每个输入像素预测一个有序的相机空间3D点堆栈，其中第一层是可见表面，后续层代表与遮挡表面的前后交点，从而在预测与观察像素对齐的3D点的同时，完成可见表面之外的几何结构。通过引入world-tracing diffusion transformer (WT-DiT) 来实例化此表示，该模型将多个几何层视为独立的去噪tokens，并通过分解和全局注意力进行耦合，并采用像素空间流匹配和混合噪声调度进行训练，以平衡可见表面重建和遮挡几何生成。World Tracing在物体、场景和动态基准测试中，在可见表面重建和完整几何生成方面均表现出色，超越了深度预测器和图像到3D生成器，并能保持2D到3D的对应关系，支持文本驱动的3D场景编辑、几何条件下的新视角视频合成以及与纹理网格生成器的免训练集成。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决图像到3D方法中保真度与完整性之间的矛盾，即深度估计器虽与输入像素对齐但仅限于可见表面，而图像到3D模型虽能生成完整形状但常与输入不一致。为此，论文提出了World Tracing，一种生成式像素对齐几何表示，它为每个输入像素预测一个有序的相机空间3D点堆栈，其中第一层是可见表面，后续层代表与遮挡表面的前后交点，从而在预测与观察像素对齐的3D点的同时，完成可见表面之外的几何结构。通过引入world-tracing diffusion transformer (WT-DiT) 来实例化此表示，该模型将多个几何层视为独立的去噪tokens，并通过分解和全局注意力进行耦合，并采用像素空间流匹配和混合噪声调度进行训练，以平衡可见表面重建和遮挡几何生成。World Tracing在物体、场景和动态基准测试中，在可见表面重建和完整几何生成方面均表现出色，超越了深度预测器和图像到3D生成器，并能保持2D到3D的对应关系，支持文本驱动的3D场景编辑、几何条件下的新视角视频合成以及与纹理网格生成器的免训练集成。"
     },
     {
       "id": "2606.13644",
@@ -439,11 +772,13 @@
       "pdf_url": "https://arxiv.org/pdf/2606.13598v1",
       "abs_url": "https://arxiv.org/abs/2606.13598",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13598",
-      "summary_zh": "多智能体系统（MAS）中基于大型语言模型（LLM）的智能体编排面临监督数据稀缺和计算成本高昂的挑战。Orchestration Reward Modeling (OrchRM) 提出了一种自监督框架，通过利用多智能体执行过程中的中间产物构建胜负对，来训练 Bradley-Terry 奖励模型，从而评估编排质量，无需人工标注。与依赖昂贵子智能体 rollout 的现有方法不同，OrchRM 直接在编排层面操作，显著提高了奖励引导的编排器训练效率和 MAS 测试时扩展性能。该方法在 token 使用上将训练效率提升了高达 10 倍，并在准确性上将 MAS 测试时扩展性能提高了 8%，这些优势在数学推理、基于网络的问答和多跳推理等多个领域都得到了验证，表明编排层面的奖励建模是实现鲁棒多智能体编排的可扩展方向。",
-      "impact_score": null
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "多智能体系统（MAS）中基于大型语言模型（LLM）的智能体编排面临监督数据稀缺和计算成本高昂的挑战。Orchestration Reward Modeling (OrchRM) 提出了一种自监督框架，通过利用多智能体执行过程中的中间产物构建胜负对，来训练 Bradley-Terry 奖励模型，从而评估编排质量，无需人工标注。与依赖昂贵子智能体 rollout 的现有方法不同，OrchRM 直接在编排层面操作，显著提高了奖励引导的编排器训练效率和 MAS 测试时扩展性能。该方法在 token 使用上将训练效率提升了高达 10 倍，并在准确性上将 MAS 测试时扩展性能提高了 8%，这些优势在数学推理、基于网络的问答和多跳推理等多个领域都得到了验证，表明编排层面的奖励建模是实现鲁棒多智能体编排的可扩展方向。"
     },
     {
       "id": "2606.13578",
@@ -881,6 +1216,31 @@
         "video-gen"
       ],
       "summary_zh": "该论文旨在解决语音驱动的人物视频生成中，唇形同步准确性与面部表情和头部动作自然度之间的权衡问题，现有方法往往难以同时实现二者。研究者提出了ReFree-S2V框架，它基于预训练的视频生成模型，通过引入多级语音表示来捕捉语音的音素和韵律信息，并利用可学习的级别选择器将其注入Transformer块，从而实现精确的唇形同步和自然的表情动作。此外，该框架还创新性地引入了一种无奖励强化学习（reward-free RL）方案到流匹配训练中，以避免不自然的头部运动，而无需依赖人工设计的同步指标或奖励模型。实验结果表明，ReFree-S2V在唇形同步准确性和人类评估的自然度与表现力方面均显著优于现有方法，达到了最先进的性能。"
+    },
+    {
+      "id": "2606.13740",
+      "title": "Efficient On-Device Diffusion LLM Inference with Mobile NPU",
+      "abstract": "Diffusion large language models (dLLMs) accelerate generation by denoising multiple tokens in parallel, making them attractive for latency-sensitive mobile inference. However, repeated denoising introduces substantial computation on smartphones. Mobile neural processing units (NPUs) offer high-throughput dense matrix computation, but efficiently exploiting them remains challenging: token commitment shrinks per-block effective workloads, token revision complicates KV cache reuse, and limited NPU-visible address space incurs costly remapping and data transfer overheads. In this paper, we propose llada.cpp, the first NPU-aware inference framework for accelerating dLLMs on smartphones. llada.cpp aligns block-wise dLLM inference with the execution characteristics of mobile NPUs through three techniques. (1) Multi-Block Speculative Decoding fills the shrinking workload in late-stage current-block decoding with speculative future-block tokens. (2) Dual-Path Progressive Revision keeps committed tokens revisable until stable and refreshes unstable tokens through a CPU-side path without stalling dense NPU execution. (3) Swap-Optimized Memory Runtime compacts NPU-visible address layouts and overlaps data staging with NPU computation to reduce remapping and transfer overheads. We implement llada.cpp as an end-to-end framework and evaluate it across diverse hardware platforms and dLLM workloads. llada.cpp reduces LLaDA-8B generation latency by 17x-42x over the CPU baseline with prefix KV cache reuse, while preserving generation quality.",
+      "authors": [
+        "Tuowei Wang",
+        "Yanfan Sun",
+        "Ju Ren"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-11T12:44:57Z",
+      "updated": "2026-06-11T12:44:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13740v1",
+      "abs_url": "https://arxiv.org/abs/2606.13740",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13740",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "扩散大语言模型（dLLMs）通过并行去噪加速生成，但其重复去噪过程在移动设备上引入了大量计算负担，难以高效利用移动NPU。llada.cpp是首个针对智能手机dLLMs的NPU感知推理框架，旨在解决NPU利用率低、KV缓存复用复杂以及内存访问开销大等问题。该框架通过三项关键技术实现：Multi-Block Speculative Decoding利用推测性未来块令牌填充后期解码的NPU工作负载；Dual-Path Progressive Revision允许已提交令牌在稳定前可修改，并通过CPU路径刷新不稳定令牌而不中断NPU密集计算；Swap-Optimized Memory Runtime通过紧凑NPU可见地址布局并重叠数据暂存与NPU计算，减少重映射和传输开销。llada.cpp在多种硬件平台和dLLM工作负载上进行了评估，相较于CPU基线，在保持生成质量的同时，将LLaDA-8B的生成延迟降低了17到42倍。"
     },
     {
       "id": "2606.13262",
@@ -1475,8 +1835,8 @@
       "title": "Direct Preference Optimization for Chatbot Fine-Tuning: An Empirical Study",
       "abstract": "We present an approach to fine-tuning large language models using Direct Preference Optimization (DPO), a reinforcement learning technique. Our experimental results demonstrate that DPO simplifies the training pipeline, improves computational efficiency, and achieves competitive performance. The evaluation using BLEU, ROUGE, and cosine similarity metrics indicates effective learning and convergence, though further investigation is needed to address observed training instability.",
       "authors": [
-        "Yvonne Qiu",
         "Dezhi Yu",
+        "Yvonne Qiu",
         "ShuoJia Fu"
       ],
       "categories": [
@@ -1484,8 +1844,8 @@
         "cs.LG"
       ],
       "published": "2026-06-11T04:15:54Z",
-      "updated": "2026-06-11T04:15:54Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.12881v1",
+      "updated": "2026-06-12T06:20:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.12881v2",
       "abs_url": "https://arxiv.org/abs/2606.12881",
       "topics": [
         "rl"

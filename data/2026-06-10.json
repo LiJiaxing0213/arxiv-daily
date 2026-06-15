@@ -1,6 +1,6 @@
 {
   "date": "2026-06-10",
-  "generated_at": "2026-06-14T06:15:37.088205+00:00",
+  "generated_at": "2026-06-15T06:50:33.131427+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -116,6 +116,37 @@
         "rl"
       ],
       "summary_zh": "该研究旨在解决紧凑型语言模型（LMs）在工具代理中进行复杂工具使用时，由于规划器生成的工作流在工具解析、参数验证、依赖跟踪或执行中失败的问题。它提出了一种名为 Evoflux 的推理时进化搜索方法，将紧凑型工具使用视为可执行工具工作流的修复过程。Evoflux 通过结构化编辑、执行反馈、自适应强度、元引导重新设计和多样性剪枝来演化类型化的工作流图，从而修复失败的规划。在 MCP-Bench 任务上，Evoflux 将小型规划器的执行可行性从约 3% 提高到 17-24%，显著优于 SFT 和 SFT+DPO 等基于少量教师轨迹的方法，后者在相同数据下表现不佳或崩溃，而 ReAct 虽然能达到更高峰值但方差和 token 成本更高。这表明执行接地的搜索方法在教师轨迹预算有限的情况下更为可靠。"
+    },
+    {
+      "id": "2606.13714",
+      "title": "TSA: Temporal Slot Activation for Persistent Object-Centric Video Representation",
+      "abstract": "Unsupervised video object-centric learning aims to decompose dynamic scenes into temporally persistent entity representations. Existing recurrent video slot-attention methods propagate a fixed set of slots across frames, but typically assume unconditional slot propagation: every slot is updated and decoded at every frame, regardless of whether its corresponding object is visible. We show that this design violates a basic lifecycle requirement for persistent slots: when an object is absent or fully occluded, its slot should preserve its previous state and avoid explaining unrelated visible content. Instead, unconditional propagation creates two failure pathways: update-induced state drift, where current-frame evidence overwrites the absent object's representation, and decoder-induced reconstruction interference, where the inactive slot remains coupled to reconstruction through decoder attention. We propose Temporal Slot Activation (TSA), a mechanism that learns a per-slot, per-frame activation score $α_{k,t} \\in (0, 1)$ without visibility supervision. TSA uses this activation as a shared latent control variable for slot lifecycle modeling. When a slot is inactive, TSA anchors its state to the previous slot via activation-gated updating and suppresses its decoder participation through an activation-dependent additive bias on attention logits before softmax normalization. This jointly reduces state drift and reconstruction-driven interference. To improve decisions under partial occlusion and gradual reappearance, TSA further conditions activation prediction on a per-slot temporal memory produced by a Temporal Context Encoder. We evaluate TSA on MOVi-C/E, YT-VIS, and OVIS benchmarks using both standard and tracking-based metrics (FG-ARI, mBO, IDF1, HOTA). TSA consistently improves object decomposition and temporal identity preservation, with large gains on long, heavily occluded videos.",
+      "authors": [
+        "Duc Nguyen",
+        "Sieu Tran",
+        "Hao Vo",
+        "Khoa Vo",
+        "Duy Minh Ho Nguyen",
+        "Nghi D. Q. Bui",
+        "Anh Nguyen",
+        "Long Mai",
+        "Ngan Le"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-10T20:54:45Z",
+      "updated": "2026-06-10T20:54:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13714v1",
+      "abs_url": "https://arxiv.org/abs/2606.13714",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13714",
+      "keyword_topics": [
+        "4d-gen"
+      ],
+      "summary_zh": "无监督视频目标中心学习中，现有循环视频 slot-attention 方法在目标不可见时，其 slot 仍会无条件更新和解码，导致状态漂移和重建干扰。为解决此问题，Temporal Slot Activation (TSA) 机制引入了每个 slot、每帧的激活分数 $\\alpha_{k,t}$，作为共享的潜在控制变量来建模 slot 的生命周期。当 slot 不活跃时，TSA 通过激活门控更新来锚定其状态，并通过激活相关的加性偏差抑制其在解码器中的参与，从而减少状态漂移和重建干扰。TSA 还利用 Temporal Context Encoder 产生的每个 slot 的时间记忆来改进部分遮挡和逐渐重新出现情况下的激活预测。在 MOVi-C/E、YT-VIS 和 OVIS 等基准测试中，TSA 在 FG-ARI、mBO、IDF1 和 HOTA 等指标上显著提升了目标分解和时间身份保持能力，尤其在长视频和严重遮挡场景下表现出色。"
     },
     {
       "id": "2606.12640",
@@ -975,6 +1006,33 @@
       "summary_zh": "该论文旨在解决从不完整、无序且缺乏显式时间对应关系的局部点云序列中进行4D重建的挑战，尤其是在纯几何输入且没有图像辅助的情况下。它提出了一种名为DynaTok的基于点的方法，该方法将帧编码为紧凑的潜在tokens，并使用基于Transformer的时空编码器聚合不完整的观测值，通过残差tokens解耦几何和运动。一个流匹配解码器根据潜在tokens重建完整且时间一致的4D点云序列。实验结果表明，在物体和场景级别的基准测试中，DynaTok在从局部点云观测中实现更好的重建质量和时间一致性方面表现出色。"
     },
     {
+      "id": "2606.13710",
+      "title": "Hybrid Open-Ended Tri-Evolution Makes Better Deep Researcher",
+      "abstract": "Deep research and agent evolution serve as de-facto tasks for AI agents in real-world applications toward artificial general intelligence. The former enables autonomous retrieval and integration of information in open-ended environments to tackle open-ended research tasks, yet it is constrained by the static parametric deep research capabilities of agent systems. The latter allows agents to autonomously interact with the environment to gain experiences that evolve model capabilities. However, its effectiveness has been widely validated only on verifiable tasks with standard answers, leaving a gap with open-ended research tasks. To bridge these two critical tasks, we propose the Hybrid Open-Ended Tri-Evolution (HOTE) framework, which leverages hybrid-mode reinforcement learning to facilitate the collaborative evolution of a proposer, solver and judge based on web-scale knowledge, moving toward autonomous evolving agents in open-ended tasks and environments. Extensive experiments on three long-form deep research benchmarks demonstrate that the 8B model trained via HOTE surpasses the strongest static open 8-32B models as well as those trained by state-of-the-art deep research training methods with less time overhead, and further verify that the evolution of all three modules in HOTE is indispensable.",
+      "authors": [
+        "Hongming Piao",
+        "Chi Liu",
+        "Mengzhuo Chen",
+        "Yan Shu",
+        "Derek Li",
+        "Ying Wei",
+        "Bryan Dai"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-10T15:03:42Z",
+      "updated": "2026-06-10T15:03:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13710v1",
+      "abs_url": "https://arxiv.org/abs/2606.13710",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13710",
+      "summary_zh": "该研究旨在解决AI智能体在开放式环境中进行深度研究和自主进化的难题，特别是现有方法在开放式研究任务上的局限性。为此，提出了混合开放式三方进化（HOTE）框架，该框架利用混合模式强化学习，促进提议者（proposer）、解决者（solver）和评估者（judge）在网络规模知识基础上的协同进化，从而实现开放式任务和环境中的自主进化智能体。关键创新在于通过三方协同进化机制，将深度研究与智能体进化相结合，使其能够处理开放式、无标准答案的研究任务。在三个长篇深度研究基准上的大量实验表明，通过HOTE训练的8B模型超越了最强的静态开放8-32B模型以及最先进的深度研究训练方法，且时间开销更少，同时验证了HOTE中所有三个模块进化的不可或缺性。"
+    },
+    {
       "id": "2606.12171",
       "title": "Beyond Dark Knowledge: Mixup-Based Distillation for Reliable Predictions",
       "abstract": "Knowledge Distillation (KD) and mixup have proven effective at inducing smoothness in class boundaries; KD captures inherent class relationships in probability distributions, and mixup enforces them through convex combinations of inputs. Their interaction, however, remains poorly understood, particularly when mixup is applied only during student training. In this setting, the teacher is queried on inputs drawn from a vicinal distribution it never saw during training, a controlled mismatch whose effect on knowledge transfer has not been characterised. We show that this mismatch causes the teacher's supervisory signal to be dominated by distributional confusion rather than inter-class structure. Despite it, the student does not merely imitate the teacher: it independently acquires greater linearity in the vicinal region, a structural property that the teacher lacks, and goes beyond dark-knowledge transfer. KD with mixup consistently improves student accuracy and reduces overconfidence by an order of magnitude relative to the baseline, across CIFAR and ImageNet with varying-capacity teachers. Crucially, calibration propagates from teacher to student independently of accuracy transfer, and temperature scaling governs a measurable accuracy-calibration trade-off that becomes more pronounced under vicinal training. These results reframe mixup distillation not as a degraded version of standard KD, but as a richer transfer channel that simultaneously shapes discriminative performance, uncertainty estimation, and representational geometry.",
@@ -1817,9 +1875,12 @@
       "pdf_url": "https://arxiv.org/pdf/2606.11680v1",
       "abs_url": "https://arxiv.org/abs/2606.11680",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.11680",
+      "keyword_topics": [
+        "rl"
+      ],
       "summary_zh": "大型语言模型（LLM）代理在长程任务中面临无状态性挑战，导致推理质量下降、推理成本增加和延迟升高，需要高效的工作记忆机制。HORMA（Hierarchical Organize-and-Retrieve Memory Agent）通过将经验组织成文件系统式的分层结构，解决了现有方法在处理时间结构和因果依赖方面的不足，该结构将摘要实体与原始轨迹关联，实现高效访问而不丢失细节。HORMA将工作记忆分解为结构化记忆构建和基于导航的检索两个阶段，其中构建模块迭代优化经验结构，区分信息缺失和误导性上下文导致的失败，而导航模块则通过强化学习训练的轻量级代理遍历层级结构，选择最小但足够的上下文。在ALFWorld、LoCoMo和LongMemEval等基准测试中，HORMA在受限上下文预算下提高了任务性能，并在长对话任务中仅使用了基线模型22.17%的token，展现出优于现有方法的效率-性能权衡和对未见任务的泛化能力。"
     },
     {
@@ -1885,6 +1946,38 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.11670",
       "summary_zh": "现有视频生成方法在保持人物主体一致性方面存在局限，尤其是在大幅度视角变化、表情、遮挡等复杂场景下，因为它们通常将身份信息简化为单一静态观测。Argus 提出了一种基于 Wan 框架的 Stacked Multi-View Identity Mosaic Injection (SMII) 方法，将多模态大语言模型 (MLLM) 选择的身份证据转化为 3x3 堆叠马赛克，并将其作为负时间只读记忆注入到 Wan 的原生 token 空间，从而将身份表示为紧凑的动态分布。该方法还引入了 MLLM Identity Director 来选择信息丰富的身份时刻并解决条件冲突，并通过无交叉对反事实训练、Temporal Identity Annealing 和 Adaptive Self-Likeness Guidance 提升鲁棒性，无需配对的主体视频监督。Argus 在 OpenS2V-Eval Human-Domain 上取得了 64.38 的 Total Score，并在新发布的 HardID-Celeb 基准测试中，FaceSim 达到 76.80，YawScore 和 OccScore 分别比最强基线提高了 12.60 和 15.10 分，证明了动态身份记忆和大规模反事实自监督在主体保留视频生成中的有效性。"
+    },
+    {
+      "id": "2606.13707",
+      "title": "Orchestra-o1: Omnimodal Agent Orchestration",
+      "abstract": "The recent success of agent swarms has shifted the paradigm of large language model (LLM)-based agents from single-agent workflows to multi-agent systems, highlighting the importance of agent orchestration for task decomposition and collaboration. However, existing orchestration frameworks are limited to a narrow set of modalities and struggle to generalize to more complex settings where heterogeneous modalities coexist and interact. This limitation becomes particularly pronounced in omnimodal scenarios, where tasks require the unified understanding and coordination of diverse inputs such as text, image, audio, and video. In this work, we propose Orchestra-o1, an omnimodal agent orchestration framework designed to support efficient agent collaboration across multiple modalities. Orchestra-o1 introduces a unified orchestration mechanism that enables modality-aware task decomposition, online sub-agent specialization, and parallel sub-task execution. This scalable design allows agent systems to effectively tackle complex real-world tasks involving heterogeneous information sources, surpassing the second-best approach by 10.3% accuracy on the OmniGAIA benchmark. Furthermore, we introduce decision-aligned group relative policy optimization (DA-GRPO), an efficient agentic reinforcement learning approach for training Orchestra-o1-8B, which also achieves state-of-the-art performance against all existing open-source omnimodal agents.",
+      "authors": [
+        "Fan Zhang",
+        "Vireo Zhang",
+        "Shengju Qian",
+        "Haoxuan Li",
+        "Hao Wu",
+        "Jinyang Wu",
+        "Donghao Zhou",
+        "Zhihong Zhu",
+        "Zheng Lian",
+        "Xin Wang",
+        "Pheng-Ann Heng"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.CV"
+      ],
+      "published": "2026-06-10T04:50:35Z",
+      "updated": "2026-06-10T04:50:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13707v1",
+      "abs_url": "https://arxiv.org/abs/2606.13707",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13707",
+      "summary_zh": "该论文旨在解决现有LLM代理编排框架在处理多模态数据时泛化能力不足的问题，尤其是在文本、图像、音频、视频等异构模态共存的“全模态”（omnimodal）场景下。为此，提出了Orchestra-o1框架，通过统一的编排机制实现模态感知的任务分解、在线子代理专业化和并行子任务执行，从而支持跨多模态的高效代理协作。其关键创新在于能够有效处理复杂异构信息源，并在OmniGAIA基准测试中将准确率提升了10.3%，同时引入了决策对齐的群组相对策略优化（DA-GRPO）方法来训练Orchestra-o1-8B，使其在所有现有开源全模态代理中达到最先进的性能。"
     },
     {
       "id": "2606.11652",
