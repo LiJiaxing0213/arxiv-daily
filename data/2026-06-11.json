@@ -1,6 +1,6 @@
 {
   "date": "2026-06-11",
-  "generated_at": "2026-06-15T06:50:33.128656+00:00",
+  "generated_at": "2026-06-16T07:03:10.062045+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -258,6 +258,38 @@
       "impact_score": null
     },
     {
+      "id": "2606.14801",
+      "title": "QPILOTS: Efficient Test-Time Q-Steering for Flow Policies",
+      "abstract": "Flow-matching and diffusion policies are expressive action generators, but optimizing them with temporal-difference reinforcement learning (RL) remains difficult. Effective policy extraction requires exploiting the critic's action gradient, yet directly backpropagating this signal through a multi-step denoising process can be numerically unstable. Existing methods work around this either by discarding gradient information, distilling the policy into a simpler one-step actor, or repeatedly fine-tuning the denoising policy as the critic improves. We propose QPILOTS, a method that leaves the original policy unmodified and steers the denoising process at inference time. At each denoising step, instead of evaluating the critic on the noisy intermediate action where critic predictions are unreliable, we first project that intermediate state to an estimate of the final clean action and compute the critic gradient there. We introduce two variants: QPILOTS-U uses a fast single-point approximation, while QPILOTS-M draws differentiable posterior samples via a learned auxiliary network. On a standard offline-to-online RL benchmark, QPILOTS achieves the best aggregate performance, reaching an average success rate of 90% across 50 tasks. We also apply QPILOTS to steer a large, frozen, pretrained Vision-Language Action (VLA) foundation model, outperforming or matching prior inference-time approaches across six manipulation tasks in simulation.",
+      "authors": [
+        "Yifan Ruan",
+        "Chenyang Cao",
+        "Andreas Burger",
+        "Ali Pesaranghader",
+        "Kaveh Kamali",
+        "Jaehong Kim",
+        "Nandita Vijaykumar",
+        "Alan Aspuru-Guzik",
+        "Igor Gilitschenski",
+        "Nicholas Rhinehart"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-06-11T18:22:03Z",
+      "updated": "2026-06-11T18:22:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.14801v1",
+      "abs_url": "https://arxiv.org/abs/2606.14801",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.14801",
+      "summary_zh": "该论文旨在解决流匹配和扩散策略在时序差分强化学习（RL）中优化困难的问题，特别是由于多步去噪过程中反向传播评论家（critic）动作梯度时可能出现的数值不稳定。研究提出 QPILOTS 方法，通过在推理时引导去噪过程来优化策略，而不是修改原始策略或进行复杂的蒸馏。其核心创新在于，在每个去噪步骤中，不直接在噪声中间动作上评估 critic，而是将中间状态投影到最终干净动作的估计值上计算 critic 梯度，并引入了 QPILOTS-U（单点近似）和 QPILOTS-M（通过辅助网络进行可微分后验采样）两种变体。实验结果表明，QPILOTS 在离线到在线 RL 基准测试中取得了最佳的综合性能，在 50 个任务中平均成功率达到 90%，并且在模拟的六个操作任务中，引导大型预训练视觉-语言动作（VLA）基础模型时，性能优于或媲美现有推理时方法。",
+      "impact_score": null
+    },
+    {
       "id": "2606.13795",
       "title": "Diffusion Policy Optimization without Drifting Apart",
       "abstract": "RL post-training has become increasingly pivotal for improving diffusion policies, but existing diffusion policy-gradient methods are often unstable and cannot achieve reliable policy improvement. We identify the cause as the double-drift phenomenon: optimizing a variational surrogate can let the ELBO separate from the true log-likelihood, which then makes the resulting proxy policy gradient misaligned with the true policy gradient of expected return. We propose \\textbf{DiPOD}, a diffusion policy optimization framework that maintains tight-bound behavior throughout training by interleaving self-distillation with policy-improving gradient updates. This leads to a simple and practical algorithm: augmenting each diffusion policy-gradient update with an on-policy ELBO regularizer. Across diffusion language model post-training and continuous-control diffusion policies, DiPOD substantially stabilizes training and reaches higher rewards than previous methods.",
@@ -281,7 +313,8 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13795",
-      "summary_zh": "在扩散策略（diffusion policies）的后训练（post-training）中，现有的策略梯度方法常因“双重漂移”（double-drift）现象导致不稳定且难以可靠提升性能。该现象源于变分代理（variational surrogate）优化过程中，ELBO与真实对数似然（true log-likelihood）分离，进而使代理策略梯度与真实期望回报的策略梯度不一致。为解决此问题，DiPOD框架通过交替进行自蒸馏（self-distillation）和策略改进梯度更新，在整个训练过程中保持紧密的边界行为。具体而言，DiPOD在每次扩散策略梯度更新中增加了一个在策略ELBO正则化项，从而显著稳定了训练过程。在扩散语言模型后训练和连续控制扩散策略的实验中，DiPOD均展现出比现有方法更高的奖励。"
+      "summary_zh": "在扩散策略（diffusion policies）的后训练（post-training）中，现有的策略梯度方法常因“双重漂移”（double-drift）现象导致不稳定且难以可靠提升性能。该现象源于变分代理（variational surrogate）优化过程中，ELBO与真实对数似然（true log-likelihood）分离，进而使代理策略梯度与真实期望回报的策略梯度不一致。为解决此问题，DiPOD框架通过交替进行自蒸馏（self-distillation）和策略改进梯度更新，在整个训练过程中保持紧密的边界行为。具体而言，DiPOD在每次扩散策略梯度更新中增加了一个在策略ELBO正则化项，从而显著稳定了训练过程。在扩散语言模型后训练和连续控制扩散策略的实验中，DiPOD均展现出比现有方法更高的奖励。",
+      "impact_score": null
     },
     {
       "id": "2606.13769",
@@ -304,15 +337,16 @@
         "cs.LG"
       ],
       "published": "2026-06-11T17:59:56Z",
-      "updated": "2026-06-11T17:59:56Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.13769v1",
+      "updated": "2026-06-15T06:13:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13769v2",
       "abs_url": "https://arxiv.org/abs/2606.13769",
       "topics": [
         "world-model",
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13769",
-      "summary_zh": "该论文提出了一种名为 $\\mu_0$ 的可扩展世界模型，旨在解决机器人学习中动作诱导物理变化的建模问题，避免了对具体机器人动作标签的依赖。$\\mu_0$ 的核心创新在于它不预测密集的像素或直接建模动作，而是通过预测关键交互点（如物体、工具、手和接触区域）的平滑 3D 轨迹，提供了一种紧凑、与具体机器人无关的运动接口。为了从多样化的视频源中进行训练，论文引入了 TraceExtract 系统，该系统自动提取 3D 监督信息，包括选择关键点、构建全局对齐的轨迹以及将运动片段与分层语言描述相关联。实验结果表明，$\\mu_0$ 在 2D 和 3D 轨迹预测方面均优于现有基线模型，包括其他轨迹预测模型和 tokenized VLM 方法，并且尽管经过无动作预训练，其轨迹条件策略在下游机器人任务中达到了与带有动作监督预训练的 VLA 模型（如 $\\pi_0$）相当的性能，证明了 3D 轨迹作为可扩展和可迁移表示在跨机器人操作中的有效性。"
+      "summary_zh": "该论文提出了一种名为 $\\mu_0$ 的可扩展世界模型，旨在解决机器人学习中动作诱导物理变化的建模问题，避免了对具体机器人动作标签的依赖。$\\mu_0$ 的核心创新在于它不预测密集的像素或直接建模动作，而是通过预测关键交互点（如物体、工具、手和接触区域）的平滑 3D 轨迹，提供了一种紧凑、与具体机器人无关的运动接口。为了从多样化的视频源中进行训练，论文引入了 TraceExtract 系统，该系统自动提取 3D 监督信息，包括选择关键点、构建全局对齐的轨迹以及将运动片段与分层语言描述相关联。实验结果表明，$\\mu_0$ 在 2D 和 3D 轨迹预测方面均优于现有基线模型，包括其他轨迹预测模型和 tokenized VLM 方法，并且尽管经过无动作预训练，其轨迹条件策略在下游机器人任务中达到了与带有动作监督预训练的 VLA 模型（如 $\\pi_0$）相当的性能，证明了 3D 轨迹作为可扩展和可迁移表示在跨机器人操作中的有效性。",
+      "impact_score": null
     },
     {
       "id": "2606.13680",
@@ -339,7 +373,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13680",
-      "summary_zh": "该研究旨在解决传统检索增强生成（RAG）在复杂推理任务中因语义相似性与推理模式不匹配而导致的局限性。为此，研究提出了检索增强强化微调（Retrieval-Augmented Reinforcement Fine-Tuning, RA-RFT）框架，通过金标相关性蒸馏训练一个基于预期推理效益而非语义重叠的检索器，并利用强化微调方法，结合检索到的类比示例来微调策略模型，使其学习利用可验证结果奖励下的推理轨迹。关键创新在于其推理感知的检索机制，能够发现互补的解决方案策略，为特定问题提供不同的推理支架。实验结果表明，在具有挑战性的数学推理基准测试中，RA-RFT显著优于标准强化微调方法，例如在AIME 2025 benchmark上，相较于GRPO，Qwen3-1.7B和Qwen3-4B模型的平均@32准确率分别提高了7.1和2.8个百分点，证明了推理感知检索是模型改进的有效途径。"
+      "summary_zh": "该研究旨在解决传统检索增强生成（RAG）在复杂推理任务中因语义相似性与推理模式不匹配而导致的局限性。为此，研究提出了检索增强强化微调（Retrieval-Augmented Reinforcement Fine-Tuning, RA-RFT）框架，通过金标相关性蒸馏训练一个基于预期推理效益而非语义重叠的检索器，并利用强化微调方法，结合检索到的类比示例来微调策略模型，使其学习利用可验证结果奖励下的推理轨迹。关键创新在于其推理感知的检索机制，能够发现互补的解决方案策略，为特定问题提供不同的推理支架。实验结果表明，在具有挑战性的数学推理基准测试中，RA-RFT显著优于标准强化微调方法，例如在AIME 2025 benchmark上，相较于GRPO，Qwen3-1.7B和Qwen3-4B模型的平均@32准确率分别提高了7.1和2.8个百分点，证明了推理感知检索是模型改进的有效途径。",
+      "impact_score": null
     },
     {
       "id": "2606.13679",
@@ -365,7 +400,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13679",
-      "summary_zh": "InterleaveThinker 旨在解决现有图像生成器在交错生成（文本-图像序列）方面的局限性，这些生成器通常只能处理单图像生成或编辑。它提出了一种多智能体流水线，通过引入一个规划器智能体来组织图像-文本输入序列并指导图像生成器执行，以及一个评论家智能体来评估生成器输出并修正指令以进行再生成。关键创新在于其分阶段的强化学习方法，通过构建 Interleave-Planner-SFT 和 Interleave-Critic-SFT 进行格式冷启动，并利用 Interleave-Critic-RL 和 GRPO 强化逐步指令修正能力，同时引入准确性奖励和逐步奖励来有效指导整个生成轨迹。实验结果表明，InterleaveThinker 显著提升了各种图像生成器在交错生成基准上的性能，甚至在推理型基准如 4-step FLUX.2-klein 上也实现了显著提升，表现出与 Nano Banana 和 GPT-5 相当的性能。"
+      "summary_zh": "InterleaveThinker 旨在解决现有图像生成器在交错生成（文本-图像序列）方面的局限性，这些生成器通常只能处理单图像生成或编辑。它提出了一种多智能体流水线，通过引入一个规划器智能体来组织图像-文本输入序列并指导图像生成器执行，以及一个评论家智能体来评估生成器输出并修正指令以进行再生成。关键创新在于其分阶段的强化学习方法，通过构建 Interleave-Planner-SFT 和 Interleave-Critic-SFT 进行格式冷启动，并利用 Interleave-Critic-RL 和 GRPO 强化逐步指令修正能力，同时引入准确性奖励和逐步奖励来有效指导整个生成轨迹。实验结果表明，InterleaveThinker 显著提升了各种图像生成器在交错生成基准上的性能，甚至在推理型基准如 4-step FLUX.2-klein 上也实现了显著提升，表现出与 Nano Banana 和 GPT-5 相当的性能。",
+      "impact_score": null
     },
     {
       "id": "2606.13677",
@@ -414,14 +450,15 @@
         "cs.CV"
       ],
       "published": "2026-06-11T17:59:43Z",
-      "updated": "2026-06-11T17:59:43Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.13674v1",
+      "updated": "2026-06-13T07:02:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13674v2",
       "abs_url": "https://arxiv.org/abs/2606.13674",
       "topics": [
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13674",
-      "summary_zh": "RepWAM提出了一种以表征为中心的世界动作模型（WAM），旨在解决现有WAMs在学习指令遵循动态时，仅依赖像素重建视频tokenizer的局限性。该方法通过训练一个表征视觉-动作tokenizer，将视觉输入映射到对齐的视觉和潜在动作token，从而构建一个语义视觉-动作潜在空间。关键创新在于，RepWAM预训练其WAM模型，在语言指令下联合建模未来的视觉状态和连接这些状态的潜在动作，随后适应真实机器人轨迹以实现闭环操作。实验结果表明，RepWAM在真实世界操作任务和模拟基准上表现出色，消融研究也证实了语义视觉-动作tokenization相比重建导向方法的优越性，为通用机器人策略奠定了基础。"
+      "summary_zh": "RepWAM提出了一种以表征为中心的世界动作模型（WAM），旨在解决现有WAMs在学习指令遵循动态时，仅依赖像素重建视频tokenizer的局限性。该方法通过训练一个表征视觉-动作tokenizer，将视觉输入映射到对齐的视觉和潜在动作token，从而构建一个语义视觉-动作潜在空间。关键创新在于，RepWAM预训练其WAM模型，在语言指令下联合建模未来的视觉状态和连接这些状态的潜在动作，随后适应真实机器人轨迹以实现闭环操作。实验结果表明，RepWAM在真实世界操作任务和模拟基准上表现出色，消融研究也证实了语义视觉-动作tokenization相比重建导向方法的优越性，为通用机器人策略奠定了基础。",
+      "impact_score": null
     },
     {
       "id": "2606.13673",
@@ -482,7 +519,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13768",
-      "summary_zh": "CineOrchestra 提出了一种统一的视频扩散模型，旨在解决现有文本到视频模型在生成电影级视频时缺乏精细控制的问题，特别是多主体个性化、时间控制、多镜头合成和摄像机控制这四个方面。该模型的核心创新在于将所有异构的电影元素（主体、事件、摄像机、镜头切换）统一为“实体中心条件原语”的共享结构，并通过参考图像增强视觉实体，从而将复杂的控制问题简化为单一的位置编码问题。为解决此问题，CineOrchestra 引入了两种无参数的协调旋转嵌入（RoPE）：一种是针对不同事件持续时间提供一致注意力行为的间隔采样时间 RoPE，另一种是用于区分每个实体条件并将其路由到相应时空区域的 2D 实体-时间交叉注意力 RoPE。在两个新基准测试中，CineOrchestra 在密集字幕跟随和镜头切换时序方面均优于六个单轴专家模型，并在用户研究和组件消融实验中展现出显著的性能提升。"
+      "summary_zh": "CineOrchestra 提出了一种统一的视频扩散模型，旨在解决现有文本到视频模型在生成电影级视频时缺乏精细控制的问题，特别是多主体个性化、时间控制、多镜头合成和摄像机控制这四个方面。该模型的核心创新在于将所有异构的电影元素（主体、事件、摄像机、镜头切换）统一为“实体中心条件原语”的共享结构，并通过参考图像增强视觉实体，从而将复杂的控制问题简化为单一的位置编码问题。为解决此问题，CineOrchestra 引入了两种无参数的协调旋转嵌入（RoPE）：一种是针对不同事件持续时间提供一致注意力行为的间隔采样时间 RoPE，另一种是用于区分每个实体条件并将其路由到相应时空区域的 2D 实体-时间交叉注意力 RoPE。在两个新基准测试中，CineOrchestra 在密集字幕跟随和镜头切换时序方面均优于六个单轴专家模型，并在用户研究和组件消融实验中展现出显著的性能提升。",
+      "impact_score": null
     },
     {
       "id": "2606.13669",
@@ -554,7 +592,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13657",
-      "summary_zh": "这篇论文研究了 On-Policy Distillation (OPD) 过程中模型参数更新的稀疏性和几何特性，旨在阐明这种结合了 on-policy student 轨迹和 dense teacher supervision 的后训练方法如何改变模型参数。通过对多个语言和视觉-语言模型对进行分析，发现 OPD 更新是小而坐标稀疏的，主要分布在 FFN 模块中，并且这种稀疏结构允许仅训练发现的子网络就能接近全训练性能。尽管更新稀疏，但自适应优化器如 AdamW 仍优于 SGD，表明 dense teacher supervision 保留了有用的动量结构和异构二阶矩尺度；同时，更新在数值上是满秩但谱集中的，主要作用于源权重接近零的坐标，这表明 OPD 保持了 on-policy 后训练的重要几何特征。"
+      "summary_zh": "这篇论文研究了 On-Policy Distillation (OPD) 过程中模型参数更新的稀疏性和几何特性，旨在阐明这种结合了 on-policy student 轨迹和 dense teacher supervision 的后训练方法如何改变模型参数。通过对多个语言和视觉-语言模型对进行分析，发现 OPD 更新是小而坐标稀疏的，主要分布在 FFN 模块中，并且这种稀疏结构允许仅训练发现的子网络就能接近全训练性能。尽管更新稀疏，但自适应优化器如 AdamW 仍优于 SGD，表明 dense teacher supervision 保留了有用的动量结构和异构二阶矩尺度；同时，更新在数值上是满秩但谱集中的，主要作用于源权重接近零的坐标，这表明 OPD 保持了 on-policy 后训练的重要几何特征。",
+      "impact_score": null
     },
     {
       "id": "2606.13655",
@@ -572,15 +611,16 @@
         "cs.GR"
       ],
       "published": "2026-06-11T17:54:05Z",
-      "updated": "2026-06-11T17:54:05Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.13655v1",
+      "updated": "2026-06-13T07:52:41Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13655v2",
       "abs_url": "https://arxiv.org/abs/2606.13655",
       "topics": [
         "video-gen",
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13655",
-      "summary_zh": "Flex4DHuman提出了一种多视角视频扩散模型，旨在将单目或稀疏多视角视频转换为同步的密集多视角视频，以实现动态4D人体重建。该方法不依赖骨架、深度图或法线等显式几何先验，而是通过相对相机姿态位置编码来条件化生成过程。Flex4DHuman基于Wan 2.1 1.3B文本到视频模型，通过扩展时空RoPE的五轴位置编码来编码相机和视角信息，并采用三阶段课程训练，逐步实现姿态跟随、灵活的参考到目标视角生成以及时间展开。结合现成的4D Gaussian Splatting，该框架能将单目静态相机视频提升为动态4D Gaussian Splats，在DNA-Rendering和ActorsHQ数据集上的实验表明，Flex4DHuman超越了现有最先进的方法，并且通过混合人-动物训练，该模型也能泛化到动物类别。"
+      "summary_zh": "Flex4DHuman提出了一种多视角视频扩散模型，旨在将单目或稀疏多视角视频转换为同步的密集多视角视频，以实现动态4D人体重建。该方法不依赖骨架、深度图或法线等显式几何先验，而是通过相对相机姿态位置编码来条件化生成过程。Flex4DHuman基于Wan 2.1 1.3B文本到视频模型，通过扩展时空RoPE的五轴位置编码来编码相机和视角信息，并采用三阶段课程训练，逐步实现姿态跟随、灵活的参考到目标视角生成以及时间展开。结合现成的4D Gaussian Splatting，该框架能将单目静态相机视频提升为动态4D Gaussian Splats，在DNA-Rendering和ActorsHQ数据集上的实验表明，Flex4DHuman超越了现有最先进的方法，并且通过混合人-动物训练，该模型也能泛化到动物类别。",
+      "impact_score": null
     },
     {
       "id": "2606.13652",
@@ -610,7 +650,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13652",
-      "summary_zh": "该研究旨在解决图像到3D方法中保真度与完整性之间的矛盾，即深度估计器虽与输入像素对齐但仅限于可见表面，而图像到3D模型虽能生成完整形状但常与输入不一致。为此，论文提出了World Tracing，一种生成式像素对齐几何表示，它为每个输入像素预测一个有序的相机空间3D点堆栈，其中第一层是可见表面，后续层代表与遮挡表面的前后交点，从而在预测与观察像素对齐的3D点的同时，完成可见表面之外的几何结构。通过引入world-tracing diffusion transformer (WT-DiT) 来实例化此表示，该模型将多个几何层视为独立的去噪tokens，并通过分解和全局注意力进行耦合，并采用像素空间流匹配和混合噪声调度进行训练，以平衡可见表面重建和遮挡几何生成。World Tracing在物体、场景和动态基准测试中，在可见表面重建和完整几何生成方面均表现出色，超越了深度预测器和图像到3D生成器，并能保持2D到3D的对应关系，支持文本驱动的3D场景编辑、几何条件下的新视角视频合成以及与纹理网格生成器的免训练集成。"
+      "summary_zh": "该研究旨在解决图像到3D方法中保真度与完整性之间的矛盾，即深度估计器虽与输入像素对齐但仅限于可见表面，而图像到3D模型虽能生成完整形状但常与输入不一致。为此，论文提出了World Tracing，一种生成式像素对齐几何表示，它为每个输入像素预测一个有序的相机空间3D点堆栈，其中第一层是可见表面，后续层代表与遮挡表面的前后交点，从而在预测与观察像素对齐的3D点的同时，完成可见表面之外的几何结构。通过引入world-tracing diffusion transformer (WT-DiT) 来实例化此表示，该模型将多个几何层视为独立的去噪tokens，并通过分解和全局注意力进行耦合，并采用像素空间流匹配和混合噪声调度进行训练，以平衡可见表面重建和遮挡几何生成。World Tracing在物体、场景和动态基准测试中，在可见表面重建和完整几何生成方面均表现出色，超越了深度预测器和图像到3D生成器，并能保持2D到3D的对应关系，支持文本驱动的3D场景编辑、几何条件下的新视角视频合成以及与纹理网格生成器的免训练集成。",
+      "impact_score": null
     },
     {
       "id": "2606.13644",
@@ -680,8 +721,8 @@
         "cs.AI"
       ],
       "published": "2026-06-11T17:23:10Z",
-      "updated": "2026-06-11T17:23:10Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.13607v1",
+      "updated": "2026-06-13T20:58:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13607v2",
       "abs_url": "https://arxiv.org/abs/2606.13607",
       "topics": [
         "other"
@@ -812,8 +853,8 @@
         "cs.RO"
       ],
       "published": "2026-06-11T17:03:53Z",
-      "updated": "2026-06-11T17:03:53Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.13578v1",
+      "updated": "2026-06-15T17:50:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13578v2",
       "abs_url": "https://arxiv.org/abs/2606.13578",
       "topics": [
         "other"
@@ -987,7 +1028,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13460",
-      "summary_zh": "该研究旨在解决自动驾驶和机器人决策中3D语义占据地图（semantic 3D occupancy）存在的物体和稀有类别错误，这些错误会影响自由空间解释、碰撞检测和时序状态传播。论文提出了一种名为VISA（VLM-Guided Instance Semantic Auditing）的训练时语义审计方法，用于改进现有的占据世界模型。VISA通过离线VLM对每个物理对象实例的代表性裁剪图像进行查询，获取包含类别假设、可能混淆、可靠性、属性和证据的结构化审计结果，并沿对象轨迹传播。该审计结果被映射到匹配的3D对象体素，并通过可靠性加权的分类学、属性因子和场景级审计图损失蒸馏成语义logits，而推理过程无需VLM。在nuScenes数据集上，VISA将OccWorld的mIoU从19.06提升到20.05，GaussianWorld的mIoU从21.36提升到21.91，其中GaussianWorld的对象mIoU从18.18提升到19.16，稀有类别mIoU从15.60提升到16.79。这些结果表明，VLM作为可靠性感知的语义审计器比作为通用字幕嵌入目标更适合闭集占据任务。"
+      "summary_zh": "该研究旨在解决自动驾驶和机器人决策中3D语义占据地图（semantic 3D occupancy）存在的物体和稀有类别错误，这些错误会影响自由空间解释、碰撞检测和时序状态传播。论文提出了一种名为VISA（VLM-Guided Instance Semantic Auditing）的训练时语义审计方法，用于改进现有的占据世界模型。VISA通过离线VLM对每个物理对象实例的代表性裁剪图像进行查询，获取包含类别假设、可能混淆、可靠性、属性和证据的结构化审计结果，并沿对象轨迹传播。该审计结果被映射到匹配的3D对象体素，并通过可靠性加权的分类学、属性因子和场景级审计图损失蒸馏成语义logits，而推理过程无需VLM。在nuScenes数据集上，VISA将OccWorld的mIoU从19.06提升到20.05，GaussianWorld的mIoU从21.36提升到21.91，其中GaussianWorld的对象mIoU从18.18提升到19.16，稀有类别mIoU从15.60提升到16.79。这些结果表明，VLM作为可靠性感知的语义审计器比作为通用字幕嵌入目标更适合闭集占据任务。",
+      "impact_score": null
     },
     {
       "id": "2606.13432",
@@ -1018,7 +1060,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13432",
-      "summary_zh": "该研究旨在解决视频生成中相机运动克隆的挑战，特别是现有方法在多镜头生成和复杂相机运动处理上的不足。它提出了一种通用的相机运动表示方法，将相机编码为网格运动视频（grid motion videos），这种视觉化的相机网格能够整合多样化的轨迹，从而支持多镜头视频生成。在此基础上，研究引入了OmniDirector框架，该框架在一个百万级的相机网格-视频对数据集上进行训练，能够协调角色、动作和相机，为多模态扩散Transformer提供导演级别的控制。此外，研究还设计了一个新颖的分层提示扩展代理，通过理解信号关系系统地描述相机运动和视觉内容，和谐地整合不同的控制信号。实验结果表明，该框架在性能和可控性方面均表现出色。"
+      "summary_zh": "该研究旨在解决视频生成中相机运动克隆的挑战，特别是现有方法在多镜头生成和复杂相机运动处理上的不足。它提出了一种通用的相机运动表示方法，将相机编码为网格运动视频（grid motion videos），这种视觉化的相机网格能够整合多样化的轨迹，从而支持多镜头视频生成。在此基础上，研究引入了OmniDirector框架，该框架在一个百万级的相机网格-视频对数据集上进行训练，能够协调角色、动作和相机，为多模态扩散Transformer提供导演级别的控制。此外，研究还设计了一个新颖的分层提示扩展代理，通过理解信号关系系统地描述相机运动和视觉内容，和谐地整合不同的控制信号。实验结果表明，该框架在性能和可控性方面均表现出色。",
+      "impact_score": null
     },
     {
       "id": "2606.13426",
@@ -1042,7 +1085,8 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13426",
-      "summary_zh": "该论文旨在解决将LLM中的推测解码（speculative decoding）技术高效应用于连续扩散模型（continuous diffusions）的挑战，特别是如何有效处理连续空间中的残差分布采样问题。通过引入一种新颖的机制，该方法能够高效实现扩散模型的原始推测采样，并首次将LLM中的块验证（block verification）机制引入扩散模型，这在理论上能提高草稿的接受率。此外，论文还形式化并分析了“Free Drafter”这一无需训练的启发式自推测草稿器。实验结果表明，该Free Drafter在现有推测方法的基础上，实现了高达6.3%的加速，且无需额外训练，仅需在现有并行验证过程中增加可忽略的开销。"
+      "summary_zh": "该论文旨在解决将LLM中的推测解码（speculative decoding）技术高效应用于连续扩散模型（continuous diffusions）的挑战，特别是如何有效处理连续空间中的残差分布采样问题。通过引入一种新颖的机制，该方法能够高效实现扩散模型的原始推测采样，并首次将LLM中的块验证（block verification）机制引入扩散模型，这在理论上能提高草稿的接受率。此外，论文还形式化并分析了“Free Drafter”这一无需训练的启发式自推测草稿器。实验结果表明，该Free Drafter在现有推测方法的基础上，实现了高达6.3%的加速，且无需额外训练，仅需在现有并行验证过程中增加可忽略的开销。",
+      "impact_score": null
     },
     {
       "id": "2606.13400",
@@ -1101,7 +1145,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13376",
-      "summary_zh": "MoVerse 提出了一种实时视频世界模型，旨在从单张窄视场图像构建可交互导航的场景。该模型通过将世界构建与观察渲染分离来解决输入信息有限但需生成完整环绕世界的问题，首先利用拓扑感知扩散将输入图像扩展为360度全景图，然后通过全景几何感知残差预测将其提升为持久的3D Gaussian scaffold，形成可直接渲染的空间记忆。关键创新在于引入了全景Gaussian scaffold作为中间表示，并设计了双向扩散教师模型进行高质量条件渲染，再将其蒸馏为因果自回归学生模型以实现低延迟流式输出。实验结果表明，MoVerse 在单个 NVIDIA RTX 4090 GPU 上能以 8 FPS 的速度支持实时场景漫游，展示了从单张图像创建交互式视频世界的实用性。"
+      "summary_zh": "MoVerse 提出了一种实时视频世界模型，旨在从单张窄视场图像构建可交互导航的场景。该模型通过将世界构建与观察渲染分离来解决输入信息有限但需生成完整环绕世界的问题，首先利用拓扑感知扩散将输入图像扩展为360度全景图，然后通过全景几何感知残差预测将其提升为持久的3D Gaussian scaffold，形成可直接渲染的空间记忆。关键创新在于引入了全景Gaussian scaffold作为中间表示，并设计了双向扩散教师模型进行高质量条件渲染，再将其蒸馏为因果自回归学生模型以实现低延迟流式输出。实验结果表明，MoVerse 在单个 NVIDIA RTX 4090 GPU 上能以 8 FPS 的速度支持实时场景漫游，展示了从单张图像创建交互式视频世界的实用性。",
+      "impact_score": null
     },
     {
       "id": "2606.13368",
@@ -1136,7 +1181,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13368",
-      "summary_zh": "这篇论文提出 IterCAD，一个统一的多模态智能体框架，用于解决计算机辅助设计（CAD）中现有自动化方法与实际迭代工作流程不匹配的问题。IterCAD 将 CAD 生成和编辑任务建模为智能体与可执行 CAD 沙盒之间的多轮交互，涵盖 Drawing-to-Code、Text-to-Code 和 Interactive Editing 三个任务。关键创新在于开发了一个数据合成管道来生成符合工业标准的工程图纸、复杂的代码编辑任务和高保真交互轨迹，并通过渐进式 SFT 和几何感知强化学习（带有 viable-prefix masking）来优化智能体，以提高代码可执行性和几何保真度。此外，论文还引入了 IterCAD-Bench 评估套件和 Chamfer Distance Tolerance-Recall (CD-TR) 曲线及其 AUC-TR 指标，为评估 CAD 生成和编辑提供了一个无幸存者偏差的标准。实验结果表明，IterCAD 在多个基准测试中表现出色，显著优于现有方法，在代码可执行性和几何精度方面均有提升，并展现出卓越的闭环迭代细化能力。"
+      "summary_zh": "这篇论文提出 IterCAD，一个统一的多模态智能体框架，用于解决计算机辅助设计（CAD）中现有自动化方法与实际迭代工作流程不匹配的问题。IterCAD 将 CAD 生成和编辑任务建模为智能体与可执行 CAD 沙盒之间的多轮交互，涵盖 Drawing-to-Code、Text-to-Code 和 Interactive Editing 三个任务。关键创新在于开发了一个数据合成管道来生成符合工业标准的工程图纸、复杂的代码编辑任务和高保真交互轨迹，并通过渐进式 SFT 和几何感知强化学习（带有 viable-prefix masking）来优化智能体，以提高代码可执行性和几何保真度。此外，论文还引入了 IterCAD-Bench 评估套件和 Chamfer Distance Tolerance-Recall (CD-TR) 曲线及其 AUC-TR 指标，为评估 CAD 生成和编辑提供了一个无幸存者偏差的标准。实验结果表明，IterCAD 在多个基准测试中表现出色，显著优于现有方法，在代码可执行性和几何精度方面均有提升，并展现出卓越的闭环迭代细化能力。",
+      "impact_score": null
     },
     {
       "id": "2606.13349",
@@ -1158,7 +1204,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13349",
-      "summary_zh": "现有大语言模型在自动化科学同行评审中难以生成有深度且有证据支持的评审意见，主要原因是缺乏像人类评审员那样，根据积累的证据主动调查论文可疑部分的能力。为解决此问题，研究将这一过程建模为马尔可夫决策过程（MDP），并提出了ProReviewer，一个基于LLM的科学同行评审代理，它通过维护一个结构化的评审日志来主动评审论文，该日志作为代理追踪证据和中间发现的工作空间。实验结果显示，ProReviewer使用8B模型作为骨干，通过监督微调和强化学习优化后，在五个质量维度上取得了最高平均分，相对提示工程方法（使用更大的前沿LLM）性能提升高达39%，相对最强的微调基线提升16%，并在人工评估中也获得了最高的胜率。"
+      "summary_zh": "现有大语言模型在自动化科学同行评审中难以生成有深度且有证据支持的评审意见，主要原因是缺乏像人类评审员那样，根据积累的证据主动调查论文可疑部分的能力。为解决此问题，研究将这一过程建模为马尔可夫决策过程（MDP），并提出了ProReviewer，一个基于LLM的科学同行评审代理，它通过维护一个结构化的评审日志来主动评审论文，该日志作为代理追踪证据和中间发现的工作空间。实验结果显示，ProReviewer使用8B模型作为骨干，通过监督微调和强化学习优化后，在五个质量维度上取得了最高平均分，相对提示工程方法（使用更大的前沿LLM）性能提升高达39%，相对最强的微调基线提升16%，并在人工评估中也获得了最高的胜率。",
+      "impact_score": null
     },
     {
       "id": "2606.13316",
@@ -1320,7 +1367,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13227",
-      "summary_zh": "该论文旨在解决现有语言模型后训练方法（如SFT和偏好优化）将模型对齐到单一全局助手行为的问题，这抑制了人类响应在语言、任务和对话设置中的自然变化。为此，论文提出了PolyAlign框架，通过将双语交互数据组织成由语言、交互轨迹、响应家族和长度定义的桶特定人类参考分布，并结合了Bucket-Aware SFT和Human-Distribution Preference Optimization (HDPO)两种方法。其中，Bucket-Aware SFT平衡了异构桶之间的优化，HDPO则利用评论家估计的与桶特定人类支持的距离来正则化偏好学习。在涵盖英语和中文单轮及多轮设置的双语评估套件上，PolyAlign在保持竞争性任务效用的同时，提高了条件自然度和分布忠实度，表明后训练应转向与人类响应分布进行交互感知对齐。"
+      "summary_zh": "该论文旨在解决现有语言模型后训练方法（如SFT和偏好优化）将模型对齐到单一全局助手行为的问题，这抑制了人类响应在语言、任务和对话设置中的自然变化。为此，论文提出了PolyAlign框架，通过将双语交互数据组织成由语言、交互轨迹、响应家族和长度定义的桶特定人类参考分布，并结合了Bucket-Aware SFT和Human-Distribution Preference Optimization (HDPO)两种方法。其中，Bucket-Aware SFT平衡了异构桶之间的优化，HDPO则利用评论家估计的与桶特定人类支持的距离来正则化偏好学习。在涵盖英语和中文单轮及多轮设置的双语评估套件上，PolyAlign在保持竞争性任务效用的同时，提高了条件自然度和分布忠实度，表明后训练应转向与人类响应分布进行交互感知对齐。",
+      "impact_score": null
     },
     {
       "id": "2606.13209",
@@ -1342,7 +1390,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13209",
-      "summary_zh": "该研究旨在理解奖励模型（Reward Models）中“有用性”（helpfulness）和“无害性”（harmlessness）目标之间的内在机制及其冲突，尤其是在强化学习人类反馈（RLHF）中。研究方法是训练了仅关注有用性、仅关注无害性以及混合目标的奖励模型，并发现混合目标模型通常表现不如单一目标模型，表明目标之间存在干扰。关键创新在于利用基于激活的方法识别出与每个目标相关的神经元，并通过定向消融实验研究其功能作用，发现这些神经元在支持各自目标的同时，往往对相反目标产生负面影响，且大量共享神经元对模型行为影响巨大，加剧了对齐张力。实验结果揭示了对齐目标在奖励模型中的表示方式以及多目标对齐的挑战性，为未来开发解耦和可控的对齐方法提供了见解。"
+      "summary_zh": "该研究旨在理解奖励模型（Reward Models）中“有用性”（helpfulness）和“无害性”（harmlessness）目标之间的内在机制及其冲突，尤其是在强化学习人类反馈（RLHF）中。研究方法是训练了仅关注有用性、仅关注无害性以及混合目标的奖励模型，并发现混合目标模型通常表现不如单一目标模型，表明目标之间存在干扰。关键创新在于利用基于激活的方法识别出与每个目标相关的神经元，并通过定向消融实验研究其功能作用，发现这些神经元在支持各自目标的同时，往往对相反目标产生负面影响，且大量共享神经元对模型行为影响巨大，加剧了对齐张力。实验结果揭示了对齐目标在奖励模型中的表示方式以及多目标对齐的挑战性，为未来开发解耦和可控的对齐方法提供了见解。",
+      "impact_score": null
     },
     {
       "id": "2606.13192",
@@ -1424,7 +1473,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13156",
-      "summary_zh": "视觉语言模型（VLM）在单次空间定位上表现出色，但缺乏自我纠正能力，当模型被提示迭代其预测的可视化渲染时，性能会大幅下降。为此，论文提出了迭代视觉思维（Iterative Visual Thinking, IVT）框架，它允许模型预测边界框、观察渲染后的预测，并通过视觉反馈进行迭代修正。关键创新在于两阶段训练方法：首先，利用基础模型的预测作为错误样本，提示一个教师VLM生成纠正推理轨迹，从而无需人工标注即可获得监督数据；其次，采用Group Relative Policy Optimization (GRPO) 和简单的IoU奖励来稳定多步修正过程。实验结果表明，在包含RefCOCOg、Ref-Adv和Ref-L4的混合基准测试中，经过IVT微调的模型在所有指标上均超越了单次基础模型，例如Acc@0.5提升至82.0%，且GRPO显著降低了每步IoU下降，整个训练过程仅需2,400个样本和一块GPU，证明了空间自我纠正能力是可学习且高效的。"
+      "summary_zh": "视觉语言模型（VLM）在单次空间定位上表现出色，但缺乏自我纠正能力，当模型被提示迭代其预测的可视化渲染时，性能会大幅下降。为此，论文提出了迭代视觉思维（Iterative Visual Thinking, IVT）框架，它允许模型预测边界框、观察渲染后的预测，并通过视觉反馈进行迭代修正。关键创新在于两阶段训练方法：首先，利用基础模型的预测作为错误样本，提示一个教师VLM生成纠正推理轨迹，从而无需人工标注即可获得监督数据；其次，采用Group Relative Policy Optimization (GRPO) 和简单的IoU奖励来稳定多步修正过程。实验结果表明，在包含RefCOCOg、Ref-Adv和Ref-L4的混合基准测试中，经过IVT微调的模型在所有指标上均超越了单次基础模型，例如Acc@0.5提升至82.0%，且GRPO显著降低了每步IoU下降，整个训练过程仅需2,400个样本和一块GPU，证明了空间自我纠正能力是可学习且高效的。",
+      "impact_score": null
     },
     {
       "id": "2606.13141",
@@ -1477,7 +1527,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13125",
-      "summary_zh": "这篇论文深入探讨了强化学习（RL）在推理和编码模型后训练中的作用机制。研究通过对 Qwen-2.5-1.5B 模型进行受控数学推理实验，揭示了 RL 后训练主要通过“策略选择”（strategy selection）和“策略改进”（strategy improvement）两种核心机制来提升模型能力。关键创新在于，论文发现 SFT 数据和 RL 数据在激活这些机制中扮演了重要角色，特别是展示了监督模型学习多样化推理策略可以促进策略选择，而增加 RL 数据的难度则能有效实现策略改进。这些发现为理解 RL 训练提供了机制层面的洞察，并为未来提升推理能力提供了实用的干预方向。"
+      "summary_zh": "这篇论文深入探讨了强化学习（RL）在推理和编码模型后训练中的作用机制。研究通过对 Qwen-2.5-1.5B 模型进行受控数学推理实验，揭示了 RL 后训练主要通过“策略选择”（strategy selection）和“策略改进”（strategy improvement）两种核心机制来提升模型能力。关键创新在于，论文发现 SFT 数据和 RL 数据在激活这些机制中扮演了重要角色，特别是展示了监督模型学习多样化推理策略可以促进策略选择，而增加 RL 数据的难度则能有效实现策略改进。这些发现为理解 RL 训练提供了机制层面的洞察，并为未来提升推理能力提供了实用的干预方向。",
+      "impact_score": null
     },
     {
       "id": "2606.13115",
@@ -1533,7 +1584,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13106",
-      "summary_zh": "该论文旨在解决隐状态循环（hidden-state recurrence）链式思维在标准在策略强化学习（on-policy RL）中优化困难且难以因果解释的问题。研究者提出了一种名为SWITCH的可切换潜在推理框架，通过引入离散的`<swi>`和`</swi>`边界令牌来明确标记潜在推理块的进入和退出，从而使其与标准在策略RL兼容，并为机制分析提供了切入点。关键创新在于利用这些边界令牌，使得GRPO策略比率在每个决策点都明确定义，并通过可见到潜在的课程学习和Switch-GRPO目标来训练模型，该目标能够通过循环潜在计算传播梯度。实验结果表明，SWITCH在相似规模下始终优于先前的隐状态循环潜在推理方法，并且通过对边界令牌的机制分析揭示了`<swi>`是一个局部化的学习切换策略，潜在步骤执行了问题特定的、因果重要的计算，且该计算集中在进入时的单个隐状态转换中。"
+      "summary_zh": "该论文旨在解决隐状态循环（hidden-state recurrence）链式思维在标准在策略强化学习（on-policy RL）中优化困难且难以因果解释的问题。研究者提出了一种名为SWITCH的可切换潜在推理框架，通过引入离散的`<swi>`和`</swi>`边界令牌来明确标记潜在推理块的进入和退出，从而使其与标准在策略RL兼容，并为机制分析提供了切入点。关键创新在于利用这些边界令牌，使得GRPO策略比率在每个决策点都明确定义，并通过可见到潜在的课程学习和Switch-GRPO目标来训练模型，该目标能够通过循环潜在计算传播梯度。实验结果表明，SWITCH在相似规模下始终优于先前的隐状态循环潜在推理方法，并且通过对边界令牌的机制分析揭示了`<swi>`是一个局部化的学习切换策略，潜在步骤执行了问题特定的、因果重要的计算，且该计算集中在进入时的单个隐状态转换中。",
+      "impact_score": null
     },
     {
       "id": "2606.13092",
@@ -1555,7 +1607,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13092",
-      "summary_zh": "该研究旨在解决世界模型预测可信度的问题，特别是如何量化和认证其预测的有效时间范围（可预测 horizon）。论文提出了一种针对等变（equivariant）潜在世界模型的可计算、多步可预测 horizon 认证方法，其核心创新在于证明了 $T$-步展开误差在每个对称轨道上是恒定的（定理 A），并且按预测器的 Lyapunov 谱进行分层，即 $T_j(\\epsilon) \\sim \\log(1/\\epsilon)/\\lambda_j$。实验结果表明，在 40-D Lorenz-96 数据集上，只有 $\\mathbb{Z}_N$-等变网络能够恢复完整的 Lyapunov 谱（$R^2=0.98$），而密集和循环基线模型则失败。此外，该认证方法无需校准数据即可评估模型，并且在审计预训练世界模型（如 TD-MPC2 和 V-JEPA 2-AC）时表现出良好的校准性，揭示了模型在不同扩展性下的预测范围。"
+      "summary_zh": "该研究旨在解决世界模型预测可信度的问题，特别是如何量化和认证其预测的有效时间范围（可预测 horizon）。论文提出了一种针对等变（equivariant）潜在世界模型的可计算、多步可预测 horizon 认证方法，其核心创新在于证明了 $T$-步展开误差在每个对称轨道上是恒定的（定理 A），并且按预测器的 Lyapunov 谱进行分层，即 $T_j(\\epsilon) \\sim \\log(1/\\epsilon)/\\lambda_j$。实验结果表明，在 40-D Lorenz-96 数据集上，只有 $\\mathbb{Z}_N$-等变网络能够恢复完整的 Lyapunov 谱（$R^2=0.98$），而密集和循环基线模型则失败。此外，该认证方法无需校准数据即可评估模型，并且在审计预训练世界模型（如 TD-MPC2 和 V-JEPA 2-AC）时表现出良好的校准性，揭示了模型在不同扩展性下的预测范围。",
+      "impact_score": null
     },
     {
       "id": "2606.13076",
@@ -1587,8 +1640,8 @@
     },
     {
       "id": "2606.13053",
-      "title": "EA-WM: Event-Aware World Models with Task-Specification Grounding for Long-Horizon Manipulation",
-      "abstract": "Pretrained-feature world models provide a useful substrate for robot imagination, but visual or latent prediction alone does not determine whether an imagined future satisfies task-relevant events. Long-horizon manipulation requires progress signals that are relational, predicate-level, and physically grounded: whether an object has moved, whether a drawer or contact state has changed, whether a placement predicate is satisfied, and whether a candidate future is reliable enough for execution. We introduce EA-WM, an event-aware world-model framework that augments frozen visual-feature dynamics with task-specification-grounded event prediction and verification. EA-WM rolls out candidate futures in pretrained visual-feature space, decodes them into structured event states, and scores them using task-progress, semantic-consistency, physical-feasibility, and uncertainty terms. The verifier guides sampling-based planning, gates candidate actions, and, in the contact-sensitive LIBERO wine-rack setting, selects among PPOgenerated proposals. Across navigation, deformable-object, wall-constrained, and languagedescribed manipulation studies, EA-WM shows that event-aware verification can make featurespace world models more interpretable and better aligned with task progress.",
+      "title": "EV-WM: Event-Verified World Models for Long-Horizon Robotic Manipulation",
+      "abstract": "Pretrained-feature world models provide a useful substrate for robot imagination, but visual or latent prediction alone does not determine whether an imagined future satisfies task-relevant predicates. Long-horizon manipulation requires progress signals that are relational, predicate-level, and physically grounded: whether an object has moved, whether a drawer or contact state has changed, whether a placement predicate is satisfied, and whether a candidate future is reliable enough for execution. We introduce \\textbf{EV-WM}, a predicate-grounded verification framework for world-model planning. EV-WM rolls out candidate futures in pretrained visual-feature space, decodes them into structured event states, and scores them using task-progress, semantic-consistency, physical-feasibility, and uncertainty terms. The verifier guides sampling-based planning, gates candidate actions, and, in the contact-sensitive LIBERO wine-rack setting, selects among PPO-generated proposals. Across navigation, deformable-object, wall-constrained, and language-described manipulation studies, EV-WM shows that predicate-grounded verification can make feature-space world-model planning more interpretable and better aligned with task progress.",
       "authors": [
         "Kailin Wang",
         "Haoxiang Jie",
@@ -1601,14 +1654,16 @@
         "cs.AI"
       ],
       "published": "2026-06-11T08:35:37Z",
-      "updated": "2026-06-11T08:35:37Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.13053v1",
+      "updated": "2026-06-15T03:07:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.13053v2",
       "abs_url": "https://arxiv.org/abs/2606.13053",
       "topics": [
-        "world-model"
+        "world-model",
+        "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13053",
-      "summary_zh": "长程操作任务中，预训练特征世界模型（pretrained-feature world models）在机器人想象方面表现出色，但仅凭视觉或潜在预测难以判断想象的未来是否满足任务相关事件。EA-WM 提出了一种事件感知世界模型框架，通过任务规范接地的事件预测和验证，增强了冻结视觉特征动态。EA-WM 在预训练视觉特征空间中推演候选未来，将其解码为结构化事件状态，并利用任务进度、语义一致性、物理可行性和不确定性项进行评分，其验证器指导基于采样的规划，筛选候选动作，并在接触敏感的 LIBERO wine-rack 设置中从 PPO 生成的提议中进行选择。实验结果表明，在导航、可变形物体、墙壁约束和语言描述的操作研究中，EA-WM 的事件感知验证使特征空间世界模型更具可解释性，并更好地与任务进度对齐。"
+      "summary_zh": "长程操作任务中，预训练特征世界模型（pretrained-feature world models）在机器人想象方面表现出色，但仅凭视觉或潜在预测难以判断想象的未来是否满足任务相关事件。EA-WM 提出了一种事件感知世界模型框架，通过任务规范接地的事件预测和验证，增强了冻结视觉特征动态。EA-WM 在预训练视觉特征空间中推演候选未来，将其解码为结构化事件状态，并利用任务进度、语义一致性、物理可行性和不确定性项进行评分，其验证器指导基于采样的规划，筛选候选动作，并在接触敏感的 LIBERO wine-rack 设置中从 PPO 生成的提议中进行选择。实验结果表明，在导航、可变形物体、墙壁约束和语言描述的操作研究中，EA-WM 的事件感知验证使特征空间世界模型更具可解释性，并更好地与任务进度对齐。",
+      "impact_score": null
     },
     {
       "id": "2606.13035",
@@ -1636,7 +1691,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.13035",
-      "summary_zh": "自回归视频扩散模型在生成长视频时面临挑战，因为有限的 KV-cache 预算和自生成帧导致的上下文分布漂移会造成视觉伪影和质量下降。TetherCache 提出了一种免训练、即插即用的缓存管理策略，通过将缓存分为 sink、memory 和 recent 区域来稳定长视频生成。其关键创新点在于 GRAB (Gated Recall with Attention-Diversity Balancing) 机制，它结合注意力相关性和时间多样性选择长程记忆帧，以及 TAME (Trusted Alignment via Memory Editing) 机制，通过将召回的记忆 token 与可信上下文分布对齐来减少漂移污染。实验结果表明，TetherCache 在 VBench-Long 上显著提升了 30s、60s 和 240s 视频的生成质量，尤其在 240s 生成中，它大幅提高了整体和语义分数，并将质量漂移从 7.84 降低到 1.33，证明了其在稳定长时程自回归视频扩散方面的有效性。"
+      "summary_zh": "自回归视频扩散模型在生成长视频时面临挑战，因为有限的 KV-cache 预算和自生成帧导致的上下文分布漂移会造成视觉伪影和质量下降。TetherCache 提出了一种免训练、即插即用的缓存管理策略，通过将缓存分为 sink、memory 和 recent 区域来稳定长视频生成。其关键创新点在于 GRAB (Gated Recall with Attention-Diversity Balancing) 机制，它结合注意力相关性和时间多样性选择长程记忆帧，以及 TAME (Trusted Alignment via Memory Editing) 机制，通过将召回的记忆 token 与可信上下文分布对齐来减少漂移污染。实验结果表明，TetherCache 在 VBench-Long 上显著提升了 30s、60s 和 240s 视频的生成质量，尤其在 240s 生成中，它大幅提高了整体和语义分数，并将质量漂移从 7.84 降低到 1.33，证明了其在稳定长时程自回归视频扩散方面的有效性。",
+      "impact_score": null
     },
     {
       "id": "2606.13016",
@@ -1700,6 +1756,32 @@
       "summary_zh": "该研究旨在系统评估物理系统概率预测中两种主流方法（生成模型如扩散模型和流匹配，以及注入随机性的确定性模型集成并用CRPS损失训练）的不确定性可靠性，此前这方面评估存在空白。研究开发了一个评估框架，在匹配模型大小和计算预算的条件下，对多种2D时空物理系统进行测试，通过检查预测区间的经验覆盖率来评估概率模拟的可靠性，同时考虑准确性和计算效率。结果显示，CRPS训练的集成模型在单步预测和自回归推演中通常能实现更可靠的不确定性，覆盖率优于在潜在空间训练的生成模型，并且推理速度显著更快。当生成模型在环境空间而非压缩潜在空间训练时，其覆盖率可与CRPS训练的集成模型媲美，但推理延迟更高；而CRPS训练的集成模型在潜在空间训练时，覆盖率没有明显下降。为促进研究，该团队发布了AutoCast框架和AutoSim数据集生成工具。"
     },
     {
+      "id": "2606.14792",
+      "title": "Efficient Reinforcement for Visual-Textual Thinking with Discrete Diffusion Model",
+      "abstract": "RL-based post-training has been widely adopted to enable interleaved visual and textual reasoning in unified multimodal models capable of both text and image generation. However, most existing approaches are built upon autoregressive (AR) unified models, which require full image regeneration during visual reasoning. In this work, we demonstrate that multimodal discrete diffusion models are effective alternatives to AR models for reinforcement learning in interleaved reasoning, owing to their ability to perform efficient visual rollouts via localized visual editing rather than full image-token regeneration. This reduces rollout computation during GRPO by 26.9\\% compared to AR baselines, with minimal performance drop. Despite the improved efficiency, we find that joint reward assignment, which employs a shared reward signal across modalities, introduces cross-modal interference between unrelated image and text token sequences during RL updates. To address this issue, we propose factorized reward assignment, a strategy that assigns rewards independently to text and vision segments. With factorized reward assignment, our RL approach achieves an 11.2% improvement over joint reward assignment and a 38.04% improvement over the base model.",
+      "authors": [
+        "Yoonjeon Kim",
+        "Yuhta Takida",
+        "Chieh-Hsin Lai",
+        "Eunho Yang",
+        "Yuki Mitsufuji"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-11T07:33:46Z",
+      "updated": "2026-06-11T07:33:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.14792v1",
+      "abs_url": "https://arxiv.org/abs/2606.14792",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.14792",
+      "summary_zh": "该研究旨在解决统一多模态模型在视觉-文本交错推理中，基于自回归（AR）模型的强化学习（RL）后训练效率低下的问题，因为AR模型需要完整的图像重新生成。为此，研究提出使用多模态离散扩散模型作为AR模型的有效替代，其关键创新在于能够通过局部视觉编辑而非完整的图像-token重新生成来实现高效的视觉rollout，从而在GRPO过程中将rollout计算量减少26.9%，且性能下降极小。此外，针对现有方法中联合奖励分配导致的跨模态干扰问题，研究提出了因子化奖励分配策略，独立地为文本和视觉片段分配奖励，实验结果显示，该策略相比联合奖励分配提升了11.2%，相比基础模型提升了38.04%。",
+      "impact_score": null
+    },
+    {
       "id": "2606.12987",
       "title": "Diffusion Transformer World-Action Model for AV Scene Prediction",
       "abstract": "Action-conditioned world models let an autonomous vehicle predict future camera scenes from its own planned controls, enabling planning and simulation without real-world rollouts, but at compact, trainable scale the futures are ambiguous and the field's standard distortion metrics actively mislead: they reward a blurry regression mean over a realistic prediction. We confront this with a compact latent world model that, given the present front-camera latent and a sequence of ego-actions, predicts future scene latents a frozen decoder renders to $256 \\times 256$ frames up to 8 seconds ahead, evaluated on 150 held-out nuScenes scenes. We first benchmark where to predict: across six frozen encoders spanning four representation families, V-JEPA2 with temporal context reduces steering RMSE by 40% over the best single-frame encoder. We then train a latent Diffusion Transformer (DiT) and, through a controlled diagnosis, identify the four ingredients it needs: spatial tokens, the $x_0$ objective, residual anchoring, and sampling matched to target uncertainty. In a Stable-Diffusion-VAE encode-predict-decode pipeline we expose the central tension: distortion metrics (cosine similarity, SSIM) favor the blurry mean, masking that the diffusion model is far closer to the real frame distribution. Inception-based FID and KID reveal a clean perception-distortion frontier: diffusion attains KID 0.078 versus 0.375 for regression ($4.8\\times$ better), and a deployable train-derived calibration makes this practical without test-time ground truth. The model is genuinely action-controllable (steering drives scene displacement, Spearman $ρ= 0.81$, vs $-0.18$ for regression). We trace limited single-pass motion to a shared-present anchor and engineer a compact 1.7M-parameter \"jump\" model that recovers full ground-truth motion magnitude ($1.02\\times$ GT), where single-pass models capture less than half.",
@@ -1722,7 +1804,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.12987",
-      "summary_zh": "针对自动驾驶场景预测中现有世界模型在紧凑规模下预测模糊且失真度量误导的问题，该研究提出了一种基于潜在扩散Transformer（DiT）的世界模型。模型通过V-JEPA2编码器处理带有时间上下文的当前帧潜在表示和一系列自车动作，预测未来的场景潜在表示，并由冻结解码器渲染成256x256的未来帧，预测时长可达8秒。关键创新在于引入了DiT模型，并识别出其成功的四个核心要素：空间tokens、$x_0$目标、残差锚定和与目标不确定性匹配的采样，从而解决了传统失真度量偏向模糊平均的问题。实验在nuScenes数据集上进行，结果显示DiT模型在感知质量上显著优于回归模型（KID 0.078 vs 0.375），并且实现了真正的动作可控性（转向与场景位移Spearman $ρ= 0.81$），同时通过一个1.7M参数的“jump”模型，成功恢复了完整的地面真实运动幅度。"
+      "summary_zh": "针对自动驾驶场景预测中现有世界模型在紧凑规模下预测模糊且失真度量误导的问题，该研究提出了一种基于潜在扩散Transformer（DiT）的世界模型。模型通过V-JEPA2编码器处理带有时间上下文的当前帧潜在表示和一系列自车动作，预测未来的场景潜在表示，并由冻结解码器渲染成256x256的未来帧，预测时长可达8秒。关键创新在于引入了DiT模型，并识别出其成功的四个核心要素：空间tokens、$x_0$目标、残差锚定和与目标不确定性匹配的采样，从而解决了传统失真度量偏向模糊平均的问题。实验在nuScenes数据集上进行，结果显示DiT模型在感知质量上显著优于回归模型（KID 0.078 vs 0.375），并且实现了真正的动作可控性（转向与场景位移Spearman $ρ= 0.81$），同时通过一个1.7M参数的“jump”模型，成功恢复了完整的地面真实运动幅度。",
+      "impact_score": null
     },
     {
       "id": "2606.12979",
@@ -1742,7 +1825,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.12979",
-      "summary_zh": "JEPA-family世界模型在测试时动态与训练不一致时，其静态预测器权重不适应，这篇论文旨在解决该问题。论文提出了两种将累积经验融入JEPA预测器的方法：操作数侧注入（EI-JEPA），将压缩经验表示作为残差添加到预测器的隐藏状态；以及操作符侧调制（EPM-JEPA），通过LoRA生成低秩权重增量并应用于预测器权重。在预注册的Moving MNIST重力偏移比较中，EPM-JEPA与EI-JEPA相比，性能差异为4.74%，被判定为无效结果（null result）。然而，作为非预注册的次要观察，EPM-JEPA比无记忆基线提高了1.90%，而EI-JEPA表现不佳，这表明权重级别的调制具有特定优势。论文的主要贡献在于机制分析，发现D_shift^{n=50}轨迹反映了缓冲区循环、EMA目标漂移和LoRA固有稳定瞬态等三个独立的动态过程，而非收敛到平衡，这些发现为后续的PEM-JEPA模型提供了理论基础，以解决动态峰值限制。"
+      "summary_zh": "JEPA-family世界模型在测试时动态与训练不一致时，其静态预测器权重不适应，这篇论文旨在解决该问题。论文提出了两种将累积经验融入JEPA预测器的方法：操作数侧注入（EI-JEPA），将压缩经验表示作为残差添加到预测器的隐藏状态；以及操作符侧调制（EPM-JEPA），通过LoRA生成低秩权重增量并应用于预测器权重。在预注册的Moving MNIST重力偏移比较中，EPM-JEPA与EI-JEPA相比，性能差异为4.74%，被判定为无效结果（null result）。然而，作为非预注册的次要观察，EPM-JEPA比无记忆基线提高了1.90%，而EI-JEPA表现不佳，这表明权重级别的调制具有特定优势。论文的主要贡献在于机制分析，发现D_shift^{n=50}轨迹反映了缓冲区循环、EMA目标漂移和LoRA固有稳定瞬态等三个独立的动态过程，而非收敛到平衡，这些发现为后续的PEM-JEPA模型提供了理论基础，以解决动态峰值限制。",
+      "impact_score": null
     },
     {
       "id": "2606.12908",
@@ -1828,7 +1912,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.12886",
-      "summary_zh": "该论文旨在解决多模态模型在交错思维（interleaved thinking）任务中存在的“模态隔离”问题，即文本推理和视觉生成交替进行时，两种模态未能有效相互告知，导致信息丢失和错误累积。为解决此问题，论文提出了一种名为 MoTiF (Modality Transition Fidelity) 的两阶段训练框架，通过分解推理周期为原子操作并定义模态转换损失，量化了跨模态幻觉（文本到图像）和视觉利用不足（图像到文本）。MoTiF 的关键创新在于，它通过 Reflective SFT 训练模型检测并纠正错误的视觉输出，并通过 Flow-GRPO 利用强化学习提高图像生成保真度，所有训练信号都源于转换级别的保真度而非最终任务准确性。实验结果表明，在四个视觉谜题基准测试中，这种转换级别的监督显著提高了跨模态一致性和最终任务准确性，证明了在模态边界进行明确的结构化监督对于有效的交错推理至关重要。"
+      "summary_zh": "该论文旨在解决多模态模型在交错思维（interleaved thinking）任务中存在的“模态隔离”问题，即文本推理和视觉生成交替进行时，两种模态未能有效相互告知，导致信息丢失和错误累积。为解决此问题，论文提出了一种名为 MoTiF (Modality Transition Fidelity) 的两阶段训练框架，通过分解推理周期为原子操作并定义模态转换损失，量化了跨模态幻觉（文本到图像）和视觉利用不足（图像到文本）。MoTiF 的关键创新在于，它通过 Reflective SFT 训练模型检测并纠正错误的视觉输出，并通过 Flow-GRPO 利用强化学习提高图像生成保真度，所有训练信号都源于转换级别的保真度而非最终任务准确性。实验结果表明，在四个视觉谜题基准测试中，这种转换级别的监督显著提高了跨模态一致性和最终任务准确性，证明了在模态边界进行明确的结构化监督对于有效的交错推理至关重要。",
+      "impact_score": null
     },
     {
       "id": "2606.12881",
@@ -1851,7 +1936,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.12881",
-      "summary_zh": "该研究提出使用直接偏好优化（DPO）技术微调大型语言模型以提升聊天机器人性能。通过简化训练流程和提高计算效率，DPO方法在BLEU、ROUGE和余弦相似度等指标上展现出与现有方法相当的性能，并有效实现了模型学习和收敛。尽管实验结果显示出DPO的潜力，但研究也指出训练过程中存在不稳定性，需要进一步深入探究和解决。"
+      "summary_zh": "该研究提出使用直接偏好优化（DPO）技术微调大型语言模型以提升聊天机器人性能。通过简化训练流程和提高计算效率，DPO方法在BLEU、ROUGE和余弦相似度等指标上展现出与现有方法相当的性能，并有效实现了模型学习和收敛。尽管实验结果显示出DPO的潜力，但研究也指出训练过程中存在不稳定性，需要进一步深入探究和解决。",
+      "impact_score": null
     },
     {
       "id": "2606.12834",
@@ -1977,7 +2063,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.12783",
-      "summary_zh": "这篇教程探讨了世界模型（World Models）在构建智能系统中的核心作用，旨在解决如何通过预测、推理和决策实现超越反应式控制的物理AI问题。它区分了显式世界模型（学习结构化动态进行基于rollout的推理和规划）和隐式世界模型（在可扩展的学习表示中编码预测结构），并指出这两种范式为机器人和自动驾驶等领域的物理AI奠定了基础。关键创新在于提出了一个统一的框架，将不同的世界建模方法通过共享的预测结构进行整合，并根据结构表示和利用方式进行区分，同时强调了基础模型在集成感知、预测和行动方面的潜力。尽管取得了进展，但在分层推理、长程规划和自主目标形成方面仍面临挑战，这些是迈向通用人工智能的关键。"
+      "summary_zh": "这篇教程探讨了世界模型（World Models）在构建智能系统中的核心作用，旨在解决如何通过预测、推理和决策实现超越反应式控制的物理AI问题。它区分了显式世界模型（学习结构化动态进行基于rollout的推理和规划）和隐式世界模型（在可扩展的学习表示中编码预测结构），并指出这两种范式为机器人和自动驾驶等领域的物理AI奠定了基础。关键创新在于提出了一个统一的框架，将不同的世界建模方法通过共享的预测结构进行整合，并根据结构表示和利用方式进行区分，同时强调了基础模型在集成感知、预测和行动方面的潜力。尽管取得了进展，但在分层推理、长程规划和自主目标形成方面仍面临挑战，这些是迈向通用人工智能的关键。",
+      "impact_score": null
     },
     {
       "id": "2606.12780",
@@ -2005,7 +2092,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.12780",
-      "summary_zh": "该论文旨在解决在部分可观测环境中，LLM智能体难以通过交互进行自我演化的问题，尤其是在主动探索、从有限反馈中学习以及决定何时信任过往经验方面。为此，研究提出了一种名为ProPlay的程序世界模型，它允许智能体通过学习到的世界知识进行程序级别的预演（preplay），从而排练未来的程序路径。ProPlay的关键创新在于，它将成功的轨迹抽象为程序，并组织成一个程序图，捕捉任务阶段之间的因果转换，每个转换都关联一个可靠性记录嵌入，用于评估其对任务的贡献。实验结果表明，ProPlay在公共基准测试上显著提升了智能体的环境理解能力和自我演化能力，优于现有的强基线方法。"
+      "summary_zh": "该论文旨在解决在部分可观测环境中，LLM智能体难以通过交互进行自我演化的问题，尤其是在主动探索、从有限反馈中学习以及决定何时信任过往经验方面。为此，研究提出了一种名为ProPlay的程序世界模型，它允许智能体通过学习到的世界知识进行程序级别的预演（preplay），从而排练未来的程序路径。ProPlay的关键创新在于，它将成功的轨迹抽象为程序，并组织成一个程序图，捕捉任务阶段之间的因果转换，每个转换都关联一个可靠性记录嵌入，用于评估其对任务的贡献。实验结果表明，ProPlay在公共基准测试上显著提升了智能体的环境理解能力和自我演化能力，优于现有的强基线方法。",
+      "impact_score": null
     }
   ]
 }
