@@ -1,6 +1,6 @@
 {
   "date": "2026-06-15",
-  "generated_at": "2026-06-16T07:03:10.053535+00:00",
+  "generated_at": "2026-06-17T06:37:41.448352+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,274 @@
     }
   },
   "papers": [
+    {
+      "id": "2606.17331",
+      "title": "Decision-Driven Geosteering Under Uncertainty: A Unified Framework for Sequential Decision Optimization",
+      "abstract": "Geosteering requires navigating a well trajectory through an unknown geological configuration, while sequentially updating decisions based on indirect measurements acquired during drilling. This work presents an uncertainty-aware geosteering framework that tightly integrates particle filtering for probabilistic subsurface interpretation with value-based reinforcement learning for sequential decision-making. Geological uncertainty ahead of the drill bit is represented explicitly through a particle filter (PF), enabling belief-informed control rather than deterministic trajectory correction. The framework couples PF belief updates with belief-informed decision policies and evaluates three decision-making options that operate under identical uncertainty representations: an interpretable Approximate Dynamic Programming (ADP) scheme, a Deep Q-learning baseline, and a Dual Deep Reinforcement Learning (Dual DRL) architecture trained with a target Q-network scheme for stability, using a dueling (value/advantage) decomposition for Q-value parameterization. Beyond final placement performance, we assess policy behavior using stability-oriented metrics that quantify steering smoothness over time, providing additional operational insight into how decision policies respond as uncertainty evolves. The framework is integrated with an API for validation within an industrial geosteering simulator under realistic measurement noise and drilling constraints. Using identical geological realizations, operational limits, and reward definitions across methods, the experiments provide a controlled and high-fidelity evaluation of how alternative decision policies behave throughout the drilling process, rather than evaluating performance solely from the final well trajectory.",
+      "authors": [
+        "Hibat Errahmen Djecta",
+        "Sergey Alyaev",
+        "Kristian Fossum",
+        "Reidar B. Bratvold",
+        "Ressi Bonti Muhammad",
+        "Apoorv Srivastava"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-15T22:22:13Z",
+      "updated": "2026-06-15T22:22:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17331v1",
+      "abs_url": "https://arxiv.org/abs/2606.17331",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17331",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文提出了一个统一的、考虑不确定性的地质导向框架，旨在通过序列决策优化，在未知地质构造中导航钻井轨迹。它通过将粒子滤波（Particle Filtering, PF）用于概率性地下解释与基于价值的强化学习（Reinforcement Learning, RL）相结合，实现了对钻头前方地质不确定性的显式表示和信念驱动的控制。关键创新在于，该框架耦合了PF信念更新与信念知情的决策策略，并评估了三种决策方法：可解释的近似动态规划（Approximate Dynamic Programming, ADP）、深度Q学习（Deep Q-learning）基线以及采用目标Q网络和对偶（dueling）分解的双深度强化学习（Dual DRL）架构。实验不仅评估了最终的钻井放置性能，还通过稳定性导向指标量化了转向平滑度，提供了决策策略如何响应不确定性演变的额外操作洞察，并在工业地质导向模拟器中进行了高保真验证。"
+    },
+    {
+      "id": "2606.17317",
+      "title": "Transformer-Based Warm-Starting for Feasible and Optimal Terminal Approach to Tumbling Objects with Space Manipulators",
+      "abstract": "Real-time trajectory generation for on-orbit robotic servicing is challenging due to the nonlinear coupling between spacecraft bus motion, manipulator dynamics, visibility cone, and trajectory-level safety constraints. This paper studies learning-based warm-starting for sequential convex programming (SCP) in the terminal approach of a space manipulator toward a tumbling target. The proposed framework decomposes the problem into a system center-of-mass translational planning stage and a coupled attitude--manipulator torque-allocation stage, and applies a causal transformer warm-start to the latter, which constitutes the dominant computational bottleneck. Linear and flow matching action decoders are compared under different action-chunking and training dataset sizes, and the resulting warm-starts are evaluated under both cost-optimal and feasibility projection using SCP. Across 300 held-out scenarios, the learned warm-start reduces the second-stage SCP iteration count by up to 28% and the runtime by 23% while preserving the final control-cost distribution. When the learned warm-starts are used for nonconvex feasibility projection, they nearly halve the runtime relative to cost-optimal SCP, while avoiding the catastrophic high-cost tail behavior observed when initialized heuristically. These results indicate that sequence-model warm-starts can improve both the computational efficiency and trajectory robustness of optimization-based terminal guidance for space manipulation.",
+      "authors": [
+        "Yuji Takubo",
+        "Maximilian Adang",
+        "Mac Schwager",
+        "Simone D'Amico"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "math.OC"
+      ],
+      "published": "2026-06-15T21:54:43Z",
+      "updated": "2026-06-15T21:54:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17317v1",
+      "abs_url": "https://arxiv.org/abs/2606.17317",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17317",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决在轨机器人服务中，空间机械臂接近翻滚目标时实时轨迹生成面临的非线性耦合和计算挑战。论文提出了一种基于学习的暖启动（warm-starting）方法，用于序列凸规划（SCP），将问题分解为系统质心平移规划和耦合姿态-机械臂扭矩分配两个阶段，并对计算瓶颈所在的后者应用因果Transformer进行暖启动。通过比较线性解码器和流匹配动作解码器在不同动作分块和训练数据集大小下的性能，并结合SCP进行成本最优和可行性投影评估，结果表明，在300个未见场景中，学习到的暖启动将第二阶段SCP的迭代次数减少了28%，运行时间缩短了23%，同时保持了最终控制成本分布。当用于非凸可行性投影时，该方法将运行时间几乎减半，并避免了启发式初始化时出现的高成本尾部行为，证明了序列模型暖启动能有效提升空间机械臂优化轨迹生成的计算效率和鲁棒性。"
+    },
+    {
+      "id": "2606.17310",
+      "title": "SierpinskiCam: Camera-Controlled Video Retaking with Sierpinski Triangle Pattern Cues",
+      "abstract": "Generating novel renderings of a scene along user-defined camera trajectories from a single monocular video, dubbed video retaking, is a compelling but difficult problem in content creation and visual effects. Existing geometry-guided approaches reconstruct a 4D representation from the source video and render it along the target trajectory to condition video diffusion models. However, this guidance degrades as the target camera departs from the source trajectory, leaving newly revealed regions sparse or entirely missing. We propose SierpinskiCam, which addresses this limitation by augmenting geometry-based guidance with Sierpinski dome texture cues that contains rich trackable features even under large viewpoint changes. We further introduce a reference video conditioning mechanism that appends source-video tokens to the target-token sequence and separates the two streams with negative RoPE indices, enabling appearance grounding without architectural modification or per-video adaptation. Extensive experiments show that SierpinskiCam achieves significant gains in camera controllability, geometric consistency, and video quality across diverse and challenging retaking scenarios. Project page: https://hyelinnam.github.io/SierpinskiCam/.",
+      "authors": [
+        "Suttisak Wizadwongsa",
+        "Hyelin Nam",
+        "Supasorn Suwajanakorn",
+        "Jeong Joon Park"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-15T21:32:01Z",
+      "updated": "2026-06-15T21:32:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17310v1",
+      "abs_url": "https://arxiv.org/abs/2606.17310",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17310",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "该论文旨在解决视频重拍（video retaking）中，当目标相机轨迹偏离原始视频轨迹时，现有几何引导方法因新暴露区域稀疏或缺失而导致渲染质量下降的问题。SierpinskiCam通过引入Sierpinski穹顶纹理线索增强几何引导，该纹理即使在大的视角变化下也能提供丰富的可追踪特征，从而解决了这一限制。关键创新点在于结合Sierpinski穹顶纹理作为额外的视觉线索，以及提出一种参考视频条件机制，通过将源视频token附加到目标token序列并使用负RoPE索引分离两者，在不修改架构或进行逐视频适应的情况下实现外观接地。实验结果表明，SierpinskiCam在各种复杂重拍场景中显著提升了相机可控性、几何一致性和视频质量。"
+    },
+    {
+      "id": "2606.17298",
+      "title": "Reasoning Text-to-Video Retrieval for Operating Room Clips via Action-Driven Digital Twins",
+      "abstract": "Text-to-video retrieval in operating rooms (OR) is an enabling technology for OR safety, as it allows stakeholders to retrieve and inspect recordings of specific events. However, because the most safety-critical events may not follow the common structure, to unlock its full potential text-to-video retrieval must be able to handle implicit queries that require reasoning to identify the right video (e.g., the step right before clipping). However, existing methods rely on global embeddings that cannot reason over such queries. We propose OR3, a text-to-video retrieval method that converts clips into action-driven digital twins (ActDTs), grouping concurrent subject-action-object triplets under non-overlapping temporal intervals. Moreover, rather than cross-modal matching through paired encoders, OR3 performs imagination-based retrieval where an LLM generates hypothetical ActDTs from queries. This enables intra-modal matching via a single encoder trained with ActDT-tailored hard negatives. Finally, evidence-grounded refinement revises imagined ActDTs based on discrepancies with top candidates to capture procedure-specific patterns. We construct a benchmark from MM-OR with 276 implicit queries across four reasoning categories over 386 clips from robotic knee procedures. OR3 achieves 57.6 R@1 and 77.3 R@5, outperforming the strongest baseline. These results demonstrate that OR3 enables fine-grained discrimination between visually similar OR video clips through temporal action reasoning.",
+      "authors": [
+        "Yiqing Shen",
+        "Hao Ding",
+        "Mathias Unberath"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-15T21:06:53Z",
+      "updated": "2026-06-15T21:06:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17298v1",
+      "abs_url": "https://arxiv.org/abs/2606.17298",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17298",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "该论文旨在解决手术室 (OR) 视频中，现有文本到视频检索方法难以处理需要推理的隐式查询问题，例如检索“夹闭前的步骤”。为此，提出了一种名为 OR3 的方法，它将视频片段转换为“动作驱动数字孪生 (ActDTs)”，通过在非重叠时间间隔内分组并发的主体-动作-对象三元组来表示视频内容。OR3 的关键创新在于其“基于想象的检索”范式，即大型语言模型 (LLM) 根据查询生成假设的 ActDTs，然后通过单一编码器进行内部模态匹配，并利用 ActDT 定制的难负样本进行训练。此外，还引入了“证据接地细化”机制，根据与顶级候选视频的差异来修正想象的 ActDTs，以捕捉特定手术模式。在 MM-OR 数据集上构建了一个包含 276 个隐式查询的基准，涵盖四种推理类别，OR3 在机器人膝关节手术的 386 个片段上取得了 57.6 的 R@1 和 77.3 的 R@5 性能，显著优于现有最强基线，证明了其通过时间动作推理实现视觉相似 OR 视频片段精细区分的能力。"
+    },
+    {
+      "id": "2606.17279",
+      "title": "Training LLMs with Reinforcement Learning over Digital Twin Representations for Reasoning-Intensive Surgical VideoQA",
+      "abstract": "Surgical video question answering requires multi-step reasoning across semantic, spatial, and temporal dimensions. Existing methods architecturally compress videos into discrete token representations and couple visual perception with reasoning. This approach fragments continuous spatial-temporal relationships and has been shown to restrict multi-step reasoning capabilities. We introduce a reinforcement learning (RL) framework that trains large language models (LLMs) to decouple perception from reasoning by operating over digital twin representations constructed from surgical foundation models. Additionally, we introduce hierarchical representations across frame, temporal window, and procedure levels with probabilistic uncertainty estimates. Finally, we propose a novel reward that combines format validation with accuracy assessment through clinical plausibility evaluation and uncertainty-aware calibration for training. To demonstrate the capabilities of this approach, we introduce REAL-Colon-Reason, a colonoscopic benchmark with 2000 question-answer pairs across three complexity levels. We achieve state-of-the-art performance on REAL-Colon-Reason and two existing surgical VideoQA benchmarks REAL-Colon-VQA and EndoVis18-VQA.",
+      "authors": [
+        "Yiqing Shen",
+        "Han Zhang",
+        "Mathias Unberath"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-15T20:40:45Z",
+      "updated": "2026-06-15T20:40:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17279v1",
+      "abs_url": "https://arxiv.org/abs/2606.17279",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17279",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决手术视频问答（VideoQA）中多步推理能力受限的问题，现有方法将视频压缩为离散 token 导致连续时空关系碎片化。为此，研究引入了一个强化学习（RL）框架，通过在由手术基础模型构建的数字孪生表示上操作，将感知与推理解耦，并提出了包含帧、时间窗口和手术层面分层表示，并带有概率不确定性估计。关键创新在于结合了格式验证、通过临床合理性评估的准确性评估以及不确定性感知校准的新型奖励机制。实验在 REAL-Colon-Reason（一个包含 2000 个问答对的新结肠镜基准）以及 REAL-Colon-VQA 和 EndoVis18-VQA 两个现有手术 VideoQA 基准上进行，结果显示该方法取得了最先进的性能。"
+    },
+    {
+      "id": "2606.17257",
+      "title": "Pulling The REINS: Training-Free Safety Alignment of Video Diffusion Models via Representation Steering",
+      "abstract": "Open-weight video diffusion models can generate photorealistic unsafe content, from violence to misinformation, yet existing defenses either require expensive safety fine-tuning that degrades general capability, or apply external filters that are trivially bypassed by adversarial prompts. We present REINS (REpresentation-space INference-time Safety steering), a training-free method that aligns video diffusion models at inference time by steering their internal representations toward safe generation. Our key finding is that safety-relevant structure is linearly encoded in the hidden-state activations of video diffusion transformers, and a single direction, discovered via Supervised PCA on binary safety labels, suffices to separate safe from unsafe generation trajectories. At inference, adding this direction to hidden states at an intermediate transformer layer redirects generation from harmful content to semantically related safe alternatives, with no weight updates, no concept enumeration, and negligible computational overhead. Through mechanistic analysis, we reveal that while safety information accumulates monotonically with transformer depth, steering effectiveness peaks at intermediate layers (~50% depth), exposing a fundamental tradeoff between information availability and downstream propagation capacity. We evaluate REINS across 9 video diffusion models, multiple parameter scales (1.3B-5B), and both text-to-video and image-to-video generation, to our knowledge, the broadest safety evaluation suite in the video generation literature.",
+      "authors": [
+        "Rohit Kundu",
+        "Arindam Dutta",
+        "Sarosij Bose",
+        "Athula Balachandran",
+        "Amit K. Roy-Chowdhury"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-15T20:03:09Z",
+      "updated": "2026-06-15T20:03:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17257v1",
+      "abs_url": "https://arxiv.org/abs/2606.17257",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17257",
+      "summary_zh": "视频扩散模型能生成不安全内容，现有防御方法要么成本高昂，要么容易被绕过。REINS 提出一种训练无关的推理时安全对齐方法，通过在视频扩散模型的内部表示空间中进行引导，使其生成安全内容。关键创新在于发现安全相关结构线性编码在隐状态激活中，通过监督 PCA 找到一个方向即可区分安全与不安全生成轨迹，并在推理时将此方向添加到中间 Transformer 层的隐状态中，将有害内容重定向到语义相关的安全替代品，无需权重更新或概念枚举。机制分析表明，安全信息随 Transformer 深度单调累积，但引导效果在中间层（约 50% 深度）达到峰值。该方法在 9 个视频扩散模型、多种参数规模（1.3B-5B）以及文本到视频和图像到视频生成任务上进行了广泛评估。",
+      "impact_score": null
+    },
+    {
+      "id": "2606.17250",
+      "title": "Rethinking Groups in Critic-Free RLVR",
+      "abstract": "Reinforcement learning (RL) has become a central paradigm for post-training large language models. Existing critic-free RL methods typically generate a group of rollouts for the same question to estimate value baselines for advantage computation. However, this design suffers from data inefficiency, group synchronization barriers, and inflexibility with structured rollouts. In this work, we revisit the role of the ``group'' and show that its underlying function is not merely to estimate baselines but to prevent false penalties on negative samples. Building on this insight, we propose negative token filtering, a simple and effective strategy that enables stable single-rollout training. We apply it to two batch-level advantage methods, achieving comparable performance on reasoning tasks and stronger performance on agentic tasks relative to group-based RL techniques.",
+      "authors": [
+        "Yihong Wu",
+        "Liheng Ma",
+        "Lingfeng Xiao",
+        "Muzhi Li",
+        "Xinyu Wang",
+        "Yingxue Zhang",
+        "Jian-Yun Nie"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-06-15T19:49:42Z",
+      "updated": "2026-06-15T19:49:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17250v1",
+      "abs_url": "https://arxiv.org/abs/2606.17250",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17250",
+      "summary_zh": "这篇论文旨在解决无批评者强化学习（critic-free RL）在后训练大型语言模型时面临的数据效率低下、组同步障碍和结构化rollout不灵活等问题。现有方法通常通过生成一组rollout来估计价值基线，但本文发现“组”的核心作用在于防止对负样本的错误惩罚。基于此洞察，论文提出了一种名为“负令牌过滤”（negative token filtering）的简单有效策略，实现了稳定的单rollout训练。该方法在推理任务上达到了与基于组的RL技术相当的性能，并在代理任务上表现出更强的性能。",
+      "impact_score": null
+    },
+    {
+      "id": "2606.17246",
+      "title": "GeoDisaster: Benchmarking Orchestrated Agents for Operational Disaster Geo-Intelligence",
+      "abstract": "Remote-sensing vision-language models (RS-VLMs) have advanced Earth-observation analysis toward visual interpretation and instruction-following, yet fall short of operational geo-intelligence, which demands tool-grounded spatial reasoning and structured, evidence-backed decisions. We introduce GeoDisaster, an operational geospatial disaster reasoning benchmark with 2,921 verified instances across 43 question types and five task families: deforestation monitoring, multi-hazard analysis, building-damage assessment, flood-safe routing, and Sentinel-1 SAR flood monitoring. Instances integrate heterogeneous EO/GIS evidence-optical and SAR imagery, raster masks, vector geometries, road networks, and exposure layers-spanning hazard detection, damage assessment, exposure estimation, and diagnostic report generation. Ground-truth answers are grounded in executable geospatial workflows and deterministic consistency checks, removing the need for language-model annotation. We further propose an orchestrated multi-agent framework with 18 disaster-oriented tools, where role-specialized agents coordinate through explicit execution contracts, aligned via Role-Contract Expectation Alignment (RCEA): failure-aware supervised fine-tuning combined with contract-grounded reinforcement learning over dense step-level signals. Experiments show that GeoDisaster challenges existing RS-VLMs and agentic systems, while RCEA improves tool use, evidence grounding, state consistency, and decision generation.",
+      "authors": [
+        "Maram Hasan",
+        "Aman Verma",
+        "Savitra Roy",
+        "Hariseetharam Gunduboina",
+        "Daksh Jain",
+        "Muhammad Haris Khan",
+        "Subhasis Chaudhuri",
+        "Biplab Banerjee"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.MA"
+      ],
+      "published": "2026-06-15T19:46:10Z",
+      "updated": "2026-06-15T19:46:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17246v1",
+      "abs_url": "https://arxiv.org/abs/2606.17246",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17246",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决现有遥感视觉语言模型（RS-VLMs）在操作性地理智能方面不足的问题，这些模型难以进行工具驱动的空间推理和生成结构化、有证据支持的决策。为此，研究引入了GeoDisaster，这是一个操作性地理空间灾害推理基准，包含2,921个经过验证的实例，涵盖43种问题类型和五大任务家族，并整合了光学和SAR图像、栅格掩膜、矢量几何、道路网络等异构地球观测/地理信息系统证据。研究提出了一种编排式多智能体框架，包含18个面向灾害的工具，通过角色-契约期望对齐（RCEA）机制协调角色专业化智能体，该机制结合了故障感知监督微调和基于密集步长信号的契约接地强化学习。实验结果表明，GeoDisaster对现有RS-VLMs和智能体系统构成了挑战，而RCEA显著提升了工具使用、证据接地、状态一致性和决策生成能力。"
+    },
+    {
+      "id": "2606.17212",
+      "title": "Renderable Partial Representations for Dynamic Gaussian Splatting under Incomplete Delivery",
+      "abstract": "Dynamic Gaussian compression is normally optimized for complete files or complete progressive prefixes, but interactive rendering encounters partial representations: some spatiotemporal regions are present, others missing, and late refinements cannot affect the displayed frame. We study dynamic Gaussian representations whose incomplete delivery states remain directly renderable and whose degradation is optimized in image space. Gaussian primitives are organized into independently addressable spatiotemporal clusters with a base level and three refinements; training samples partial dependency graphs, renders many counterfactual states in one GPU batch, and minimizes expected distortion, tail distortion, temporal inconsistency, rate, and prefix regressions. A counterfactual utility layer measures the marginal render contribution of each completion group across valid receiver contexts. The same graph admits a concrete delivery realization with MTU-bounded entropy-coded chunks, deadline-aware scheduling, and receiver-side dependency closure. On held-out views, the finest refinement has negative mean marginal utility in 3/32 D-NeRF bouncingballs, 49/64 HyperNeRF broom2, and 28/64 HyperNeRF chicken clusters; its lower-tail utility is negative in 21/32, 61/64, and 42/64 clusters, respectively. On broom2, render-utility ordering removes both PSNR regressions produced by nominal layer order at matched byte budgets; on chicken, utilities measured on disjoint training cameras improve held-out PSNR by 3.03 dB at the lowest matched budget. These scoped results show why nominal refinement order cannot substitute for render-conditioned utility: the formulation treats network delivery as a distribution over renderable scene states rather than as an external wrapper around a graphics codec.",
+      "authors": [
+        "Faruk Alpay",
+        "Levent Sarioglu",
+        "Yaser Hadri"
+      ],
+      "categories": [
+        "cs.GR",
+        "cs.NI"
+      ],
+      "published": "2026-06-15T18:51:11Z",
+      "updated": "2026-06-15T18:51:11Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17212v1",
+      "abs_url": "https://arxiv.org/abs/2606.17212",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17212",
+      "summary_zh": "该研究旨在解决动态高斯压缩在交互式渲染中遇到的部分表示问题，即在不完整传输下如何保持场景的可渲染性并优化图像质量。其核心方法是将高斯基元组织成独立可寻址的时空簇，包含一个基础层和三个细化层，并通过训练样本部分依赖图，在单个GPU批次中渲染多个反事实状态，以最小化预期失真、尾部失真、时间不一致性、码率和前缀回归。关键创新点在于引入了一个反事实效用层，用于衡量每个完成组在有效接收器上下文中的边际渲染贡献，并允许具体的交付实现，包括MTU限制的熵编码块、截止日期感知调度和接收器端依赖闭包。实验结果表明，在D-NeRF和HyperNeRF数据集上，最精细的细化层在许多簇中具有负的平均边际效用或负的下尾效用，且通过渲染效用排序可以消除名义层顺序在相同字节预算下产生的PSNR回归，在chicken数据集上，使用不相交训练相机测量的效用在最低匹配预算下将PSNR提高了3.03 dB，证明了渲染条件效用优于名义细化顺序。",
+      "impact_score": null
+    },
+    {
+      "id": "2606.17199",
+      "title": "PowerOPD: Stabilizing On-Policy Distillation with Bounded Power Transformation",
+      "abstract": "Standard on-policy distillation (OPD) for large language models estimates the reverse-KL objective using student-sampled tokens, yielding an unbiased single-sample Monte Carlo estimator that avoids vocabulary-wide computation. However, we show that this estimator suffers from severe training pathologies in practice: sample inefficiency, unstable generation dynamics, and a substantial performance gap compared to exact full-vocabulary OPD. Reward-level diagnosis traces these pathologies to the log-ratio reward, which is unbounded by construction, producing extremely high-variance gradients concentrated at early positions and persisting throughout training; standard post-hoc scaling fail as they operate only after this distortion occurs. To solve this problem, we propose PowerOPD: a family of natively bounded, sign-consistent rewards from the Box-Cox power transformation, parameterized by alpha > 0, of which the log-ratio is the degenerate alpha -> 0 limit. Across six mathematical reasoning benchmarks and four Qwen3 teacher-student pairs, PowerOPD achieves benchmark-averaged Avg@8/Pass@8 gains of up to +6.37/+5.71 over vanilla OPD, +3.01/+3.54 over post-hoc stabilization, and +2.59/+8.90 over full-vocabulary OPD, while reducing wall-clock time by 59.2% and peak GPU memory by 23.1%. Larger alpha generally improves accuracy, consistently shortens responses, and keeps gradient norms more than 3,000x smaller than vanilla OPD.",
+      "authors": [
+        "Anhao Zhao",
+        "Junlong Tong",
+        "Yingqi Fan",
+        "Ping Nie",
+        "Wenjie Li",
+        "Xiaoyu Shen"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-15T18:37:51Z",
+      "updated": "2026-06-15T18:37:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17199v1",
+      "abs_url": "https://arxiv.org/abs/2606.17199",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17199",
+      "summary_zh": "针对大型语言模型中标准 on-policy distillation (OPD) 存在的样本效率低、生成不稳定以及与全词汇 OPD 存在性能差距等问题，研究发现这些问题源于 log-ratio 奖励函数无界且导致高方差梯度。为此，论文提出了 PowerOPD，这是一种基于 Box-Cox 幂变换的、本质上有界的、符号一致的奖励函数族，通过参数 alpha 控制其特性，其中 log-ratio 是 alpha 趋近于 0 的退化情况。在六个数学推理基准和四个 Qwen3 教师-学生对上的实验表明，PowerOPD 在 Avg@8/Pass@8 指标上显著优于 vanilla OPD、后处理稳定方法和全词汇 OPD，同时大幅降低了训练时间和 GPU 内存消耗，并且较大的 alpha 值能提高准确性并显著减小梯度范数。",
+      "impact_score": null
+    },
     {
       "id": "2606.17056",
       "title": "The Value Axis: Language Models Encode Whether They're on the Right Track",
@@ -182,10 +450,9 @@
         "Jie Zhang",
         "Xiaoyue Chen",
         "Anzhe Chen",
-        "Chenxu Lv",
         "Deqing Li",
         "Gengze Zhou",
-        "Hang Yin",
+        "Hale Yin",
         "Haoqi Yuan",
         "Haoyang Li",
         "Jiahao Li",
@@ -211,10 +478,11 @@
         "Yuxiang Chen",
         "Zekai Zhang",
         "Zhendong Wang",
-        "Zhixing Lei",
+        "Zixing Lei",
         "Zhixuan Liang",
         "Zihao Liu",
         "Zikai Zhou",
+        "Chenxu Lv",
         "Xiong-Hui Chen",
         "Chenfei Wu"
       ],
@@ -222,8 +490,8 @@
         "cs.CV"
       ],
       "published": "2026-06-15T17:52:31Z",
-      "updated": "2026-06-15T17:52:31Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.17030v1",
+      "updated": "2026-06-16T16:55:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.17030v2",
       "abs_url": "https://arxiv.org/abs/2606.17030",
       "topics": [
         "world-model",
@@ -1054,8 +1322,8 @@
         "q-bio.NC"
       ],
       "published": "2026-06-15T11:35:06Z",
-      "updated": "2026-06-15T11:35:06Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.16590v1",
+      "updated": "2026-06-16T02:50:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.16590v2",
       "abs_url": "https://arxiv.org/abs/2606.16590",
       "topics": [
         "rl"
@@ -1196,6 +1464,7 @@
         "Kangkang Zhu",
         "Yuwei Zhang",
         "Shi Fu",
+        "Zheng Zhang",
         "Xiaoning Wu",
         "Xuzeng Fan",
         "Dacheng Tao",
@@ -1206,8 +1475,8 @@
         "cs.CV"
       ],
       "published": "2026-06-15T10:37:42Z",
-      "updated": "2026-06-15T10:37:42Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.16533v1",
+      "updated": "2026-06-16T11:06:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.16533v2",
       "abs_url": "https://arxiv.org/abs/2606.16533",
       "topics": [
         "world-model"
@@ -1401,8 +1670,8 @@
         "cs.CV"
       ],
       "published": "2026-06-15T09:20:32Z",
-      "updated": "2026-06-15T09:20:32Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.16449v1",
+      "updated": "2026-06-16T02:33:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.16449v2",
       "abs_url": "https://arxiv.org/abs/2606.16449",
       "topics": [
         "video-gen"
