@@ -1,6 +1,6 @@
 {
   "date": "2026-06-12",
-  "generated_at": "2026-06-18T06:24:49.193469+00:00",
+  "generated_at": "2026-06-19T06:42:44.674151+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -37,6 +37,7 @@
         "Guangming Wang",
         "Yangchen Pan",
         "Victor Adrian Prisacariu",
+        "Brian Sheil",
         "Yixiong Jing"
       ],
       "categories": [
@@ -44,8 +45,8 @@
         "cs.AI"
       ],
       "published": "2026-06-12T23:24:41Z",
-      "updated": "2026-06-12T23:24:41Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.15015v1",
+      "updated": "2026-06-18T06:53:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.15015v2",
       "abs_url": "https://arxiv.org/abs/2606.15015",
       "topics": [
         "video-gen"
@@ -808,9 +809,12 @@
       "pdf_url": "https://arxiv.org/pdf/2606.14934v1",
       "abs_url": "https://arxiv.org/abs/2606.14934",
       "topics": [
-        "world-model"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.14934",
+      "keyword_topics": [
+        "world-model"
+      ],
       "summary_zh": "该研究提出了一种可分离神经网络架构（Separable Neural Architecture, SNA），它结合了神经网络近似和张量分解，旨在解决偏微分方程（PDEs）中的高维问题，并作为物理世界模型。SNA通过将局部坐标函数与稀疏、低秩的全局交互对象解耦，形成了一种紧凑且平滑的归纳偏置，特别适用于求解PDEs；当作为变分SNA（VSNA）框架下的Galerkin试探空间时，它满足Lax-Milgram理论的变分保证，并在高维时空-参数PDEs中实现了代数而非指数级的复杂度缩减。通过完全分解的张量原生交替最小二乘（ALS）优化框架，计算成本降至与维度呈线性关系。VSNA在椭圆、双曲和抛物线系统上得到了验证，并在制造模拟和热-属性反演等工程案例中展现出卓越性能，例如在标准笔记本CPU上实现150,000倍的速度提升，并支持实时生成式逆向模式重建。"
     },
     {
@@ -1423,7 +1427,8 @@
         "Zhonghui Gu"
       ],
       "categories": [
-        "cs.LG"
+        "cs.LG",
+        "q-bio.BM"
       ],
       "published": "2026-06-12T14:40:27Z",
       "updated": "2026-06-12T14:40:27Z",
@@ -1634,6 +1639,38 @@
       "summary_zh": "现有视频生成模型在物理一致性和因果合理性方面表现不足，尤其在长程交互场景中，因为它们隐式学习物理规律。CausalMotion 提出一个免训练框架，通过结构化的中间表示将显式物理推理注入视频生成过程。其核心思想是利用视觉-语言模型将文本提示分解为因果一致的关键帧序列和以物体为中心的运动轨迹，然后将这些表示作为软约束来指导预训练视频扩散模型进行推理。该方法无需额外训练或监督，即可显式建模物体动力学和因果转换，实验证明 CausalMotion 在保持高感知视频质量的同时，显著提升了物理合理性和时间连贯性，尤其在动态密集型场景中表现突出。"
     },
     {
+      "id": "2606.19377",
+      "title": "Emyx: Fast and efficient all-atom protein generation",
+      "abstract": "Computational enzyme design requires generating proteins that scaffold catalytic residues and ligands, a task that demands both geometric accuracy and structural diversity from the underlying generative model. Current all-atom generators inherit expensive architectures from structure prediction, leading to high training costs and limited sample diversity. We argue that much of this complexity is unnecessary for generators, which condition on sparse geometric constraints rather than rich co-evolutionary signals. Emyx is a 140M-parameter conditional flow matching model that concentrates capacity within standard transformer blocks, replacing heavy embedding stacks with lightweight conditional representations and sparse connectivity. We additionally derive an exact reparametrisation of the flow matching interpolant into the EDM noise-level framework, bridging flow matching training efficiency with state-of-the-art sampling methods designed for diffusion models without retraining. Despite being the smallest model, Emyx outperforms both Proteína-Complexa and RFdiffusion3 against the AME enzyme design benchmark across success rate under strict evaluation requiring both global fold recovery and catalytic geometry accuracy, structural novelty, scaffold diversity, and geometric validity, while training in just $682$ GPU-hours, roughly $4\\times$ less than RFdiffusion3.",
+      "authors": [
+        "Nicholas J. Williams",
+        "Ward Haddadin",
+        "Matteo P. Ferla",
+        "Constantin Schneider",
+        "Nicholas B. Woodall",
+        "Ruby Sedgwick",
+        "Christian D. Madsen",
+        "Andrew L. Hopkins",
+        "Edward O. Pyzer-Knapp"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-12T09:46:38Z",
+      "updated": "2026-06-12T09:46:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.19377v1",
+      "abs_url": "https://arxiv.org/abs/2606.19377",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.19377",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "Emyx 旨在解决计算酶设计中全原子生成模型计算成本高昂且样本多样性受限的问题。该模型采用 140M 参数的条件流匹配（Conditional Flow Matching）架构，通过精简嵌入层并引入稀疏连接，显著降低了模型复杂度，同时推导了流匹配插值器到 EDM 噪声框架的精确重参数化，实现了无需重训练即可应用先进采样方法。实验结果表明，Emyx 在 AME 酶设计基准测试中，在全局折叠恢复、催化几何精度及支架多样性等方面均超越了 Proteína-Complexa 和 RFdiffusion3。此外，该模型仅需 682 GPU 小时的训练时长，效率约为 RFdiffusion3 的四倍，在保持高性能的同时实现了极高的计算经济性。"
+    },
+    {
       "id": "2606.14302",
       "title": "Retrospective Progress-Aware Self-Refinement for LLM Agent Training",
       "abstract": "LLM-based agents trained with reinforcement learning optimize step-wise action prediction but lack metacognitive awareness of task progress, inducing a gap that hinders long-horizon scaling. A pilot study reveals that online progress prompting hurts performance while retrospective demonstrations help, yet this capability cannot emerge from outcome-reward training alone. We present RePro, Retrospective Progress-Aware Training, a framework that trains agents to self-generate progress signals via a forward-then-reflect rollout paradigm: the agent executes actions online, then retrospectively reassesses its step-wise progress given the completed trajectory and known outcome. RePro initializes with a Retrospection Warmup that teaches reflection format from minimal external demonstrations, then further trains through RePro-PO with a composite reward that produces self-generated signals without continuous external supervision. Experiments on WebShop, ALFWorld, and Sokoban show that RePro enhances the Qwen family's performance, with up to $12\\%$ absolute success rate gains.",
@@ -1806,9 +1843,12 @@
       "pdf_url": "https://arxiv.org/pdf/2606.14188v1",
       "abs_url": "https://arxiv.org/abs/2606.14188",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.14188",
+      "keyword_topics": [
+        "rl"
+      ],
       "summary_zh": "该论文提出 CORD-SLS，一种用于安全可变形物体（如绳索和布料）实时操作的控制方法，旨在解决在模型和感知不确定性下，如何高效且鲁棒地规划和执行复杂操作的问题。其核心是一个带有接触平滑的 GPU 并行可微分模拟器，支持高效的基于梯度的规划，并结合了实时、GPU 并行的输出反馈鲁棒模型预测控制 (MPC) 算法。关键创新在于将可微分模拟器与鲁棒 MPC 相结合，并通过共形预测校准视觉反馈和感知误差界限，以生成高概率安全的控制可达管（reachable tubes）。CORD-SLS 在模拟和硬件环境中对高维、接触丰富的绳索和布料操作任务（包括避障、布线、折叠和平滑）进行了评估，结果表明它实现了毫秒级的规划速度，并在安全性、速度和任务成功率方面超越了基线方法。"
     },
     {
