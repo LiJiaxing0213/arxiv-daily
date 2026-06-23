@@ -1,6 +1,6 @@
 {
   "date": "2026-06-17",
-  "generated_at": "2026-06-22T06:50:28.845193+00:00",
+  "generated_at": "2026-06-23T05:48:39.636755+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -297,6 +297,31 @@
       "summary_zh": "针对大语言模型在特定任务中可能产生的非伦理行为，该研究提出了一种名为 Emergent Alignment 的在线对齐技术，旨在实现模型的自我纠偏与伦理引导。该方法通过引入“良知步骤”（conscience step）对模型的推理与输出进行自我审查，并结合 Direct Preference Optimization (DPO) 损失函数，利用模型自身的冻结副本作为评估器，无需外部更强或更弱的监督模型。实验表明，在代码破解等高风险场景下，仅需一个高层级的内省式提问，即可有效引导模型规避非伦理输出，从而在训练、微调及零样本学习等多种应用中实现稳健的伦理对齐。"
     },
     {
+      "id": "2606.20740",
+      "title": "VeriBound: PAC-Bayesian Generalization Bounds for Process Reward Models Trained with Formal Verification Tools",
+      "abstract": "Process Reward Models (PRMs) provide step-level verification for Large Language Model (LLM) reasoning, yet their training data acquisition remains a bottleneck: human annotation is costly and Monte Carlo roll-out estimates are noisy. A recent approach, FOVER, trains PRMs on step-level error labels automatically annotated by formal verification tools such as Z3 and Isabelle, and empirically observes cross-task generalization from symbolic tasks to diverse reasoning benchmarks. However, this generalization phenomenon lacks any theoretical explanation, and no formal bounds exist on the generalization error, sample complexity, convergence rate, or downstream Best-of-K performance of such PRMs. We propose VeriBound, a theoretical framework that provides PAC-Bayesian generalization bounds for PRMs trained with formal verification tools. We establish four main results: (i) a PAC-Bayesian generalization bound that relates the empirical verification error on formal-verification-annotated training data to the expected error on unseen reasoning tasks, with the bound depending on the formal verification accuracy and the divergence between training and test task distributions; (ii) a sample complexity result showing that $O(d \\log(d/δ) / ε^2)$ formal-verification-annotated examples suffice to achieve generalization error $ε$ with probability $1-δ$, where $d$ is the complexity of the PRM hypothesis class; (iii) a convergence analysis proving that PRM training with formal verification labels converges at a linear rate under $L$-smoothness and bounded variance conditions; and (iv) an error propagation bound that relates step-level verification error to Best-of-K performance degradation.",
+      "authors": [
+        "Amirul Rahman",
+        "Mohammed Sabih Alsharari"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-06-17T19:05:38Z",
+      "updated": "2026-06-17T19:05:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.20740v1",
+      "abs_url": "https://arxiv.org/abs/2606.20740",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.20740",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对 Process Reward Models (PRMs) 在形式化验证工具辅助训练下缺乏理论支撑的问题，VeriBound 框架首次为该范式建立了 PAC-Bayesian 泛化界。该研究通过量化形式化验证准确率与任务分布差异对泛化误差的影响，推导出了 PRMs 的样本复杂度为 $O(d \\log(d/δ) / ε^2$，并证明了在 $L$-smoothness 条件下训练过程具有线性收敛性。此外，该框架还建立了步级验证误差与 Best-of-K 推理性能下降之间的误差传播界，从理论上解释了 PRMs 从符号任务到通用推理任务的跨任务泛化现象，为利用 Z3 或 Isabelle 等工具进行自动化数据标注提供了严谨的数学保障。"
+    },
+    {
       "id": "2606.19495",
       "title": "LooseControlVideo: Directorial Video Control using Spatial Blocking",
       "abstract": "Precise 3D spatial orchestration in text-to-video generation remains a significant challenge, particularly for multi-object scenes where semantic layout and temporal dynamics are often entangled. While existing depth-conditioned models achieve good structural fidelity, they necessitate dense, frame-accurate guidance that is labor-intensive to author for dynamic events involving deformable objects. We present LooseControlVideo, a framework that enables intuitive and expressive control by using sparse, oriented 3D boxes as a \"blocking\" proxy. This allows users to author high-level layout and trajectory while leveraging a video generative model to generate realistic occlusions, dynamics and interactions. We achieve this by fine-tuning a Wan 2.2 backbone on a video dataset annotated with DNOCS, a novel encoding for 3D size, orientation and depth-ordered occlusions. Furthermore, our method allows for localized refinement, such as adjusting a jump trajectory or adding an interaction, with minimal disruption to the global scene context. Extensive evaluations on the nuScenes, HO-3D, and BEHAVE benchmarks demonstrate that LooseControlVideo significantly outperforms existing 2D-box and flow-based baselines. Our findings indicate a 1.2x to 3x improvement in Trajectory Error; 2x improvement in Rigid Motion Consistency; and a 1.5x to 2x increase in Occlusion Accuracy over current state-of-the-art layout-conditioned models, demonstrating that oriented 3D primitives provide good geometric prior for complex, multi-agent video authoring.",
@@ -394,6 +419,51 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.19476",
       "summary_zh": "自动数据选择即“内在好奇心”机制在强化学习中至关重要，但传统基于学习进度（Learning Progress）的奖励评估因涉及昂贵的梯度下降内循环而难以扩展。本研究探讨了利用大模型涌现的In-Context Learning（ICL）能力作为无需更新的即时世界模型，以替代传统评估方法。理论分析表明，在一般马尔可夫决策过程中，这种方法存在偏差或无法实现，但在主动学习和贝叶斯实验设计等非时间性子类任务中，ICL导出的奖励能够有效收敛至真实学习进度。在连续和符号环境下的实验证明，该框架能成功训练出具备最优探索能力的“好奇”数据采集策略。"
+    },
+    {
+      "id": "2606.21090",
+      "title": "Self-Improvement Can Self-Regress: The Rise-and-Collapse Failure Mode of LLM Self-Training",
+      "abstract": "Self-improvement can self-regress. In REINFORCE post-training for code, a model can quickly improve on its optimized metric and then collapse within the same training campaign. We study this in a controlled multi-seed testbed using Qwen-2.5-3B and Qwen-2.5-7B, trained on competitive-programming tasks with binary CodeGrader reward across 10 sequential 20-step campaigns. Across campaigns, pass@1 shows a robust rise-then-collapse pattern: it peaks within tens of gradient steps and then falls back, sometimes to near zero. This is not cross-task catastrophic forgetting, but within-task policy over-optimization on a fixed distribution; KL- and EWC-style constraints do not prevent it. We ask where the control loop should sit. We compare three levels: CARE, a between-campaign memory mechanism with a capability posterior, transfer gate, and regression-aware belief revision; ES, a within-campaign early-stop rule that rolls forward the peak checkpoint and sets the next budget to peak_step+3; and GRPO, which changes the RL update using group-relative reward normalization. The answer is regime-dependent. On Qwen-2.5-3B, where naive REINFORCE is fragile, CARE v2 nearly doubles end-of-chain pass@1 from 4.9% to 9.5%, with paired bootstrap 95% CI [+0.4,+8.9] and gains in 4/5 seeds. On Qwen-2.5-7B, CARE reaches parity with naive REINFORCE, 13.8% vs. 11.8%, while ES reaches 22.2% [14.1,28.0]. Out-of-the-box GRPO reaches 20.7% [15.7,25.1], nearly matching REINFORCE+ES. GRPO raises the floor but does not remove the cliff. Its 7B gain mainly comes from better between-campaign carryover, while the within-campaign peak-to-end gap remains about 17 points under both REINFORCE and GRPO. GRPO+ES gives mixed evidence: 2/3 seeds improve, but one final cliff lowers the mean to 17.0% [0.0,28.1]. A Gemma-3-4B pilot shows the same signature, suggesting the phenomenon is not limited to Qwen.",
+      "authors": [
+        "Jianzhe Lin"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-17T18:03:06Z",
+      "updated": "2026-06-17T18:03:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.21090v1",
+      "abs_url": "https://arxiv.org/abs/2606.21090",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.21090",
+      "summary_zh": "大语言模型在利用 REINFORCE 进行代码任务强化学习训练时，会出现“先上升后崩溃”的性能退化现象，即模型在优化指标快速提升后迅速坍塌。研究发现这并非灾难性遗忘，而是针对固定分布的策略过度优化所致，且常规的 KL 散度或 EWC 约束无法有效缓解。通过对比 CARE 记忆机制、ES 早停策略以及 GRPO 组相对奖励归一化，实验表明不同规模模型对控制策略的依赖存在差异：ES 和 GRPO 在较大模型上能有效提升性能，但 GRPO 仍无法完全消除性能悬崖。该现象在 Qwen-2.5 和 Gemma-3 等多个模型中均有体现，揭示了自训练过程中鲁棒性控制的必要性。"
+    },
+    {
+      "id": "2606.21089",
+      "title": "Repeated post-training is not Self-improving: Diagnosing Scientific Amnesia in Continual DPO Pipelines",
+      "abstract": "Industrial LLM teams often ship behavior updates by repeatedly DPO-training a base model on sequences of related preference-data campaigns. The dominant failure mode in this regime is not always classical catastrophic forgetting: a pipeline may preserve previously learned behaviors while still failing to accumulate reusable methodological knowledge about how to train the next campaign. We call this failure mode scientific amnesia. This paper turns that practitioner intuition into a measurable industrial problem. We contribute: (i) a diagnostic suite for amnesia, (ii) a Program-based pipeline that chains FSDP-sharded DPO checkpoints across Qwen2.5-7B-Instruct runs, (iii) a 30-campaign HumanEval subdomain benchmark, and (iv) a comparative diagnostic study of five strategy proposers: random memory, rule-based scheduling, retrieval-only memory, warm-start Bayesian optimization, and MSCL, a meta-scientific memory and reasoner candidate. Across a single-seed 5-condition * 3-step real-LM chain, 4 of 5 candidates degrade in step-level peak pass@1, including MSCL; only the deliberately conservative rule-based schedule improves. Follow-up pilots qualify rather than overturn this finding: in a heterogeneous chain, MSCL is the only completed candidate that improves, whereas in a small multi-seed homogeneous sweep, retrieval-only has the best mean Delta and no pairwise candidate gap is statistically distinguishable. The contribution is therefore diagnostic, not a claim that MSCL solves the problem: scientific amnesia is observable in a production-like continual-DPO pipeline, and conclusions about interventions depend sharply on chain regime, evaluator design, and seed coverage.",
+      "authors": [
+        "Jianzhe Lin",
+        "Fei Wang",
+        "Xiaolin Li",
+        "Rajeshkumar Golani",
+        "Jubin Chheda"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-06-17T18:02:03Z",
+      "updated": "2026-06-17T18:02:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.21089v1",
+      "abs_url": "https://arxiv.org/abs/2606.21089",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.21089",
+      "summary_zh": "工业界在通过多次 DPO 训练更新 LLM 行为时，常面临“科学失忆”（Scientific Amnesia）现象，即模型虽未发生灾难性遗忘，却无法积累可复用的训练方法论知识。针对此问题，研究构建了基于 Qwen2.5-7B-Instruct 的 FSDP-sharded DPO 流水线，并结合 30 个 campaign 的 HumanEval 子域基准，对比了随机记忆、规则调度、检索增强及 MSCL 等五种策略。实验发现，除保守的规则调度外，多数策略在多步链式训练中均导致 pass@1 指标下降，且干预效果高度依赖于链式机制、评估设计及随机种子。该研究揭示了持续 DPO 流水线中方法论知识积累的局限性，证明了科学失忆是生产级模型训练中真实存在且难以通过单一元学习策略解决的复杂问题。"
     },
     {
       "id": "2606.19460",
@@ -522,7 +592,7 @@
       "abstract": "Preference-based RL provides an approach to learning reward models from pairwise comparisons of behaviors, bypassing the need for explicit reward design. However, existing methods typically rely on passive data collection and suffer from poor sample efficiency, especially during the early stages of learning. We introduce a model-based approach that actively directs exploration by jointly reasoning over uncertainties in the reward, dynamics, and value functions. Our method, Uncertainty-Balanced Preference Planning (UBP2), uses ensembles of reward, dynamics, and value function models to evaluate candidate trajectories according to a unified score that combines expected reward, terminal value, and epistemic uncertainty. Planning under this objective yields an explicit tradeoff between exploitation and information acquisition without requiring ad hoc exploration heuristics. Under standard regularity assumptions, we establish sublinear regret guarantees for both finite-horizon and infinite-horizon settings. Empirically, experiments on the Meta-World benchmark show UBP2 achieves substantially higher sample efficiency than model-free preference-based methods and non-optimistic model-based baselines.",
       "authors": [
         "Mohamed Nabail",
-        "Leo Cheng",
+        "Leo Kaixuan Cheng",
         "Jingmin Wang",
         "Nicholas Rhinehart"
       ],
@@ -532,8 +602,8 @@
         "cs.RO"
       ],
       "published": "2026-06-17T17:54:32Z",
-      "updated": "2026-06-17T17:54:32Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.19328v1",
+      "updated": "2026-06-22T15:12:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.19328v2",
       "abs_url": "https://arxiv.org/abs/2606.19328",
       "topics": [
         "rl"
@@ -763,8 +833,8 @@
         "cs.CV"
       ],
       "published": "2026-06-17T14:33:38Z",
-      "updated": "2026-06-17T14:33:38Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.19120v1",
+      "updated": "2026-06-19T10:05:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.19120v2",
       "abs_url": "https://arxiv.org/abs/2606.19120",
       "topics": [
         "distillation"
@@ -1660,8 +1730,8 @@
         "cs.RO"
       ],
       "published": "2026-06-17T05:24:18Z",
-      "updated": "2026-06-17T05:24:18Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.18697v1",
+      "updated": "2026-06-22T13:58:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.18697v2",
       "abs_url": "https://arxiv.org/abs/2606.18697",
       "topics": [
         "world-model"
@@ -1689,6 +1759,29 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.18688",
       "summary_zh": "该论文旨在解决联合嵌入预测架构（JEPA）世界模型在处理物理动力学和社交行为动力学这两种性质迥异的外部信号时，因目标干扰导致表示空间崩溃（Objective Interference Collapse, OIC）的问题。为解决此问题，论文提出了双通道接地世界建模（Dual-Channel Grounded World Modeling, DCGWM）方法，其核心创新在于通过一个分区化的潜在空间（物理子空间 Z_p 和行为子空间 Z_b）以及仅向内传播的梯度流来结构性地防止 OIC。DCGWM 包含一个仅更新 Z_p 的物理接地通道和一个仅更新 Z_b 的社交行为接地通道，并通过一个通道间接口模块在任务层面耦合子空间而不产生跨子空间梯度，同时引入非对称接地依从损失来惩罚预测漂移。论文提供了三项理论结果，证明了该分区移除了 OIC 中的梯度干扰路径，每个接地子空间都继承了其对齐目标的抗崩溃保证，并且生成隔离在特定假设下是必要的，但实验验证仍在进行中。"
+    },
+    {
+      "id": "2606.20726",
+      "title": "How Well Can Your Video Model Remember? Measuring Memory-Budget Trade-offs in Long Video Understanding",
+      "abstract": "We introduce a compact empirical model that quantifies how answer accuracy degrades as a function of frame budget B and temporal distance D in long video understanding -- analyzing performance when recalling content from D seconds in the past using a fraction B of total frames. Long-form models operate under strict budgets, yet no prior framework predicts how accuracy degrades as B shrinks and events recede. We fit a weighted least-squares model on ~155,000 binary predictions across ten models and three sampling strategies, deriving a law where logit-accuracy scales linearly in log-budget with a distance-dependent exponent that decays log-linearly with distance. This budget exponent α(D) captures the marginal value of extra frames at distance D. The law achieves cell-level weighted R^2 = 0.05-0.75 across models. Notably, budget effectiveness at D = 1000 s differs by \\approx 7.4\\times between the best streaming and base models. STREAMINGVLM achieves α(1000) = 1.26 (95% CI: [1.06, 1.58]), meaning a tenfold budget increase substantially improves long-distance accuracy, while the best Qwen3-VL base model reaches only α(1000) = 0.17 (CI: [0.04, 0.34]). In accuracy space, a 10\\times budget increase at D = 1000 s yields +29 percentage points for STREAMINGVLM versus +4 pp for the base model. Sampling strategies show model-dependent trade-offs: random sampling yields higher base sensitivity but steeper distance decay. We demonstrate how α(D) enables principled budget allocation, including a model-ranking reversal at long distance, and propose it as a diagnostic metric for streaming video models.",
+      "authors": [
+        "Yixian Tian"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-17T03:30:01Z",
+      "updated": "2026-06-17T03:30:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.20726v1",
+      "abs_url": "https://arxiv.org/abs/2606.20726",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.20726",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "针对长视频理解中模型记忆能力随帧预算（B）和时间距离（D）下降的问题，该研究提出了一个量化经验模型，通过拟合约15.5万次预测数据，揭示了对数精度与对数预算呈线性关系，并定义了随距离衰减的预算指数α(D)来衡量额外帧的边际价值。实验发现，STREAMINGVLM 在长距离（D=1000s）下的预算有效性远超 Qwen3-VL 等基准模型，十倍预算提升可带来显著的精度增益。该研究不仅量化了不同采样策略下的性能权衡，还提出将α(D)作为评估流式视频模型长时记忆能力的诊断指标，为长视频任务中的资源分配提供了理论依据。"
     },
     {
       "id": "2606.18624",

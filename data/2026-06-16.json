@@ -1,6 +1,6 @@
 {
   "date": "2026-06-16",
-  "generated_at": "2026-06-22T06:50:28.847833+00:00",
+  "generated_at": "2026-06-23T05:48:39.639624+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,32 @@
     }
   },
   "papers": [
+    {
+      "id": "2606.20724",
+      "title": "When Web Agents Finish but Still Fail: Reproducible Triggers and Trace Diagnostics for Parallel Web Exploration",
+      "abstract": "Long-horizon web agents often fail in ways hidden by final-answer evaluation: they may visit useful pages, produce a well-formed answer, and terminate confidently while still missing fields, over-including unsupported items, or relying on stale evidence. We study these failures with Parallel WebBench, a parallel web-exploration benchmark containing 1,679 verified records: 350 manually curated parallel tasks and 1,329 reconstructed records with verified URL-based trajectories. We train WebExplorer-style agents with GRPO under human-only, balanced human-synthetic, and synthetic-heavy data mixtures. At 16k context and 16 interaction rounds, the best GRPO model improves completion over WebExplorer-8B from 50.7% to 96.0% and GPT-4.1-mini-judged element-wise F1 from 0.2489 to 0.4529, but binary accuracy remains far below completion. Trace-level analysis identifies three persistent failure modes: context-bound search loops, premature termination on partial answers, and synthesis collapse after relevant evidence has already been retrieved. These results show that synthetic-data GRPO reduces abstention and improves partial correctness, but leaves a completion-correctness gap that requires evidence-grounded coverage and synthesis diagnostics.",
+      "authors": [
+        "Aagam Sogani",
+        "Botao Rui",
+        "Swetha Vaidyanathan",
+        "Rishi Agarwal",
+        "Minghao Yan",
+        "Shivaram Venkataraman"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-16T23:00:25Z",
+      "updated": "2026-06-16T23:00:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.20724v1",
+      "abs_url": "https://arxiv.org/abs/2606.20724",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.20724",
+      "summary_zh": "针对长程 Web Agent 在任务完成但结果错误的问题，Parallel WebBench 引入了包含 1,679 条验证记录的基准，用于诊断 Agent 在多页面探索中的隐蔽性失效。研究采用 GRPO 算法在不同比例的合成数据上训练 WebExplorer 模型，通过 16k 上下文与 16 轮交互，显著提升了任务完成率与元素级 F1 分数。实验揭示了上下文受限的搜索循环、过早终止以及证据获取后的合成崩溃这三大核心失效模式。结果表明，尽管合成数据训练能有效减少弃权并提升部分正确性，但任务完成与最终结果准确性之间仍存在显著鸿沟，未来需引入基于证据的覆盖率评估与合成诊断机制来弥补这一差距。"
+    },
     {
       "id": "2606.18531",
       "title": "When Does Trajectory-Level Supervision Permit Efficient Offline Reinforcement Learning?",
@@ -146,8 +172,8 @@
         "cs.CL"
       ],
       "published": "2026-06-16T20:59:55Z",
-      "updated": "2026-06-16T20:59:55Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.18487v1",
+      "updated": "2026-06-22T09:16:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.18487v2",
       "abs_url": "https://arxiv.org/abs/2606.18487",
       "topics": [
         "rl"
@@ -958,6 +984,33 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.17800",
       "summary_zh": "该论文旨在解决现有世界模型无法有效模拟以人为中心的社交动态的问题，提出并构建了首个实时音视频自回归模型 MaineCoon，以期作为社交世界模型的第一步。MaineCoon 拥有 220 亿参数，能在单 GPU 上实现实时流式生成和亚秒级交互，帧率高达 47.5 FPS，是首个专门为社交互动应用优化的实时音视频生成模型。为实现高效稳定训练，MaineCoon 引入了自重采样、跨模态表示对齐、领域感知偏好优化和强化在线策略蒸馏（ROPD）等创新技术，并设计了支持千秒级甚至更长生成时间的智能流式推理框架，通过智能缓存管理和提示规划来缓解漂移。这些创新不仅为高质量、低延迟、长时序音视频自回归模型树立了新的 SOTA 性能基准，也为下一代 AI 原生社交平台指明了范式转变方向。"
+    },
+    {
+      "id": "2606.20709",
+      "title": "TeleStyle V2: Beyond Content-Preserving Style Transfer with Self-Distillation and Distribution-Matching-Distillation",
+      "abstract": "Given a content reference and a style reference, content-preserving style transfer requires the model to generate stylized outputs with content and style consistency. We introduced TeleStyle V1 to tackle this problem. However, TeleStyle V1 is trained with photorealistic content reference and artistic style reference, which makes it incapable to cope with artistic content reference and realistic style reference in most cases. In this paper, we designed a Self-Distillation data synthesis strategy to construct such triplets from TeleStyle V1. Trained with such self-distilled triplets, our TeleStyle V2 supports Content-Style references in the forms of Realistic-and-Realistic (RnR), Realistic-and-Stylized (RnS), Stylized-and-Realistic (SnR), Stylized-and-Stylized (SnS). In addition, we found Distribution Matching Distillation could preserve the general text-guided image editing capability of the foundation model and fix the content consistency degradation caused by SFT process. Through quantitative evaluations, our TeleStyleV2-QIE-2509-DMD performs at least on par with Qwen-Image-Edit-2509-DMD, demonstrating strong general image editing skills beyond content-preserving style transfer. We observed the content/style reference order confusion problem in TeleStyle V1 and further introduced prompt enhancer to solve it. TeleStyle V2 uses Qwen-Image-Edit's VLM encoder, Qwen2.5-VL-7B, to generate content prompt and style prompt for free. TeleStyle V2 could achieve comparable style transfer performance with state-of-the-art commercial model, gemini-3-pro-image-preview.",
+      "authors": [
+        "Shiwen Zhang",
+        "Yifan Xu",
+        "Haibin Huang",
+        "Chi Zhang",
+        "Xuelong Li"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-16T10:45:33Z",
+      "updated": "2026-06-16T10:45:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.20709v1",
+      "abs_url": "https://arxiv.org/abs/2606.20709",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.20709",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "TeleStyle V2 旨在解决现有风格迁移模型在处理艺术化内容与写实风格组合时的局限性，通过引入 Self-Distillation 数据合成策略，使模型能够兼容 Realistic-and-Realistic、Realistic-and-Stylized、Stylized-and-Realistic 及 Stylized-and-Stylized 四种内容与风格参考组合。该研究采用 Distribution-Matching-Distillation 技术，在保持基础模型通用图像编辑能力的同时，有效修复了监督微调过程带来的内容一致性下降问题。此外，通过集成 Qwen2.5-VL-7B 编码器与 Prompt Enhancer，模型成功解决了参考顺序混淆问题，并实现了与 Gemini-3-pro-image-preview 等商业模型相当的风格迁移效果，在多项基准测试中展现出卓越的通用图像编辑能力。"
     },
     {
       "id": "2606.17735",
