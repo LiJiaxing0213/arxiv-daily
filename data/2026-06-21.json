@@ -1,6 +1,6 @@
 {
   "date": "2026-06-21",
-  "generated_at": "2026-06-23T05:48:39.629990+00:00",
+  "generated_at": "2026-06-24T05:39:23.134867+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -200,6 +200,39 @@
       "summary_zh": "针对资源受限或隐私敏感场景下关系抽取（RE）任务对大模型依赖过高的问题，该研究评估了参数量在360M至3B之间的SLMs在通用及文学领域的关系抽取表现。通过对比多种提示词微调策略与零样本前沿LLMs，研究发现经过特定任务微调的Qwen2.5-0.5B等小模型，在九项基准测试中表现显著优于GPT-4o等前沿模型。实验结果表明，任务适配而非生成式解码是性能提升的关键，且4-bit量化的小模型在单张消费级GPU上即可实现高效部署。该成果证明了在拥有特定领域数据时，紧凑型任务适配模型能以更低的算力成本和更高的隐私安全性，在关系抽取任务上超越通用前沿大模型。"
     },
     {
+      "id": "2606.23743",
+      "title": "Sol Video Inference Engine: Agent-Native Full-Stack Acceleration Framework for Efficient Video Generation",
+      "abstract": "Modern video diffusion models achieve higher generation quality through scaling, but this also increases inference cost. Although many acceleration methods have been proposed, a central challenge is that the most effective acceleration strategy is highly instance-specific: a recipe that works well for one combination of model, hardware, and inference configuration often does not transfer to another. Different models vary in architecture, numerical sensitivity, and attention concentration patterns. Inference settings differ in spatial and temporal resolution and video duration, while hardware platforms differ in memory hierarchy, supported numerical formats, and kernel throughput. These factors create a large tuning space, making manual performance engineering costly. We present Sol Video Inference Engine, an agentic, native, training-free acceleration framework for video diffusion models. It organizes five broadly applicable techniques, cache, sparse attention, token pruning, quantization, and kernel fusion, into an agentic acceleration stack for instance-specific optimization. For a concrete deployment target defined by a model, hardware platform, and serving configuration, parallel skill agents optimize the implementation of each technique, an agent integrator composes them into a global acceleration stack, and a human validator provides feedback on generation quality. We instantiate this workflow on three video models with different sizes and architectures: 64B Cosmos3-Super, 22B LTX-2.3, and 2B SANA-Video. With little human effort, the full stack achieves more than 2x end-to-end acceleration while maintaining near-lossless VBench quality, demonstrating the effectiveness of the agent framework for video diffusion acceleration.",
+      "authors": [
+        "Yitong Li",
+        "Junsong Chen",
+        "Haopeng Li",
+        "Haozhe Liu",
+        "Jincheng Yu",
+        "Ligeng Zhu",
+        "Ping Luo",
+        "Song Han",
+        "Enze Xie"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-21T17:23:20Z",
+      "updated": "2026-06-21T17:23:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.23743v1",
+      "abs_url": "https://arxiv.org/abs/2606.23743",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.23743",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "针对视频扩散模型推理成本高且优化策略高度依赖特定场景的问题，Sol Video Inference Engine 提出了一种无需训练的智能体原生全栈加速框架。该框架集成了缓存、稀疏注意力、Token 剪枝、量化及算子融合五大核心技术，通过并行技能智能体针对特定模型、硬件和配置进行深度优化，并由智能体集成器生成全局加速方案。在 Cosmos3-Super、LTX-2.3 和 SANA-Video 等不同规模模型上的实验表明，该方法在几乎不损失 VBench 生成质量的前提下，实现了超过 2 倍的端到端推理加速，显著降低了视频生成的性能调优门槛。"
+    },
+    {
       "id": "2606.22600",
       "title": "On the Position Bias of On-Policy Distillation",
       "abstract": "On-Policy Distillation (OPD) improves the learning efficiency of standard reinforcement learning through dense, token-level supervision from teachers. In the standard KL objective of OPD, token-level losses are uniformly averaged, implying equal weights for all tokens. However, we discover that not all tokens are created equal: as student rollouts grow longer, they deviate further from the teacher's distribution, leading to degraded supervision quality at later positions. As a result, OPD using only the first 30% of tokens can perform comparably to using all tokens, whereas OPD using only the last 30% of tokens barely learns anything. In this work, we provide a principled understanding of this issue through the lens of constrained optimization. Based on these insights, we derive Importance-Weighted On-Policy Distillation (IW-OPD), in which the weight assigned to each token depends on the accumulated discrepancy between the student's and teacher's distributions, naturally upweighting earlier tokens and downweighting later ones with larger deviations. We show that IW-OPD converges significantly faster than OPD, with better learning efficiency, and achieves better final performance than standard OPD in both same-size and cross-scale settings, improving performance up to 6.9 points on AIME-2025.",
@@ -215,8 +248,8 @@
         "cs.AI"
       ],
       "published": "2026-06-21T17:20:21Z",
-      "updated": "2026-06-21T17:20:21Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.22600v1",
+      "updated": "2026-06-23T06:08:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.22600v2",
       "abs_url": "https://arxiv.org/abs/2606.22600",
       "topics": [
         "rl"
@@ -274,6 +307,31 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.22570",
       "summary_zh": "针对大语言模型推理任务中强化学习（RLVR）算法选择混乱且缺乏理论支撑的问题，本研究深入分析了梯度更新动力学，揭示了每轮采样后的梯度步数如何通过影响重要性采样比率（IS ratio）的分布来改变模型更新的侧重点。研究指出梯度期望是决定更新动态的核心因素，并据此提出了自适应裁剪策略优化（ACPO），通过根据重要性采样比率的经验方差动态调整不同标记组的裁剪边界。在数学推理、表格问答及逻辑谜题等多个基准测试中，ACPO 在 3B 和 7B 模型上均展现出优于 DAPO 和 CISPO 等基准方法的性能，证明了基于理论分析的算法优化能显著提升强化学习在推理任务中的稳健性与效果。"
+    },
+    {
+      "id": "2606.23740",
+      "title": "Weight-Space Geometry of Offline Reasoning Training",
+      "abstract": "Offline reinforcement-learning losses (RFT, RIFT, DFT, Offline GRPO, DPO) are widely used to distill reasoning from large teachers into smaller students, and are typically compared on downstream accuracy alone. We ask whether they are mechanistically distinct or converge to a similar weight update. Training six methods (SFT, RFT, DFT, RIFT, Offline GRPO, DPO) on identical math rollouts from a single base model (Qwen3-4B) with attention-only LoRA, we analyze the resulting deltas via cosine similarity, principal-angle subspace analysis, linear mode connectivity, and CKA. We observe: (i) SFT, RFT, and RIFT have nearly colinear weight deltas (cosine >= 0.97, top-1 principal angle ~7 deg median over 144 modules) and comparable GSM8K accuracy (87-88%, n=1319; pairwise McNemar p >= 0.15); (ii) DFT diverges further in direction than any reward-weighted method despite using the same data; (iii) Offline GRPO adds a substantial component orthogonal to the SFT direction (~67% globally, up to ~86% in late layers) while staying in the SFT loss basin; (iv) DPO sits in a near-orthogonal subspace, shows a mode-connectivity barrier, and collapses late-layer CKA to ~0.46. DPO also reaches the highest accuracy in our protocol on both GSM8K (93.5%, McNemar p < 10^-9 vs. each other method) and AIME26 (30.0% vs. 3.3-10.0%); its training uses a 10x smaller learning rate than the others (the standard convention), so the update-norm and accuracy gaps reflect loss-function and optimizer choices jointly, and a learning-rate-matched DPO comparison is left for future work.",
+      "authors": [
+        "Aleksandr Nikolich",
+        "Igor Kiselev",
+        "Vladimir Platonov",
+        "Karina Romanova"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-06-21T15:34:21Z",
+      "updated": "2026-06-21T15:34:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.23740v1",
+      "abs_url": "https://arxiv.org/abs/2606.23740",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.23740",
+      "summary_zh": "针对离线推理训练中多种损失函数（如RFT、DPO、Offline GRPO等）在机制上是否等价的问题，该研究通过在Qwen3-4B模型上进行受控实验，利用余弦相似度、主成分分析及CKA等指标对权重更新空间进行了几何分析。研究发现，SFT、RFT和RIFT的权重更新方向高度共线性且性能相近，而DFT表现出显著的路径差异；Offline GRPO在保持于SFT损失盆地的同时引入了大量正交分量，DPO则完全处于近乎正交的子空间中。实验结果显示，DPO在GSM8K和AIME26基准测试中显著优于其他方法，表明其独特的权重更新几何结构与推理能力的提升存在深层关联，为理解离线强化学习在推理蒸馏中的机制差异提供了几何视角。"
     },
     {
       "id": "2606.22550",
@@ -359,8 +417,8 @@
       "title": "Deep Learning-Based Sign Language Recognition from Videos and Cross-Lingual Translation to Indian Vernaculars",
       "abstract": "Sign language is a primary mode of communication for the global deaf and hard-of-hearing community, yet automated tools that recognize sign gestures from video and translate them into natural language text remain limited, particularly for low-resource Indian languages. We present a two-stage deep learning pipeline that (i) classifies short sign language video clips into English word labels using a fine-tuned VideoMAE video transformer, and (ii) translates the predicted English label into Hindi, Telugu, and Bengali using Meta AI's No Language Left Behind (NLLB-200) multilingual translation model. The classification model is fine-tuned on a 13-class subset of the AI4Bharat Indian Sign Language video corpus from IIT Madras, processing 16-frame clips sampled uniformly from each video at 224 x 224 resolution. Under a small-scale academic setting (13 classes, 197 clips, 80-20 split), the fine-tuned model reaches 99% training accuracy and 78% validation accuracy after 15 epochs. We provide a per-class breakdown via a confusion matrix and classification report, identify the dominant failure modes (confusable adjective pairs such as ugly, deaf, blind, hat, and dress), and describe a Streamlit-based inference demo that takes a user-uploaded video and returns the predicted English label alongside its Hindi, Telugu, and Bengali translations. We discuss the scope, limitations (small label set, isolated-word rather than continuous signing, single-signer style sensitivity, ambiguity of single-word machine translation), and directions for future work, including expanding to sentence-level generation and a larger vocabulary. Code is released to support reproducibility.",
       "authors": [
-        "Chandranath Adak",
-        "Ramesh Nandipalli"
+        "Ramesh Nandipalli",
+        "Chandranath Adak"
       ],
       "categories": [
         "cs.AI",
