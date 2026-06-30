@@ -1,6 +1,6 @@
 {
   "date": "2026-06-26",
-  "generated_at": "2026-06-29T06:18:08.708866+00:00",
+  "generated_at": "2026-06-30T05:50:15.150340+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,223 @@
   },
   "papers": [
     {
+      "id": "2606.28630",
+      "title": "Physics-Grounded Disentangled Flow Modeling for Brain Disease Progression Trajectory",
+      "abstract": "Forecasting longitudinal brain lesion evolution is critical for disease monitoring and treatment planning. Existing approaches typically learn a direct mapping from a baseline image to a future observation, without explicitly modeling the physical mechanisms underlying the lesion progression. Such an entangled modeling of structural deformation and image intensity variation limits physical plausibility, model generalization, and interpretability. To address this, we propose PDF, a Physics-grounded Disentangled Flow matching framework for longitudinal brain disease forecasting. We explicitly decompose the longitudinal modeling of lesion growth into two processes, each learned by a dedicated flow matching network: morphology evolution, which captures lesion growth and structural deformation; and intensity evolution, which models signal changes driven by variations in lesion concentration. To enforce physics-grounded constraints, we introduce a PDE-regularized loss based on lesion growth dynamics, that enforces a diffusion-reaction-advection formulation for morphological evolution. Experiments on three public longitudinal datasets spanning diverse brain diseases demonstrate state-of-the-art performance, validating the effectiveness of the disentangled modeling framework and physics-grounded learning design. Code is publicly available at https://github.com/jhuldr/PDF.",
+      "authors": [
+        "Jun Wang",
+        "Peirong Liu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-06-26T22:21:54Z",
+      "updated": "2026-06-26T22:21:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28630v1",
+      "abs_url": "https://arxiv.org/abs/2606.28630",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28630",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对脑部病灶演变预测中现有模型缺乏物理可解释性及结构与强度耦合的问题，该研究提出了 Physics-grounded Disentangled Flow (PDF) 框架。该方法通过两个独立的 Flow matching 网络分别建模形态演变与强度演变，实现结构形变与病灶浓度变化的解耦。核心创新在于引入基于扩散-反应-平流方程（Diffusion-reaction-advection）的 PDE-regularized loss，将病灶生长动力学约束整合进模型训练中。在三个公开脑部疾病数据集上的实验表明，该方法在预测精度和物理合理性上均达到 SOTA 水平，显著提升了模型在纵向病灶演变任务中的泛化能力与可解释性。"
+    },
+    {
+      "id": "2606.28600",
+      "title": "Neuromorphic Energy-Aware Learning for Adaptive Deep Brain Stimulation",
+      "abstract": "Neuromorphic and edge computing research has focused on reducing the inference cost of neural network controllers, yet in physical closed-loop systems the actuator can rival or exceed an efficient controller in energy. An efficient controller is therefore necessary but not sufficient, because the actuator becomes the cost worth reducing once inference no longer dominates it. Here, we introduce energy-aware learning, an approach that incorporates actuator energy directly into the reinforcement learning reward, and demonstrate it in closed-loop deep brain stimulation (DBS) for Parkinson's disease. A deep spiking Q-network, trained in a biophysical cortico-basal ganglia-thalamic circuit model, learns to suppress pathological alpha-beta oscillations by 45.2% while reducing stimulation charge by 80.0% relative to continuous DBS. Sparsity-constrained knowledge distillation compresses the policy onto the SynSense XyloAudio 3 neuromorphic processor at 0.52 mW inference power, yielding 28.1x lower energy per inference than an equivalent artificial neural network on conventional edge hardware. By co-optimizing stimulation energy and inference efficiency, the framework addresses both major power demands in implantable neuromodulation.",
+      "authors": [
+        "Binh Nguyen",
+        "Colleen Josephson",
+        "Mircea Teodorescu",
+        "Gert Cauwenberghs",
+        "Jason Eshraghian"
+      ],
+      "categories": [
+        "cs.NE",
+        "cs.AI",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "published": "2026-06-26T20:48:43Z",
+      "updated": "2026-06-26T20:48:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28600v1",
+      "abs_url": "https://arxiv.org/abs/2606.28600",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28600",
+      "keyword_topics": [
+        "rl",
+        "distillation"
+      ],
+      "summary_zh": "针对闭环深部脑刺激（DBS）系统中执行器能耗往往超过控制器的问题，该研究提出了一种能量感知学习（Energy-aware learning）框架，将执行器能耗直接纳入强化学习的奖励函数中。通过在生物物理电路模型中训练深度脉冲Q网络（Deep Spiking Q-network），系统在抑制帕金森病病理性振荡的同时，较连续DBS降低了80%的刺激电荷消耗。利用稀疏约束知识蒸馏技术，该策略被部署在SynSense XyloAudio 3神经形态处理器上，推理功耗仅为0.52 mW，相比传统边缘硬件上的等效人工神经网络，能效提升了28.1倍。该方法通过协同优化刺激能耗与推理效率，有效解决了植入式神经调控设备的两大核心功耗挑战。"
+    },
+    {
+      "id": "2606.28562",
+      "title": "SEAD: Competence-Aware On-Policy Distillation via Entropy-Guided Supervision",
+      "abstract": "On-policy distillation (OPD) has a property absent in offline distillation and RL: teacher supervision quality depends on student competence. Incoherent rollouts yield noisy gradients; already-mastered tokens yield redundant ones. This creates waste at three scales (tokens, training phases, and prompts) yet existing methods supervise uniformly. We introduce SEAD, which uses entropy as a unified probe of this competence-dependent degradation at three scales: (1) joint teacher-student entropy partitions tokens into zones receiving tailored divergences or zero gradient (approx. 50% skipped); (2) a cosine schedule anneals from forward to reverse KL as competence grows; (3) a competence-gated curriculum introduces prompts easy-to-hard. These components are symbiotically necessary: token selection requires coherent rollouts (curriculum), annealing requires monotonic improvement (also curriculum). On OLMo-3 (7B to 32B), SEAD achieves +4.8 avg accuracy over vanilla OPD across six math benchmarks, with ablations confirming super-additive interactions.",
+      "authors": [
+        "Chia-Hsuan Lee",
+        "Zelei Cheng",
+        "Yu Wang",
+        "Renkun Ni",
+        "Sambit Sahu",
+        "Shi-Xiong Zhang",
+        "William Campbell"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-26T19:41:02Z",
+      "updated": "2026-06-26T19:41:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28562v1",
+      "abs_url": "https://arxiv.org/abs/2606.28562",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28562",
+      "summary_zh": "针对在线策略蒸馏（On-policy Distillation）中教师监督质量随学生能力波动而导致训练效率低下的问题，SEAD 提出利用熵（Entropy）作为统一指标，在 token、训练阶段和提示词三个维度实现自适应监督。该方法通过联合熵分区过滤冗余 token（跳过约 50%），采用从前向 KL 到反向 KL 的余弦退火策略，并结合由易到难的提示词课程学习，有效解决了噪声梯度和冗余监督问题。在 OLMo-3 (7B 到 32B) 模型上的实验表明，SEAD 在六项数学 benchmark 上平均准确率提升了 4.8%，各组件间的协同作用显著提升了蒸馏效率与模型性能。"
+    },
+    {
+      "id": "2606.28537",
+      "title": "MammoFlow: Multiview Mammogram Synthesis with Anatomically Consistent Flow Matching",
+      "abstract": "Multiview mammography relies on paired craniocaudal (CC) and mediolateral oblique (MLO) views to provide complementary projections of a 3D breast volume, enabling precise anomaly localization. However, acquiring high-quality, balanced datasets remains challenging for deep learning applications. We propose a novel method to synthesize multiview mammograms by leveraging the inherent geometric relationship between CC and MLO views. To enforce an implicit 3D consistency prior during generation, we develop an alignment module that searches a 2D affine transformation subspace to establish optimal anatomical correspondence. Leveraging this alignment, we introduce a pixel-space self-consistency loss based on the Earth Mover's Distance (EMD) between the 1D anteroposterior (AP) axis tissue distributions of the generated images. Integrated into a pretrained flow matching model, MammoFlow forces synthesized pairs to share physically plausible tissue distributions from the chest wall to the nipple. To our knowledge, this is the first work to guide multiview mammogram generation using implicit geometric tissue correspondence. Our method demonstrates superior image quality, passes expert radiologist evaluation, and generates physically consistent pairs that improve downstream classification AUC by 5%. Code is available at https://github.com/XYPB/MammoFlow",
+      "authors": [
+        "Yuexi Du",
+        "Leya Barrientos",
+        "Laura Sheiman",
+        "John Lewin",
+        "Hemant D. Tagare",
+        "Nicha C. Dvornek"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-26T18:43:16Z",
+      "updated": "2026-06-26T18:43:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28537v1",
+      "abs_url": "https://arxiv.org/abs/2606.28537",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28537",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对多视角乳腺X光片（CC与MLO视图）数据获取困难及解剖结构一致性难以保持的问题，MammoFlow通过引入几何约束实现了高质量的多视角图像合成。该方法利用对齐模块在2D仿射变换子空间中建立解剖对应关系，并结合基于Earth Mover's Distance（EMD）的像素空间自一致性损失，强制生成图像在胸壁到乳头方向上共享物理上合理的组织分布。作为首个利用隐式几何组织对应关系引导多视角生成的模型，MammoFlow在保持解剖一致性的同时显著提升了图像质量，经放射科专家评估表现优异，且在下游分类任务中将AUC指标提升了5%。"
+    },
+    {
+      "id": "2606.28531",
+      "title": "A Good Talk Does not Look Like a Summary, It Teaches You! Measuring Takeaways from Paper-to-Video Talks",
+      "abstract": "Automatically generated videos from scientific papers are increasingly used for education and research dissemination. However, existing evaluation metrics mainly measure visual quality or whether key points from the paper appear in the video without assessing whether the video actually helps viewers understand the ideas. We introduce EffectivePresentationScorer, a framework for evaluating the instructional quality of scientific presentation videos. It checks whether a video explains the main ideas clearly, introduces needed background concepts, and connects technical details to the main contribution of the paper. When we apply EffectivePresentationScorer to the existing paper-to-video generation systems, we find that generated videos mention the correct topics and follow the structure of the paper but fail to explain prerequisite concepts or clarify why the method works. These failures are often ignored by existing video evaluation metrics, which focus on content presence rather than explanatory quality.",
+      "authors": [
+        "Ishani Mondal",
+        "Aparna Garimella",
+        "Ananya Sai",
+        "Pannaga Shivaswamy",
+        "Jordan Boyd-Graber"
+      ],
+      "categories": [
+        "cs.MM",
+        "cs.CL"
+      ],
+      "published": "2026-06-26T18:30:00Z",
+      "updated": "2026-06-26T18:30:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28531v1",
+      "abs_url": "https://arxiv.org/abs/2606.28531",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28531",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "针对科学论文自动生成视频缺乏教学质量评估标准的问题，该研究提出了 EffectivePresentationScorer 框架，旨在衡量视频是否能有效传达核心思想并辅助观众理解。该方法不仅关注视频是否涵盖论文关键点，还重点评估其是否解释了必要背景概念，并能将技术细节与论文贡献建立逻辑关联。实验结果表明，现有的论文转视频生成系统虽然能覆盖主题并遵循论文结构，但在解释前提概念和阐述方法论原理方面表现欠佳。这一发现揭示了现有评估指标仅关注内容存在性而忽视解释质量的局限性，为提升科学演示视频的教学价值提供了新的评估维度。"
+    },
+    {
+      "id": "2606.28524",
+      "title": "Developmental Trajectories of Situation Modeling and Mentalizing in Transformer Language Models",
+      "abstract": "Recent work suggests that Large Language Models (LLMs) are sensitive to the belief states of agents described by text, as measured by the false belief task (FBT), yet persistent concerns of construct validity remain. We adopt a **developmental perspective**, tracing the pattern of mental state reasoning behavior -- and likely **preconditions** for this behavior -- across multiple training stages in the Olmo2 and Pythia language model suites. We find that above-chance FBT performance depends both on model size and sufficient training volume, emerges relatively late in pretraining, and is most improved by post-training interventions (SFT, DPO) in the condition most diagnostic of mentalizing (False Belief, Implicit). However, FBT performance is fragile: consistent with past work, the use of non-factive verbs (e.g., thinks) increases false belief attributions even in the True Belief condition. To contextualize these findings, we track the emergence of **situation modeling**: the ability to report on basic factual properties of a described scene. Situation modeling accuracy generally precedes and exceeds FBT accuracy, yet situational representations also prove surprisingly incoherent in certain respects: when asked about the knowledge states of the Antagonist agent -- who always knows the item's true location -- Olmo2 13b is consistently influenced both by the Target agent's knowledge state and the presence of non-factive verbs. Together, these results suggest that larger, sufficiently trained models build partially coherent situation models in a developmentally appropriate sequence, yet display surprising fragility -- highlighting the value of developmental and stress-testing approaches for evaluating LLM capabilities.",
+      "authors": [
+        "Pamela D. Rivière",
+        "Cameron Jones",
+        "Sean Trott"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-06-26T18:21:16Z",
+      "updated": "2026-06-26T18:21:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28524v1",
+      "abs_url": "https://arxiv.org/abs/2606.28524",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28524",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究通过发展心理学视角，追踪了 Olmo2 和 Pythia 系列模型在预训练及后训练阶段中，关于情境建模（Situation Modeling）与心理理论（Mentalizing）能力的演进轨迹。研究发现，模型在 False Belief Task (FBT) 上的表现高度依赖于模型规模与训练时长，且在预训练后期才逐渐显现，而 SFT 和 DPO 等后训练干预能显著提升其在隐性心理推理任务中的表现。实验揭示了情境建模能力通常先于心理推理能力出现，但模型在处理非事实动词（如 thinks）时表现出显著的脆弱性，即便在 True Belief 条件下也易产生错误归因。这些结果表明，尽管大型语言模型能构建部分连贯的情境模型，但其推理机制仍存在逻辑不一致性，强调了采用发展性评估与压力测试对验证模型认知能力的必要性。"
+    },
+    {
+      "id": "2606.28486",
+      "title": "Spectral phase transitions and trainability in neural network learning dynamics",
+      "abstract": "The emergence of low-dimensional structures in the spectra of neural network weight matrices is a common empirical feature of trained models, but the dynamical origin of this phenomenon during learning remains an open problem. We formulate neural network training as the stochastic evolution of an initially random matrix ensemble, driven by stochastic gradient descent (SGD) updates that reshape the spectral bulk while amplifying signal strength. This induces a Baik-Ben Arous-Péché (BBP) transition during training, where isolated eigenvalues detach from the random bulk distribution, providing a dynamical framework for representation formation in high-dimensional learning dynamics. We demonstrate this in a solvable linear teacher-student model, where spectral evolution is analytically tractable and a phase diagram of trainability governed by the step size (or learning rate) and initial weight variance is obtained, and subsequently extend our formalism beyond the linear regime to nonlinear and stochastic settings. Numerical simulations in realistic settings support this picture, showing robust emergence of spectral alignment during training. Our results suggest that spectral analysis may provide a unified perspective of stochastic learning dynamics, linking trainability, optimisation hyperparameters, spectral phase transitions, and representation learning in neural networks.",
+      "authors": [
+        "Chanju Park",
+        "Dario Bocchi",
+        "Francesco D'Amico",
+        "Biagio Lucini",
+        "Gert Aarts"
+      ],
+      "categories": [
+        "cond-mat.dis-nn",
+        "cs.LG"
+      ],
+      "published": "2026-06-26T18:00:01Z",
+      "updated": "2026-06-26T18:00:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28486v1",
+      "abs_url": "https://arxiv.org/abs/2606.28486",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28486",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "神经网络权重矩阵在训练过程中会涌现出低维结构，但其动力学起源尚不明确。该研究将神经网络训练建模为随机矩阵系综在随机梯度下降（SGD）驱动下的演化过程，揭示了训练过程中发生的 Baik-Ben Arous-Péché (BBP) 相变现象，即孤立特征值从随机分布中分离并形成表征。通过在线性教师-学生模型中进行解析推导，明确了由学习率和初始权重方差决定的可训练性相图，并将该框架扩展至非线性及随机设置。数值模拟验证了训练中光谱对齐的稳健涌现，表明光谱分析能为理解优化超参数、可训练性与表征学习之间的深层联系提供统一视角。"
+    },
+    {
+      "id": "2606.28479",
+      "title": "Decomposing Memorization Reduction in Privacy-Preserving Fine-Tuning of SLMs for CSIRTs",
+      "abstract": "CSIRTs increasingly fine tune language models on vulnerability scan records, but these records expose internal network topology and create privacy risks under regulations such as GDPR and LGPD. We present the first empirical study of how DP SGD and HMAC pseudonymization interact when fine tuning small language models with 1B to 3B parameters on structured CSIRT data. We evaluate 96 LoRA adapters across four SLMs and four training regimes, including raw fine tuning, QLoRA with large batch training, and DP SGD with epsilon equal to 2 and 8. We also audit memorization using 20 planted canaries, four extraction attacks, and a dual attack targeting HMAC pseudonymized identifiers. Our results show three main findings. First, matched update controls reproduce the observed reduction in memorization by reducing the number of optimizer updates alone, accounting for 66 percent to 132 percent of the measured effect, with a mean of 100 percent across three seeds and four models. In this setting, DP SGD provides the formal privacy guarantee but does not produce additional measurable reductions in memorization. Second, HMAC pseudonymization removes the original identifiers from the exposure surface, reducing exposure by 40 percent to 61 percent, while pseudonymized identifiers remain close to the expected random baseline and do not become a secondary memorization target. Third, F1 scores remain between 0.19 and 0.28 across all 96 adapters using four shot prompting, indicating that, under the evaluated training budget, 1B to 3B SLMs do not achieve operationally useful performance.",
+      "authors": [
+        "Cristhian Kapelinski",
+        "Diego Kreutz"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-06-26T17:35:17Z",
+      "updated": "2026-06-26T17:35:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28479v1",
+      "abs_url": "https://arxiv.org/abs/2606.28479",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28479",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对计算机安全应急响应团队（CSIRT）在漏洞扫描记录微调小语言模型（SLM）时面临的隐私泄露风险，本研究评估了 DP-SGD 与 HMAC 伪匿名化技术在 1B 至 3B 参数模型上的应用效果。实验发现，模型记忆能力的降低主要归因于优化器更新次数的减少，而非 DP-SGD 本身的隐私保护机制，且 HMAC 伪匿名化能有效移除原始标识符并降低 40% 至 61% 的暴露风险。尽管如此，在当前训练预算下，所有微调后的模型在四样本提示（four-shot prompting）下的 F1 分数仅为 0.19 至 0.28，表明该规模模型尚未达到实际业务所需的性能水平。"
+    },
+    {
       "id": "2606.28266",
       "title": "RSICCLLM: A Multimodal Large Language Model for Remote Sensing Image Change Captioning",
       "abstract": "Remote Sensing Image Change Captioning (RSICC) aims to describe changes between bi-temporal remote sensing images and holds significant research and application value. However, most existing methods rely on conventional deep learning architectures, and the limited model capacity constrains performance. Although large-model post-training techniques have achieved great success in general domains, their direct transfer to RSICC remains challenging due to data scarcity and the need for fine-grained change understanding. To address this, we propose RSICCLLM, the first post-training framework for large vision-language models in RSICC. Specifically, we design a data generation paradigm, release the instruction dataset RSICI, and establish a task-specific RSICC benchmark. We further introduce Difference-aware Supervised Fine-tuning to explicitly extract change representations and guide the model in perceiving and understanding temporal differences. In addition, we propose Dual-Negative Preference Optimization (DNPO), which employs two complementary negative-sample construction strategies to construct the preference dataset RSICP and further refine model performance. Extensive experiments validate the superior capability of RSICCLLM, which achieves outstanding results with only 7B parameters, surpassing models of substantially larger scales. The code and dataset will be made publicly available at https://github.com/keaill/RSICCLLM.",
@@ -54,8 +271,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28266",
-      "summary_zh": "RSICCLLM 旨在解决遥感图像变化描述（RSICC）任务中现有模型容量受限及细粒度变化理解不足的问题。该研究构建了首个针对该领域的指令数据集 RSICI 及专用 benchmark，并引入 Difference-aware Supervised Fine-tuning 技术，通过显式提取变化特征来增强模型对时序差异的感知能力。此外，提出的 Dual-Negative Preference Optimization (DNPO) 利用互补的负样本构建策略优化模型偏好，进一步提升了生成质量。实验表明，仅含 7B 参数的 RSICCLLM 在性能上超越了更大规模的模型，展现了其在遥感多模态大模型领域的显著优势。",
-      "impact_score": null
+      "summary_zh": "RSICCLLM 旨在解决遥感图像变化描述（RSICC）任务中现有模型容量受限及细粒度变化理解不足的问题。该研究构建了首个针对该领域的指令数据集 RSICI 及专用 benchmark，并引入 Difference-aware Supervised Fine-tuning 技术，通过显式提取变化特征来增强模型对时序差异的感知能力。此外，提出的 Dual-Negative Preference Optimization (DNPO) 利用互补的负样本构建策略优化模型偏好，进一步提升了生成质量。实验表明，仅含 7B 参数的 RSICCLLM 在性能上超越了更大规模的模型，展现了其在遥感多模态大模型领域的显著优势。"
     },
     {
       "id": "2606.28249",
@@ -119,8 +335,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28226",
-      "summary_zh": "Flow Matching 在生成过程中因训练与推理阶段的偏差导致 Exposure Bias 问题，现有方法多依赖静态约束或外部启发式策略。DEFAR 框架提出利用偏差本身包含的动态信号进行自我修正，通过模拟单步推理过程识别偏差，并引入方向与频率自适应反馈机制。核心组件 Anti-Drift Rectification 通过学习纠偏方向赋予模型主动修正能力，Frequency Compensation 则利用偏差作为反馈权重，强化高噪声阶段缺失的低频成分。在 CIFAR-10、CelebA-64 及 ImageNet 等数据集上的实验表明，DEFAR 显著优于现有基准，展现出卓越的扩展性、兼容性及推理鲁棒性。",
-      "impact_score": null
+      "summary_zh": "Flow Matching 在生成过程中因训练与推理阶段的偏差导致 Exposure Bias 问题，现有方法多依赖静态约束或外部启发式策略。DEFAR 框架提出利用偏差本身包含的动态信号进行自我修正，通过模拟单步推理过程识别偏差，并引入方向与频率自适应反馈机制。核心组件 Anti-Drift Rectification 通过学习纠偏方向赋予模型主动修正能力，Frequency Compensation 则利用偏差作为反馈权重，强化高噪声阶段缺失的低频成分。在 CIFAR-10、CelebA-64 及 ImageNet 等数据集上的实验表明，DEFAR 显著优于现有基准，展现出卓越的扩展性、兼容性及推理鲁棒性。"
     },
     {
       "id": "2606.28215",
@@ -155,8 +370,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28215",
-      "summary_zh": "HAT-4D 旨在解决单目视频中多物体交互场景下的 4D 重建难题，克服了现有方法在处理复杂遮挡和动态交互时的局限性。该框架通过集成 VLM 与多层级 Human-in-the-loop 反馈机制，有效解决了 3D 生成与 4D 传播过程中的深度歧义及遮挡问题，实现了无需多相机阵列的高质量物理资产重建。研究同步推出了包含多维度评估协议的 MVOIK-4D 基准测试，实验表明 HAT-4D 在物理合理性与时间一致性上均达到 SOTA 水平。此外，该方法生成的训练数据能显著提升下游 Embodied AI 模型的性能，为大规模具身智能数据采集提供了高效路径。",
-      "impact_score": null
+      "summary_zh": "HAT-4D 旨在解决单目视频中多物体交互场景下的 4D 重建难题，克服了现有方法在处理复杂遮挡和动态交互时的局限性。该框架通过集成 VLM 与多层级 Human-in-the-loop 反馈机制，有效解决了 3D 生成与 4D 传播过程中的深度歧义及遮挡问题，实现了无需多相机阵列的高质量物理资产重建。研究同步推出了包含多维度评估协议的 MVOIK-4D 基准测试，实验表明 HAT-4D 在物理合理性与时间一致性上均达到 SOTA 水平。此外，该方法生成的训练数据能显著提升下游 Embodied AI 模型的性能，为大规模具身智能数据采集提供了高效路径。"
     },
     {
       "id": "2606.28186",
@@ -211,8 +425,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28166",
-      "summary_zh": "针对强化学习（RLVR）在提升大模型推理能力时常导致输出可读性差及语言混杂的问题，本研究提出了 Tandem Reinforcement Learning (TRL) 框架。该方法通过让训练中的 Senior 模型与冻结的 Junior 模型在推理过程中随机交替生成内容，并基于联合生成的奖励利用 GRPO 算法进行优化，从而强制 Senior 模型以更易于 Junior 模型理解的方式进行推理。实验表明，在竞赛数学任务中，TRL 在保持与标准 GRPO 相当的推理性能的同时，显著增强了模型间的交接鲁棒性，减少了分布偏移，并提升了思维链（Chain-of-Thought）的可读性。这一成果为实现更具人类兼容性及多模型协作能力的推理系统提供了有效路径。",
-      "impact_score": null
+      "summary_zh": "针对强化学习（RLVR）在提升大模型推理能力时常导致输出可读性差及语言混杂的问题，本研究提出了 Tandem Reinforcement Learning (TRL) 框架。该方法通过让训练中的 Senior 模型与冻结的 Junior 模型在推理过程中随机交替生成内容，并基于联合生成的奖励利用 GRPO 算法进行优化，从而强制 Senior 模型以更易于 Junior 模型理解的方式进行推理。实验表明，在竞赛数学任务中，TRL 在保持与标准 GRPO 相当的推理性能的同时，显著增强了模型间的交接鲁棒性，减少了分布偏移，并提升了思维链（Chain-of-Thought）的可读性。这一成果为实现更具人类兼容性及多模型协作能力的推理系统提供了有效路径。"
     },
     {
       "id": "2606.28164",
@@ -290,8 +503,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28152",
-      "summary_zh": "针对奖励与惩罚机制在强化学习中往往独立优化导致学习不稳定的问题，该研究提出了 KL-Coupled Policy Regularization (KCPR) 框架，通过将奖励策略与惩罚策略互设为动态先验，实现了两者间的直接交互。基于此推导出的 KL-Coupled Soft Optimality (KCSO) 引入了 KL 正则化的 Bellman 算子，使奖励与惩罚信息能共同影响价值传播，并结合 companion-prior softening 机制与差异化经验回放设计进一步提升了训练稳定性。在 Grid-world 与 Gazebo 机器人导航任务中的实验表明，klDMP 模型在保持任务性能的同时，显著增强了系统的安全性与学习稳定性，证明了策略级协同对于整合多重行为目标的有效性。",
-      "impact_score": null
+      "summary_zh": "针对奖励与惩罚机制在强化学习中往往独立优化导致学习不稳定的问题，该研究提出了 KL-Coupled Policy Regularization (KCPR) 框架，通过将奖励策略与惩罚策略互设为动态先验，实现了两者间的直接交互。基于此推导出的 KL-Coupled Soft Optimality (KCSO) 引入了 KL 正则化的 Bellman 算子，使奖励与惩罚信息能共同影响价值传播，并结合 companion-prior softening 机制与差异化经验回放设计进一步提升了训练稳定性。在 Grid-world 与 Gazebo 机器人导航任务中的实验表明，klDMP 模型在保持任务性能的同时，显著增强了系统的安全性与学习稳定性，证明了策略级协同对于整合多重行为目标的有效性。"
     },
     {
       "id": "2606.28128",
@@ -327,8 +539,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28128",
-      "summary_zh": "针对机器人操作视频生成中物体形变与交互时空关联不一致导致的物理失真问题，PhysisForcing 提出了一种增强物理一致性的可扩展训练框架。该方法通过联合优化像素级与语义级特征来强化对物理关键区域的监督：利用像素级轨迹对齐损失（pixel-level trajectory alignment loss）监督 DiT 特征，并引入语义级关系对齐损失（semantic-level relational alignment loss）对齐视频理解编码器提取的交互关系。在 R-Bench、PAI-Bench 和 EZS-Bench 上的实验表明，该框架显著提升了 Wan2.2 和 Cosmos3 等基座模型的生成质量。作为世界模型，它在 WorldArena 协议下将闭环任务成功率从 16.0% 提升至 24.0%，证明了物理对齐的视频模型能为机器人操作提供更稳健的表征支持。",
-      "impact_score": null
+      "summary_zh": "针对机器人操作视频生成中物体形变与交互时空关联不一致导致的物理失真问题，PhysisForcing 提出了一种增强物理一致性的可扩展训练框架。该方法通过联合优化像素级与语义级特征来强化对物理关键区域的监督：利用像素级轨迹对齐损失（pixel-level trajectory alignment loss）监督 DiT 特征，并引入语义级关系对齐损失（semantic-level relational alignment loss）对齐视频理解编码器提取的交互关系。在 R-Bench、PAI-Bench 和 EZS-Bench 上的实验表明，该框架显著提升了 Wan2.2 和 Cosmos3 等基座模型的生成质量。作为世界模型，它在 WorldArena 协议下将闭环任务成功率从 16.0% 提升至 24.0%，证明了物理对齐的视频模型能为机器人操作提供更稳健的表征支持。"
     },
     {
       "id": "2606.28127",
@@ -350,8 +561,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28127",
-      "summary_zh": "大型语言模型（LLMs）与世界模型（World Models）并非互斥关系，LLMs本质上是世界模型的一种退化特例，即状态空间仅限于离散Token序列且动作仅为追加Token。研究指出，从Next Token Prediction（NTP）到Joint-Embedding Predictive Architecture（JEPA）存在一条连续的演进路径，涵盖了多Token预测、未来摘要预测及下一潜空间预测等中间形态。随着模型向连续状态空间演进，虽然能提升对现实世界的模拟能力，但也会逐渐丧失LLMs在互联网规模自监督数据训练及Transformer架构适配性上的核心优势。该研究探讨了从文本自监督向具身动作环境迁移的数据瓶颈，以及Transformer架构在连续状态预测任务中的泛化能力，为通往通用人工智能的架构演进提供了理论框架。",
-      "impact_score": null
+      "summary_zh": "大型语言模型（LLMs）与世界模型（World Models）并非互斥关系，LLMs本质上是世界模型的一种退化特例，即状态空间仅限于离散Token序列且动作仅为追加Token。研究指出，从Next Token Prediction（NTP）到Joint-Embedding Predictive Architecture（JEPA）存在一条连续的演进路径，涵盖了多Token预测、未来摘要预测及下一潜空间预测等中间形态。随着模型向连续状态空间演进，虽然能提升对现实世界的模拟能力，但也会逐渐丧失LLMs在互联网规模自监督数据训练及Transformer架构适配性上的核心优势。该研究探讨了从文本自监督向具身动作环境迁移的数据瓶颈，以及Transformer架构在连续状态预测任务中的泛化能力，为通往通用人工智能的架构演进提供了理论框架。"
     },
     {
       "id": "2606.28089",
@@ -566,8 +776,8 @@
         "cs.AI"
       ],
       "published": "2026-06-26T10:15:36Z",
-      "updated": "2026-06-26T10:15:36Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.27922v1",
+      "updated": "2026-06-29T13:16:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.27922v2",
       "abs_url": "https://arxiv.org/abs/2606.27922",
       "topics": [
         "other"
@@ -578,6 +788,54 @@
         "video-gen"
       ],
       "summary_zh": "针对长视频理解中模型因缺乏外部证据而陷入盲目自信及幻觉的问题，Reflect-R1 提出了一种基于证据驱动的自我修正框架。该框架通过直觉、验证与仲裁三个阶段，动态检索客观视觉证据以纠正初始判断，并引入 SD-GRPO 算法实现多阶段推理的策略解耦，有效解决了强化学习中的策略耦合难题。此外，通过构建 120K 规模的专用数据集，该方法在 VideoMME 和 LongVideoBench 等基准测试中达到了 SOTA 水平。实验结果表明，Reflect-R1 能够显著提升模型的真实修正率，实现基于客观证据的深度推理与自我纠错。"
+    },
+    {
+      "id": "2606.28455",
+      "title": "Event-Conditioned Diagnostics of Kinematic, Contact, and Object-Permanence Fields in Passive Object-State World Models",
+      "abstract": "World models can predict future physical states, but prediction accuracy alone does not explain how physical information is organized and used inside their latent dynamics. We introduce a controlled diagnostic protocol for studying event-conditioned latent physical structure in passive object-state world models. The protocol tests whether hidden representations encode event-regime information, whether event contexts reweight non-exclusive physical field readouts, and whether field-aligned representational components have functional consequences for prediction. Using a balanced controlled-generator dataset with free-motion, collision, and occlusion events, we evaluate recurrent, attention-based, and latent state-space transition models under a fixed-horizon forecasting setup. The models learn useful predictive dynamics and their hidden states support reliable event-regime readout. Event contexts systematically reweight kinematic, contact, and object-permanence field readouts: free motion is kinematic-dominant, collision combines kinematic and contact structure, and occlusion combines motion-related and object-permanence structure. Time-aligned and directional-consistency analyses further show phase-related shifts in field emphasis. Finally, fixed-horizon projection causal field effect (CFE) shows that suppressing field-aligned directions can degrade event-relevant prediction, with strongest evidence for contact-aligned structure in collision-contact windows and more qualified evidence for object-permanence-aligned structure in hard-occlusion hidden windows. These results support event-conditioned organization and fixed-horizon functional sensitivity of latent physical fields, while not implying explicit physical modules, isolated causal circuits, or context-invariant sliding-window generalization.",
+      "authors": [
+        "Yang Liu",
+        "Yuming Chen"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-06-26T10:11:59Z",
+      "updated": "2026-06-26T10:11:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28455v1",
+      "abs_url": "https://arxiv.org/abs/2606.28455",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28455",
+      "summary_zh": "针对被动对象状态世界模型（Passive Object-State World Models）在物理信息组织与利用机制上缺乏透明度的问题，该研究提出了一种基于事件条件的诊断协议，用于探测潜在空间中运动学、接触及对象持久性等物理场的编码规律。通过在包含自由运动、碰撞和遮挡事件的受控数据集上评估循环神经网络、注意力模型及状态空间模型，实验发现模型能够根据不同事件上下文动态重加权物理场信息。研究进一步通过投影因果场效应（CFE）分析证实，抑制特定物理场方向会显著降低相关事件的预测精度，证明了潜在状态对物理属性的函数敏感性。这些结果揭示了世界模型内部存在事件驱动的物理结构组织，但并不意味着模型内部存在显式的物理模块或孤立的因果回路。"
+    },
+    {
+      "id": "2606.28446",
+      "title": "Domain-Informed Multi-View Self-Distillation for Astronomical Light-Curve Representation Learning with JEPA",
+      "abstract": "Light curves describe temporal variations in the brightness of celestial objects. Learning robust representations of light curves is essential for large-scale automatic discovery in the dynamic universe, but existing time-series foundation models often struggle with the uneven sampling, complex noise, and wide range of physical timescales that characterize astronomical observations. We propose a domain-informed representation learning framework for irregular astronomical time series with Joint-Embedding predictive architecture (JEPA), combining semantics-preserving views, uncertainty-aware tokenization, and multi-view self-distillation. The encoders are trained with multi-view self-distillation using LeJEPA regularization on the LEAVES dataset and evaluated on the StarEmbed classification benchmark. On StarEmbed, our model outperforms hand-crafted features on 15 of 16 classification metrics. In few-shot linear probing, it achieves macro-F1 scores of 42.56 $\\pm$ 7.21 with one sample per class and 63.58 $\\pm$ 1.20 with 100 samples per class, consistently improving over hand-crafted features. Beyond variable-star classification, the learned representation supports similarity search, parameter estimation, and photometric zero-point drift detection. We further evaluate cross-domain adaptation on 12 heterogeneous irregular time-series datasets from PYRREGULAR, where the adapted variant matches or exceeds previous state-of-the-art performance on 5 datasets, compared with at most 3 wins by any single prior baseline. These results demonstrate that domain-informed multi-view self-distillation is an effective strategy for learning representations of irregular time series, while also highlighting that successful time-series representation learning requires domain-specific inductive biases rather than a universally optimal architecture.",
+      "authors": [
+        "Yicheng Rui"
+      ],
+      "categories": [
+        "astro-ph.IM",
+        "astro-ph.SR",
+        "cs.AI"
+      ],
+      "published": "2026-06-26T08:35:55Z",
+      "updated": "2026-06-26T08:35:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28446v1",
+      "abs_url": "https://arxiv.org/abs/2606.28446",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28446",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对天文光变曲线采样不均、噪声复杂及物理尺度跨度大等挑战，该研究提出了一种基于 Joint-Embedding Predictive Architecture (JEPA) 的领域感知多视图自蒸馏表征学习框架。该方法通过语义保持视图、不确定性感知 Tokenization 及 LeJEPA 正则化，有效提取了非规则时间序列的鲁棒特征。在 StarEmbed 基准测试中，该模型在 16 项分类指标中的 15 项超越了传统手工特征，并在少样本学习及跨领域迁移任务中展现出卓越性能。实验结果表明，引入领域特定的归纳偏置对于非规则时间序列的表征学习至关重要，优于单纯追求通用架构的策略。"
     },
     {
       "id": "2606.27829",
@@ -863,6 +1121,42 @@
       "summary_zh": "针对单细胞扰动预测中生成样本缺乏生物学一致性的问题，PerturbCellRL 提出了一种基于强化学习（RL）的后训练框架，通过引入一组细胞级验证器作为奖励函数，对预训练的生成模型进行对齐优化。该框架构建了包含 Pearson 相关性、RMSE 近似度、差异表达（DE）Spearman 相关性及通路活性（Pathway activity）在内的四维奖励机制，确保生成的单细胞转录组响应符合已知的生物学规律。在多个遗传和化学扰动基准测试中，该方法不仅在奖励对齐指标和留存评估指标上显著优于原始的流匹配（flow-matching）生成器，且在群体级预测指标上保持了与当前 SOTA 方法相当的竞争力。这一研究将可信的单细胞预测转化为验证器引导的生成对齐任务，有效提升了单细胞扰动效应预测的生物学可解释性与准确性。"
     },
     {
+      "id": "2606.28436",
+      "title": "Dockerless: Environment-Free Program Verifier for Coding Agents",
+      "abstract": "Program verifiers play a central role in training coding agents, including selecting trajectories for supervised fine-tuning (SFT) and providing rewards for reinforcement learning (RL). Standard execution-based verification requires running unit tests inside per-repository environments such as Docker images, incurring substantial environment setup costs. We propose Dockerless, an environment-free agentic patch verifier that evaluates generated code patches without executing them. Rather than simply matching candidate patches to references, Dockerless judges patch correctness using evidence gathered through agentic repository exploration. On a verifier evaluation benchmark, Dockerless outperforms the strongest open-source verifier by 14.3 AUC points. Using Dockerless as both the SFT trajectory filter and the RL reward enables a fully environment-free post-training pipeline. The resulting model reaches 62.0%, 50.0%, and 35.2% resolve rate on SWE-bench Verified, Multilingual, and Pro, respectively. It surpasses the Qwen3.5-9B baseline by 2.4, 8.7, and 2.9 points, matching environment-based post-training.",
+      "authors": [
+        "Wenhao Zeng",
+        "Yuling Shi",
+        "Xiaodong Gu",
+        "Chao Hu",
+        "Chaofan Wang",
+        "Yuhao Cui",
+        "Hongting Zhou",
+        "Mengnan Qi",
+        "Jianqiao Wangni",
+        "Zhaojian Yu",
+        "Shuzheng Gao",
+        "Kai Cai",
+        "Shilin He"
+      ],
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "published": "2026-06-26T06:14:55Z",
+      "updated": "2026-06-26T06:14:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28436v1",
+      "abs_url": "https://arxiv.org/abs/2606.28436",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28436",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对编码智能体训练中依赖 Docker 等环境执行单元测试所带来的高昂开销问题，Dockerless 提出了一种无需运行代码即可验证补丁正确性的方法。该模型通过智能体驱动的仓库探索（agentic repository exploration）收集证据，而非单纯依赖参考答案匹配，从而实现对代码补丁的高效评估。实验表明，Dockerless 在验证器评估基准上较现有最优开源方案提升了 14.3 个 AUC 点。将其应用于监督微调与强化学习流程后，模型在 SWE-bench Verified、Multilingual 及 Pro 基准上分别达到 62.0%、50.0% 和 35.2% 的解决率，在无需环境依赖的情况下实现了与传统执行式训练相当的性能表现。"
+    },
+    {
       "id": "2606.27741",
       "title": "SIFT: Self-Imagination Fine-Tuning for Physically Plausible Motion in Video Diffusion Models",
       "abstract": "Recent advances in video diffusion models have greatly improved visual fidelity, yet their generated motions often violate physical plausibility. We observe a common kinematic failure, \"motion entanglement\", the unintended coupling of independent motion sources, such as camera movement and object motion. We identify that this issue stems from data bias and the reconstruction-based training design of diffusion models. Training on noisy videos that still retain coarse motion cues inadvertently encourages the model to replicate existing motion without an incentive to learn how to model kinematically-grounded motions. To address this, we propose a Self-Imagination Fine-Tuning (SIFT) paradigm, which enables the model to learn from its own generated videos rather than directly reconstructing real ones, breaking the reconstruction shortcut. We further employ motion-aware discriminative supervision and a progressive hard-case replay strategy to stabilize and accelerate learning. By leveraging freely-generated text prompts, our method can densely cover a broad motion space, including rare or finely-disentangled scenarios that would be costly to collect as video data. Extensive experiments demonstrate that our approach substantially improves the physical realism, motion disentanglement, and controllability of generated videos.",
@@ -1002,6 +1296,34 @@
       "summary_zh": "针对单目动态场景中人体与环境重建存在尺度模糊、对齐困难及遮挡干扰的问题，SHOW 框架通过统一的度量空间实现了人体网格恢复与场景重建的联合优化。该方法利用参数化人体模型提供语义结构与尺度先验，辅助场景点图预测以消除尺度歧义；同时，重建的场景几何信息反向约束人体位置，确保空间一致性。此外，引入可提示的掩码机制（mask-promptable mechanism）有效处理多人场景中的遮挡与背景干扰。实验表明，该模型在复杂动态视频中显著提升了度量尺度一致性、人体-场景对齐精度及整体重建质量。"
     },
     {
+      "id": "2606.28434",
+      "title": "SWE-MeM: Learning Adaptive Memory Management for Long-Horizon Coding Agents",
+      "abstract": "Long-horizon software engineering agents often need to manage lengthy and noisy interaction histories under limited context budgets. Existing memory management methods typically rely on static compression workflows or impose rigid constraints on compression timing and granularity. Moreover, these approaches fail to jointly optimize memory management and issue resolution capabilities to improve performance while reducing token usage. We present SWE-MeM, a training framework for proactive and on-demand memory management in software engineering agents. SWE-MeM provides a flexible memory tool that lets agents decide when, what, and how to compress based on trajectory state, task progress, and remaining context budget. We train agents with synthesized proactive memory-management trajectories and Memory-aware GRPO, which jointly optimizes memory management and issue resolution through memory-aware trajectory splitting and step-level credit assignment. On SWE-Bench Verified, SWE-MeM achieves 43.4% and 60.2% resolve rate with 4B and 30B models, respectively, outperforming existing memory management baselines in both performance and efficiency.",
+      "authors": [
+        "Shuzheng Gao",
+        "Wenhao Zeng",
+        "Zhaojian Yu",
+        "Jianqiao Wangni",
+        "Chaozheng Wang",
+        "Kai Cai",
+        "Shilin He",
+        "Michael R. Lyu"
+      ],
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "published": "2026-06-26T04:55:24Z",
+      "updated": "2026-06-26T04:55:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28434v1",
+      "abs_url": "https://arxiv.org/abs/2606.28434",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28434",
+      "summary_zh": "针对长周期软件工程任务中交互历史冗长且噪声大、现有内存管理方法缺乏灵活性与协同优化的问题，SWE-MeM 提出了一种主动且按需的内存管理训练框架。该框架引入灵活的内存工具，使智能体能根据轨迹状态、任务进度及剩余上下文预算，自主决策压缩的时机、内容与方式。通过合成的主动内存管理轨迹以及 Memory-aware GRPO 算法，该方法实现了内存管理与问题解决能力的联合优化，并引入了内存感知轨迹拆分与步级信用分配机制。在 SWE-Bench Verified 基准测试中，4B 和 30B 模型分别取得了 43.4% 和 60.2% 的解决率，在提升性能的同时显著降低了 token 消耗，优于现有的静态压缩基线。"
+    },
+    {
       "id": "2606.27711",
       "title": "The Simulacrum: Decision-Theoretic Pretraining for Near-Optimal Time-Series Forecasting and Inference",
       "abstract": "We introduce a neural network-based framework for learning time series estimators through a process we term decision-theoretic pretraining. Analysts specify a generative world, a distribution over data-generating processes, and a target decision objective. A neural network trained on stratified simulations from this world approximates the corresponding optimal decision rule, yielding a neural estimator that provides forecasts, parameter estimates, predictive intervals, or model-selection for zero-shot inference on previously unseen time series. The joint specification of the generative world and objective enables the estimators to directly approximate process-level, finite-sample properties: near-optimal risk, bias control, minimax performance, and uniform calibration. Our experiments demonstrate that these neural estimators can outperform traditional baselines such as maximum likelihood estimation and model selection via AICc, for the same model structural model classes. Furthermore, even when trained purely on simulations of structural models, they achieve competitive or state-of-the-art forecasting accuracy on major real-world benchmarks, compared with statistical, neural or large pre-trained models. We illustrate the framework by addressing two longstanding challenges: finite-sample bias and miscalibration in AR(p) models, and the forecast combination puzzle. These applications highlight the approach's main advantage: its ability to approximate solutions to analytically intractable or computationally prohibitive time series problems, including complex structural equations or optimality criteria. Ultimately, by enabling explicit control over decision-theoretic trade-offs, the framework equips analysts with highly efficient estimation tools tailored to their specific analytical needs.",
@@ -1107,6 +1429,28 @@
         "distillation"
       ],
       "summary_zh": "针对宫颈细胞病理学中跨机构数据分布差异大及病变阶段视觉特征细微导致的诊断泛化难题，本研究提出了一种两阶段跨域宫颈异常筛查框架。第一阶段引入Spatially-Continuous Unpaired Neural Schrödinger Bridge (SC-UNSB)，通过将图像转换建模为熵正则化的最优传输过程，构建合成中间域以缓解跨域分布偏移。第二阶段采用基于知识蒸馏的双层特征对齐策略，通过逐步对齐浅层结构特征与深层语义表示，促进源域到目标域的领域不变知识迁移。实验结果表明，该方法有效降低了领域偏移与类别模糊性，显著提升了跨域检测性能。"
+    },
+    {
+      "id": "2606.28433",
+      "title": "Position: RL Researchers Need to Distinguish Between Solving Simulators and Using Simulators as a Proxy",
+      "abstract": "One goal in reinforcement learning (RL) research is to understand general-purpose sequential decision-making, using benchmark simulators as a proxy for learning in deployment settings. When running experiments, however, the goal of achieving high performance in the simulator can mutate into focusing exclusively on solving the simulator. To achieve high scores, researchers may adopt solutions exclusively meant for solving simulators, rather than learning while the agent is deployed outside a simulator. Solving simulators is also worthy of investigation, but it is a fundamentally different RL research question. In this paper, we argue that RL researchers need to distinguish between two use cases of simulators: solving simulators and using simulators as a proxy for learning in deployment. We first discuss how these two use-cases are importantly different, in terms of constraints on how the agent can use the simulator, which algorithms are appropriate, and which evaluation metrics are appropriate. We then highlight several issues and misleading conclusions that can occur by not making the distinction between these two settings clear, supported with examples and simple experiments. This work is a call to the community to begin clearly distinguishing how they are using simulators in their work, hopefully sparking further discussion on which empirical practices work best in each setting.",
+      "authors": [
+        "Matthew Vandergrift",
+        "Esraa Elelimy",
+        "Martha White"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-06-26T03:19:27Z",
+      "updated": "2026-06-26T03:19:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28433v1",
+      "abs_url": "https://arxiv.org/abs/2606.28433",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28433",
+      "summary_zh": "强化学习研究中存在将“解决模拟器”与“将模拟器作为部署环境代理”混淆的现象，导致研究目标偏离通用决策能力。该研究指出，两者在算法约束、适用方法及评估指标上存在本质差异，若不加区分，极易产生误导性的实验结论。通过对比分析与实验验证，论文强调了明确模拟器使用场景的必要性，并呼吁社区建立更严谨的评估标准。这一区分有助于研究者针对性地优化算法，从而更准确地衡量智能体在真实部署环境下的泛化性能。"
     },
     {
       "id": "2606.27652",

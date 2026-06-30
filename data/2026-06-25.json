@@ -1,6 +1,6 @@
 {
   "date": "2026-06-25",
-  "generated_at": "2026-06-29T06:18:08.710765+00:00",
+  "generated_at": "2026-06-30T05:50:15.152695+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -634,6 +634,52 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.27305",
       "summary_zh": "针对现有3D生成模型依赖显式网格或外部形状先验的问题，该研究提出直接对预训练3D感知生成模型EG3D进行基于人类偏好的强化学习微调。该方法通过在NeRF的密度场（$\\sigma$）上直接学习奖励模型，无需预训练或多视图渲染，即可实现对3D几何结构的定向优化。通过引入密度一致性约束，模型在保持2D外观质量基本稳定的前提下，显著提升了3D几何的真实感与合理性。实验结果显示，微调后的模型在成对比较中获得了74.4%的用户偏好率，证明了仅利用少量人类偏好样本即可有效重塑NeRF几何结构的有效性。"
+    },
+    {
+      "id": "2606.28421",
+      "title": "JuZhou 1.0 Technical Report: The First Edge-Native Text-to-Image Foundation Model Trained Entirely on China-Developed AI Accelerators",
+      "abstract": "Text-to-image (T2I) diffusion models typically require substantial computational resources and cloud infrastructure, posing significant challenges for edge deployment in terms of latency, cost, and user privacy. We present JuZhou 1.0, an ultra-lightweight T2I foundation model designed for fully offline, on-device execution. JuZhou 1.0 achieves its efficiency through four key designs: (1) a compact image-generation backbone consisting of a 0.385B-parameter denoising U-Net and a 1.90M-parameter distilled decoder, totaling approximately 0.387B parameters; (2) Rectified Flow training combined with DMD2 distillation, reducing inference to 4 sampling steps; (3) Chinese semantic alignment trained on 9M curated image-text pairs, enabling direct Chinese prompting without external translation at inference time; and (4) a training and distillation pipeline completed on domestically developed Sugon K100 AI accelerators without relying on NVIDIA GPUs for training or distillation. Despite its compact scale, the 28-step base model of JuZhou 1.0 achieves an overall GenEval score of 0.69, outperforming published baselines including SDXL (2.6B, 0.55), SD3-Medium (2B, 0.62), and IF-XL (4.3B, 0.61). We further validate the full poetry-to-image pipeline on Android and the core CLIP-U-Net-VAE generation branch on iOS. On a smartphone powered by the Snapdragon 8 Elite Gen 5 Mobile Platform, the 4-step U-Net denoising branch runs in approximately 1.6 seconds, while the full Android poetry-to-image pipeline takes 4.5 seconds with on-device prompt refinement on Xiaomi 17 Pro Max. These results position JuZhou 1.0 as a practical approach to mobile text-to-image generation and provide a concrete reference for Chinese-native generation, domestic-compute training, and fully offline on-device deployment after one-time installation.",
+      "authors": [
+        "Ce Chen",
+        "Congrui Wang",
+        "Yonglin Li",
+        "Zhenchen Wan",
+        "Mingyang Geng",
+        "Junhao Xiao",
+        "Zhengpeng Xing",
+        "Yaqing Hu",
+        "Yao Wu",
+        "Zhaoyang Qu",
+        "Long Lan",
+        "Xinwang Liu",
+        "Yingqi Peng",
+        "Shijia Li",
+        "Zufeng Zhang",
+        "Chen Ma",
+        "Jingjing Zhou",
+        "Xingyu Wang",
+        "Qilin Lu",
+        "Bin Jiang",
+        "Qilin Sun",
+        "Shanzhi Gu",
+        "Yaoguang Jin",
+        "Tongliang Liu",
+        "Kede Ma",
+        "Yifan Peng"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-06-25T17:14:03Z",
+      "updated": "2026-06-25T17:14:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.28421v1",
+      "abs_url": "https://arxiv.org/abs/2606.28421",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2606.28421",
+      "summary_zh": "JuZhou 1.0 旨在解决传统文生图模型对云端算力依赖过高、隐私保护不足及延迟问题，通过构建仅 0.387B 参数的超轻量级架构，实现了完全离线的端侧部署。该模型采用 Rectified Flow 与 DMD2 蒸馏技术，将推理步数压缩至 4 步，并基于 900 万高质量中英文对进行训练，实现了对中文语境的直接语义对齐。全流程训练与蒸馏均在国产曙光 K100 AI 加速器上完成，摆脱了对 NVIDIA GPU 的依赖。实验结果显示，该模型在 GenEval 基准测试中以 0.69 的得分超越了 SDXL 和 SD3-Medium 等大参数模型，在骁龙 8 Elite 移动平台上实现了 1.6 秒的快速推理，为国产算力驱动的端侧生成式 AI 提供了高效的参考范式。"
     },
     {
       "id": "2606.27291",
@@ -1295,8 +1341,8 @@
     },
     {
       "id": "2606.26744",
-      "title": "HyperDFlash: MHC-Aligned Block Speculative Decoding with Gated Residual Reduction",
-      "abstract": "We present HyperDFlash, a block-parallel speculative decoding framework tailored to the novel multi-hyper-connection (MHC) architecture proposed by DeepSeek-V4. Despite the strong initial-token drafting performance of the native Multi-Token Prediction (MTP) module in DeepSeek-V4, its draft accuracy degrades sharply at later positions, as error accumulation from unverified intermediate tokens harms acceptance rates. Although the original DFlash method supports efficient one-pass block drafting, it cannot be seamlessly adapted to the MHC paradigm, since the multi-path residual stream of DeepSeek-V4 induces feature misalignment with conventional drafting designs. To resolve this mismatch, we propose two model-aligned optimizations for MHC residual streams. First, we adopt pre-collapse residual states as the exclusive conditioning signal, preserving multi-path structural information and aligning the drafter with the native prediction pathway of the target model. Second, we replace the heavy generic linear compressor with a lightweight gated residual reducer, whose parameters are inherited from the built-in hyper-connection head. This design yields input-aware path aggregation with three orders of magnitude fewer parameters while maintaining architectural alignment. We further enhance training via a targeted KL distillation loss applied to the LM-head, which regularizes predictions against the full target probability distribution and improves draft quality at early training stages. Experiments across math reasoning, code synthesis, and conversational benchmarks show that HyperDFlash consistently outperforms both the native MTP baseline and vanilla DFlash adaptation. It achieves substantial gains in average accepted draft length and decoding speedup, validating the effectiveness of MHC alignment, gated reduction, and targeted distillation for high-performance speculative decoding.",
+      "title": "HyperDFlash: Hyper-Connection-Aligned Block Speculative Decoding with Gated Residual Reduction",
+      "abstract": "We present HyperDFlash, a block-parallel speculative decoding framework tailored to DeepSeek-V4's Hyper-Connections (HC). Despite the strong performance of DeepSeek-V4's native Multi-Token Prediction (MTP) module on initial token drafting, its draft accuracy degrades sharply at later positions, as error accumulation from unverified intermediate tokens harms draft acceptance rates. Although the original DFlash method supports efficient one-pass block drafting, it cannot be seamlessly adapted to the HC paradigm, since DeepSeek-V4's multi-path residual stream induces inherent feature misalignment with conventional drafting designs. To resolve this architectural mismatch, we propose two dedicated, model-aligned optimizations for HC residual streams. First, we adopt pre-collapse residual states as the exclusive conditioning signal, preserving complete multi-path structural information and better aligning the drafter with the target's native prediction pathway. Second, we replace the heavy generic linear compressor with a lightweight gated residual reducer, whose parameters are directly inherited from the target model's built-in hc_head module. This design yields input-aware path aggregation with three orders of magnitude fewer parameters while maintaining precise architectural alignment. We further enhance model training via a targeted KL distillation loss applied to the LM-head, regularizing predictions against the target distribution to improve early draft quality. Extensive experiments across math reasoning, code synthesis, and conversational benchmarks demonstrate that HyperDFlash consistently outperforms both the native MTP baseline and vanilla DFlash adaptation, achieving substantial gains in average accepted draft length and decoding speedup. These results validate HC alignment, gated reduction, and targeted distillation for high-performance speculative decoding.",
       "authors": [
         "Luxi Lin",
         "Shuang Peng",
@@ -1314,8 +1360,8 @@
         "cs.CL"
       ],
       "published": "2026-06-25T08:31:53Z",
-      "updated": "2026-06-25T08:31:53Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.26744v1",
+      "updated": "2026-06-29T08:34:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.26744v2",
       "abs_url": "https://arxiv.org/abs/2606.26744",
       "topics": [
         "distillation"
@@ -1462,8 +1508,8 @@
         "cs.CV"
       ],
       "published": "2026-06-25T07:27:09Z",
-      "updated": "2026-06-25T07:27:09Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.26694v1",
+      "updated": "2026-06-28T04:16:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.26694v2",
       "abs_url": "https://arxiv.org/abs/2606.26694",
       "topics": [
         "world-model",
@@ -1699,8 +1745,8 @@
         "cs.CV"
       ],
       "published": "2026-06-25T01:40:10Z",
-      "updated": "2026-06-25T01:40:10Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.26515v1",
+      "updated": "2026-06-27T01:18:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.26515v2",
       "abs_url": "https://arxiv.org/abs/2606.26515",
       "topics": [
         "other"
