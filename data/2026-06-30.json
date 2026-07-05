@@ -1,6 +1,6 @@
 {
   "date": "2026-06-30",
-  "generated_at": "2026-07-02T05:21:31.096025+00:00",
+  "generated_at": "2026-07-05T05:37:59.566738+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -257,6 +257,33 @@
         "rl"
       ],
       "summary_zh": "罕见病诊断面临临床表型复杂、现有AI模型依赖预定义本体导致信息丢失及缺乏逻辑推理等挑战。RareDxR1通过端到端的推理中心化大语言模型，直接从非结构化临床记录中进行诊断，摆脱了对结构化表型和检索增强生成（RAG）的依赖。该模型利用知识内化与自主进化学习框架，结合Reflection-Enhanced Reasoning Sampling（RERS）策略，在无需人工标注的情况下模拟专家级诊断轨迹，并引入双层课程强化学习以提升诊断能力。实验结果表明，RareDxR1在多个基准测试中达到了SOTA水平，有效解决了罕见病诊断中信息碎片化与推理逻辑缺失的难题。"
+    },
+    {
+      "id": "2607.01272",
+      "title": "Benchmarking Federated Learning and Knowledge Distillation for Point Cloud Classification",
+      "abstract": "Deploying 3D point cloud analysis in privacy-sensitive, resource-constrained settings faces two barriers: data cannot be centralized, and models must run on limited edge hardware. We present a multi-seed benchmark jointly evaluating federated learning (FL) and knowledge distillation (KD) for 3D point cloud classification. It spans 13 FL algorithms and 10 KD objectives (a 130-pair cross-product) across 504 training runs, evaluated on ModelNet40 and a clinical craniosynostosis dataset. We report three findings. First, under extreme non-IID label skew, standalone FL degrades sharply: on ModelNet40, the strongest method reaches 76.32% against a 92.26% centralized reference; on clinical data, the best reaches 75.83% against 100%. Second, distillation successfully compresses the teacher into a student 74.51% smaller and roughly twice as fast at inference, often matching or surpassing the teacher. Third, the combined pipeline exposes an evaluation pitfall: when distillation keeps a hard-label cross-entropy term on a labeled proxy split, a collapsed federated teacher (8.50%) paired with Logit-MSE still yields a 92.94% student. This 84.4-point gap reflects the proxy labels rather than the federated model, reusing the very labels whose privacy motivated federation. Objectives without hard labels instead track teacher quality ($r \\approx 0.99$) and collapse when the teacher does. We therefore recommend evaluating FL-KD pipelines with label-free distillation so reported accuracy reflects the federated teacher, not the proxy.",
+      "authors": [
+        "Aizierjiang Aiersilan"
+      ],
+      "categories": [
+        "cs.GR",
+        "cs.AI",
+        "cs.CV",
+        "cs.DC",
+        "cs.LG"
+      ],
+      "published": "2026-06-30T20:12:27Z",
+      "updated": "2026-06-30T20:12:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01272v1",
+      "abs_url": "https://arxiv.org/abs/2607.01272",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01272",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对隐私敏感且资源受限的3D点云分析场景，该研究构建了一个包含13种联邦学习（FL）算法与10种知识蒸馏（KD）目标的综合基准，通过504次实验评估了其在ModelNet40及临床数据集上的表现。研究发现，在极端非独立同分布（non-IID）数据下，FL性能会显著下降，而KD能有效压缩模型并保持推理效率。实验揭示了一个关键评估陷阱：若蒸馏过程依赖带标签的代理集，即使联邦教师模型完全失效，学生模型仍能通过拟合代理标签获得高分，从而掩盖了FL的真实性能。因此，研究建议采用无标签蒸馏方法来评估FL-KD流水线，以确保指标真实反映联邦教师模型的质量。"
     },
     {
       "id": "2607.00095",
@@ -516,7 +543,6 @@
         "Chao Li",
         "Gaoxiang Liu",
         "Neil Wu",
-        "Zhongyin Hu",
         "Li Han",
         "Loki Chen",
         "Ming Lei",
@@ -539,6 +565,7 @@
         "Fei Tian",
         "Xiaohan Wei",
         "Chonglin Sun",
+        "Shuo Gu",
         "Parish Aggarwal",
         "Kaushik Rangadurai",
         "Zhi Hua",
@@ -562,8 +589,8 @@
         "cs.AI"
       ],
       "published": "2026-06-30T17:22:22Z",
-      "updated": "2026-06-30T17:22:22Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.31984v1",
+      "updated": "2026-07-01T23:39:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.31984v2",
       "abs_url": "https://arxiv.org/abs/2606.31984",
       "topics": [
         "other"
@@ -981,8 +1008,8 @@
     },
     {
       "id": "2606.31672",
-      "title": "WorldRoamBench: An Open-World Benchmark for Long-Horizon Stability of Interactive World Models",
-      "abstract": "Despite rapid progress in interactive world models (IWMs), existing benchmarks evaluate action following only at trajectory level and ignore memory and interaction physics. We introduce WorldRoamBench, an open-world benchmark for long-horizon stability across four dimensions, each with tailored innovations: (i) Action: per-frame action metric bypassing cross-model semantic scale disparity and exposing failures hidden by trajectory; (ii) Vision: segment-based drift metric capturing non-monotonic mid-sequence collapse missed by start-vs-end comparisons; (iii) Physics: controllability-gated evaluation over mechanics, optics, and 3D consistency, scoring plausibility under faithful action execution; (iv) Memory: action-decoupled protocol evaluating scene memory via transition-localized 3D point-cloud reconstruction and subject memory via tracking-plus-VLM reasoning. The benchmark comprises 600+ test cases across Nature, Urban, and Indoor scenes in first/third-person views with WASD 10-60s continuous interaction. Evaluating 10+ open/closed-source models reveals none reliably satisfies all dimensions; even the best achieves only moderate scores. Advances on WorldRoamBench are steps toward IWMs that are stable, physically grounded, memory-faithful, and deployable in real-world applications.",
+      "title": "WorldOdysseyBench: An Open-World Benchmark for Long-Horizon Stability of Interactive World Models",
+      "abstract": "Despite rapid progress in interactive world models (IWMs), existing benchmarks evaluate action following only at trajectory level and ignore memory and interaction physics. We introduce WorldOdysseyBench, an open-world benchmark for long-horizon stability across four dimensions, each with tailored innovations: (i) Action: per-frame action metric bypassing cross-model semantic scale disparity and exposing failures hidden by trajectory; (ii) Vision: segment-based drift metric capturing non-monotonic mid-sequence collapse missed by start-vs-end comparisons; (iii) Physics: controllability-gated evaluation over mechanics, optics, and 3D consistency, scoring plausibility under faithful action execution; (iv) Memory: action-decoupled protocol evaluating scene memory via transition-localized 3D point-cloud reconstruction and subject memory via tracking-plus-VLM reasoning. The benchmark comprises 600+ test cases across Nature, Urban, and Indoor scenes in first/third-person views with WASD 10-60s continuous interaction. Evaluating 10+ open/closed-source models reveals none reliably satisfies all dimensions; even the best achieves only moderate scores. Advances on WorldOdysseyBench are steps toward IWMs that are stable, physically grounded, memory-faithful, and deployable in real-world applications.",
       "authors": [
         "Ting-Bing Xu",
         "Jiacheng Sui",
@@ -996,6 +1023,7 @@
         "Fan Jiang",
         "Mu Xu",
         "Qi Fan",
+        "Yang Gao",
         "Yong Li",
         "Baoquan Chen"
       ],
@@ -1004,8 +1032,8 @@
         "cs.AI"
       ],
       "published": "2026-06-30T13:51:44Z",
-      "updated": "2026-06-30T13:51:44Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.31672v1",
+      "updated": "2026-07-02T13:17:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.31672v2",
       "abs_url": "https://arxiv.org/abs/2606.31672",
       "topics": [
         "world-model"
@@ -1036,8 +1064,8 @@
         "cs.CV"
       ],
       "published": "2026-06-30T13:33:48Z",
-      "updated": "2026-06-30T13:33:48Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.31654v1",
+      "updated": "2026-07-02T11:38:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.31654v2",
       "abs_url": "https://arxiv.org/abs/2606.31654",
       "topics": [
         "other"
@@ -1140,7 +1168,7 @@
     {
       "id": "2606.31612",
       "title": "What Memory Do GUI Agents Really Need? From Passive Records to Active Task-Driving States",
-      "abstract": "Mobile GUI agents increasingly face long-horizon tasks that require reading, updating, and reusing task-relevant data across pages and applications. Existing memory methods treat memory largely as passive storage, where past observations are accumulated and retrieved when needed. Yet retrieving a value does not reveal its current role in the workflow. The agent must still infer from accumulated records whether the value should be used now, has already been used, or must wait for a later dependency. This implicit reconstruction becomes unreliable in long trajectories with similar fields, repeated values, distractors, and outdated states, causing repeated or missed operations. We propose Active Task Driving Memory (ATMem), which shifts GUI-agent memory from passive storage to an actively maintained execution state. ATMem maintains task-relevant information as a continually updated execution state that links each value to its role and current status, enabling action selection based on the current workflow state. We therefore introduce \\textbf{STR-GRPO}, an online reinforcement learning method that learns to use ATMem selectively according to its contribution to task completion. STR-GRPO contrasts memory-on and memory-off rollouts to estimate when memory use improves execution, while memory-cost-aware reward discourages costly memory usage that does not improve execution. To evaluate whether agents can complete all in-scope work while avoiding out-of-scope actions over long-horizon execution, we build a challenging mobile benchmark. From a list of near identical entries, agents must act on every entry that satisfies the instruction and reject entries that violate its constraints.",
+      "abstract": "Mobile GUI agents increasingly face long-horizon tasks that require reading, updating, and reusing task-relevant data across pages and applications. Existing methods treat memory largely as passive storage, where past observations are accumulated and retrieved when needed. Yet retrieving a value does not reveal its current role in the workflow. The agent must still infer from accumulated records whether the value should be used now, has already been used, or must wait for a later dependency. This implicit reconstruction becomes unreliable in long trajectories with repeated values, distractors, and outdated states, causing repeated or missed operations. To address this, we propose Active Task Driving Memory (ATMem), which shifts GUI-agent memory from passive storage to an actively maintained execution state. ATMem maintains task-relevant information as a continually updated execution state that links each value to its role and current status, enabling action selection based on the current workflow state. While supervised fine-tuning enables the agent to construct ATMem, it does not teach when ATMem is beneficial. We therefore introduce STR-GRPO, an online reinforcement learning method that encourages selective use of ATMem based on its contribution to task completion. STR-GRPO contrasts memory-on and memory-off rollouts to estimate when memory use improves execution, while memory-cost-aware reward discourages costly memory usage that does not improve execution. To evaluate whether agents can complete all in-scope work while avoiding out-of-scope actions, we build a challenging mobile benchmark. From a list of near identical entries, agents must act on every entry that satisfies the instruction and reject entries that violate its constraints. We further introduce App-Level Progress and Scope-Aware F1 to measure these two dimensions separately.",
       "authors": [
         "Chen Liu",
         "Ling Chen",
@@ -1157,8 +1185,8 @@
         "cs.CV"
       ],
       "published": "2026-06-30T13:01:19Z",
-      "updated": "2026-06-30T13:01:19Z",
-      "pdf_url": "https://arxiv.org/pdf/2606.31612v1",
+      "updated": "2026-07-02T06:42:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2606.31612v2",
       "abs_url": "https://arxiv.org/abs/2606.31612",
       "topics": [
         "rl"
@@ -1793,8 +1821,8 @@
         "cs.NI"
       ],
       "published": "2026-06-30T07:43:28Z",
-      "updated": "2026-06-30T07:43:28Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.00056v1",
+      "updated": "2026-07-02T07:49:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.00056v2",
       "abs_url": "https://arxiv.org/abs/2607.00056",
       "topics": [
         "other"

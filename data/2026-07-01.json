@@ -1,6 +1,6 @@
 {
   "date": "2026-07-01",
-  "generated_at": "2026-07-02T05:21:31.093760+00:00",
+  "generated_at": "2026-07-05T05:37:59.563991+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,305 @@
   },
   "papers": [
     {
+      "id": "2607.01537",
+      "title": "Certified World Models as Sensing Clocks: Drift-Aware Deadlines for Active Perception",
+      "abstract": "Certified world models estimate how long their predictions remain valid. We turn this validity horizon into an operational sensing clock: a rule for when an agent should stop coasting and re-sense. Starting from an audited equivariant world model, we derive a deadline for no-sensing intervals and show that deployable deadlines in learned world models must be drift-aware: on-manifold Lyapunov rates alone overestimate coasting validity, while calibrated native rollout-drift envelopes carry the deployed guarantee. On a frozen 3D VN-JEPA model, the resulting clock controls held-out interval-simultaneous certificate violation across seeds and data shards. In a cue-conditioned theorem-bed (a synthetic bench where all schedulers share the exact model, isolating the scheduling rule), the clock remains valid on the deployment distribution and substantially reduces eventful-tail violations relative to exact-mixture expected-belief scheduling at matched sensing budget. We also report limits: in the short-horizon frozen VN-JEPA regime, empirical conformal horizons match the deployed clock on validity and budget, and a partial-reset exploration finds no clean budget-matched advantage for the spectral term. Thus the contribution is a certified sensing-clock primitive and drift-aware deployment method, not a claim that spectral clocks empirically dominate all non-spectral schedulers.",
+      "authors": [
+        "Hongbo Wang"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-01T23:36:49Z",
+      "updated": "2026-07-01T23:36:49Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01537v1",
+      "abs_url": "https://arxiv.org/abs/2607.01537",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01537",
+      "summary_zh": "该研究针对主动感知中预测模型有效性难以量化的问题，提出了一种基于认证世界模型（Certified World Models）的感知时钟机制，用于动态决定智能体何时停止预测并重新感知环境。核心创新在于引入了漂移感知（Drift-Aware）的截止时间计算方法，证明了仅依赖流形上的Lyapunov速率会高估预测有效性，必须结合校准后的原生滚动漂移包络（Rollout-drift envelopes）才能提供可靠的部署保证。在3D VN-JEPA模型及合成基准测试中，该方法能有效控制证书违规率，并在匹配感知预算的前提下，显著降低了长尾事件的预测失效风险。实验结果表明，该机制提供了一种可认证的感知调度原语，为实现更稳健的主动感知系统提供了理论支撑与部署策略。"
+    },
+    {
+      "id": "2607.01531",
+      "title": "OPINE-World: Programmatic World Modeling with Ontology-error-Prioritized Interactive Exploration",
+      "abstract": "Learning how an environment behaves from interaction is central to building agents that adapt to unfamiliar tasks. World models learned with deep networks are flexible but data-hungry and transfer poorly beyond their training distribution. Program-synthesized world models, written as source code by LLMs and refined through counterexample-guided inductive synthesis (CEGIS), are instead data-efficient and reusable, yet they have been demonstrated mainly on structured-state worlds with a given object vocabulary, and a single program search does not scale to pixel-rendered environments whose object structure must be hypothesized flexibly. We introduce OPINE-World, an LLM agent that learns an object-centric programmatic world model online from interaction. OPINE-World couples two cooperating agents in a loop of hypothesis and test, one acting in the environment and one synthesizing the model in code with replay verification and model-based planning, and it steers exploration with a Bayesian measure of object-type adequacy we call ontology error. We evaluate OPINE-World on ARC-AGI-3, a benchmark for skill-acquisition efficiency in which the object vocabulary, the goal, and the action semantics are withheld. OPINE-World solves 20 of 25 games without per-game training and reaches an action-efficiency score of 78.4 against the human baseline.",
+      "authors": [
+        "David Courtis",
+        "Wenhao Li",
+        "Scott Sanner"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-01T23:04:47Z",
+      "updated": "2026-07-01T23:04:47Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01531v1",
+      "abs_url": "https://arxiv.org/abs/2607.01531",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01531",
+      "summary_zh": "针对复杂环境中世界模型学习数据需求大且泛化能力差的问题，OPINE-World 提出了一种基于程序合成的在线学习框架。该方法利用 LLM 将环境行为编码为程序，并通过 CEGIS 机制进行迭代优化，创新性地引入 ontology error 作为贝叶斯度量指标，引导智能体在交互中动态修正对物体结构及环境语义的假设。在 ARC-AGI-3 基准测试中，该模型无需针对特定任务进行预训练，即可在 25 个游戏任务中成功解决 20 个，并达到 78.4 的动作效率得分，展现了极高的数据效率与跨任务泛化能力。"
+    },
+    {
+      "id": "2607.01528",
+      "title": "Wind-Aware Reinforcement Learning Control of a Small Quadrotor Using Learned Onboard Wind Estimation in Simulated Atmospheric Turbulence",
+      "abstract": "Small multirotor aircraft are increasingly tasked with operations in the atmospheric boundary layer, where turbulent winds comparable to the vehicle's airspeed degrade trajectory tracking and can defeat conventional feedback control. This work illustrates a two-stage learning pipeline that first estimates the local wind from onboard kinematics and dynamics and then exploits that estimate inside a reinforcement learning (RL) flight controller. The wind estimator, an attention-augmented gated recurrent network trained on thousands of simulated flights through von Karman turbulence with power-law shear and veer, recovers the horizontal wind vector with a per-flight root-mean-square error of 0.40 m/s and a direction error of 3.2 degrees on unseen wind regimes, an accuracy near the floor imposed by unresolved turbulence, and generalizes to vertical ascent profiles with a skill score of 0.861 over a constant-wind reference. A proximal policy optimization controller receiving the frozen estimator's output reduces horizontal trajectory tracking error by 48% relative to a wind-blind proportional-derivative baseline across mean winds of 4 m/s to 12 m/s, winning on 100% of evaluation episodes. A three-way ablation decomposes this improvement into a kinematic component, available without wind information, and a wind-perception component; the perception share rises with wind speed, from small in light winds toward roughly half the total benefit in strong winds, consistent with the quadratic scaling of aerodynamic drag. The controller degrades gracefully on out-of-distribution winds of 13 m/s to 15 m/s, where the baseline fails catastrophically.",
+      "authors": [
+        "Abdullah Al Tasim",
+        "Wei Sun"
+      ],
+      "categories": [
+        "cs.LG",
+        "eess.SY"
+      ],
+      "published": "2026-07-01T22:59:18Z",
+      "updated": "2026-07-01T22:59:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01528v1",
+      "abs_url": "https://arxiv.org/abs/2607.01528",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01528",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对小型多旋翼无人机在复杂大气湍流中轨迹跟踪精度下降的问题，该研究提出了一种两阶段学习框架，通过结合机载运动学与动力学数据实现风场感知，并将其集成至强化学习（RL）控制器中。核心创新在于利用注意力增强的门控循环网络（Attention-augmented GRN）在模拟的 von Karman 湍流中训练，实现了对水平风矢量的高精度实时估计。实验结果表明，该方案在 4 m/s 至 12 m/s 的风速环境下，通过 Proximal Policy Optimization（PPO）算法将水平轨迹跟踪误差降低了 48%，且在强风条件下表现出优于传统比例微分（PD）控制器的鲁棒性。消融实验进一步证实，风场感知组件的贡献随风速增加而显著提升，有效解决了气动阻力带来的控制难题。"
+    },
+    {
+      "id": "2607.01525",
+      "title": "Mean Field Reinforcement Learning",
+      "abstract": "This monograph provides an introduction to mean field reinforcement learning through the lens of Markov decision processes arising from large-population stochastic control with mean field interactions and common noise. Starting from the connection between multi-agent reinforcement learning and mean field control, it develops the probabilistic, mathematical, and control-theoretic framework needed to formulate representative-agent learning problems, analyze their relationship with finite-population systems, and study both general and linear-quadratic models. The presentation includes dynamic programming principles, propagation-of-chaos limits, and theoretical analyses of tabular Q-learning and policy-gradient methods. It also discusses numerical implementations, including tabular schemes and deep reinforcement learning methods such as deep deterministic policy gradient. The goal is to give readers a coherent bridge between mean field control theory and reinforcement learning methodology, emphasizing the mathematical structure of the problems and the design of tractable learning approaches for large stochastic populations.",
+      "authors": [
+        "René Carmona",
+        "Mathieu Laurière"
+      ],
+      "categories": [
+        "math.OC",
+        "cs.LG",
+        "cs.MA",
+        "math.PR"
+      ],
+      "published": "2026-07-01T22:44:24Z",
+      "updated": "2026-07-01T22:44:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01525v1",
+      "abs_url": "https://arxiv.org/abs/2607.01525",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01525",
+      "summary_zh": "该研究聚焦于大规模多智能体系统中的强化学习难题，通过引入平均场（Mean Field）理论，将复杂的多智能体交互简化为代表性智能体与平均场分布的相互作用。论文构建了涵盖马尔可夫决策过程、动态规划原理及混沌传播（Propagation-of-chaos）极限的数学框架，系统性地分析了表格型 Q-learning 和策略梯度（Policy-gradient）算法的理论收敛性。此外，研究还探讨了从线性二次型模型到深度确定性策略梯度（DDPG）等深度强化学习方法的数值实现路径。该工作成功架起了平均场控制理论与强化学习方法论之间的桥梁，为解决大规模随机群体中的决策优化问题提供了严谨的理论支撑与可行的算法设计思路。"
+    },
+    {
+      "id": "2607.01499",
+      "title": "Anti-Prompt: Image Protection against Text-Guided Image-to-Video Generation",
+      "abstract": "Recent advances in Image-to-Video generation allow a single image to be animated into a convincing video under text guidance, raising serious copyright and privacy risks. We propose Anti-Prompt, an image protection approach that injects imperceptible perturbations into an image, inducing visible inconsistencies and structural failures in text-guided I2V generation. Our method is motivated by a simple empirical observation. When text guidance is removed from modern I2V models, generation quality degrades markedly, not only in motion realism but also in subject preservation, structural coherence, and temporal consistency. Building on this insight, Anti-Prompt exploits the model reliance on textual guidance by attenuating text-conditioned interactions during denoising while strengthening visual-only pathways. To further systematically evaluate protection effectiveness, we introduce a Video-LLM-assisted evaluation protocol that provides interpretable, frame-grounded analyses of generation artifacts and inconsistencies. Experiments on two representative I2V architectures demonstrate that our method achieves strong protection performance while improving efficiency and cross-model transferability.",
+      "authors": [
+        "Yeonghwan Song",
+        "Chanhui Lee",
+        "Jinsoo Park",
+        "Jeany Son"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-01T22:00:18Z",
+      "updated": "2026-07-01T22:00:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01499v1",
+      "abs_url": "https://arxiv.org/abs/2607.01499",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01499",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "针对文本引导的图像转视频（I2V）生成带来的版权与隐私风险，Anti-Prompt 通过向原图注入人眼不可见的扰动，诱导生成模型在处理时产生严重的视觉不一致与结构崩坏。该方法基于模型对文本引导的高度依赖性，通过在去噪过程中削弱文本条件交互并强化纯视觉路径，从而破坏生成质量。此外，研究引入了基于 Video-LLM 的评估协议，能够对生成伪影进行可解释的帧级分析。在主流 I2V 架构上的实验表明，该方案在实现高效保护的同时，具备出色的跨模型迁移能力。"
+    },
+    {
+      "id": "2607.01490",
+      "title": "Don't Let Gains FADE: Breaking Down Policy Gradient Weights in RL",
+      "abstract": "Reinforcement learning post-training dramatically improves LLM reasoning, but suffers from training instability and diversity collapse. Advantage functions offer an appealing fix: they reshape the training objective, reweight which rollouts drive learning, and are trivial to implement. Yet a proliferation of methods makes it unclear which advantage to use and when. We cut through the confusion with a unifying framework that decomposes any advantage into its positive and negative gradient mass along two orthogonal axes. On the sign axis, imbalanced updates collapse either entropy or weight geometry. On the difficulty axis, hard-problem focus sharpens signal but costs sample size. Both trade-offs shift during training: exploration favors balance and hard focus; exploitation favors suppression and medium focus. This motivates FADE (Focal Advantage with Dynamic Entropy), a self-adapting advantage that reads training dynamics to schedule the gradient weight automatically. FADE reaches peak pass@1 20k steps earlier than the best static baseline at the 7B scale and 2k steps earlier at the 32B , while achieving the best accuracy-diversity trade-off across all pass@k on LiveCodeBench and AIME.",
+      "authors": [
+        "Juliette Decugis",
+        "Sean O'Brien",
+        "Francis Bach",
+        "Gabriel Synnaeve",
+        "Taco Cohen"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-01T21:39:19Z",
+      "updated": "2026-07-01T21:39:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01490v1",
+      "abs_url": "https://arxiv.org/abs/2607.01490",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01490",
+      "summary_zh": "强化学习在提升大语言模型推理能力时常面临训练不稳定和多样性崩塌的问题，现有各类优势函数（Advantage functions）缺乏统一的评估标准。该研究提出了一种统一框架，将优势函数分解为符号轴和难度轴两个正交维度，揭示了不同训练阶段对探索与利用的动态需求。基于此，引入了自适应优势函数 FADE（Focal Advantage with Dynamic Entropy），通过实时监测训练动态自动调度梯度权重。实验表明，FADE 在 7B 和 32B 规模模型上均显著加快了收敛速度，并在 LiveCodeBench 和 AIME 等基准测试中实现了准确率与多样性的最优平衡。"
+    },
+    {
+      "id": "2607.01480",
+      "title": "Procedural Memory Distillation: Online Reflection for Self-Improving Language Models",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR), along with recent selfdistillation variants such as SDPO, evaluates each rollout against a verifier and updates the policy from that episode-level signal. However, the richer procedural information in the rollout is rarely retained or reused. Across episodes and epochs, the model repeatedly encounters related problems under a changing policy, producing cross-episode signals that episode-local updates cannot capture: which strategies consistently pass verification, which failure modes persist, which patterns recur. We propose Procedural Memory Distillation (PMD), which converts these crossepisode signals into reusable procedural memory and distills it into the policy's weights during training. This memory functions as a training scaffold, absorbed into the policy itself, yielding a memory-free model at inference. PMD organizes the memory at three levels of abstraction: raw trajectories, self-reflected strategies and lessons, and higher-level behavioral patterns that recur across problems, all extracted online from the model's own trajectories. A memory-conditioned self-teacher draws on the accumulated experience to supervise the student on its own rollouts, enabling student to progressively internalize procedural knowledge within its parameters. The central design principle is co-evolution: the policy generates rollouts that update the memory, and memory shapes the supervision that updates the policy. Empirically, across Qwen3-8B and OLMo3-Instruct-7B, PMD improves over SDPO by 3.8-5.5% on SCIKNOWEVAL and 7.9-13.6% on LIVECODEBENCH. Co-evolution powers these gains: freezing either the memory or the policy trails PMD by more than 10% across SCIKNOWEVAL domains.",
+      "authors": [
+        "Ye Liu",
+        "Srijan Bansal",
+        "Bo Pang",
+        "Yang Li",
+        "Zeyu Leo Liu",
+        "Yifei Ming",
+        "Zixuan Ke",
+        "Shafiq Joty",
+        "Semih Yavuz"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-01T21:20:57Z",
+      "updated": "2026-07-01T21:20:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01480v1",
+      "abs_url": "https://arxiv.org/abs/2607.01480",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01480",
+      "summary_zh": "针对现有强化学习方法（如 RLVR 和 SDPO）仅利用单次轨迹反馈而忽略跨回合经验积累的问题，Procedural Memory Distillation (PMD) 提出了一种在线反射机制。该方法通过将原始轨迹、自我反思策略及高层行为模式转化为可复用的程序化记忆，构建了一个记忆条件化的自教师模型，在训练过程中通过策略与记忆的协同进化（Co-evolution）引导模型不断内化知识。这种机制将记忆作为训练脚手架融入模型参数，实现了推理阶段的无记忆运行。在 Qwen3-8B 和 OLMo3-Instruct-7B 模型上的实验表明，PMD 在 SCIKNOWEVAL 和 LIVECODEBENCH 基准测试中显著优于 SDPO，且协同进化机制对性能提升至关重要。"
+    },
+    {
+      "id": "2607.01465",
+      "title": "Beyond Next-Token Prediction: An RLVR Proof of Concept for Tool-Use Agents on Atlassian Workflows",
+      "abstract": "Large language models are trained to predict the next token, not to act inside a specific API. In niche enterprise SaaS workflows -- where success means hitting the right endpoint with the right nested arguments in the right order -- this objective mismatch shows up as silent failures: dropped required fields, hallucinated tools, or early stops after a single read. We ask whether Reinforcement Learning with Verifiable Rewards (RLVR), applied directly in the target environment, closes the gap. As a proof of concept we build a suite of five synthetic environments emulating the Jira REST v3 and Confluence v2 APIs at schema fidelity; rewards are computed entirely from the tool-call trace, with no live API, no learned judge, and no human label in the loop. Scoring prompted Qwen3-1.7B and Qwen3.5-4B on the same checkers that drive GRPO training, we find that on the four scenarios whose rewards are non-degenerate the RL-trained policy lifts average reward from a 4B-baseline range of 0.35--0.92 to 0.95--1.00, with the largest single gain on Confluence page creation ($0.35 \\rightarrow 1.00$). We position this as a preliminary step toward outcome-optimised small models for niche enterprise APIs, and foreground two limitations a workshop reader should weigh: hand-crafting verifiable rewards does not scale beyond the handful of endpoints reported here, and one of our five scenarios (ticket-transition) has a saturating reward shape that the prompted 4B already maxes out.",
+      "authors": [
+        "Karthikeya Aditya Vissa",
+        "Sankalp Mane",
+        "Ananya Mantravadi",
+        "Harshit Rajgarhia",
+        "Abhishek Mukherji"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-01T20:55:07Z",
+      "updated": "2026-07-01T20:55:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01465v1",
+      "abs_url": "https://arxiv.org/abs/2607.01465",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01465",
+      "summary_zh": "针对大语言模型在企业级 SaaS API 调用中因仅依赖 Next-Token Prediction 导致的任务失败问题，本研究引入 Reinforcement Learning with Verifiable Rewards (RLVR) 框架，通过在模拟 Jira 和 Confluence 的高保真环境中进行训练，直接优化工具调用轨迹的执行结果。该方法无需人工标注或学习型判别器，仅利用环境反馈的 Verifiable Rewards 即可引导模型。实验显示，在 Qwen3-1.7B 和 Qwen3.5-4B 模型上，RL 训练显著提升了复杂 API 操作的成功率，其中 Confluence 页面创建任务的奖励从 0.35 跃升至 1.00。该工作证明了 RLVR 在提升小型模型处理特定领域 API 任务时的有效性，同时也指出手动构建奖励函数在扩展性方面仍面临挑战。"
+    },
+    {
+      "id": "2607.01440",
+      "title": "FaithMed: Training LLMs For Faithful Evidence-Based Medical Reasoning",
+      "abstract": "Faithful reasoning is essential in medicine, where clinical decisions require transparent justification grounded in reliable evidence. Current medical LLMs either lack active access to evidence or use retrieved evidence without supervising how it should be appraised and applied during reasoning. To address this, we formalize evidence-based medicine principles as process-level criteria and introduce FaithMed, a framework that combines clinician-designed, automatically refined rubrics with reinforcement learning using step-level process reward assignment and advantage grouping. Across seven medical benchmarks, FaithMed improves over agentic-search baselines (+9% on average) and outcome-only RL (+5.8%), while raising average evidence-based medicine rubric scores over agentic-search Qwen3 baselines (+15.5%). This work demonstrates that explicit step-level supervision can improve both task success and the faithfulness of the reasoning process. Code is available at https://github.com/cxcscmu/FaithMed.",
+      "authors": [
+        "Zhiyun Zhang",
+        "Liwen Sun",
+        "Xiang Qian",
+        "Chenyan Xiong"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-01T20:02:55Z",
+      "updated": "2026-07-01T20:02:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01440v1",
+      "abs_url": "https://arxiv.org/abs/2607.01440",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01440",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "医疗领域对临床决策的透明度与证据可靠性要求极高，但现有模型往往缺乏证据获取能力或无法有效评估证据的应用过程。FaithMed 框架通过将循证医学原则形式化为过程级标准，结合临床医生设计的自动优化准则，利用步级过程奖励分配与优势分组技术进行强化学习训练。该方法不仅显著提升了模型在七个医疗 benchmark 上的任务成功率，还大幅提高了推理过程的循证一致性得分。实验结果表明，显式的步级监督能够有效增强 LLMs 在医疗推理中的逻辑透明度与证据忠实度，优于传统的智能体搜索及仅基于结果的强化学习方法。"
+    },
+    {
+      "id": "2607.01415",
+      "title": "The Rollout Infrastructure Tax in Coding-Agent Reinforcement Learning",
+      "abstract": "Coding-agent reinforcement learning treats execution infrastructure as a background implementation detail, despite relying on large numbers of interactive software rollouts. This is a missed opportunity: measuring infrastructure overhead can reveal practical efficiency gains for RL post-training, where small per-rollout savings compound at scale. We present a comparative study of four execution substrates: single containers, hosted sandboxes, Kubernetes-orchestrated containers, and cloud virtual machines. We find up to $110\\times$ variation in cold-start latency and a $1.8\\times$ spread in projected worker-hours for one million 150-step trajectories. Our results suggest that future coding-agent RL systems should optimize execution substrates as part of the training system itself, not merely as deployment plumbing.",
+      "authors": [
+        "Daniel Thi Graviet",
+        "Lovre Pesut",
+        "Ivan Dagelic",
+        "Vedran Jukic",
+        "Ivan Burazin"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.DC"
+      ],
+      "published": "2026-07-01T19:20:46Z",
+      "updated": "2026-07-01T19:20:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01415v1",
+      "abs_url": "https://arxiv.org/abs/2607.01415",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01415",
+      "summary_zh": "编码智能体强化学习（Coding-agent RL）高度依赖大规模交互式软件执行，但现有研究常忽略执行基础设施带来的性能开销。本研究对比了单容器、托管沙箱、Kubernetes 编排容器及云虚拟机四种执行基底，发现不同方案在冷启动延迟上存在高达 110 倍的差异，且在处理百万级轨迹任务时，预计工时消耗差距可达 1.8 倍。实验结果表明，执行基底的效率直接影响强化学习后训练的整体效能。因此，未来的编码智能体系统应将执行基础设施视为训练系统核心组件进行优化，而非仅仅将其作为部署层面的辅助工具。"
+    },
+    {
+      "id": "2607.01394",
+      "title": "The Wiola Architecture for Efficient Small Language Models",
+      "abstract": "We present Wiola, a fully original Small Language Model (SLM) architecture built from first principles, sharing no structural lineage with any existing model family including GPT, LLaMA, Mistral, or Falcon. Wiola introduces five independently novel components: (i) Spiral Rotary Positional Encoding (SRPE), which embeds token positions on a three-dimensional helical manifold combining absolute, relative, and hierarchical positional signals; (ii) Gated Cross-Layer Attention (GCLA), providing each decoder layer with soft cross-attention access to compressed summaries of two preceding layers for inter-layer coherence; (iii) Adaptive Token Merging (ATM), which dynamically merges se mantically redundant adjacent tokens in middle network layers to reduce attention complexity without information loss; (iv) Dual Stream Feed-Forward (DSFF), replacing the conventional MLP with two parallel streams fused by a learned per-dimension gate; and (v) WiolaRMSNorm, a modified normalisation introducing a per-dimension learned offset vector that prevents representation collapse. We provide complete mathematical derivations, architectural block diagrams, complexity analyses, and systematic comparisons against GPT-2, LLaMA-2, and Mistral. Wiola is released in four sizes (120M, 360M, 700M, and 1.5B parameters) and is fully compatible with the HuggingFace Transformers ecosystem, with all 22 architectural unit tests passing.",
+      "authors": [
+        "Aryuemaan Kumar Chowdhury",
+        "Afreen Shaik",
+        "Yaparla Bhargavi",
+        "Brahma Kumar"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-01T18:52:56Z",
+      "updated": "2026-07-01T18:52:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01394v1",
+      "abs_url": "https://arxiv.org/abs/2607.01394",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01394",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "Wiola 是一种全新的小型语言模型（SLM）架构，旨在通过从零设计的五大创新组件提升模型效率与性能。该架构引入了 Spiral Rotary Positional Encoding（SRPE）以实现多维位置编码，利用 Gated Cross-Layer Attention（GCLA）增强层间相干性，并通过 Adaptive Token Merging（ATM）动态合并冗余 token 以降低计算复杂度。此外，Dual Stream Feed-Forward（DSFF）与 WiolaRMSNorm 进一步优化了特征表示并防止了模型坍塌。实验表明，Wiola 在 120M 到 1.5B 参数规模下均表现出色，在与 GPT-2、LLaMA-2 和 Mistral 等主流架构的对比中展现了显著的效率优势，并已完全兼容 HuggingFace Transformers 生态系统。"
+    },
+    {
+      "id": "2607.01392",
+      "title": "Multi-Objective Exploration and Preference Optimization via Mutual Information",
+      "abstract": "Aligning large language models with diverse and heterogeneous human values requires multi-objective alignment methods to effectively trade off conflicting preference dimensions. Current methods achieve this trade-off by training policies conditioned on preference vectors and leveraging online direct preference optimization. However, exploration uncertainty can cause the reward distributions of responses generated under different preference vectors to overlap, and the generated responses may fail to effectively align with the corresponding preference vectors. In this paper, we propose Multi-Objective Exploration and Preference Optimization via Mutual Information (MI-EPO), an information-theoretic framework. It unifies multi-objective exploration and alignment by maximizing the joint conditional mutual information among generated responses, preference feedback, and preference vectors. By incorporating a probabilistic routing mechanism, MI-EPO naturally decomposes objective alignment and preference-aware exploration, encouraging the model to generate responses that are distinguishable and aligned with different preference conditions. Experiments on safe alignment and helpful assistant tasks show that MI-EPO significantly improves the alignment between generated responses and preference vectors, makes the outputs more controllable, and achieves stable trade-offs across multiple objectives.",
+      "authors": [
+        "Hongyan Xie",
+        "Yikun Ban",
+        "Ruiyu Fang",
+        "Zixuang Huang",
+        "Deqing Wang",
+        "Jianxin Li",
+        "Shuangyong Song"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-01T18:50:14Z",
+      "updated": "2026-07-01T18:50:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01392v1",
+      "abs_url": "https://arxiv.org/abs/2607.01392",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01392",
+      "summary_zh": "针对大语言模型在多目标对齐中因奖励分布重叠而导致的偏好控制失效问题，MI-EPO 框架通过最大化生成响应、偏好反馈与偏好向量之间的联合条件互信息，实现了多目标探索与偏好优化的统一。该方法引入概率路由机制，有效解耦了目标对齐与偏好感知探索，促使模型生成具有区分度且符合特定偏好条件的响应。在安全对齐与有用助手任务上的实验表明，MI-EPO 显著提升了输出的可控性，并在多个冲突目标之间实现了更稳定、精准的权衡。"
+    },
+    {
       "id": "2607.01232",
       "title": "Is One Layer Enough? Training A Single Transformer Layer Can Match Full-Parameter RL Training",
       "abstract": "Reinforcement learning (RL) has become a central component of post-training large language models (LLMs), yet little is understood about how RL adaptation is distributed across transformer layers. Existing approaches typically update all model parameters uniformly, implicitly assuming that every layer contributes similarly to the gains obtained during RL post-training. In this work, we challenge this assumption through a systematic layer-wise study of RL training. Surprisingly, we find that training a single transformer layer can recover most of the gains achieved by full-parameter RL training, and in some cases even surpass it. To quantify this phenomenon, we introduce the quantity layer contribution, which measures the fraction of full RL improvement recovered by training a layer in isolation. Across seven models spanning two model families (Qwen3, Qwen2.5), three RL algorithms (GRPO, GiGPO, Dr. GRPO), and multiple task domains including mathematical reasoning, code generation, and agentic decision-making, we observe a remarkably stable pattern: RL gains are highly concentrated in a small subset of, and in many cases even a single, transformer layers. More strikingly, the same structural pattern consistently emerges: high-contribution layers concentrate in the middle of the transformer stack, while layers near the input and output ends contribute substantially less. The resulting layer rankings remain strongly correlated across datasets, tasks, model families, and RL algorithms.",
@@ -46,15 +345,14 @@
         "cs.CL"
       ],
       "published": "2026-07-01T17:59:54Z",
-      "updated": "2026-07-01T17:59:54Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.01232v1",
+      "updated": "2026-07-02T17:28:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01232v2",
       "abs_url": "https://arxiv.org/abs/2607.01232",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01232",
-      "summary_zh": "针对大语言模型强化学习（RL）中全参数微调效率低的问题，本研究通过系统性的层级分析，揭示了RL增益在Transformer各层间的分布极不均匀。实验发现，仅训练模型中间层的单一Transformer层，即可恢复甚至超越全参数RL训练的大部分性能提升，这一现象在Qwen3和Qwen2.5等模型及GRPO等多种算法中表现出高度的一致性。研究引入“层贡献度”（layer contribution）指标，量化发现高贡献层稳定集中在模型中部，而输入和输出端层级的贡献显著较低。该发现不仅挑战了全参数训练的必要性，还为高效的参数高效微调（PEFT）策略提供了重要的结构化指导。",
-      "impact_score": null
+      "summary_zh": "针对大语言模型强化学习（RL）中全参数微调效率低的问题，本研究通过系统性的层级分析，揭示了RL增益在Transformer各层间的分布极不均匀。实验发现，仅训练模型中间层的单一Transformer层，即可恢复甚至超越全参数RL训练的大部分性能提升，这一现象在Qwen3和Qwen2.5等模型及GRPO等多种算法中表现出高度的一致性。研究引入“层贡献度”（layer contribution）指标，量化发现高贡献层稳定集中在模型中部，而输入和输出端层级的贡献显著较低。该发现不仅挑战了全参数训练的必要性，还为高效的参数高效微调（PEFT）策略提供了重要的结构化指导。"
     },
     {
       "id": "2607.01225",
@@ -80,8 +378,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01225",
-      "summary_zh": "针对从次优演示中学习模仿策略时，现有方法依赖标量信号导致反馈信息丢失的问题，本研究提出了一种基于语言反馈的模仿学习框架。该方法通过自然语言描述任务进度、识别错误行为并提供细粒度修正指导，构建了结构化的监督信号，并引入了语言评论损失（language-critique loss）直接训练策略，避免了将反馈压缩为标量。研究将此方法应用于行为克隆（Behavior Cloning）和扩散策略（Diffusion Policies），衍生出 LC-BC 和 LC-DP 模型，并在理论上证明了该目标函数能有效约束专家性能差距。在导航、操作及游戏等多项连续控制任务的实验中，该方法均显著优于现有的模仿学习及离线强化学习基线，证明了自然语言作为结构化监督信号在处理次优数据时的强大表现力。",
-      "impact_score": null
+      "summary_zh": "针对从次优演示中学习模仿策略时，现有方法依赖标量信号导致反馈信息丢失的问题，本研究提出了一种基于语言反馈的模仿学习框架。该方法通过自然语言描述任务进度、识别错误行为并提供细粒度修正指导，构建了结构化的监督信号，并引入了语言评论损失（language-critique loss）直接训练策略，避免了将反馈压缩为标量。研究将此方法应用于行为克隆（Behavior Cloning）和扩散策略（Diffusion Policies），衍生出 LC-BC 和 LC-DP 模型，并在理论上证明了该目标函数能有效约束专家性能差距。在导航、操作及游戏等多项连续控制任务的实验中，该方法均显著优于现有的模仿学习及离线强化学习基线，证明了自然语言作为结构化监督信号在处理次优数据时的强大表现力。"
     },
     {
       "id": "2607.01222",
@@ -108,8 +405,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01222",
-      "summary_zh": "Ink3D 旨在解决现有 3D 生成模型难以还原复杂表面纹理的问题，通过将 3D 生成与大规模视频生成模型相结合，实现了高保真纹理合成。该框架首先利用通用 3D 生成模型构建基础几何，随后引入条件视频生成模型 OrbitPainter 生成多视角轨道扫描视频，以获取丰富的视觉细节。核心创新点在于 TextureOptimizer 神经烘焙模块，它通过整合密集的多视角观测并校正视频生成中的几何不一致性，有效解耦了几何与纹理的生成过程。实验表明，该方法能够生成比现有技术更复杂、更具一致性的 3D 资产纹理，显著提升了生成质量。",
-      "impact_score": null
+      "summary_zh": "Ink3D 旨在解决现有 3D 生成模型难以还原复杂表面纹理的问题，通过将 3D 生成与大规模视频生成模型相结合，实现了高保真纹理合成。该框架首先利用通用 3D 生成模型构建基础几何，随后引入条件视频生成模型 OrbitPainter 生成多视角轨道扫描视频，以获取丰富的视觉细节。核心创新点在于 TextureOptimizer 神经烘焙模块，它通过整合密集的多视角观测并校正视频生成中的几何不一致性，有效解耦了几何与纹理的生成过程。实验表明，该方法能够生成比现有技术更复杂、更具一致性的 3D 资产纹理，显著提升了生成质量。"
     },
     {
       "id": "2607.01208",
@@ -171,8 +467,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01202",
-      "summary_zh": "World from Motion 旨在解决单目视频在动态 3D 重建中存在的遮挡缺失和渲染伪影问题。该方法通过训练一个生成式视频模型，利用像素对齐的渲染图作为条件，对场景的外观、几何结构及 3D 运动进行补全与修正。核心创新在于构建了包含多视角视频对与动态 3DGS 的训练数据集，并在推理阶段将生成结果蒸馏回单一且一致的动态 3DGS 表示中。实验表明，该方法在 4D 重建任务中达到了新的 State-of-the-art 水平，能够有效处理具有大幅视角变化和复杂动态运动的真实场景，显著提升了新视角合成的质量与 3D 运动的准确性。",
-      "impact_score": null
+      "summary_zh": "World from Motion 旨在解决单目视频在动态 3D 重建中存在的遮挡缺失和渲染伪影问题。该方法通过训练一个生成式视频模型，利用像素对齐的渲染图作为条件，对场景的外观、几何结构及 3D 运动进行补全与修正。核心创新在于构建了包含多视角视频对与动态 3DGS 的训练数据集，并在推理阶段将生成结果蒸馏回单一且一致的动态 3DGS 表示中。实验表明，该方法在 4D 重建任务中达到了新的 State-of-the-art 水平，能够有效处理具有大幅视角变化和复杂动态运动的真实场景，显著提升了新视角合成的质量与 3D 运动的准确性。"
     },
     {
       "id": "2607.01191",
@@ -205,8 +500,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01191",
-      "summary_zh": "针对细粒度视觉推理中关键视觉线索易被高分辨率图像淹没的问题，Perceive-to-Reason (P2R) 框架将任务解耦为感知与推理两个阶段：模型首先作为 Perceiver 定位问题相关的局部证据，随后作为 Reasoner 基于原始图像及裁剪区域进行推理。为优化训练过程，引入了 Perception-Reasoning Alternating GRPO (PRA-GRPO) 策略，通过角色感知的强化学习在感知与推理任务间交替更新，仅依赖最终答案监督即可实现高效训练。基于 Qwen3-VL-Instruct 系列模型，P2R 在 V-Star 和 HR-Bench 等基准测试中表现显著优于基座模型，证明了显式解耦感知与推理对于提升多模态细粒度推理能力的有效性。",
-      "impact_score": null
+      "summary_zh": "针对细粒度视觉推理中关键视觉线索易被高分辨率图像淹没的问题，Perceive-to-Reason (P2R) 框架将任务解耦为感知与推理两个阶段：模型首先作为 Perceiver 定位问题相关的局部证据，随后作为 Reasoner 基于原始图像及裁剪区域进行推理。为优化训练过程，引入了 Perception-Reasoning Alternating GRPO (PRA-GRPO) 策略，通过角色感知的强化学习在感知与推理任务间交替更新，仅依赖最终答案监督即可实现高效训练。基于 Qwen3-VL-Instruct 系列模型，P2R 在 V-Star 和 HR-Bench 等基准测试中表现显著优于基座模型，证明了显式解耦感知与推理对于提升多模态细粒度推理能力的有效性。"
     },
     {
       "id": "2607.01181",
@@ -231,8 +525,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01181",
-      "summary_zh": "针对语言模型在代码生成与数学推理等任务中，仅依赖可验证奖励（RLVR）导致模型出现多样性缺失、奖励欺骗及输出不自然等问题，本研究提出了一种结合人类示范的对抗性生成判别框架。该方法通过引入一个与生成器同步训练的判别器，学习区分人类编写与模型生成的输出，从而为难以形式化的风格与结构等非可验证属性提供反馈信号。实验表明，该方案在保持任务准确率的同时，显著提升了代码修复的自然度、故事生成的质量及抗奖励欺骗能力。这一成果有效弥合了强化学习与监督微调之间的鸿沟，为同时优化可验证与非可验证任务属性提供了可扩展的路径。",
-      "impact_score": null
+      "summary_zh": "针对语言模型在代码生成与数学推理等任务中，仅依赖可验证奖励（RLVR）导致模型出现多样性缺失、奖励欺骗及输出不自然等问题，本研究提出了一种结合人类示范的对抗性生成判别框架。该方法通过引入一个与生成器同步训练的判别器，学习区分人类编写与模型生成的输出，从而为难以形式化的风格与结构等非可验证属性提供反馈信号。实验表明，该方案在保持任务准确率的同时，显著提升了代码修复的自然度、故事生成的质量及抗奖励欺骗能力。这一成果有效弥合了强化学习与监督微调之间的鸿沟，为同时优化可验证与非可验证任务属性提供了可扩展的路径。"
     },
     {
       "id": "2607.01179",
@@ -333,8 +626,8 @@
         "cs.AI"
       ],
       "published": "2026-07-01T15:40:12Z",
-      "updated": "2026-07-01T15:40:12Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.01083v1",
+      "updated": "2026-07-02T05:48:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01083v2",
       "abs_url": "https://arxiv.org/abs/2607.01083",
       "topics": [
         "rl"
@@ -673,8 +966,8 @@
         "eess.SY"
       ],
       "published": "2026-07-01T11:56:54Z",
-      "updated": "2026-07-01T11:56:54Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.00836v1",
+      "updated": "2026-07-02T03:53:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.00836v2",
       "abs_url": "https://arxiv.org/abs/2607.00836",
       "topics": [
         "world-model"
