@@ -1,6 +1,6 @@
 {
   "date": "2026-07-02",
-  "generated_at": "2026-07-06T05:53:01.917053+00:00",
+  "generated_at": "2026-07-07T05:40:26.189915+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,170 @@
     }
   },
   "papers": [
+    {
+      "id": "2607.02798",
+      "title": "Track the Noise, Move the World:3D-Grounded Motion-Consistent Noise for Controllable Video Generation",
+      "abstract": "Modern image-and-text-to-video diffusion models can synthesize highly realistic videos by iteratively denoising an initial Gaussian noise tensor conditioned on reference image and text inputs. However, existing approaches still lack precise and unified controllability over both object motion and camera motion within a single generation process. We present UniCaMo, a unified framework that enables simultaneous control of object trajectories and camera viewpoints by directly constructing the input noise of the diffusion model. Specifically, UniCaMo builds a shared 3D-grounded motion-consistent noise space across latent video frames. Sparse 3D point tracks are used to warp the Gaussian noise of the reference frame along desired object trajectories, while a virtual spherical noise representation provides globally consistent noise values for newly revealed scene regions under camera motion. By combining local track-guided noise warping with global sphere-based noise sampling, UniCaMo maintains geometric and temporal consistency under both object movement and viewpoint changes. Because UniCaMo modifies only the input noise, it requires no auxiliary adapters, control branches, or architectural changes to the underlying video diffusion model. With lightweight LoRA fine-tuning on large pretrained video diffusion models, including Wan 2.1 (14B), UniCaMo achieves state-of-the-art results in both video quality and motion controllability on standard controllable video generation benchmarks.",
+      "authors": [
+        "Long Vu",
+        "Tan Ngo",
+        "Animesh Karnewar",
+        "Amir Habibian",
+        "Binh-Son Hua",
+        "Hung Bui",
+        "Minh Hoai Nguyen",
+        "Phong Nguyen-Ha"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.GR"
+      ],
+      "published": "2026-07-02T22:17:20Z",
+      "updated": "2026-07-02T22:17:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.02798v1",
+      "abs_url": "https://arxiv.org/abs/2607.02798",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02798",
+      "summary_zh": "UniCaMo 旨在解决现有视频生成模型在同时精确控制物体运动与相机视角方面的局限性。该方法通过构建 3D-grounded motion-consistent noise 空间，利用稀疏 3D 点轨迹对参考帧的高斯噪声进行扭曲，并结合虚拟球形噪声采样来处理相机运动下的场景补全，从而在输入噪声层面实现了对视频生成过程的统一控制。这一创新方案无需额外的适配器或架构修改，仅通过轻量级 LoRA 微调即可与 Wan 2.1 等大规模预训练模型兼容。实验结果表明，该方法在保持几何与时间一致性的同时，在主流可控视频生成 benchmark 上达到了视频质量与运动控制能力的 SOTA 水平。"
+    },
+    {
+      "id": "2607.02781",
+      "title": "Safe Inference-Time Alignment via Lagrangian Reward Augmentation",
+      "abstract": "Inference-time alignment steers a frozen language model during decoding using auxiliary reward signals, avoiding the cost of repeated weight updates. However, existing inference-time alignment methods typically optimize a single scalar score, so explicit safety constraints must either be ignored or encoded through manually tuned penalties. We propose Lagrangian Reward Augmentation (LARA), a general inference-time alignment framework under safety constraints. Starting from a KL-regularized constrained objective with a reward model and a cost model, LARA dualizes the constraint and reduces the optimization problem to a one-dimensional convex problem over a nonnegative dual variable. Estimated on a small calibration set, this dual variable defines an augmented reward that can be used as a drop-in scoring signal within existing inference-time alignment methods. For sequence-level sampling methods, such as Best-of-N reranking, the calibrated dual variable corresponds to the solution of the expected-cost constrained problem. For token-level reward-guided decoding methods, the same construction yields a principled dual-calibrated heuristic rather than an exact constrained-policy guarantee. We evaluate LARA on both sequence-level and token-level inference-time alignment methods, and find that LARA improves the helpfulness-harmlessness tradeoff, with Best-of-N achieving the best performance among inference-time methods, approaching finetuning-based direct alignment baselines.",
+      "authors": [
+        "Yaswanth Chittepu",
+        "Ativ Joshi",
+        "Sohini Chintala",
+        "Scott Niekum"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-02T21:27:59Z",
+      "updated": "2026-07-02T21:27:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.02781v1",
+      "abs_url": "https://arxiv.org/abs/2607.02781",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02781",
+      "summary_zh": "针对推理时对齐（Inference-time alignment）难以在优化奖励的同时满足安全约束的问题，LARA（Lagrangian Reward Augmentation）框架通过拉格朗日对偶方法将约束优化问题转化为一维凸优化问题。该方法利用奖励模型和成本模型，在校准集上估计非负对偶变量，从而构建出增强奖励信号，可直接嵌入现有的推理时对齐算法中。在序列级采样（如 Best-of-N）和词元级引导解码中，LARA 均能有效平衡有用性与无害性。实验结果表明，该方法显著提升了模型在约束条件下的表现，使推理时对齐的效果逼近基于微调的直接对齐基线。"
+    },
+    {
+      "id": "2607.02757",
+      "title": "Reinforcement Learning for Data-Efficient Code-Switched ASR",
+      "abstract": "Audio-language models can be prompted for code-switched speech, but their decoding is not optimized for code-switching and often fails at language boundaries. We propose a practical reinforcement learning with verifiable rewards recipe for data-efficient adaptation of audio-language models to code-switched ASR using group relative policy optimization, combining an error rate reward with a script fidelity reward that penalizes wrong writing systems and a two-pass draft-and-refinement procedure. Using Qwen2-Audio as a reproducible testbed across 10 language pairs, training on only TTS code-switched speech, we show that RLVR with 10% of the data matches LoRA supervised fine-tuning trained on the full dataset, with the largest gains on typologically distant pairs. The error rate reward eliminates translation errors while the script fidelity reward separately reduces script contamination without degradation. These gains transfer zero-shot to a human-recorded code-switching corpus.",
+      "authors": [
+        "Ziwei Ye",
+        "Peter Vickers"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.SD"
+      ],
+      "published": "2026-07-02T20:44:53Z",
+      "updated": "2026-07-02T20:44:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.02757v1",
+      "abs_url": "https://arxiv.org/abs/2607.02757",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02757",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对音频语言模型在处理语码转换（Code-Switched）语音时解码效率低下且易在语言边界出错的问题，本研究提出了一种基于强化学习与可验证奖励（RLVR）的高效适配方案。该方法结合了错误率奖励与脚本保真度奖励，通过 Group Relative Policy Optimization 算法及“草稿-精修”的两阶段解码流程，有效解决了翻译错误与脚本混淆问题。实验以 Qwen2-Audio 为基准，在 10 组语言对上验证了该方案的有效性：仅使用 10% 的 TTS 合成数据进行训练，其性能即可媲美全量数据下的 LoRA 微调，且在语言差异较大的语对上提升尤为显著。该模型展现了极强的数据效率，其性能增益可零样本迁移至真实人类录制的语码转换语料库中。"
+    },
+    {
+      "id": "2607.02755",
+      "title": "Out-of-Distribution Generalization of Risk Aversion in Language Models",
+      "abstract": "Training AIs to be risk-averse in resources could offer a failsafe in the event that AIs turn out misaligned. Misaligned but risk-averse AIs would tend to prefer low-risk, low-reward strategies like cooperation over high-risk, high-reward strategies like rebellion, limiting the downsides of any misalignment. But we can only feasibly train AIs to be risk-averse on low-stakes gambles, and we will only be safe if their risk aversion generalizes to astronomically-high-stakes gambles. Will it? To shed light on this question, we introduce RiskAverseOOD: a benchmark for measuring how well risk aversion generalizes out of distribution. We then offer some initial results. Using a variety of methods to make Qwen3-8B choose risk-aversely when the stakes are low, we find that we can induce substantial risk aversion when the stakes are astronomically high. Our models' learned risk aversion generalizes at least partially across 98 orders of magnitude. From a baseline 2% rate of choosing a safe `Cooperate' option, we see rates around 70% (SFT and tie training), 52% (DPO), and 39% (activation steering). In another experiment, our fine-tuned reward model reliably scores risk-averse reasoning above risk-neutral or excessively risk-averse alternatives (99.6% pairwise accuracy). We replicate these effects at different scales (Qwen3-1.7B and Qwen3-14B) and across model families (Gemma-3-12B-IT and Llama-3.1-8B-Instruct). Overall, we find that risk aversion learned at low stakes can generalize OOD to astronomically high stakes, though not yet consistently enough to serve as a reliable failsafe. Achieving that level of consistency is an open problem.",
+      "authors": [
+        "Kristina Zhang",
+        "Junior Chinomso Okoroafor",
+        "Benjamin Maltbie",
+        "Andrew Lin",
+        "Abhitej Bokka",
+        "Elliott Thornley"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-02T20:41:30Z",
+      "updated": "2026-07-02T20:41:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.02755v1",
+      "abs_url": "https://arxiv.org/abs/2607.02755",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02755",
+      "summary_zh": "为了探索AI在低风险场景下习得的风险规避能力能否泛化至高风险场景，该研究提出了RiskAverseOOD基准，用于评估语言模型在极端风险下的决策倾向。通过SFT、DPO及激活工程（activation steering）等方法，研究发现Qwen3等模型在低风险赌局中习得的风险规避行为，能够跨越98个数量级泛化至天文数字般的高风险场景，其中SFT和tie training方法将安全选项的选择率从2%提升至70%左右。实验在不同参数规模及模型架构（如Gemma-3、Llama-3.1）上均表现出一致的泛化趋势，且奖励模型能高精度识别风险规避推理。尽管该研究证实了风险规避行为的跨分布泛化潜力，但目前的泛化一致性尚不足以作为可靠的安全保障机制，实现鲁棒的风险控制仍是待解决的挑战。"
+    },
+    {
+      "id": "2607.02703",
+      "title": "LLMoxie: Exploring Agentic AI for Scientific Software Development",
+      "abstract": "In this paper, we describe LLMoxie, an institutional AI platform whose three-tiered architecture supports multi-cloud and on-premise inference, a LiteLLM/MLflow control plane for authentication, budgeting, PII masking, and observability, and an application augmentation layer for AI coding agents. Layered on top, an open-source RSE-Plugins ecosystem encodes accumulated RSE knowledge as a Plugin-Agent-Skill hierarchy spanning scientific Python practice, domain-specific knowledge, a six-phase research-and-implement workflow, and project lifecycle management. Scientific software is judged less by raw code quality than by whether it can be cited, audited, reproduced, and extended. Off-the-shelf AI coding agents, optimized against commercial software benchmarks, are poorly calibrated for this setting: they ignore the conventions of the scientific Python libraries they invoke, mishandle sensitive or embargoed data, and leave decision trails that are difficult to reconstruct after the fact. We report on twenty months of practice at a university-based research software engineering (RSE) center, where RSEs embedded across astronomy, earth and climate science, agriculture, and health projects worked to close this gap. We characterize the recurring infrastructure, governance, and process challenges of adopting Agentic AI inside a multi-domain RSE center, describe the platform and plugin design, and distill operational lessons from real scientific software deployments. Together, the platform and plugins shift AI coding agents from generic code generators into domain-aware collaborators that respect community norms and produce auditable provenance of technical reasoning.",
+      "authors": [
+        "Landung Setiawan",
+        "Anant Mittal",
+        "Cordero Core",
+        "Anshul Tambay",
+        "Carlos Garcia Jurado Suarez",
+        "David A. C. Beck",
+        "Andrew J. Connolly",
+        "Vani Mandava"
+      ],
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.DC",
+        "cs.MA"
+      ],
+      "published": "2026-07-02T18:46:27Z",
+      "updated": "2026-07-02T18:46:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.02703v1",
+      "abs_url": "https://arxiv.org/abs/2607.02703",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02703",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "LLMoxie 旨在解决通用 AI 编码代理在科学软件开发中因缺乏领域规范、数据合规性差及决策过程不可追溯而导致的适用性难题。该平台采用三层架构，通过 LiteLLM 和 MLflow 实现多云与本地推理的统一管控，并引入 RSE-Plugins 生态系统，将科学编程实践、领域知识及六阶段研发工作流封装为“插件-代理-技能”层级。在跨学科科研软件工程（RSE）中心的二十个月实践表明，该系统能有效约束 AI 行为，使其从通用代码生成器转变为符合科学规范、具备技术溯源能力的领域协作伙伴。实验结果证实，该方法显著提升了科学软件的可审计性、可复现性及科研协作效率。"
+    },
+    {
+      "id": "2607.02686",
+      "title": "ASK in the Dark: Uncertainty-Gated LLM Assistance under Partial Observability",
+      "abstract": "Reinforcement learning agents operating under partial observability must act on incomplete information, making them natural candidates for guidance from small language models (SLMs) that carry broad reasoning priors. Yet integrating SLM guidance into this setting has proven difficult: across all test environments, vanilla uncertainty-gated approaches achieve an overwrite rate at or near zero, meaning the SLM almost never contributes an independent action. We trace this failure to the bare egocentric prompt, which provides insufficient context for genuine reasoning, and identify it as a context problem rather than a capacity problem. We propose ASK+, which supplies the SLM with trajectory-aware context (a partially revealed map, visited positions, and action history) and structured chain-of-thought reasoning, converting it from a passive redundancy check into a more informative consultant that occasionally corrects the policy. We further establish that the predictive entropy signal used for selective querying measures action uncertainty rather than state uncertainty and remains informative in POMDPs, making uncertainty-gated assistance viable beyond fully observable settings. The stateful prompt drives substantial gains: on DoorKey, where vanilla ASK matches PPO (both 89%), ASK+ reaches 93% success; on FourRooms, success climbs from 53% to 70%; on HigherLower, accuracy reaches 73.7%, matching the SLM-only upper bound. Across all environments, Qwen3.5-2B matches or exceeds Qwen3.5-4B, confirming that prompt design and selective gating dominate the impact of model scale, enabling guidance without large models.",
+      "authors": [
+        "Juarez Monteiro",
+        "Nathan Gavenski",
+        "Guilherme Lima",
+        "Francisco Galuppo",
+        "Odinaldo Rodrigues",
+        "Adriano Veloso"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-02T18:26:05Z",
+      "updated": "2026-07-02T18:26:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.02686v1",
+      "abs_url": "https://arxiv.org/abs/2607.02686",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02686",
+      "summary_zh": "在部分可观测环境（POMDP）中，强化学习智能体常因信息缺失而难以决策，而现有的小型语言模型（SLM）辅助方法因缺乏上下文导致无法有效干预。ASK+ 通过引入轨迹感知上下文（如部分地图、访问位置及动作历史）和结构化思维链（Chain-of-Thought），将 SLM 从被动冗余检查转变为具备纠错能力的智能顾问。研究证明，基于预测熵的动作不确定性度量在部分可观测场景下依然有效，能够精准触发模型辅助。实验表明，ASK+ 在 DoorKey、FourRooms 和 HigherLower 等基准测试中显著提升了成功率，且证明了通过优化提示工程与选择性门控机制，较小的模型（如 Qwen3.5-2B）即可达到甚至超越大模型的辅助效果，有效降低了计算成本。"
+    },
     {
       "id": "2607.02517",
       "title": "WorldDirector: Building Controllable World Simulators with Persistent Dynamic Memory",
@@ -59,8 +223,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02517",
-      "summary_zh": "WorldDirector 旨在解决现有视频世界模型在长时生成中难以保持物体一致性及缺乏视角可控性的问题。该框架通过解耦语义运动编排与视觉生成，利用 LLM 协调 3D 轨迹与相机运动，将生成的轨迹作为控制信号驱动视频生成。其核心创新在于引入了持久化动态内存机制，确保物体在离开视野后重新出现时仍能保持精确的视觉身份与物理逻辑。实验结果表明，该方法在复杂长时事件合成中表现出卓越的可控性，有效克服了传统模型在物体持久性与场景一致性上的局限。",
-      "impact_score": null
+      "summary_zh": "WorldDirector 旨在解决现有视频世界模型在长时生成中难以保持物体一致性及缺乏视角可控性的问题。该框架通过解耦语义运动编排与视觉生成，利用 LLM 协调 3D 轨迹与相机运动，将生成的轨迹作为控制信号驱动视频生成。其核心创新在于引入了持久化动态内存机制，确保物体在离开视野后重新出现时仍能保持精确的视觉身份与物理逻辑。实验结果表明，该方法在复杂长时事件合成中表现出卓越的可控性，有效克服了传统模型在物体持久性与场景一致性上的局限。"
     },
     {
       "id": "2607.02516",
@@ -83,8 +246,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02516",
-      "summary_zh": "Align4D 旨在解决任意模态输入到 4D 内容生成（X-to-4D）中数据稀缺与生成一致性差的难题。该框架通过 Object Distance Alignment 技术协调视频与多视角先验，利用 Motion-Geometry Joint Alignment 实现视频与 3D 数据的同步约束，并采用 Asynchronous Optimization 解耦高斯属性与形变网络训练，从而显著提升了 4D 生成的几何与运动保真度。此外，研究构建了包含多模态数据的 X4D 基准数据集，实验表明该方法在 X4D 和 Consistent4D 等基准测试中均达到了当前最优的生成质量与一致性水平。",
-      "impact_score": null
+      "summary_zh": "Align4D 旨在解决任意模态输入到 4D 内容生成（X-to-4D）中数据稀缺与生成一致性差的难题。该框架通过 Object Distance Alignment 技术协调视频与多视角先验，利用 Motion-Geometry Joint Alignment 实现视频与 3D 数据的同步约束，并采用 Asynchronous Optimization 解耦高斯属性与形变网络训练，从而显著提升了 4D 生成的几何与运动保真度。此外，研究构建了包含多模态数据的 X4D 基准数据集，实验表明该方法在 X4D 和 Consistent4D 等基准测试中均达到了当前最优的生成质量与一致性水平。"
     },
     {
       "id": "2607.02502",
@@ -105,16 +267,15 @@
         "cs.AI"
       ],
       "published": "2026-07-02T17:58:29Z",
-      "updated": "2026-07-02T17:58:29Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.02502v1",
+      "updated": "2026-07-06T11:02:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.02502v2",
       "abs_url": "https://arxiv.org/abs/2607.02502",
       "topics": [
         "rl",
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02502",
-      "summary_zh": "针对大语言模型在在线策略自蒸馏（OPSD）中因过度依赖特权信息导致的过拟合、探索能力受限及信息泄露问题，DemoPSD 提出了一种基于分歧调节的策略自蒸馏框架。该方法通过计算教师与学生模型分布之间的差异，动态调整反向 KL 重心目标（reverse-KL barycenter target），实现对教师指导的选择性采纳。这种机制在保留学生自身推理能力的同时，有效缓解了特权信息泄露，并维持了训练过程中的高熵探索。在 SciKnowEval 等科学领域基准测试中，DemoPSD 显著优于 GRPO 和 SDPO，并在 GPQA 等分布外任务上展现出更强的泛化性能。",
-      "impact_score": null
+      "summary_zh": "针对大语言模型在在线策略自蒸馏（OPSD）中因过度依赖特权信息导致的过拟合、探索能力受限及信息泄露问题，DemoPSD 提出了一种基于分歧调节的策略自蒸馏框架。该方法通过计算教师与学生模型分布之间的差异，动态调整反向 KL 重心目标（reverse-KL barycenter target），实现对教师指导的选择性采纳。这种机制在保留学生自身推理能力的同时，有效缓解了特权信息泄露，并维持了训练过程中的高熵探索。在 SciKnowEval 等科学领域基准测试中，DemoPSD 显著优于 GRPO 和 SDPO，并在 GPQA 等分布外任务上展现出更强的泛化性能。"
     },
     {
       "id": "2607.02497",
@@ -164,8 +325,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02490",
-      "summary_zh": "针对大型视觉语言模型（LVLMs）在推理过程中难以有效利用视觉信息进行自我纠错的问题，该研究提出了基于强化学习的训练框架 VRRL。该方法通过随机掩码轨迹前缀来强化模型从错误中间状态恢复的能力，并引入经验回放缓冲区（experience replay buffer）中的缓冲回放机制，迫使模型在多样化的失败状态下学习视觉基础的自我反思。实验结果表明，在视觉图表推理及空间导航等任务中，VRRL 显著提升了模型在分布外（out-of-distribution）场景下的鲁棒性与准确率，有效克服了传统微调方法在面对未知分布图像时性能大幅下降的缺陷。",
-      "impact_score": null
+      "summary_zh": "针对大型视觉语言模型（LVLMs）在推理过程中难以有效利用视觉信息进行自我纠错的问题，该研究提出了基于强化学习的训练框架 VRRL。该方法通过随机掩码轨迹前缀来强化模型从错误中间状态恢复的能力，并引入经验回放缓冲区（experience replay buffer）中的缓冲回放机制，迫使模型在多样化的失败状态下学习视觉基础的自我反思。实验结果表明，在视觉图表推理及空间导航等任务中，VRRL 显著提升了模型在分布外（out-of-distribution）场景下的鲁棒性与准确率，有效克服了传统微调方法在面对未知分布图像时性能大幅下降的缺陷。"
     },
     {
       "id": "2607.02479",
@@ -221,8 +381,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02461",
-      "summary_zh": "Diffusion Transformers (DiTs) 在生成任务中计算开销巨大，且其激活值随时间步和提示词剧烈波动，导致传统量化方法难以泛化。OrbitQuant 提出了一种数据无关的量化方案，通过 randomized permuted block-Hadamard (RPBH) 旋转将激活值映射到归一化空间，使单一的 Lloyd-Max 码本能适配所有时间步与模态。该方法将旋转矩阵融合进权重中，在运行时仅需对激活值进行前向旋转，无需针对特定检查点进行校准。实验表明，OrbitQuant 在 FLUX.1、Wan 2.1 和 CogVideoX 等模型上均达到了低比特量化的最优性能，甚至实现了 W2A4 的高质量生成，且在图像与视频任务间具备极强的通用性。",
-      "impact_score": null
+      "summary_zh": "Diffusion Transformers (DiTs) 在生成任务中计算开销巨大，且其激活值随时间步和提示词剧烈波动，导致传统量化方法难以泛化。OrbitQuant 提出了一种数据无关的量化方案，通过 randomized permuted block-Hadamard (RPBH) 旋转将激活值映射到归一化空间，使单一的 Lloyd-Max 码本能适配所有时间步与模态。该方法将旋转矩阵融合进权重中，在运行时仅需对激活值进行前向旋转，无需针对特定检查点进行校准。实验表明，OrbitQuant 在 FLUX.1、Wan 2.1 和 CogVideoX 等模型上均达到了低比特量化的最优性能，甚至实现了 W2A4 的高质量生成，且在图像与视频任务间具备极强的通用性。"
     },
     {
       "id": "2607.02460",
@@ -245,8 +404,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02460",
-      "summary_zh": "针对大模型在缺乏人工标注或专家反馈场景下的训练难题，Neuron-OPSD 提出了一种基于神经元激活感知的无标注自蒸馏框架。该方法利用模型内部的神经元激活状态来指导训练数据的筛选及教师上下文的构建，从而生成高质量的伪标签，并结合在线策略蒸馏（On-Policy Distillation）进行模型优化。相比传统的 SFT 或基于奖励的强化学习方法，该方案有效解决了领域外性能退化和校准误差膨胀的问题。在多个专业领域基准测试中，Neuron-OPSD 不仅显著提升了特定任务的性能，还保持了良好的跨领域泛化能力，为资源受限或缺乏外部监督的场景提供了一种高效的自进化路径。",
-      "impact_score": null
+      "summary_zh": "针对大模型在缺乏人工标注或专家反馈场景下的训练难题，Neuron-OPSD 提出了一种基于神经元激活感知的无标注自蒸馏框架。该方法利用模型内部的神经元激活状态来指导训练数据的筛选及教师上下文的构建，从而生成高质量的伪标签，并结合在线策略蒸馏（On-Policy Distillation）进行模型优化。相比传统的 SFT 或基于奖励的强化学习方法，该方案有效解决了领域外性能退化和校准误差膨胀的问题。在多个专业领域基准测试中，Neuron-OPSD 不仅显著提升了特定任务的性能，还保持了良好的跨领域泛化能力，为资源受限或缺乏外部监督的场景提供了一种高效的自进化路径。"
     },
     {
       "id": "2607.02431",
@@ -275,8 +433,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02431",
-      "summary_zh": "针对真实机器人强化学习中物理交互成本高昂且数据利用率低的问题，WorldSample 框架通过构建闭环的实-虚数据增强机制，实现了策略的持续优化。该方法利用后训练的 World Model 生成高保真合成轨迹，并通过 Policy-Paced Learning (PPL) 技术对样本进行筛选与调度，有效缓解了模型幻觉带来的价值估计偏差。在接触密集型机器人操作任务中，WorldSample 将策略成功率提升了 28%，同时将训练步数降低了 59%。此外，该框架显著提升了 World Model 的视觉保真度，验证了实-虚闭环在提升策略性能与模型预测精度方面的有效性。",
-      "impact_score": null
+      "summary_zh": "针对真实机器人强化学习中物理交互成本高昂且数据利用率低的问题，WorldSample 框架通过构建闭环的实-虚数据增强机制，实现了策略的持续优化。该方法利用后训练的 World Model 生成高保真合成轨迹，并通过 Policy-Paced Learning (PPL) 技术对样本进行筛选与调度，有效缓解了模型幻觉带来的价值估计偏差。在接触密集型机器人操作任务中，WorldSample 将策略成功率提升了 28%，同时将训练步数降低了 59%。此外，该框架显著提升了 World Model 的视觉保真度，验证了实-虚闭环在提升策略性能与模型预测精度方面的有效性。"
     },
     {
       "id": "2607.02403",
@@ -300,8 +457,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02403",
-      "summary_zh": "针对具身智能中基于世界模型（World Models）的决策规划问题，现有方法仅关注终端状态与目标的距离，导致中间轨迹难以在真实环境中复现。ACID 框架引入了基于逆动力学模型（Inverse Dynamics Model）的动作一致性约束，通过验证从预测状态反推的动作与原动作是否匹配，确保了轨迹的可实现性。该方法将这种一致性误差作为残差项融入规划代价函数，并采用尺度不变的自适应权重进行调节。在涵盖刚体、可变形物体操作及视觉导航的六项任务中，ACID 不仅显著提升了规划性能，还在大幅降低计算开销的前提下达到了基准模型的精度水平。",
-      "impact_score": null
+      "summary_zh": "针对具身智能中基于世界模型（World Models）的决策规划问题，现有方法仅关注终端状态与目标的距离，导致中间轨迹难以在真实环境中复现。ACID 框架引入了基于逆动力学模型（Inverse Dynamics Model）的动作一致性约束，通过验证从预测状态反推的动作与原动作是否匹配，确保了轨迹的可实现性。该方法将这种一致性误差作为残差项融入规划代价函数，并采用尺度不变的自适应权重进行调节。在涵盖刚体、可变形物体操作及视觉导航的六项任务中，ACID 不仅显著提升了规划性能，还在大幅降低计算开销的前提下达到了基准模型的精度水平。"
     },
     {
       "id": "2607.02390",
@@ -326,8 +482,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02390",
-      "summary_zh": "面对复杂编程任务中大模型采样效率低、搜索空间过大的瓶颈，DecompRL 通过将复杂问题拆解为多个可独立求解的子函数，实现了模块化代码生成。该方法利用强化学习（RL）显式学习层次化代码结构，通过组合 $n$ 个模块的 $k$ 种实现，产生高达 $k^n$ 种候选方案，将计算压力从昂贵的 GPU 推理转移至低成本的 CPU 评估，从而降低约 50 倍的 GPU Token 成本。在 LiveCodeBench 和 CodeContests 等基准测试中，基于 Qwen 2.5 和 Code World Model 的实验表明，DecompRL 在处理超大规模搜索任务时，显著超越了标准及多样性优化后的 RL 基线，成功解决了传统生成方法无法触及的难题。",
-      "impact_score": null
+      "summary_zh": "面对复杂编程任务中大模型采样效率低、搜索空间过大的瓶颈，DecompRL 通过将复杂问题拆解为多个可独立求解的子函数，实现了模块化代码生成。该方法利用强化学习（RL）显式学习层次化代码结构，通过组合 $n$ 个模块的 $k$ 种实现，产生高达 $k^n$ 种候选方案，将计算压力从昂贵的 GPU 推理转移至低成本的 CPU 评估，从而降低约 50 倍的 GPU Token 成本。在 LiveCodeBench 和 CodeContests 等基准测试中，基于 Qwen 2.5 和 Code World Model 的实验表明，DecompRL 在处理超大规模搜索任务时，显著超越了标准及多样性优化后的 RL 基线，成功解决了传统生成方法无法触及的难题。"
     },
     {
       "id": "2607.02376",
@@ -378,8 +533,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.02374",
-      "summary_zh": "个性化语言模型在注入用户属性、偏好等记忆信息时，不仅会改变回复内容，还会导致推理轨迹发生偏移。DRIFTLENS 框架通过将推理步骤映射为价值类别，量化了无记忆状态与注入记忆状态之间的推理轨迹差异，从而在无需标准答案的情况下评估这种“推理漂移”。实验表明，在四种主流 LLM 上，用户属性记忆会引发显著的推理漂移，即便最终回复看似合理且切题。研究进一步对比了 GRPO 和 DPO 等后训练方法，发现它们虽能有效缓解漂移，但对模型下游能力和指令遵循的影响因模型与奖励机制而异，揭示了记忆诱导的推理漂移是当前个性化模型中一种难以完全消除的潜在失效模式。",
-      "impact_score": null
+      "summary_zh": "个性化语言模型在注入用户属性、偏好等记忆信息时，不仅会改变回复内容，还会导致推理轨迹发生偏移。DRIFTLENS 框架通过将推理步骤映射为价值类别，量化了无记忆状态与注入记忆状态之间的推理轨迹差异，从而在无需标准答案的情况下评估这种“推理漂移”。实验表明，在四种主流 LLM 上，用户属性记忆会引发显著的推理漂移，即便最终回复看似合理且切题。研究进一步对比了 GRPO 和 DPO 等后训练方法，发现它们虽能有效缓解漂移，但对模型下游能力和指令遵循的影响因模型与奖励机制而异，揭示了记忆诱导的推理漂移是当前个性化模型中一种难以完全消除的潜在失效模式。"
     },
     {
       "id": "2607.02317",
@@ -569,8 +723,8 @@
         "math.OC"
       ],
       "published": "2026-07-02T13:13:19Z",
-      "updated": "2026-07-02T13:13:19Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.02137v1",
+      "updated": "2026-07-03T02:14:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.02137v2",
       "abs_url": "https://arxiv.org/abs/2607.02137",
       "topics": [
         "rl"
@@ -993,8 +1147,8 @@
         "cs.CV"
       ],
       "published": "2026-07-02T08:18:23Z",
-      "updated": "2026-07-02T08:18:23Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.01860v1",
+      "updated": "2026-07-03T00:43:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01860v2",
       "abs_url": "https://arxiv.org/abs/2607.01860",
       "topics": [
         "other"
@@ -1189,6 +1343,27 @@
       "summary_zh": "本体构建面临知识有效性与一致性难以保障的挑战，该研究提出一种结合检索增强小型语言模型（SLM）与形式概念分析（FCA）的知识扩展框架。该方法利用FCA作为符号验证循环，通过检索增强的SLM作为预言机（Oracle）对生成的蕴含关系进行验证、一致性检查及属性建议，从而实现可追溯的知识扩展。在Orphadata构建的罕见共济失调数据集上，该框架能够有效评估蕴含关系，尽管在识别正向对象-属性对上仍面临挑战，但实验证明引入FCA验证循环能显著提升知识结构的严谨性。该研究为构建可验证的领域本体提供了一种符号逻辑与神经模型深度融合的新路径，使得知识库的构建过程更加透明且可审计。"
     },
     {
+      "id": "2607.01767",
+      "title": "Repair the Amplifier, Not the Symptom: Stable World-Model Correction for Agent Rollouts",
+      "abstract": "Long-horizon language agents increasingly maintain executable world models in the form of planning graphs, where tool calls, validators, memory updates, recovery branches, and final answers are connected by typed dependencies. When a rollout fails, repairing the most visible error can leave the underlying error-amplification path intact, while replaying the full graph is expensive and difficult for long-context models to use reliably. We study world-model correction: selecting a compact subgraph of a failed planning graph whose repair stabilizes subsequent rollouts. We first instantiate a strong family of engineering correctors, including pointwise error scans, TopK and window selection, local graph expansion, cascade repair, and full-context LLM repair. We then propose WM-SAR, a spectral subgraph repair method that estimates node-edge amplification, greedily grows a connected repair region by marginal residual-spectral relief, and sends only this region to an LLM for root-cause repair. Theoretically, we connect residual spectral radius to rollout error and planning regret, motivating repair as stabilization rather than attribution alone. Across synthetic calling-tree graphs, benchmark-inspired agent topologies, and cross-model LLM repair experiments, WM-SAR achieves stronger long-horizon stabilization and root-cause recovery under compact token budgets, matching much larger repair contexts while exposing the LLM to a cleaner causal subgraph.",
+      "authors": [
+        "Xinyuan Song",
+        "Zekun Cai"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-02T06:31:45Z",
+      "updated": "2026-07-05T07:41:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01767v2",
+      "abs_url": "https://arxiv.org/abs/2607.01767",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.01767",
+      "summary_zh": "针对长序列语言智能体在执行规划图时，修复表面错误往往无法根除潜在误差放大路径的问题，该研究提出了WM-SAR（Stable World-Model Correction）方法。该方法通过计算节点与边的误差放大效应，利用残差谱半径（residual spectral radius）量化规划遗憾，从而精准识别并提取出导致故障的关键子图。相较于全图重放或盲目修复，WM-SAR仅需将精简的因果子图发送给LLM进行根因修复，在极低Token预算下实现了更强的长程稳定性。实验表明，该方法在合成调用树及各类智能体基准测试中，均能以更小的上下文开销达到与全上下文修复相当甚至更优的恢复效果。"
+    },
+    {
       "id": "2607.01766",
       "title": "SimWorlds: A Multi-Agent System for Dynamic 3D Scene Creation",
       "abstract": "LLM agents are increasingly used to translate natural language into 3D scenes in a procedural way, but existing systems focus on static output. Dynamic 4D scenes from text alone, in which liquids flow, particles emit, rigid bodies cascade, and articulated mechanisms move, remain largely unexplored despite their value as editable content and as physics-grounded training data for video generation and embodied AI. Two challenges set the dynamic case apart from static text-to-scene work: an agent must jointly coordinate spatial layout, multiple physics solvers, temporal sequencing, camera, and lighting in a single coherent scene, and verifying motion correctness from rendered video is fundamentally harder than judging a single image. We present SimWorlds: a multi-agent framework that produces dynamic, editable 4D scenes from text, with Blender-specific procedural knowledge, a planner-coder-reviewer workflow driving a fixed ordered sequence of construction stages, a layered scene protocol enforced by a deterministic verifier, and a runtime-state inspection tool suite that catches mechanism failures the rendered image cannot reveal. We also introduce 4DBuildBench, a benchmark for assessing both visual fidelity and physical consistency of the procedural dynamic 3D scenes generated from text prompts. Experiments show that SimWorlds outperforms prior dynamic Blender generation baselines.",
@@ -1367,8 +1542,8 @@
         "eess.SY"
       ],
       "published": "2026-07-02T05:46:03Z",
-      "updated": "2026-07-02T05:46:03Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.01736v1",
+      "updated": "2026-07-04T04:11:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01736v2",
       "abs_url": "https://arxiv.org/abs/2607.01736",
       "topics": [
         "world-model",
@@ -1642,8 +1817,8 @@
         "cs.SE"
       ],
       "published": "2026-07-02T01:41:34Z",
-      "updated": "2026-07-02T01:41:34Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.01590v1",
+      "updated": "2026-07-03T02:53:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01590v2",
       "abs_url": "https://arxiv.org/abs/2607.01590",
       "topics": [
         "other"
@@ -1709,7 +1884,7 @@
     {
       "id": "2607.01557",
       "title": "DiPS: Dialogue Policy Selection for High-Stakes Persuasion Agents",
-      "abstract": "Large Language Models (LLMs) often struggle with persuasion in high-stakes scenarios. People's individual personalities and concerns require tailored strategies rather than a one-size-fits-all approach. To address this challenge, we focus on a fire-rescue scenario in which an operator must persuade a resident to evacuate as a high-stakes persuasion domain and propose Dialogue Policy Selection (DiPS), a Q-learning framework to dynamically select persuasion strategies adapted to the evolving conversational context. Specifically, we train a critic, trained to maximize the chance of evacuation success, to select a persuasion policy at each turn based on the resident's recent utterances.We then evaluate DiPS against multiple baselines in both simulated and real human interactions. We find that DiPS achieves higher evacuation success than a zero-shot LLM and generic RAG-augmented approach.",
+      "abstract": "Large Language Models (LLMs) often struggle with persuasion in high-stakes scenarios. People's individual personalities and concerns require tailored strategies rather than a one-size-fits-all approach. To address this challenge, we focus on a fire-rescue scenario in which an operator must persuade a resident to evacuate as a high-stakes persuasion domain and propose Dialogue Policy Selection (DiPS), a Q-learning framework to dynamically select persuasion strategies adapted to the evolving conversational context. Specifically, we train a critic, trained to maximize the chance of evacuation success, to select a persuasion policy at each turn based on the resident's recent utterances. We then evaluate DiPS against multiple baselines in both simulated and real human interactions. We find that DiPS achieves higher evacuation success than a zero-shot LLM and generic RAG-augmented approach.",
       "authors": [
         "Tianyi Zhang",
         "Mousumi Das",
@@ -1722,8 +1897,8 @@
         "cs.AI"
       ],
       "published": "2026-07-02T00:24:48Z",
-      "updated": "2026-07-02T00:24:48Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.01557v1",
+      "updated": "2026-07-03T20:10:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.01557v2",
       "abs_url": "https://arxiv.org/abs/2607.01557",
       "topics": [
         "other"

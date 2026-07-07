@@ -1,6 +1,6 @@
 {
   "date": "2026-07-04",
-  "generated_at": "2026-07-06T05:53:01.916490+00:00",
+  "generated_at": "2026-07-07T05:40:26.186991+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,443 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2607.03990",
+      "title": "InSpace: Structure-Aware 3D Indoor Scene Generation from a Single 360° Image",
+      "abstract": "Recent advances in single image-to-3D generation have enabled high-quality asset synthesis, yet extending these capabilities to indoor scene generation remains challenging. Existing methods focus on asset-level generation while neglecting the structural layout, which is essential for downstream applications and serves as the spatial anchor for grounding assets. However, a single image with a limited field of view lacks the spatial coverage to recover a coherent global layout. To this end, we use a 360° image represented in equirectangular projection (ERP) and propose InSpace, a structure-aware framework for 3D indoor scene generation. InSpace comprises three stages: (1) estimating partial scene geometry as spatial priors, (2) generating coarse scene structure with view-selective cross-attention, and (3) producing detailed layout and asset geometry with textures through a global-local hybrid attention, using flow matching. We also propose ERP-FRONT, a paired ERP-Image-to-3D indoor scene dataset based on 3D-FRONT. Experiments show that InSpace generates complete 3D indoor scenes with structural layout, along with separate textured assets from a single ERP image, achieving strong performance across 3D and 2D metrics. Project Page: https://kookie12.github.io/InSpace-Project-Page/",
+      "authors": [
+        "Gwanhyeong Koo",
+        "Hyunsu Kim",
+        "Youngji Kim",
+        "Taejae Lee",
+        "Siwoo Lim",
+        "Sunjae Yoon",
+        "Suyong Yeon",
+        "Chang D. Yoo"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-04T19:16:29Z",
+      "updated": "2026-07-04T19:16:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03990v1",
+      "abs_url": "https://arxiv.org/abs/2607.03990",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03990",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "InSpace 旨在解决单张全景图生成 3D 室内场景时缺乏结构一致性的难题，通过引入结构感知框架实现从单一 360° 图像到完整 3D 场景的重建。该方法包含三个阶段：首先利用 ERP 图像估计空间先验，接着通过视图选择性交叉注意力生成粗略场景结构，最后利用全局-局部混合注意力机制结合 Flow Matching 技术精细化生成布局与带纹理的 3D 资产。为支持训练，研究团队构建了基于 3D-FRONT 的 ERP-FRONT 数据集。实验结果表明，InSpace 能够从单张全景图中生成具备合理结构布局及独立资产的 3D 室内场景，在多项 3D 与 2D 指标上均表现出优异性能。"
+    },
+    {
+      "id": "2607.03972",
+      "title": "DS-SAC: Density Search for Sample Consensus",
+      "abstract": "Robust geometric model estimation is a fundamental problem in computer vision. RANSAC and its variants remain widely used for this task; however, they rely on stochastic minimal sampling. In this article, we propose Density Search Sample Consensus (DS-SAC), a deterministic robust estimation framework, that avoids repeated random sampling by searching dense regions. Starting from an initial model estimated from the available points, the method performs local exploration via forward and backward search. To facilitate global exploration, DS-SAC recursively partitions the point set using signed residuals and searches each valid partition for high-consensus models. We show that DS-SAC has polynomial complexity with respect to the number of points, making it an efficient alternative to stochastic consensus-based methods. Experiments on large-scale real-world datasets for homography, fundamental matrix, and essential matrix estimation show that DS-SAC achieves higher AUC scores, competitive or lower median pose errors, and faster runtime compared with widely used robust estimators, including RANSAC, MAGSAC, LO-RANSAC, and GC-RANSAC.",
+      "authors": [
+        "Suraj Thapa",
+        "Muhammad Aminul Islam"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-04T18:06:20Z",
+      "updated": "2026-07-04T18:06:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03972v1",
+      "abs_url": "https://arxiv.org/abs/2607.03972",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03972",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对几何模型估计中传统 RANSAC 依赖随机采样导致效率与稳定性受限的问题，DS-SAC 提出了一种确定性的密度搜索框架。该方法摒弃了随机采样，通过局部的前向与后向搜索探索高密度区域，并利用带符号残差对点集进行递归划分，以实现全局范围内的模型搜索。这种算法在保持多项式时间复杂度的同时，显著提升了搜索效率与鲁棒性。在单应性矩阵、基础矩阵及本质矩阵估计等任务的实验中，DS-SAC 在 AUC 指标、中位姿态误差及运行速度上均优于 RANSAC、MAGSAC 及 LO-RANSAC 等主流算法，证明了其在处理大规模真实数据集时的优越性能。"
+    },
+    {
+      "id": "2607.03964",
+      "title": "Worldscape-MoE: A Unified Mixture-of-Experts World Model for Scalable Heterogeneous Action Control",
+      "abstract": "World models are rapidly becoming a core infrastructure for embodied intelligence and interactive agents: they provide controllable simulators in which agents can perceive, act, forecast, and acquire scalable experience. Yet current video generation world models are still organized around isolated control interfaces, such as camera trajectories, robot actions, or hand-joint signals. This fragmentation is increasingly a scaling bottleneck. The central challenge is not the absence of controllable generators, but the lack of a unified and extensible learning framework that can absorb heterogeneous action supervision while preserving a shared model of world dynamics. In this work, we introduce Worldscape-MoE, a Mixture-of-Experts world model built on Diffusion Transformers for scalable heterogeneous action control. Our key observation is that different controls specify different interfaces to the same underlying world: although their representations differ, they constrain shared physical regularities, scene dynamics, and interaction semantics. Worldscape-MoE operationalizes this observation through modality-aware control injection, shared and control-specific experts, and a progressive MoE tuning strategy that supports continual extension to new action modalities. Experiments across locomotion, robotic manipulation, and egocentric hand control show that heterogeneous supervision improves rather than interferes with individual control capabilities. Worldscape-MoE achieves strong results on WorldArena, improves locomotion and hand-control metrics, exhibits robust out-of-distribution generalization, and demonstrates scaling behavior as additional control data and experts are integrated.",
+      "authors": [
+        "Jianjie Fang",
+        "Yongyan Xu",
+        "Ziyou Wang",
+        "Chen Gao",
+        "Yuchao Huang",
+        "Zhaolu Wang",
+        "Rongze Tang",
+        "Mingyuan Jia",
+        "Baining Zhao",
+        "Weichen Zhang",
+        "Xin Zhang",
+        "Haisheng Su",
+        "Yu Shang",
+        "Wei Wu",
+        "Xinlei Chen",
+        "Yong Li"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-04T17:45:38Z",
+      "updated": "2026-07-04T17:45:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03964v1",
+      "abs_url": "https://arxiv.org/abs/2607.03964",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03964",
+      "summary_zh": "Worldscape-MoE 旨在解决当前具身智能领域中世界模型控制接口碎片化的问题，通过构建统一的框架来整合异构动作监督。该模型基于 Diffusion Transformers 架构，引入了模态感知控制注入（modality-aware control injection）与混合专家（Mixture-of-Experts）机制，通过共享专家与特定控制专家协同建模，在保留物理规律一致性的同时支持动作模态的持续扩展。实验表明，该方法在 locomotion、机器人操作及 egocentric hand control 等任务中表现优异，不仅提升了各单一任务的控制性能，还展现出良好的跨任务泛化能力与数据规模扩展性，在 WorldArena 基准测试中取得了显著成果。"
+    },
+    {
+      "id": "2607.03960",
+      "title": "Reward Lightning: Fast Video Generation via Homologous Preference Distillation",
+      "abstract": "Achieving simultaneous preference alignment and distillation acceleration in video diffusion models remains an open challenge. Existing methods optimize the two objectives over mismatched representation spaces, where improving one objective often compromises the other. To overcome this, we propose Reward Lightning, a unified framework that aligns and accelerates a video diffusion model within a single shared representation. Its central principle is homology: both objectives are evaluated on identical latent features, which mitigates the gradient conflicts that arise when they are optimized over disjoint representations. As a foundational component, we first introduce a latent reward model (LRM) that scores videos directly in the latent space, without decoding back to the pixel space. Building on the LRM, homologous preference distillation (HPD) reuses this shared backbone to perform adversarial distillation and preference alignment jointly, yielding few-step generators that remain faithful and well aligned. Extensive experiments demonstrate that the LRM surpasses pixel-level and latent-level reward baselines by $11.0\\%$ and $14.7\\%$ in preference accuracy, and that Reward Lightning generates high-fidelity videos in merely $1$ to $4$ steps, improving the average VBench score by $2.1\\%$ while leading in text alignment, motion quality, and visual quality. Project page: https://reward-lightning.github.io.",
+      "authors": [
+        "Jiaxiang Cheng",
+        "Bing Ma",
+        "Xuhua Ren",
+        "Kai Yu",
+        "Peng Zhang",
+        "Tianxiang Zheng",
+        "Qinglin Lu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-04T17:32:35Z",
+      "updated": "2026-07-04T17:32:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03960v1",
+      "abs_url": "https://arxiv.org/abs/2607.03960",
+      "topics": [
+        "rl",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03960",
+      "summary_zh": "Reward Lightning 旨在解决视频扩散模型在偏好对齐与推理加速过程中目标不匹配导致的性能折损问题。该框架通过同源偏好蒸馏（HPD）技术，将偏好对齐与蒸馏优化统一在相同的潜在特征空间中，有效消除了不同表示空间下的梯度冲突。核心创新在于引入了直接在潜在空间评分的潜在奖励模型（LRM），避免了繁琐的像素解码过程，并利用该模型实现对抗蒸馏与偏好对齐的联合优化。实验结果表明，LRM 在偏好准确率上显著优于现有基准，且 Reward Lightning 仅需 1 到 4 步即可生成高质量视频，在 VBench 评估中实现了文本对齐、运动质量与视觉质量的全面提升。"
+    },
+    {
+      "id": "2607.03957",
+      "title": "NormWorlds-CF: Solver-Verified Counterfactual Normative Reasoning with Metamorphic-Relation GRPO",
+      "abstract": "Language models can reach the right normative verdict for the wrong reason. We introduce NormWorlds-CF, a solver-verified environment for counterfactual normative reasoning in executable rule worlds. Its deterministic solver produces final answers, proof and falsification certificates, argument statuses, support sets, and paired-world change labels, enabling supervision and evaluation without LLM judges. The benchmark contains staged SFT diagnostics and a compact paired-world task with 270 root families and 1080 canonical-to-variant pairs. The SFT diagnostics show that final-answer supervision is an unsafe proxy: answer-only SFT reaches perfect accuracy on answer tasks but scores zero on falsification, while proof-plus-falsification training with targeted replay reaches strong all-task accuracy. For the structured-change task, we introduce metamorphic-relation GRPO (MR-GRPO), a class-conditioned reward for GRPO that gives partial credit for relation families and solver-visible change fields. In matched 1.7B continuation experiments, MR-GRPO improves held-out relation accuracy and relation-family correctness, and reduces wrong-family error, compared to sparse and answer-only GRPO. In Qwen3-4B three-seed validation, answer-only reward improves answer-change fields but weakens relation-family structure, sparse reward preserves coarse relation labels best, and MR-GRPO delivers the strongest balanced performance across answer-change, support-change, status-change, and soft root-level metamorphic-relation metrics. These results show that verified counterfactual structure can shape post-training beyond final answers, while exact full change-record generation, invariant subtype recognition, and out-of-distribution (OOD) transfer remain open problems.",
+      "authors": [
+        "Xinqi Zhang"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-07-04T17:11:21Z",
+      "updated": "2026-07-04T17:11:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03957v1",
+      "abs_url": "https://arxiv.org/abs/2607.03957",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03957",
+      "summary_zh": "NormWorlds-CF 旨在解决大模型在规范推理中“因错误理由得出正确结论”的问题，通过引入可执行规则世界的确定性求解器，提供包含证明、证伪及因果变化标签的完整监督信号。该研究构建了包含 1080 对配对世界任务的基准，实验表明仅依赖最终答案的 SFT 无法保证推理逻辑的正确性，而结合证明与证伪的训练能显著提升准确率。针对结构化变化任务，提出的 Metamorphic-Relation GRPO (MR-GRPO) 通过类条件奖励机制，有效强化了模型对关系家族及变化字段的理解。在 Qwen3-4B 等模型上的验证显示，MR-GRPO 在答案变化、支持集变化及状态变化等多个指标上均实现了最优的平衡性能，证明了基于验证的因果结构能够有效引导模型后训练过程。"
+    },
+    {
+      "id": "2607.03949",
+      "title": "TESSERA v2: Scaling Pixel-wise Earth Foundation Models",
+      "abstract": "Pixel-wise Earth-observation (EO) foundation models are now achieving state-of-the-art performance via generated spatial embeddings. However, how these models scale and how best to spend a pretraining budget remain poorly understood. We present the largest controlled scaling study for EO to date: 395 training runs on 1,024 GH200 superchips within a fixed pixel-wise Barlow Twins family, each evaluated on 15 downstream tasks. We find that pretraining loss barely predicts downstream performance (|Pearson r| < 0.2), so selecting models by loss wastes a large share of the compute. We also find that, as the training budget grows, the encoder and the data should grow together while the projector stays fixed, which gives a simple rule for allocating compute. Using this rule, we train a family of pixel-wise models (0.5B and 1B, with a 2B model in training) and distill them into compact students for embeddings-as-data deployment. The 21-million-parameter distilled TESSERA v2-1B-M in aggregate outperforms all open and proprietary models tested, some of which are orders of magnitude larger. These students produce Matryoshka representations that are inexpensive to serve: a 16-dimensional prefix keeps 92% of the full 128-dimensional performance at 1/8 of the storage. Upon completion of training we plan to release v2 global embeddings covering 2017-2025. Together, these results give a concrete, empirically grounded recipe for scaling pixel-wise EO foundation models: train large encoders, select by downstream performance, and distil into flexible student models. All code will be released at https://github.com/ucam-eo/tessera.",
+      "authors": [
+        "Zhengpeng Feng",
+        "Sadiq Jaffer",
+        "Ira Shokar",
+        "Jovana Knezevic",
+        "Mark Elvers",
+        "Clement Atzberger",
+        "Robin Young",
+        "Aneesh Naik",
+        "Niall Robinson",
+        "Andrew Blake",
+        "David Coomes",
+        "Anil Madhavapeddy",
+        "Srinivasan Keshav"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-07-04T16:52:34Z",
+      "updated": "2026-07-04T16:52:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03949v1",
+      "abs_url": "https://arxiv.org/abs/2607.03949",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03949",
+      "summary_zh": "针对地球观测（EO）领域像素级基础模型扩展规律不明的问题，本研究通过在1,024个GH200芯片上进行395次受控训练实验，揭示了预训练损失与下游任务性能之间相关性极低（Pearson r < 0.2）的现象。研究提出了一种计算资源分配准则，即随着预算增加应同步扩展编码器与数据量，同时保持投影层不变。基于此策略训练的TESSERA v2系列模型，通过知识蒸馏技术生成了高效的Matryoshka表示，其中仅21M参数的TESSERA v2-1B-M在15项下游任务中超越了众多更大规模的开源及闭源模型。该成果为像素级基础模型的规模化提供了实证路径，证明了通过大编码器训练与高效蒸馏相结合，能显著提升模型在资源受限场景下的部署性能。"
+    },
+    {
+      "id": "2607.03928",
+      "title": "TokAN: Accent Normalization Using Self-Supervised Speech Tokens",
+      "abstract": "Accent normalization (AN) seeks to convert non-native (L2) accented speech into standard (L1) speech while preserving speaker identity. The current techniques either require naturally recorded parallel L1-L2 speech for training, or suffer from quality degradation when supervised by synthesized targets. In this paper, we present TokAN, a token-based accent normalization framework that operates on self-supervised discrete speech tokens extracted from a L1-L2 jointly trained vector-quantization (VQ) tokenizer, without the need of synthetic supervisory speech. An autoregressive encoder-decoder model performs token-to-token conversion, translating L2-accented token sequences into the tokens of standard voice. We also introduce reinforcement learning (RL) post-training based on Group Relative Policy Optimization (GRPO), using word error rate and accent classifier confidence as complementary rewards. A non-autoregressive flow-matching synthesizer recovers the Mel-spectrogram from the converted tokens, conditioned on the source speaker embedding. We also develop a flow-matching duration predictor that supports total-duration-aware synthesis, making TokAN applicable to duration-critical tasks such as voice dubbing and live casting. Experiments on seven English accents demonstrate that TokAN reduced the word error rate from 12.40% to 9.89% after supervised fine-tuning, and further to 9.23% after RL post-training, consistently outperforming frame-to-frame, direct flow-matching, and prompt-based token-conversion baselines in terms of accent reduction and intelligibility.",
+      "authors": [
+        "Qibing Bai",
+        "Shuai Wang",
+        "Yuhan Du",
+        "Bohan Li",
+        "Yannan Wang",
+        "Haizhou Li"
+      ],
+      "categories": [
+        "cs.SD",
+        "cs.AI",
+        "eess.AS"
+      ],
+      "published": "2026-07-04T15:45:38Z",
+      "updated": "2026-07-04T15:45:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03928v1",
+      "abs_url": "https://arxiv.org/abs/2607.03928",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03928",
+      "summary_zh": "针对口音归一化（Accent Normalization）任务中依赖平行语料或合成目标导致质量受限的问题，TokAN 提出了一种基于自监督离散语音 Token 的转换框架。该方法利用联合训练的 VQ-tokenizer 提取语音特征，通过自回归编码器-解码器模型实现 L2 到 L1 的 Token 转换，并引入基于 GRPO 的强化学习进行后训练，以优化词错误率和口音识别置信度。最终，通过非自回归 Flow-matching 合成器与时长预测器恢复语音，在七种英语口音的测试中，该模型显著降低了词错误率并提升了语音清晰度，在口音消除效果上优于现有的帧级或提示词驱动基准模型，且支持配音等对时长敏感的应用场景。"
+    },
+    {
+      "id": "2607.03903",
+      "title": "CDCP: Conditional Diffusion Model with Contextual Prompts for Multi-task Offline Safe Reinforcement Learning",
+      "abstract": "Multi-task offline safe reinforcement learning (RL) promises to learn a shared optimal safe policy from offline data across multiple tasks. This paradigm provides an effective means for the widespread application of RL in multi-task scenarios with high risk and interaction costs. However, the triple challenges of multi-tasking, safety constraints, and out-of-distribution (OOD) actions pose a significant hurdle for existing methods to ensure safety while maximizing reward returns. In this work, we propose a Conditional Diffusion model with Contextual Prompts (CDCP) to address these challenges. Concretely, we first rethink the requirements and challenges in current multi-task decision-making and control scenarios and establish the objectives of multi-task offline safe RL. Subsequently, we transform the multi-task constrained optimization problem into a conditional generation problem using the diffusion model. Based on this, we design a classifier-free guided cost-constraint strategy to provide flexible cost constraints and eliminate extrapolation errors from OOD actions via supervised learning. Additionally, we introduce a novel contextual prompting method to enhance multi-task representation accuracy and adaptability to unseen tasks. A gradient loss synchronization strategy is also introduced to eliminate gradient interference, improving training stability. Finally, extensive experiments demonstrate that the CDCP algorithm exhibits higher performance and safety in multi-task scenarios than the current state-of-the-art baseline methods. It meets different cost constraints without further training, providing a more flexible cost-constraint solution for the multi-task safe RL.",
+      "authors": [
+        "Jiayi Guan",
+        "Tianle Zhang",
+        "Li Shen",
+        "Ruiqi Zhang",
+        "Ao Zhou",
+        "Lusong Li",
+        "Guai Chen",
+        "Mengjie Li",
+        "Alois Knoll",
+        "Xiaodong He",
+        "Changjun Jiang"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-04T14:57:35Z",
+      "updated": "2026-07-04T14:57:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03903v1",
+      "abs_url": "https://arxiv.org/abs/2607.03903",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03903",
+      "summary_zh": "CDCP 旨在解决多任务离线安全强化学习中，由于任务多样性、安全约束及分布外（OOD）动作导致的策略优化难题。该方法将多任务约束优化问题转化为条件生成任务，利用 Diffusion Model 对策略进行建模，并通过 Classifier-free guided cost-constraint 策略实现灵活的安全约束，同时有效抑制 OOD 动作带来的外推误差。创新性地引入 Contextual Prompts 机制以提升多任务表征能力与泛化性，并配合梯度损失同步策略消除多任务间的梯度干扰，确保训练稳定性。实验结果表明，CDCP 在多任务场景下显著优于现有主流基准方法，能够在无需额外训练的情况下满足不同成本约束，展现出极高的性能与安全性。"
+    },
+    {
+      "id": "2607.03876",
+      "title": "AdaptiveSD A Stability-Aware, Runtime-Adaptive Speculative Decoding Framework with Multi-Policy Orchestration for CPU-Constrained LLM Inference",
+      "abstract": "With the rise of small quantized GGUF-based language models and their increasing use for on-device inference tasks, we have seen the growing need for an approach capable of reliably delivering these models at scale even under severe memory bandwidth constraints such as those imposed by pure CPU implementations. Fixed-depth speculative decoding has emerged as one promising technique, but in practice, it often leads to performance degradation due to either bandwidth saturation, instability, or even catastrophic resource exhaustion resulting in system failure. To overcome this problem, we introduce AdaptiveSD, a fully runtime-adaptive speculative decoding framework aimed at ensuring robust, reliable execution across the spectrum of model types and workloads. Our solution consists of four tightly-coupled components working together in a continuous feedback loop: a Runtime Monitoring Engine tracking multiple signals relevant to ongoing computation, an Adaptive Draft Controller enforcing an eleven rule policy hierarchy prioritizing system resource preservation over raw draft count, a Dynamic Policy Engine employing a suite of heuristic and reinforcement learning techniques to dynamically modify policies depending upon workload behavior, and finally, a KV Cache Coordination Layer managing cache states with fine-grained control through INT8 shadow buffers and position aware evictions. While conventional approaches focus solely on maximizing throughput, we instead assess the effectiveness of our approach based on several key metrics including wasted drafted compute and inter-token latency dispersion alongside standard measures of speculative efficiency.",
+      "authors": [
+        "Sadra Saremi"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-04T13:39:40Z",
+      "updated": "2026-07-04T13:39:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03876v1",
+      "abs_url": "https://arxiv.org/abs/2607.03876",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03876",
+      "summary_zh": "AdaptiveSD 旨在解决 CPU 环境下小参数量化模型推理时，固定深度投机采样（Speculative Decoding）导致的带宽饱和、系统不稳定及资源耗尽问题。该框架通过运行时监控引擎实时追踪计算指标，利用包含十一条规则的自适应草稿控制器（Adaptive Draft Controller）优先保障系统稳定性，并结合动态策略引擎（Dynamic Policy Engine）通过启发式算法与强化学习实时调整推理策略。此外，KV Cache 协调层通过 INT8 影子缓冲区与位置感知淘汰机制实现了细粒度的缓存管理。实验表明，该方法在降低无效计算开销与减少 Token 间延迟波动方面表现优异，在资源受限场景下实现了比传统投机采样更稳健且高效的推理性能。"
+    },
+    {
+      "id": "2607.03865",
+      "title": "High-Fidelity One-Step Generative Visuomotor Policy via Recursive Correction, Frequency Consistency, and Contrastive Flow Matching",
+      "abstract": "Generative models such as diffusion and flow matching have advanced robotic visuomotor policies by modeling multimodal action distributions, but their multi-step sampling or ODE solving introduces inference latency. Existing one-step acceleration methods often compress the whole generation process into a single large update, leading to spatial deviation, frequency distortion, and mode averaging. This paper proposes a high-fidelity one-step generative visuomotor policy framework that addresses these issues with three complementary mechanisms. Recursive Consistent Action Flow (RCAF) uses recursive correction to compensate for spatial truncation errors and align one-step predictions with refined flow trajectories. Dual-Timestep Frequency Consistency (DTFC) preserves high-frequency manipulation details through adaptive spectral consistency across flow timesteps. Contrastive Flow Matching (CFM) separates entangled action flows with a margin-based repulsive objective, reducing ambiguous actions in multimodal manipulation. Experiments on RoboTwin, RoboTwin 2.0, Adroit, DexArt, and real-world robot platforms show that the proposed method achieves competitive or superior performance compared with strong 10-step generative policy baselines while requiring only one forward pass (1 NFE), enabling low-latency visuomotor control.",
+      "authors": [
+        "Yuran Chen",
+        "Xinye Cai",
+        "Zhonglin Gong",
+        "Yang Huang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-04T13:12:38Z",
+      "updated": "2026-07-04T13:12:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03865v1",
+      "abs_url": "https://arxiv.org/abs/2607.03865",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03865",
+      "summary_zh": "针对生成式机器人视觉运动策略中多步采样带来的高延迟问题，该研究提出了一种高保真单步生成框架，旨在解决现有单步加速方法中常见的空间偏差、频率失真及模式平均现象。通过递归一致动作流（RCAF）进行递归修正以补偿截断误差，利用双时间步频率一致性（DTFC）保留高频操作细节，并引入对比流匹配（CFM）通过排斥目标解耦动作流，从而有效提升了生成质量。在 RoboTwin、Adroit 及 DexArt 等多个基准测试及真实机器人平台上的实验表明，该方法仅需单次前向传播（1 NFE）即可达到甚至超越 10 步生成策略的性能，显著降低了视觉运动控制的推理延迟。"
+    },
+    {
+      "id": "2607.03803",
+      "title": "CineMobile: On-Device Image-to-Video Diffusion for Cinematic Camera Motion Generation",
+      "abstract": "The growing demand for image-to-video creation on mobile devices has increasingly focused on cinematic motion effects like bullet time, dolly zoom, slow motion, etc. While Diffusion Transformers (DiTs) exhibit strong performance in video generation, their large parameter sizes and multi-step iterative denoising processes lead to substantial computational overhead, making efficient generation on mobile devices challenging. We propose CineMobile to bridge the gap. In particular, CineMobile adopts a three-fold optimization strategy: (1) leveraging a distillation-guided pruning approach to derive a compact yet efficient model that retains the essential video generation capabilities required for cinematic effects; (2) optimizing the compressed model into a 4-step generator via a combination of diffusion distillation and reinforcement learning; (3) employing a hybrid post-training quantization strategy to compress the model footprint to under 1 GB. Experimental results show that compared to the teacher model with the Wan 2.1 architecture, CineMobile achieves a 40x speedup in generation while maintaining comparable visual quality. Specifically, CineMobile generates 49-frame 480p videos with a per-step denoising latency of 0.6s on an NVIDIA H200 GPU and 20s on the MediaTek Dimensity 8400 Ultimate 5G platform, with a peak memory usage of 1.8 GB, demonstrating its practical applicability for mobile-based image-to-video creation.",
+      "authors": [
+        "Xuyao Huang",
+        "Zelai Deng",
+        "Xu Wang",
+        "Xizhong Xiao",
+        "Zhijie Deng"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-04T10:24:35Z",
+      "updated": "2026-07-04T10:24:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03803v1",
+      "abs_url": "https://arxiv.org/abs/2607.03803",
+      "topics": [
+        "rl",
+        "distillation",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03803",
+      "summary_zh": "为解决移动端图像生成视频时Diffusion Transformers (DiTs)计算开销过大的难题，CineMobile提出了一种专为电影级运镜设计的轻量化生成框架。该方法通过蒸馏引导的剪枝技术压缩模型规模，结合扩散蒸馏与强化学习将推理步数缩减至4步，并利用混合后训练量化将模型体积控制在1GB以内。实验表明，CineMobile在保持高质量视觉效果的同时，相比Wan 2.1架构实现了40倍的推理加速。在MediaTek Dimensity 8400平台上，该模型能以约20秒的延迟生成49帧480p视频，峰值内存占用仅1.8GB，显著提升了移动端视频生成的实用性。"
+    },
+    {
+      "id": "2607.03788",
+      "title": "Tensor-Train Joint Modeling for Few-Step Discrete Diffusion",
+      "abstract": "Discrete diffusion promises orders-of-magnitude faster generation than autoregressive (AR) models for sequential discrete data, yet its full potential of few-step generation has remained out of reach due to a fundamental structural limitation. The conditional-independence assumption underlying current discrete diffusion models introduces a systematic parallelization bias that compounds with the number of tokens unmasked per step, becoming severe in the few-step regime that fast generation requires. We address this with the first framework for explicit joint distribution modeling in discrete diffusion via tensor decomposition, which represents the conditional clean distribution as a low-rank tensor with controllable expressivity. The framework supports both Canonical Polyadic (CPD) and Tensor-Train (TTD) decompositions, and we identify a structural bias of TTD toward dependencies between nearby tokens, formalized through Oseledets' theorem relating TT-rank to unfolding-matrix rank, which is well-suited to sequential data such as natural language and line notations for molecular data. To enable efficient generation, we present an iterative marginal inference procedure with specialization for predetermined position schedules. Our framework integrates into pretrained MDMs through lightweight fine-tuning, yielding substantial improvements in few-step generation at a fraction of the cost of training from scratch.",
+      "authors": [
+        "Byoungkwon Kim",
+        "Minhyuk Sung"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-04T09:32:12Z",
+      "updated": "2026-07-04T09:32:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03788v1",
+      "abs_url": "https://arxiv.org/abs/2607.03788",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03788",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "离散扩散模型在少步生成任务中受限于条件独立性假设，导致并行化偏差随步数减少而显著增加，难以实现高质量的快速序列生成。该研究提出了一种基于张量分解的联合分布建模框架，通过将条件分布表示为低秩张量，显式捕捉序列间的依赖关系。其中，Tensor-Train Decomposition (TTD) 利用 Oseledets 定理展现出对邻近 token 依赖的结构性优势，非常契合自然语言及分子序列数据。通过引入迭代边缘推理过程，该方法可作为轻量级微调方案集成至预训练的 MDM 中，在显著降低计算成本的同时，大幅提升了少步生成任务的性能表现。"
+    },
+    {
+      "id": "2607.03770",
+      "title": "Self-Improving Diffusion Classifiers with Minority Preference Optimization",
+      "abstract": "Prior studies have demonstrated that diffusion classifiers achieve robust zero-shot classification performance. However, their effectiveness is strongly tied to the pretraining data distribution: they perform well in majority, high-density regions of the data manifold, but are significantly less accurate in minority, low-density regions. Although prior works on minority sampling have focused on generating more minority-like images, what minority sampling fundamentally enables beyond generation remains underexplored. In this paper, we reveal a direct relationship between minority sampling in generation and the perception capability of diffusion classifiers. Specifically, we show that enhancing minority sampling broadens the coverage of underrepresented regions on the data manifold, thereby improving diffusion-based recognition. To exploit this connection, we propose \\textit{Self-Improving Diffusion Classifiers with Minority Preference Optimization} (MiPO), which fine-tunes a pretrained diffusion model using minority preference rewards. Using only arbitrary caption data, MiPO generates candidate samples, rewards those that better cover minority regions, and optimizes the model with LoRA and Group Relative Policy Optimization, without additional image data, external foundation models, or external reward models. This enables stable, prompt-adaptive minority sampling and translates low-density generative coverage into improved zero-shot diffusion classification. To sum up, we show that diffusion classifier perception is biased toward majority regions, demonstrate that this bias can be alleviated through minority preference optimization, and evaluate MiPO on five standard datasets.",
+      "authors": [
+        "Hyunsoo Kim",
+        "Jungmyung Wi",
+        "Soobin Um",
+        "Donghyun Kim",
+        "Suhyun Kim"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-04T08:42:08Z",
+      "updated": "2026-07-04T08:42:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03770v1",
+      "abs_url": "https://arxiv.org/abs/2607.03770",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03770",
+      "summary_zh": "扩散分类器在数据分布的少数类或低密度区域表现欠佳，主要受限于预训练数据分布的偏差。MiPO（Self-Improving Diffusion Classifiers with Minority Preference Optimization）通过引入少数类偏好优化，利用无标注文本数据生成候选样本，并基于覆盖少数区域的奖励机制，通过 LoRA 和 Group Relative Policy Optimization 对模型进行微调。该方法无需额外的图像数据或外部模型，有效扩大了模型在数据流形上对低密度区域的覆盖范围。在五个标准数据集上的实验表明，MiPO 显著缓解了扩散分类器的多数类偏见，提升了零样本分类的鲁棒性与准确度。"
+    },
+    {
+      "id": "2607.03748",
+      "title": "Bridging Interleaved Multi-Modal Reasoning as a Unified Decision Process",
+      "abstract": "Unified multi-modal models (UMMs) have shown promising interleaved text-image reasoning capabilities, yet effectively optimizing such multi-turn generation via reinforcement learning (RL) remains an open challenge. Existing approaches apply RL exclusively to text steps, relegating image generation to supervised surrogates, preventing policy gradients from propagating through the full interleaved trajectory across heterogeneous modalities. This leaves the potential of RL for UMMs largely untapped. In the paper, we introduce \\textbf{BRAID} (\\textbf{B}ridging inte\\textbf{R}le\\textbf{A}ved mult\\textbf{I}-modal reasoning as a unified \\textbf{D}ecision process), a simple framework that casts multi-turn text-image-text reasoning as a unified Markov decision process (MDP), enabling joint optimization of textual and visual generation via a single, principled RL objective. BRAID computes a shared trajectory-level advantage and propagates it coherently into both text tokens and image denoising paths, each optimized through its modality-native policy gradient mechanism. To further address long-horizon credit assignment, BRAID employs a vision-language model (VLM) judge that scores each intermediate image on its reasoning utility, supplying dense turn-level feedback to sharpen learning at critical visual branches. Experiments on spatial reasoning and visual perception benchmarks show that BRAID consistently outperforms various baselines, confirming that a unified MDP formulation with vision-thinking guidance is essential for effective multi-modal reasoning.",
+      "authors": [
+        "Zican Hu",
+        "Xuyang Hu",
+        "Yiming Liu",
+        "Zuwei Long",
+        "Wei Liu",
+        "Yunzhuo Hao",
+        "Jiawei Gu",
+        "Linjie Li",
+        "Yu Cheng",
+        "Zhenhong Sun",
+        "Weibo Gu",
+        "Xing Sun",
+        "Zhi Wang"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-04T07:40:43Z",
+      "updated": "2026-07-04T07:40:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03748v1",
+      "abs_url": "https://arxiv.org/abs/2607.03748",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03748",
+      "summary_zh": "现有统一多模态模型（UMMs）在处理交错式图文推理时，往往仅对文本步骤进行强化学习（RL），导致图像生成部分无法参与端到端的策略梯度更新。BRAID 框架将多轮图文推理建模为统一的马尔可夫决策过程（MDP），通过单一的 RL 目标实现文本生成与图像去噪路径的联合优化。该方法引入共享的轨迹级优势函数，并利用视觉语言模型（VLM）作为裁判，为中间图像提供密集的推理效用反馈，从而有效解决长程信用分配问题。在空间推理与视觉感知基准测试中，BRAID 显著优于现有基线，证明了将多模态推理统一为决策过程并引入视觉思维引导对于提升模型性能至关重要。"
+    },
+    {
+      "id": "2607.03732",
+      "title": "ProxyUp: Training-Free Proxy-Conditioned Video Generation for Controllable Dynamics",
+      "abstract": "Precise control over complex dynamics remains challenging for modern video generative models, as text prompts alone often cannot specify physically plausible, fine-grained motion and interactions. We introduce $\\textit{proxy-conditioned video generation}$, where a coarse proxy video from physics-based simulation or real-world recording serves as a dynamics carrier to control foreground object motion. Given a proxy video and a text prompt, the goal is to synthesize a new video that preserves the proxy dynamics while generating novel content and plausible interactions aligned with the prompt. Since paired proxy-target videos are difficult to obtain, we propose $\\textbf{ProxyUp}$, a training-free framework built on pretrained video generative models. ProxyUp first inverts the proxy video into an intermediate latent representation and applies $\\textbf{region-wise latent noising}$, preserving motion-critical proxy latents while injecting noise into regions intended for text-driven regeneration. To mitigate the distribution mismatch and weak foreground-background coupling introduced by this heuristic latent composition, we further propose $\\textbf{Stochastic Flow Relaxation (SFR)}$, which progressively relaxes the composed latent toward the model's learned distribution before ODE sampling. Experiments on both simulation and real-world proxies show that ProxyUp outperforms strong video editing and motion transfer baselines in dynamic fidelity and text alignment.",
+      "authors": [
+        "Zanwei Zhou",
+        "Jiazhong Cen",
+        "Jiemin Fang",
+        "Yumeng He",
+        "Chen Yang",
+        "Sikuang Li",
+        "Fanpeng Meng",
+        "Zhikuan Bao",
+        "Wei Shen",
+        "Qi Tian"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-04T06:39:40Z",
+      "updated": "2026-07-04T06:39:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03732v1",
+      "abs_url": "https://arxiv.org/abs/2607.03732",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03732",
+      "summary_zh": "针对现有视频生成模型难以精确控制复杂动态的问题，ProxyUp 提出了一种无需训练的代理条件视频生成框架，利用物理仿真或真实录制的粗糙代理视频作为动态载体，引导生成符合文本描述且具备物理合理性的视频。该方法通过将代理视频反演为中间潜空间表示，并采用区域级潜空间加噪（region-wise latent noising）技术，在保留关键运动信息的同时实现文本驱动的内容重构。为解决潜空间合成带来的分布偏移与前景背景耦合不足，引入了随机流松弛（Stochastic Flow Relaxation, SFR）机制，在 ODE 采样前逐步将合成潜变量向模型分布对齐。实验结果表明，该方法在动态保真度与文本对齐能力上均优于现有的视频编辑与运动迁移基准模型。"
+    },
+    {
+      "id": "2607.03702",
+      "title": "Agent Reinforcement Learning via Pivotal-Aware Self-Feedback Retry",
+      "abstract": "Large language model (LLM) agents have shown strong decision-making capabilities in long-horizon interactive tasks, yet they still struggle to effectively leverage failed trajectories: full retries incur high interaction costs, while experience retrieval tends to dilute critical experience signals. To address this, we propose PivoARL, a self-feedback retry framework for experience exploitation in LLM agents. PivoARL identifies the pivotal erroneous turn through structured reflection and performs local retry only from the corresponding pivotal state, thereby reusing the correct prefix and reducing redundant interactions. From an information-gain perspective, we further show that pivotal retry concentrates useful experience signals near the error boundary, mitigating the signal dilution caused by state-agnostic experience utilization. Based on this insight, we design a pivotal-aware credit assignment mechanism that rewards correct prefixes while isolating erroneous suffixes, and optimize reflection quality through implicit reflection returns. We conduct a systematic evaluation on 4 agent tasks and 7 search-based QA benchmarks. Results show that PivoARL achieves significant improvements on Pass@2/3 across all tasks, with an average gain of about 11.5\\% over MetaRL. Moreover, benefiting from contrastive preference signals induced by pivotal turns, PivoARL also consistently improves Pass@1 on over 80\\% of the tasks. On Minesweeper environment, PivoARL improves over GiGPO by more than 45\\% and reduces interaction turns by about 42\\% on average compared with full-retry methods. Code is available at https://github.com/yuki-younai/PivoARL.",
+      "authors": [
+        "Weiyang Guo",
+        "Zesheng Shi",
+        "Longhui Zhang",
+        "Zeen Zhu",
+        "Min Zhang",
+        "Jing Li"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-04T04:45:05Z",
+      "updated": "2026-07-04T04:45:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.03702v1",
+      "abs_url": "https://arxiv.org/abs/2607.03702",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.03702",
+      "summary_zh": "LLM 智能体在长程任务中难以高效利用失败轨迹，全量重试成本高昂且经验检索易稀释关键信息。PivoARL 框架通过结构化反思定位关键错误步骤，仅从该状态进行局部重试，在复用正确前缀的同时显著降低交互冗余。该方法引入关键点感知信用分配机制，将奖励集中于错误边界附近，并通过隐式反思回报优化反馈质量。在 4 项智能体任务及 7 个搜索问答基准测试中，PivoARL 相比 MetaRL 平均提升约 11.5% 的 Pass@2/3 表现，在 Minesweeper 环境中交互轮次减少约 42%，有效解决了长程决策中的经验利用难题。"
+    }
+  ]
 }
