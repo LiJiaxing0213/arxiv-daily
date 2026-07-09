@@ -1,6 +1,6 @@
 {
   "date": "2026-07-07",
-  "generated_at": "2026-07-08T04:50:29.610724+00:00",
+  "generated_at": "2026-07-09T05:37:42.481040+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,213 @@
     }
   },
   "papers": [
+    {
+      "id": "2607.06856",
+      "title": "Gen4U: Unifying Video Generation and Understanding via Diffusion",
+      "abstract": "Prior work suggests that diffusion representations capture low-level geometry but struggle with high-level semantics. We demonstrate that state-of-the-art video diffusion models overcome this limitation. By systematically probing their intermediate activations using recent mutual-kNN alignment metrics, we reveal a highly structured latent space where visual representations evolve across both network depth and noise levels. We show that while moderate noise levels yield linearly separable global semantics, fine-grained details persist at lower noise levels but become spatially scattered, requiring attention mechanisms to decode. Building on these insights, we introduce Gen4U (Generation for Understanding), a framework that repurposes these generative representations with a single forward pass. Our experiments establish that frozen, large-scale video diffusion models function as highly competitive video encoders across a wide spectrum of tasks, spanning semantic and non-semantic objectives (video classification, depth estimation, camera pose estimation, image and video captioning). Bypassing fine-tuning, Gen4U unifies the generation and understanding paradigms, achieving strong perception performance while fully preserving the model's ability to generate high-quality video.",
+      "authors": [
+        "Michael King",
+        "Aravindh Mahendran",
+        "Matthew Koichi Grimes",
+        "Fedor Kitashov",
+        "Adham Elarabawy",
+        "Pedro Velez",
+        "Maks Ovsjanikov",
+        "Viorica Pătrăucean"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-07-07T23:17:26Z",
+      "updated": "2026-07-07T23:17:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06856v1",
+      "abs_url": "https://arxiv.org/abs/2607.06856",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06856",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "现有视频扩散模型在处理高层语义时常被认为能力不足，本研究通过 mutual-kNN 对齐指标深入剖析其潜在空间，发现模型内部表征随网络深度与噪声水平呈现出高度结构化的演变规律。基于此洞察，Gen4U 框架通过单次前向传播直接复用冻结的生成模型表征，无需微调即可将其转化为强大的通用视频编码器。实验表明，该方法在视频分类、深度估计、相机位姿估计及多模态描述等任务中表现卓越，成功实现了视频生成与理解范式的统一，在保持高质量生成能力的同时，显著提升了视觉感知性能。"
+    },
+    {
+      "id": "2607.06855",
+      "title": "Geometric Self-Distillation for Reasoning Generalization",
+      "abstract": "On-policy distillation is a practical post-training recipe for large language models, supplying dense teacher supervision on the student's own trajectories. In privileged-context self-distillation, teacher and student are the same model conditioned on the same prefix, but the teacher also sees a hint or the full solution trace. This makes supervision abundant but harder to trust: the teacher can be confident about continuations its privileged view makes obvious but the student cannot yet justify. The distillation pull is strongest where teacher and student disagree most, and over many updates it accumulates into drift that degrades out-of-distribution (OOD) reasoning. We introduce GeoSD, a geometric self-distillation objective that treats this drift as movement in the student's predictive behavior and counters it in two complementary ways. A Hellinger loss scales each teacher preference by the overlap the student already shares with it, attenuating the pull on tokens the student cannot yet support. Since these pulls still compound over training, a proximal term penalizes how far the student's predictions drift from a recent checkpoint, measured as a Fisher-Rao distance. Both are distances in the same geometry of next-token distributions, and a natural-gradient update takes its steps in that geometry rather than in parameter space. Across mathematical reasoning benchmarks and three model families, GeoSD preserves the in-distribution gains of self-distillation while improving average OOD accuracy by 5.7-8.6 points over the base model, with gains holding across model scales from 1.7B to 32B. Analyzing why standard matching fails out of distribution, we find it wins agreement with the teacher by draining mass from alternatives at high-entropy states, resulting in confident agreement on wrong answers, whereas GeoSD keeps those alternatives in reach.",
+      "authors": [
+        "Josip Jukić",
+        "Ivan Titov"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-07-07T23:16:19Z",
+      "updated": "2026-07-07T23:16:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06855v1",
+      "abs_url": "https://arxiv.org/abs/2607.06855",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06855",
+      "summary_zh": "针对大语言模型在特权上下文自蒸馏（privileged-context self-distillation）中因过度拟合教师模型而导致的推理漂移问题，GeoSD 提出了一种基于几何视角的优化目标。该方法引入 Hellinger loss 动态调整教师偏好权重，以减弱学生模型对尚无法理解的 token 的强制拟合，并利用 Fisher-Rao 距离作为近端项（proximal term）约束预测分布的漂移。这种在概率分布几何空间而非参数空间进行的自然梯度更新，有效缓解了模型在分布外（OOD）场景下的性能退化。在多个数学推理基准测试中，GeoSD 在保持分布内性能的同时，将 OOD 推理准确率平均提升了 5.7 至 8.6 个百分点，且在 1.7B 到 32B 不同规模模型上均表现稳健。"
+    },
+    {
+      "id": "2607.06854",
+      "title": "A Gold-Standard Study of What Makes a Lightweight Game-Playing Agent Strong",
+      "abstract": "Reinforcement learning agents for imperfect-information card games are only as strong as the opponents they train against, and they are hard to grade, since they beat a random opponent over 99 percent of the time and only tie copies of themselves. So we build a strong, fixed, rule-based expert for Gin Rummy and use it only as a yardstick, never for training. It beats every agent we trained 70 to 99 percent of the time. Across more than a hundred runs, we isolate what makes a lightweight agent stronger. Trust region updates, a well-aimed reward, a curriculum of tougher opponents, warm starting, and keeping the best checkpoint all help, and stacking them lifts a self-play champion from about 30 to 36 percent against the expert. Several ideas did not pay off. Short-term and longer-term reward shaping, learned state embeddings, imitation and DAgger, and a live large language model opponent were each unhelpful, too slow, or too heavy to train at scale. Comparing MLP, convolutional, set-based, attention, and recurrent encoders shows that extra capacity does little to break the ceiling, suggesting the limit is information rather than network size. We add standard baselines (neural fictitious self-play and information set Monte Carlo search) and confirm the approach carries over to Leduc Hold'em, where the optimum is computable. The result is a lightweight, game-agnostic recipe that trains competitive agents without training on the expert, for any game a small model can handle, reported with robust statistics and released as a reusable package.",
+      "authors": [
+        "Nima Kelidari",
+        "Mohammadsaeed Haghi",
+        "Mahdi Salmani"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.GT"
+      ],
+      "published": "2026-07-07T23:11:21Z",
+      "updated": "2026-07-07T23:11:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06854v1",
+      "abs_url": "https://arxiv.org/abs/2607.06854",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06854",
+      "summary_zh": "针对非完美信息纸牌游戏（如 Gin Rummy）中智能体难以评估且训练依赖性强的问题，该研究构建了一个固定的规则专家作为基准，通过大规模实验系统性地探索了轻量级智能体的性能提升路径。研究发现 Trust region updates、精心设计的奖励函数、对手课程学习及最佳检查点保留等策略能显著增强智能体表现，而复杂的奖励塑造、学习型嵌入及大语言模型对手等方法则效果有限。实验对比了多种编码器架构，指出性能瓶颈在于信息获取而非模型容量。最终提出了一套通用的轻量级训练配方，在 Gin Rummy 和 Leduc Hold'em 上均验证了其有效性，为开发高效、可复用的博弈智能体提供了稳健的参考方案。"
+    },
+    {
+      "id": "2607.06818",
+      "title": "Ad Headline Generation using Self-Critical Masked Language Model",
+      "abstract": "For any E-commerce website it is a nontrivial problem to build enduring advertisements that attract shoppers. It is hard to pass the creative quality bar of the website, especially at a large scale. We thus propose a programmatic solution to generate product advertising headlines using retail content. We propose a state of the art application of Reinforcement Learning (RL) Policy gradient methods on Transformer based Masked Language Models. Our method creates the advertising headline by jointly conditioning on multiple products that a seller wishes to advertise. We demonstrate that our method outperforms existing Transformer and LSTM + RL methods in overlap metrics and quality audits. We also show that our model-generated headlines outperform human submitted headlines in terms of both grammar and creative quality as determined by audits.",
+      "authors": [
+        "Yashal Shakti Kanungo",
+        "Sumit Negi",
+        "Aruna Rajan"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-07T21:25:49Z",
+      "updated": "2026-07-07T21:25:49Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06818v1",
+      "abs_url": "https://arxiv.org/abs/2607.06818",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06818",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对电商平台大规模生成高质量广告标题的挑战，该研究提出了一种基于 Transformer 架构的 Masked Language Model（MLM）与强化学习（RL）策略梯度方法相结合的自动化方案。该方法通过联合建模多个待推广产品的信息，能够生成更具吸引力的广告文案。实验结果表明，该模型在重叠指标及人工质量审计中均显著优于现有的 Transformer 和 LSTM + RL 基准方法。此外，审计评估显示，模型生成的标题在语法准确性和创意质量上甚至超过了人类撰写的广告语，证明了其在实际电商场景中的应用潜力。"
+    },
+    {
+      "id": "2607.06796",
+      "title": "Enhancing deep learning models for time series classification via knowledge distillation",
+      "abstract": "Deep learning has achieved remarkable success in various domains including time series analysis, computer vision and natural language processing. However, high computational and memory demands of state-of-the-art architectures pose challenges for deployment in resource-limited environments. Knowledge Distillation (KD) addresses this by transferring knowledge from a large teacher model to a smaller, more efficient student model while maintaining competitive performance. In this work, we investigate the effectiveness of KD for Time Series Classification (TSC) across three architectures: the classical Fully Convolutional Network (FCN), the convolutional Inception model and the transformer-based ConvTran model. We evaluate our approach on UCR Archive, the largest benchmark repository of time series datasets, by modifying architectural components such as convolutional filters, Inception modules and attention heads across the three architectures. Our results consistently show that KD most effectively benefits student models of intermediate complexity across all three architectures, with the distilled FCN student reducing parameters by a factor of 38, the distilled Inception student achieving nearly the same performance as the teacher with 42% fewer parameters and the distilled ConvTran student with 2 attention heads showing the most significant improvement through distillation. To encourage further research and reproducibility, we provide our implementation at https://github.com/MSD-IRIMAS/KD-4-TSC.",
+      "authors": [
+        "Javidan Abdullayev",
+        "Maxime Devanne",
+        "Jonathan Weber",
+        "Germain Forestier"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-07T20:51:22Z",
+      "updated": "2026-07-07T20:51:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06796v1",
+      "abs_url": "https://arxiv.org/abs/2607.06796",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06796",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对时间序列分类（TSC）中深度学习模型计算与内存需求过高的问题，本研究探索了知识蒸馏（Knowledge Distillation, KD）在 FCN、Inception 和 ConvTran 三种主流架构中的应用效果。通过对卷积核、Inception 模块及注意力头等组件进行精简，研究在 UCR Archive 基准数据集上验证了蒸馏策略的有效性。实验结果表明，KD 能显著提升中等复杂度学生模型的性能，其中蒸馏后的 FCN 参数量减少了 38 倍，Inception 模型在参数减少 42% 的情况下保持了与教师模型相当的精度，而具有 2 个注意力头的 ConvTran 学生模型则展现出最显著的性能提升。该工作为资源受限环境下部署高效时间序列分析模型提供了实证依据与优化路径。"
+    },
+    {
+      "id": "2607.06763",
+      "title": "Trees from Marginals: Autoregressive drafting with factorized priors",
+      "abstract": "Speculative decoding greatly increases the interactivity of autoregressive language models by trading off computation for extra tokens generated in a single forward pass. Factorized draft models are especially efficient because they predict future-token marginals in parallel, but their independence assumption causes acceptance rates to degrade sharply as the speculative budget grows. We analyze this limitation and introduce Weaver, a lightweight autoregressive adapter that constructs proposal trees from the top-K marginals of a factorized drafter. Weaver restores conditional dependencies between proposed tokens while avoiding a full-vocabulary projection. To support fast verification for models with Gated Delta Net layers, we derive a rollback-free tree-verification algorithm and implement optimized CUDA kernels in SGLang. By combining these model and systems contributions we achieve a 4.37-fold speedup over autoregressive decoding, and outperform a highly optimized DFlash baseline by 24.7%.",
+      "authors": [
+        "Yuma Oda",
+        "Ryan Mathieu",
+        "Roman Knyazhitskiy",
+        "Artur Chakhvadze"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-07-07T19:48:36Z",
+      "updated": "2026-07-07T19:48:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06763v1",
+      "abs_url": "https://arxiv.org/abs/2607.06763",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06763",
+      "summary_zh": "针对 Speculative decoding 中因子化草稿模型因独立性假设导致长序列预测准确率下降的问题，Weaver 提出了一种轻量级自回归适配器，通过从因子化模型的 Top-K 边缘概率中构建建议树，有效恢复了生成 Token 间的条件依赖关系。该方法在避免全词表投影的同时，配合针对 Gated Delta Net 层设计的无回滚树验证算法及 SGLang 下的优化 CUDA 内核，实现了高效的并行推理。实验结果表明，该方案在保持高接受率的前提下，较标准自回归解码实现了 4.37 倍的加速，并比优化后的 DFlash 基线性能提升了 24.7%。"
+    },
+    {
+      "id": "2607.06720",
+      "title": "When Does In-Context Search Help? A Sampling-Complexity Theory of Reflection-Driven Reasoning",
+      "abstract": "Training large language models (LLMs) with extended reasoning has enabled in-context search, in which models iteratively generate, critique, and revise solution attempts. We provide a theoretical analysis of in-context search by modeling it as approximate inference over reasoning traces, where the base model defines a prior and self-reflection provides feedback for posterior updates, and study the resulting inference-time sampling complexity - the number of sequential attempts needed to achieve high success probability. We show that when reflections reliably localize early mistakes, in-context search can yield exponential improvements over the base model, solving problems with exponentially small zero-shot pass rates using only a polynomial number of sequential attempts, whereas when this property fails, conditioning on past attempts offers no asymptotic benefit over parallel sampling. We further show that these gains are robust and learnable: approximate posterior updates suffice, and cross-entropy training on search rollouts recovers the required behavior with polynomial sample complexity. Finally, we show that under a stagewise abstraction of reinforcement learning with verifiable rewards, the optimal policy extension implements the same posterior reweighting rule. We validate key qualitative predictions of the theory on real large reasoning models.",
+      "authors": [
+        "Yotam Wolf",
+        "Noam Wies",
+        "Amnon Shashua"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-07T18:36:04Z",
+      "updated": "2026-07-07T18:36:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06720v1",
+      "abs_url": "https://arxiv.org/abs/2607.06720",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06720",
+      "summary_zh": "针对大语言模型在推理任务中利用 In-context search 进行迭代修正的有效性，该研究通过将推理轨迹建模为近似推理过程，揭示了反射驱动推理的采样复杂度理论。核心发现指出，当反射机制能有效定位早期错误时，In-context search 可实现指数级的性能提升，仅需多项式数量的尝试即可解决零样本成功率极低的问题；反之，若反射无法提供有效反馈，则其效果等同于并行采样。研究进一步证明了这种增益的鲁棒性与可学习性，即通过交叉熵训练搜索轨迹即可习得该行为，且在带有可验证奖励的强化学习框架下，最优策略扩展与该后验重加权规则一致。实验结果在主流推理模型上验证了上述理论预测的有效性。"
+    },
+    {
+      "id": "2607.06706",
+      "title": "Vision Language Action (VLA) Models for Unmanned Aerial Robotics and Bimanual Manipulation: A Review",
+      "abstract": "Vision Language Action (VLA) models unify visual perception, natural-language understanding, and action generation within a single foundation model, allowing a robot to follow instructions such as fold the towel or fly to the red building directly from camera images. Because VLAs inherit world knowledge from internet-scale pre-training, they have become the dominant framework for learning-based manipulation, with bimanual coordination serving as the most demanding testbed: two arms with 7 degrees of freedom each must move in concert to fold, assemble, and reorient objects. Unmanned aerial robotics faces a structurally similar challenge: a drone must coordinate thrust, attitude, and increasingly gripper commands from visual observations under strict latency and payload constraints. This review covers 183 contributions spanning 2017-2026 and organized along seven dimensions: VLA architectures, training recipes, action representations, bimanual coordination (2022-2026), unmanned aerial vehicle (UAV) navigation and control (2017-2026), language grounding, and cross-cutting concerns including memory and world models. We show that the coordination strategies, training recipes, and action representations developed for bimanual VLAs transfer to unmanned aerial systems and identify fourteen research directions across both domains.",
+      "authors": [
+        "Inkyu Sa",
+        "Chanoh Park",
+        "Hea-Min Lee",
+        "Donghee Noh",
+        "Ho Seok Ahn"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-07T18:24:09Z",
+      "updated": "2026-07-07T18:24:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06706v1",
+      "abs_url": "https://arxiv.org/abs/2607.06706",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06706",
+      "keyword_topics": [
+        "world-model"
+      ],
+      "summary_zh": "Vision Language Action (VLA) 模型通过将视觉感知、自然语言理解与动作生成统一在单一基础模型中，实现了机器人根据指令直接从图像执行复杂任务。该综述系统梳理了2017年至2026年间的183项研究，重点探讨了双臂操作（Bimanual Manipulation）与无人机（UAV）控制中的协同策略、训练配方及动作表示。研究发现，双臂机器人领域成熟的协调机制与训练范式可有效迁移至无人机系统，以应对严苛的延迟与负载约束。通过分析模型架构、语言接地及世界模型等七个维度，本文归纳了跨领域的关键技术共性，并为未来机器人具身智能的发展指明了十四个核心研究方向。"
+    },
     {
       "id": "2607.06555",
       "title": "ProxyPose: 6-DoF Pose Tracking via Video-to-Video Translation",
@@ -87,8 +294,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06516",
-      "summary_zh": "针对端到端自动驾驶仿真中交互性与视觉保真度难以兼顾的难题，Point as Skeleton 提出了一种基于状态更新的自回归视频生成框架。该方法引入 Reset-and-Roll 机制以适配闭环推理，通过防止未来条件泄露确保仿真稳定性；同时利用点云骨架（Point-cloud skeletons）解耦前景与背景资产，为模型提供几何与外观约束，有效缓解了自回归生成中的误差累积。在 nuScenes 和 nuPlan 数据集上的实验表明，该框架显著提升了闭环仿真中的视觉质量与一致性，为实现高保真的自动驾驶闭环测试提供了有效方案。",
-      "impact_score": null
+      "summary_zh": "针对端到端自动驾驶仿真中交互性与视觉保真度难以兼顾的难题，Point as Skeleton 提出了一种基于状态更新的自回归视频生成框架。该方法引入 Reset-and-Roll 机制以适配闭环推理，通过防止未来条件泄露确保仿真稳定性；同时利用点云骨架（Point-cloud skeletons）解耦前景与背景资产，为模型提供几何与外观约束，有效缓解了自回归生成中的误差累积。在 nuScenes 和 nuPlan 数据集上的实验表明，该框架显著提升了闭环仿真中的视觉质量与一致性，为实现高保真的自动驾驶闭环测试提供了有效方案。"
     },
     {
       "id": "2607.06514",
@@ -165,8 +371,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06481",
-      "summary_zh": "PACR-Video 旨在解决长视频外推中难以保持实体一致性、场景结构及叙事连贯性的难题，且无需对生成器进行全参数微调。该方法通过冻结 Text-to-Video Diffusion Transformer，引入由 Shot-Role Prompt Tokens 驱动的低秩时序适配器（Temporal Adapters），并构建递归 Prompt Bank 存储历史片段的实体、动作与风格信息，通过适配器门控机制实现上下文路由。其核心创新在于 Shot-Local/Story-Global 联合优化目标，通过跨片段身份对比与稀疏正则化，有效平衡了视觉一致性与叙事演进。在六项多片段长视频基准测试中，该模型在分布质量、语义对齐及运动稳定性等方面均显著优于现有的流式与递归上下文基线，证明了轻量级适配与紧凑 Prompt 路由在长视频生成中的高效控制能力。",
-      "impact_score": null
+      "summary_zh": "PACR-Video 旨在解决长视频外推中难以保持实体一致性、场景结构及叙事连贯性的难题，且无需对生成器进行全参数微调。该方法通过冻结 Text-to-Video Diffusion Transformer，引入由 Shot-Role Prompt Tokens 驱动的低秩时序适配器（Temporal Adapters），并构建递归 Prompt Bank 存储历史片段的实体、动作与风格信息，通过适配器门控机制实现上下文路由。其核心创新在于 Shot-Local/Story-Global 联合优化目标，通过跨片段身份对比与稀疏正则化，有效平衡了视觉一致性与叙事演进。在六项多片段长视频基准测试中，该模型在分布质量、语义对齐及运动稳定性等方面均显著优于现有的流式与递归上下文基线，证明了轻量级适配与紧凑 Prompt 路由在长视频生成中的高效控制能力。"
     },
     {
       "id": "2607.06468",
@@ -197,6 +402,33 @@
         "video-gen"
       ],
       "summary_zh": "EgoPolice 旨在解决执法记录仪（BWC）视频中高风险行为识别的难题，该数据集精选了真实的警民交互场景，并提供秒级精度的行为标注。针对视频中剧烈运动、复杂交互及罕见高风险事件的挑战，该研究构建了分类与多项选择问答任务，全面评估了 Gemini 2.5 Pro 等主流模型的感知能力。实验结果表明，现有模型在识别“Weapon Out”等关键高风险动作时仍表现欠佳，难以满足高风险场景的精准理解需求。该基准不仅为运动鲁棒性与上下文感知的视频理解提供了测试平台，也为大规模执法视频的自动化筛选与高效人工审核奠定了技术基础。"
+    },
+    {
+      "id": "2607.06647",
+      "title": "ORAN-DEFEND: Subspace Detection and Sanitization of Backdoor DRL xApps in Open RAN",
+      "abstract": "Open Radio Access Networks (O-RAN) increasingly delegate near-real-time control to deep reinforcement learning (DRL) xApps obtained from third-party vendors, creating a new supply-chain attack surface. A backdoor policy behaves optimally until an adversary injects a covert trigger into the observed key performance indicator (KPI) telemetry, at which point it issues harmful control actions that degrade quality of service (QoS). We present ORAN-DEFEND, a retraining-free wrapper that sanitizes a frozen, potentially compromised xApp by projecting each KPI window onto a safe subspace estimated from a small number of trusted clean rollouts via singular value decomposition (SVD). We establish, both analytically and empirically, a precise recovery condition: the defense succeeds if the trigger energy concentrates in the orthogonal complement of the safe subspace, and we quantify this boundary through the trigger's $\\Eperp$ energy fraction. On the Colosseum COLORAN dataset, we evaluate four structurally distinct DRL backdoor attacks, like TrojDRL, SleeperNets, BadRL, and Q-Incept, spanning inner-loop and outer-loop poisoning regimes and demonstrate $100\\%$ return recovery and $\\geq99.5\\%$ defense success rate across all four when the subspace assumption holds. A geometry ablation reveals an intrinsic and previously uncharacterized limit of any linear projection defense: when the trigger collocates with the legitimate signal, the $\\Eperp$ energy fraction governs recovery monotonically, and the linear residual detector collapses to chance even while a nonlinear classifier retains perfect separability.",
+      "authors": [
+        "Md Raihan Uddin",
+        "Fatemeh Lotfi",
+        "Tolunay Seyfi",
+        "Fatemeh Afghah"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.LG"
+      ],
+      "published": "2026-07-07T16:06:05Z",
+      "updated": "2026-07-07T16:06:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06647v1",
+      "abs_url": "https://arxiv.org/abs/2607.06647",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06647",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "Open RAN架构中第三方DRL xApps引入了供应链后门攻击风险，攻击者可通过KPI遥测中的隐蔽触发器诱导模型输出有害控制指令。ORAN-DEFEND提出了一种无需重训练的防御框架，通过SVD技术从少量可信数据中提取安全子空间，并将实时输入投影至该空间以剔除异常触发信号。理论分析与实验表明，该方法在Colosseum COLORAN数据集上针对TrojDRL、SleeperNets等四种主流后门攻击均实现了100%的性能恢复及超过99.5%的防御成功率。研究进一步揭示了线性投影防御的几何局限性，即当触发器与合法信号在空间上重叠时，线性检测器性能会显著下降，此时需引入非线性分类器以维持防御效果。"
     },
     {
       "id": "2607.06401",
@@ -230,8 +462,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06401",
-      "summary_zh": "当前 AI 领域对 World Models 的定义模糊且碎片化，导致在模型预测目标及构建范式上缺乏共识。该研究从科学视角重新定义了 World Models，将其视为能够学习环境结构与动态的内部模拟器，并深入探讨了其核心技术要素。文章提出了一套分阶段的发展路线图，旨在统一从 Model-based Reinforcement Learning 到 Embodied Robotics 等不同子领域的研究范式。通过明确 World Models 的本质属性与演进路径，该工作为构建具备物理常识与预测能力的 Physical AI 提供了理论框架与实践指导。",
-      "impact_score": null
+      "summary_zh": "当前 AI 领域对 World Models 的定义模糊且碎片化，导致在模型预测目标及构建范式上缺乏共识。该研究从科学视角重新定义了 World Models，将其视为能够学习环境结构与动态的内部模拟器，并深入探讨了其核心技术要素。文章提出了一套分阶段的发展路线图，旨在统一从 Model-based Reinforcement Learning 到 Embodied Robotics 等不同子领域的研究范式。通过明确 World Models 的本质属性与演进路径，该工作为构建具备物理常识与预测能力的 Physical AI 提供了理论框架与实践指导。"
     },
     {
       "id": "2607.06389",
@@ -252,11 +483,13 @@
       "pdf_url": "https://arxiv.org/pdf/2607.06389v1",
       "abs_url": "https://arxiv.org/abs/2607.06389",
       "topics": [
-        "video-gen"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06389",
-      "summary_zh": "针对视频人脸修复（VFR）中空间保真度与时间一致性难以兼顾的问题，FADRA 框架通过引入预训练视频扩散模型，结合轻量级 LoRA 适配器与 LQ Pixel-Alignment Feature Fusion 模块，实现了生成先验的高效迁移。该方法创新性地提出了 Repeated Residual Adaptation Head (RRAH)，在扩散模型的每一步流匹配过程中，利用低质量图像潜变量进行残差迭代优化，从而在保留时间先验的同时精准恢复面部细节。此外，引入的 Frequency-Aware Loss 通过多频段监督机制，有效增强了对视觉敏感频率成分的控制，减少了视频抖动。实验结果表明，FADRA 在主流 benchmark 上显著优于现有方法，在定量指标与视觉感知质量上均取得了明显提升。",
-      "impact_score": null
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "针对视频人脸修复（VFR）中空间保真度与时间一致性难以兼顾的问题，FADRA 框架通过引入预训练视频扩散模型，结合轻量级 LoRA 适配器与 LQ Pixel-Alignment Feature Fusion 模块，实现了生成先验的高效迁移。该方法创新性地提出了 Repeated Residual Adaptation Head (RRAH)，在扩散模型的每一步流匹配过程中，利用低质量图像潜变量进行残差迭代优化，从而在保留时间先验的同时精准恢复面部细节。此外，引入的 Frequency-Aware Loss 通过多频段监督机制，有效增强了对视觉敏感频率成分的控制，减少了视频抖动。实验结果表明，FADRA 在主流 benchmark 上显著优于现有方法，在定量指标与视觉感知质量上均取得了明显提升。"
     },
     {
       "id": "2607.06388",
@@ -341,8 +574,28 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06370",
-      "summary_zh": "针对基于 Flow Matching 的 Vision-Language-Action (VLA) 模型在机器人实时部署中面临的推理延迟瓶颈，本研究提出了一种无需训练的即插即用外部缓存机制 ActionCache。该方法通过存储并复用具有紧凑多模态键（Multimodal Keys）的中间动作，在推理时利用相似上下文进行热启动，从而大幅减少迭代去噪所需的计算步骤。实验表明，ActionCache 在保持高任务成功率的同时，显著提升了推理效率，在 $π_{0.5}$ 和 GR00T-N1.6 模型上分别实现了最高 11.75 倍和 34.43 倍的加速，有效解决了复杂机器人操作任务中的实时性挑战。",
-      "impact_score": null
+      "summary_zh": "针对基于 Flow Matching 的 Vision-Language-Action (VLA) 模型在机器人实时部署中面临的推理延迟瓶颈，本研究提出了一种无需训练的即插即用外部缓存机制 ActionCache。该方法通过存储并复用具有紧凑多模态键（Multimodal Keys）的中间动作，在推理时利用相似上下文进行热启动，从而大幅减少迭代去噪所需的计算步骤。实验表明，ActionCache 在保持高任务成功率的同时，显著提升了推理效率，在 $π_{0.5}$ 和 GR00T-N1.6 模型上分别实现了最高 11.75 倍和 34.43 倍的加速，有效解决了复杂机器人操作任务中的实时性挑战。"
+    },
+    {
+      "id": "2607.06640",
+      "title": "The Rank-One Corner: How Much Value Equivalence Does a Task Need from a World Model?",
+      "abstract": "A learned world model is usually judged by how faithfully it reconstructs its observations or predicts reward, as though quality were something the model simply has or lacks. But what a task actually needs from a model is narrower: the few predictive coordinates its queries depend on, which we call the closure. We show that how much of that closure a latent comes to represent is set not by the model's capacity or its observations but by the dimensionality of the objective it is trained against, and we measure this directly on a DreamerV3 stack in a controlled environment with known ground-truth closure. An aligned scalar value signal -- the objective at the heart of value equivalence -- installs only a one-dimensional projection of a closure that needs several dimensions: read through a single linear probe, the recoverable structure rises from R^2=0.10 to 0.76 as the scalar is replaced by the full objective. Sweeping the objective's dimensionality from one to four installs exactly that many predictive directions through an auxiliary head, and the same staircase appears -- at attenuated magnitude but the same rank -- through the model's own value head, so the dissociation is dimensional rather than an artifact of head form. Capacity-matched comparisons and in-situ pressure checks rule out the obvious alternatives. The law governs a regime, and we measure its boundary: on a companion closed-loop task whose structure is observable frame by frame, reconstruction installs that structure and the scalar objective suffices -- the objective decides what a latent represents exactly where cheaper training signals cannot already recover it. Value equivalence is thus not all-or-nothing but dimensional: the familiar single-reward objective is its rank-one corner, and a model installs as much of a task's structure as the objective it is asked to predict.",
+      "authors": [
+        "Donna Vakalis"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-07T14:45:17Z",
+      "updated": "2026-07-07T14:45:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06640v1",
+      "abs_url": "https://arxiv.org/abs/2607.06640",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06640",
+      "summary_zh": "世界模型对任务的表征能力并非取决于模型容量或观测质量，而是受限于训练目标函数的维度。研究发现，传统的标量奖励信号仅能捕捉任务闭包（closure）的一维投影，导致模型在处理复杂任务时价值等价性不足。通过在 DreamerV3 架构上的实验证明，模型所能提取的预测维度与目标函数的维度呈线性对应关系，即“秩一角”现象。当目标函数维度从一增加到四时，模型内部表征的预测结构随之阶梯式提升。这一结论揭示了价值等价性是维度相关的，若要模型学习到更丰富的任务结构，必须使用更高维度的目标函数而非单一的标量奖励。"
     },
     {
       "id": "2607.06335",
@@ -365,8 +618,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06335",
-      "summary_zh": "扩散模型的高推理成本源于庞大的去噪网络与繁琐的采样步骤，现有压缩方案通常将网络剪枝与步数蒸馏割裂处理。直接将剪枝后的模型进行步数蒸馏往往会导致性能崩溃，为此引入了 Teacher-Aligned Repair 阶段作为桥梁，通过在含噪真实图像潜空间上对齐剪枝模型与教师模型，有效修复了剪枝带来的性能损失。该方法成功将修复后的模型衔接至单步蒸馏，在 ImageNet-512 基准测试中，20% 剪枝比例下的模型仅需单次网络评估即可达到 3.12 的 FID，在大幅降低参数量与计算开销的同时，甚至超越了原始 EDM2-XS 模型的生成质量。",
-      "impact_score": null
+      "summary_zh": "扩散模型的高推理成本源于庞大的去噪网络与繁琐的采样步骤，现有压缩方案通常将网络剪枝与步数蒸馏割裂处理。直接将剪枝后的模型进行步数蒸馏往往会导致性能崩溃，为此引入了 Teacher-Aligned Repair 阶段作为桥梁，通过在含噪真实图像潜空间上对齐剪枝模型与教师模型，有效修复了剪枝带来的性能损失。该方法成功将修复后的模型衔接至单步蒸馏，在 ImageNet-512 基准测试中，20% 剪枝比例下的模型仅需单次网络评估即可达到 3.12 的 FID，在大幅降低参数量与计算开销的同时，甚至超越了原始 EDM2-XS 模型的生成质量。"
     },
     {
       "id": "2607.06326",
@@ -440,8 +692,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06291",
-      "summary_zh": "AlayaWorld 旨在解决传统游戏开发中生产成本高、定制化困难的问题，提出了一种基于视频世界模型的生成式交互框架。该框架通过在游戏录屏与真实世界视频上进行联合训练，实现了对复杂视觉外观与物理动态的建模，支持用户在生成的世界中进行战斗、施法等实时交互。其核心创新在于提供了一套涵盖数据处理、模型架构、训练优化及推理加速的全栈式开源解决方案，显著降低了构建交互式生成世界的门槛。实验表明，该框架不仅能实现长周期的开放式交互，还为具身智能等领域的应用提供了可复现的实践基础与评估工具。",
-      "impact_score": null
+      "summary_zh": "AlayaWorld 旨在解决传统游戏开发中生产成本高、定制化困难的问题，提出了一种基于视频世界模型的生成式交互框架。该框架通过在游戏录屏与真实世界视频上进行联合训练，实现了对复杂视觉外观与物理动态的建模，支持用户在生成的世界中进行战斗、施法等实时交互。其核心创新在于提供了一套涵盖数据处理、模型架构、训练优化及推理加速的全栈式开源解决方案，显著降低了构建交互式生成世界的门槛。实验表明，该框架不仅能实现长周期的开放式交互，还为具身智能等领域的应用提供了可复现的实践基础与评估工具。"
     },
     {
       "id": "2607.06281",
@@ -502,6 +753,34 @@
       "summary_zh": "针对当前商业API、视觉语言模型（VLMs）和开源检测器在Deepfake检测领域缺乏统一评估标准的问题，VendorBench-100构建了一个包含100张对抗性图像的跨范式基准，涵盖了人脸替换、AI照片编辑等八类极具挑战性的真实场景。该研究通过统一输出模式和评估框架，对比了36种代表性模型，并引入Matthews相关系数（MCC）与ROC-AUC指标，以全面衡量模型的分类能力与决策可靠性。实验结果表明，商业API整体性能最优，但开源模型在特定任务中仍具竞争力。核心发现指出，模型在ROC-AUC表现出的排序能力与MCC反映的决策阈值质量存在显著差异，揭示了单纯追求高分并不等同于实际应用中的高可靠性。"
     },
     {
+      "id": "2607.06631",
+      "title": "Dynamic-in-Few-Step: Unifying Dynamic Computation and Few-Step Distillation for Efficient Video Generation",
+      "abstract": "Video Diffusion Models (VDMs) have demonstrated superior generation quality but suffer from prohibitive computational costs. While recent few-step distillation techniques significantly accelerate inference, they typically enforce a static model architecture across all denoising stages, ignoring the varying computational demands inherent to different noise levels. In this work, we propose a novel post-training acceleration framework that exploits this redundancy by integrating dynamic structural sparsification directly into the distillation process. Unlike conventional post-hoc compression applied to a fixed diffusion pipeline, our approach jointly optimizes the denoising steps and structured model sparsity, transforming a pre-trained VDM into a compact, step-specific Mixture-of-Models (MoM). To address the training instability arising from this joint optimization, we introduce a Progressive Training Strategy coupled with an Output Rollout Mechanism, which ensures the coherent learning of structural decisions across timesteps. Furthermore, we develop a specialized inference engine to deploy the resulting MoM efficiently. Our method is orthogonal to existing acceleration techniques and highly effective: On Wan-14B, it removes 24% of the per-step FLOPs on top of 4-step distillation, adding a 1.2x wall-clock gain and reaching a 30x speedup over the 50-step teacher while preserving competitive generation quality.",
+      "authors": [
+        "Yu Cheng",
+        "Siyue Yao",
+        "Zhongang Qi",
+        "Shanyan Guan",
+        "Wei Li",
+        "Fajie Yuan"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-07T13:14:33Z",
+      "updated": "2026-07-07T13:14:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06631v1",
+      "abs_url": "https://arxiv.org/abs/2607.06631",
+      "topics": [
+        "distillation",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06631",
+      "summary_zh": "针对 Video Diffusion Models (VDMs) 推理成本高昂且现有蒸馏方法忽略不同去噪阶段计算需求差异的问题，该研究提出 Dynamic-in-Few-Step 框架，将动态结构稀疏化直接整合进蒸馏过程。通过联合优化去噪步数与模型稀疏度，将预训练模型转化为针对特定步数的 Mixture-of-Models (MoM)，并引入 Progressive Training Strategy 和 Output Rollout Mechanism 解决联合优化中的训练不稳定问题。实验表明，该方法在 Wan-14B 模型上于 4 步蒸馏基础上额外削减了 24% 的单步 FLOPs，在保持高质量生成的同时，实现了相比 50 步教师模型 30 倍的推理加速，并带来了 1.2 倍的实际运行效率提升。"
+    },
+    {
       "id": "2607.06223",
       "title": "Information Gain-based Rollout Policy Optimization: An Adaptive Tree-Structured Rollout Approach for Multi-Turn LLM Agents",
       "abstract": "Reinforcement learning has become a promising paradigm for improving large language model (LLM) agents on long-horizon search tasks, where the agent must make a sequence of intermediate decisions before receiving a final outcome. However, existing methods still face a key limitation: the rollout budget is often allocated without explicitly assessing the utility of intermediate states. As a result, substantial computation may be spent on low-value states, even though different branches can vary drastically in their informativeness. In this paper, we propose Information Gain-based Rollout Policy Optimization (IGRPO), a policy optimization framework that treats intermediate-state informativeness as the organizing principle of rollout collection. Specifically, IGRPO performs budget-aware tree-structured rollouts by allocating expansion budget according to node-level informativeness, so that more informative branches are expanded more frequently while unpromising branches are progressively suppressed. We further demonstrate that the information gain-based rollout induces an explicit limiting teacher distribution over trajectories, which naturally yields a clear policy optimization target, thereby unifying adaptive tree-structured exploration with principled policy learning under a single framework. Experiments on seven challenging search-augmented QA benchmarks demonstrate that IGRPO consistently outperforms strong baselines under the same rollout budget constraints, validating the effectiveness of leveraging the induced teacher distribution to guide policy optimization for long-horizon search agents.",
@@ -527,8 +806,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06223",
-      "summary_zh": "针对长程搜索任务中大模型智能体（LLM Agents）计算资源分配不均的问题，IGRPO框架引入了基于信息增益（Information Gain）的自适应树状Rollout策略。该方法将中间状态的信息量作为评估指标，动态地将计算预算分配给高价值分支，同时抑制无效路径的探索，从而实现高效的搜索空间覆盖。通过将信息增益转化为明确的教师分布（Teacher Distribution），该框架统一了自适应探索与策略学习过程，确保了优化目标的严谨性。在七个搜索增强型问答基准测试中的实验结果表明，IGRPO在相同的预算限制下显著优于现有基线模型，验证了利用信息增益引导策略优化的有效性。",
-      "impact_score": null
+      "summary_zh": "针对长程搜索任务中大模型智能体（LLM Agents）计算资源分配不均的问题，IGRPO框架引入了基于信息增益（Information Gain）的自适应树状Rollout策略。该方法将中间状态的信息量作为评估指标，动态地将计算预算分配给高价值分支，同时抑制无效路径的探索，从而实现高效的搜索空间覆盖。通过将信息增益转化为明确的教师分布（Teacher Distribution），该框架统一了自适应探索与策略学习过程，确保了优化目标的严谨性。在七个搜索增强型问答基准测试中的实验结果表明，IGRPO在相同的预算限制下显著优于现有基线模型，验证了利用信息增益引导策略优化的有效性。"
     },
     {
       "id": "2607.06216",
@@ -577,8 +855,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06216",
-      "summary_zh": "MoWorld 旨在解决现有世界模型推理效率低、难以在边缘设备部署的问题，通过构建涵盖数据生成、预训练、蒸馏及高效推理的端到端框架，实现了高帧率的实时交互。该模型利用 3D-native 数据引擎生成几何一致的训练数据，并引入课程跨帧预训练策略与高效去噪蒸馏算法，显著降低了训练成本。其核心创新在于采用混合精度并行推理框架，使其成为首个在 NPU 上运行并达到 50 FPS 实时性能的世界模型。实验结果表明，MoWorld 在保持电影级视觉质量的同时，推理成本仅为现有模型的 30%-50%，为世界模型的大规模实际应用提供了高效且低成本的解决方案。",
-      "impact_score": null
+      "summary_zh": "MoWorld 旨在解决现有世界模型推理效率低、难以在边缘设备部署的问题，通过构建涵盖数据生成、预训练、蒸馏及高效推理的端到端框架，实现了高帧率的实时交互。该模型利用 3D-native 数据引擎生成几何一致的训练数据，并引入课程跨帧预训练策略与高效去噪蒸馏算法，显著降低了训练成本。其核心创新在于采用混合精度并行推理框架，使其成为首个在 NPU 上运行并达到 50 FPS 实时性能的世界模型。实验结果表明，MoWorld 在保持电影级视觉质量的同时，推理成本仅为现有模型的 30%-50%，为世界模型的大规模实际应用提供了高效且低成本的解决方案。"
     },
     {
       "id": "2607.06175",
@@ -637,8 +914,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06173",
-      "summary_zh": "MobileWan 旨在解决移动端视频生成模型因参数量受限而导致的质量瓶颈问题。该研究通过递归蒸馏框架将 Wan2.2-5B 模型转化为分块自回归过程，结合因果线性注意力机制，使其在推理时表现为内存占用恒定的 RNN，从而在移动硬件上高效运行。关键创新点包括基于二进制门控的可学习注意力头剪枝方法，配合采样步数蒸馏与内存优化版 VAE 解码技术，实现了 5B 参数量级模型在移动端的部署。实验结果表明，该系统能在 20 秒内生成 5 秒长的 480x832 视频，VBench 得分达 83.79，刷新了移动端视频生成的性能纪录。",
-      "impact_score": null
+      "summary_zh": "MobileWan 旨在解决移动端视频生成模型因参数量受限而导致的质量瓶颈问题。该研究通过递归蒸馏框架将 Wan2.2-5B 模型转化为分块自回归过程，结合因果线性注意力机制，使其在推理时表现为内存占用恒定的 RNN，从而在移动硬件上高效运行。关键创新点包括基于二进制门控的可学习注意力头剪枝方法，配合采样步数蒸馏与内存优化版 VAE 解码技术，实现了 5B 参数量级模型在移动端的部署。实验结果表明，该系统能在 20 秒内生成 5 秒长的 480x832 视频，VBench 得分达 83.79，刷新了移动端视频生成的性能纪录。"
     },
     {
       "id": "2607.06140",
@@ -662,8 +938,33 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06140",
-      "summary_zh": "CurateEvo 针对大模型 Agent 在长程决策中缺乏动态数据筛选与优化的问题，提出了一种基于失败驱动的动态演化框架。该方法将数据筛选策略表示为可执行代码，通过分析开发集中的失败轨迹进行迭代重写，从而动态生成监督微调数据、强化学习数据及推理时记忆库。通过诊断重复出现的失败模式进行针对性调整，并引入成本感知目标剔除冗余数据，该框架在 ACEBench-Agent、BFCL-V4 和 τ^2-Bench 等基准测试中表现优异，平均得分显著提升。实验证明，CurateEvo 不仅能兼容多种训练方案，还大幅降低了数据处理的开销，为 Agent 的高效后训练提供了新范式。",
-      "impact_score": null
+      "summary_zh": "CurateEvo 针对大模型 Agent 在长程决策中缺乏动态数据筛选与优化的问题，提出了一种基于失败驱动的动态演化框架。该方法将数据筛选策略表示为可执行代码，通过分析开发集中的失败轨迹进行迭代重写，从而动态生成监督微调数据、强化学习数据及推理时记忆库。通过诊断重复出现的失败模式进行针对性调整，并引入成本感知目标剔除冗余数据，该框架在 ACEBench-Agent、BFCL-V4 和 τ^2-Bench 等基准测试中表现优异，平均得分显著提升。实验证明，CurateEvo 不仅能兼容多种训练方案，还大幅降低了数据处理的开销，为 Agent 的高效后训练提供了新范式。"
+    },
+    {
+      "id": "2607.06121",
+      "title": "Can Reinforcement Learning Efficiently Discover Price Manipulation?",
+      "abstract": "In this paper, we investigate whether a model-free RL agent can identify and exploit price manipulation opportunities more effectively than a traditional model-based approach that assumes correct specification of the data-generating process but relies on noisy parameter estimates. We consider a single-asset market in which prices evolve according to an Almgren-Chriss framework with non-linear permanent impact and linear temporary impact. We first establish the existence of price-manipulative strategies in discrete time and compute the optimal benchmark strategy using Sequential Least Squares Quadratic Programming under full information. We then compare two finite-sample learning approaches: a model-based procedure that estimates impact parameters from simulated execution data and an agnostic RL approach based on Deep Deterministic Policy Gradient, trained directly on the same amount of data. For intermediate volatility, the RL agent successfully discovers profitable manipulative strategies without explicit knowledge of the underlying model, even when training data are quite limited. More importantly, RL consistently outperforms the model-based approach when parameter estimates are affected by sampling error, despite the latter benefiting from the correct model specification. For large volatility, all methods are unable to identify manipulation opportunities, while for small volatility, the model based approach outperforms RL. These findings highlight both the effectiveness of RL in complex control problems and the risks associated with deploying learning algorithms in financial markets without appropriate safeguards.",
+      "authors": [
+        "Ioanna-Yvonni Tsaknaki",
+        "Andrea Macrì",
+        "Fabrizio Lillo"
+      ],
+      "categories": [
+        "q-fin.TR",
+        "cs.AI"
+      ],
+      "published": "2026-07-07T10:29:20Z",
+      "updated": "2026-07-07T10:29:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06121v1",
+      "abs_url": "https://arxiv.org/abs/2607.06121",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06121",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在探讨无模型强化学习（RL）代理在识别和利用金融市场价格操纵机会方面的有效性。研究基于 Almgren-Chriss 框架构建单资产市场，通过对比基于 Sequential Least Squares Quadratic Programming 的最优基准策略，评估了 Deep Deterministic Policy Gradient（DDPG）算法与传统模型驱动方法的性能差异。实验表明，在波动率适中的情况下，RL 代理无需先验模型知识即可发现获利策略，且在参数估计存在采样误差时，其表现显著优于依赖模型假设的传统方法。然而，该结果也揭示了在金融市场中部署学习算法可能带来的潜在风险，强调了在缺乏适当监管机制下使用此类算法的复杂性。"
     },
     {
       "id": "2607.06114",
@@ -685,8 +986,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06114",
-      "summary_zh": "针对扩散模型与流匹配模型在采样时需要大量神经函数评估（NFE）的问题，该研究提出了一种基于 $x$-预测的训练无关加速生成方法。通过利用仿射概率路径中蕴含的 $x_0$ 信息，该方法形式化了“端点可解码性”（Endpoint Decodability），证明了在 $\\ell_2$ 目标下，解码器即为最小均方误差估计器 $\\mathbb{E}[x_0\\mid x_t]$。基于此，研究提出了截断跳跃采样（Truncated Jump Sampling, TJS），允许在 ODE 轨迹的早期阶段直接解码输出，无需任何重训练、蒸馏或架构调整。实验结果表明，在 SDXL、SD3.5M 等主流模型及多个基准测试中，TJS 在保持高质量生成的同时，能有效减少 20% 至 70% 的 NFE，为无需轨迹重设计的推理加速提供了理论与实践支撑。",
-      "impact_score": null
+      "summary_zh": "针对扩散模型与流匹配模型在采样时需要大量神经函数评估（NFE）的问题，该研究提出了一种基于 $x$-预测的训练无关加速生成方法。通过利用仿射概率路径中蕴含的 $x_0$ 信息，该方法形式化了“端点可解码性”（Endpoint Decodability），证明了在 $\\ell_2$ 目标下，解码器即为最小均方误差估计器 $\\mathbb{E}[x_0\\mid x_t]$。基于此，研究提出了截断跳跃采样（Truncated Jump Sampling, TJS），允许在 ODE 轨迹的早期阶段直接解码输出，无需任何重训练、蒸馏或架构调整。实验结果表明，在 SDXL、SD3.5M 等主流模型及多个基准测试中，TJS 在保持高质量生成的同时，能有效减少 20% 至 70% 的 NFE，为无需轨迹重设计的推理加速提供了理论与实践支撑。"
     },
     {
       "id": "2607.06097",
@@ -750,6 +1050,36 @@
       "summary_zh": "针对医学图像分类中多尺度形态特征提取困难及标注数据稀缺的问题，MSA-DCNN 提出了一种尺度一致的可变形注意力学习框架。该模型通过集成自适应多尺度采样、尺度内显著性细化以及可学习的跨尺度融合机制，实现了对复杂解剖结构的精准建模，并引入辅助自蒸馏技术以提升在小样本场景下的泛化能力。实验结果表明，在三个公开数据集及白血病外部验证集上，该模型在参数量更少的情况下，准确率、F1 分数及 AUC 指标均优于 ViT、CNN 及 MICCAI 半监督基准模型。消融实验证实了各组件的互补性，证明了该方法在数据高效医学图像分类任务中的实用价值。"
     },
     {
+      "id": "2607.06619",
+      "title": "HiFuzz: Hierarchical Reinforcement Learning for Semantic-Aware and Adaptive CPU Fuzzing",
+      "abstract": "Modern processor verification struggles to reach deep architectural states due to the inefficiencies of traditional mutation-based fuzzing. We propose HiFuzz, a novel hierarchical reinforcement learning framework that replaces mutation with a structured, two-layer generation process: a Program Agent for global layout and a Basic Block Agent for precise instruction filling. To overcome reward sparsity, HiFuzz integrates an adaptive coverage reward mechanism and a semantic-aware basic block encoder providing intrinsic feedback. Extensive evaluations on three real-world RISC-V cores demonstrate that HiFuzz significantly outperforms state-of-the-art fuzzers in coverage and bug detection.",
+      "authors": [
+        "Ya Wang",
+        "Hanwei Fan",
+        "Zhenguo Liu",
+        "Xiaofeng Zhou",
+        "Yangdi Lyu",
+        "Jiang Xu",
+        "Wei Zhang"
+      ],
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "published": "2026-07-07T09:27:30Z",
+      "updated": "2026-07-07T09:27:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06619v1",
+      "abs_url": "https://arxiv.org/abs/2607.06619",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06619",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对现代处理器验证中传统变异模糊测试难以触及深层架构状态的问题，HiFuzz 提出了一种分层强化学习框架，通过 Program Agent 负责全局布局，Basic Block Agent 负责精确指令填充，替代了传统的随机变异生成方式。该方法引入了自适应覆盖奖励机制和语义感知基本块编码器，有效解决了奖励稀疏性问题并提供了更精准的内在反馈。在三个真实 RISC-V 核心上的实验表明，HiFuzz 在代码覆盖率和漏洞检测能力上均显著优于现有的主流模糊测试工具。"
+    },
+    {
       "id": "2607.05994",
       "title": "SparseCtrl-HOI: Sparse Temporal Control for Human-Object Interaction Video Generation",
       "abstract": "Human-Object Interaction (HOI) video generation aims to synthesize realistic videos of humans manipulating diverse objects, serving as a promising avenue for AI-driven live streaming e-commerce. A primary obstacle in this domain lies in the complexity of modeling fine-grained physical dynamics and the intricate spatial-temporal coordination between human hands and objects. Existing approaches to this problem typically rely on dense temporal guidance, e.g., frame-wise hand-object pose sequences, to strictly control the interaction process. However, such dense guidance incurs high annotation costs and affects motion synthesis diversity. To overcome these limitations, we introduce SparseCtrl-HOI, a novel sparse temporal control framework for HOI video generation. It requires only a few keyframes that capture interaction states at designated timestamps. Specifically, we employ a Time-Controlled Rotary Positional Embedding (TiRoPE) mechanism to temporally anchor these keyframes while preserving their spatial integrity. Subsequently, to govern the dynamics across intermediate frames, we propose a Motion Prior Injection Module that leverages Multimodal Large Language Models (MLLMs) to extract high-level motion priors. This empowers the model to hallucinate logically and physically plausible transitions. Furthermore, we build SparseHOI-5K, a high-quality and richly annotated dataset for HOI video generation with sparse temporal control. Comprehensive evaluations confirm that our method substantially reduces annotation overhead while synthesizing superior live-streaming e-commerce videos. Both our code and dataset are publicly available at https://mpi-lab.github.io/SparseCtrl-HOI.",
@@ -771,8 +1101,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05994",
-      "summary_zh": "针对人机交互（HOI）视频生成中依赖密集帧标注导致成本高昂且动作多样性受限的问题，SparseCtrl-HOI 提出了一种仅需少量关键帧即可实现时空精准控制的框架。该方法引入 Time-Controlled Rotary Positional Embedding（TiRoPE）技术，在保持空间完整性的同时实现关键帧的时序锚定，并利用多模态大模型（MLLM）驱动的 Motion Prior Injection Module 补全中间帧的物理逻辑与动态过渡。此外，研究构建了包含丰富标注的 SparseHOI-5K 数据集，实验结果表明，该方案在显著降低标注成本的同时，能够生成兼具高质量与多样性的电商直播类交互视频。",
-      "impact_score": null
+      "summary_zh": "针对人机交互（HOI）视频生成中依赖密集帧标注导致成本高昂且动作多样性受限的问题，SparseCtrl-HOI 提出了一种仅需少量关键帧即可实现时空精准控制的框架。该方法引入 Time-Controlled Rotary Positional Embedding（TiRoPE）技术，在保持空间完整性的同时实现关键帧的时序锚定，并利用多模态大模型（MLLM）驱动的 Motion Prior Injection Module 补全中间帧的物理逻辑与动态过渡。此外，研究构建了包含丰富标注的 SparseHOI-5K 数据集，实验结果表明，该方案在显著降低标注成本的同时，能够生成兼具高质量与多样性的电商直播类交互视频。"
     },
     {
       "id": "2607.05943",
@@ -862,8 +1191,35 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05911",
-      "summary_zh": "Compositional Zero-Shot Learning (CZSL) 面临属性与对象间强上下文依赖难以建模及单向预测易导致误差累积的问题。PRPC 框架通过引入 Progressive Reasoning 与 Primitive Correction，将 CZSL 建模为结构化的 Q&A 风格思维链推理过程，利用双向依赖关系实现属性与对象的相互修正。该方法强制 MLLM 遵循预定义的语义步骤生成中间决策，并结合基于 GRPO 的强化学习进行后训练，通过步骤级奖励机制提升推理的逻辑一致性。在三个主流 CZSL 基准测试上的实验结果表明，PRPC 显著优于现有方法，有效增强了模型在组合泛化任务中的鲁棒性与准确度。",
-      "impact_score": null
+      "summary_zh": "Compositional Zero-Shot Learning (CZSL) 面临属性与对象间强上下文依赖难以建模及单向预测易导致误差累积的问题。PRPC 框架通过引入 Progressive Reasoning 与 Primitive Correction，将 CZSL 建模为结构化的 Q&A 风格思维链推理过程，利用双向依赖关系实现属性与对象的相互修正。该方法强制 MLLM 遵循预定义的语义步骤生成中间决策，并结合基于 GRPO 的强化学习进行后训练，通过步骤级奖励机制提升推理的逻辑一致性。在三个主流 CZSL 基准测试上的实验结果表明，PRPC 显著优于现有方法，有效增强了模型在组合泛化任务中的鲁棒性与准确度。"
+    },
+    {
+      "id": "2607.06611",
+      "title": "Audio Sentiment Analysis via Distillation and Cross-Modal Integration of Generated Multilingual Transcripts",
+      "abstract": "Automatically recognizing the sentiment, positive or negative, from speech is a challenging task, requiring both the analysis of vocal inflections and the interpretation of uttered words. Recent solutions rely on audio foundation models to solve the task, but it remains unclear if such models can take all aspects into account. To this end, we propose a multimodal solution that integrates audio and text information via cross-modal transformers, where text transcripts are automatically generated via an automatic speech recognition (ASR) tool. Moreover, we create multiple text modalities by automatically translating the transcripts into multiple languages via machine translation tools. Audio and multilingual text features are combined via a cascaded architecture comprising cross-modal transformer blocks that integrate modalities one by one. We further distill knowledge from the multimodal model, called teacher, into a unimodal (audio only) model, called student. We conduct experiments on a large-scale dataset, demonstrating that the automatically generated textual information can bring significant performance boosts in multimodal sentiment polarity classification. Our ablation study confirms that both automatic transcripts and automatic translations are helpful. Moreover, we show that the audio-only model can be enhanced via distillation, boosting performance without any computational overhead during inference. To reproduce the reported results, we publicly release our code at https://github.com/andreidurdun/cross-modal-audio-sentiment.",
+      "authors": [
+        "Andrei-George Durdun",
+        "Victor Constantinescu",
+        "Radu Tudor Ionescu"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG",
+        "cs.SD"
+      ],
+      "published": "2026-07-07T06:48:23Z",
+      "updated": "2026-07-07T06:48:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06611v1",
+      "abs_url": "https://arxiv.org/abs/2607.06611",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06611",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对音频情感分析中单一模态难以全面捕捉语音语调与语义信息的问题，该研究提出了一种融合音频与多语言文本的跨模态Transformer架构。通过自动语音识别（ASR）生成转录文本，并利用机器翻译将其扩展为多种语言，随后通过级联的跨模态Transformer模块实现音频与多语言文本特征的深度融合。研究引入知识蒸馏技术，将多模态“教师”模型的知识迁移至仅使用音频的“学生”模型中，在提升性能的同时避免了推理阶段的额外计算开销。大规模数据集实验表明，自动生成的文本信息能显著增强情感极性分类效果，且蒸馏后的音频模型在无需额外输入的情况下实现了性能提升。"
     },
     {
       "id": "2607.05891",
@@ -891,6 +1247,29 @@
         "distillation"
       ],
       "summary_zh": "针对少样本知识蒸馏（Few-Shot Knowledge Distillation）中核心集（Coreset）选择效率低且难以超越随机采样基准的问题，该研究提出了一种名为 Few-Medoids 的极简选择策略。该方法通过计算并选取每个类别中距离质心（Centroid）最近的样本来构建核心集，从而高效捕捉数据集的代表性特征。在涵盖卷积神经网络与 Transformer 的多项图像分类实验中，Few-Medoids 表现出优于 Herding 和 k-center Greedy 等传统策略的性能，且具有极高的计算效率。这一方法可作为一种即插即用的替代方案，为后续高效模型训练与知识蒸馏研究提供更优的样本选择基准。"
+    },
+    {
+      "id": "2607.06609",
+      "title": "D2PO: Optimizing Diffusion Samplers via Dynamic Preference",
+      "abstract": "We propose D2PO (Dynamic Direct Preference Optimization), a principled framework for optimizing diffusion sampling policies with respect to timestep schedules and classifier-free guidance (CFG) weights. Our work is motivated by a fundamental limitation of existing student-teacher regression frameworks; low-NFE student samplers are trained to mimic high-NFEteachers, often sacrificing high-frequency texture fidelity while preserving coarse global structures, thereby misaligning the sampler with perceptual quality. D2PO addresses this challenge by reformulating sampler optimization as a preference-based alignment problem, leveraging the Direct Preference Optimization (DPO) framework. To make DPO applicable to diffusion samplers, we model the sampling policy as an energy-based model (EBM), transforming preference comparisons into tractable energy differences. We further introduce a novel energy formulation derived directly from the pretrained score network, enabling preference evaluation in perturbed spaces that jointly capture structural consistency and fine-grained details. Moreover, we introduce dynamic preferences, where the preferred samples used for alignment progressively improve as the sampling policies are learned. This self-improving mechanism replaces rigid static teacher supervision with an iterative, preference-guided refinement process, providing progressively stronger alignment signals. Extensive experiments demonstrate that D2PO aligns diffusion samplers with perceptual quality more faithfully, unlocking the full potential of high-quality teachers and consistently outperforming conventional regression-based schedulers under low-NFE constraints.",
+      "authors": [
+        "Jinkyu Kim",
+        "Jinyoung Choi",
+        "Bohyung Han"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-07T06:05:42Z",
+      "updated": "2026-07-07T06:05:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06609v1",
+      "abs_url": "https://arxiv.org/abs/2607.06609",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06609",
+      "summary_zh": "D2PO旨在解决低NFE（Number of Function Evaluations）扩散模型采样器在模仿高NFE教师模型时，因仅关注全局结构而导致高频纹理丢失及感知质量下降的问题。该框架将采样器优化重构为基于偏好的对齐问题，通过将采样策略建模为能量模型（EBM），利用预训练分数网络推导出的能量差来评估样本质量。核心创新在于引入动态偏好机制，使采样策略在学习过程中通过迭代优化不断提升偏好样本的质量，从而摆脱了对静态教师监督的依赖。实验结果表明，D2PO在低NFE约束下能显著提升生成样本的感知质量，在多个基准测试中均优于传统的基于回归的调度器。"
     },
     {
       "id": "2607.05863",
@@ -944,8 +1323,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05861",
-      "summary_zh": "大型推理模型（LRMs）在事实性问答中引入显式思维链虽能辅助知识检索，但常引发“思维诱导幻觉”，即思维过程反而导致模型偏离正确答案。针对该问题，MARGO（Mixed-Mode Advantage Regularization for Grounded Optimization）框架通过强化学习引入非思维路径作为参考，在优势估计中构建混合模式滚动组，以评估显式思维是否提供了超越直接回答的事实增量。该方法能够有效抑制易产生幻觉的思维路径，同时保留有益的推理能力。在多个事实性问答基准测试中，MARGO显著提升了事实可靠性，并确保了模型在数学推理任务上的性能不受损害。",
-      "impact_score": null
+      "summary_zh": "大型推理模型（LRMs）在事实性问答中引入显式思维链虽能辅助知识检索，但常引发“思维诱导幻觉”，即思维过程反而导致模型偏离正确答案。针对该问题，MARGO（Mixed-Mode Advantage Regularization for Grounded Optimization）框架通过强化学习引入非思维路径作为参考，在优势估计中构建混合模式滚动组，以评估显式思维是否提供了超越直接回答的事实增量。该方法能够有效抑制易产生幻觉的思维路径，同时保留有益的推理能力。在多个事实性问答基准测试中，MARGO显著提升了事实可靠性，并确保了模型在数学推理任务上的性能不受损害。"
     },
     {
       "id": "2607.05804",
@@ -971,8 +1349,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05804",
-      "summary_zh": "针对长程智能体训练中 On-Policy Distillation (OPD) 效率低下的问题，TurnOPD 引入了转折点感知的预算策略以优化训练过程。该方法包含两个核心组件：自适应 Rollout 深度预算通过探测统计信息动态决定采样长度，避免在无效的尾部步骤浪费资源；渐进式转折点归一化损失预算则将 KL 散度权重从 Token 级别转向转折点平衡，确保深层决策步骤得到充分训练。在 ALFWorld、WebShop 和 Multi-Hop Search 等基准测试中，TurnOPD 在相同计算预算下显著提升了验证准确率，有效突破了传统 OPD 的性能与时间边界。",
-      "impact_score": null
+      "summary_zh": "针对长程智能体训练中 On-Policy Distillation (OPD) 效率低下的问题，TurnOPD 引入了转折点感知的预算策略以优化训练过程。该方法包含两个核心组件：自适应 Rollout 深度预算通过探测统计信息动态决定采样长度，避免在无效的尾部步骤浪费资源；渐进式转折点归一化损失预算则将 KL 散度权重从 Token 级别转向转折点平衡，确保深层决策步骤得到充分训练。在 ALFWorld、WebShop 和 Multi-Hop Search 等基准测试中，TurnOPD 在相同计算预算下显著提升了验证准确率，有效突破了传统 OPD 的性能与时间边界。"
     },
     {
       "id": "2607.05794",
@@ -1032,8 +1409,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05773",
-      "summary_zh": "针对大语言模型在多步决策任务中缺乏动态评估手段的问题，AgenticAI-Supervisor 提供了一个基于 API 和 UI 的强化学习 Gym 环境，实现了环境构建与可扩展执行的解耦。该框架通过可验证的执行结果生成高保真轨迹，并引入多维度奖励塑造机制，同时利用严格的内部状态验证有效缓解了奖励欺骗（reward hacking）问题。在客户支持代理案例研究中，该平台展现了持续的闭环反馈能力，能够显著优化模型性能。未来工作将进一步拓展计算机操作、工具使用及自动化边缘案例生成等高级功能，为可扩展的智能体强化学习提供坚实的基础设施。",
-      "impact_score": null
+      "summary_zh": "针对大语言模型在多步决策任务中缺乏动态评估手段的问题，AgenticAI-Supervisor 提供了一个基于 API 和 UI 的强化学习 Gym 环境，实现了环境构建与可扩展执行的解耦。该框架通过可验证的执行结果生成高保真轨迹，并引入多维度奖励塑造机制，同时利用严格的内部状态验证有效缓解了奖励欺骗（reward hacking）问题。在客户支持代理案例研究中，该平台展现了持续的闭环反馈能力，能够显著优化模型性能。未来工作将进一步拓展计算机操作、工具使用及自动化边缘案例生成等高级功能，为可扩展的智能体强化学习提供坚实的基础设施。"
     },
     {
       "id": "2607.05765",
@@ -1057,8 +1433,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05765",
-      "summary_zh": "Image2Sim 旨在解决具身导航领域中高质量交互环境稀缺及模拟器与真实世界存在巨大鸿沟的问题。该框架通过解耦 3D 空间锚定与真实感观测合成，利用 feed-forward feature Gaussian 模型将 RGB-D 序列快速构建为 3D 特征表示，并结合 Geometry-Aware One-Step Pixel Flow 模型生成高质量全景观测。作为自动化数据引擎，Image2Sim 将海量视觉数据转化为近 2 万个交互场景及超 1000 万条导航训练样本。实验表明，在这些神经环境中训练的导航模型在主流 benchmark 上表现显著提升，并能有效实现向真实世界零样本场景的迁移，证明了可扩展神经模拟作为具身导航训练基底的巨大潜力。",
-      "impact_score": null
+      "summary_zh": "Image2Sim 旨在解决具身导航领域中高质量交互环境稀缺及模拟器与真实世界存在巨大鸿沟的问题。该框架通过解耦 3D 空间锚定与真实感观测合成，利用 feed-forward feature Gaussian 模型将 RGB-D 序列快速构建为 3D 特征表示，并结合 Geometry-Aware One-Step Pixel Flow 模型生成高质量全景观测。作为自动化数据引擎，Image2Sim 将海量视觉数据转化为近 2 万个交互场景及超 1000 万条导航训练样本。实验表明，在这些神经环境中训练的导航模型在主流 benchmark 上表现显著提升，并能有效实现向真实世界零样本场景的迁移，证明了可扩展神经模拟作为具身导航训练基底的巨大潜力。"
     },
     {
       "id": "2607.05752",
@@ -1087,7 +1462,7 @@
     {
       "id": "2607.05750",
       "title": "ArtisanCAD: An Industrial-Level CAD Agent with Expert-Grounded Knowledge Distillation",
-      "abstract": "Computer-aided design (CAD) for industrial components requires long-horizon procedural modeling, robust feature dependencies, editable parametric geometry, and production-grade B-Rep execution. Existing text-to-CAD methods have made promising progress in generating CAD programs from natural-language descriptions, but they still struggle when user prompts are ambiguous, underspecified, or only describe high-level design intent. They also rarely exploit expert procedural knowledge naturally available in industrial workflows, such as CATIA operation recordings, macro logs, drawing notes, and engineering descriptions. We present \\algname, a skill-guided industrial CAD agent with expert-grounded knowledge distillation. The core of \\algname is CAD intermediate representation (CAD-IR), an executable procedural representation that encodes parameters, ordered operations, MCP tool bindings, dependencies, generated entities, and verification rules. CAD-IR plays two key roles: it first serves as the carrier for distilling expert CAD procedures into reusable parameterized skills; then it provides a procedural scaffold that turns vague or intermediate-level prompts into complete executable CAD operations. \\algname retrieves expert-derived skills, instantiates and revises CAD-IR, executes the resulting procedure through a dedicated CATIA-MCP backend, and uses multi-view visual feedback for iterative refinement, and finally generates production-ready B-Rep models. On the Text2CAD benchmark, CAD-IR improves generation from intermediate prompts by reducing mean Chamfer Distance from $14.83$ to $9.88$, showing its ability to bridge ambiguous textual intent and executable CAD construction. On four complex automotive components, CAD-IR enables expert CATIA recordings to be distilled into reusable skills, allowing \\algname to generate editable CATIA-native B-Rep models for new variant requests.",
+      "abstract": "Computer-aided design (CAD) for industrial components requires long-horizon procedural modeling, robust feature dependencies, editable parametric geometry, and production-grade B-Rep execution. Existing text-to-CAD methods have made promising progress in generating CAD programs from natural-language descriptions, but they still struggle when user prompts are ambiguous, underspecified, or only describe high-level design intent. They also rarely exploit expert procedural knowledge naturally available in industrial workflows, such as CATIA operation recordings, macro logs, drawing notes, and engineering descriptions. We present ArtisanCAD, a skill-guided industrial CAD agent with expert-grounded knowledge distillation. The core of ArtisanCAD is CAD intermediate representation (CAD-IR), an executable procedural representation that encodes parameters, ordered operations, MCP tool bindings, dependencies, generated entities, and verification rules. CAD-IR plays two key roles: it first serves as the carrier for distilling expert CAD procedures into reusable parameterized skills; then it provides a procedural scaffold that turns vague or intermediate-level prompts into complete executable CAD operations. ArtisanCAD retrieves expert-derived skills, instantiates and revises CAD-IR, executes the resulting procedure through a dedicated CATIA-MCP backend, and uses multi-view visual feedback for iterative refinement, and finally generates production-ready B-Rep models. On the Text2CAD benchmark, CAD-IR improves generation from intermediate prompts by reducing mean Chamfer Distance from $14.83$ to $9.88$, showing its ability to bridge ambiguous textual intent and executable CAD construction. On four complex automotive components, CAD-IR enables expert CATIA recordings to be distilled into reusable skills, allowing ArtisanCAD to generate editable CATIA-native B-Rep models for new variant requests.",
       "authors": [
         "Yunhan Xu",
         "Qifeng Wu",
@@ -1108,8 +1483,8 @@
         "cs.GR"
       ],
       "published": "2026-07-07T02:11:50Z",
-      "updated": "2026-07-07T02:11:50Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.05750v1",
+      "updated": "2026-07-08T02:05:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.05750v2",
       "abs_url": "https://arxiv.org/abs/2607.05750",
       "topics": [
         "other"
@@ -1119,6 +1494,33 @@
         "distillation"
       ],
       "summary_zh": "ArtisanCAD 旨在解决现有 Text-to-CAD 方法在处理模糊指令及生成工业级可编辑参数化模型时的局限性。该方法引入 CAD-IR 中间表示，通过蒸馏 CATIA 操作记录、宏日志等专家知识，将高层设计意图转化为包含参数、操作序列及依赖关系的执行脚本。系统利用 CAD-IR 作为程序支架，结合 CATIA-MCP 后端与多视图视觉反馈进行迭代优化，实现了从模糊文本到生产级 B-Rep 模型的自动化生成。在 Text2CAD 基准测试中，该方法显著降低了 Chamfer Distance，并在复杂汽车零部件的变体设计中展现了卓越的专家知识复用与可编辑模型生成能力。"
+    },
+    {
+      "id": "2607.06603",
+      "title": "Do Counterfactually Fair Image Classifiers Satisfy Group Fairness? -- A Theoretical and Empirical Study",
+      "abstract": "The notion of algorithmic fairness has been actively explored from various aspects of fairness, such as counterfactual fairness (CF) and group fairness (GF). However, the exact relationship between CF and GF remains to be unclear, especially in image classification tasks; the reason is because we often cannot collect counterfactual samples regarding a sensitive attribute, essential for evaluating CF, from the existing images (\\eg, a photo of the same person but with different secondary sex characteristics). In this paper, we construct new image datasets for evaluating CF by using a high-quality image editing method and carefully labeling with human annotators. Our datasets, \\oursceleb and \\ourslfw, build upon the popular image GF benchmarks; hence, we can evaluate CF and GF simultaneously. We empirically observe that CF does not imply GF in image classification, whereas previous studies on tabular datasets observed the opposite. We theoretically show that it could be due to the existence of a latent attribute $G$ that is correlated with, but not caused by, the sensitive attribute (\\eg, secondary sex characteristics are highly correlated with hair length). From this observation, we propose a simple baseline, Counterfactual Knowledge Distillation (CKD), to mitigate such correlation with the sensitive attributes. Extensive experimental results on \\oursceleb and \\ourslfw demonstrate that CF-achieving models satisfy GF if we successfully reduce the reliance on $G$ (\\eg, using CKD).",
+      "authors": [
+        "Sangwon Jung",
+        "Sumin Yu",
+        "Sanghyuk Chun",
+        "Taesup Moon"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-07T01:48:59Z",
+      "updated": "2026-07-07T01:48:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.06603v1",
+      "abs_url": "https://arxiv.org/abs/2607.06603",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.06603",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对图像分类任务中反事实公平（CF）与群体公平（GF）关系不明的问题，该研究通过高质量图像编辑技术构建了包含敏感属性标注的 CelebA-CF 和 LFW-CF 数据集，从而实现了对两类公平性的同步评估。研究发现，与表格数据不同，图像分类中的 CF 并不能自动推导出 GF，其核心原因在于存在与敏感属性高度相关但非因果关系的潜在属性 G。为此，该研究提出了反事实知识蒸馏（Counterfactual Knowledge Distillation, CKD）方法，旨在通过降低模型对潜在属性 G 的依赖来消除相关性偏差。实验结果表明，在成功抑制 G 的影响后，实现 CF 的模型能够有效满足 GF 要求，为提升图像分类系统的公平性提供了理论支撑与实践路径。"
     },
     {
       "id": "2607.05734",
@@ -1207,8 +1609,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05711",
-      "summary_zh": "针对大型扩散模型在微调过程中内存占用高、训练速度慢的问题，FourTune 提出了一种基于 W4A4G4 范式的全 4-bit 高效后训练框架。该方法引入了三分支混合流水线，通过在标准 LoRA 架构中加入冻结的数值稳定器来隔离量化敏感的异常值，从而确保在原生 4-bit 计算下的训练稳定性。此外，该框架利用硬件感知的块级量化和定制化融合算子，有效支持量化反向传播并降低内存带宽开销。实验表明，在定制化、强化学习和蒸馏任务中，FourTune 的生成质量可媲美全精度微调，且在 FLUX.1-dev 模型上实现了 2.25 倍的内存节省和 2.27 倍的训练吞吐量提升。",
-      "impact_score": null
+      "summary_zh": "针对大型扩散模型在微调过程中内存占用高、训练速度慢的问题，FourTune 提出了一种基于 W4A4G4 范式的全 4-bit 高效后训练框架。该方法引入了三分支混合流水线，通过在标准 LoRA 架构中加入冻结的数值稳定器来隔离量化敏感的异常值，从而确保在原生 4-bit 计算下的训练稳定性。此外，该框架利用硬件感知的块级量化和定制化融合算子，有效支持量化反向传播并降低内存带宽开销。实验表明，在定制化、强化学习和蒸馏任务中，FourTune 的生成质量可媲美全精度微调，且在 FLUX.1-dev 模型上实现了 2.25 倍的内存节省和 2.27 倍的训练吞吐量提升。"
     }
   ]
 }

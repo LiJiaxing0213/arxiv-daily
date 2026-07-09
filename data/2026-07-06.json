@@ -1,6 +1,6 @@
 {
   "date": "2026-07-06",
-  "generated_at": "2026-07-08T04:50:29.612589+00:00",
+  "generated_at": "2026-07-09T05:37:42.483301+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -239,13 +239,12 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05541",
-      "summary_zh": "针对强化学习在处理稀疏或延迟反馈时难以定位推理错误的问题，Self-Review Reinforcement Learning (SRRL) 框架通过在训练流程中嵌入显式的自我审查环节，实现了对错误原因的精准识别与行为修正。该方法利用 Policy Gradients 优化自我审查过程，并通过选择性蒸馏（Selective Distillation）将改进策略内化至基础模型，同时引入 Cross-Episode Memory 机制存储并复用成功经验。在 GSM8K 基准测试中，基于 Qwen 和 OLMo 模型的实验结果表明，SRRL 相比标准 RLVR 基线显著提升了最终奖励表现，并凭借将反馈转化为持续行为优化的能力，展现出更高的学习效率。",
-      "impact_score": null
+      "summary_zh": "针对强化学习在处理稀疏或延迟反馈时难以定位推理错误的问题，Self-Review Reinforcement Learning (SRRL) 框架通过在训练流程中嵌入显式的自我审查环节，实现了对错误原因的精准识别与行为修正。该方法利用 Policy Gradients 优化自我审查过程，并通过选择性蒸馏（Selective Distillation）将改进策略内化至基础模型，同时引入 Cross-Episode Memory 机制存储并复用成功经验。在 GSM8K 基准测试中，基于 Qwen 和 OLMo 模型的实验结果表明，SRRL 相比标准 RLVR 基线显著提升了最终奖励表现，并凭借将反馈转化为持续行为优化的能力，展现出更高的学习效率。"
     },
     {
       "id": "2607.05394",
       "title": "Weak-to-Strong Generalization via Direct On-Policy Distillation",
-      "abstract": "Reinforcement learning with verifiable rewards (RLVR) is a powerful recipe for improving language-model reasoning, but it is expensive to repeat on every new strong model because the target model must generate many rollouts during training. As models scale, post-training itself becomes a bottleneck. We study a weak-to-strong alternative: run RL on a smaller model where rollouts are cheaper, then reuse what that RL run learned to improve a stronger target model. Directly distilling the post-RL weak teacher is not enough, because the teacher's final policy mixes useful RL gains with the limitations of the smaller model. We propose Direct On-Policy Distillation (Direct-OPD), which transfers the teacher's RL-induced policy shift instead. Direct-OPD compares the post-RL teacher with its own pre-RL reference and treats their log-ratio as a dense implicit reward for the student. In plain terms, the checkpoint pair tells us which actions RL made the weak model more or less likely to take, and Direct-OPD applies that signal on the stronger student's own on-policy states. This directly reuses the weak model's RL supervision signal without training an explicit reward model or running sparse-reward RL on the target model. Empirically, Direct-OPD consistently leverages weaker teachers to improve stronger target models; notably, it boosts Qwen3-1.7B from 48.3% to 62.4% on AIME 2024 in just 4 hours on 8 A100 GPUs. It outperforms step-matched direct RL and enables the sequential composition of multiple policy shifts. Our results show that RL outcomes can be reused across model scales as implicit reward signals, not merely as final models to imitate.",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) is a powerful recipe for improving language-model reasoning, but it is expensive to repeat on every new strong model because the target model must generate many rollouts during training. As models scale, post-training itself becomes a bottleneck. We study a weak-to-strong alternative: run RL on a smaller model where rollouts are cheaper, then reuse what that RL run learned to improve a stronger target model. Directly distilling the post-RL weak teacher is not enough, because the teacher's final policy mixes useful RL gains with the limitations of the smaller model. We propose Direct On-Policy Distillation (Direct-OPD), which transfers the teacher's RL-induced policy shift instead. Direct-OPD compares the post-RL teacher with its own pre-RL reference and treats their log-ratio as a dense implicit reward for the student. In plain terms, the checkpoint pair tells us which actions RL made the weak model more or less likely to take, and Direct-OPD applies that signal on the stronger student's own on-policy states. This directly reuses the weak model's RL supervision signal without running sparse-reward RL on the target model. Empirically, Direct-OPD consistently leverages weaker teachers to improve stronger target models; notably, it boosts Qwen3-1.7B from 48.3% to 58.3% on AIME 2024 in just 4 hours on 8 A100 GPUs. It outperforms step-matched direct RL and enables the sequential composition of multiple policy shifts. Our results show that RL outcomes can be reused across model scales as implicit reward signals, not merely as final models to imitate.",
       "authors": [
         "Shiyuan Feng",
         "Huan-ang Gao",
@@ -264,15 +263,14 @@
         "cs.CL"
       ],
       "published": "2026-07-06T17:59:58Z",
-      "updated": "2026-07-06T17:59:58Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.05394v1",
+      "updated": "2026-07-08T17:57:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.05394v2",
       "abs_url": "https://arxiv.org/abs/2607.05394",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05394",
-      "summary_zh": "针对大规模模型训练中强化学习（RLVR）计算成本高昂的问题，该研究提出 Direct On-Policy Distillation (Direct-OPD) 方法，旨在将小型模型通过强化学习获得的策略提升迁移至更强的目标模型。该方法通过对比强化学习前后教师模型的策略差异，提取对数比率作为隐式奖励信号，并直接应用于目标模型的在线策略训练中，从而避免了训练显式奖励模型或在大型模型上进行稀疏奖励强化学习。实验表明，Direct-OPD 能有效利用弱模型作为教师来提升强模型性能，例如在 8 张 A100 GPU 上仅用 4 小时即将 Qwen3-1.7B 在 AIME 2024 上的准确率从 48.3% 提升至 62.4%。该方案不仅优于传统的直接强化学习，还支持多个策略偏移的顺序组合，证明了强化学习成果可作为隐式奖励信号在不同规模模型间高效复用。",
-      "impact_score": null
+      "summary_zh": "针对大规模模型训练中强化学习（RLVR）计算成本高昂的问题，该研究提出 Direct On-Policy Distillation (Direct-OPD) 方法，旨在将小型模型通过强化学习获得的策略提升迁移至更强的目标模型。该方法通过对比强化学习前后教师模型的策略差异，提取对数比率作为隐式奖励信号，并直接应用于目标模型的在线策略训练中，从而避免了训练显式奖励模型或在大型模型上进行稀疏奖励强化学习。实验表明，Direct-OPD 能有效利用弱模型作为教师来提升强模型性能，例如在 8 张 A100 GPU 上仅用 4 小时即将 Qwen3-1.7B 在 AIME 2024 上的准确率从 48.3% 提升至 62.4%。该方案不仅优于传统的直接强化学习，还支持多个策略偏移的顺序组合，证明了强化学习成果可作为隐式奖励信号在不同规模模型间高效复用。"
     },
     {
       "id": "2607.05391",
@@ -342,8 +340,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05390",
-      "summary_zh": "针对机器人操作中可变形物体动力学建模困难的问题，Deform360构建了一个包含198种日常物体、1,980个交互序列及215小时多视角视觉触觉数据的基准数据集。该研究引入了一种无需标记的视觉触觉3D追踪管线，能够精确提取密集几何与运动信息，从而系统性地对比了基于2D像素的视频模型与基于3D粒子的动力学模型。实验结果揭示了结构先验与模型可扩展性之间的权衡，并通过机器人规划任务验证了数据集在处理复杂形变物体时的实际应用潜力，为通用可变形物体世界模型的研究提供了关键基准。",
-      "impact_score": null
+      "summary_zh": "针对机器人操作中可变形物体动力学建模困难的问题，Deform360构建了一个包含198种日常物体、1,980个交互序列及215小时多视角视觉触觉数据的基准数据集。该研究引入了一种无需标记的视觉触觉3D追踪管线，能够精确提取密集几何与运动信息，从而系统性地对比了基于2D像素的视频模型与基于3D粒子的动力学模型。实验结果揭示了结构先验与模型可扩展性之间的权衡，并通过机器人规划任务验证了数据集在处理复杂形变物体时的实际应用潜力，为通用可变形物体世界模型的研究提供了关键基准。"
     },
     {
       "id": "2607.05378",
@@ -367,8 +364,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05378",
-      "summary_zh": "针对长程任务中智能体交互轨迹超出上下文窗口限制的问题，CompactionRL 提出了一种将上下文压缩集成到强化学习训练中的新策略。该方法通过联合优化任务执行与摘要生成，引入了 Token 级损失归一化和跨轨迹广义优势估计，使大语言模型能够有效从压缩后的长程轨迹中学习。实验结果表明，该方法显著提升了 GLM 系列模型在 SWE-bench Verified 和 Terminal-Bench 2.0 等基准测试上的表现，其中 GLM-4.5-Air 在 SWE-bench 上实现了 7.0 个百分点的 Pass@1 提升。目前，CompactionRL 已被成功应用于 GLM-5.2 模型的强化学习训练流水线中，证明了其在处理复杂长程任务中的鲁棒性与高效性。",
-      "impact_score": null
+      "summary_zh": "针对长程任务中智能体交互轨迹超出上下文窗口限制的问题，CompactionRL 提出了一种将上下文压缩集成到强化学习训练中的新策略。该方法通过联合优化任务执行与摘要生成，引入了 Token 级损失归一化和跨轨迹广义优势估计，使大语言模型能够有效从压缩后的长程轨迹中学习。实验结果表明，该方法显著提升了 GLM 系列模型在 SWE-bench Verified 和 Terminal-Bench 2.0 等基准测试上的表现，其中 GLM-4.5-Air 在 SWE-bench 上实现了 7.0 个百分点的 Pass@1 提升。目前，CompactionRL 已被成功应用于 GLM-5.2 模型的强化学习训练流水线中，证明了其在处理复杂长程任务中的鲁棒性与高效性。"
     },
     {
       "id": "2607.05376",
@@ -393,8 +389,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05376",
-      "summary_zh": "MV-Forcing 旨在解决动态场景下长时多视角视频生成的一致性难题，通过引入 4D 几何桥接机制，将时间维度与视角维度的自回归生成整合至单一扩散模型中。该方法利用自回归 3D 重构模型生成目标视角的几何先验，引导扩散模型生成高质量视频，并结合联合去噪机制实现时间上的无限生成。通过 Distribution Matching Distillation 与 Spatio-Temporal Self-Forcing 技术，有效消除了训练与推理间的曝光偏差。实验表明，该模型在合成及真实数据集上均能生成几何一致、长度与视角数量不受限制的动态视频，且仅需少量推理步骤即可实现高效生成。",
-      "impact_score": null
+      "summary_zh": "MV-Forcing 旨在解决动态场景下长时多视角视频生成的一致性难题，通过引入 4D 几何桥接机制，将时间维度与视角维度的自回归生成整合至单一扩散模型中。该方法利用自回归 3D 重构模型生成目标视角的几何先验，引导扩散模型生成高质量视频，并结合联合去噪机制实现时间上的无限生成。通过 Distribution Matching Distillation 与 Spatio-Temporal Self-Forcing 技术，有效消除了训练与推理间的曝光偏差。实验表明，该模型在合成及真实数据集上均能生成几何一致、长度与视角数量不受限制的动态视频，且仅需少量推理步骤即可实现高效生成。"
     },
     {
       "id": "2607.05375",
@@ -416,8 +411,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05375",
-      "summary_zh": "离线强化学习中的离线策略评估（OPE）常受分布偏移困扰，现有方法多依赖贝尔曼完备性假设。FORE（Fitted Occupancy-Ratio Evaluation）通过伴随贝尔曼递归（adjoint Bellman recursion）直接表征折扣占用比率，将问题转化为单层密度比优化，并利用KL散度投影实现迭代求解。该方法的核心创新在于仅需占用比率的可实现性（realizability）即可保证收敛，彻底摆脱了对贝尔曼完备性或投影算子稳定性的严苛要求。理论分析证明，FORE在有限样本下具有收敛性，且通过奖励重加权、占用加权Q评估及双重鲁棒估计，能有效提升离线策略评估的精度与鲁棒性。",
-      "impact_score": null
+      "summary_zh": "离线强化学习中的离线策略评估（OPE）常受分布偏移困扰，现有方法多依赖贝尔曼完备性假设。FORE（Fitted Occupancy-Ratio Evaluation）通过伴随贝尔曼递归（adjoint Bellman recursion）直接表征折扣占用比率，将问题转化为单层密度比优化，并利用KL散度投影实现迭代求解。该方法的核心创新在于仅需占用比率的可实现性（realizability）即可保证收敛，彻底摆脱了对贝尔曼完备性或投影算子稳定性的严苛要求。理论分析证明，FORE在有限样本下具有收敛性，且通过奖励重加权、占用加权Q评估及双重鲁棒估计，能有效提升离线策略评估的精度与鲁棒性。"
     },
     {
       "id": "2607.05354",
@@ -489,8 +483,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05352",
-      "summary_zh": "针对高度动态且物理交互复杂的环境，该研究提出了首个多智能体交互世界模型，旨在解决传统单智能体模型无法准确归因多方动作影响的问题。该模型通过条件化处理多个智能体的动作流，利用 Representation Autoencoders 和 50 亿参数的 Latent Diffusion Model，实现了对 Rocket League 比赛场景的实时生成与长时序一致性保持。实验结果表明，该模型在单张 Nvidia B200 GPU 上能以每秒 20 帧的速度运行，且在长达五分钟甚至数小时的推演中未出现模型崩溃，展现了极强的稳定性。此外，研究通过系统性评估验证了模型对物理规律的深层理解，并开源了数据集与代码库，为多智能体环境下的生成式建模提供了重要基准。",
-      "impact_score": null
+      "summary_zh": "针对高度动态且物理交互复杂的环境，该研究提出了首个多智能体交互世界模型，旨在解决传统单智能体模型无法准确归因多方动作影响的问题。该模型通过条件化处理多个智能体的动作流，利用 Representation Autoencoders 和 50 亿参数的 Latent Diffusion Model，实现了对 Rocket League 比赛场景的实时生成与长时序一致性保持。实验结果表明，该模型在单张 Nvidia B200 GPU 上能以每秒 20 帧的速度运行，且在长达五分钟甚至数小时的推演中未出现模型崩溃，展现了极强的稳定性。此外，研究通过系统性评估验证了模型对物理规律的深层理解，并开源了数据集与代码库，为多智能体环境下的生成式建模提供了重要基准。"
     },
     {
       "id": "2607.05339",
@@ -525,8 +518,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05339",
-      "summary_zh": "针对 Group Relative Policy Optimization (GRPO) 在处理复杂推理任务时因难以触及正确解空间而陷入停滞的问题，TREK 提出了一种分阶段的探索与优化策略。该方法通过引入 Teacher-Routed Exploration via Forward KL 技术，利用外部或自生成的验证轨迹进行前向 KL 散度蒸馏，将高质量解模式纳入学生模型的策略支持范围，从而有效扩展了探索边界。实验表明，TREK 在数学推理基准 AIME 2024/2025 及智能体任务 ALFWorld 和 ScienceWorld 上表现优异，显著提升了模型在极难任务中的成功率与训练效率，证明了该方法在无需依赖模型内部信息的情况下，能通过精准的探索引导实现性能的稳健提升。",
-      "impact_score": null
+      "summary_zh": "针对 Group Relative Policy Optimization (GRPO) 在处理复杂推理任务时因难以触及正确解空间而陷入停滞的问题，TREK 提出了一种分阶段的探索与优化策略。该方法通过引入 Teacher-Routed Exploration via Forward KL 技术，利用外部或自生成的验证轨迹进行前向 KL 散度蒸馏，将高质量解模式纳入学生模型的策略支持范围，从而有效扩展了探索边界。实验表明，TREK 在数学推理基准 AIME 2024/2025 及智能体任务 ALFWorld 和 ScienceWorld 上表现优异，显著提升了模型在极难任务中的成功率与训练效率，证明了该方法在无需依赖模型内部信息的情况下，能通过精准的探索引导实现性能的稳健提升。"
     },
     {
       "id": "2607.05272",
@@ -666,8 +658,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05238",
-      "summary_zh": "针对 JEPA 世界模型在处理随机环境时，单一确定性预测器会导致预测结果坍缩至多个潜在状态的均值（即无效状态）这一问题，MoP-JEPA 引入了硬分配预测器混合架构。该方法通过将预测器训练为转移分布的量化器，使每个预测头对应一个后继模式，从而在单次前向传播中枚举出所有可能的未来状态。实验表明，在 OGBench 离线规划任务中，该方法显著优于确定性、门控 MoE 及变分预测器，成功率从不足 0.1 提升至 0.85。此外，论文提出了一套严格的验证协议，有效排除了多模态预测中的“覆盖作弊”现象，证明了硬分配机制在复杂迷宫规划任务中的优越性与可靠性。",
-      "impact_score": null
+      "summary_zh": "针对 JEPA 世界模型在处理随机环境时，单一确定性预测器会导致预测结果坍缩至多个潜在状态的均值（即无效状态）这一问题，MoP-JEPA 引入了硬分配预测器混合架构。该方法通过将预测器训练为转移分布的量化器，使每个预测头对应一个后继模式，从而在单次前向传播中枚举出所有可能的未来状态。实验表明，在 OGBench 离线规划任务中，该方法显著优于确定性、门控 MoE 及变分预测器，成功率从不足 0.1 提升至 0.85。此外，论文提出了一套严格的验证协议，有效排除了多模态预测中的“覆盖作弊”现象，证明了硬分配机制在复杂迷宫规划任务中的优越性与可靠性。"
     },
     {
       "id": "2607.05199",
@@ -694,8 +685,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.05199",
-      "summary_zh": "针对小语言模型在物理推理中因单步错误导致连锁失效的问题，该研究提出了一种基于步级奖励的反馈修正框架。该方法通过定位推理链中的首个错误点，生成结构化反馈并利用带KL正则化的策略梯度算法引导模型自我修正，全程无需接触标准答案。实验表明，该框架在五个物理基准测试中表现优异，相比CoT提示词方法准确率提升17-20%，显著降低了计算错误、理解偏差及概念性错误。这一机制有效缓解了多步推理中的误差累积效应，为提升小模型在复杂逻辑任务中的稳健性提供了高效方案。",
-      "impact_score": null
+      "summary_zh": "针对小语言模型在物理推理中因单步错误导致连锁失效的问题，该研究提出了一种基于步级奖励的反馈修正框架。该方法通过定位推理链中的首个错误点，生成结构化反馈并利用带KL正则化的策略梯度算法引导模型自我修正，全程无需接触标准答案。实验表明，该框架在五个物理基准测试中表现优异，相比CoT提示词方法准确率提升17-20%，显著降低了计算错误、理解偏差及概念性错误。这一机制有效缓解了多步推理中的误差累积效应，为提升小模型在复杂逻辑任务中的稳健性提供了高效方案。"
     },
     {
       "id": "2607.05189",
@@ -1589,8 +1579,8 @@
         "cs.CV"
       ],
       "published": "2026-07-06T04:18:28Z",
-      "updated": "2026-07-06T04:18:28Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.04653v1",
+      "updated": "2026-07-08T03:47:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.04653v2",
       "abs_url": "https://arxiv.org/abs/2607.04653",
       "topics": [
         "video-gen"
