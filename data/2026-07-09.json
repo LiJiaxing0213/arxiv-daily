@@ -1,6 +1,6 @@
 {
   "date": "2026-07-09",
-  "generated_at": "2026-07-12T04:53:12.934964+00:00",
+  "generated_at": "2026-07-13T05:00:35.033346+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,109 @@
     }
   },
   "papers": [
+    {
+      "id": "2607.08948",
+      "title": "SplatCtrl: Perception-Action Coupling via Gaussian Scene Representations and Reactive Robot Control",
+      "abstract": "Robotic manipulators excel in structured environments but face substantial challenges in unstructured and dynamic settings. This paper presents SplatCtrl, a unified framework for real-time scene reconstruction and reactive robot motion generation to enable collision-free robotic arm control in previously unseen and continuously changing environments. Building on 3D Gaussian Splatting (3D-GS), we introduce a hybrid voxel-based filtering and dynamic Gaussian relocation strategy that supports efficient scene reconstruction from RGB-D streams while accommodating environmental changes. For safe and reactive control, we further propose a method for deriving continuous signed distance functions from isotropic Gaussians, providing stable and differentiable collision probability estimates that bridge classical distance fields with the modern implicit representation. These continuous distance metrics are incorporated into control barrier functions, resulting in a unified perception-action coupling framework that supports smooth and reliable real-time motion generation in response to scene changes. Experimental validation in simulation, on physical robot, and within shared human-robot workspace demonstrates the framework's effectiveness, achieving integrated scene reconstruction and reactive control in uncertain, and dynamic environments.",
+      "authors": [
+        "Siddarth Jain",
+        "Ho Jin Choi"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-07-09T21:18:39Z",
+      "updated": "2026-07-09T21:18:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.08948v1",
+      "abs_url": "https://arxiv.org/abs/2607.08948",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.08948",
+      "keyword_topics": [
+        "4d-gen"
+      ],
+      "summary_zh": "SplatCtrl 旨在解决机器人机械臂在非结构化及动态环境中难以实现实时避障控制的问题。该框架基于 3D Gaussian Splatting (3D-GS) 技术，通过混合体素过滤与动态高斯重定位策略，实现了对 RGB-D 数据流的高效实时场景重建。核心创新在于从各向同性高斯分布中推导出连续符号距离函数 (SDF)，并将其集成至控制障碍函数 (CBF) 中，从而构建起感知与动作的闭环耦合机制。实验表明，该方法在模拟环境及人机协作场景中均能生成平滑且可靠的实时运动轨迹，显著提升了机器人在复杂动态环境下的避障与交互能力。"
+    },
+    {
+      "id": "2607.08925",
+      "title": "SafeExplorer: An Unbiased Policy Gradient for Reinforcement Learning with Recovery Interventions",
+      "abstract": "Training reinforcement-learning agents directly on physical robots makes every fall costly, since a fall can damage the platform and cannot be undone like a simulator reset; the goal is therefore to minimize falls during training rather than trade them off against return, as constrained Markov decision process (MDP) formulations do. A standard mitigation hands control to a separate recovery policy whenever the agent leaves a designer-specified safe region (a subset of state space it should stay within), but the resulting mixed-policy rollouts silently bias every on-policy update, and the importance-sampling correction that would remove this bias is ill-defined whenever the recovery policy is deterministic. We address this bias with a drop-in modification of proximal policy optimization (PPO). Its core is an unbiased policy-gradient estimator that uses the score function only at safe timesteps and never evaluates the recovery policy's density, so it stays valid even when the recovery policy is deterministic, exactly where importance sampling breaks, and it empirically dominates importance sampling even when the recovery policy is stochastic. Because the recovery policy still makes credit assignment slow near the safe-region boundary, two further components accelerate learning: a closed-form value for recovery-triggering states when dynamics and recovery are deterministic, and an imitation loss that copies recovery actions only when recovery succeeds. On a three-environment, five-seed benchmark, the resulting algorithm reduces training-time falls by factors of 233x, 48x, and 26x on HalfCheetah, Ant, and Unitree Go1 over standard PPO, while matching or exceeding PPO's final reward, and on Ant, where the recovery policy is unreliable, it is the only method that reaches 80% of the best final reward.",
+      "authors": [
+        "Elham Daneshmand",
+        "Majid Khadiv",
+        "Glen Berseth",
+        "Hsiu-Chin Lin"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-09T20:41:45Z",
+      "updated": "2026-07-09T20:41:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.08925v1",
+      "abs_url": "https://arxiv.org/abs/2607.08925",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.08925",
+      "summary_zh": "在物理机器人训练中，为避免频繁跌倒导致的硬件损坏，通常引入恢复策略（recovery policy）进行干预，但这会导致策略梯度更新产生偏差且难以通过重要性采样修正。SafeExplorer 提出了一种无偏策略梯度估计器，仅在安全时间步计算分数函数，无需评估确定性恢复策略的密度，从而彻底消除了偏差。此外，该方法通过引入针对触发状态的闭式价值函数和模仿学习损失，有效解决了边界附近的信用分配缓慢问题。在 HalfCheetah、Ant 和 Unitree Go1 等环境的实验表明，该算法在大幅减少训练跌倒次数（最高达 233 倍）的同时，能够匹配甚至超越标准 PPO 的最终奖励表现。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.08894",
+      "title": "GATS: Graph-Augmented Tree Search with Layered World Models for Efficient Agent Planning",
+      "abstract": "Large Language Model (LLM) agents have shown promise in multi-step planning tasks, but existing approaches like LATS (Language Agent Tree Search) and ReAct rely heavily on LLM inference during planning, leading to high computational costs and stochastic behavior. We present \\textbf{GATS} (Graph-Augmented Tree Search), a planning framework that combines systematic UCB1-based tree search with a layered world model to eliminate LLM calls during inference while achieving superior planning performance. Our three-layer world model integrates: (L1) exact symbolic action matching, (L2) statistics learned from execution logs, and (L3) LLM-based prediction for unknown actions. On synthetic planning tasks with branching paths and dead-ends, GATS achieves \\textbf{100\\% success rate} compared to 92 % for LATS and 64\\% for ReAct. On a comprehensive stress test spanning 12 challenging scenarios -- including coding workflows, web navigation, and long-horizon tasks -- GATS maintains \\textbf{100\\% success} while LATS drops to 88.9 % and ReAct to 23.9%. GATS requires \\textbf{zero LLM calls per task} during planning (vs. 37 per task for LATS) and produces deterministic plans with zero variance across runs. Our results demonstrate that systematic search with learned world models can substantially outperform LLM-guided exploration for agent planning.",
+      "authors": [
+        "Maureese Williams",
+        "Dymitr Nowicki"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-09T19:34:29Z",
+      "updated": "2026-07-09T19:34:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.08894v1",
+      "abs_url": "https://arxiv.org/abs/2607.08894",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.08894",
+      "summary_zh": "GATS 旨在解决现有 LLM Agent 在多步规划中过度依赖推理导致的高计算成本与随机性问题。该框架引入了基于 UCB1 的树搜索与分层世界模型（Layered World Model），通过 L1 符号化动作匹配、L2 执行日志统计以及 L3 LLM 预测构建三层模型，从而在推理阶段完全消除 LLM 调用。实验表明，GATS 在合成规划任务及代码编写、网页导航等 12 个复杂场景中均达到 100% 的成功率，显著优于 LATS 和 ReAct。该方法不仅实现了零 LLM 调用规划，还确保了输出结果的确定性，证明了系统化搜索结合学习型世界模型在 Agent 规划任务中的高效性与优越性。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.08877",
+      "title": "FlowDAgger: Human-in-the-Loop Adaptation of Generative Robot Policies in Latent Space",
+      "abstract": "Pretrained generative robot policies based on flow matching and diffusion have achieved impressive results across a wide range of manipulation tasks. Yet real-world deployments routinely expose failure modes outside the pretraining distribution. Closing these gaps typically requires large-scale data collection or online reinforcement learning on physical hardware, which is impractical for rapid and safe adaptation. We present FlowDAgger, a sample- and compute-efficient method for adapting frozen generative robot policies from human interventions in latent space. Our key idea is action inversion: each human expert action is mapped to the noise that would have produced it under the frozen base policy, using reverse-time integration followed by local refinement. The resulting inverted noise provides supervision for a lightweight latent policy that steers the base model at deployment time, enabling rapid skill acquisition while preserving its behavioral priors. We evaluate FlowDAgger in simulation and on real-world bimanual and single-arm manipulation, adapting both action-head VLAs and world-action models from a handful of interventions. FlowDAgger outperforms supervised fine-tuning and latent-space RL baselines and preserves pretrained skills on held-out tasks, offering a practical path for adapting robot foundation models in the real world. Website: https://microsoft.github.io/FlowDAgger",
+      "authors": [
+        "Michael Murray",
+        "Daphne Chen",
+        "Simran Bagaria",
+        "Dean Fortier",
+        "Tess Hellebrekers",
+        "Galen Mullins",
+        "Harshavardhan Gajarla",
+        "Oier Mees",
+        "Maya Cakmak",
+        "Andrey Kolobov"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-07-09T19:07:33Z",
+      "updated": "2026-07-09T19:07:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.08877v1",
+      "abs_url": "https://arxiv.org/abs/2607.08877",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.08877",
+      "summary_zh": "针对预训练生成式机器人策略在真实场景中面临的分布外失效问题，FlowDAgger 提出了一种在潜空间（latent space）进行人机协作适配的高效方法。该方法通过动作反演（action inversion）技术，将人类专家干预动作映射为基础模型产生该动作所需的噪声，并利用这些噪声监督一个轻量级的潜空间策略，从而在保留基础模型先验知识的同时实现快速技能修正。实验表明，该方法在模拟环境及真实世界的双臂与单臂操作任务中，仅需少量干预即可显著优于监督微调和潜空间强化学习基线。这种机制为机器人基础模型在复杂现实环境中的安全、高效适配提供了一条切实可行的路径。",
+      "impact_score": null
+    },
     {
       "id": "2607.08772",
       "title": "Wat3R: Underwater 3D Geometry Learning without Annotations",
@@ -355,7 +458,7 @@
     {
       "id": "2607.08642",
       "title": "DominoTree: Conditional Tree-Structured Drafting with Domino for Speculative Decoding",
-      "abstract": "Speculative decoding accelerates LLM inference by drafting several tokens and verifying them in parallel. Block-diffusion drafters such as DFlash produce a draft block in one pass but model only per-position marginals; best-first tree methods such as DDTree expand candidate trees from those marginals. The released Domino drafter adds a GRU-based causal correction that makes each draft token's distribution path-dependent, a structure DDTree's factorized formulation cannot represent. We introduce DominoTree, a training-free best-first draft tree scored by Domino's conditional, non-factorized correction along each root-to-node path, made practical by restricting the per-node correction to a candidate top-M. On Qwen3-4B across eight benchmarks, DominoTree reaches up to 6.6x speedup over autoregressive decoding and the highest mean accept length of any evaluated method, up to 10.7 tokens per round, at every temperature we test. DominoTree constructs its tree with a GPU-native, CUDA-graph builder that is bit-identical to a reference Python implementation, so acceptance is unchanged, while keeping per-round tree construction cheap. With this builder as default, DominoTree wins throughput over the released Domino decoder at every temperature, 9-10% overall on Qwen3-4B and up to +22% on Alpaca, and over DDTree/CaDDTree at every temperature we test. On Qwen3- 8B, DominoTree keeps the highest accepted length at every temperature and adds a decisive throughput win at T=0, +24% over DDTree; at higher temperature that edge over DDTree/CaDDTree narrows to a tie and a small loss, while its Overall aggregate wins over DFlash and Domino persist.",
+      "abstract": "Speculative decoding accelerates LLM inference by drafting several tokens and verifying them in parallel. Block-diffusion drafters such as DFlash produce a draft block in one pass but model only per-position marginals, and best-first tree methods such as DDTree expand candidate trees from those marginals. The released Domino drafter adds a GRU-based causal correction that makes each draft token distribution path-dependent, a structure DDTree's factorized formulation cannot represent. We introduce DominoTree, a training-free best-first draft tree scored by Domino's conditional, non-factorized correction along each root-to-node path, made practical by restricting the per-node correction to a candidate top-M set. On Qwen3-4B across eight benchmarks, DominoTree reaches up to 6.6x speedup over autoregressive decoding and the highest mean accepted length of any evaluated method, up to 10.7 tokens per round, at every tested temperature. DominoTree constructs its tree with a GPU-native CUDA-graph builder that is bit-identical to a reference Python implementation, so acceptance is unchanged, while keeping per-round tree construction cheap. With this builder as default, DominoTree improves throughput over the released Domino decoder, the drafter it builds on, at every tested temperature: 9% to 10% overall on Qwen3-4B and up to 22% on Alpaca. It also outperforms DDTree and CaDDTree at every tested temperature, not only under greedy decoding. On Qwen3-8B, DominoTree keeps the highest accepted length at every temperature and gives a 24% throughput gain over DDTree at T=0; at higher temperature its edge over DDTree and CaDDTree narrows to a tie and a small loss, while its aggregate gains over DFlash and Domino persist.",
       "authors": [
         "Saw S. Lin",
         "Jyh-Shing Roger Jang"
@@ -364,8 +467,8 @@
         "cs.CL"
       ],
       "published": "2026-07-09T16:16:35Z",
-      "updated": "2026-07-09T16:16:35Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.08642v1",
+      "updated": "2026-07-10T04:07:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.08642v2",
       "abs_url": "https://arxiv.org/abs/2607.08642",
       "topics": [
         "distillation"
@@ -915,8 +1018,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.08246",
-      "summary_zh": "SkelGen4D 旨在解决文本驱动 4D 内容生成中缺乏显式运动控制的问题，通过引入骨骼驱动框架实现与工业标准流程兼容的动画生成。该方法采用弱监督学习策略，利用可微拟合技术从动画网格中提取伪骨骼，并结合 Motion-GRPO 优化策略，在无需逐帧骨骼标注的情况下，实现文本条件下的高质量骨骼运动序列生成。实验在 Truebones Zoo 和 Diffusion4D 基准测试中表明，该方法在保持物理合理性和时间一致性的同时，性能达到甚至超越了全监督基线模型。此外，该框架支持灵活的运动编辑，为复杂 3D 动画创作提供了高效且可控的解决方案。",
-      "impact_score": null
+      "summary_zh": "SkelGen4D 旨在解决文本驱动 4D 内容生成中缺乏显式运动控制的问题，通过引入骨骼驱动框架实现与工业标准流程兼容的动画生成。该方法采用弱监督学习策略，利用可微拟合技术从动画网格中提取伪骨骼，并结合 Motion-GRPO 优化策略，在无需逐帧骨骼标注的情况下，实现文本条件下的高质量骨骼运动序列生成。实验在 Truebones Zoo 和 Diffusion4D 基准测试中表明，该方法在保持物理合理性和时间一致性的同时，性能达到甚至超越了全监督基线模型。此外，该框架支持灵活的运动编辑，为复杂 3D 动画创作提供了高效且可控的解决方案。"
     },
     {
       "id": "2607.08208",
@@ -992,8 +1094,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.08193",
-      "summary_zh": "强化学习中的开放式课程旨在通过自动识别任务来培养具备通用能力的智能体，但如何准确评估任务难度与智能体学习进度之间的匹配度始终是核心挑战。该研究提出了一种名为 Visual Inspection of Policies (VIP) 的方法，利用多模态大模型（VLM）直接分析智能体在任务中的视频表现，从而动态生成更具挑战性的训练课程。相较于传统的标量任务评分或纯文本行为描述，VIP 通过视觉感知能更直观地捕捉复杂的多智能体交互细节。在 StarCraft Multi-Agent Challenge (SMAC) 上的实验表明，即使使用轻量级的 VideoLLaMa2-7B 模型，VIP 也能显著提升课程生成的有效性，优于现有的文本驱动或基于分数的基准方法。",
-      "impact_score": null
+      "summary_zh": "强化学习中的开放式课程旨在通过自动识别任务来培养具备通用能力的智能体，但如何准确评估任务难度与智能体学习进度之间的匹配度始终是核心挑战。该研究提出了一种名为 Visual Inspection of Policies (VIP) 的方法，利用多模态大模型（VLM）直接分析智能体在任务中的视频表现，从而动态生成更具挑战性的训练课程。相较于传统的标量任务评分或纯文本行为描述，VIP 通过视觉感知能更直观地捕捉复杂的多智能体交互细节。在 StarCraft Multi-Agent Challenge (SMAC) 上的实验表明，即使使用轻量级的 VideoLLaMa2-7B 模型，VIP 也能显著提升课程生成的有效性，优于现有的文本驱动或基于分数的基准方法。"
     },
     {
       "id": "2607.08177",
@@ -1173,8 +1274,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.08127",
-      "summary_zh": "针对生成式视频基础模型在微调为机器人动作模型（VAMs）后出现的组合泛化能力下降问题，该研究提出了“视频-动作泛化鸿沟”的概念。通过引入基于注意力机制的Temporal Ratio（TR）指标，量化了动作头对未来潜在状态的依赖程度，发现TR不仅能预测模型的组合泛化能力，还能反映任务执行中规划与操作阶段的注意力动态切换。基于此发现，研究提出了一种推理时自适应引导方法，通过动态放大组合视频条件信号，有效增强了模型对未来轨迹的预测依赖。在LIBERO基准测试及真实世界任务中的实验表明，该方法显著缩小了分布外（OOD）与分布内（ID）数据间的组合泛化差距，提升了机器人的决策鲁棒性。",
-      "impact_score": null
+      "summary_zh": "针对生成式视频基础模型在微调为机器人动作模型（VAMs）后出现的组合泛化能力下降问题，该研究提出了“视频-动作泛化鸿沟”的概念。通过引入基于注意力机制的Temporal Ratio（TR）指标，量化了动作头对未来潜在状态的依赖程度，发现TR不仅能预测模型的组合泛化能力，还能反映任务执行中规划与操作阶段的注意力动态切换。基于此发现，研究提出了一种推理时自适应引导方法，通过动态放大组合视频条件信号，有效增强了模型对未来轨迹的预测依赖。在LIBERO基准测试及真实世界任务中的实验表明，该方法显著缩小了分布外（OOD）与分布内（ID）数据间的组合泛化差距，提升了机器人的决策鲁棒性。"
     },
     {
       "id": "2607.08056",
@@ -1199,8 +1299,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.08056",
-      "summary_zh": "针对多模态掩码扩散模型（Multimodal Masked Diffusion Models）在生成顺序优化上的不足，该研究提出了一种基于可学习控制模块的优化方案。由于模型 Logits 难以直接确定最优生成序列，该方法引入 Group Relative Policy Optimization (GRPO) 训练控制模块，从而动态调整文本到图像生成及多模态理解的生成顺序。实验表明，该策略显著提升了模型对细粒度空间关系的捕捉能力，并在 GenEval 和 VLMEvalKit 基准测试中分别取得了 4.08% 和 4.85% 的性能提升，验证了该方法在增强多模态对齐与推理能力方面的广泛有效性。",
-      "impact_score": null
+      "summary_zh": "针对多模态掩码扩散模型（Multimodal Masked Diffusion Models）在生成顺序优化上的不足，该研究提出了一种基于可学习控制模块的优化方案。由于模型 Logits 难以直接确定最优生成序列，该方法引入 Group Relative Policy Optimization (GRPO) 训练控制模块，从而动态调整文本到图像生成及多模态理解的生成顺序。实验表明，该策略显著提升了模型对细粒度空间关系的捕捉能力，并在 GenEval 和 VLMEvalKit 基准测试中分别取得了 4.08% 和 4.85% 的性能提升，验证了该方法在增强多模态对齐与推理能力方面的广泛有效性。"
     },
     {
       "id": "2607.08032",
@@ -1248,8 +1347,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.08020",
-      "summary_zh": "自回归视频生成在处理长序列时，由于重复使用潜在变量作为因果上下文，常导致时间维度上的闪烁、抖动及结构漂移。SAGA通过光谱运动学视角分析发现，离散潜在加速度是揭示高频时间扰动的关键信号。该方法引入了基于有限窗口Slepian投影的加速度域光谱引导目标，并配合结构化自回归噪声初始化策略，在抑制短程时间相关性的同时保留了长程运动结构。SAGA无需重新训练或修改骨干网络，可直接应用于现有的分块自回归扩散模型。实验表明，该方法在Self-Forcing等基准测试中显著提升了时间质量与图像质量，有效解决了视频生成中的时间不稳定性问题，并在人类偏好评估中表现优异。",
-      "impact_score": null
+      "summary_zh": "自回归视频生成在处理长序列时，由于重复使用潜在变量作为因果上下文，常导致时间维度上的闪烁、抖动及结构漂移。SAGA通过光谱运动学视角分析发现，离散潜在加速度是揭示高频时间扰动的关键信号。该方法引入了基于有限窗口Slepian投影的加速度域光谱引导目标，并配合结构化自回归噪声初始化策略，在抑制短程时间相关性的同时保留了长程运动结构。SAGA无需重新训练或修改骨干网络，可直接应用于现有的分块自回归扩散模型。实验表明，该方法在Self-Forcing等基准测试中显著提升了时间质量与图像质量，有效解决了视频生成中的时间不稳定性问题，并在人类偏好评估中表现优异。"
     },
     {
       "id": "2607.08016",
@@ -1275,8 +1373,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.08016",
-      "summary_zh": "视频重光照任务需平衡长视频的时间一致性与物理光照理解，传统逆向渲染方法易产生噪声，而直接视频生成模型则难以精确控制光照且缺乏稳定性。LightCrafter 提出了一种混合流水线，通过将目标光照条件预先烘焙进 PBR 渲染的代理视频，将重光照问题转化为视频翻译任务，从而降低了扩散模型对光照概念的学习难度。该方法利用 CogVideoX 在合成与真实视频对上进行后训练，有效捕捉了全局光照等复杂物理效应，并保持了极佳的时间一致性。实验结果表明，该方案在主流重光照 benchmark 上显著优于现有技术，并为领域研究提供了新的合成数据集与评估指标。",
-      "impact_score": null
+      "summary_zh": "视频重光照任务需平衡长视频的时间一致性与物理光照理解，传统逆向渲染方法易产生噪声，而直接视频生成模型则难以精确控制光照且缺乏稳定性。LightCrafter 提出了一种混合流水线，通过将目标光照条件预先烘焙进 PBR 渲染的代理视频，将重光照问题转化为视频翻译任务，从而降低了扩散模型对光照概念的学习难度。该方法利用 CogVideoX 在合成与真实视频对上进行后训练，有效捕捉了全局光照等复杂物理效应，并保持了极佳的时间一致性。实验结果表明，该方案在主流重光照 benchmark 上显著优于现有技术，并为领域研究提供了新的合成数据集与评估指标。"
     }
   ]
 }
