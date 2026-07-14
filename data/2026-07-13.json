@@ -1,6 +1,6 @@
 {
   "date": "2026-07-13",
-  "generated_at": "2026-07-13T05:00:35.031319+00:00",
+  "generated_at": "2026-07-14T04:29:16.291279+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,1286 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2607.11886",
+      "title": "Read It Back: Pretrained MLLMs Are Zero-Shot Reward Models for Text-to-Image Generation",
+      "abstract": "In this paper, we propose SpectraReward, a training-free reward function that turns pretrained MLLMs into off-the-shelf reward models for image-generation reinforcement learning. Instead of asking the MLLM to judge a generated image or answer decomposed verification questions, SpectraReward measures how well the original prompt can be recovered from the generated image through a single image-conditioned, teacher-forced forward pass. We use the average image-conditioned prompt log-likelihood as the reward, directly reusing the MLLM's pretrained image-text alignment ability without preference labels, reward-model fine-tuning. We further introduce Self-SpectraReward, a special case for unified multimodal models where the policy's own understanding branch serves as the reward model for its generation branch, forming a closed-loop self-improving framework without external reward models or external knowledge. Extensive experiments validate SpectraReward through a broad image-generation RL study covering two diffusion models, three RL algorithms, nine reward MLLM backbones from four MLLM families spanning 4B to 235B parameters, and five out-of-distribution text-to-image benchmarks. Results show that both SpectraReward and Self-SpectraReward significantly and consistently improve generation performance and outperform prior MLLM-derived reward training methods. Further analysis reveals that larger reward MLLMs are not always better, while Self-SpectraReward can match or surpass much larger external reward models, suggesting that reward-policy alignment is a key factor for effective image-generation RL. Project Page: https://huangrh99.github.io/SpectraReward/",
+      "authors": [
+        "Runhui Huang",
+        "Qihui Zhang",
+        "Zhe Liu",
+        "Yu Gao",
+        "Jie Wu",
+        "Hengshuang Zhao"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T17:59:58Z",
+      "updated": "2026-07-13T17:59:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11886v1",
+      "abs_url": "https://arxiv.org/abs/2607.11886",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11886",
+      "summary_zh": "SpectraReward 旨在解决文本生成图像任务中缺乏高效奖励模型的问题，提出了一种无需训练的零样本奖励函数。该方法利用预训练多模态大模型（MLLM）的图像-文本对齐能力，通过计算给定图像条件下原始提示词的对数似然（log-likelihood）来衡量生成质量，无需额外的偏好标签或微调。此外，Self-SpectraReward 进一步实现了闭环自改进，让模型自身的理解分支作为生成分支的奖励来源。实验表明，该方法在多个扩散模型和基准测试中表现优异，证明了奖励模型与生成策略之间的对齐是提升强化学习效果的关键因素，且在参数规模较小时也能实现高效的性能优化。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.11883",
+      "title": "Requential Coding: Pushing the Limits of Model Compression with Self-Generated Training Data",
+      "abstract": "Compression is fundamental to intelligence. A model that can represent its training data as a short code has discovered regularities that enable generalization. Large neural networks may learn functions far simpler than their parameter counts suggest, but it is challenging to construct codes that realize this simplicity. Parameter-based methods such as quantization produce code lengths that scale with model size, insensitive to how much information the parameters store. Prequential coding bypasses this issue by compressing the training trajectory, but codes the exact data sequence regardless of how much the model learns, yielding large codes when the data has high entropy. We introduce requential coding, where a teacher model selects training samples drawn from the student's own distribution. The student's code records only these selections, which cost bits only where teacher and student disagree. The resulting code length is independent of parameter count and data entropy, and often orders of magnitude shorter than the prequential counterpart, with an advantage that grows with scale. This compression sheds light on phenomena inaccessible to prior compressors. Holding loss fixed, larger models and ensembles compress to much smaller sizes despite more parameters. Plugged into a PAC-Bayes bound, the requential code yields state-of-the-art generalization guarantees for billion-parameter LLMs, outperforming bounds built on aggressive post-training quantization even granted zero error. The bound tightens with scale in the compute-optimal regime, as models become increasingly compressible relative to dataset size. The same code predicts that models gradually overfit when trained for multiple epochs. It also isolates the learnable information in a dataset from its unpredictable, random content, revealing that lower-entropy text holds far more learnable structure than higher-entropy image data.",
+      "authors": [
+        "Shikai Qiu",
+        "Marc Finzi",
+        "Yujia Zheng",
+        "Kun Zhang",
+        "Andrew Gordon Wilson"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-13T17:58:50Z",
+      "updated": "2026-07-13T17:58:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11883v1",
+      "abs_url": "https://arxiv.org/abs/2607.11883",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11883",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "Requential coding 旨在解决传统模型压缩方法无法有效衡量模型真实信息存储量的问题，通过引入教师模型从学生模型分布中筛选训练样本，仅记录两者不一致之处来构建编码。该方法使编码长度与参数规模及数据熵解耦，在保持损失函数不变的前提下，证明了更大规模的模型具有更高的压缩效率。实验表明，该技术在 PAC-Bayes 框架下为十亿参数级 LLM 提供了目前最强的泛化性能界限，并能有效识别模型过拟合现象。此外，该方法成功将数据集中的可学习结构与随机噪声剥离，揭示了低熵文本比高熵图像包含更多可学习信息的本质特征。"
+    },
+    {
+      "id": "2607.11874",
+      "title": "A Minimalist Retargeting-Guided Reinforcement Learning Recipe for Dexterous Manipulation",
+      "abstract": "Recent work in humanoid whole-body control has found success with a simple recipe: retarget human motion to robot kinematic references, then train policies via reinforcement learning (RL) to track them. But how does this recipe transfer to dexterous manipulation? The answer is not obvious, as manipulation involves complex, contact-rich dynamics and requires delicate regulation of contact modes and forces. We present REGRIND, a minimalist retargeting-guided RL pipeline that learns dexterous manipulation policies from a single human demonstration. REGRIND retargets human hand-object motion to a robot reference that preserves hand-object spatial and contact relationships, trains a residual RL policy in simulation to track object-centric keypoints along that reference, and transfers the resulting policy zero-shot to hardware with careful system identification. The resulting policies produce fluid, human-like behavior on two different multi-fingered hands across contact-rich tool-use tasks, including operating a pair of scissors and turning a screwdriver. Through systematic hardware experiments, we identify and analyze the key factors that govern sim-to-real transfer in dexterous manipulation, offering practical guidance for retargeting-based learning in contact-rich settings. Videos and code are available at https://yunhaifeng.com/REGRIND.",
+      "authors": [
+        "Yunhai Feng",
+        "Natalie Leung",
+        "Jiaxuan Wang",
+        "Lujie Yang",
+        "Haozhi Qi",
+        "Preston Culbertson"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-13T17:56:08Z",
+      "updated": "2026-07-13T17:56:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11874v1",
+      "abs_url": "https://arxiv.org/abs/2607.11874",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11874",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "REGRIND 旨在解决灵巧手操作中接触丰富且动力学复杂的问题，提出了一种基于动作重定向（Retargeting）的强化学习方案。该方法仅需单次人类演示，通过将手-物空间关系与接触点映射为机器人参考轨迹，并训练残差强化学习（Residual RL）策略来追踪以物体为中心的关键点，从而实现对复杂操作任务的精准控制。实验表明，该策略在剪刀、螺丝刀等接触密集型任务中表现出流畅且类人的行为，并能通过系统辨识实现零样本（Zero-shot）硬件迁移。研究进一步揭示了影响灵巧操作仿真到现实（Sim-to-Real）迁移的关键因素，为接触丰富环境下的机器人学习提供了实用的设计范式。"
+    },
+    {
+      "id": "2607.11836",
+      "title": "Cycle-World: Mitigating Error Accumulation in Long-term Video World Models via Reverse-Prediction Cycle Consistency",
+      "abstract": "Autoregressive diffusion models have enabled high-quality video generation, yet their sequential nature inherently suffers from error accumulation. In long-horizon video synthesis, minor prediction deviations compound over time, inevitably leading to unconstrained generative drift, structural collapse, and severe visual degradation. To address this, we propose Cycle-World, a novel framework designed for stable and temporally consistent long-video generation. Our approach tackles error drift by enforcing strict temporal reversibility across both the training and inference phases. Theoretically, we demonstrate that forward generative drift can be strictly bottlenecked by a cycle-consistency objective. During training, we integrate an efficient reverse-prediction model to implicitly embed causal constraints into the forward generator, compelling it to produce reversible sequences that tightly adhere to the natural video manifold. At inference time, we repurpose this frozen reverse model as a runtime corrector. Through gradient-based cycle guidance, it iteratively refines the generated latent representations, actively suppressing accumulated errors before they are committed to the historical context. Extensive experiments on the VBench benchmark demonstrate that Cycle-World's dual-phase synergy significantly mitigates error drift, achieving state-of-the-art overall generation quality and long-horizon temporal consistency in 60-second synthesis.",
+      "authors": [
+        "Zihan Su",
+        "Teng Hu",
+        "Jiangning Zhang",
+        "Ruiyan Wang",
+        "Ran Yi",
+        "Lizhuang Ma",
+        "Dacheng Tao"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T17:27:13Z",
+      "updated": "2026-07-13T17:27:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11836v1",
+      "abs_url": "https://arxiv.org/abs/2607.11836",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11836",
+      "summary_zh": "自回归扩散模型在长视频生成中常因误差累积导致视觉退化与结构崩塌，Cycle-World 框架通过引入反向预测循环一致性机制有效缓解了这一问题。该方法在训练阶段嵌入反向预测模型以强化因果约束，并在推理阶段将其作为运行时校正器，通过基于梯度的循环引导实时修正潜在表示，从而抑制生成漂移。理论分析证明了该机制能将前向生成误差限制在循环一致性目标内，确保了视频的长期时间一致性。在 VBench 基准测试中，该模型在 60 秒长视频生成任务中表现出色，显著提升了整体生成质量并达到了当前最优水平。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.11826",
+      "title": "Transformer-Guided Swarm Intelligence for Frugal Neural Architecture Search",
+      "abstract": "Neural Architecture Search (NAS) has automated the design of deep learning models but traditionally requires massive computational resources, often measured in thousands of GPU-days. In this paper, we propose a frugal and memetic NAS framework designed to democratize architecture design on consumer-grade hardware. Our approach combines the global macro-search capabilities of an autoregressive Transformer controller, trained via Reinforcement Learning (RL), with the local micro-exploitation of an Artificial Bee Colony (ABC) algorithm. To prevent premature convergence during the RL phase, we introduce a dynamic entropy mechanism that forces topological exploration upon detection of performance stagnation. Evaluated on a standard GPU (NVIDIA RTX 3060), our hybrid method effectively resolves the \"cold-start\" problem inherent in metaheuristics. By algorithmically penalizing network depth, our framework actively mitigates model bloat: on the CIFAR-10 dataset, it discovers an efficient architecture reaching 84.85% accuracy with only $\\sim$174,000 parameters (significantly smaller than standard baselines like ResNet-20) in 3 hours of search time. Furthermore, we demonstrate the framework's flexibility by applying it to credit card fraud detection, directly optimizing the F1-Score on highly imbalanced tabular data to reach a F1-Score of 0.71 with a compact network of $\\sim$4,600 parameters. These results suggest that our approach can yield tailored, accessible, and highly parameter-efficient deep learning models suitable for edge deployment.",
+      "authors": [
+        "Romain Amigon"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.NE"
+      ],
+      "published": "2026-07-13T17:18:24Z",
+      "updated": "2026-07-13T17:18:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11826v1",
+      "abs_url": "https://arxiv.org/abs/2607.11826",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11826",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对传统神经架构搜索（NAS）计算资源消耗巨大的问题，该研究提出了一种结合自回归 Transformer 控制器与人工蜂群算法（ABC）的节约型架构搜索框架。通过强化学习进行全局宏观搜索，并利用 ABC 算法进行局部微观优化，同时引入动态熵机制防止搜索陷入局部最优，有效解决了元启发式算法中的“冷启动”难题。该方法在 NVIDIA RTX 3060 等消费级硬件上即可运行，在 CIFAR-10 数据集上仅需 3 小时搜索，便能以约 17.4 万参数实现 84.85% 的准确率。此外，该框架在信用卡欺诈检测等不平衡数据集上也展现了卓越的性能，能够自动生成适合边缘部署的高效、轻量化神经网络模型。"
+    },
+    {
+      "id": "2607.11736",
+      "title": "MET: Theory-Grounded and Culture-Aware Multilingual Moral Reasoning",
+      "abstract": "Language models are increasingly used for moral decision-making across diverse linguistic and cultural contexts, yet existing work overlooks multilinguality on three aspects: 1) multilingual evaluation benchmarks use direct translation, failing to adapt culture-specific items; 2) inference-time methods for moral reasoning rely on static, English-centric scaffolds and lack grounding in moral theory; 3) training methods for moral decision-making typically require expensive supervision from stronger models or human annotators. We address these gaps with three contributions. First, we introduce MCLASH, a multilingual moral decision-making benchmark to capture culturally situated moral intuitions and social norms across languages. Second, we propose MET (Multilingual Ethics with Theory-grounded reasoning), a two-step prompting method built on expert-curated, theory-based grounds drawn from psychology and philosophy: the model first selects situation- and culture-specific grounds, then reasons over them in the native language of the user. Third, we introduce MET-D (MET-Distillation), which enhances the second step through a self-distillation training stage that requires no external supervision. MET-D improves macro-F1 over the base model on all three models of different sizes and families (Qwen3-4B, Qwen3-8B, Gemma3-4B), by an average of 3.71 points on MCLASH and 4.23 on MMoralExceptQA, with a peak MCLASH gain of 12.94 points for Malay on Qwen3-8B. We further reveal that MET-D increases native-language reasoning by 62.13 points on average, and that beneficial grounds differ systematically across cultures. Together, these contributions open the path for culture-aligned, theory-grounded multilingual moral reasoning.",
+      "authors": [
+        "Ayoung Lee",
+        "Ryan Kwon",
+        "Yunxiang Zhang",
+        "Yuxuan Liu",
+        "Peter Railton",
+        "Lu Wang"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-13T15:59:25Z",
+      "updated": "2026-07-13T15:59:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11736v1",
+      "abs_url": "https://arxiv.org/abs/2607.11736",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11736",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对现有跨语言道德推理研究中文化适配不足、缺乏理论支撑及依赖昂贵监督等问题，该研究提出了包含MCLASH基准测试、MET两阶段推理框架及MET-D自蒸馏训练方法的一体化方案。MET框架基于心理学与哲学理论，引导模型先筛选特定文化语境下的道德准则，再进行母语推理，有效克服了英语中心主义的局限。MET-D通过无需外部监督的自蒸馏训练，显著提升了模型在多语言环境下的道德决策能力。实验结果显示，该方法在Qwen3和Gemma3等模型上实现了Macro-F1的显著增长，并在MCLASH和MMoralExceptQA数据集上表现优异，证明了其在实现文化对齐与理论驱动的多语言道德推理方面的有效性。"
+    },
+    {
+      "id": "2607.11725",
+      "title": "Time-Lag-Aware Deep Reinforcement Learning for Flexible Job-Shop Scheduling in PPVC Module Factories",
+      "abstract": "Prefabricated prefinished volumetric construction moves most building work into module factories, whose production floor operates as a flexible job shop. A major complication is decisive: long post-operation time-lags caused by concrete curing, watertightness ponding tests, and paint drying, during which a module is blocked while its workstation stays free. On benchmark instances grounded in an official national prefabrication guidebook, these lags inflate even the optimal reference makespan by about 67% on average, and ignoring them at decision time, then repairing to feasibility, is worse than every dispatching rule. We adapt a state-of-the-art dual-attention deep reinforcement learning solver through three minimally invasive, individually ablatable extensions: lag-aware dynamics with an admissible reward bound, two anticipatory lag feature channels, and liveness-masked operation- and station-type embeddings. With every extension disabled the implementation reproduces the original solver exactly, so all gains are attributable to the adaptations. We release a public, guidebook-grounded benchmark generator. On held-out instances the learned policy is the strongest solver-free scheduler: it reaches within about 4% of a constraint-programming reference and beats every dispatching rule and a genetic-algorithm metaheuristic, with its advantage widening under capacity contention, and a single size-mixed policy carries this lead across the trained range of factory sizes. It needs no solver, model, or license in the loop and re-plans within seconds of a disruption; where an exact solver can be deployed, that solver remains the quality ceiling, a boundary we map explicitly.",
+      "authors": [
+        "Ziheng Zhang",
+        "Wei Zhang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "math.OC"
+      ],
+      "published": "2026-07-13T15:50:00Z",
+      "updated": "2026-07-13T15:50:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11725v1",
+      "abs_url": "https://arxiv.org/abs/2607.11725",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11725",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "预制模块化建筑（PPVC）工厂在生产中面临混凝土固化、防水测试等长耗时工序，导致模块占用工位但无法处理，严重影响生产效率。针对这一挑战，本研究提出一种时间滞后感知（Time-Lag-Aware）的深度强化学习调度方法，通过引入滞后感知动态奖励机制、前瞻性滞后特征通道以及活性掩码嵌入技术，有效解决了传统调度算法忽略工序间隙的问题。实验结果表明，该模型在基于国家预制指南构建的基准测试中表现优异，其调度性能优于所有启发式规则和遗传算法，且在工厂规模变化时保持稳健。该方法无需依赖外部求解器，能够在生产中断后秒级完成重调度，为复杂工业环境下的实时生产优化提供了高效的替代方案。"
+    },
+    {
+      "id": "2607.11720",
+      "title": "Active Offline-to-Online Reinforcement Learning",
+      "abstract": "Background: Offline reinforcement learning (RL) enables effective policies to be trained from large, previously collected datasets and subsequently improved through limited online interaction. This offline-to-online RL (O2O-RL) paradigm is particularly promising in nonstationary domains where interaction is costly or potentially hazardous. Standard O2O-RL pipelines train multiple candidate policies offline, evaluate them using off-policy or online evaluation, and then deploy and fine-tune the policy with the highest estimated value. However, as in offline pretraining, fine-tuning performance is highly sensitive to the choice of algorithm and hyperparameters, making it risky to commit to a single policy. Objectives: We study active policy selection for fine-tuning under a limited interaction budget in O2O-RL settings. To our knowledge, this is the first work to address this problem. Methods: We formulate the problem by identifying a fundamental trade-off between allocating online interactions to policy evaluation, which helps identify high-performing policies, and allocating them to fine-tuning, which improves policy performance. We then propose an approach that balances this trade-off by actively selecting policies for fine-tuning based on upper-confidence bounds on their future performance. These bounds are derived from locally linear performance forecasts fitted to observations obtained through online evaluation. Results: Across a diverse range of experiments, the proposed approach consistently outperforms existing O2O-RL baselines. Conclusions: Actively selecting and fine-tuning policies uses limited online interaction budgets more effectively than either committing to a single policy or dividing the budget equally among all policies. Our framework also advances offline RL toward practical deployment in real-world systems where online interaction is costly or risky.",
+      "authors": [
+        "Alper Kamil Bozkurt",
+        "Shangtong Zhang",
+        "Yuichi Motai"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T15:46:11Z",
+      "updated": "2026-07-13T15:46:11Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11720v1",
+      "abs_url": "https://arxiv.org/abs/2607.11720",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11720",
+      "summary_zh": "Offline-to-online reinforcement learning（O2O-RL）在有限交互预算下，面临如何从多个离线预训练策略中选择最优策略进行微调的难题。该研究提出了一种主动策略选择框架，通过在策略评估与微调之间平衡交互预算，解决了单一策略选择风险高的问题。核心创新在于利用基于局部线性性能预测的置信上限（Upper-Confidence Bounds）来动态筛选策略，从而最大化在线微调的收益。在多项实验中，该方法在处理代价高昂或高风险的在线交互场景时，表现显著优于现有的基准算法，有效提升了离线强化学习在实际系统中的部署效率。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.11689",
+      "title": "From World Action Models to Embodied Brains: A Roadmap for Open-World Physical Intelligence",
+      "abstract": "Artificial general intelligence ultimately requires agents that can reason and act in the physical world. Action models, vision-language-action policies, and world models have advanced this goal, while World Action Models (WAMs) are particularly promising because they connect candidate interventions with predicted consequences. However, progress remains fragmented: models use incompatible action spaces and prediction targets, datasets and tasks follow different conventions, and runtime systems expose limited interfaces for reuse and evaluation. We review the evolution toward WAMs and organize these limitations into three coupled gaps: model roles and representations, objectives and standardization, and system composition. Building on this analysis, we propose a co-evolution roadmap for physical intelligence centered on the \\emph{embodied brain}, a long-term model target for integrating multimodal context, comparing candidate interventions, and issuing state-transition or capability requests rather than direct actuator commands. WAMs provide promising prototypes for its predictive functions, while a physical harness grounds model outputs through tools, controllers, verification, and trace logging. Shared contracts align heterogeneous models, data, tasks, and embodiments, and closed-loop post-training converts verified interaction into reusable experience. Together, these components define a modular physical-intelligence stack for adaptive and self-improving embodied agents.",
+      "authors": [
+        "Yuanzhi Liang",
+        "Xufeng Zhan",
+        "Haibin Huang",
+        "Chi Zhang",
+        "Xuelong Li"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T15:22:56Z",
+      "updated": "2026-07-13T15:22:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11689v1",
+      "abs_url": "https://arxiv.org/abs/2607.11689",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11689",
+      "summary_zh": "通用人工智能需在物理世界中具备推理与行动能力，而 World Action Models (WAMs) 通过关联干预与预测结果展现了巨大潜力。当前领域面临模型表示不兼容、目标缺乏标准化及系统组合困难等碎片化挑战，限制了具身智能的发展。本研究提出以“具身大脑”（embodied brain）为核心的演进路线图，主张模型应输出状态转换或能力请求而非直接的执行器指令。通过引入物理约束（physical harness）与共享契约（shared contracts），该方案实现了异构模型、数据与任务的统一，构建了一个模块化的物理智能栈，为实现自适应且可自我改进的具身智能体提供了系统性框架。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.11673",
+      "title": "ABot-3DWorld 0: A Universal World Model to Explore Any 3D Space",
+      "abstract": "We present ABot-3DWorld 0, a universal multimodal 3D world model that turns text, image, and video inputs into high-fidelity, explorable 3D worlds. At the heart of our framework is a unified Spatial Generative Primitive (SGP), a compact tuple of a high-quality panorama and a spatial point cloud that delivers an efficient description of any 3D space. Multimodal inputs are first lifted into this primitive; a 3D-consistent panoramic video generator then explores the primitive along a planned trajectory; finally, our panoramic video reconstruction engine converts the generated video into a clean, photorealistic 3D Gaussian Splatting (3DGS) world. This pipeline covers two regimes: rich inputs (multi-view sets, casual video) are lifted into the SGP through a geometry-rigorous recovery that mirrors the observed scene, while a single image or sentence is completed generatively into a creative world. The result is one low-barrier engine for general 3D content creation that further anchors generated worlds to geographic points of interest, enabling map-native spatial exploration at consumer scale. Experiments show that ABot-3DWorld 0 sets the state of the art among open-source methods and demonstrates stronger scene fidelity than Marble under rich multimodal inputs.",
+      "authors": [
+        "Mingchao Sun",
+        "Luyang Tang",
+        "Yu Liu",
+        "Xu Yan",
+        "Zhan Li",
+        "Yunwei Zhang",
+        "Fei Yu",
+        "Zengye Ge",
+        "Yumin Liu",
+        "Jiacheng Zhang",
+        "Yongchang Zhang",
+        "Jiawei Zhang",
+        "Zhicheng Liu",
+        "Zhongxu Sun",
+        "Tianjian Ouyang",
+        "Wenzheng Chen",
+        "Shixing Yang",
+        "Nianfei Fan",
+        "Guodong Sun",
+        "Huan Li",
+        "Zheng Zhou",
+        "Yongze Li",
+        "Yingliang Peng",
+        "Mengmeng Du",
+        "Yuan Liu",
+        "Haozhe Shi",
+        "Chunnuo Gong",
+        "Chengzhen Yu",
+        "Chunxue Jia",
+        "Yang Liu",
+        "Shiying Zeng",
+        "Junnan Lai",
+        "Hang Zhang",
+        "Ning Guo",
+        "Baoquan Chen",
+        "Mu Xu",
+        "Hongyu Pan"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T15:14:48Z",
+      "updated": "2026-07-13T15:14:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11673v1",
+      "abs_url": "https://arxiv.org/abs/2607.11673",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11673",
+      "summary_zh": "ABot-3DWorld 0 旨在解决从多模态输入生成高保真、可交互 3D 世界的难题。该模型引入统一的 Spatial Generative Primitive (SGP) 作为核心，通过全景图与空间点云的紧凑组合高效描述 3D 空间，并结合 3D 一致的全景视频生成器与 3D Gaussian Splatting (3DGS) 重建引擎，实现从文本、图像或视频到真实感 3D 场景的转化。该方法支持从多视角视频的几何恢复到单图/文本的生成式补全，具备极强的通用性。实验表明，该模型在开源方法中达到了 State-of-the-art 水平，在处理丰富多模态输入时展现出比 Marble 更优的场景保真度，有效推动了消费级地图原生空间探索的发展。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.11643",
+      "title": "Xiaomi-Robotics-U0: Unified Embodied Synthesis with World Foundation Model",
+      "abstract": "Recent foundation image and video generation models offer strong generalization and controllability, but their direct application to embodied scenarios is limited by requirements for multi-view consistency, geometric coherence, and robot embodiment constraints. Existing methods typically adapt foundation models with limited robot data, often sacrificing visual knowledge acquired during large-scale pre-training. We present Xiaomi-Robotics-U0, a 38-billion-parameter multimodal autoregressive model for unified embodied synthesis. It treats embodied generation as an extension of foundation image and video generation and jointly optimizes text-to-image generation, image editing, embodied scene generation, embodied transfer, and embodied video generation. This unified framework preserves the generalization of the pre-trained world foundation model while adapting it to embodied settings. Xiaomi-Robotics-U0 is the first model to support high-quality multi-view scene generation across multiple robot embodiments and to introduce structured, controllable embodied transfer for fine-grained editing while preserving multi-view consistency and interaction dynamics. It achieves state-of-the-art results on single-step and sequential generation tasks, outperforming GPT-Image-2.0 in human evaluations of embodied scene generation and transfer, ranking first on World Arena for embodied video generation, and improving the out-of-distribution success rate of pi_0.5 from 36.9% to 63.2% on challenging real-world manipulation tasks. These results show that foundation world models can serve both as embodied world models and scalable data engines for embodied intelligence. Code and checkpoints are available at https://robotics.xiaomi.com/xiaomi-robotics-u0.html.",
+      "authors": [
+        "Xinghang Li",
+        "Jun Guo",
+        "Qiwei Li",
+        "Long Qian",
+        "Hang Lai",
+        "Yueze Wang",
+        "Hongyu Yan",
+        "Jiahang Cao",
+        "Xi Chen",
+        "Jingen Qu",
+        "Jiaxi Song",
+        "Nan Sun",
+        "Hanye Zhao",
+        "Futeng Liu",
+        "Wanli Peng",
+        "Heyun Wang",
+        "Yunhong Wang",
+        "Caoyu Xia",
+        "Jack Zhao",
+        "Diyun Xiang",
+        "Hangjun Ye",
+        "Heng Qu",
+        "Huaping Liu",
+        "Jason Li"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T14:57:58Z",
+      "updated": "2026-07-13T14:57:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11643v1",
+      "abs_url": "https://arxiv.org/abs/2607.11643",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11643",
+      "summary_zh": "Xiaomi-Robotics-U0 旨在解决现有通用生成模型在具身智能场景中缺乏多视角一致性、几何连贯性及机器人本体约束的问题。该模型采用 380 亿参数的多模态自回归架构，将具身生成视为通用图像与视频生成的延伸，通过联合优化文本生成、场景生成、具身迁移及视频生成任务，在保留预训练模型泛化能力的同时实现了对具身环境的精准适配。作为首个支持多机器人本体高质量多视角场景生成的模型，它引入了结构化可控的具身迁移技术，在保持交互动力学一致性的前提下实现了精细化编辑。实验结果表明，该模型在 World Arena 具身视频生成任务中排名第一，并在复杂真实世界操作任务中将 pi_0.5 的分布外成功率从 36.9% 显著提升至 63.2%，证明了世界基础模型作为具身世界模型与数据引擎的巨大潜力。"
+    },
+    {
+      "id": "2607.11624",
+      "title": "SKooP: Symmetric Koopman Predictions for Faster and More Generalizable Legged Robot Locomotion with Reinforcement Learning",
+      "abstract": "Reinforcement learning (RL) algorithms classically suffer from poor sample efficiency. In robotics, a recent line of work has emerged addressing this problem by encoding physics priors in the learning process. However, most of these approaches are validated on well-defined, low-dimensional benchmark systems rather than high-dimensional robots with complex nonlinear dynamics. In this paper, we introduce \\textit{SKooP (Symmetric Koopman Predictions)}, an approach combining the advantages of morphological symmetries with those of a Koopman model learned via autoencoder to enhance policy learning. SKooP learns a Koopman model of the system dynamics alongside the policy. The resulting Koopman predictions are used as privileged observations for the critic, allowing the agent to learn based on smoother, more informative features. We also incorporate group symmetries into the actor, critic, encoder and decoder networks to produce a highly equivariant policy. The SKooP approach is validated via in-depth analysis of the learned Koopman models and symmetric policies to showcase how each of these influences the agent's performance. We also show that the learned policies are transferable to different simulation environments. Our results show that SKooP consistently reduces convergence time and increases the learned reward for multiple challenging bipedal locomotion tasks on a quadruped robot. Project page: https://evelyd.github.io/SymmetricKoopmanPredictions/",
+      "authors": [
+        "Evelyn D'Elia",
+        "Weishu Zhan",
+        "Giulio Turrisi",
+        "Giulio Romualdi",
+        "Giuseppe L'Erario",
+        "Raffaello Camoriano",
+        "Wei Pan",
+        "Daniele Pucci"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-07-13T14:44:28Z",
+      "updated": "2026-07-13T14:44:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11624v1",
+      "abs_url": "https://arxiv.org/abs/2607.11624",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11624",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对强化学习在复杂机器人运动控制中样本效率低的问题，SKooP（Symmetric Koopman Predictions）通过结合Koopman算子理论与形态对称性，实现了更高效的策略学习。该方法利用自编码器学习系统动力学的Koopman表示，将其作为特权观测输入Critic网络以提供更平滑的特征，同时在Actor和Critic网络中引入群对称性以确保策略的等变性。实验结果表明，SKooP在四足机器人双足行走等复杂任务中显著缩短了收敛时间并提升了奖励水平，且展现出优异的跨环境迁移能力。"
+    },
+    {
+      "id": "2607.11607",
+      "title": "Auditing the Risk Claims of Distributional Reinforcement Learning",
+      "abstract": "Distributional reinforcement learning agents learn full return distributions that are increasingly read at face value: for interpretability, risk-sensitive control, and safety monitoring. We ask a question theory anticipates but that has not been measured directly: are the risk claims of a trained distributional agent true? Our audit combines a decision-relevant screening metric (the excess Wasserstein gap between the top two actions, which equals the mass by which first-order stochastic dominance is violated), ground truth from snapshot-restart Monte Carlo, and a statistical harness (permutation nulls, bootstrap refutation, FDR control) without which the audit itself manufactures false conclusions. Across QR-DQN, C51, and IQN on MinAtar (33 runs), 40-95% of the strongest claimed risk trade-offs are refuted at 95% confidence, the placement of the strongest claims is statistically indistinguishable from truth-blind, and essentially no claim is confirmable: for these agents, the learned \"risk\" reflects a training artifact rather than environment stochasticity. The artifact is structural (fully formed early in training, uncorrelated with final score, idiosyncratic to each seed) and appears unchanged at full-Atari scale, with every top Breakout claim of a pretrained near-state-of-the-art QR-DQN refuted. Positive controls of known magnitude confirm 96-100% of real claims (correlation 0.89-0.92): the reading measures the agents, not the audit. Acting on the heads' CVaR advice at their most-flagged states ranges from beneficial to significantly worse than chance. Neither training for risk nor ensembling removes the artifact, and recalibration passes the audit only by nullifying the claims: the head is uninformative, not merely miscalibrated. We release the toolkit and document two silent pitfalls that produced convincing but wrong audits of our own.",
+      "authors": [
+        "Hari Prasad"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-07-13T14:30:01Z",
+      "updated": "2026-07-13T14:30:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11607v1",
+      "abs_url": "https://arxiv.org/abs/2607.11607",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11607",
+      "summary_zh": "Distributional Reinforcement Learning（DRL）常被用于风险敏感控制与安全监测，但其学习到的回报分布是否真实反映了环境随机性尚缺乏实证检验。本研究通过引入基于 excess Wasserstein gap 的筛选指标，结合 Monte Carlo 真值与严格的统计检验框架，对 QR-DQN、C51 和 IQN 等主流模型进行了审计。实验结果显示，40%-95% 的风险权衡声明在 95% 置信度下被证伪，所谓的“风险”本质上是训练过程中产生的结构性伪影，而非对环境不确定性的真实建模。即使在全规模 Atari 任务中，这些风险预测也无法通过审计，且基于其 CVaR 建议的决策往往表现不佳。该研究揭示了当前 DRL 模型在风险表征上的局限性，并提供了一套严谨的审计工具包以识别此类虚假风险声明。"
+    },
+    {
+      "id": "2607.11581",
+      "title": "Actor as Its Own Critic: Unifying Region Understanding and Localization via CycleGRPO",
+      "abstract": "This paper introduces Actor as Its Own Critic, a unified reinforcement learning framework, Cycle Group Relative Policy Optimization (CycleGRPO), that jointly optimizes region understanding and localization for Multimodal Large Language Models (MLLMs). Unlike existing separate pipelines, we leverage the inherent duality between the two tasks to construct a self-evaluating reinforcement learning paradigm: \"region $\\to$ text $\\to$ region''. Specifically, a single MLLM first acts as the actor to generate region captions, then immediately transitions to a critic to ground its generated text back in the spatial domain. Therefore, CycleGRPO requires only region inputs, e.g., masks or bounding boxes, entirely bypassing the need for textual ground truths. A quality-aware token-level cycle-consistency reward is employed to assess the semantic discriminability of text captions via their physical localization accuracy. Empirically, built upon SAMTok, our CycleGRPO framework successfully bootstraps both capabilities simultaneously. Without any task-specific fine-tuning, the framework yields consistent performance gains across a wide range of benchmarks, including region captioning, region VQA, grounded dialogue, and referring segmentation. Overall, CycleGRPO offers a straightforward and scalable way to advance pixel-level capabilities in MLLMs. Code and models are released at https://github.com/devinxzhang/CycleGRPO.",
+      "authors": [
+        "Xin Zhang",
+        "Haochen Wang",
+        "Yikang Zhou",
+        "Jason Li",
+        "Robby T. Tan"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T14:00:57Z",
+      "updated": "2026-07-13T14:00:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11581v1",
+      "abs_url": "https://arxiv.org/abs/2607.11581",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11581",
+      "summary_zh": "CycleGRPO 旨在解决多模态大语言模型（MLLMs）在区域理解与定位任务中依赖人工标注文本的问题，通过构建“区域→文本→区域”的自评估强化学习范式，实现了两项任务的联合优化。该方法利用模型自身的对偶性，将 MLLM 同时作为 Actor 生成区域描述，并作为 Critic 将文本反向映射回空间域，从而通过质量感知的 token 级循环一致性奖励进行训练，完全摆脱了对文本真值的依赖。实验表明，该框架在 SAMTok 基础上无需特定任务微调，即可在区域描述、区域 VQA、接地对话及指代分割等多个 benchmark 上显著提升性能，为增强 MLLMs 的像素级理解能力提供了一种高效且可扩展的解决方案。"
+    },
+    {
+      "id": "2607.11578",
+      "title": "DiffEEG: A Self-Supervised Denoising Diffusion Model for Learning EEG Generic Representations",
+      "abstract": "Deep learning for EEG-based seizure detection faces critical challenges: severe annotation scarcity and extreme class imbalance, where ictal events comprise less than 10\\% of clinical recordings. We present DiffEEG, a 9.6M-parameter self-supervised foundation model that addresses both limitations through denoising diffusion pre-training and reinforcement learning (RL)-based fine-tuning. Pre-trained on 1.3M unlabeled segments from the Temple University Hospital Seizure Corpus (TUHSZ), DiffEEG learns generic neural representations via a 1D U-Net with multi-head self-attention. For downstream adaptation, a reinforced decision layer employs policy gradient optimization to directly maximize F1-score, prioritizing sensitivity to rare seizure events over overall accuracy. Under strict patient-wise evaluation (279 patients, Leave-One-Fold-Out), DiffEEG achieves 61\\% accuracy and 59\\% F1 for 4-class seizure subtyping, and 81\\% accuracy with 85\\% weighted F1 for binary detection, maintaining clinically viable seizure recall (59\\%) despite extreme imbalance (6.7\\% prevalence). Segment-level evaluation establishes an upper bound of 97.6\\% accuracy, confirming strong architectural capacity. DiffEEG demonstrates that diffusion-based pre-training combined with metric-aware reinforcement learning enables clinically deployable seizure monitoring with minimal labeled data requirements.",
+      "authors": [
+        "Abdulkader Helwan",
+        "Lina Abou-Abbas",
+        "Hussein El Amouri",
+        "Belkacem Chikhaoui",
+        "Khadidja Henni"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV",
+        "eess.SP"
+      ],
+      "published": "2026-07-13T13:59:45Z",
+      "updated": "2026-07-13T13:59:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11578v1",
+      "abs_url": "https://arxiv.org/abs/2607.11578",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11578",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对脑电图（EEG）癫痫检测中标签稀缺与类别极度不平衡的难题，DiffEEG 提出了一种基于去噪扩散模型（Denoising Diffusion Model）的自监督预训练框架。该模型利用 1D U-Net 结合多头自注意力机制，在海量无标签数据上学习通用神经表征，并通过基于强化学习（RL）的决策层直接优化 F1-score，从而在极低癫痫发作占比（6.7%）的临床场景下显著提升了罕见事件的召回率。在包含 279 名患者的严格留一折交叉验证中，DiffEEG 在四分类亚型任务中达到 59% 的 F1-score，并在二分类检测中实现了 85% 的加权 F1-score。实验结果表明，扩散模型预训练与指标感知强化学习的结合，有效解决了数据不平衡挑战，为临床环境下的癫痫监测提供了高效且鲁棒的解决方案。"
+    },
+    {
+      "id": "2607.11565",
+      "title": "Heuristic Learning for Active Flow Control Using Coding Agents",
+      "abstract": "Active flow control involves nonlinear dynamics, partial observations, and computationally expensive simulations, making controller design particularly challenging. Deep reinforcement learning (DRL) has emerged as a powerful framework for such problems, but its success typically relies on large numbers of simulator interactions and produces neural-network policies whose decision process often remains difficult to interpret. In this work, we investigate a different paradigm: instead of optimizing neural-network parameters, we use modern coding agents to search directly for explicit executable feedback laws. We introduce a constrained heuristic-learning protocol in which an agent iteratively proposes, evaluates, and revises controller implementations while interacting exclusively through the public benchmark interface. The proposed framework is evaluated on 13 active flow-control benchmarks spanning one, two, and three-dimensional problems and compared against the strongest available DRL baselines under identical simulation budgets. The discovered heuristic controllers match or outperform the best DRL policy in 10 of the 13 environments while remaining compact, interpretable, and directly inspectable. Beyond aggregate performance, the resulting controllers reveal physically meaningful feedback mechanisms, transfer successfully across more challenging configurations, and remain competitive under varying Reynolds and Rayleigh numbers, actuator counts, and observation sparsity. These results suggest that heuristic learning through coding agents constitutes a credible and complementary alternative to conventional reinforcement learning, combining competitive performance with physically interpretable controller representations. Prompts and source code are available at https://github.com/DonsetPG/fluid-heuristic-learning.",
+      "authors": [
+        "Paul Garnier",
+        "Jonathan Viquerat",
+        "Elie Hachem"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "physics.flu-dyn"
+      ],
+      "published": "2026-07-13T13:47:17Z",
+      "updated": "2026-07-13T13:47:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11565v1",
+      "abs_url": "https://arxiv.org/abs/2607.11565",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11565",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "主动流动控制（Active Flow Control）面临非线性动力学、部分观测及计算成本高昂的挑战，传统深度强化学习（DRL）方法虽有效，但存在样本效率低且决策过程不可解释的问题。本研究提出一种启发式学习范式，利用现代编码智能体（Coding Agents）直接搜索显式可执行的反馈控制律，通过迭代式提出、评估与修订代码实现来优化控制策略。在13个涵盖不同维度的流动控制基准测试中，该方法在10个环境中表现优于或持平最强的DRL基线，且生成的控制器结构紧凑、具备物理可解释性。实验结果表明，这种基于编码智能体的启发式学习不仅能发现具有物理意义的反馈机制，还在不同雷诺数、瑞利数及观测稀疏度下展现出极强的鲁棒性与迁移能力，为复杂流体控制提供了一种高效且透明的替代方案。"
+    },
+    {
+      "id": "2607.11557",
+      "title": "Single-Teacher View Augmentation: Enhancing Knowledge Distillation with Student-Guided Perturbations",
+      "abstract": "Knowledge distillation (KD) typically relies on the fixed perspective of a single teacher, limiting the diversity of supervisory signals. While multi-teacher distillation addresses this by aggregating knowledge from multiple models, it incurs prohibitive computational and storage costs. To balance efficiency and diversity, recent research has focused on generating virtual views from a single teacher. However, existing methods face a trade-off: random perturbation approaches offer efficiency but lack controlled diversity, while structured augmentation methods require multi-stage training and incur linear parameter growth. We observe that this trade-off stems from a common design choice: using the teacher's strong but static features to generate views. Instead, we propose Shift-Augmented Knowledge Distillation (SAKD), a simple yet effective framework that leverages the student's evolving features as a dynamic condition for perturbation generation. This shift in perspective enables single-stage training while producing adaptive, diverse views through a parameter-free cyclic shift. Extensive experiments on CIFAR-100 and ImageNet demonstrate that SAKD consistently outperforms random perturbation methods and achieves accuracy on par with two-stage approaches, while using significantly fewer parameters and eliminating pre-training requirements.",
+      "authors": [
+        "Xuyi Yu",
+        "Yaohua Liu",
+        "Ziming Song",
+        "Yinghai Zhao",
+        "Huipeng Zhang",
+        "Kuizhi Mei"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T13:39:35Z",
+      "updated": "2026-07-13T13:39:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11557v1",
+      "abs_url": "https://arxiv.org/abs/2607.11557",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11557",
+      "summary_zh": "针对知识蒸馏中单一教师模型视角固定、监督信号多样性不足的问题，现有的多教师方案计算成本过高，而随机扰动方法又缺乏有效的多样性控制。Shift-Augmented Knowledge Distillation (SAKD) 提出利用学生模型不断演化的特征作为动态条件，通过参数无关的循环移位（cyclic shift）生成自适应的虚拟视图。该方法实现了单阶段训练，在无需预训练的情况下，通过引入学生导向的扰动，显著提升了监督信号的质量。在 CIFAR-100 和 ImageNet 上的实验表明，SAKD 在保持极低参数量的同时，性能超越了传统的随机扰动方法，并达到了与多阶段蒸馏方案相当的准确率。"
+    },
+    {
+      "id": "2607.11530",
+      "title": "Learning Residual Kinematic Corrections for Continuous Neural Decoding via Reinforcement Learning",
+      "abstract": "Decoding continuous three-dimensional (3D) motor imagery (MI) using non-invasive electroencephalography (EEG)-based brain--computer interfaces (BCIs) remains challenging due to signal variability and residual decoding errors. Deep learning architectures such as convolutional neural network--long short-term memory (CNN--LSTM) models can capture spatial and temporal dynamics for continuous kinematic decoding; however, systematic residual errors persist in predicted trajectories. We propose a two-stage decoding framework that applies reinforcement learning (RL) to perform residual kinematic correction on the outputs of a CNN--LSTM decoder (CNN--LSTM--RL). The RL agent is trained offline without direct EEG input and instead operates on predicted kinematic trajectories to optimize movement accuracy relative to target trajectories. Decoding performance was quantified using Pearson correlation coefficients ($r$) and Root Mean Square Errors (RMSE) along the $x, y$, and $z$ axes. Compared to CNN--LSTM applied alone, CNN--LSTM--RL improved the mean correlation from $0.5076$ to $0.7181$ ($p = 0.0005$) in 2D and from $0.6420$ to $0.7780$ ($p = 0.0059$) in VR, with relative gains of $41.5\\%$ and $21.2\\%$, respectively. Correspondingly, RMSE was reduced from $0.0890$ to $0.0532$ (2D, $p < 0.0001$) and from $0.0714$ to $0.0441$ (VR, $p < 0.0001$), representing relative reductions of $40.2\\%$ and $38.2\\%$. These findings demonstrate that this scalable framework enhances 3D BCI MI decoding by correcting kinematic errors via offline residual RL without extra neural data, advancing neurorehabilitation, prosthetics, and virtual interaction.",
+      "authors": [
+        "Jiamian Li",
+        "Niall McShane",
+        "Attila Korik",
+        "Naomi du Bois",
+        "Karl McCreadie",
+        "Leen Jabban",
+        "Benjamin Metcalfe",
+        "Özgür Şimşek",
+        "Damien Coyle"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-13T13:15:18Z",
+      "updated": "2026-07-13T13:15:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11530v1",
+      "abs_url": "https://arxiv.org/abs/2607.11530",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11530",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对非侵入式脑机接口（BCI）在连续三维运动想象解码中存在的信号变异性与残余误差问题，该研究提出了一种两阶段解码框架 CNN-LSTM-RL。该方法在 CNN-LSTM 解码器输出的基础上，引入强化学习（RL）智能体进行残余运动学修正，且该智能体无需额外神经数据即可离线训练，通过优化预测轨迹与目标轨迹的偏差来提升精度。实验结果表明，在 2D 和虚拟现实（VR）任务中，该框架显著提升了 Pearson 相关系数并大幅降低了均方根误差（RMSE），其中相关性分别提升了 41.5% 和 21.2%。这一成果证明了通过离线残余强化学习修正运动学误差的有效性，为神经康复、假肢控制及虚拟交互领域提供了更精准的解码方案。"
+    },
+    {
+      "id": "2607.11509",
+      "title": "CFR-Net:Collaborative Feature Refnement Network for Medical Image Anomaly Detection",
+      "abstract": "Medical image anomaly detection remains challenging because networks pretrained on natural images often exhibit limited adaptability to medical images, where abnormal patterns appear as fine-grained local shifts, multi-scale contextual mismatches, and orientation-sensitive structural deviations. To address this, we propose the Collaborative Feature Refinement Network (CFR-Net), which combines shared teacher-student feature refinement before decoding with cross-space consistency after decoding. CFR-Net refines frozen teacher features and trainable student features using a Multi-Path Feature Refinement Module (MPFRM) with shared parameters, imposing common multi-path refinement rules on generic visual references and representations adapted to the medical domain, thereby mitigating domain discrepancy while modeling local, multi-scale, and orientation-sensitive feature characteristics. A variance-sensitive objective and dynamic ``homework set'' reorganization further support layer-adaptive consistency learning. Experiments on medical benchmarks show that CFR-Net achieves competitive anomaly classification and strong anomaly localization performance when trained on normal data.",
+      "authors": [
+        "Zihan Nie",
+        "Muhao Xu",
+        "Wei Feng",
+        "Yuan Cui",
+        "Hua Wei",
+        "Sijie Niu",
+        "Yi Wan",
+        "Xunbin Wei",
+        "Weiye Song",
+        "Zongyuan Ge"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T12:59:21Z",
+      "updated": "2026-07-13T12:59:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11509v1",
+      "abs_url": "https://arxiv.org/abs/2607.11509",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11509",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对医学图像异常检测中自然图像预训练模型适应性差、难以捕捉细粒度局部偏移及多尺度上下文不匹配的问题，CFR-Net 提出了一种协同特征细化网络。该方法通过 Multi-Path Feature Refinement Module (MPFRM) 对冻结的教师特征与可训练的学生特征进行共享参数的细化，有效缓解了领域差异并增强了对多尺度、方向敏感特征的建模能力。此外，引入方差敏感目标函数与动态“作业集”重组机制，进一步提升了层级自适应的一致性学习效果。在多个医学图像 benchmark 上的实验表明，该模型在仅使用正常数据训练的情况下，展现出卓越的异常分类与定位性能。"
+    },
+    {
+      "id": "2607.11506",
+      "title": "SCOPE-RL: Optimizing Reasoning Paths Before and After Success",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) optimizes LLMs using sparse verifiable final-answer rewards. This sparse anchor reliably verifies whether a trajectory succeeds but provides no direct feedback on the reasoning path that produced it. Before success, prerequisite progress on hard problems receives no reward signal; after success, outcome rewards cannot distinguish well-organized correct trajectories from redundant or locally flawed ones. We introduce SCOPE-RL (Scaffolded Chain Optimization with Process Efficiency), a two-stage framework that densifies this anchor while retaining the GRPO update: Adaptive Scaffolded RL adds prefix-decomposed verifiable rewards on answer-hidden sub-question chains before success, and Quality-Aware Process RL applies correctness-gated process-shape rewards to refine correct trajectories after success. An expert-validated Step-Quality Evaluation Protocol evaluates useful-step density, error localization, and token efficiency beyond final-answer accuracy. On Qwen3-8B-Instruct trained on DAPO-Math and Big-Math, SCOPE-RL improves average accuracy by up to 11.2 pp and reduces reasoning tokens by up to 27.1% over outcome-only GRPO; the gains hold under GSPO and on Qwen3-0.6B-Instruct, indicating that reward-signal densification is complementary to policy-update-level RLVR advances. Code and data are available at https://github.com/tokencraft-lab/SCOPE-RL.",
+      "authors": [
+        "Xiaojian Liu",
+        "Han Xu",
+        "Jianqiang Xia",
+        "Zhixuan Li",
+        "Ke Xu",
+        "Yiwei Dai",
+        "Xinran Chen",
+        "Changwo Wu",
+        "Yuchen Li"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-07-13T12:56:28Z",
+      "updated": "2026-07-13T12:56:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11506v1",
+      "abs_url": "https://arxiv.org/abs/2607.11506",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11506",
+      "summary_zh": "针对强化学习中仅依赖最终答案奖励导致推理路径反馈缺失的问题，SCOPE-RL 提出了一种双阶段框架来稠密化奖励信号。该方法在成功前利用 Adaptive Scaffolded RL 对子问题链进行分解以提供中间奖励，在成功后通过 Quality-Aware Process RL 对推理路径的质量与效率进行门控优化。实验表明，该框架在 Qwen3-8B-Instruct 模型及 DAPO-Math 等数据集上，相比仅基于结果的 GRPO 方法，准确率最高提升 11.2 个百分点，同时推理 token 消耗减少了 27.1%。这一成果证明了通过细化奖励信号能够有效提升模型推理的逻辑密度与执行效率，且该策略可与现有的策略更新算法实现良好兼容。"
+    },
+    {
+      "id": "2607.11442",
+      "title": "Velocity Scheduled Flow Matching",
+      "abstract": "Flow matching trains a neural network to regress the conditional velocity along a linear interpolant between noise and data, and the number of network evaluations~(NFE) sets the cost of sampling. The straight-line interpolant carries an implicit choice: the sample moves at constant speed throughout the trajectory. We relax this choice and introduce Velocity Scheduled Flow Matching~(VSFM), which replaces the conditional target $x_1 - x_0$ with $v(t)(x_1 - x_0)$ for any nonnegative profile $v:[0,1]\\to\\mathbb{R}_{\\geq 0}$ satisfying $\\int_0^1 v\\,dt = 1$. We study six polynomial profiles drawn from motion planning. The first use of VSFM is at inference time: a pretrained linear flow-matching model can be sampled under any admissible profile by integrating its ODE on a non-uniform $τ$-schedule, with no retraining and no additional computation; on CIFAR-10 this lowers FID by up to $19.8\\%$. Training from scratch under a braking profile gives a further reduction of $17.4\\%$ at $4$~NFE. Both gains follow from the local truncation error of the Euler integrator on the induced grid.",
+      "authors": [
+        "Vitalii Bondar"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-13T11:50:06Z",
+      "updated": "2026-07-13T11:50:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11442v1",
+      "abs_url": "https://arxiv.org/abs/2607.11442",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11442",
+      "summary_zh": "Flow Matching 训练神经网络回归噪声与数据间的线性插值速度，但恒定速度的轨迹限制了采样效率。Velocity Scheduled Flow Matching (VSFM) 通过引入非负速度剖面 $v(t)$ 替代恒定的目标速度，在保持积分总量为 1 的前提下，灵活调整采样轨迹的动力学特性。该方法无需重训练即可通过非均匀 $\\tau$-schedule 对预训练模型进行推理，在 CIFAR-10 上将 FID 降低了 19.8%。若采用特定的制动剖面进行从头训练，在 4 次 NFE 下可进一步提升 17.4% 的性能，其核心优势在于通过优化轨迹分布显著降低了 Euler 积分器的局部截断误差。"
+    },
+    {
+      "id": "2607.11434",
+      "title": "Direct Image-to-Modern Vietnamese Translation of Han-Nom Manuscripts via Multimodal RLHF Preference Alignment",
+      "abstract": "Translating Han-Nom manuscripts into modern Vietnamese is challenging because historical pages are often degraded, the script contains rare logographic characters, and parallel supervision is limited. We propose a multimodal RLHF preference-alignment framework that conditions Vietnamese generation on manuscript images and aligned Han-Nom source text. The model combines four streams: CLIP ViT-L/14@336 for visual features, bert-base-chinese for Han-Nom representations, vinai/phobert-base for Vietnamese representations, and T5-small encoder states. Modality-specific projections and a fusion block compress the resulting 2,048-dimensional concatenation into a shared 512-dimensional representation. Starting from the same supervised fine-tuned policy, we compare PPO, DPO, and KTO under matched work-level macro-averaged evaluation. DPO achieves the best BLEU-4, ROUGE-L, BERTScore, semantic similarity, CER, WER, and token accuracy, whereas PPO obtains the highest precision, recall, and F1. KTO remains competitive through its desirable-undesirable utility objective. All preference-aligned policies improve the BLEU-4 and semantic-similarity scores available for the SFT baseline. These results indicate that multimodal preference optimization complements supervised learning by improving lexical and semantic quality in low-resource historical translation.",
+      "authors": [
+        "Thi Kim Trang Vo",
+        "Nghia Hieu Nguyen",
+        "Ha Minh Tan"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.CV"
+      ],
+      "published": "2026-07-13T11:40:45Z",
+      "updated": "2026-07-13T11:40:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11434v1",
+      "abs_url": "https://arxiv.org/abs/2607.11434",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11434",
+      "summary_zh": "针对汉喃（Han-Nom）手稿因字迹残损、生僻字多及平行语料匮乏导致的翻译难题，该研究提出了一种多模态RLHF偏好对齐框架。该模型整合了CLIP视觉特征、BERT汉喃表征、PhoBERT越南语表征及T5编码器状态，通过模态投影与融合模块将多源信息映射至统一空间。实验对比了PPO、DPO与KTO三种偏好优化算法，结果显示DPO在BLEU-4、ROUGE-L及语义相似度等指标上表现最优，而PPO在精确率与召回率上更具优势。研究证明，多模态偏好优化能有效弥补监督学习的不足，显著提升低资源历史文献翻译的词汇与语义质量。"
+    },
+    {
+      "id": "2607.11432",
+      "title": "Generalizing Preference-based Reinforcement Learning: a Rationality Model for Incomparability",
+      "abstract": "In this work, we study the reinforcement learning (RL) problem from pairwise trajectory comparisons provided by a human expert. We generalize preference-based RL by formalizing a novel setting in which the expert can also label trajectory pairs as incomparable, i.e., when neither trajectory dominates the other. We introduce the learning problem and the desiderata that its solution should satisfy. Then, we propose a novel Bradley-Terry-inspired rationality model that effectively captures incomparabilities and infers a multi-dimensional reward function, and we study its properties. We provide a sample complexity analysis for learning the model parameters when a dataset is available. Finally, we evaluate our model's ability to reconstruct a reward function that aligns with the expert's comparisons in simulated environments and to recover the Pareto frontier of policies, along with a robustness analysis across varying levels of expert rationality.",
+      "authors": [
+        "Simone Drago",
+        "Marco Mussi",
+        "Leonardo Bianconi",
+        "Alberto Maria Metelli"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-13T11:37:27Z",
+      "updated": "2026-07-13T11:37:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11432v1",
+      "abs_url": "https://arxiv.org/abs/2607.11432",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11432",
+      "summary_zh": "针对偏好反馈强化学习中人类专家难以对轨迹进行绝对排序的问题，该研究引入了“不可比性”（incomparability）概念，允许专家标注轨迹对为不可比状态。通过提出一种基于 Bradley-Terry 模型的理性模型，该方法能够有效捕捉这种不确定性并推断出多维奖励函数。理论上，该研究提供了模型参数学习的样本复杂度分析，并证明了其在处理复杂偏好时的有效性。实验结果表明，该模型不仅能精准重构符合专家偏好的奖励函数，还能成功恢复策略的 Pareto frontier，并在不同专家理性水平下展现出良好的鲁棒性。"
+    },
+    {
+      "id": "2607.11419",
+      "title": "Video Transformer for Remote Identity Document Hologram Detection",
+      "abstract": "Remote identity authentification using Identification Documents has been a major challenge for several years. DeepFakes advent and the development of AI-guided tools helps fraudsters creating counterfeit ID Documents. Ensuring the authenticity of ID Documents has become a real clue in the seurization of remote authentification. This need is all the more pressing given the increasing digitization of administrative and transactional processes. To ensure widespread accessibility, the system should rely solely on video captured via mobile devices. In this specific context, confirming the authenticity of ID is a real challenge as many security features needs specific device like infrared sensor for instance. Among underutilized but promising security features, holographic printings hold a special place. Difficult to counterfeit, they produce distinctive visual effects according enlightment, making them both detectable in a video captured by a smartphone camera and difficult to imitate. In this paper, we propose a Remote Identity Document Verification System (RIDVS) and an approach based on a video transformer for detecting holograms in simple videos captured by smartphones. Our system is designed for a smartphone-based capture process, followed by a server-side verification. The hologram detection method builds on a robust model previously validated in a related research domain. We demonstrate that it outperforms existing SotA methods, achieving near-perfect accuracy even when trained on medium- to small-sized datasets. In particular, we report improvements of +26.86\\% in Recall and +17.93\\% in accuracy over the best MIDV-Holo baseline. This study includes several experiments that evaluate the model adaptation to frugality, both for training samples and computational resources.",
+      "authors": [
+        "Joris Voerman",
+        "Nicolas Sidere",
+        "Jean-Christophe Burie"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T11:24:54Z",
+      "updated": "2026-07-13T11:24:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11419v1",
+      "abs_url": "https://arxiv.org/abs/2607.11419",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11419",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "针对远程身份认证中证件防伪难度大、传统设备依赖性强的问题，本研究提出了一种基于 Video Transformer 的远程身份文档验证系统（RIDVS），旨在利用智能手机拍摄的视频检测证件上的全息防伪特征。该方法通过捕捉全息图随光照变化的独特视觉效应，实现了对伪造证件的高效识别。实验结果表明，该模型在中小规模数据集上表现出色，在 MIDV-Holo 基准测试中，Recall 和准确率分别较现有最优方法提升了 26.86% 和 17.93%。此外，该系统在训练样本需求和计算资源消耗方面展现了极高的鲁棒性与实用性，为移动端身份验证提供了轻量且高效的解决方案。"
+    },
+    {
+      "id": "2607.11358",
+      "title": "RefineEvo: Planning-Guided Heuristic Evolution with Bidirectional Experience",
+      "abstract": "Automatic Heuristic Design (AHD) has emerged as a transformative approach for solving combinatorial optimization problems. While recent Large Language Model (LLM)-based methods have shown promise, they predominantly rely on fixed evolutionary operators and struggle to effectively accumulate and reuse historical search experience. This paper proposes RefineEvo, a novel evolutionary framework that transforms AHD from a static trial-and-error process into a planning-guided, experience-driven system. RefineEvo introduces a Planner to dynamically schedule evolutionary operators and trigger refinement based on the current search state, and a Reflector to distill valuable lessons into a Bidirectional Experience Pool containing both positive insights and negative pitfalls. This synergistic framework enables the system to adapt its search tools to the evolving complexity of the problem and leverage trajectory-aware, situation-conditioned insights to guide generation. Experiments on several classic combinatorial optimization benchmarks demonstrate that RefineEvo consistently outperforms strong baselines. In particular, RefineEvo delivers superior solution quality while improving token efficiency, enabling more efficient and autonomous heuristic design.",
+      "authors": [
+        "Yang Wu",
+        "Junran Pan",
+        "Yifan Zhang",
+        "Ning Xu",
+        "Fanshuo Zeng",
+        "Jian Cheng"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-13T10:24:34Z",
+      "updated": "2026-07-13T10:24:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11358v1",
+      "abs_url": "https://arxiv.org/abs/2607.11358",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11358",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "RefineEvo 旨在解决自动启发式设计（AHD）中进化算子固定且历史经验利用率低的问题。该框架引入了 Planner 模块，根据当前搜索状态动态调度算子并触发优化，同时利用 Reflector 模块将搜索轨迹提炼为包含正向洞察与负向避坑的 Bidirectional Experience Pool。这种规划引导与经验驱动的协同机制，使系统能够根据问题复杂度自适应调整搜索策略。在多个经典组合优化 benchmark 上的实验表明，RefineEvo 不仅显著提升了求解质量，还大幅优化了 token 使用效率，实现了更高效且自主的启发式算法设计。"
+    },
+    {
+      "id": "2607.11317",
+      "title": "Calibrated e-CUSUM Decoding for Quantized Reasoning Models: Why Token Log-Probability Is the Wrong Observable for Decoding Monitors",
+      "abstract": "Low-bit quantization makes small reasoning models inexpensive to deploy but can degrade their chains of thought. This motivates decoder-side monitors that intervene when generation becomes unreliable. We show that a natural candidate, the centered token log-probability increment $\\log p(w_t)+H_t$, is the wrong observable for this purpose. Under the model's own sampling law it is a mean-zero martingale by construction, so it measures sampling self-consistency rather than trajectory health and is nearly silent during confident repetition, where both $\\log p(w_t)$ and entropy are close to zero. We introduce a training-free decoding controller that combines (i) a degeneration-aware alarm score fusing token uncertainty with explicit verbatim repetition and (ii) a calibrated e-process-inspired sequential detector. The raw product process is Ville-valid under a conditional-mean null, while the deployed CUSUM-floored statistic is treated as an empirical change detector because the score is history-dependent and autocorrelated. On GSM8K with DeepSeek-R1-Distill-Qwen-1.5B in FP16 and INT4, calibration turns a monitor that fires on 93--95% of generations into a selective detector of failing traces ($φ\\approx 0.3$, precision $\\approx 0.6$ against a 0.38 base rate). In this pilot, the controller reduces measured verbatim-degeneration signals and yields a positive but statistically inconclusive INT4 accuracy change from 63% to 69% (paired McNemar $p=0.18$, $n=100$), at a 28% token-budget cost. We also find that non-termination, rather than looping, is the dominant failure mode on GSM8K. The main contribution is methodological: an explanation of why centered token log-probability is inadequate for decoder monitoring and a calibrated, cautiously evaluated replacement.",
+      "authors": [
+        "El Hassane Ettifouri",
+        "Ayoub Belfatmi",
+        "Mahaman Sanoussi Yahaya Alassan",
+        "Walid Dahhane"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.IT"
+      ],
+      "published": "2026-07-13T09:34:36Z",
+      "updated": "2026-07-13T09:34:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11317v1",
+      "abs_url": "https://arxiv.org/abs/2607.11317",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11317",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "低比特量化推理模型在部署时常出现思维链退化，而传统的中心化对数概率增量指标因其鞅性质无法有效监测生成质量。该研究提出了一种无需训练的解码控制器，通过融合词元不确定性与逐字重复检测构建退化感知警报，并引入基于 e-process 的校准序列检测器来识别失效轨迹。在 GSM8K 基准测试中，使用 DeepSeek-R1-Distill-Qwen-1.5B 模型进行实验，该方法成功将监测器的误报率从 95% 显著降低，并能有效识别失败样本。研究揭示了非终止而非循环是量化模型的主要失效模式，为解码阶段的实时质量监控提供了更具鲁棒性的方法论框架。"
+    },
+    {
+      "id": "2607.11312",
+      "title": "SLVMBench: Skill Learning from Video Memory",
+      "abstract": "We introduce Skill Learning from Video Memory (SLVMBench), the first benchmark that jointly evaluates whether video large language models (video-LLMs) can learn skills from long video memory and apply them to real-time tasks. SLVMBench presents models with 2-3 hour video streams that contain a tutorial video embedded in a stream of arbitrary irrelevant videos, resembling real-world human learning practices. Video-LLMs are asked to apply the acquired skill to answer real-time questions about an ongoing video. Unlike long-video understanding benchmarks that emphasize passive comprehension and skill-learning benchmarks that rely on short, immediate demonstrations, SLVMBench tests the full pipeline of memorizing and extracting procedural knowledge, as well as transferring it to real-time tasks. Moreover, rigorous human annotations feature sub-second-level temporal calibration, manually engineered questions eliminating common-sense guessing, and collated tutorials to ensure coverage of the required skills. Evaluations on state-of-the-art proprietary and open-source video LLMs show that video-LLMs struggle substantially with learning and applying skill knowledge from videos. Moreover, performance degrades markedly when the skill knowledge is placed within a long video memory. These results reveal a key limitation of existing video LLMs and position SLVMBench as the first benchmark for studying real-time skill acquisition and application from long-context video memory.",
+      "authors": [
+        "Yudong Yang",
+        "Guangzhi Sun",
+        "Yixuan Li",
+        "Chao Zhang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T09:26:13Z",
+      "updated": "2026-07-13T09:26:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11312v1",
+      "abs_url": "https://arxiv.org/abs/2607.11312",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11312",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "SLVMBench旨在评估Video-LLMs从长视频记忆中学习技能并将其应用于实时任务的能力，填补了现有基准在长时程程序性知识提取与迁移测试上的空白。该基准通过在长达2-3小时的无关视频流中嵌入教程片段，模拟真实人类学习场景，并要求模型基于所学技能回答实时视频问题。实验结果表明，当前主流的闭源与开源Video-LLMs在处理长视频记忆中的技能获取时表现欠佳，且随着记忆长度增加性能显著下降。该研究通过亚秒级的时间校准和精心设计的问答，揭示了现有模型在长上下文理解与动态技能迁移方面的核心瓶颈，为未来提升视频大模型的长时程推理能力提供了关键评估标准。"
+    },
+    {
+      "id": "2607.11270",
+      "title": "Towards Predictive, Aligned, and Scalable Robot Learning",
+      "abstract": "Learning, at its core, extends beyond memorization to the ability to reason and solve novel problems by navigating a space of possibilities. We introduce Lumo-2, a latent world-action model that generates actions by reasoning over world dynamics in latent space. The learned latent world dynamics capture physically grounded visual transitions, naturally encoding future possibilities and providing a unified substrate for cross-modal alignment. This formulation enables predictive reasoning akin to world modelling while remaining lightweight and focused on physical dynamics relevant to control. Central to our approach is the hypothesis that action generation quality is governed by the geometry of the latent space. We observe that standard reconstruction-based action tokenization objectives induce representations biased toward low-level signal fidelity, leading to misalignment between reconstruction quality and downstream control performance. To address this limitation, we propose a multi-stage modality pre-alignment strategy in which action representations are progressively aligned with latent world dynamics, vision, and language. This process enforces cross-modal consistency, promotes abstraction, and induces a structured latent space for predictive reasoning. We provide a systematic empirical study of latent world modelling and modality alignment, analyzing their roles in scaling laws and out-of-distribution generalization. Results show that Lumo-2 consistently outperforms strong vision-language-action (VLA) and world-action model (WAM) baselines, with gains on challenging real-world tasks requiring temporal reasoning, physical understanding, or high control complexity, including long-horizon and dexterous manipulation. These findings suggest that structured multimodal alignment and predictive reasoning are fundamental principles for advancing embodied intelligence.",
+      "authors": [
+        "Peijun Tang",
+        "Shangjin Xie",
+        "Baifu Huang",
+        "Binyan Sun",
+        "Haotian Yang",
+        "Kuncheng Luo",
+        "Weiqi Jin",
+        "Shilin Fang",
+        "Jianan Wang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T08:53:34Z",
+      "updated": "2026-07-13T08:53:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11270v1",
+      "abs_url": "https://arxiv.org/abs/2607.11270",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11270",
+      "summary_zh": "Lumo-2 旨在解决现有机器人学习模型在处理复杂物理动态和长时序任务时，因表征偏向低级信号保真度而导致的控制性能与重构质量失调问题。该模型通过潜空间世界-动作建模（latent world-action model）实现预测性推理，并引入多阶段模态预对齐策略（multi-stage modality pre-alignment），将动作表征与世界动态、视觉及语言进行深度对齐，从而构建出更具结构化的潜空间。实验表明，Lumo-2 在长时序操作和灵巧操作等高难度任务中，显著优于现有的 VLA 和 WAM 基线模型。该研究证实了结构化多模态对齐与预测性推理是提升具身智能泛化能力与扩展性的核心驱动力。"
+    },
+    {
+      "id": "2607.11257",
+      "title": "LaGuadia: Language-Guided Adaptive Distillation from Pathology Foundation Models",
+      "abstract": "Pathology Foundation Models (PFMs) offer powerful Whole Slide Image (WSI) representations but suffer from massive computational costs. While Knowledge Distillation (KD) can create efficient student models, existing multi-teacher methods often use suboptimal uniform weighting that ignores tissue heterogeneity. We propose LaGuadia (Language-Guided Adaptive DistillAtion), a framework that develops a compact pathology image encoder by dynamically integrating expertise from multiple PFMs under clinical linguistic guidance. Our approach utilizes a multi-stage pipeline: first, extracting visually observable clinical keywords from pathology reports; second, aligning visual features with these keywords via a Vision-Language meta-teacher (MedSigLIP) to provide dense semantic guidance; and finally, performing adaptive KD where teacher contributions are weighted based on their semantic alignment with the clinical narrative. Experiments on WSI captioning, visual question answering, and slide-level classification tasks demonstrate that an 87M parameter LaGuadia student model matches or exceeds foundation-scale models such as GigaPath and UNI, achieving strong factual consistency and robust generalization. These results highlight clinical language as an effective semantic anchor for building efficient and reliable digital pathology systems. Code is available at https://github.com/hvcl/LaGuadia.",
+      "authors": [
+        "Gangsu Kim",
+        "Won-Ki Jeong"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-07-13T08:38:21Z",
+      "updated": "2026-07-13T08:38:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11257v1",
+      "abs_url": "https://arxiv.org/abs/2607.11257",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11257",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对病理学基础模型（PFM）计算成本高昂且现有蒸馏方法忽略组织异质性的问题，LaGuadia框架提出了一种语言引导的自适应蒸馏策略。该方法首先从病理报告中提取临床关键词，利用MedSigLIP作为视觉-语言元教师，将视觉特征与语义信息对齐，并根据语义相关性动态加权多个教师模型的贡献。实验结果表明，仅含87M参数的LaGuadia模型在WSI描述生成、视觉问答及切片分类任务中，性能可媲美甚至超越GigaPath和UNI等大规模基础模型。该研究证明了临床语言作为语义锚点，能有效提升轻量化病理图像编码器的准确性与泛化能力。"
+    },
+    {
+      "id": "2607.11228",
+      "title": "DeepBias: Adaptive In-depth Probing of Social Biases in LVLMs",
+      "abstract": "While Large Vision-Language Models (LVLMs) demonstrate remarkable capabilities, they remain highly susceptible to embedded social biases. Existing bias evaluation protocols predominantly rely on static datasets, which provide only a superficial assessment, as their fixed test cases cannot adaptively evolve to measure the true depth and limits of model vulnerabilities. We introduce DeepBias, an adaptive framework for the in-depth probing of social biases in LVLMs with carefully designed agents. Our approach operates through a dynamic ''generation-evolution-probing'' loop. First, a generative ProposerAgent synthesizes test data and is iteratively updated via Direct Preference Optimization (DPO) based on the target LVLM's responses, exploring model-specific failure modes. Second, an autonomous skill-driven DiggerAgent rewrites each test data across multiple probing turns, adaptively selecting from a curated skill library of deepening and rewriting strategies. At each turn, this process is conditioned on the model's previous response, enabling progressively deeper biases to be exposed. Furthermore, we build a benchmark named DeepBiasBench using our framework. By employing an ensemble of five diverse state-of-the-art LVLMs as anchors, the benchmark captures vulnerabilities shared across architectures. Comprehensive experiments demonstrate the effectiveness of our framework and show that DeepBias provides a challenging benchmark for in-depth bias evaluation, establishing an evolutionary paradigm for LVLM safety assessment.",
+      "authors": [
+        "Anqi Li",
+        "Jie Zhang",
+        "Zhongqi Wang",
+        "Songkai Xue",
+        "Jiahao Wang",
+        "Shiguang Shan",
+        "Xilin Chen"
+      ],
+      "categories": [
+        "cs.CY",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T08:19:09Z",
+      "updated": "2026-07-13T08:19:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11228v1",
+      "abs_url": "https://arxiv.org/abs/2607.11228",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11228",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "现有的大型视觉语言模型（LVLMs）评估多依赖静态数据集，难以探测模型深层且动态的社会偏见漏洞。DeepBias 框架通过“生成-演化-探测”循环解决此问题：ProposerAgent 利用 Direct Preference Optimization（DPO）根据目标模型反馈迭代生成测试数据，DiggerAgent 则基于技能库对测试用例进行多轮动态改写，从而诱导模型暴露深层偏见。该研究构建的 DeepBiasBench 基准测试集整合了五种主流 LVLMs 的漏洞，实验证明该方法能有效挖掘模型在复杂场景下的偏见，为 LVLM 的安全性评估提供了一种具备演化能力的评估范式。"
+    },
+    {
+      "id": "2607.11221",
+      "title": "HandFlow: Fully Generative 4D Hand Recovery with Flow Matching",
+      "abstract": "Accurate monocular 4D hand reconstruction remains challenging. Per-frame discriminative regressors lack temporal context and often produce jittery predictions. Temporal models improve consistency by aggregating information across frames, but they are typically deterministic regressors, making them vulnerable to ambiguous observations caused by occlusion and motion blur. Generative modeling offers a natural alternative by learning a prior over plausible hand motion sequences, enabling coherent hand-state recovery when visual evidence is incomplete or unreliable. Motivated by this observation, we present HandFlow, a fully generative flow-matching framework for temporally coherent 3D hand pose and shape estimation from monocular video. Given visual and skeletal observations, HandFlow denoises an entire temporal window of MANO parameters through a single ODE integration. To support this, we use a Flux-style dual-stream transformer that attends across the full sequence to capture long-range dependencies without autoregressive decoding, and a confidence-aware continuous masking mechanism that blends observed features with learnable mask tokens to handle noisy or missing observations. Experiments on DexYCB and HOT3D show that HandFlow achieves state-of-the-art performance, with particularly large gains in world-space accuracy and temporal smoothness. It reduces world-space pose error by over 30% compared with the strongest baseline and achieves the lowest acceleration error among all evaluated methods, while remaining competitive in per-frame pose accuracy. Moreover, on a single GPU HandFlow reconstructs a 150-frame sequence at 47 fps, about 12x faster than the fastest prior video-based method, with reconstruction itself accounting for only a small fraction of the end-to-end latency.",
+      "authors": [
+        "Mingxi Xu",
+        "Bowen Duan",
+        "Yi Gu",
+        "Zhengyang Shen",
+        "Renjing Xu",
+        "Yutao Yue"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T08:13:42Z",
+      "updated": "2026-07-13T08:13:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11221v1",
+      "abs_url": "https://arxiv.org/abs/2607.11221",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11221",
+      "summary_zh": "针对单目视频中手部动作重构存在的抖动和遮挡模糊问题，HandFlow 提出了一种基于 Flow Matching 的全生成式 4D 手部恢复框架。该方法利用 Flux 架构的双流 Transformer 对整个时间窗口的 MANO 参数进行去噪，通过单次 ODE 积分实现非自回归的序列生成，并引入置信度感知的连续掩码机制来处理缺失或噪声观测。实验表明，该模型在 DexYCB 和 HOT3D 基准测试中达到了 SOTA 水平，世界坐标系下的姿态误差降低超过 30%，且在保持高精度的同时，推理速度比现有视频方法快 12 倍，显著提升了重构的平滑度与计算效率。"
+    },
+    {
+      "id": "2607.11199",
+      "title": "DynEval: Holistic Evaluations of T2I Generative Models in the Wild",
+      "abstract": "Recent advances in text-to-image (T2I) generation have led to models capable of producing highly realistic images. Yet, reliably evaluating their outputs remains challenging, especially at scale. Existing automatic evaluators, often relying on a static prompt set, struggle to capture subtle failure modes such as partial prompt misalignment, compositional errors, or visually plausible but semantically incorrect generations. In this work, we introduce DynEval, a Dynamic Evaluation framework designed to jointly assess text-to-image alignment and image quality of T2I models. To support scalable training beyond limited human-annotated data, we construct two large datasets. First, we build GenDB, a collection of 500K prompt-image pairs generated from human-written prompts drawn from DiffusionDB using a tiered prompt-model generation strategy. Second, building upon GenDB, we construct DynEvalInstruct, a 250K instruction dataset comprising prompt-image-response triplets distilled from a structured evaluation pipeline that decomposes evaluation into text-image alignment and visual quality reasoning. Using this dataset, we perform full fine-tuning of a compact evaluator through a curriculum learning strategy to effectively distill the superior evaluation capabilities of a larger teacher vision-language model, resulting in DynEval-2B and DynEval-4B. In extensive comparisons against existing evaluators across 11 benchmarks, our evaluator achieves a higher overall correlation with human judgments. Furthermore, it provides fine-grained analysis of the capabilities and failure modes of 36 T2I models across 42 subcategories and 9 semantic dimensions.",
+      "authors": [
+        "Shyam Marjit",
+        "Dheeraj Baiju",
+        "Anuj Shikarkhane",
+        "Akhil Sakthieswaran",
+        "Sayak Paul",
+        "Anirban Chakraborty"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T07:50:54Z",
+      "updated": "2026-07-13T07:50:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11199v1",
+      "abs_url": "https://arxiv.org/abs/2607.11199",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11199",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对现有文生图（T2I）模型评估方法依赖静态提示词、难以捕捉细微语义错误的问题，DynEval 框架通过构建大规模数据集实现了对模型对齐能力与图像质量的动态评估。该研究利用分层生成策略构建了包含 50 万对图像的 GenDB，并进一步通过结构化评估流水线蒸馏出 25 万条指令数据 DynEvalInstruct，采用课程学习策略微调出 DynEval-2B 和 DynEval-4B 模型。实验结果表明，该评估器在 11 个 benchmark 上与人类评价的相关性显著优于现有方法，能够精准识别 36 个 T2I 模型在 9 个语义维度上的细粒度失效模式。这一框架有效解决了大规模自动化评估中的准确性难题，为提升生成模型的评估深度提供了可靠工具。"
+    },
+    {
+      "id": "2607.11185",
+      "title": "SCALECUA: Scaling Computer Use Agents with Verifiable Task Synthesis and Efficient Online RL",
+      "abstract": "Computer use agents (CUAs) are emerging as a powerful interface for automating complex digital workflows through visual perception and GUI execution. Online reinforcement learning with verifiable rewards (RLVR) has emerged as a key direction for scaling their capabilities. However, this paradigm is bottlenecked by verifiable data scarcity and online RL inefficiency. To break these barriers, we introduce ScaleCUA, a unified framework that scales online RL for CUAs via verifiable task synthesis and efficient training. At the data level, we design VeriGen, an end-to-end framework for generating verifiable RL tasks through iterative docker interactions and a multi-agent feedback loop. Scaled to 100+ concurrent agent workers via a shared docker interaction probe, this pipeline produces 24K+ verifiable tasks and nearly 3K high-quality RL tasks. To maximize sample efficiency, we propose Frontier Sampling, which tracks per-task capability and allocates rollouts to the current learning frontier. On the training side, we further design Visual Context Segmentation, a sliding window over recent visual context that balances rollout and training-engine pressure, yielding a 2.83x training speedup over step-wise decomposition. Together, ScaleCUA achieves 68.7% on OSWorld and 54.0% on ScienceBoard, establishing new state-of-the-art performance among open-source computer use agents. Code, models, and datasets are available at https://github.com/THUDM/SCALE-CUA.",
+      "authors": [
+        "Bowen Lv",
+        "Xiao Liu",
+        "Yanyu Ren",
+        "Hanyu Lai",
+        "Bohao Jing",
+        "Hanchen Zhang",
+        "Yanxiao Zhao",
+        "Shuntian Yao",
+        "Jie Tang",
+        "Yuxiao Dong"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-13T07:32:35Z",
+      "updated": "2026-07-13T07:32:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11185v1",
+      "abs_url": "https://arxiv.org/abs/2607.11185",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11185",
+      "summary_zh": "ScaleCUA 旨在解决计算机使用智能体（CUA）在在线强化学习（RLVR）中面临的可验证数据匮乏及训练效率低下问题。该框架通过 VeriGen 自动化生成大规模可验证任务，利用多智能体反馈循环构建了包含 2.4 万余项任务的训练集，并引入 Frontier Sampling 策略动态分配计算资源以提升样本利用率。此外，Visual Context Segmentation 技术通过滑动窗口优化视觉上下文处理，实现了 2.83 倍的训练速度提升。实验结果表明，ScaleCUA 在 OSWorld 和 ScienceBoard 基准测试中分别达到 68.7% 和 54.0% 的成功率，刷新了开源计算机使用智能体的性能记录。"
+    },
+    {
+      "id": "2607.11172",
+      "title": "STAMP: Provenance-Guided Credit Assignment for Deep Search Agents",
+      "abstract": "Reinforcement learning for deep-search agents has largely focused on trajectory-level scoring -- outcome correctness, citation-aware rewards, and evidence coverage. Yet the actions that expose supporting documents receive no targeted credit, a gap we call the reward-credit mismatch. We propose STAMP, in which a reference-based verifier judges whether each cited document supports an entity or relation in a training-time evidence graph, and first-exposure attribution traces each supported citation back to the action that first surfaced it. This step credit is injected through sign-preserving advantage modulation, which redistributes advantage across steps without changing the trajectory-level reward or the relative ranking of trajectories within each group. On BrowseComp, BrowseComp-ZH, and xbench-DS, STAMP improves the GRPO baseline by +2.0/+5.5/+3.0 points under matched SFT initialization, training data, and search tools, and composes with both outcome-only and citation-rubric base rewards. Component ablations confirm that the provenance-based credit signal and the sign-preserving advantage modulation each contribute to the gains.",
+      "authors": [
+        "Ke Xu",
+        "Han Xu",
+        "Xinran Chen",
+        "Yuqian Wang",
+        "Zhixuan Li",
+        "Xiaojian Liu",
+        "Changwo Wu",
+        "Jianqiang Xia",
+        "Yuchen Li"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-13T07:12:55Z",
+      "updated": "2026-07-13T07:12:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11172v1",
+      "abs_url": "https://arxiv.org/abs/2607.11172",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11172",
+      "summary_zh": "针对深度搜索智能体在强化学习中存在的奖励分配不匹配问题，STAMP 提出了一种基于溯源的信用分配机制。该方法利用参考验证器判断引用文档对证据图的支撑性，并通过首次曝光归因技术将奖励精准回溯至触发文档搜索的具体动作。通过符号保持优势调制（sign-preserving advantage modulation），STAMP 在不改变轨迹总奖励的前提下重新分配步级优势，有效提升了模型对关键搜索动作的优化效率。在 BrowseComp、BrowseComp-ZH 和 xbench-DS 等基准测试中，该方法在 GRPO 基线基础上显著提升了搜索性能，验证了溯源信号与优势调制在提升智能体搜索准确性方面的协同增益。"
+    },
+    {
+      "id": "2607.11131",
+      "title": "TIGER: Text-Conditioned Visual Gated Routing with Acceptance Alignment for Multimodal Speculative Decoding",
+      "abstract": "Speculative decoding accelerates autoregressive generation by letting a lightweight drafter propose multiple tokens that are verified by a larger target model. Although effective for text-only LLMs, speculative decoding yields limited gains in VLMs because drafters often diverge on vision-critical content, while existing multimodal acceleration methods do not directly address irrelevant visual evidence or optimize the verifier-accepted prefix length that governs speedup. We propose TIGER, a Text-conditioned vIsual GatEd Routing framework for multimodal speculative decoding. TIGER dynamically selects a sparse set of context-relevant visual tokens based on the drafter's current textual state, rather than expose the full visual token set or a fixed compressed interface. To better align training with inference-time efficiency, we optimize the drafter with acceptance-aligned group-based policy training using verifier-derived rewards based on accepted prefix length, built on top of distillation warm start with KL anchoring. This encourages the drafter not only to imitate the target model, but also to produce speculative continuations that survive verification for longer prefixes. Experiments show that TIGER yields consistent gains in accepted prefix length and speculative speedup under exact verifier-side speculative decoding, while achieving favorable quality-latency trade-offs with comparable downstream accuracy in visual-routing analyses.",
+      "authors": [
+        "Quynh Vo",
+        "Cong-Duy Nguyen",
+        "Ponhvoan Srey",
+        "Luu Anh Tuan",
+        "Thong Nguyen"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-13T06:06:27Z",
+      "updated": "2026-07-13T06:06:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11131v1",
+      "abs_url": "https://arxiv.org/abs/2607.11131",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11131",
+      "summary_zh": "针对多模态大模型（VLM）在推测解码中因视觉信息冗余及 drafter 预测偏差导致的加速瓶颈，TIGER 框架引入了文本条件下的视觉门控路由机制，能够根据当前文本状态动态筛选关键视觉 Token，有效减少了无关视觉信息的干扰。该方法通过基于接受长度的奖励机制进行策略对齐训练，使 drafter 生成的序列更易通过目标模型的验证，从而显著提升了推测解码的接受率与整体推理速度。实验结果表明，TIGER 在保持下游任务精度的同时，在多个基准测试中实现了更优的质量与延迟权衡，为多模态生成任务提供了高效的加速方案。"
+    },
+    {
+      "id": "2607.11116",
+      "title": "The Equilibrium Is the Initialization: Lazy Identity Collapse in Physics-Structured Deep Equilibrium Reasoning",
+      "abstract": "Deep equilibrium models promise input-adaptive implicit computation: harder problems should demand more solver iterations, and the solved equilibrium should encode the result of genuine iterative inference. We report a cautionary study of a port-Hamiltonian DEQ with a learned initialization on two reasoning tasks -- ProofWriter entailment over frozen DeBERTa embeddings and a BFS-verified graph-reachability benchmark -- in which the implicit computation is a silent no-op. Across tasks, seeds, and controlled ablation arms, the solved equilibrium equals the solver's start point to numerical precision, and bypassing the solver entirely changes test accuracy by +0.00 percentage points in 18 of 19 training runs. Controlled interventions falsify the tempting explanation: removing the anchoring term reproduces every result, and retraining with noise-decoupled starts yields a solver that converges to the noisy start while the decoder learns to ignore it. The single escaping run diverges instead ($\\|h^{*}-z_0\\|=171$), producing a co-adapted noise channel whose removal improves accuracy. Iteration counts are uncorrelated with ground-truth difficulty ($r=0.009$), and the full apparatus never outperforms a two-layer MLP on either task. We trace the mechanism to gradient starvation along two distinct routes, show that the standard zeroing ablation is confounded and gives wildly seed-dependent answers where the correct substitution test gives a stable zero, and distill a four-test diagnostic protocol for auditing claimed implicit computation. All experiments run on a single free Colab GPU; code, raw logs, and analysis scripts are released.",
+      "authors": [
+        "Joyjeet Singh"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T05:45:35Z",
+      "updated": "2026-07-13T05:45:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11116v1",
+      "abs_url": "https://arxiv.org/abs/2607.11116",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11116",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "Deep Equilibrium Models (DEQ) 本应通过迭代求解实现输入自适应的隐式计算，但在 ProofWriter 推理和图可达性任务中，研究发现模型陷入了“懒惰恒等坍缩”（Lazy Identity Collapse）。实验表明，无论任务难度如何，求解器最终收敛的平衡点始终等于初始值，且绕过求解器对测试精度完全没有影响，这揭示了模型在训练中出现了梯度饥饿现象。通过受控干预实验发现，模型倾向于将求解过程退化为恒等映射，导致迭代次数与任务难度完全不相关，其性能甚至无法超越简单的两层 MLP。针对此类隐式计算模型，该研究提出了一套包含四项测试的诊断协议，用于审计模型是否真正执行了有效的迭代推理，而非仅仅依赖初始值进行预测。"
+    },
+    {
+      "id": "2607.11104",
+      "title": "FlowPET: Physics-Informed Symplectic Flow Matching for Low-Count PET Reconstruction",
+      "abstract": "Low-count Positron Emission Tomography (PET) reconstruction is severely hindered by the dissipative nature of prevailing generative models, where the inherent phase-space contraction leads to the numerical extinction (``wash-out'') of weak but diagnostically critical lesion signals. To overcome this geometric limitation, we propose \\textbf{FlowPET}, a physics-informed framework that reformulates reconstruction as volume-preserving transport in a symplectic phase space. By parameterizing the posterior dynamics via a Separable Hamiltonian System, our approach guarantees a divergence-free vector field by construction, theoretically immunizing weak signals against probability mass collapse. To steer this conservative flow, we introduce conjugate boundary conditions based on the Range-Null space decomposition of the PET operator; this strictly enforces data consistency in the range space while confining stochastic uncertainty injection to the unobserved null space. We train the model via symplectic flow matching and perform inference using a symplectic leapfrog integrator. Extensive experiments on BrainWeb, clinical pediatric, and UDPET datasets demonstrate that \\textbf{FlowPET} not only surpasses state-of-the-art deterministic and stochastic baselines in SSIM and PSNR but, more crucially, exhibits superior recovery of low-contrast lesions. The results confirm that imposing Hamiltonian structural constraints offers a robust geometric safeguard for medical inverse problems in high-noise regimes.",
+      "authors": [
+        "Zheng Zhang",
+        "Hao Tang",
+        "Yingying Hu",
+        "Zhanli Hu",
+        "Jing Qin"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T05:26:15Z",
+      "updated": "2026-07-13T05:26:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11104v1",
+      "abs_url": "https://arxiv.org/abs/2607.11104",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11104",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "低剂量正电子发射断层扫描（PET）重建常因生成模型的耗散性导致微弱病灶信号在相空间收缩中丢失。FlowPET 提出了一种物理信息驱动的辛流匹配框架，通过将重建过程重构为辛相空间中的保体积传输，利用可分离哈密顿系统确保向量场无散度，从几何层面避免了概率质量坍缩。该方法引入基于 PET 算子值域-零空间分解的共轭边界条件，在严格保证值域数据一致性的同时，将随机不确定性限制在零空间内。在 BrainWeb 及临床数据集上的实验表明，FlowPET 不仅在 SSIM 和 PSNR 指标上超越了现有确定性和随机基准模型，更在极低对比度病灶的恢复上展现出显著优势，证明了哈密顿结构约束在处理高噪声医学反问题中的鲁棒性。"
+    },
+    {
+      "id": "2607.11081",
+      "title": "Controlling Motion Transfer in Diffusion Transformers via Attention Heads",
+      "abstract": "Diffusion Transformers (DiTs) have advanced video generation with high-quality, temporally coherent results. However, extending them to motion transfer, which requires following reference motion while aligning with a target prompt, remains challenging due to limited understanding of motion and structure representations within DiTs. We analyze video DiTs at the attention-head level and identify distinct heads specialized for motion and spatial structure. Based on this insight, we propose a head-aware controllable motion transfer framework that requires no parameter updates. Our method refines motion cues from motion-specialized heads via semantic correspondence guidance and preserves structure through selective feature injection. This head-level control not only enables accurate motion transfer but also provides an interpretable foundation for controllable video generation with DiTs.",
+      "authors": [
+        "Sunyoung Jung",
+        "Jiwoo Park",
+        "Yoonseok Choi",
+        "Kyobin Choo",
+        "Ming-Hsuan Yang",
+        "Seong Jae Hwang"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T04:44:14Z",
+      "updated": "2026-07-13T04:44:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11081v1",
+      "abs_url": "https://arxiv.org/abs/2607.11081",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11081",
+      "summary_zh": "Diffusion Transformers (DiTs) 在视频生成中表现出色，但在实现精准的动作迁移时，难以同时兼顾参考动作的遵循与目标提示词的语义对齐。通过对 DiT 注意力头（attention heads）的深入分析，研究发现模型内部存在专门负责动作捕捉和空间结构表征的特定头。基于此，提出了一种无需参数更新的头感知控制框架，通过语义对应引导优化动作相关头的特征，并利用选择性特征注入技术保留空间结构。实验表明，该方法不仅实现了高精度的动作迁移，还为 DiT 架构下的可控视频生成提供了具有高度可解释性的技术路径。"
+    },
+    {
+      "id": "2607.11078",
+      "title": "Do Video-LLMs Actually Watch? Diagnosing Character-Tracking Failures in Long-Form Video",
+      "abstract": "Can a Video Large Language Model (Video-LLM) follow one person through a long video, keeping track of who they are well enough to report, in order, how their outfit changes across a full TV episode? Benchmarks increasingly score this kind of task, and the strongest open-source 7--8B models now reach 37--38% on InfiniBench's global appearance task, which asks exactly that. But does that score come from tracking the named character, or from something easier? We test this with a nine-condition diagnostic protocol applied to three architecturally distinct open-source Video-LLMs, with Gemini~2.5~Flash as a frontier reference, and find the accuracy does not come from character tracking. When we change the character named in the question to a different cast member, leaving the video and answer options untouched, the models change their answer only 4--31% of the time, so they are largely ignoring who the question asks about. Breaking that test down by the gender of the swapped name shows why: the models react more when the name is changed to a different-gender character than to a same-gender one (a 13--28 point gap), picking up coarse gender cues but unable to tell same-gender individuals apart. This shallow processing surfaces again when we drop the multiple-choice options and ask the same questions open-endedly: open-source accuracy drops 18--25 points, with none of 151 answers fully correct, versus a 12-point drop for Gemini. Further checks rule out the obvious innocent explanations, adding subtitles, using the most informative frames, or doubling the number of frames all leave character tracking unimproved, so the bottleneck is not how much video the model sees but how it ties that video to the person the question names. We release a diagnostic toolkit for auditing what such benchmark scores actually measure.",
+      "authors": [
+        "Mohammad Al-Ratrout",
+        "Shayla Sharmin",
+        "Aditya Raikwar",
+        "Roghayeh Leila Barmaki"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-13T04:37:07Z",
+      "updated": "2026-07-13T04:37:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11078v1",
+      "abs_url": "https://arxiv.org/abs/2607.11078",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11078",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "当前 Video-LLM 在长视频角色追踪任务中表现出的高分并非源于真正的视觉追踪能力，而是依赖于对性别等粗粒度特征的浅层猜测。通过九种诊断协议测试发现，当更换问题中的角色名称时，模型回答的改变率仅为 4%-31%，且在同性别角色间几乎无法区分，表现出明显的逻辑缺失。实验证明，增加字幕、优化关键帧或提升帧数均无法解决这一瓶颈，说明模型缺乏将视觉信息与特定身份关联的深层推理能力。该研究揭示了现有 benchmark 的评估局限，并提供了一套诊断工具包，旨在推动模型在长视频理解中实现真正的角色一致性追踪。"
+    },
+    {
+      "id": "2607.11070",
+      "title": "MJ: Multi-turn LLM Jailbreaking via Decomposed Credit Assignment",
+      "abstract": "Modern large language models (LLMs) operate in interactive multi-turn settings, making multi-turn jailbreaking a realistic threat model and an important setting for automated red teaming. A core challenge in learning multi-turn jailbreak attackers is credit assignment: different turns contribute differently to the final outcome, yet existing learning signals are often too coarse to identify their individual contributions. We propose decomposed credit GRPO (DC-GRPO), a unified turn-level credit assignment framework for Group Relative Policy Optimization in multi-turn jailbreak learning. DC-GRPO assigns a separate group-relative learning signal to each turn by combining immediate and future credit, avoiding the credit misassignment induced by broadcasting a single trajectory-level score across the dialogue. We instantiate this framework with static and dynamic weighting rules that differ in how the two credit sources are balanced while sharing the same turn-level structure. Across multiple victim LLMs and benchmarks, the dynamic- and static-weighted variants achieve average ASR5@3 scores of 98.26% and 97.88%, respectively, substantially outperforming the state-of-the-art methods, including SEMA (86.58%) and TROJail (86.23%). Their consistently strong performance indicates that the central empirical benefit comes from turn-level group-relative credit assignment rather than a particular weighting rule. Warning: This paper contains examples of harmful content.",
+      "authors": [
+        "Junyoung Park",
+        "Namgyu Park",
+        "Sechan Lee",
+        "Yoon-Chan Jhi",
+        "Jihoon Cho",
+        "Sangdon Park"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-13T04:19:37Z",
+      "updated": "2026-07-13T04:19:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11070v1",
+      "abs_url": "https://arxiv.org/abs/2607.11070",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11070",
+      "summary_zh": "针对大语言模型在多轮对话中面临的越狱攻击难题，现有方法难以精准评估各轮对话对最终攻击结果的贡献，导致信用分配（credit assignment）失效。本研究提出DC-GRPO框架，通过将Group Relative Policy Optimization扩展至轮次级别，结合即时反馈与未来预期，为每一轮对话分配独立的相对学习信号，从而有效解决了轨迹级评分带来的分配偏差。实验表明，该方法在多个主流模型及基准测试中表现卓越，ASR5@3指标最高达到98.26%，显著超越了SEMA和TROJail等现有前沿技术。研究证实，引入轮次级的信用分配机制是提升多轮越狱攻击效率的核心关键，而非单纯依赖特定的权重规则。"
+    },
+    {
+      "id": "2607.11022",
+      "title": "When the Reward Suite Is Leaky: A Preregistered Causal Contrast of Natural Verifier False Positives in RLVR",
+      "abstract": "The test suites used as RLVR rewards for code have natural false positives: per-task, persistent, asymmetric errors that accept the same wrong programs every time they appear, unlike the symmetric or resampled noise assumed by existing noise-robustness analyses. We run a preregistered two-arm causal contrast on a deployed suite: GRPO on identical MBPP tasks, seeds, and compute, rewarded by the original MBPP tests (leaky) versus the MBPP+ extra tests (hardened). Two further families replicate the design under a preregistration frozen before their data existed. [C] The average held-out effect is bounded: non-inferior under a preregistered 1.5-pt margin (gap 0.20 pt, one-sided 95% upper bound 0.75 pt). [C] Rewarded false-positive mass tracks a cheap static leakiness audit computed before training (Spearman 0.80), and the registered train-side test puts the leak-stratum FP share +43.8 pt above clean tasks. [E] Auditing every rewarded FP under signed, human-adjudicated rules finds a large residual of verified genuinely wrong code: 47.57% record-weighted; both replication families reproduce a large share. The reward paid for real bugs, not merely suite artifacts. [E] Mechanism evidence is consistent with selection of pre-existing error modes rather than learned exploitation: FP incidence does not grow within our horizon, and untrained base models already produce the same wrong outputs under the leaky filter. We then turn the same instrument on the frontier judges themselves: on their own false positives they self-assess only weakly, a same-author test is unresolved, and even the highest-scoring reader we probe stays far below its score on a weaker policy's errors -- two subjects on MBPP, licensing nothing about frontier models in general. A cheap static audit locates exposure before training; hardening the reward removes the measurement inflation, though here it buys little capability.",
+      "authors": [
+        "Chuyifei Zhang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-07-13T02:41:16Z",
+      "updated": "2026-07-13T02:41:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11022v1",
+      "abs_url": "https://arxiv.org/abs/2607.11022",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11022",
+      "summary_zh": "针对代码强化学习（RLVR）中测试套件存在的“漏报（Leaky）”问题，即测试用例存在系统性假阳性（False Positives）导致错误代码被误判为正确，本研究通过对比原始MBPP测试与强化版MBPP+测试，评估了这种噪声对模型训练的影响。实验发现，尽管假阳性现象普遍存在，但其对模型性能的实际增益有限，且模型倾向于选择预先存在的错误模式而非主动利用漏洞。研究通过静态审计技术量化了漏洞风险，并指出当前前沿模型在自我评估假阳性时表现较弱。结果表明，虽然加固奖励机制能消除测量偏差，但对提升模型实际能力的作用并不显著，提示开发者应在训练前通过静态审计识别并修复测试套件中的系统性缺陷。"
+    },
+    {
+      "id": "2607.11012",
+      "title": "EasyOPD: An Easy-to-use On-Policy Distillation Framework for Large Language Models",
+      "abstract": "Conventional language-model distillation often relies on fixed teacher-generated data, which may not cover the states encountered by an evolving student policy. On-policy distillation (OPD) instead collects teacher or evaluator supervision on student-generated rollouts. However, existing OPD methods differ substantially in supervision form, tokenizer compatibility, teacher access, and supervision granularity, leading to fragmented implementations that are difficult to reproduce and extend. We present \\textsc{EasyOPD}, an on-policy distillation framework built on verl, a distributed reinforcement-learning framework for large language models. \\textsc{EasyOPD} separates user-side configuration, method-specific supervision logic, and verl-based execution. Its method modules connect to the shared backend through extension boundaries for loss construction, rollout metadata, reward processing, tokenizer alignment, and teacher-side computation. We instantiate representative methods for three OPD settings -- cross-tokenizer OPD, on-policy self-distillation, and step-wise OPD. Experiments on reasoning, code-generation, scientific-knowledge, and tool-use benchmarks show that these implementations can be executed through the same verl-based backend while retaining their method-specific objectives and task-dependent performance profiles. We release \\textsc{EasyOPD} with runnable YAML configurations, documentation, and an installable demonstration package and video.",
+      "authors": [
+        "Jie Sun",
+        "Mao Zheng",
+        "Mingyang Song",
+        "Qiyong Zhong",
+        "Gengsheng Li",
+        "Zhepei Hong",
+        "Chang Wu",
+        "Pengfei Liu",
+        "Junfeng Fang",
+        "Xiang Wang"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-13T02:27:50Z",
+      "updated": "2026-07-13T02:27:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11012v1",
+      "abs_url": "https://arxiv.org/abs/2607.11012",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11012",
+      "summary_zh": "针对大语言模型蒸馏中因训练数据静态化导致学生模型无法应对动态策略空间的问题，EasyOPD 框架通过集成 verl 分布式强化学习后端，实现了对 On-Policy Distillation (OPD) 方法的统一化管理。该框架将用户配置、监督逻辑与底层执行解耦，通过标准化的扩展接口支持跨分词器蒸馏、在线自蒸馏及步进式蒸馏等多种范式。在推理、代码生成及工具使用等多个 benchmark 上的实验表明，该框架在保持各方法特定优化目标的同时，显著提升了蒸馏流程的复现性与扩展性。目前项目已开源，并提供完整的 YAML 配置与演示包，为大模型的高效策略蒸馏提供了统一的工程化解决方案。"
+    },
+    {
+      "id": "2607.11005",
+      "title": "Actor-Critic Learning for Extended Mean Field Control with Deterministic Policies",
+      "abstract": "This paper develops a model-free reinforcement learning framework for continuous--time extended mean field control problems, where both the dynamics and reward may depend on the joint distribution of states and controls. We adopt deterministic feedback policies, under which the state--action distribution is induced directly as a push--forward of the state law. This avoids optimization over stochastic kernels and bypasses key limitations of existing approaches in extended mean field settings. We first establish a model--free sensitivity formula for parameterized McKean--Vlasov dynamics and use it to derive a deterministic policy gradient formula expressed through an advantage--rate function on the Wasserstein space. We then refine this formula by introducing local value and advantage--rate representations that depend on the state, action, and joint state--action distribution, yielding a policy gradient that includes both action derivatives and measure--derivative terms with respect to the control distribution. These characterizations lead to a martingale--based learning principle and motivate a continuous--time deep deterministic policy gradient algorithm combining particle approximations, measure--dependent neural networks, temporal--difference learning, and exploration in either action or parameter space. Numerical experiments on stochastic Cucker--Smale consensus control and optimal liquidation with trade crowding demonstrate the efficiency, stability, and robustness of the proposed method, including problems with explicit dependence on the control distribution.",
+      "authors": [
+        "Ziheng Cheng",
+        "Xin Guo",
+        "Huyên Pham",
+        "Yufei Zhang"
+      ],
+      "categories": [
+        "math.OC",
+        "cs.AI",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-07-13T02:10:07Z",
+      "updated": "2026-07-13T02:10:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11005v1",
+      "abs_url": "https://arxiv.org/abs/2607.11005",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11005",
+      "summary_zh": "针对连续时间扩展平均场控制（Extended Mean Field Control）问题，现有方法在处理状态与控制联合分布依赖时存在局限性。该研究提出了一种基于确定性策略的无模型强化学习框架，通过将状态-动作分布视为状态分布的前推映射，避免了对随机核的复杂优化。核心创新在于推导了Wasserstein空间下的确定性策略梯度公式，并引入了依赖于状态、动作及联合分布的局部价值与优势率表示，从而构建了包含动作导数与测度导数的梯度估计。结合粒子近似与测度依赖神经网络，该方法实现了连续时间深度确定性策略梯度算法。在Stochastic Cucker-Smale共识控制及最优清算等任务中的实验表明，该算法在处理控制分布依赖问题时展现出卓越的效率、稳定性和鲁棒性。"
+    },
+    {
+      "id": "2607.10998",
+      "title": "Temporal Feature Distillation for Label-Efficient Precise Event Spotting in Sports Videos",
+      "abstract": "Precise Event Spotting (PES) requires distinguishing visually similar yet semantically distinct adjacent frames, making it fundamentally different from image classification and coarse action recognition. Although self-distillation methods such as DINO have shown strong representation learning ability in images, we find that directly applying them to PES is ineffective: without supervised guidance, subtle but crucial motion cues are often suppressed as noise, leading to representations that are insensitive to precise event boundaries. To address this, we propose Temporal Feature Distillation, a semi-supervised objective that aligns temporally informative backbone features, rather than projection-head outputs, to preserve motion-sensitive and boundary-aware cues for frame-level localization. A supervised warm-up with a ramp-up schedule further stabilizes training by ensuring that meaningful event cues are learned before unlabeled distillation begins. We also introduce Transformer Gate Shift, a multi-scale gated shifting module that injects motion-aware temporal information into Vision Transformers. Experiments on four fine-grained sports benchmarks show consistent improvements over fully supervised and semi-supervised baselines. Under 10\\% supervision on FSPerf, our method improves mAP by 4.54 points over the strongest competing approach, and with only 80\\% labeled data, it matches or surpasses the fully supervised 100\\% baseline on two of the four datasets.",
+      "authors": [
+        "Hao Xu",
+        "Xinyu Wei",
+        "Sam Wells",
+        "Sunil Aryal"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-13T01:53:46Z",
+      "updated": "2026-07-13T01:53:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.10998v1",
+      "abs_url": "https://arxiv.org/abs/2607.10998",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.10998",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对体育视频中精准事件定位（PES）任务面临的视觉相似帧难以区分及运动线索易被抑制的问题，该研究提出了时序特征蒸馏（Temporal Feature Distillation）方法。该方法通过对齐骨干网络中具有时序信息的特征而非投影头输出，有效保留了对边界敏感的运动线索，并结合监督预热策略提升了训练稳定性。此外，引入的 Transformer Gate Shift 模块通过多尺度门控移位机制，增强了 Vision Transformers 对运动信息的感知能力。在四个细粒度体育数据集上的实验表明，该方法在标签受限场景下表现卓越，在仅使用 10% 标注数据时，FSPerf 上的 mAP 较现有最优方法提升了 4.54 个点，且在 80% 标注数据下即可达到甚至超越全监督基准水平。"
+    },
+    {
+      "id": "2607.10991",
+      "title": "Think When It Matters: Conditional VLM Reasoning for Social Navigation with RL Policies",
+      "abstract": "As mobile robots become more integrated into everyday human environments, social robot navigation is becoming essential for ensuring human comfort, safety, and trust. While reinforcement learning (RL) navigation policies provide the fast inference and reactive behavior necessary for real-time deployment, they still lack flexible semantic reasoning capabilities and often fail to generalize to complex social scenarios. Recent approaches have increasingly turned to vision-language models (VLMs) in place of RL policies to improve semantic and social reasoning in robot navigation. Nevertheless, their high computational cost and slow inference remain major barriers to real-time deployment. To overcome these limitations, we introduce HUMA (Hybrid Understanding for Multi-modal social Navigation), a hybrid architecture that dynamically balances the computational efficiency of RL policies with the deep semantic understanding of VLMs. Our approach uses a reactive RL policy to handle low-density, routine navigation tasks, while conditioning it on a post-trained high-level VLM when a human enters sensitive situations, such as the robot's proximity zone. We evaluate HUMA on the Social-MP3D and Social-HM3D benchmarks, where it achieves task success improvements of 20% and 3%, respectively, while significantly reducing personal space violations and human collisions against state-of-the-art baselines. Extensive ablation studies validate each architectural component, and real-world deployment on the Mirokaï mobile robot further demonstrates the practical viability of our approach.",
+      "authors": [
+        "Ali Ahmadi",
+        "Hamed Rahimi",
+        "Adrien Jacquet Cretides",
+        "Marie Samson",
+        "Mahdi Khoramshahi",
+        "Mohamed Chetouani"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-07-13T01:27:27Z",
+      "updated": "2026-07-13T01:27:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.10991v1",
+      "abs_url": "https://arxiv.org/abs/2607.10991",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.10991",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对移动机器人在复杂社交场景中难以兼顾实时响应与深度语义推理的问题，HUMA（Hybrid Understanding for Multi-modal social Navigation）提出了一种混合架构，通过动态调度机制平衡了RL策略的计算效率与VLM的语义理解能力。该方法在常规导航任务中依赖轻量级RL策略，仅在检测到人类进入敏感区域等复杂社交场景时，才激活高层VLM进行推理决策。在Social-MP3D和Social-HM3D基准测试中，该方案显著提升了任务成功率，并有效降低了碰撞风险与个人空间侵犯。实机部署实验进一步验证了该架构在真实社交环境中的高效性与实用价值。"
+    },
+    {
+      "id": "2607.10966",
+      "title": "SVR-R1: Bootstrapping Multi-modal Reasoning with Self-verification in Reinforcement Learning",
+      "abstract": "We introduce Self-Verified Reasoner (SVR-R1), a multi-turn RL framework that turns a model's own verification into a learning signal for multimodal reasoning. For each query, the model proposes an answer using the same weights, and issues a binary self-verdict (Yes/No). A 'No' triggers a second-chance rethink; a 'Yes,' or a turn cap, finalizes the output for computing the outcome-based reward. SVR-R1 is implemented with GRPO and an asynchronous multi-turn rollout framework and needs no external supervision or auxiliary critics. We evaluate SVR-R1 on vision-language reasoning benchmarks and show that it improves accuracy by a large margin over strong standard GRPO baselines. Training dynamics show decreasing reliance on verification-fewer verification turns, yet higher test accuracy-indicating that the gap between verification and generation narrows as the policy internalizes self-correction and chooses the most confident answer via our framework. SVR-R1 bridges the less explored intersection of inference-time self-refinement and RL training for VLMs, offering a simple yet effective recipe for bootstrapping multimodal reasoning. We will open-source \\textbf{SVR-R1} to facilitate future research in VLMs.",
+      "authors": [
+        "Mingyuan Wu",
+        "Jingcheng Yang",
+        "Shengyi Qian",
+        "Xudong Wang",
+        "Jize Jiang",
+        "Qifan Wang",
+        "Aashu Singh",
+        "Khoi Pham",
+        "Fei Liu",
+        "Zhaolun Su",
+        "Zhuokai Zhao",
+        "Klara Nahrstedt",
+        "Jianyu Wang",
+        "Hanchao Yu"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-13T00:21:30Z",
+      "updated": "2026-07-13T00:21:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.10966v1",
+      "abs_url": "https://arxiv.org/abs/2607.10966",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.10966",
+      "summary_zh": "SVR-R1 旨在解决多模态大模型在复杂推理任务中缺乏自我纠错机制的问题，提出了一种基于强化学习（RL）的自验证框架。该方法在多轮推理过程中引入二元自验证机制，若模型自评为“否”则触发重思考，自评为“是”或达到轮次上限后计算奖励，并利用 GRPO 算法进行训练，无需外部监督或辅助 Critic 模型。实验结果表明，SVR-R1 在多个视觉语言推理基准测试中显著超越了标准 GRPO 基线。随着训练深入，模型对验证步骤的依赖逐渐降低，证明了该框架能有效促进模型内化自我纠错能力，从而提升多模态推理的准确性与置信度。"
+    }
+  ]
 }
