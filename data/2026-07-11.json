@@ -1,6 +1,6 @@
 {
   "date": "2026-07-11",
-  "generated_at": "2026-07-14T04:29:16.294305+00:00",
+  "generated_at": "2026-07-15T04:29:55.336305+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,34 @@
   },
   "papers": [
     {
+      "id": "2607.11954",
+      "title": "Graph-Constrained Policy Learning for Extreme Clinical Code Prediction",
+      "abstract": "Clinical code prediction maps unstructured discharge summaries to ICD-10-CM leaf codes in a large, sparse, and deeply hierarchical label space. Most systems treat the task as flat multi-label classification, scoring codes independently and providing limited training signal for rare labels. We propose a graph-constrained traversal policy that formulates ICD prediction as a finite-horizon decision process over a pruned code hierarchy. A single language model descends the graph level by level, selecting valid child nodes until billable leaf codes are reached. This converts extreme multi-label prediction into sparse, hierarchy-aware subset decisions while guaranteeing structurally valid outputs. On MIMIC-IV discharge summaries, our best supervised policy, SFT-1+, achieves 0.709 micro-F1 on a curated 50-code subset and 0.527 micro-F1 on the full 15,761-code space, outperforming flat baselines including CAML, LAAT, and PLM-ICD. In the full setting, SFT-1+ improves over the strongest flat baseline by 0.044 micro-F1 and 0.157 macro-F1, suggesting that graph-constrained decomposition mitigates the rare-code bottleneck. A controlled factorial study evaluates architecture, training algorithm, and data budget. Across both scales, one shared policy matches a three-specialist cascade while avoiding its context-window overflow on 28-32% of full-space test notes. Increasing supervised trajectory data is the only intervention that consistently improves performance, while GRPO reinforcement learning provides no benefit over supervised continuation with matched data. These results show that simple graph-constrained policy learning can outperform more complex flat, cascaded, and reinforcement-learning alternatives for extreme clinical code prediction.",
+      "authors": [
+        "Amritpal Singh",
+        "Sebastian Torres",
+        "Khawar Shakeel",
+        "Syed Ahmad Chan Bukhari"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.IR"
+      ],
+      "published": "2026-07-11T23:10:01Z",
+      "updated": "2026-07-11T23:10:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11954v1",
+      "abs_url": "https://arxiv.org/abs/2607.11954",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11954",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "临床代码预测任务面临标签空间巨大、稀疏且具有深层层级结构的挑战，传统扁平化多标签分类方法难以有效处理罕见标签。本研究提出一种图约束遍历策略（Graph-constrained traversal policy），将 ICD-10-CM 预测建模为在修剪后的代码层级结构上的有限时域决策过程，利用语言模型逐层向下选择有效子节点，直至到达可计费的叶子节点。该方法将极端多标签预测转化为稀疏且具备层级感知能力的子集决策，在 MIMIC-IV 数据集上，SFT-1+ 模型在全量 15,761 个代码空间中取得了 0.527 的 micro-F1，显著优于 CAML、LAAT 和 PLM-ICD 等基线模型。实验表明，图约束分解有效缓解了罕见代码预测的瓶颈，且相比复杂的级联模型或强化学习方法，该策略在保证结构有效性的同时展现出更优的性能与效率。"
+    },
+    {
       "id": "2607.10489",
       "title": "Grassmannian Splatting I: Moving rank-2 Spacetime Surfels for Dynamic Scene Rendering",
       "abstract": "We introduce Grassmannian splatting, a dynamic scene representation whose primitives are Gaussians supported on 3-planes in spacetime $\\R^4$: generically, spatial 2-planes in uniform translation along their normals. Each primitive carries a unit normal $n \\in \\mathbb S^3/\\{\\pm 1\\} \\cong \\mathrm{Gr}(3,4)$ and an unconstrained factor $L \\in \\mathbb R^{4 \\times 3}$, with covariance \\[ Σ_{4\\mathrm{D}} = (P_n L)(P_n L)^T, \\qquad P_n = I - n n^T. \\] For generic $L$ and $n \\neq \\pm e_0$, conditioning on time returns a rank-2 surfel at every frame. The normal of the disk and its velocity along that normal are read off from $n$; the disk shape and the tangential drift of its center are set by $L$. Existing native 4D Gaussian splatting methods [\\it{Yang et. al. 2023,Duan et. al. 2024}] slice full-rank spacetime covariances, so their per-frame primitive is a volumetric ellipsoid; since conditioning lowers rank by exactly one, a rank-2 surfel in the slice requires a rank-3 spacetime covariance, and the parameterization above realizes exactly these. The motion model is closed form, i.e. no deformation field is learned, and no custom CUDA is required: the conditioned disk feeds a standard 3DGS rasterizer through its precomputed-covariance interface. A soft clamp in the Schur denominator regularizes the static orientation and continuously bridges rank-3 static and rank-2 dynamic behavior, so static and moving primitives form a single continuous family. On the 17 HyperNeRF scenes of MonoDyGauBench, training is fastest among all compared methods (4.9 to 5.6 times faster than the strongest quality baselines), while ranking second in PSNR, MS-SSIM, and LPIPS. Code: https://github.com/PaulCelanCoding/grassmannian-splatting",
@@ -48,6 +76,26 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.10489",
       "summary_zh": "Grassmannian Splatting 提出了一种基于 Grassmannian 流形的新型动态场景表示方法，通过在四维时空 $\\mathbb{R}^4$ 中使用秩为 3 的高斯分布来建模动态场景。该方法将每个图元定义为时空中的 3-平面，通过时间切片自然导出每帧的秩为 2 的动态面元（surfel），从而精确描述物体的运动轨迹与形状演变，无需学习复杂的变形场或自定义 CUDA 内核。其核心创新在于利用闭式运动模型，将动态面元直接接入标准的 3DGS 光栅化管线，并通过 Schur 分母软约束实现了静态与动态图元的统一连续建模。在 MonoDyGauBench 数据集上的实验表明，该方法在保持高质量渲染效果的同时，训练速度比现有最优基准快 4.9 到 5.6 倍，展现了极高的计算效率与实用性。"
+    },
+    {
+      "id": "2607.11953",
+      "title": "When Does Reward Teach State? A Hidden-Automaton Instrument and the Group-Language Boundary",
+      "abstract": "Does a reinforcement-learning agent that earns high reward represent its task's latent state, or only a reward-correlated shortcut? The question is usually unanswerable: the \"true state\" is undefined. We make it exactly answerable with a white-box instrument: express the task as a hidden deterministic finite automaton (DFA), let the agent observe a symbol stream and intermittently choose the next symbol under partial control, and grant one sparse terminal reward for acceptance. Knowing the automaton gives two things for free: the optimal return (so reward becomes an interpretable normalized score) and the exact latent state at every step (so we can probe the agent's representation without ever showing it). Reward success and latent-state learning thus become separately measured quantities whose coupling is governed by three controllable axes. Optimizer strength: under weak on-policy RL the agent earns reward with the state probe at chance for every architecture, tempting the conclusion that sparse RL cannot install latent state; a pre-registered control overturns it -- PPO+GAE recovers the state, but only partially and with high seed variance. Task structure: permutation (group-language) structure is a warning sign computable from the transition function before any training, and held out on 153 capacity-controlled fresh automata it flags perception gaps at precision 0.86 (89 of 103), in one direction only. Observation informativeness: a label-free auxiliary is vacuous when observations carry no state and recovers it in proportion to how much they reveal. The payoff is a distinction reward-only evaluation cannot make: a perception gap (latent state not linearly recoverable, though representable) versus a planning gap (state recoverable but unused). High reward is thus not evidence of task understanding; whether an agent recovers latent state is predictable in advance.",
+      "authors": [
+        "Jim Allchin"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-11T21:33:32Z",
+      "updated": "2026-07-11T21:33:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11953v1",
+      "abs_url": "https://arxiv.org/abs/2607.11953",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11953",
+      "summary_zh": "强化学习智能体获得高奖励时，往往难以判断其是否真正理解任务的潜在状态。该研究通过将任务建模为隐藏的确定性有限自动机（DFA），构建了一个白盒评估框架，能够精确量化奖励获取与潜在状态表征之间的解耦关系。实验发现，即便在奖励最大化的情况下，智能体也可能存在感知差距（无法线性提取状态）或规划差距（状态可提取但未被利用）。研究揭示了任务的群语言结构（group-language structure）是预测潜在状态学习难度的关键指标，证明了高奖励并不等同于对任务的本质理解，且智能体能否恢复潜在状态在训练前即可通过任务特征进行预测。"
     },
     {
       "id": "2607.10481",
@@ -219,6 +267,29 @@
       "summary_zh": "惯性约束聚变（ICF）中离线训练的代理模型在优化过程中易陷入分布外（OOD）区域导致预测失效，Co4ICF 框架通过将物理信息代理模型与基于 PPO 的脉冲优化器进行协同演化来解决此问题。该方法让代理模型根据优化器产生的轨迹进行迭代微调，从而实时修正外推误差，同时优化器将不断演化的代理模型作为快速环境进行高效搜索。在 1D MULTI 环境下，该方法将归一化产额提升至 146.1%，且在未经 2D 训练的情况下，于 2D-MULTI 环境中仍能达到 246.9% 的产额，验证了协同演化机制在提升模型鲁棒性与泛化性方面的显著优势。研究同时发布了大规模 MULTI-IFE 仿真数据集，为相关领域研究提供了基准支持。"
     },
     {
+      "id": "2607.11948",
+      "title": "Ontology-Amplified Distillation and Contextuality Auditing for Sovereign Enterprise Language Models: A Combined Proof-of-Mechanism and Negative-Results Method Study",
+      "abstract": "Regulated financial institutions operating under data-residency rules need tenant-owned language models that can run inside the institution's perimeter. This paper combines two related FAOS studies into one mechanism-and-control article. First, it reports a reduced-power proof-of-mechanism study of ontology-amplified distillation: a Qwen3.6-27B student is adapted to the Foundation AgenticOS ontology through supervised fine-tuning on frontier-teacher trajectories and ontology-grounded direct preference optimization (DPO), trained locally on a single Apple M5 Max from 47 synthetic, English-language, cross-domain preference pairs. On 40 held-out Vietnamese financial-domain tasks, the distilled student grounds 36 of 40 tasks (grounded rate 0.90; mean ontology term-coverage r_onto = 0.95 on a metric floored at 0.50), equal to the GPT-5 frontier baseline, which also grounds 36 of 40. The outcome is underpowered to establish equivalence: the paired-difference 95% confidence interval spans +/-4 tasks, and the run does not test or show the pre-registered amplification prediction that the student should exceed the frontier. Second, the paper consolidates a contextuality-audit method for enterprise-agent routing. In a separate negative-results pilot, the corrected canonical Contextuality-by-Default degree is zero for all Phase 1.3 groups in both the local-Qwen run and an explicitly labeled Gemma replication check; the useful signal is direct influence and construct coupling, not surviving residual contextuality. Together, the studies pair an ontology-grounded model-building mechanism with a governance diagnostic for deciding when apparent disagreement should trigger prompt standardization, multi-agent synthesis, or human review. The evidence supports neither deployability, safety, superiority, statistical equivalence, nor a contextuality-positive routing rule.",
+      "authors": [
+        "Thanh Luong Tuan"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-07-11T15:42:40Z",
+      "updated": "2026-07-11T15:42:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11948v1",
+      "abs_url": "https://arxiv.org/abs/2607.11948",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11948",
+      "summary_zh": "针对受监管金融机构对本地化大模型的需求，本研究提出了一种本体增强蒸馏方法，通过在 Foundation AgenticOS 本体上对 Qwen3.6-27B 进行监督微调及本体引导的 DPO 训练，实现了在本地硬件上的高效适配。实验在越南金融领域任务中表现出与 GPT-5 基准相当的本体覆盖率，但统计分析显示该结果尚不足以证明模型具备超越或等同于前沿模型的性能。此外，研究引入了企业级智能体路由的上下文审计方法，通过负面结果验证了 Contextuality-by-Default 指标在当前阶段的局限性。整体而言，该工作通过本体驱动的模型构建机制与治理诊断工具，为企业评估模型部署安全性及路由决策提供了新的研究视角，强调了在实际应用中对模型性能与上下文依赖关系的审慎评估。"
+    },
+    {
       "id": "2607.10362",
       "title": "A Control Theory of Predictability in Latent World Models",
       "abstract": "Latent world models are trained to predict future states in a learned representation and are then deployed inside a planner that selects actions by simulating them forward. Current practice adopts the prediction error, the single- or multi-step rollout loss on held-out data, as the training and model-selection objective, on the assumption that a lower prediction error yields better control. We show that this assumption is unreliable for a structural reason: a planner does not query the model on the training distribution but on the states that its candidate actions reach, which generally leave the data manifold, so an error averaged over the data cannot by itself govern control. We therefore reframe the objective as the discrepancy between the predicted and the true plan-cost at the plan the planner commits to, and prove that the planner's suboptimality is bounded by twice this discrepancy, whereas the data-averaged prediction error neither bounds nor tracks it. Under a linear-control premise the discrepancy separates into two terms. The first is a small on-manifold residual, on which the predicted and true dynamics agree and which a spectral tax prices through the non-normality of the latent transition operator. The second is an off-manifold divergence, on which an action carries the state off the manifold and the two dynamics diverge; this divergence is the binding term and is bounded by no data-averaged error. Synthetic operators confirm the pricing formulas, and latent model-predictive control experiments confirm the decoupling: across seeds, the single-step validation error is essentially uncorrelated with control success, whereas a fidelity score on the planner-reachable measure tracks it.",
@@ -302,6 +373,34 @@
       "summary_zh": "双层优化在超参数优化、元学习及神经架构搜索等领域至关重要，但现有单循环算法的理论保证与实际效率之间存在差距。该研究提出了一种名为解耦范数分析（Decoupled Norm Analysis, DNA）的分析框架，旨在为近似隐式微分（AID）和迭代微分（ITD）方法提供更精确的收敛性界限。在AID方面，将收敛速率从 $\\mathcal{O}(κ^6/K)$ 提升至 $\\mathcal{O}(κ^5/K)$；在ITD方面，证明了其渐近误差为 $\\mathcal{O}(κ^2)$，不仅达到了已知下界，还改进了此前 $\\mathcal{O}(κ^3)$ 的理论保证。合成数据与真实任务的数值实验验证了上述理论分析的有效性，为高效双层优化算法的开发提供了更坚实的理论支撑。"
     },
     {
+      "id": "2607.11946",
+      "title": "Hybrid Continual Learning for Low-Resource Australian Aboriginal Language Identification",
+      "abstract": "Language identification is an important step toward integrating endangered Australian Aboriginal languages (AALs) into speech technologies supporting language revitalisation and digital inclusion. However, extreme data scarcity limits model performance. Transfer learning from high-resource languages shows promise but often suffers from catastrophic forgetting when adapting to new languages. Continual learning (CL) can mitigate this issue, though it remains challenging with very limited data. To address this, we propose two hybrid continual learning methods: Replay Augmented Elastic Weight Consolidation and Constraint Guided Knowledge Distillation to adapt pretrained speech models for AAL identification while preserving previously learned knowledge. Experiments on Warlpiri, Dalabon and Dharawal show that the proposed methods outperform fine-tuning and existing CL baselines, improving adaptation to multiple AALs while maintaining performance on previously learnt high-resource languages.",
+      "authors": [
+        "Pravina Mylvaganam",
+        "Ting Dang",
+        "Eliathamby Ambikairajah",
+        "Vidhyasaharan Sethu",
+        "Jingyao Wu"
+      ],
+      "categories": [
+        "cs.CL",
+        "eess.AS"
+      ],
+      "published": "2026-07-11T11:01:56Z",
+      "updated": "2026-07-11T11:01:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11946v1",
+      "abs_url": "https://arxiv.org/abs/2607.11946",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11946",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对澳大利亚原住民语言（AALs）数据极度匮乏导致的识别难题，该研究提出了一种混合持续学习（Hybrid Continual Learning）框架，旨在利用高资源语言预训练模型进行迁移学习，同时有效缓解模型在适应新语言时的灾难性遗忘。通过引入重放增强弹性权重固化（Replay Augmented Elastic Weight Consolidation）与约束引导知识蒸馏（Constraint Guided Knowledge Distillation）技术，模型能够在学习 Warlpiri、Dalabon 和 Dharawal 等稀有语言的同时，保持对原有高资源语言的识别能力。实验结果表明，该方法在多个 AALs 识别任务上显著优于传统的微调及现有持续学习基线，为濒危语言的数字化保护提供了高效的迁移学习方案。"
+    },
+    {
       "id": "2607.10238",
       "title": "Benchmarking Dynamic Affective Reasoning: A Viewer-Centric Video Emotion Dataset",
       "abstract": "Video emotion analysis is typically framed as a static classification problem, treating each clip as an independent labeled unit. However, such a formulation overlooks a key psychological fact: emotions change as a result of cumulative reactions to consecutive causal events. To bridge this gap, we introduce Dynamic Affective Reasoning, the first large-scale benchmark for viewer-centric affect transitions and causal reasoning over consecutive video events. DAR contains 15,087 videos and 36,908 event-aligned affective segments annotated with 27 emotion categories. Unlike existing video-based emotion datasets, DAR presents a new viewer-centric perspective on fine-grained emotional expressions and transitions, and provides dense, temporally grounded, and causally explicit reasoning chains. Based on DAR, we formally define three challenging tasks: affective segmentation, fine-grained emotion classification, and affective reasoning. Complementing this benchmark, we propose DAR-R1, a two-stage framework that combines supervised fine-tuning with Group Relative Policy Optimization. Experiments across 10+ MLLMs show that DAR-R1 sets a new state-of-the-art for dynamic affective reasoning, in terms of both emotional localization and affective reasoning. Project page: https://github.com/Zhang-Zhiyan/DAR.",
@@ -360,7 +459,7 @@
     },
     {
       "id": "2607.10203",
-      "title": "When Does Depth Survive Composition? Compute--Quality Regimes in Latent World Models",
+      "title": "Adaptive Compute in Latent World Models: When Depth Helps, Hurts, or Doesn't Matter",
       "abstract": "Adaptive-compute world models -- early-exit or mixture-of-depths predictors that spend variable depth per step -- assume depth buys better predictions and can be routed adaptively. In autoregressive rollouts, the first assumption requires depth's per-step precision to survive composition. We test this with a pre-registered instrument, the shallow penalty $ρ=\\mathrm{err}(\\text{shallowest-exit rollout})/\\mathrm{err}(\\text{full-depth rollout})$, across nine DeepMind Control tasks under matched single-step ($K=1$) and multi-step ($K=4$) training, three seeds each. We find three regimes: on 6/9 tasks depth helps rollouts (intrinsic, $ρ$ up to $4.7\\times$), on 2/9 the shallow exits beat the full stack (inversion, $ρ$ down to $0.85\\times$), and one is flat. The robust inversion (cheetah) is not a property of the dynamics but is created by training: an ablation supervising early exits only at the first rollout step erases it ($ρ: 0.87\\to1.18$, $n=8$, $Δ=+0.31$), while an intrinsic-tradeoff task is unaffected -- a double dissociation we call the routability catch-22, since the supervision that makes exits routable is what trains them to out-roll the full stack. The regime is partly predictable a priori: observation/action dimensionality and one-step model error correlate with $ρ$ at $|\\text{Spearman}|\\approx0.75$ ($n=9$). Inside a CEM planner, $ρ$'s sign predicts whether planning benefits from depth, most sharply on the inversion task, where shallow planning beats deep. Finally, three cautions: a task's regime depends on the metric space, the rollout horizon, and the encoder. All thresholds and gates were fixed before the compute campaign, including a pre-registered negative for the hypothesis that motivated the study.",
       "authors": [
         "Achyuthan Sivasankar"
@@ -370,8 +469,8 @@
         "cs.AI"
       ],
       "published": "2026-07-11T08:27:33Z",
-      "updated": "2026-07-11T08:27:33Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.10203v1",
+      "updated": "2026-07-14T14:26:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.10203v2",
       "abs_url": "https://arxiv.org/abs/2607.10203",
       "topics": [
         "world-model"
@@ -506,6 +605,32 @@
       "summary_zh": "GAE（Graph-Augmented Evolution）旨在解决大模型驱动的演化程序搜索中父代选择盲目、奖励稀疏及变异算子静态化的问题。该框架通过关系图神经网络（GNN）将程序解析为结构化计算图，利用强化学习元控制器根据嵌入信息进行定向搜索，并引入在线 GRPO 微调机制，实现测试阶段变异算子的动态优化。在复杂非线性振荡系统的符号回归任务中，GAE 将随机演化转变为定向的自我改进轨迹，显著提升了搜索效率与物理方程发现的准确性。实验结果表明，该方法在分布外场景下达到了当前最优性能，有效克服了传统 LLM 驱动搜索的局限性。"
     },
     {
+      "id": "2607.11933",
+      "title": "Transforming LLMs into Efficient Cross-Encoders via Knowledge Distillation for RAG Reranking",
+      "abstract": "Cross-encoders achieve high reranking accuracy in Retrieval-Augmented Generation (RAG) pipelines but impose quadratic inference costs that limit real-time deployment. We address this by fine-tuning LLaMA 3 (8B) as a drop-in reranker using a two-stage pipeline: supervised fine-tuning on a custom query-document relevance dataset via the Unsloth framework with LoRA adapters, followed by 4-bit quantization for efficient inference. The resulting model replaces the cross-encoder in a dual-retriever RAG pipeline combining BM25 and dense vector search. Evaluated on a domain-specific question-answering benchmark using the RAGAS framework, our fine-tuned LLaMA 3 reranker achieves gains of 14% in answer relevancy, 16% in context precision, 19% in answer similarity, and 21% in answer correctness over the cross-encoder baseline, while reducing inference overhead through 4-bit quantization. These results demonstrate that instruction-tuned LLMs can be adapted into accurate, efficient rerankers without the quadratic complexity of traditional cross-encoders.",
+      "authors": [
+        "Shreeya Dasa Lakshminath",
+        "Shubhan S"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.IR",
+        "cs.LG"
+      ],
+      "published": "2026-07-11T04:31:20Z",
+      "updated": "2026-07-11T04:31:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.11933v1",
+      "abs_url": "https://arxiv.org/abs/2607.11933",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.11933",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "传统 Cross-encoder 在 RAG 重排序任务中虽精度高，但因二次方推理成本难以实时部署。本研究通过 Unsloth 框架结合 LoRA 微调 LLaMA 3 (8B) 模型，并利用 4-bit 量化技术降低推理开销，将其转化为高效的重排序器。该模型在双检索 RAG 流水线中替代传统方案，在 RAGAS 基准测试中表现卓越，答案相关性、上下文精确度、答案相似度及正确性分别提升了 14%、16%、19% 和 21%。实验证明，经过指令微调的 LLM 能够有效规避传统 Cross-encoder 的计算复杂度，在保持高精度的同时显著提升了推理效率。"
+    },
+    {
       "id": "2607.10114",
       "title": "Cost of Reasoning in non-English Languages: A Case Study on Japanese",
       "abstract": "Reasoning Language Models (RLMs) achieve their strongest performance when they reason in English, the language for which reasoning-oriented training data is most abundant. However, reasoning trace is a clue for model interpretability and safety, and useful in practice for both the model users and for model developers. Thus, it is desirable to be able to develop a model that reasons in a language of the user's choice, while still maintaining strong reasoning performance. To this end, we study the feasibility of training a model that reasons in Japanese. We develop a Japanese-reasoning variant of Qwen-3-Swallow-8B, which is a Japanese LLM continually pretrained from Qwen-3-8B, with GRPO and evaluate it across coding, math, and science benchmarks. The study shows that reasoning-language control is feasible by training a Japanese continually pretrained model with GRPO. However, its performance is at best on par with strong English-reasoning baselines on several benchmarks. We also evaluate the trained model on Japanese cultural benchmarks and observe that the model's performance is worse than the baseline models, suggesting that the reasoning in Japanese does not immediately improve performance on culturally relevant tasks for free.",
@@ -604,8 +729,8 @@
         "cs.CL"
       ],
       "published": "2026-07-11T02:08:46Z",
-      "updated": "2026-07-11T02:08:46Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.10079v1",
+      "updated": "2026-07-14T02:29:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.10079v2",
       "abs_url": "https://arxiv.org/abs/2607.10079",
       "topics": [
         "rl"
