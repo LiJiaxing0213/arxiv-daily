@@ -1,6 +1,6 @@
 {
   "date": "2026-07-14",
-  "generated_at": "2026-07-16T04:39:24.159661+00:00",
+  "generated_at": "2026-07-17T04:44:55.913753+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -755,6 +755,32 @@
       "summary_zh": "针对小型语言模型（SLMs）在处理SMILES序列时因缺乏分子拓扑结构感知而导致预测性能受限的问题，本研究提出了一种模块化的Context-Augmented Prompting框架。该方法在推理阶段引入Agentic tool use机制，通过预训练的GNN专家模型提供预测提示，并利用GNN提取关键子图及其解释性文本作为辅助信息。在MUTAG和Tox21数据集上的实验表明，这种图增强提示策略能显著提升模型性能，在Tox21上最高可实现74%的相对准确率提升。尽管该方法有效弥补了文本推理的结构盲点，但与专用GNN模型相比仍存在差距，揭示了文本条件化推理在分子结构建模中的潜力与局限。"
     },
     {
+      "id": "2607.14149",
+      "title": "Enhancing Small Language Models Reasoning through Knowledge Graph Grounding",
+      "abstract": "Although large language models (LLMs) have set benchmarks for zero-shot reasoning, their deployment remains cost-prohibitive and environmentally taxing. Small Language Models (SLMs) offer a sustainable alternative, but prone to errors, on tasks requiring complex, multi-hop logical grounding. We investigate a neuro-symbolic agentic framework to enhance the reasoning capabilities of SLMs, specifically Gemma 3 (1B, 4B) and Llama 3.2 (3B), using the CLUTRR kinship benchmark. Our approach transforms the SLM into a minimalist agent utilizing two specialized tool calls: extract_facts for symbolic triplet extraction and get_hint for expert reasoning via a Relational Graph Convolutional Network (RGCN). We evaluate these models across two configurations, both in an Oracle scenario with ground-truth triplets and a Realistic scenario relying on self-extracted knowledge. Our results reveal that while RGCN-derived hints provide a 1.5 - 2x performance gain over story-only baselines, the system is constrained by the extraction bottleneck and sequential deductive fragility, where early extraction errors compound over multi-hop chains. Furthermore, we identify a \"distraction effect\" in specific architectures where noisy, self-generated facts degrade performance despite the presence of expert hints. This work characterizes the challenges of symbolic grounding in low-resource agentic systems and provides a roadmap for iterative verification in neuro-symbolic agentic pipelines.",
+      "authors": [
+        "Dimitrios Kelesis",
+        "Konstantinos Bougiatiotis",
+        "Georgios Paliouras"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-14T13:07:46Z",
+      "updated": "2026-07-14T13:07:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.14149v1",
+      "abs_url": "https://arxiv.org/abs/2607.14149",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.14149",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对小型语言模型（SLM）在复杂多跳逻辑推理任务中表现不佳的问题，该研究提出了一种神经符号代理框架，通过将 Gemma 3 和 Llama 3.2 等模型转化为具备工具调用能力的智能体，利用 Relational Graph Convolutional Network (RGCN) 提供专家推理提示。该方法通过 extract_facts 提取符号三元组并结合 get_hint 辅助推理，在 CLUTRR 亲属关系基准测试中实现了 1.5 到 2 倍的性能提升。实验结果表明，尽管外部知识图谱能显著增强推理能力，但系统仍受限于符号提取瓶颈及多跳推理中的误差累积效应。此外，研究还揭示了特定架构下自生成噪声事实可能产生的“干扰效应”，为低资源环境下的神经符号代理系统提供了优化路径。"
+    },
+    {
       "id": "2607.12696",
       "title": "Less Experts, Faster Decoding: Cost-Aware Speculative Decoding for Mixture-of-Experts",
       "abstract": "Sparse Mixture-of-Experts (MoE) models have become an important approach for scaling Large Language Models (LLMs), but their inference efficiency depends strongly on expert activation patterns. Speculative decoding (SD) accelerates autoregressive generation by verifying multiple draft tokens in parallel, yet existing draft selection strategies primarily optimize acceptance likelihood. In large-scale MoE models, however, selecting draft tokens also determines the union of experts activated during verification. We observe that confidence-driven SD can introduce \\textit{expert scattering}: high-probability draft tokens may route to disjoint experts, increasing expert-weight memory traffic and reducing the speedup from speculation. Motivated by this observation, we revisit draft-tree selection under the non-uniform memory-cost structure of MoE inference. We propose \\textsc{EcoSpec}, a cost-aware speculative decoding framework that incorporates predicted marginal expert activation cost into draft selection. With a lightweight expert predictor and a dynamic expert buffer, \\textsc{EcoSpec} favors draft paths that preserve high acceptance likelihood while reusing experts already covered by the current verification set, without modifying the target-model verification rule. We evaluate \\textsc{EcoSpec} on three large-scale MoE models, including DeepSeek-V3.1 (671B), Qwen3-235B-A22B, and GPT-OSS-120B, across reasoning, coding, question-answering, and dialogue benchmarks. \\textsc{EcoSpec} consistently reduces active expert footprints and improves end-to-end decoding speed, achieving up to $1.62\\times$ speedup. These results show that accounting for expert activation cost is important for efficient speculative decoding in large-scale MoE models.",
@@ -1206,7 +1232,7 @@
       "abstract": "Reinforcement learning with verifiable rewards without human-annotated data, often referred to as zero RL, has emerged as a powerful paradigm for eliciting chain-of-thought reasoning. However, due to computational constraints, existing studies are largely restricted to small models, leaving the training dynamics and emergent capabilities at a large scale unexplored. To meaningfully explore this frontier, we aim to elicit high-quality reasoning behaviors from the model. However, we find that naive scaling often suffers from poor readability, token redundancy, and a lack of adaptive reasoning depth. To address these challenges, we present a stable and efficient training pipeline, incorporating algorithmic and system optimizations such as clipped importance sampling, training-inference ratio correction, and mixed-precision control. Our experiments offer three key findings that validate the \"bitter lesson\" of scaling: (1) scaling to 1T parameters significantly enhances sample efficiency and performance ceilings; (2) the training process progresses sequentially through an initial discovery phase followed by a sharpening phase; and (3) the model spontaneously develops advanced cognitive behaviors, including anthropomorphism, structured formatting, self-verification, parallel reasoning, and context anxiety, rendering hand-crafted heuristics redundant. Evaluated on seven mathematical benchmarks, Ring-2.5-1T-Zero achieves competitive performance. Additionally, to assess CoT quality beyond final-answer correctness, we propose a structured evaluation framework across three dimensions: comprehensibility, reproducibility, and efficiency, where our model demonstrates clear advantages in producing structured and concise reasoning traces. By sharing our observed emergent phenomena, we hope to provide the community with deeper insights into scaling behaviors, particularly at the 1-trillion scale.",
       "authors": [
         "Xinyu Tang",
-        "Gangqiang Cao",
+        "Qianggang Cao",
         "Yurou Liu",
         "Yuliang Zhan",
         "Xiaochong Lan",
@@ -1226,14 +1252,43 @@
         "cs.CL"
       ],
       "published": "2026-07-14T06:14:55Z",
-      "updated": "2026-07-14T06:14:55Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.12395v1",
+      "updated": "2026-07-16T03:43:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.12395v2",
       "abs_url": "https://arxiv.org/abs/2607.12395",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.12395",
       "summary_zh": "针对零样本强化学习（Zero RL）在超大规模模型上训练困难及推理质量不佳的问题，该研究提出了一套包含裁剪重要性采样、训练推理比修正及混合精度控制的稳定训练流水线，成功将模型扩展至万亿（1T）参数规模。实验表明，万亿参数模型不仅显著提升了样本效率与性能上限，还自发涌现出自我验证、并行推理及结构化表达等高级认知行为，摆脱了对手工启发式规则的依赖。在七项数学基准测试中，Ring-2.5-1T-Zero 表现出极强的竞争力，且在提出的可理解性、可复现性及效率评估框架下，展现出生成高质量思维链（CoT）的显著优势，验证了大规模扩展在激发模型推理能力方面的关键作用。"
+    },
+    {
+      "id": "2607.14145",
+      "title": "ToolAnchor: Anchoring Counterfactual Context to Boost Agentic Tool-use Capability",
+      "abstract": "Tool-augmented large language model agents excel at long-horizon tasks, yet they are typically post-trained on fixed toolsets. When tasks demand new tools, these agents struggle to incorporate them effectively, and retraining from scratch is often impractical. We identify the core obstacle in such toolset expansion problem as behavioral inertia: the tendency of agents to fall back on familiar tools and established reasoning patterns despite having access to new ones. We demonstrate that injecting counterfactual anchor contexts at critical decision points can break this inertia, recovering failed trajectories by eliciting suppressed agent capabilities. To scale this insight, we propose ToolAnchor, a framework that uses teacher models to hypothesize these counterfactual contexts, verifies them via student rollouts, and internalizes the successful interventions through agentic post-training. Extensive evaluations across general AI assistant (GAIA), textual search (BrowseComp), and visual search (VDR-Bench) tasks demonstrate that ToolAnchor consistently exhibits competitive performance under expanded toolsets. Our work bridges the gap between static post-training and dynamic adaptation, charting a new path for scalable agentic reinforcement learning.",
+      "authors": [
+        "Weiting Liu",
+        "Jieyi Bi",
+        "Wanqi Zhou",
+        "Jianfeng Feng",
+        "Yining Ma",
+        "Ai Han",
+        "Wenlian Lu"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-07-14T06:03:39Z",
+      "updated": "2026-07-14T06:03:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.14145v1",
+      "abs_url": "https://arxiv.org/abs/2607.14145",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.14145",
+      "summary_zh": "针对大语言模型智能体在扩展工具集时面临的“行为惯性”问题，即模型倾向于依赖旧工具而无法有效利用新工具，本研究提出了一种名为 ToolAnchor 的框架。该方法通过在关键决策点注入反事实锚点上下文（Counterfactual Anchor Contexts），引导智能体突破思维定势，并利用教师模型生成假设、学生模型回放验证的机制，将成功的干预策略内化到智能体的训练过程中。实验表明，ToolAnchor 在 GAIA、BrowseComp 和 VDR-Bench 等基准测试中表现出色，显著提升了智能体在动态工具扩展场景下的适应能力与任务完成效率，为可扩展的智能体强化学习提供了新的解决路径。"
     },
     {
       "id": "2607.12379",
@@ -1291,7 +1346,7 @@
     {
       "id": "2607.12358",
       "title": "ACID: Adaptive Caching for vIDeo generation",
-      "abstract": "Video diffusion models produce high-quality generations but remain slow at inference due to their sequential denoising procedure. Caching-based acceleration methods address this by reusing intermediate model outputs: leading dynamic approaches such as TeaCache, EasyCache, and DiCache accumulate a drift signal and skip expensive model evaluations when accumulated drift stays below a fixed threshold τ. This threshold controls an apparent tradeoff - raising it yields faster generation at the cost of visual quality, while lowering it preserves quality but sacrifices speed. We show this tradeoff is not fundamental; it is an artifact of holding τ constant throughout denoising. We identify the existence of critical steps - timesteps where the drift signal changes rapidly - and show that applying a low threshold selectively at these steps while caching aggressively elsewhere recovers most of the quality of conservative caching at substantially higher inference speeds. Building on this insight, we propose ACID, a lightweight, training-free wrapper that monitors the rate of change of each method's existing drift signal to dynamically switch between a low and a high threshold. ACID is signal-agnostic and modular: it requires no retraining and plugs directly into existing dynamic caching methods without modifying their core mechanisms. Evaluated across three caching methods (TeaCache, EasyCache, DiCache) and three open-source video diffusion models (HunyuanVideo, Wan 2.1, CogVideoX), ACID consistently expands the Pareto frontier of visual quality versus inference speed beyond what any fixed threshold achieves. In particular, on TeaCache and HunyuanVideo, ACID achieves up to 2.16x speedup over the no-caching baseline, and up to 38% additional speedup over the conservative fixed-threshold baseline with negligible (<0.3 dB PSNR, <0.01 SSIM, <0.01 LPIPS) quality degradation.",
+      "abstract": "Video diffusion models produce high-quality generations but remain slow at inference due to their sequential denoising procedure. Caching-based acceleration methods address this by reusing intermediate model outputs: leading dynamic approaches such as TeaCache, EasyCache, and DiCache accumulate a drift signal and skip expensive model evaluations when accumulated drift stays below a fixed threshold $τ$. This threshold controls an apparent tradeoff - raising it yields faster generation at the cost of visual quality, while lowering it preserves quality but sacrifices speed. We show this tradeoff is not fundamental; it is an artifact of holding $τ$ constant throughout denoising. We identify the existence of critical steps - timesteps where the drift signal changes rapidly - and show that applying a low threshold selectively at these steps while caching aggressively elsewhere recovers most of the quality of conservative caching at substantially higher inference speeds. Building on this insight, we propose ACID, a lightweight, training-free wrapper that monitors the rate of change of each method's existing drift signal to dynamically switch between a low and a high threshold. ACID is signal-agnostic and modular: it requires no retraining and plugs directly into existing dynamic caching methods without modifying their core mechanisms. Evaluated across three caching methods (TeaCache, EasyCache, DiCache) and three open-source video diffusion models (HunyuanVideo, Wan 2.1, CogVideoX), ACID consistently expands the Pareto frontier of visual quality versus inference speed beyond what any fixed threshold achieves. In particular, on TeaCache and HunyuanVideo, ACID achieves up to 2.16x speedup over the no-caching baseline, and up to 38% additional speedup over the conservative fixed-threshold baseline with negligible (<0.3 dB PSNR, <0.01 SSIM, <0.01 LPIPS) quality degradation.",
       "authors": [
         "Om Agrawal",
         "Saurabh Agarwal",
@@ -1301,8 +1356,8 @@
         "cs.CV"
       ],
       "published": "2026-07-14T05:17:24Z",
-      "updated": "2026-07-14T05:17:24Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.12358v1",
+      "updated": "2026-07-16T04:34:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.12358v2",
       "abs_url": "https://arxiv.org/abs/2607.12358",
       "topics": [
         "video-gen"
