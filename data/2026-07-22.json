@@ -1,6 +1,6 @@
 {
   "date": "2026-07-22",
-  "generated_at": "2026-07-23T04:51:57.595021+00:00",
+  "generated_at": "2026-07-24T04:53:19.710135+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,282 @@
     }
   },
   "papers": [
+    {
+      "id": "2607.20785",
+      "title": "Robostral Navigate",
+      "abstract": "Deploying navigation systems at scale requires a recipe that minimizes sensor assumptions, generalizes across robot embodiments, and trains efficiently. Yet, today's best systems depend on depth sensors, multi-camera rigs, or pre-built maps, limiting the hardware they support and increasing deployment cost. We introduce Robostral Navigate, an 8B vision-language model built around this scalability objective. The model consumes only a stream of monocular RGB images - the most ubiquitous sensor across robotic platforms and predicts waypoints by pointing to the next target location in the current camera view. Operating purely in image space, rather than robot-specific coordinates, makes the policy naturally robust to changes in camera intrinsics and scene scale, enabling deployment across wheeled, legged, and aerial robots without recalibration. We generate 2.4 million trajectories across 350k simulated scenes to reduce the reliance on real-world data collection and scale easily. We further introduce a prefix-caching training recipe that packs entire episodes into single training sequences, reducing training tokens by 22x and cutting training time from months to days. A tree-based attention mask prevents conditioning on previous ground-truth actions, encouraging visually grounded action prediction, and reinforcement learning is used to further improve exploration and recovery capabilities. On the Room-to-Room and Room-Across-Room in Continuous Environments (R2R-CE and RxR-CE) benchmarks, Robostral Navigate sets a new state of the art. On R2R-CE, it achieves a 77.4% success rate, surpassing the best monocular method by 10.5 points and the strongest depth- or multi-camera system by 5.3 points despite using only a single RGB camera. On RxR-CE, it reaches 75.1% success rate, outperforming all monocular baselines.",
+      "authors": [
+        "Arjun Majumdar",
+        "Avinash Sooriyarachchi",
+        "Benjamin Tibi",
+        "Chris Bamford",
+        "Elliot Chane-Sane",
+        "Guillaume Lample",
+        "Khyathi Raghavi Chandu",
+        "Ludovic Ho Fuh",
+        "Mathieu Poiree",
+        "Olivier Duchenne",
+        "Rosalie Millner",
+        "Srijan Mishra",
+        "Theo Cachet",
+        "Thomas Chabal"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-07-22T23:13:05Z",
+      "updated": "2026-07-22T23:13:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20785v1",
+      "abs_url": "https://arxiv.org/abs/2607.20785",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20785",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "Robostral Navigate 旨在解决机器人导航系统对深度传感器、多相机或预建地图的过度依赖问题，通过仅使用单目 RGB 图像输入实现跨硬件平台的通用导航。该模型采用 8B 视觉语言模型架构，在图像空间而非机器人坐标系中预测航点，从而天然具备对相机内参和场景尺度的鲁棒性，无需重新校准即可部署于轮式、足式及飞行机器人。通过引入前缀缓存训练策略和树状注意力掩码，模型大幅提升了训练效率，并将训练时间从数月缩短至数天。在 R2R-CE 和 RxR-CE 基准测试中，该方法仅凭单目 RGB 输入便刷新了 SOTA 记录，成功率分别达到 77.4% 和 75.1%，显著超越了依赖深度传感器的复杂系统。"
+    },
+    {
+      "id": "2607.20767",
+      "title": "Rushes: A Human Preference Dataset for Pluralistic Alignment",
+      "abstract": "We introduce Rushes, a dataset and benchmark for studying revealed human engagement preferences in interactive narrative environments. Rushes is collected through a game interface where users interact with AI-generated branching narratives and select one choice from a small, explicit candidate set at each decision point. Each interaction logs the full candidate set, the user's choice, and the evolving narrative context, yielding time-ordered trajectories with persistent user-level identifiers. Rushes contains 44,226 decision events from 8,167 unique users across six games, capturing sequential, personalized engagement behavior rather than static judgments. We show that user choices exhibit structured, non-random patterns, quantified by a low choice entropy relative to a uniform baseline. We position Rushes as a diagnostic benchmark for pluralistic alignment and demonstrate a robust Engagement Gap: state-of-the-art LLMs, including GPT-5, fail to outperform simple baselines. While classical Matrix Factorization (SVD) captures measurable personalized signal (37.7%), frontier LLMs (34.23%) struggle to even match the Popularity Baseline (36.4%) on event-level choice prediction. This gap suggests that single, population-level objectives, like those used in modern RLHF, appear insufficient to capture heterogeneous, context-dependent engagement signals. As a result, even highly capable models default to majority preferences rather than adapting to individual trajectories. We release Rushes to support research into pluralistic alignment and sequential decision-making in generative systems. The full code for the platform and dataset will be available here: https://github.com/microsoft/rushes",
+      "authors": [
+        "Michael Xu",
+        "Jorge Leandro",
+        "Sudha Rao",
+        "Weijia Xu",
+        "Nebojsa Jojic",
+        "Gabriel DesGarennes",
+        "Chris Quirk",
+        "Bill Dolan"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-22T22:32:34Z",
+      "updated": "2026-07-22T22:32:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20767v1",
+      "abs_url": "https://arxiv.org/abs/2607.20767",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20767",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "Rushes 旨在解决当前大模型在交互式叙事中难以捕捉个性化、多维人类偏好的问题，通过收集 8,167 名用户在分支叙事游戏中的 44,226 次决策数据，构建了一个用于研究序列化参与偏好的基准。该研究揭示了显著的 Engagement Gap，即 GPT-4 等前沿 LLM 在预测用户选择时，表现不仅落后于矩阵分解（SVD）等传统方法，甚至难以超越简单的 Popularity Baseline。实验结果表明，现代 RLHF 采用的单一群体目标不足以建模异构且依赖上下文的参与行为。这一发现强调了从单一对齐向多元对齐（Pluralistic Alignment）转型的必要性，为提升生成式系统在序列决策任务中的个性化适配能力提供了重要参考。"
+    },
+    {
+      "id": "2607.20723",
+      "title": "Leaky Language Models: Stealing Architecture and Inference Optimizations via Per-Token Timing",
+      "abstract": "This work presents LeakyLMs, a set of attacks that leak proprietary model, architecture, and deployment information from production language models. LeakyLMs is the first to demonstrate that key model and deployment details can be inferred using only token generation timing, even when interacting through remote APIs. LeakyLMs introduces two core attacks. The first attack targets inference optimizations and deployment strategies. For example, our attack detects whether a provider uses speculative decoding, a widely deployed inference-time optimization, and further identifies the context length of the draft model used in the pipeline. Our measurements show that Google Gemini Flash 2.5 uses speculative decoding with a draft context window of approximately 128K tokens. The second attack recovers key architectural properties, including the number of transformer layers, hidden dimension size, and number of attention heads. To achieve this, LeakyLMs builds a detailed and accurate model of token-generation timing on modern NVIDIA GPUs, characterizing how latency scales with model configuration and hardware parameters. The attack then performs a search over the architecture space using this timing model. In experiments with Llama models, the near-correct architectural configuration appears in the top-10 guesses more than 90% of the time.",
+      "authors": [
+        "Sadegh Majidi",
+        "Niloofar Mireshghallah",
+        "Kazem Taram"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.LG"
+      ],
+      "published": "2026-07-22T20:51:28Z",
+      "updated": "2026-07-22T20:51:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20723v1",
+      "abs_url": "https://arxiv.org/abs/2607.20723",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20723",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "LeakyLMs 揭示了仅通过分析大模型生成 Token 的时间延迟，即可远程窃取模型架构及推理优化策略的安全漏洞。该研究构建了针对现代 NVIDIA GPU 的高精度推理延迟模型，通过量化延迟与模型参数（如层数、隐藏层维度、注意力头数）的关联，实现了对模型架构的高效逆向工程。实验表明，该方法能准确识别 Google Gemini Flash 2.5 等生产环境模型是否启用了 Speculative Decoding 及其草稿模型上下文长度，并在 Llama 系列模型的架构推断中达到超过 90% 的 Top-10 准确率。这一发现凸显了侧信道攻击在黑盒模型部署场景下的严重威胁，为大模型知识产权保护提出了新的挑战。"
+    },
+    {
+      "id": "2607.20708",
+      "title": "Perspective Latents as an Architectural Condition for Causal Emergence in Active Inference Agents",
+      "abstract": "A recent line of work measures causal emergence in reinforcement learning agents through Integrated Information Decomposition, reporting that $Φ_r$ grows with training and tracks reward improvement. For active inference, this raises the question of how reward-free predictive organization relates to such information-theoretic signatures. I test this within an active inference agent whose architecture separates a fast perception latent $z$ from a slow global latent $g$, where $g$ is driven by prediction error and structurally decoupled from policy gradients. In a reward-free environmental regime-switching protocol, $Φ_r$ concentrates in $g$; its aggregate magnitude is largely architectural and decreases with training. The substantive effect of learning becomes legible only at the atom-compositional level: decoupling flips sign from negative to positive and becomes regime-invariant under environmental change, while downward causation carries the regime-dependent adjustment. These results identify $g$ as the architectural locus of $Φ_r$-relevant temporal organization in an active inference agent, and argue against reading scalar $Φ_r$ as a direct index of learned integration.",
+      "authors": [
+        "Hongju Pae"
+      ],
+      "categories": [
+        "cs.LG",
+        "q-bio.NC"
+      ],
+      "published": "2026-07-22T20:25:29Z",
+      "updated": "2026-07-22T20:25:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20708v1",
+      "abs_url": "https://arxiv.org/abs/2607.20708",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20708",
+      "summary_zh": "该研究探讨了主动推理（Active Inference）智能体中因果涌现（Causal Emergence）的机制，旨在揭示无奖励预测组织与信息论指标 $Φ_r$ 之间的内在联系。通过构建将快速感知潜变量 $z$ 与受预测误差驱动的慢速全局潜变量 $g$ 解耦的架构，实验发现 $Φ_r$ 主要集中在 $g$ 中，且其总量受架构约束而非随学习简单增长。研究指出，标量 $Φ_r$ 并非衡量学习整合的直接指标，真正的学习效应体现在原子组合层面：解耦符号在环境切换下表现出不变性，而向下因果关系则承担了环境依赖的调节功能。这些发现明确了 $g$ 作为智能体时间组织的核心架构位置，为理解复杂系统中的因果涌现提供了新视角。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.20692",
+      "title": "DS@GT ARC at ImageCLEFmed GANs 2026: Geometric Filtering for Privacy-Preserving CT Slice Generation",
+      "abstract": "We present a privacy-preserving framework for synthetic lung CT slice generation developed for the Image-CLEFmed GANs 2026 challenge. The approach combines Optimal Transport Conditional Flow Matching with privacy-oriented training and a post-generation \"Supervisor\" pipeline that filters generated candidates in learned geometric latent spaces using autoencoder embeddings, Determinantal Point Processes, and Stein Kernel Thinning. Official results show a strong realism-privacy trade-off, with the best-performing model achieving a Privacy Preservation Score of 0.549 and competitive visual fidelity with an FID of 0.3290. While the proposed geometric filtering substantially reduces nearest-neighbor memorization and membership-inference leakage, persistent patient re-identification scores indicate that preventing direct image copying is not sufficient to remove deeper patient-specific anatomical identity, highlighting an important frontier for future privacy-preserving medical image generation.",
+      "authors": [
+        "Eric Regina",
+        "Richard Arnaud",
+        "Samir Hadi Cisneros"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-22T19:46:21Z",
+      "updated": "2026-07-22T19:46:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20692v1",
+      "abs_url": "https://arxiv.org/abs/2607.20692",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20692",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对医学图像生成中的隐私泄露问题，该研究提出了一种结合 Optimal Transport Conditional Flow Matching 与几何过滤机制的肺部 CT 切片生成框架。核心创新在于引入了由 Autoencoder 嵌入、Determinantal Point Processes 和 Stein Kernel Thinning 构成的“Supervisor”流水线，在潜在空间对生成样本进行筛选以降低隐私风险。实验结果显示，该方法在 ImageCLEFmed GANs 2026 挑战赛中实现了 0.3290 的 FID 与 0.549 的隐私保护得分，在视觉保真度与隐私性之间取得了良好平衡。尽管几何过滤有效抑制了最近邻记忆和成员推理攻击，但研究指出仅防止图像复制不足以完全消除深层解剖特征带来的身份泄露，为后续隐私保护研究指明了方向。"
+    },
+    {
+      "id": "2607.20690",
+      "title": "Learning to Detect UI Principle Violations via Reinforcement Learning",
+      "abstract": "Small language models and coding agents increasingly generate web front-end code, yet their outputs are typically evaluated primarily for functional correctness. A generated interface may compile, render, and pass unit tests while still violating established interface quality principles, including accessibility barriers, deceptive design patterns, poor visual hierarchy, and excessive decision complexity. Existing auditing approaches face a trade-off between cost, coverage, and scalability: expert human review provides rich judgment but is slow and expensive; frontier vision-language models offer broader reasoning capabilities but remain costly to deploy at scale; and rule-based tools such as axe-core and Lighthouse are inexpensive but primarily capture mechanically checkable accessibility issues. We investigate whether a lightweight vision-language model can serve as an effective critic for generated interfaces. We unify 19 interface-quality principles from three complementary sources of HCI knowledge: WCAG 2.2 accessibility standards, deceptive design taxonomies, and established theories of perception, cognition, and interaction. To train this critic, we construct a verified dataset of approximately 10,000 generated web pages by synthetically injecting known violations into clean, LLM-generated Tailwind pages. Continued reinforcement learning on a 4B vision-language model improves micro-F1 from 36\\% to 84\\%, with 13 of 19 principles exceeding 80\\% F1. The resulting critic can audit generated interfaces, filter low-quality interface training data, and provide a reward signal for design-aware code generation. We release our data-generation recipe and injection/verification prompts to support reproducible evaluation and future work on scalable interface-quality assessment.",
+      "authors": [
+        "Nishi Mehta",
+        "Swathi Alse",
+        "Himani Kumavat",
+        "Yue Yu",
+        "Pratik Jayarao"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-07-22T19:42:59Z",
+      "updated": "2026-07-22T19:42:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20690v1",
+      "abs_url": "https://arxiv.org/abs/2607.20690",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20690",
+      "keyword_topics": [
+        "rl",
+        "distillation"
+      ],
+      "summary_zh": "针对现有UI代码生成评估仅关注功能正确性、忽视设计原则违规的问题，该研究提出利用轻量级视觉语言模型（VLM）作为自动化审计工具。通过整合WCAG 2.2标准、欺骗性设计模式及认知交互理论，构建了包含19项界面质量原则的评估体系，并利用合成注入违规数据的1万个网页样本进行强化学习训练。实验结果显示，4B参数的VLM模型在微观F1分数上从36%显著提升至84%，其中13项原则的F1分数超过80%。该方法有效解决了人工审核成本高与规则工具覆盖面窄的矛盾，为高质量UI代码生成提供了可扩展的评估与反馈机制。"
+    },
+    {
+      "id": "2607.20656",
+      "title": "Adaptive Multi-Horizon Reinforcement Learning",
+      "abstract": "Effective decision-making in complex and changing environments requires balancing short-term and long-term consequences. In reinforcement learning (RL), this trade-off is typically controlled through a fixed discount factor, which imposes a single exponentially discounted temporal horizon. However, biological agents exhibit flexible and adaptive temporal discounting, suggesting that effective planning requires multiple timescales. Here, we propose a multi-horizon approach that adaptively selects and combines temporal horizons, enabling robust adaptation to changes in reward structure without manual discount-factor tuning. This flexibility makes the method particularly suitable for continual learning scenarios involving task switches and varying environmental configurations. Empirically, we demonstrate that our approach identifies effective discount factors across a range of MiniGrid environments, including continual settings composed of three sequentially changing tasks. These results suggest that adaptive temporal discounting can improve parameter efficiency and enhance adaptability in both artificial and biologically inspired learning systems.",
+      "authors": [
+        "Manoosh Samiei",
+        "Doina Precup",
+        "Paul Masset"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-22T18:28:38Z",
+      "updated": "2026-07-22T18:28:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20656v1",
+      "abs_url": "https://arxiv.org/abs/2607.20656",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20656",
+      "summary_zh": "针对强化学习中固定折扣因子难以平衡短期与长期决策的问题，该研究提出了一种自适应多时间跨度（Multi-Horizon）学习方法。该方法通过动态选择并组合不同的时间跨度，实现了在无需手动调整折扣因子的情况下，对奖励结构变化的鲁棒适应。这种机制赋予了智能体在任务切换和环境配置变动下的持续学习能力。在 MiniGrid 环境及多任务连续学习场景下的实验表明，该方法能有效识别最优折扣因子，显著提升了模型在复杂环境中的参数效率与决策适应性，为构建更具生物启发性的学习系统提供了新思路。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.20655",
+      "title": "SalesLoop: Reinforcement Learning from Performance Feedback for Sales Lead Ranking",
+      "abstract": "Lead ranking in Customer Relationship Management (CRM) systems faces a persistent challenge: models achieving high offline accuracy often underperform in production. We identify three fundamental gaps responsible for this disconnect: offline-online metric mismatch, pointwise-listwise objective misalignment, and temporal distribution drift. To address these gaps, we propose SalesLoop, a reinforcement learning framework that establishes a closed feedback loop between model predictions and real-world business outcomes. Our approach introduces (1) a performance-aware reward that encodes conversion outcomes weighted by ranking position and conversion velocity, and (2) Discriminative GRPO, a listwise optimization objective that adapts Group Relative Policy Optimization to discriminative ranking models. SalesLoop improves NDCG@K by +7.9\\% and P@K by +15.8\\% over the strongest static baseline. A 160-day production A/B test at a New Energy Vehicle manufacturer, spanning 16.5M leads and 280 sales specialists across two provincial markets, validates statistically significant cumulative lift of +4.7\\% ($p=0.047$) and +8.7\\% ($p=0.002$). In production, the ranking backbone achieves Top-10\\% recall of 44.1\\% and surfaces high-intent leads at $2.3\\times$ the conversion rate of specialist baselines.",
+      "authors": [
+        "Chenyu Zhang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.IR"
+      ],
+      "published": "2026-07-22T18:26:57Z",
+      "updated": "2026-07-22T18:26:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20655v1",
+      "abs_url": "https://arxiv.org/abs/2607.20655",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20655",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对CRM系统中销售线索排序模型离线指标与线上业务表现脱节的问题，SalesLoop框架通过构建闭环反馈机制，解决了离线-在线指标不匹配、点对点与列表式目标偏差以及时间分布漂移等核心挑战。该方法引入了融合转化结果、排序位置及转化速度的性能感知奖励函数，并提出了基于Group Relative Policy Optimization的Discriminative GRPO列表式优化目标。实验结果显示，SalesLoop在NDCG@K和P@K指标上显著优于静态基线。在新能源汽车制造企业的160天生产环境A/B测试中，该模型实现了转化率的显著提升，成功将高意向线索的转化效率提升至人工基线的2.3倍，验证了其在复杂销售场景下的鲁棒性与业务价值。"
+    },
+    {
+      "id": "2607.20653",
+      "title": "PhysCoRe: Physics-Corrected Residual World Models for Material-Aware Deformable Dynamics",
+      "abstract": "Predicting how deformable objects evolve under robotic manipulation is a longstanding challenge. Existing approaches typically rely on per-object optimization to fit material parameters, which can be slow and cannot generalize, while end-to-end learned alternatives extrapolate poorly and often violate basic physical structure. We present PhysCoRe, a physics-corrected residual world model that couples a differentiable Material Point Method (MPM) simulator with two feed-forward neural networks. A material refinement module, Material from Motion (MfM), infers per-particle elasticity from visual observations, grounding the simulator in object-specific physics. A residual correction module, Residual from Dynamics (RfD), learns the discrepancy and predicts corrections to the simulator's internal dynamics, absorbing systematic biases that the analytical model cannot capture. This design also supports online material identification on novel objects. MfM adapts from limited interactions, and its predictive uncertainty steers further exploration toward the regions where its estimate is least confident. Experiments on real deformable-object manipulation sequences show that PhysCoRe outperforms state-of-the-art baselines in prediction accuracy, and that its predicted confidence forms a reliable distribution across the object's geometry, providing a natural signal for future confidence-guided exploration.",
+      "authors": [
+        "Haocheng Yin",
+        "Shuohan Tao",
+        "Yongsheng Chen",
+        "Lu Gan"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-07-22T18:25:57Z",
+      "updated": "2026-07-22T18:25:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20653v1",
+      "abs_url": "https://arxiv.org/abs/2607.20653",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20653",
+      "summary_zh": "针对机器人操作中可变形物体动力学预测难题，PhysCoRe 提出了一种结合可微 Material Point Method (MPM) 模拟器与神经网络的残差世界模型。该方法通过 Material from Motion (MfM) 模块从视觉观测中推断粒子级弹性参数，并利用 Residual from Dynamics (RfD) 模块学习模拟器与真实物理间的偏差，从而在保持物理一致性的同时提升预测精度。系统支持对未知物体的在线材料识别，并能根据预测不确定性引导主动探索。在真实场景的实验表明，PhysCoRe 在预测准确性上显著优于现有基准模型，其输出的置信度分布能有效指导机器人进行高效的交互式学习。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.20628",
+      "title": "RealVDeblur: One-Step Diffusion for Generalizable Real-World Video Deblurring",
+      "abstract": "Real-world video deblurring remains challenging due to diverse motion patterns, complex degradations, and the scarcity of realistic training data, yet robust restoration is critical for downstream pipelines such as mobile imaging and 3D reconstruction. This work presents \\textbf{RealVDeblur}, an efficient generative framework designed to improve in-the-wild robustness under diverse real capture conditions. First, a large-scale, physically grounded blur synthesis pipeline is constructed from scene-level 3D Gaussian Splatting (3DGS) assets and high-frame-rate videos, providing realistic training data covering both camera-induced and object-motion blur. Second, a video diffusion prior is leveraged for restoration; to better accommodate frame-dependent blur variations, temporal compression in the VAE is disabled and a frame-wise encoding scheme is adopted. For practical deployment on long videos, multi-step diffusion sampling is distilled into an efficient one-step generator, and a training-free Temporal Window Mask stabilizes inference beyond the training horizon with constant memory usage. Extensive experiments on diverse real-world benchmarks demonstrate strong perceptual quality, semantic fidelity, and temporal consistency on unseen videos, as well as improved robustness in downstream 3D reconstruction under severe motion blur. Project page: https://rbjin.github.io/RealVDeblur",
+      "authors": [
+        "Renbiao Jin",
+        "Mingxin Yang",
+        "Yutian Chen",
+        "Junhao Zhuang",
+        "Xin Cai",
+        "Mulin Yu",
+        "Linning Xu",
+        "Wenxian Yu",
+        "Danping Zou",
+        "Shi Guo",
+        "Tianfan Xue"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-22T18:01:03Z",
+      "updated": "2026-07-22T18:01:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20628v1",
+      "abs_url": "https://arxiv.org/abs/2607.20628",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20628",
+      "summary_zh": "RealVDeblur 旨在解决真实场景下视频去模糊面临的运动模式多样、退化复杂及训练数据匮乏等挑战。该研究构建了基于 3D Gaussian Splatting 的物理驱动模糊合成流水线，并采用取消 VAE 时间压缩的逐帧编码方案，充分利用视频扩散先验实现高质量修复。通过将多步扩散采样蒸馏为高效的一步生成器，并引入无需训练的 Temporal Window Mask 机制，该模型在保持恒定内存占用的同时，实现了长视频的高效稳定推理。在多个真实世界基准测试中，该方法在感知质量、语义保真度及时间一致性方面表现优异，并显著提升了严重运动模糊下下游 3D 重建任务的鲁棒性。",
+      "impact_score": null
+    },
     {
       "id": "2607.20399",
       "title": "Towards Miniature Humanoid Tele-Loco-Manipulation Using Virtual Reality and Reinforcement Learning",
@@ -210,6 +486,7 @@
         "Yukun Ma",
         "Chongjia Ni",
         "Yufei Shi",
+        "Biao Tian",
         "Haoxu Wang",
         "Menglin Wu",
         "Jianwei Yu",
@@ -224,8 +501,8 @@
         "eess.AS"
       ],
       "published": "2026-07-22T15:11:46Z",
-      "updated": "2026-07-22T15:11:46Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.20253v1",
+      "updated": "2026-07-23T14:43:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20253v2",
       "abs_url": "https://arxiv.org/abs/2607.20253",
       "topics": [
         "rl"
@@ -420,7 +697,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20090",
-      "summary_zh": "针对检索增强大语言模型在处理包含误导性或指令性干扰信息的上下文时，难以精准区分有效证据的问题，该研究提出了 SelectBench 基准测试与训练集，旨在提升模型选择性采纳证据的能力。通过采用 DAPO（Direct Alignment from Preference Optimization）方法，利用确定性规则奖励或冻结的语义判别器对 Qwen3.5-4B 模型进行后训练，实验结果显示模型在 SelectBench-v2 测试集上的严格成功率有所提升，且能有效减少对禁止性内容的采纳并生成更聚焦的回答。尽管该方法在保持 MMLU 和 HotpotQA 等通用能力的同时实现了定向优化，但在抵御提示词注入攻击及统计显著性方面仍存在局限。研究表明，未来需进一步强化奖励塑造或增加训练迭代次数，以实现更稳健的证据筛选性能。"
+      "summary_zh": "针对检索增强大语言模型在处理包含误导性或指令性干扰信息的上下文时，难以精准区分有效证据的问题，该研究提出了 SelectBench 基准测试与训练集，旨在提升模型选择性采纳证据的能力。通过采用 DAPO（Direct Alignment from Preference Optimization）方法，利用确定性规则奖励或冻结的语义判别器对 Qwen3.5-4B 模型进行后训练，实验结果显示模型在 SelectBench-v2 测试集上的严格成功率有所提升，且能有效减少对禁止性内容的采纳并生成更聚焦的回答。尽管该方法在保持 MMLU 和 HotpotQA 等通用能力的同时实现了定向优化，但在抵御提示词注入攻击及统计显著性方面仍存在局限。研究表明，未来需进一步强化奖励塑造或增加训练迭代次数，以实现更稳健的证据筛选性能。",
+      "impact_score": null
     },
     {
       "id": "2607.20083",
@@ -444,14 +722,15 @@
         "cs.AI"
       ],
       "published": "2026-07-22T12:35:40Z",
-      "updated": "2026-07-22T12:35:40Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.20083v1",
+      "updated": "2026-07-23T06:34:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20083v2",
       "abs_url": "https://arxiv.org/abs/2607.20083",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20083",
-      "summary_zh": "随着大语言模型性能提升，模型生成的候选回复质量趋同，导致评估器分数差距缩小，进而削弱了策略优化的监督信号。DynamicRubric 框架通过概率分配视角揭示了分数差距对策略优化的重要性，提出了一种响应集条件化的评估器与策略协同进化机制，利用动态生成的加权二进制评分项来放大细微的质量差异。实验表明，该方法在 8B 模型上即可超越 70B 奖励模型或 235B 静态评估器的监督效果，并在推理与代码任务中表现优异。目前，该技术已在微信搜索的 AI 问答场景中全量部署，每日处理千万级请求并显著提升了关键业务指标，验证了评估器应随策略同步进化的核心原则。"
+      "summary_zh": "随着大语言模型性能提升，模型生成的候选回复质量趋同，导致评估器分数差距缩小，进而削弱了策略优化的监督信号。DynamicRubric 框架通过概率分配视角揭示了分数差距对策略优化的重要性，提出了一种响应集条件化的评估器与策略协同进化机制，利用动态生成的加权二进制评分项来放大细微的质量差异。实验表明，该方法在 8B 模型上即可超越 70B 奖励模型或 235B 静态评估器的监督效果，并在推理与代码任务中表现优异。目前，该技术已在微信搜索的 AI 问答场景中全量部署，每日处理千万级请求并显著提升了关键业务指标，验证了评估器应随策略同步进化的核心原则。",
+      "impact_score": null
     },
     {
       "id": "2607.20072",
@@ -505,7 +784,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20057",
-      "summary_zh": "针对现有蛋白质语言模型难以精准建模抗体-抗原配对及表位交互的问题，AAMFM（Antigen-specific Antibody Multimodal Foundation Model）通过引入跨模态适配器，将抗原的几何界面与表位注释信息融入抗体序列与结构的统一表征中，实现了抗体-抗原交互的联合建模。该模型采用 Calibrated Direct Preference Optimization (Cal-DPO) 技术，利用结构先验信息对齐结合特异性目标，从而显著提升了功能性抗体设计的准确性。在多项基准测试中，AAMFM 展现出优于现有方法的性能，为抗原特异性抗体工程提供了高效的生成式框架。"
+      "summary_zh": "针对现有蛋白质语言模型难以精准建模抗体-抗原配对及表位交互的问题，AAMFM（Antigen-specific Antibody Multimodal Foundation Model）通过引入跨模态适配器，将抗原的几何界面与表位注释信息融入抗体序列与结构的统一表征中，实现了抗体-抗原交互的联合建模。该模型采用 Calibrated Direct Preference Optimization (Cal-DPO) 技术，利用结构先验信息对齐结合特异性目标，从而显著提升了功能性抗体设计的准确性。在多项基准测试中，AAMFM 展现出优于现有方法的性能，为抗原特异性抗体工程提供了高效的生成式框架。",
+      "impact_score": null
     },
     {
       "id": "2607.20011",
@@ -546,14 +826,15 @@
         "cs.CE"
       ],
       "published": "2026-07-22T10:51:49Z",
-      "updated": "2026-07-22T10:51:49Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.20010v1",
+      "updated": "2026-07-23T08:57:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.20010v2",
       "abs_url": "https://arxiv.org/abs/2607.20010",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.20010",
-      "summary_zh": "该研究提出了一种基于条件期望理论的广义时间差分（TD）强化学习框架，将价值函数与动作价值函数视为不确定量，并将其估计转化为随机推理问题。相比依赖线性高斯假设的传统 Kalman-based TD 学习，该方法通过多项式混沌展开或基于集合的近似，实现了对非线性模型及非高斯分布的有效处理。该算法在递归估计价值函数条件期望的同时，能够量化学习过程中的二阶概率矩，从而实时评估价值函数的不确定性。在质量-弹簧-阻尼系统及非线性热传导问题的实验中，该方法展现了对价值函数及其不确定性进行精确估计的能力，显著扩展了传统 Kalman 滤波在随机系统中的应用范围。"
+      "summary_zh": "该研究提出了一种基于条件期望理论的广义时间差分（TD）强化学习框架，将价值函数与动作价值函数视为不确定量，并将其估计转化为随机推理问题。相比依赖线性高斯假设的传统 Kalman-based TD 学习，该方法通过多项式混沌展开或基于集合的近似，实现了对非线性模型及非高斯分布的有效处理。该算法在递归估计价值函数条件期望的同时，能够量化学习过程中的二阶概率矩，从而实时评估价值函数的不确定性。在质量-弹簧-阻尼系统及非线性热传导问题的实验中，该方法展现了对价值函数及其不确定性进行精确估计的能力，显著扩展了传统 Kalman 滤波在随机系统中的应用范围。",
+      "impact_score": null
     },
     {
       "id": "2607.19992",
@@ -668,7 +949,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19962",
-      "summary_zh": "EvoThink 旨在解决大推理模型（LRMs）因冗余验证步骤导致的“过度思考”问题，在提升推理效率的同时增强模型性能。该框架包含两个核心组件：Self-Pruning Training（SPT）通过无监督方式迭代剪枝冗余步骤，训练模型生成更简洁的推理轨迹；Aha-Moment Preference Optimization（AMPO）则借鉴遗传算法思想，从失败的推理尝试中提取“顿悟时刻”（aha-moment），通过强化学习优化模型以习得正确的推理模式。在数学推理和代码生成 benchmark 上的实验表明，EvoThink 不仅大幅降低了推理阶段的 token 消耗，还显著提升了模型的整体推理能力。"
+      "summary_zh": "EvoThink 旨在解决大推理模型（LRMs）因冗余验证步骤导致的“过度思考”问题，在提升推理效率的同时增强模型性能。该框架包含两个核心组件：Self-Pruning Training（SPT）通过无监督方式迭代剪枝冗余步骤，训练模型生成更简洁的推理轨迹；Aha-Moment Preference Optimization（AMPO）则借鉴遗传算法思想，从失败的推理尝试中提取“顿悟时刻”（aha-moment），通过强化学习优化模型以习得正确的推理模式。在数学推理和代码生成 benchmark 上的实验表明，EvoThink 不仅大幅降低了推理阶段的 token 消耗，还显著提升了模型的整体推理能力。",
+      "impact_score": null
     },
     {
       "id": "2607.19956",
@@ -695,7 +977,8 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19956",
-      "summary_zh": "针对低资源语言摘要任务中知识蒸馏（Knowledge Distillation）可能导致性能下降的问题，研究发现标准蒸馏在 BanSum 基准上对超半数样本具有负面影响。为此，提出了 CHAD 和 EWAD+CPDP 两种可靠性感知蒸馏方法：前者通过梯度对齐识别并过滤有害样本，后者结合熵加权自适应蒸馏与多教师容量比例约束。实验表明，这些方法在仅使用 60M 参数的情况下，不仅显著超越了标准蒸馏，还击败了规模大 50 倍的 Qwen 2.5-3B 模型。在 15 种不同语言的 XL-Sum 测试中，该方法在大多数场景下均表现出优异的性能，证明了选择性蒸馏在提升模型效率与可靠性方面的巨大潜力。"
+      "summary_zh": "针对低资源语言摘要任务中知识蒸馏（Knowledge Distillation）可能导致性能下降的问题，研究发现标准蒸馏在 BanSum 基准上对超半数样本具有负面影响。为此，提出了 CHAD 和 EWAD+CPDP 两种可靠性感知蒸馏方法：前者通过梯度对齐识别并过滤有害样本，后者结合熵加权自适应蒸馏与多教师容量比例约束。实验表明，这些方法在仅使用 60M 参数的情况下，不仅显著超越了标准蒸馏，还击败了规模大 50 倍的 Qwen 2.5-3B 模型。在 15 种不同语言的 XL-Sum 测试中，该方法在大多数场景下均表现出优异的性能，证明了选择性蒸馏在提升模型效率与可靠性方面的巨大潜力。",
+      "impact_score": null
     },
     {
       "id": "2607.19935",
@@ -750,7 +1033,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19919",
-      "summary_zh": "Diffusion ReRoll 针对现有扩散模型在机器人序列预测中单调去噪导致的局部优化受限问题，提出了一种支持跨时域修订的结构化重噪机制。该方法通过选择性地对已趋于稳定的局部区域进行重噪，使其能够利用序列其余部分的上下文信息进行二次精炼，从而实现序列片段间的双向修订与全局一致性维护。实验表明，该框架在 OGBench 的长程规划任务中，相较于 Diffusion Forcing 和 Diffuser 取得了显著的成功率提升。在 LIBERO-10 多任务基准测试中，Diffusion ReRoll 在动作预测任务上的平均成功率较 Diffusion Policy 提升了 56.5%，并在视频-动作统一建模中展现出卓越的预测一致性与分布外泛化能力，验证了结构化重噪在机器人序列生成中的有效性。"
+      "summary_zh": "Diffusion ReRoll 针对现有扩散模型在机器人序列预测中单调去噪导致的局部优化受限问题，提出了一种支持跨时域修订的结构化重噪机制。该方法通过选择性地对已趋于稳定的局部区域进行重噪，使其能够利用序列其余部分的上下文信息进行二次精炼，从而实现序列片段间的双向修订与全局一致性维护。实验表明，该框架在 OGBench 的长程规划任务中，相较于 Diffusion Forcing 和 Diffuser 取得了显著的成功率提升。在 LIBERO-10 多任务基准测试中，Diffusion ReRoll 在动作预测任务上的平均成功率较 Diffusion Policy 提升了 56.5%，并在视频-动作统一建模中展现出卓越的预测一致性与分布外泛化能力，验证了结构化重噪在机器人序列生成中的有效性。",
+      "impact_score": null
     },
     {
       "id": "2607.19901",
@@ -800,7 +1084,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19895",
-      "summary_zh": "OSVE 旨在解决现有扩散模型在视频编辑中因多步采样与反演导致的计算开销大、速度慢的问题。该框架通过训练一个可学习的编码器，在单次前向传播中预测初始噪声，并结合 Structure-Aware Editing (SAE) loss 确保编辑过程中的几何结构一致性。为实现时间连贯性，引入了 Unified-Frame Editing (UFE) 技术，通过拼接帧潜变量并在单步生成中执行跨帧注意力机制，配合滑动窗口策略处理长视频。实验结果表明，OSVE 在保持与当前顶尖多步编辑方法相当甚至更优质量的同时，推理速度提升了约 155 至 171 倍，为实时视频编辑应用提供了高效解决方案。"
+      "summary_zh": "OSVE 旨在解决现有扩散模型在视频编辑中因多步采样与反演导致的计算开销大、速度慢的问题。该框架通过训练一个可学习的编码器，在单次前向传播中预测初始噪声，并结合 Structure-Aware Editing (SAE) loss 确保编辑过程中的几何结构一致性。为实现时间连贯性，引入了 Unified-Frame Editing (UFE) 技术，通过拼接帧潜变量并在单步生成中执行跨帧注意力机制，配合滑动窗口策略处理长视频。实验结果表明，OSVE 在保持与当前顶尖多步编辑方法相当甚至更优质量的同时，推理速度提升了约 155 至 171 倍，为实时视频编辑应用提供了高效解决方案。",
+      "impact_score": null
     },
     {
       "id": "2607.19889",
@@ -886,7 +1171,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19876",
-      "summary_zh": "针对具身世界模型（EWMs）在物理一致性评估中过度依赖逆动力学模型（IDM）导致误差归因模糊的问题，KineBench 提出了一种无需 IDM 的闭环评估框架。该方法利用级联视觉基础模型直接从生成视频中提取 6D 末端执行器位姿，并结合 Spectral Arc Length 和 Maruyama Manipulability Index 等 3D 运动学指标，在 ManiSkill3 环境下对轨迹平滑度与物理可行性进行量化分析。实验涵盖了基础执行、任务迁移、视觉分布外泛化及复杂度扩展四个维度，揭示了当前模型在具身视频生成中存在任务复杂度受限的非线性扩展规律，为后续数据扩展策略提供了关键的实证参考。"
+      "summary_zh": "针对具身世界模型（EWMs）在物理一致性评估中过度依赖逆动力学模型（IDM）导致误差归因模糊的问题，KineBench 提出了一种无需 IDM 的闭环评估框架。该方法利用级联视觉基础模型直接从生成视频中提取 6D 末端执行器位姿，并结合 Spectral Arc Length 和 Maruyama Manipulability Index 等 3D 运动学指标，在 ManiSkill3 环境下对轨迹平滑度与物理可行性进行量化分析。实验涵盖了基础执行、任务迁移、视觉分布外泛化及复杂度扩展四个维度，揭示了当前模型在具身视频生成中存在任务复杂度受限的非线性扩展规律，为后续数据扩展策略提供了关键的实证参考。",
+      "impact_score": null
     },
     {
       "id": "2607.19854",
@@ -910,7 +1196,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19854",
-      "summary_zh": "针对有限时域、时间齐次马尔可夫决策过程（MDP），该研究旨在解决强化学习中遗憾值（regret）对时域长度 $H$ 的依赖问题。通过引入一种新型算法，实现了 $\\tilde O(\\sqrt{SAK} + S^8A^3)$ 的遗憾界，在渐近意义上达到与上下文多臂老虎机（contextual bandit）下界 $\\Omega(\\sqrt{SAK})$ 相匹配的最优水平，彻底消除了对 $H$ 的依赖。核心创新在于利用最优价值函数 $V_h^*$ 的单调性，并将其投影至 $S$ 维网格上，从而规避了传统方法中因联合界（union bound）导致的额外 $H$ 因子。此外，通过引入基于奖励的截断探索机制、具备单调性保护的切割奖励（cutting bonus）以及针对时间齐次 MDP 的总偏差界，该方法显著提升了算法在处理长时域任务时的性能表现。"
+      "summary_zh": "针对有限时域、时间齐次马尔可夫决策过程（MDP），该研究旨在解决强化学习中遗憾值（regret）对时域长度 $H$ 的依赖问题。通过引入一种新型算法，实现了 $\\tilde O(\\sqrt{SAK} + S^8A^3)$ 的遗憾界，在渐近意义上达到与上下文多臂老虎机（contextual bandit）下界 $\\Omega(\\sqrt{SAK})$ 相匹配的最优水平，彻底消除了对 $H$ 的依赖。核心创新在于利用最优价值函数 $V_h^*$ 的单调性，并将其投影至 $S$ 维网格上，从而规避了传统方法中因联合界（union bound）导致的额外 $H$ 因子。此外，通过引入基于奖励的截断探索机制、具备单调性保护的切割奖励（cutting bonus）以及针对时间齐次 MDP 的总偏差界，该方法显著提升了算法在处理长时域任务时的性能表现。",
+      "impact_score": null
     },
     {
       "id": "2607.19847",
