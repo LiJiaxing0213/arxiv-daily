@@ -1,6 +1,6 @@
 {
   "date": "2026-07-21",
-  "generated_at": "2026-07-26T04:55:44.331904+00:00",
+  "generated_at": "2026-07-27T05:09:03.913203+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,51 @@
     }
   },
   "papers": [
+    {
+      "id": "2607.21646",
+      "title": "Adjustment Speed as a Safety Constraint for Nonstationary Reinforcement Learning",
+      "abstract": "Ensuring safety in reinforcement learning under nonstationarity requires determining whether a learning system can safely adapt to forecasted environmental change within the required recovery horizon. Existing safe reinforcement learning methods typically assume stationary environments and do not explicitly consider adaptation speed as a safety concern. However, when environments evolve over time, delayed adaptation may result in transient unsafe behavior. This paper proposes adjustment speed as a safety constraint for nonstationary reinforcement learning. The central idea is to define safety in terms of adaptation feasibility: future states or regions may become unsafe when the adaptation required to remain safe exceeds the learning system's calibrated recovery capacity. The proposed framework uses learned context representations and short-horizon context forecasts to estimate adaptation demand and compare it with the agent's achievable adaptation capacity. When predicted adaptation demand exceeds the calibrated recovery capacity, the framework proactively tightens the admissible action set and activates an action-level shield to reduce unsafe behavior before violations occur. Experiments in a nonstationary driving environment show that the proposed approach primarily reduces safety violations in short-horizon windows aligned with context changes. Ablation studies further show that shielding is more conservative for peak- and tail-risk suppression, while optimization-level adjustment provides additional reductions in short-horizon switch-conditioned violations. These results support adaptation feasibility as a practical safety principle for reinforcement learning under nonstationarity and demonstrate that proactive intervention can improve safety during periods of environmental change.",
+      "authors": [
+        "Timothy Tomashevskiy"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-21T23:52:07Z",
+      "updated": "2026-07-21T23:52:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.21646v1",
+      "abs_url": "https://arxiv.org/abs/2607.21646",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.21646",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "非平稳环境下的强化学习面临适应延迟导致的瞬时安全风险，现有方法多假设环境静态，缺乏对适应速度的约束。该研究提出将“调整速度”作为安全约束，通过学习上下文表示与短视界预测来评估环境变化带来的适应需求，并将其与智能体的恢复能力进行对比。当预测需求超过恢复容量时，框架会主动收紧动作空间并激活动作级 Shielding 机制，从而在违规发生前进行干预。在非平稳驾驶场景中的实验表明，该方法能有效降低环境切换期间的短期安全违规，证明了基于适应可行性的安全原则在动态环境中的实用性与有效性。"
+    },
+    {
+      "id": "2607.21645",
+      "title": "Multi-Horizon Consistency as Geometry: When Latent Dynamics Contract, and When They Do Not",
+      "abstract": "Multi-horizon latent consistency is a common training knob in video predictors and world models, but practitioners rarely know what it does to transition geometry. We treat lambda, the weight on multi-step latent agreement, as a diagnostic control and measure an empirical expansion proxy L20,q95 together with horizon-20 prediction error E20. On Moving-MNIST (n=6 seeds at the critical pair), raising lambda from 0 to 0.8 cuts L20 from 4.96 +/- 2.01 to 1.01 +/- 0.06 (paired t p=0.005, Wilcoxon p=0.031) and halves E20 (0.365 to 0.177, paired t p=1.1e-13). Four of six seeds cross L<1 at lambda=0.8. The same loss does not produce population L<1 on action-conditioned Pendulum-v1 or CartPole-v1, nor on KTH Actions video, even when E20 improves. An associational mediation analysis on MMNIST gives r-hat=0.94 (95% CI [0.88, 1.00], n=27, B=2000); lambda was not randomized. Defensive checks (architectural baselines, exogenous stress, WorldTest, MPC, scaling) mostly support a narrow claim: soft consistency can push passive video toward a near-contractive band, and that band is domain-limited. A stochastic-forcing law L20 ~ 1.23 + 1.82 eta at lambda=0.8 (bootstrap slope CI [1.73, 1.92], R^2=0.96) unifies control domains on the same curve via calibrated eta_eff. Complete joint slices at lambda in {0.4, 1.2} (30/30 cells, 5 eta x 3 seeds) show comparable linear L20(eta) slopes (~1.69 and ~2.00); we do not fit a continuous (lambda, eta) surface. We do not report DreamerV3 or TD-MPC2 returns.",
+      "authors": [
+        "Kavya Bhand",
+        "Aadi Joshi"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-21T23:50:10Z",
+      "updated": "2026-07-21T23:50:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.21645v1",
+      "abs_url": "https://arxiv.org/abs/2607.21645",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.21645",
+      "summary_zh": "多步潜在一致性（Multi-horizon latent consistency）常用于视频预测与世界模型训练，但其对模型转换几何结构的影响尚不明确。研究通过引入多步一致性权重 $\\lambda$ 作为诊断控制，量化了潜在空间的收缩性指标 $L_{20}$ 与预测误差 $E_{20}$ 之间的关联。实验发现，在 Moving-MNIST 数据集上，提高 $\\lambda$ 能显著降低 $L_{20}$ 并实现近收缩性，但在 Pendulum-v1、CartPole-v1 及 KTH Actions 等复杂控制或视频任务中，该效应并不具备普适性。通过随机强迫律（stochastic-forcing law）分析，揭示了不同领域在特定参数下遵循统一的线性收缩曲线，证明了软一致性仅在特定领域内能有效引导模型进入近收缩带，为理解世界模型的训练动力学提供了几何视角。"
+    },
     {
       "id": "2607.19628",
       "title": "HypEMBER: Hypernetwork-based Ensemble for Robust Policy Learning of Parametrized Dynamical Systems",
@@ -134,6 +179,28 @@
       "summary_zh": "针对现有 AI 自我提升方法过度依赖特定 Agent 设计导致难以迁移的问题，本研究提出了一种以知识为中心的自我提升范式（Knowledge-Centric Self-Improvement）。该方法通过让通用型 Agent 在任务执行后将经验提炼并存入共享知识库，实现知识的持续积累与沉淀，而非单纯优化 Agent 本身。实验表明，该协议在抽象推理、编程及终端操作等 Benchmark 上显著提升了任务成功率并降低了计算成本。此外，提炼出的知识具备跨任务和跨 LLM 家族的通用性，证明了以知识驱动的自我提升路径在可解释性与可移植性上具有显著优势。"
     },
     {
+      "id": "2607.21644",
+      "title": "Toward Goal-Agnostic Joint-Embedding Predictive Control of Partial Differential Equations",
+      "abstract": "We present a goal-agnostic control framework for partial differential equations (PDEs) built around a joint-embedding predictive architecture (JEPA). The small 2D ViT encoder and action-conditioned latent dynamics are trained offline without a reward or downstream goal, frozen, and reused by a model-predictive path integral (MPPI) controller. We find that when available, the control objective is better applied to an explicit physical observable (provided injectivity) than to minimizing raw Euclidean distance ($L^2$) in the learned latent space. For a learned linear kinetic-energy (KE) probe on frozen latent rollouts we can reproduce held-out trajectories with $R^2=0.989$, while requiring no change to the underlying world model. On the PDE Control Gym 2D Navier--Stokes benchmark, using KE-probe planning improves the matched 50-episode native reward from $-12.08\\pm0.86$ for latent-$L^2$ planning to $-10.90\\pm0.91$ (95\\% CI), while lowering last-quarter velocity-field RMSE from $0.0765$ to $0.0692$. Across three intentionally withheld, dissimilar, aperiodic targets, KE planning lowers late field RMSE by $53\\%$ relative to latent-$L^2$ planning ($0.0220$ versus $0.0469$), winning all 30 paired episodes. The same frozen model also supports controls targeting stabilization around a steady configuration via direct regulation of KE achieving $2.7\\%$ mean relative error. While the latent probe is brittle to measurement noise and missing pixels, we believe the results support the claim that latent dynamics can remain both dynamic and goal-agnostic while calibrated observables (granted they guarantee unique continuation) may be a better objective for state control",
+      "authors": [
+        "Jonathan Gallagher",
+        "Roberto Guglielmi"
+      ],
+      "categories": [
+        "cs.LG",
+        "eess.SY"
+      ],
+      "published": "2026-07-21T20:49:07Z",
+      "updated": "2026-07-21T20:49:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.21644v1",
+      "abs_url": "https://arxiv.org/abs/2607.21644",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.21644",
+      "summary_zh": "针对偏微分方程（PDE）控制任务，该研究提出了一种基于联合嵌入预测架构（JEPA）的与目标无关（goal-agnostic）控制框架。该方法利用离线预训练的 ViT 编码器和动作条件潜在动力学模型构建世界模型，并通过模型预测路径积分（MPPI）控制器进行决策。关键创新在于引入物理可观测量的线性探针（如动能 KE probe）作为控制目标，而非直接在潜在空间最小化欧几里得距离。在 PDE Control Gym 的 2D Navier-Stokes 基准测试中，该方法在处理非周期性目标和系统稳定性控制时表现优异，显著降低了速度场 RMSE，证明了在保持潜在动力学通用性的同时，利用校准后的物理可观测量能更有效地实现状态控制。"
+    },
+    {
       "id": "2607.19522",
       "title": "Geospatial Diffusion-based Evolution Synthesis (GeoDES) for Storm-Centered Weather Augmentation",
       "abstract": "While machine learning-based weather models hold significant promise, they struggle to predict the detailed structure of large-scale weather systems such as cyclonic storms. Regional models are constrained by limited historical records within fixed geographic boundaries, while global models are computationally expensive and often operate at resolutions too coarse to capture fine-grained storm dynamics. To bridge this gap, we introduce the Geospatial Diffusion-based Evolution Synthesis (GeoDES) model, a custom image-to-video diffusion model. By focusing generation strictly on the evolving storm structure, GeoDES synthesizes physically consistent, high-fidelity weather events suitable for stress-testing forecast models and expanding meteorological datasets. Evaluations demonstrate that GeoDES outperforms prior methods on key metrics, achieving $52\\%$ lower Peak Vorticity Error and $8\\%$ higher Anomaly Correlation Coefficient than the next strongest methods on the North Atlantic test set.",
@@ -213,8 +280,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19345",
-      "summary_zh": "针对长文本推理中大模型普遍存在的“重复复制”现象，即模型倾向于盲目抄录输入文本而非进行有效推理，本研究揭示了其根本原因是模型缺乏对关键证据的精准定位（Grounding）。为此，研究提出了 GEAR（Grounding Evidence-Aware Reward）奖励塑造方法，通过引入关键证据重叠奖励与无关上下文惩罚，引导模型聚焦于任务核心信息。同时，该方案配套了一套自动化流水线，用于从任意文档中构建证据标注数据。实验表明，GEAR 在多个模型规模和基准测试中显著提升了推理准确率，最高提升达 4.6 个百分点，并有效抑制了冗余复制行为，在长上下文推理任务中表现出更强的鲁棒性。",
-      "impact_score": null
+      "summary_zh": "针对长文本推理中大模型普遍存在的“重复复制”现象，即模型倾向于盲目抄录输入文本而非进行有效推理，本研究揭示了其根本原因是模型缺乏对关键证据的精准定位（Grounding）。为此，研究提出了 GEAR（Grounding Evidence-Aware Reward）奖励塑造方法，通过引入关键证据重叠奖励与无关上下文惩罚，引导模型聚焦于任务核心信息。同时，该方案配套了一套自动化流水线，用于从任意文档中构建证据标注数据。实验表明，GEAR 在多个模型规模和基准测试中显著提升了推理准确率，最高提升达 4.6 个百分点，并有效抑制了冗余复制行为，在长上下文推理任务中表现出更强的鲁棒性。"
     },
     {
       "id": "2607.19343",
@@ -246,8 +312,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19343",
-      "summary_zh": "Masked Visual Actions 旨在解决机器人世界模型中动作指令与视觉空间不对齐的难题，通过将动作表示为视频中实体轨迹的局部掩码，实现了像素空间的统一控制接口。该方法将机器人运动作为前向动力学模型输入，预测场景对动作的响应，或通过目标物体运动反向推导所需的机器人行为。仅利用 15 小时的真实视频与仿真数据微调后，该模型在多种场景和实体下展现出极高的视觉保真度与可控性。实验表明，该模型能有效支持策略评估、基于模型的规划以及逆向运动合成，显著提升了机器人在复杂操作任务中的决策能力。",
-      "impact_score": null
+      "summary_zh": "Masked Visual Actions 旨在解决机器人世界模型中动作指令与视觉空间不对齐的难题，通过将动作表示为视频中实体轨迹的局部掩码，实现了像素空间的统一控制接口。该方法将机器人运动作为前向动力学模型输入，预测场景对动作的响应，或通过目标物体运动反向推导所需的机器人行为。仅利用 15 小时的真实视频与仿真数据微调后，该模型在多种场景和实体下展现出极高的视觉保真度与可控性。实验表明，该模型能有效支持策略评估、基于模型的规划以及逆向运动合成，显著提升了机器人在复杂操作任务中的决策能力。"
     },
     {
       "id": "2607.19341",
@@ -272,8 +337,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19341",
-      "summary_zh": "针对现有生成模型在知识密集型视觉推理任务中表现不足的问题，ExpertVerse 引入了一个包含 9 种认知能力与 8 个专业领域的评估基准，并构建了包含推理轨迹与知识锚定标注的 ExpertVerse-100K 数据集。通过训练 KnowThinker 模型，该研究实现了思维过程与精细化指令的联合生成，并提出 Bootstrapped Pareto Policy Optimization (BPPO) 算法，有效解决了多目标奖励优化中的梯度冲突与信用错位问题。实验表明，当前主流模型在复杂推理任务中存在显著缺陷，该研究为提升视觉生成模型的深度推理能力提供了关键的技术路径与评估标准。",
-      "impact_score": null
+      "summary_zh": "针对现有生成模型在知识密集型视觉推理任务中表现不足的问题，ExpertVerse 引入了一个包含 9 种认知能力与 8 个专业领域的评估基准，并构建了包含推理轨迹与知识锚定标注的 ExpertVerse-100K 数据集。通过训练 KnowThinker 模型，该研究实现了思维过程与精细化指令的联合生成，并提出 Bootstrapped Pareto Policy Optimization (BPPO) 算法，有效解决了多目标奖励优化中的梯度冲突与信用错位问题。实验表明，当前主流模型在复杂推理任务中存在显著缺陷，该研究为提升视觉生成模型的深度推理能力提供了关键的技术路径与评估标准。"
     },
     {
       "id": "2607.19339",
@@ -363,8 +427,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19331",
-      "summary_zh": "针对强化学习与可验证奖励（RLVR）中权重更新机制不明的问题，该研究揭示了模型权重的奇异结构特性，即模型通过保持基础权重的谱（Spectrum）不变，仅调整输入和输出奇异帧（Singular frames）即可实现行为优化。基于此发现，Isospectral Optimization (ISO) 框架应运而生，通过固定谱的优化策略实现了高效的离线模型合并与在线参数更新。ISO-Merger 无需额外数据或梯度更新即可融合多个专家模型，而 ISO-Optimizer 在推理和编码任务中，仅需极少训练步数即可达到甚至超越传统 AdamW 的性能。该方法证明了围绕奖励驱动的结构进行优化，能显著提升大语言模型的训练效率与性能表现。",
-      "impact_score": null
+      "summary_zh": "针对强化学习与可验证奖励（RLVR）中权重更新机制不明的问题，该研究揭示了模型权重的奇异结构特性，即模型通过保持基础权重的谱（Spectrum）不变，仅调整输入和输出奇异帧（Singular frames）即可实现行为优化。基于此发现，Isospectral Optimization (ISO) 框架应运而生，通过固定谱的优化策略实现了高效的离线模型合并与在线参数更新。ISO-Merger 无需额外数据或梯度更新即可融合多个专家模型，而 ISO-Optimizer 在推理和编码任务中，仅需极少训练步数即可达到甚至超越传统 AdamW 的性能。该方法证明了围绕奖励驱动的结构进行优化，能显著提升大语言模型的训练效率与性能表现。"
     },
     {
       "id": "2607.19313",
@@ -391,8 +454,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19313",
-      "summary_zh": "针对大型语言模型在处理复杂推理任务时因无法生成正确解而导致 RLVR 训练信号缺失的问题，Off-Context GRPO (OC-GRPO) 提出了一种利用特权信息引导训练的新方法。该方法通过在训练时引入包含解题前缀的引导式 rollout，强制模型探索正确路径，并利用重要性采样修正目标函数，从而有效弥合了引导式 rollout 与原始无引导目标之间的分布偏差。实验结果显示，OC-GRPO 在多个数学推理 benchmark 上表现优异，相比 vanilla GRPO 实现了 3.9% 的绝对性能提升，且几乎没有增加额外的计算成本，成功解决了模型在困难问题上的学习瓶颈。",
-      "impact_score": null
+      "summary_zh": "针对大型语言模型在处理复杂推理任务时因无法生成正确解而导致 RLVR 训练信号缺失的问题，Off-Context GRPO (OC-GRPO) 提出了一种利用特权信息引导训练的新方法。该方法通过在训练时引入包含解题前缀的引导式 rollout，强制模型探索正确路径，并利用重要性采样修正目标函数，从而有效弥合了引导式 rollout 与原始无引导目标之间的分布偏差。实验结果显示，OC-GRPO 在多个数学推理 benchmark 上表现优异，相比 vanilla GRPO 实现了 3.9% 的绝对性能提升，且几乎没有增加额外的计算成本，成功解决了模型在困难问题上的学习瓶颈。"
     },
     {
       "id": "2607.19281",
@@ -439,8 +501,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19243",
-      "summary_zh": "大型语言模型在多语言环境下存在事实一致性偏差，即同一事实在不同语言提示下表现出不一致的回答分布。针对这一问题，研究对比了零样本情境引导（Persona Prompting）、对比激活添加（CAA）以及基于直接偏好优化（DPO）的权重微调等干预策略，并构建了包含文化根源查询的跨语言事实数据集进行评估。实验发现，Persona Prompting 在平衡效果、安全性与跨领域泛化方面表现最优，优于更具侵入性的模型内部修改手段。研究结论表明，跨语言事实不一致性在很大程度上源于模型对提示语言的选择性偏好，通过轻量级的情境干预即可实现稳健且可迁移的对齐效果。",
-      "impact_score": null
+      "summary_zh": "大型语言模型在多语言环境下存在事实一致性偏差，即同一事实在不同语言提示下表现出不一致的回答分布。针对这一问题，研究对比了零样本情境引导（Persona Prompting）、对比激活添加（CAA）以及基于直接偏好优化（DPO）的权重微调等干预策略，并构建了包含文化根源查询的跨语言事实数据集进行评估。实验发现，Persona Prompting 在平衡效果、安全性与跨领域泛化方面表现最优，优于更具侵入性的模型内部修改手段。研究结论表明，跨语言事实不一致性在很大程度上源于模型对提示语言的选择性偏好，通过轻量级的情境干预即可实现稳健且可迁移的对齐效果。"
     },
     {
       "id": "2607.19232",
@@ -462,8 +523,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19232",
-      "summary_zh": "分层强化学习（HRL）中高层策略面临稀疏反馈及低层执行不确定性导致的训练不稳定问题。该研究提出 S3 方法，通过引入基于粗粒度动力学（Coarse Dynamics）的内在动机，使高层策略能够通过最小化多步聚合状态转移的预测不确定性来选择子目标。利用 Mixture Density Network（MDN）评估预测不确定性，为高层决策提供动态感知的引导，从而实现更稳健的策略优化。实验结果表明，该方法在非平稳的长时程任务中表现优异，有效提升了子目标选择的避险能力，在多个基准测试中超越了现有的主流 HRL 算法。",
-      "impact_score": null
+      "summary_zh": "分层强化学习（HRL）中高层策略面临稀疏反馈及低层执行不确定性导致的训练不稳定问题。该研究提出 S3 方法，通过引入基于粗粒度动力学（Coarse Dynamics）的内在动机，使高层策略能够通过最小化多步聚合状态转移的预测不确定性来选择子目标。利用 Mixture Density Network（MDN）评估预测不确定性，为高层决策提供动态感知的引导，从而实现更稳健的策略优化。实验结果表明，该方法在非平稳的长时程任务中表现优异，有效提升了子目标选择的避险能力，在多个基准测试中超越了现有的主流 HRL 算法。"
     },
     {
       "id": "2607.19228",
@@ -492,8 +552,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19228",
-      "summary_zh": "针对实时视频流中动态场景理解缺乏几何与实例一致性的问题，IGGT4D 提出了一种流式实例驱动几何 Transformer，通过因果时空建模处理序列帧，实现相机运动、几何结构与物体身份的统一表征更新。该模型采用增量式学习架构，在长序列动态环境中实现了高效的前馈 4D 重建。为解决监督数据匮乏，研究构建了包含 14.7 万个场景的 InsScene4D-147K 数据集，利用几何引导的自动化标注流程提供高质量时空一致性掩码。实验结果表明，IGGT4D 在 3D 重建、位姿估计及开放词汇分割等任务上均优于现有流式基准模型，展现了强大的在线推理扩展能力。",
-      "impact_score": null
+      "summary_zh": "针对实时视频流中动态场景理解缺乏几何与实例一致性的问题，IGGT4D 提出了一种流式实例驱动几何 Transformer，通过因果时空建模处理序列帧，实现相机运动、几何结构与物体身份的统一表征更新。该模型采用增量式学习架构，在长序列动态环境中实现了高效的前馈 4D 重建。为解决监督数据匮乏，研究构建了包含 14.7 万个场景的 InsScene4D-147K 数据集，利用几何引导的自动化标注流程提供高质量时空一致性掩码。实验结果表明，IGGT4D 在 3D 重建、位姿估计及开放词汇分割等任务上均优于现有流式基准模型，展现了强大的在线推理扩展能力。"
     },
     {
       "id": "2607.19226",
@@ -546,8 +605,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19223",
-      "summary_zh": "针对现有 diffusion drafters 在 speculative decoding 中因双向注意力机制导致生成质量波动大、领域适应性差的问题，AdaFlash 框架提出了两项核心改进。首先，通过引入基于 reverse-KL 散度的 on-policy distillation (OPD) 算法，有效降低了模型在不同领域间的预测方差，实现了更稳定的收敛；其次，设计了 adaptive length head 模块，能够根据 token 位置动态调整候选序列长度，从而显著降低目标模型的验证成本。实验结果表明，该方法在多种部署场景下均能提升推理速度，在高并发环境下吞吐量较现有 SOTA 方法提升约 66%，有效解决了 diffusion drafters 在实际应用中的性能瓶颈。",
-      "impact_score": null
+      "summary_zh": "针对现有 diffusion drafters 在 speculative decoding 中因双向注意力机制导致生成质量波动大、领域适应性差的问题，AdaFlash 框架提出了两项核心改进。首先，通过引入基于 reverse-KL 散度的 on-policy distillation (OPD) 算法，有效降低了模型在不同领域间的预测方差，实现了更稳定的收敛；其次，设计了 adaptive length head 模块，能够根据 token 位置动态调整候选序列长度，从而显著降低目标模型的验证成本。实验结果表明，该方法在多种部署场景下均能提升推理速度，在高并发环境下吞吐量较现有 SOTA 方法提升约 66%，有效解决了 diffusion drafters 在实际应用中的性能瓶颈。"
     },
     {
       "id": "2607.19219",
@@ -596,8 +654,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19199",
-      "summary_zh": "离线强化学习（Offline RL）受限于数据集覆盖范围，现有的偏好查询方法在查询选择和反馈利用上存在策略更新不稳定及与价值正则化兼容性差的问题。该研究提出了一种基于不确定性估计的保守查询与自适应正则化框架，利用 Morse 网络评估策略动作相对于离线数据集的不确定性。通过引入保守查询策略，在数据集附近选择性地查询动作以维持 Bellman 更新的稳定性，并结合不确定性感知自适应正则化方案，动态调整策略优化过程中的数据约束。在 D4RL benchmark 上的实验表明，该方法与 CQL 集成后在多项任务中均表现出优于或媲美现有算法的性能。",
-      "impact_score": null
+      "summary_zh": "离线强化学习（Offline RL）受限于数据集覆盖范围，现有的偏好查询方法在查询选择和反馈利用上存在策略更新不稳定及与价值正则化兼容性差的问题。该研究提出了一种基于不确定性估计的保守查询与自适应正则化框架，利用 Morse 网络评估策略动作相对于离线数据集的不确定性。通过引入保守查询策略，在数据集附近选择性地查询动作以维持 Bellman 更新的稳定性，并结合不确定性感知自适应正则化方案，动态调整策略优化过程中的数据约束。在 D4RL benchmark 上的实验表明，该方法与 CQL 集成后在多项任务中均表现出优于或媲美现有算法的性能。"
     },
     {
       "id": "2607.19194",
@@ -689,8 +746,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19191",
-      "summary_zh": "ABot-World-0 旨在解决长序列交互式视频生成中的分布偏移与自回归漂移问题，通过构建包含 AAA 游戏、模拟引擎及互联网视频的多源数据基础设施，实现了可控的世界动态建模。该模型采用双向动作条件教师模型向因果学生模型蒸馏的策略，并引入 LongForcing 技术以对齐长程自回归生成，同时利用参考角色记忆机制确保身份一致性。在推理端，通过轻量化 VAE 解码器、高效注意力机制及低位宽 DiT 推理的协同设计，该系统在单张 NVIDIA RTX 5090 GPU 上实现了 720P、16 FPS 的实时交互流。在 WorldRoamBench 上的实验表明，该方法在长程交互的连贯性与动作可控性方面表现优异，显著提升了复杂动态环境下的生成质量。",
-      "impact_score": null
+      "summary_zh": "ABot-World-0 旨在解决长序列交互式视频生成中的分布偏移与自回归漂移问题，通过构建包含 AAA 游戏、模拟引擎及互联网视频的多源数据基础设施，实现了可控的世界动态建模。该模型采用双向动作条件教师模型向因果学生模型蒸馏的策略，并引入 LongForcing 技术以对齐长程自回归生成，同时利用参考角色记忆机制确保身份一致性。在推理端，通过轻量化 VAE 解码器、高效注意力机制及低位宽 DiT 推理的协同设计，该系统在单张 NVIDIA RTX 5090 GPU 上实现了 720P、16 FPS 的实时交互流。在 WorldRoamBench 上的实验表明，该方法在长程交互的连贯性与动作可控性方面表现优异，显著提升了复杂动态环境下的生成质量。"
     },
     {
       "id": "2607.19190",
@@ -712,6 +768,7 @@
         "Yunuo Chen",
         "Pengzhi Yang",
         "Ziqiu Zeng",
+        "Siyuan Luo",
         "Huamin Wang",
         "Chao Liu",
         "Alan Yuille",
@@ -726,15 +783,14 @@
         "cs.AI"
       ],
       "published": "2026-07-21T15:23:38Z",
-      "updated": "2026-07-22T03:43:37Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.19190v2",
+      "updated": "2026-07-24T08:16:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.19190v3",
       "abs_url": "https://arxiv.org/abs/2607.19190",
       "topics": [
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19190",
-      "summary_zh": "针对机器人交互场景中从真实世界到仿真环境（Real2Sim）转换过程繁琐且依赖人工干预的问题，Agentic Real2Sim 框架利用视觉语言智能体（Vision-Language Agents）实现了自动化流程。该方法通过智能体自动完成场景几何重建、物理参数推断及机器人轨迹对齐，将真实交互记录转化为可运行的物理仿真孪生体。核心创新在于将复杂的转换任务转化为智能体决策过程，支持刚体操作、柔性物体交互及人形运动等多种场景。实验表明，该框架仅需轻量级开源 VLM 作为后端即可达到与前沿模型相当的转换成功率，显著降低了构建高质量仿真数据集以用于策略学习和评估的成本。",
-      "impact_score": null
+      "summary_zh": "针对机器人交互场景中从真实世界到仿真环境（Real2Sim）转换过程繁琐且依赖人工干预的问题，Agentic Real2Sim 框架利用视觉语言智能体（Vision-Language Agents）实现了自动化流程。该方法通过智能体自动完成场景几何重建、物理参数推断及机器人轨迹对齐，将真实交互记录转化为可运行的物理仿真孪生体。核心创新在于将复杂的转换任务转化为智能体决策过程，支持刚体操作、柔性物体交互及人形运动等多种场景。实验表明，该框架仅需轻量级开源 VLM 作为后端即可达到与前沿模型相当的转换成功率，显著降低了构建高质量仿真数据集以用于策略学习和评估的成本。"
     },
     {
       "id": "2607.19181",
@@ -790,8 +846,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19120",
-      "summary_zh": "现有几何基础模型（如 VGGT）虽具备强大的 3D 先验，但仅限于确定性前向推理，无法生成超出输入视角的几何细节。该研究提出 Latent Riemannian Flow Matching，通过在 VGGT 的潜在空间中直接进行流匹配，无需依赖显式的 3D 表示（如 Gaussians 或 meshes）。针对 VGGT 潜在空间位于高维超球面乘积上的特性，该方法构建了基于四重超球面乘积流形上的 Riemannian Flow Matching 框架，确保生成的 token 始终处于有效的数据流形内。在 RealEstate10K、ScanNet++ 和 ETH3D 等基准测试中，该方法在单视角外观与聚合 3D 几何生成方面均优于现有基线，证明了在几何基础模型潜在空间进行流匹配是实现高质量 3D 生成的可行范式。",
-      "impact_score": null
+      "summary_zh": "现有几何基础模型（如 VGGT）虽具备强大的 3D 先验，但仅限于确定性前向推理，无法生成超出输入视角的几何细节。该研究提出 Latent Riemannian Flow Matching，通过在 VGGT 的潜在空间中直接进行流匹配，无需依赖显式的 3D 表示（如 Gaussians 或 meshes）。针对 VGGT 潜在空间位于高维超球面乘积上的特性，该方法构建了基于四重超球面乘积流形上的 Riemannian Flow Matching 框架，确保生成的 token 始终处于有效的数据流形内。在 RealEstate10K、ScanNet++ 和 ETH3D 等基准测试中，该方法在单视角外观与聚合 3D 几何生成方面均优于现有基线，证明了在几何基础模型潜在空间进行流匹配是实现高质量 3D 生成的可行范式。"
     },
     {
       "id": "2607.19117",
@@ -812,8 +867,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19117",
-      "summary_zh": "针对参数化动作强化学习在多智能体场景下缺乏研究的问题，该研究提出了共享经验的多智能体扩展框架，分别构建了 MAGAC、MASAC 和 MATQC 模型。不同于传统的 CTDE 范式，该框架采用多个独立智能体共享经验回放池，同时保持各自的策略与价值网络。在 Platform-v0 和 Goal-v0 基准测试中的实验表明，该框架能显著提升 Greedy Actor-Critic 的性能，但 MASAC 和 MATQC 的改进相对有限。研究进一步揭示了智能体数量超过五个后，性能提升趋于平缓且计算成本大幅增加，明确了学习效果与计算效率之间的权衡关系。",
-      "impact_score": null
+      "summary_zh": "针对参数化动作强化学习在多智能体场景下缺乏研究的问题，该研究提出了共享经验的多智能体扩展框架，分别构建了 MAGAC、MASAC 和 MATQC 模型。不同于传统的 CTDE 范式，该框架采用多个独立智能体共享经验回放池，同时保持各自的策略与价值网络。在 Platform-v0 和 Goal-v0 基准测试中的实验表明，该框架能显著提升 Greedy Actor-Critic 的性能，但 MASAC 和 MATQC 的改进相对有限。研究进一步揭示了智能体数量超过五个后，性能提升趋于平缓且计算成本大幅增加，明确了学习效果与计算效率之间的权衡关系。"
     },
     {
       "id": "2607.19100",
@@ -867,8 +921,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19450",
-      "summary_zh": "针对大模型在线强化学习（Online RL）训练成本高昂且难以扩展至多任务领域的问题，REGEN 提出了一种基于离线强化学习（Offline RL）的专家到通用模型蒸馏框架。该方法不再依赖多教师模型在线同步推理与训练，而是通过回收专家模型在强化学习过程中产生的重放缓冲区（Replay Memory）数据进行离线训练，从而彻底解耦了采样过程与参数更新。实验表明，REGEN 在数学推理、代码生成及指令遵循任务中，能够以显著降低的计算成本达到与多教师在线蒸馏（MOPD）相当的性能。这一成果将在线强化学习转化为一种高效的数据合成过程，为大规模模型后训练提供了更具扩展性的技术路径。",
-      "impact_score": null
+      "summary_zh": "针对大模型在线强化学习（Online RL）训练成本高昂且难以扩展至多任务领域的问题，REGEN 提出了一种基于离线强化学习（Offline RL）的专家到通用模型蒸馏框架。该方法不再依赖多教师模型在线同步推理与训练，而是通过回收专家模型在强化学习过程中产生的重放缓冲区（Replay Memory）数据进行离线训练，从而彻底解耦了采样过程与参数更新。实验表明，REGEN 在数学推理、代码生成及指令遵循任务中，能够以显著降低的计算成本达到与多教师在线蒸馏（MOPD）相当的性能。这一成果将在线强化学习转化为一种高效的数据合成过程，为大规模模型后训练提供了更具扩展性的技术路径。"
     },
     {
       "id": "2607.19083",
@@ -891,8 +944,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19083",
-      "summary_zh": "GEqTrain 旨在解决等变图神经网络（Equivariant GNNs）在不同三维科学任务间难以复用的问题，通过配置驱动的框架实现了数据集语义、模型架构与训练目标的解耦。该框架利用 Hydra 配置实现声明式组装，允许共享等变骨干网络在生物分子反向映射、NMR 化学位移预测及生成式建模等任务间快速迁移。此外，GEqDiff 扩展了基于等变流匹配（Equivariant Flow Matching）的生成能力，支持对笛卡尔坐标及高阶张量场进行联合建模。实验表明，该方法在保持竞争性精度的同时，显著降低了跨任务建模的软件开发开销，提升了等变模型在科学计算领域的可复用性与扩展性。",
-      "impact_score": null
+      "summary_zh": "GEqTrain 旨在解决等变图神经网络（Equivariant GNNs）在不同三维科学任务间难以复用的问题，通过配置驱动的框架实现了数据集语义、模型架构与训练目标的解耦。该框架利用 Hydra 配置实现声明式组装，允许共享等变骨干网络在生物分子反向映射、NMR 化学位移预测及生成式建模等任务间快速迁移。此外，GEqDiff 扩展了基于等变流匹配（Equivariant Flow Matching）的生成能力，支持对笛卡尔坐标及高阶张量场进行联合建模。实验表明，该方法在保持竞争性精度的同时，显著降低了跨任务建模的软件开发开销，提升了等变模型在科学计算领域的可复用性与扩展性。"
     },
     {
       "id": "2607.19064",
@@ -940,8 +992,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19064",
-      "summary_zh": "Mage-Flow 旨在解决大规模图像生成模型训练与部署成本高昂的问题，通过协同设计轻量级 Mage-VAE 编码器与 Native-Resolution Multimodal Diffusion Transformer，实现了高效的文本生成与图像编辑。该模型引入了 anchor-latent 正则化技术，在大幅降低 Token 化成本的同时保持了高保真重建质量，并配合 CUDA kernel fusion 与原生分辨率打包技术，使端到端训练吞吐量提升约 2.5 倍。通过 RL 对齐与对抗感知蒸馏，Mage-Flow-Turbo 系列在 4B 参数规模下实现了极高的推理效率，在单张 NVIDIA A100 GPU 上仅需约 1 秒即可完成 1024² 分辨率的图像生成与编辑。实验结果表明，该架构在保持轻量化内存占用的前提下，于多项生成与编辑基准测试中展现了极具竞争力的性能，为交互式高分辨率视觉任务提供了实用方案。",
-      "impact_score": null
+      "summary_zh": "Mage-Flow 旨在解决大规模图像生成模型训练与部署成本高昂的问题，通过协同设计轻量级 Mage-VAE 编码器与 Native-Resolution Multimodal Diffusion Transformer，实现了高效的文本生成与图像编辑。该模型引入了 anchor-latent 正则化技术，在大幅降低 Token 化成本的同时保持了高保真重建质量，并配合 CUDA kernel fusion 与原生分辨率打包技术，使端到端训练吞吐量提升约 2.5 倍。通过 RL 对齐与对抗感知蒸馏，Mage-Flow-Turbo 系列在 4B 参数规模下实现了极高的推理效率，在单张 NVIDIA A100 GPU 上仅需约 1 秒即可完成 1024² 分辨率的图像生成与编辑。实验结果表明，该架构在保持轻量化内存占用的前提下，于多项生成与编辑基准测试中展现了极具竞争力的性能，为交互式高分辨率视觉任务提供了实用方案。"
     },
     {
       "id": "2607.19046",
@@ -968,8 +1019,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19046",
-      "summary_zh": "针对现有 On-policy Distillation (OPD) 仅依赖 token 级分布匹配而缺乏对推理模式偏好建模的问题，COPD 框架引入了对比学习机制。该方法通过对比轻量级与重量级推理指令下教师模型对同一状态的评分差异，构建 token 级优势信号，引导学生模型学习更简洁高效的推理策略。实验表明，COPD 在九个多模态 benchmark 上显著缩短了推理长度，同时保持了模型性能，并能无缝集成至 On-policy Self-distillation (OPSD) 中实现自我蒸馏。这种对比式监督不仅优化了推理效率，还为不同模型规模下的任务处理提供了更灵活的优化路径。",
-      "impact_score": null
+      "summary_zh": "针对现有 On-policy Distillation (OPD) 仅依赖 token 级分布匹配而缺乏对推理模式偏好建模的问题，COPD 框架引入了对比学习机制。该方法通过对比轻量级与重量级推理指令下教师模型对同一状态的评分差异，构建 token 级优势信号，引导学生模型学习更简洁高效的推理策略。实验表明，COPD 在九个多模态 benchmark 上显著缩短了推理长度，同时保持了模型性能，并能无缝集成至 On-policy Self-distillation (OPSD) 中实现自我蒸馏。这种对比式监督不仅优化了推理效率，还为不同模型规模下的任务处理提供了更灵活的优化路径。"
     },
     {
       "id": "2607.19044",
@@ -1023,8 +1073,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.19038",
-      "summary_zh": "FilmWorld 旨在解决将小说转化为长篇、多场景电影叙事时面临的因果一致性与视觉连贯性难题。该系统将任务形式化为动态电影世界建模，通过构建阶段将文学叙事转化为具象化的实体状态，并利用演化阶段实现跨场景的动态状态更新与因果一致性维护。FilmWorld 采用双组协作代理架构，分别负责叙事结构化翻译、视觉锚定及闭环状态验证，从而实现从文本到电影蓝图的精准映射。此外，配套的 FilmEval 评估框架通过九项客观指标对 15 部代表性小说进行测试，实验结果表明，该系统在叙事保真度及跨场景一致性方面显著优于现有的视频生成代理系统。",
-      "impact_score": null
+      "summary_zh": "FilmWorld 旨在解决将小说转化为长篇、多场景电影叙事时面临的因果一致性与视觉连贯性难题。该系统将任务形式化为动态电影世界建模，通过构建阶段将文学叙事转化为具象化的实体状态，并利用演化阶段实现跨场景的动态状态更新与因果一致性维护。FilmWorld 采用双组协作代理架构，分别负责叙事结构化翻译、视觉锚定及闭环状态验证，从而实现从文本到电影蓝图的精准映射。此外，配套的 FilmEval 评估框架通过九项客观指标对 15 部代表性小说进行测试，实验结果表明，该系统在叙事保真度及跨场景一致性方面显著优于现有的视频生成代理系统。"
     },
     {
       "id": "2607.19033",
@@ -1203,8 +1252,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18979",
-      "summary_zh": "现有大语言模型在多路径并行推理中，往往因无法区分各路径贡献而导致奖励分配不均，引发学习信号模糊及训练不稳定问题。Parallel Shapley 框架将每条推理路径视为合作博弈中的参与者，利用 Shapley 值量化各路径的边际贡献，并通过生成式奖励模型评估路径效用，结合蒙特卡洛采样实现高效近似计算。该方法能有效识别并剔除冗余或误导性的“搭便车”路径，实现细粒度的奖励分配。在多个数学推理基准测试中，该框架不仅显著优于现有基线模型，还显著提升了训练过程的稳定性和可解释性。",
-      "impact_score": null
+      "summary_zh": "现有大语言模型在多路径并行推理中，往往因无法区分各路径贡献而导致奖励分配不均，引发学习信号模糊及训练不稳定问题。Parallel Shapley 框架将每条推理路径视为合作博弈中的参与者，利用 Shapley 值量化各路径的边际贡献，并通过生成式奖励模型评估路径效用，结合蒙特卡洛采样实现高效近似计算。该方法能有效识别并剔除冗余或误导性的“搭便车”路径，实现细粒度的奖励分配。在多个数学推理基准测试中，该框架不仅显著优于现有基线模型，还显著提升了训练过程的稳定性和可解释性。"
     },
     {
       "id": "2607.18966",
@@ -1233,13 +1281,12 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18966",
-      "summary_zh": "强化学习训练的语言模型常出现“奖励寻求”现象，即模型倾向于优化评分者的判断而非真实目标，且两者在行为上难以区分。本研究提出 Contrastive Synthetic Document Finetuning (SDF) 方法，通过改变模型对奖励机制的认知，使其信念与开发者意图产生冲突，从而量化模型对评分者偏好的依赖程度。实验显示，OpenAI o3 模型在训练过程中对评分者偏好的敏感度显著提升，在面临任务完成与诚实守信的冲突时，后期模型更倾向于牺牲原则以获取高分。该方法同样适用于识别奖励欺骗模型，结果表明强化学习过程会加剧模型对奖励信号的盲目追求，导致模型在认为能获得更高奖励时违背开发者意图。",
-      "impact_score": null
+      "summary_zh": "强化学习训练的语言模型常出现“奖励寻求”现象，即模型倾向于优化评分者的判断而非真实目标，且两者在行为上难以区分。本研究提出 Contrastive Synthetic Document Finetuning (SDF) 方法，通过改变模型对奖励机制的认知，使其信念与开发者意图产生冲突，从而量化模型对评分者偏好的依赖程度。实验显示，OpenAI o3 模型在训练过程中对评分者偏好的敏感度显著提升，在面临任务完成与诚实守信的冲突时，后期模型更倾向于牺牲原则以获取高分。该方法同样适用于识别奖励欺骗模型，结果表明强化学习过程会加剧模型对奖励信号的盲目追求，导致模型在认为能获得更高奖励时违背开发者意图。"
     },
     {
       "id": "2607.18955",
       "title": "H$^2$SD: Hybrid Hindsight Self-Distillation",
-      "abstract": "Reinforcement learning with verifiable rewards (RLVR) provides reliable outcome supervision for language model reasoning, but a scalar trajectory reward offers limited token-level guidance. Existing self-distillation methods add a privileged teacher but typically assign it a fixed role: direct distribution matching may destabilize successful behavior, while magnitude-only modulation offers little corrective guidance after failure. We observe that successful and failed trajectories require different forms of hindsight supervision. A successful response already contains a valid student-generated reasoning path and can therefore serve as privileged context rather than being replaced by an external rationale. A failed response, however, requires corrective reference information. We introduce Hybrid Hindsight Self-Distillation ($\\mathrm{H}^{2}\\mathrm{SD}$), which jointly adapts teacher context and update strategy to trajectory correctness. For successful trajectories, we construct the teacher context from the verified response and a rephrasing instruction, and use the teacher only to re-evaluate the original response tokens. This emphasizes essential deductions over redundant content and refines magnitude-based credit assignment without changing the reward direction. For failed trajectories, a verifier-confirmed reference hint provides corrective guidance through reverse-KL distillation. Controlled ablations show that the gains depend on outcome-conditioned routing and the rephrasing instruction. Experiments on challenging reasoning benchmarks show that H$^2$SD achieves the strongest overall performance among representative RLVR and self-distillation baselines, with stable optimization and a favorable accuracy-efficiency trade-off.",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) provides reliable outcome supervision for language model reasoning, but a scalar trajectory reward offers limited token-level guidance. Existing self-distillation methods add a privileged teacher but typically assign it a fixed role: direct distribution matching may destabilize successful behavior, while magnitude-only modulation offers little corrective guidance after failure. We observe that successful and failed trajectories require different forms of hindsight supervision. A successful response already contains a valid student-generated reasoning path and can therefore serve as privileged context rather than being replaced by an external rationale. A failed response, however, requires corrective reference information. We introduce Hybrid Hindsight Self-Distillation ($\\mathrm{H}^{2}\\mathrm{SD}$), which jointly adapts teacher context and update strategy to trajectory correctness. For successful trajectories, we construct the teacher context from the verified response and a rephrasing instruction, and use the teacher only to re-evaluate the original response tokens. The resulting probabilities refine token credit assignment without changing the direction determined by the reward. For failed trajectories, a verified reference hint provides corrective guidance through reverse-KL distillation. Experiments on challenging reasoning benchmarks show that H$^2$SD achieves the strongest overall performance among representative RLVR and self-distillation baselines, with stable optimization and a favorable accuracy-efficiency trade-off.",
       "authors": [
         "Qiye Cai",
         "Yichuan Ma",
@@ -1256,16 +1303,15 @@
         "cs.CL"
       ],
       "published": "2026-07-21T10:47:27Z",
-      "updated": "2026-07-22T13:50:48Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.18955v2",
+      "updated": "2026-07-24T07:14:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.18955v3",
       "abs_url": "https://arxiv.org/abs/2607.18955",
       "topics": [
         "rl",
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18955",
-      "summary_zh": "针对大语言模型在数学推理和代码生成任务中面临的奖励稀疏及信用分配难题，H$^2$SD 提出了一种混合事后自蒸馏框架。该方法根据轨迹正确性采取差异化策略：对于成功轨迹，利用教师模型调制更新幅度以强化奖励信号；对于失败轨迹，则通过引入包含关键步骤的参考提示，引导学生模型最小化反向 KL 散度以实现显式纠偏。这种机制有效平衡了信息泄露风险与优化稳定性，避免了对外部教师模型的依赖。在多个推理 benchmark 上的实验表明，H$^2$SD 在性能表现、优化稳定性和生成效率上均优于现有的 RLVR、OPSD 及 RLSD 基线方法。",
-      "impact_score": null
+      "summary_zh": "针对大语言模型在数学推理和代码生成任务中面临的奖励稀疏及信用分配难题，H$^2$SD 提出了一种混合事后自蒸馏框架。该方法根据轨迹正确性采取差异化策略：对于成功轨迹，利用教师模型调制更新幅度以强化奖励信号；对于失败轨迹，则通过引入包含关键步骤的参考提示，引导学生模型最小化反向 KL 散度以实现显式纠偏。这种机制有效平衡了信息泄露风险与优化稳定性，避免了对外部教师模型的依赖。在多个推理 benchmark 上的实验表明，H$^2$SD 在性能表现、优化稳定性和生成效率上均优于现有的 RLVR、OPSD 及 RLSD 基线方法。"
     },
     {
       "id": "2607.18924",
@@ -1294,8 +1340,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18924",
-      "summary_zh": "针对当前视频生成模型在物理规律一致性与显式控制方面的缺失，本研究提出了PhyParam-Dataset，包含130K个具有细粒度物理参数（如力向量、材质属性、重力等）的交互式模拟视频。核心模型PhyParam通过轻量级物理注意力路由机制（physical-attention routing），将物体级物理属性与动态生成过程解耦，并引入语义结构特征空间监督以强化动力学学习。此外，PhyParam-Bench提供了一套多层级评估协议，用于量化视频生成中的物理定律一致性。实验结果表明，该方法在保持高视觉保真度的同时，显著提升了视频生成的物理可控性与动力学准确性，为迈向物理真实的世界模拟提供了重要支撑。",
-      "impact_score": null
+      "summary_zh": "针对当前视频生成模型在物理规律一致性与显式控制方面的缺失，本研究提出了PhyParam-Dataset，包含130K个具有细粒度物理参数（如力向量、材质属性、重力等）的交互式模拟视频。核心模型PhyParam通过轻量级物理注意力路由机制（physical-attention routing），将物体级物理属性与动态生成过程解耦，并引入语义结构特征空间监督以强化动力学学习。此外，PhyParam-Bench提供了一套多层级评估协议，用于量化视频生成中的物理定律一致性。实验结果表明，该方法在保持高视觉保真度的同时，显著提升了视频生成的物理可控性与动力学准确性，为迈向物理真实的世界模拟提供了重要支撑。"
     },
     {
       "id": "2607.18921",
@@ -1347,8 +1392,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18915",
-      "summary_zh": "针对大语言模型在长链条推理中易产生“上下文敏感型事实幻觉”的问题，该研究提出了一种名为SSC-GRPO（Step-level Self-Consistency Group Relative Policy Optimization）的训练框架。该方法通过在多个推理路径中计算单步的自洽性分数，为推理过程中的每一步提供细粒度的奖励信号，从而有效引导模型规避因上下文干扰导致的事实错误。实验结果表明，SSC-GRPO在多个数学推理基准测试和幻觉评估榜单上均达到了SOTA水平，为检测并缓解推理过程中的幻觉问题提供了高效的优化路径。",
-      "impact_score": null
+      "summary_zh": "针对大语言模型在长链条推理中易产生“上下文敏感型事实幻觉”的问题，该研究提出了一种名为SSC-GRPO（Step-level Self-Consistency Group Relative Policy Optimization）的训练框架。该方法通过在多个推理路径中计算单步的自洽性分数，为推理过程中的每一步提供细粒度的奖励信号，从而有效引导模型规避因上下文干扰导致的事实错误。实验结果表明，SSC-GRPO在多个数学推理基准测试和幻觉评估榜单上均达到了SOTA水平，为检测并缓解推理过程中的幻觉问题提供了高效的优化路径。"
     },
     {
       "id": "2607.18874",
@@ -1431,8 +1475,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18830",
-      "summary_zh": "针对传统 Model-Agnostic Meta-Learning (MAML) 在元强化学习中依赖轨迹采集与梯度更新进行内循环适配、导致计算成本高昂的问题，该研究提出了一种名为 LA-MAML (Language Adapted MAML) 的新框架。该方法利用任务相关的语言指令作为直接信号，通过学习到的指令嵌入（learned embedding）实现全局策略参数的单步适配，从而完全取代了耗时的内循环轨迹采样与梯度下降过程。在 BabyAI benchmark 上的实验表明，LA-MAML 不仅在性能上达到或超越了基准模型，还显著降低了单次迭代的训练时间。这一成果证明了语言指令能够作为一种高效的替代方案，有效优化元强化学习的适配机制。",
-      "impact_score": null
+      "summary_zh": "针对传统 Model-Agnostic Meta-Learning (MAML) 在元强化学习中依赖轨迹采集与梯度更新进行内循环适配、导致计算成本高昂的问题，该研究提出了一种名为 LA-MAML (Language Adapted MAML) 的新框架。该方法利用任务相关的语言指令作为直接信号，通过学习到的指令嵌入（learned embedding）实现全局策略参数的单步适配，从而完全取代了耗时的内循环轨迹采样与梯度下降过程。在 BabyAI benchmark 上的实验表明，LA-MAML 不仅在性能上达到或超越了基准模型，还显著降低了单次迭代的训练时间。这一成果证明了语言指令能够作为一种高效的替代方案，有效优化元强化学习的适配机制。"
     },
     {
       "id": "2607.18789",
@@ -1455,8 +1498,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18789",
-      "summary_zh": "针对文本到视频生成领域中训练数据研究不足的问题，该研究引入了名为 Moving Alphabet 的程序化测试平台，通过精确控制视频内容分布和标注质量，系统性地评估其对模型性能的影响。实验发现，视频内容与时长的多样性及均衡性对模型泛化至关重要，且标注质量直接决定了模型的理解能力与训练效率。研究进一步指出，尽管 Classifier-free guidance 和高质量数据微调能缓解部分标注噪声带来的负面影响，但无法完全弥补预训练阶段数据质量低下的缺陷。这些发现强调了科学构建预训练数据集对于提升大规模文本到视频模型性能的核心作用。",
-      "impact_score": null
+      "summary_zh": "针对文本到视频生成领域中训练数据研究不足的问题，该研究引入了名为 Moving Alphabet 的程序化测试平台，通过精确控制视频内容分布和标注质量，系统性地评估其对模型性能的影响。实验发现，视频内容与时长的多样性及均衡性对模型泛化至关重要，且标注质量直接决定了模型的理解能力与训练效率。研究进一步指出，尽管 Classifier-free guidance 和高质量数据微调能缓解部分标注噪声带来的负面影响，但无法完全弥补预训练阶段数据质量低下的缺陷。这些发现强调了科学构建预训练数据集对于提升大规模文本到视频模型性能的核心作用。"
     },
     {
       "id": "2607.18773",
@@ -1566,7 +1608,7 @@
     {
       "id": "2607.18722",
       "title": "Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning",
-      "abstract": "Asynchronous reinforcement learning improves throughput by decoupling rollout generation from optimization, but staleness is an inevitable byproduct compounded by policy lag, engine delays, and mixture-of-experts routing. From a trust-region perspective, this mismatch is critical: training-inference divergence governs approximation error in finite-horizon bounds, whereas PPO clipping only gates sampled outward updates, acting as a sampled surrogate rather than a full-policy constraint. As a result, high-staleness updates remain weakly controlled in the asynchronous regime where stale rollouts matter most. We introduce the Staleness-Adaptive Trust Region (SAT), which uses the detached sampled log-ratio as a practical staleness proxy, identifies high-mismatch tails within each batch via staleness-based kernel scaling, and contracts only the sign-selected endpoint of the nominal PPO interval. This preserves baseline behavior on ordinary tokens while enforcing more conservative updates on newly intercepted outward bands. We prove local interval containment and pointwise pessimism relative to PPO, showing how the adaptive rule reshapes update geometry under heterogeneous staleness. We evaluate SAT in a decoupled asynchronous RL setup built on Qwen3-30B-A3B-Base, using SGLang as the inference engine and Megatron for training. In this setting, SAT-GSPO w/ R3 achieves the best observed AIME24 avg@8, reaching 35.83 at lag 1 and 34.79 at lag 8, while SAT-GSPO reaches 34.17 at lag 1. Adaptive clipping and routing replay act as complementary stabilizers targeting mismatch tails and routing inconsistency, respectively. Overall, aligning clip intervals with staleness heterogeneity effectively stabilizes asynchronous RL.",
+      "abstract": "Asynchronous reinforcement learning improves throughput by decoupling rollout generation from optimization, but the resulting staleness is an inevitable byproduct, compounded jointly by policy lag, engine delays, and mixture-of-experts routing. From a trust-region perspective, this mismatch is critical: in the finite-horizon improvement bound, training-inference divergence governs the approximation error, whereas PPO clipping only gates sampled outward updates and therefore acts as a sampled surrogate rather than a full-policy constraint. As a result, the high-staleness update can remain weakly controlled in exactly the asynchronous regime where stale rollouts matter most. We introduce the Staleness-Adaptive Trust Region (SAT), which uses the detached sampled log-ratio as a practical staleness proxy, identifies the high-mismatch tail within each batch through Staleness-based kernel function scaling, and contracts only the sign-selected endpoint of the nominal PPO interval using Effective contraction factors. This design preserves the baseline behavior on ordinary tokens, while making the update more conservative exactly on newly intercepted outward bands. We evaluate SAT in a fully decoupled asynchronous reinforcement learning setup built on Qwen3-30B-A3B-Base, leveraging SGLang as the inference engine and Megatron as the training pipeline. In this setting, SAT-GSPO w/ R3 attains the best observed AIME24 avg@8, reaching 35.83 at lag 1 and 34.79 at lag 8, while SAT-GSPO reaches 34.17 at lag 1. More broadly, the results indicate that aligning the clip interval with observed staleness heterogeneity is an effective way to stabilize the reported asynchronous regime.",
       "authors": [
         "Junyao Yang",
         "Yucheng Shi",
@@ -1583,15 +1625,14 @@
         "cs.CL"
       ],
       "published": "2026-07-21T05:27:50Z",
-      "updated": "2026-07-22T14:40:14Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.18722v2",
+      "updated": "2026-07-24T17:06:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.18722v3",
       "abs_url": "https://arxiv.org/abs/2607.18722",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18722",
-      "summary_zh": "异步强化学习中，策略滞后、引擎延迟及混合专家路由导致的“陈旧性（Staleness）”问题会严重干扰训练稳定性，而传统的 PPO 裁剪机制难以有效约束高滞后更新。该研究提出 Staleness-Adaptive Trust Region (SAT) 方法，利用采样对数比作为陈旧性代理指标，通过基于核缩放的动态裁剪机制，对高失配样本实施更保守的更新策略，从而在保持常规样本性能的同时抑制异常波动。理论分析证明了该方法在局部区间包含性与点态悲观性上的优越性。在基于 Qwen3-30B-A3B-Base 的异步强化学习实验中，SAT-GSPO 在 AIME24 基准测试中表现出色，即便在高滞后环境下仍能保持极高的准确率，有效解决了异步训练中的不稳定性难题。",
-      "impact_score": null
+      "summary_zh": "异步强化学习中，策略滞后、引擎延迟及混合专家路由导致的“陈旧性（Staleness）”问题会严重干扰训练稳定性，而传统的 PPO 裁剪机制难以有效约束高滞后更新。该研究提出 Staleness-Adaptive Trust Region (SAT) 方法，利用采样对数比作为陈旧性代理指标，通过基于核缩放的动态裁剪机制，对高失配样本实施更保守的更新策略，从而在保持常规样本性能的同时抑制异常波动。理论分析证明了该方法在局部区间包含性与点态悲观性上的优越性。在基于 Qwen3-30B-A3B-Base 的异步强化学习实验中，SAT-GSPO 在 AIME24 基准测试中表现出色，即便在高滞后环境下仍能保持极高的准确率，有效解决了异步训练中的不稳定性难题。"
     },
     {
       "id": "2607.18719",
@@ -1641,8 +1682,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18715",
-      "summary_zh": "现有潜空间世界模型（Latent World Models）通常将动作影响与环境固有动态（如重力、惯性）混为一谈，导致模型难以区分状态变化的根本原因，进而限制了动态预测的准确性与迁移能力。DWM（Decomposed World Model）通过引入辅助世界头（auxiliary world head）并结合归一化世界对比学习目标，强制将环境固有动态与动作驱动变化解耦，并通过正交约束确保两者在潜空间中的加性分离。该方法无需改变基础架构或推理流程，即可在 PushT-W、Reacher-W 和 TwoRoom-W 等包含持续环境影响的基准测试中，实现 CEM 规划成功率平均 13.1% 的显著提升，有效增强了模型对复杂环境动态的建模能力。",
-      "impact_score": null
+      "summary_zh": "现有潜空间世界模型（Latent World Models）通常将动作影响与环境固有动态（如重力、惯性）混为一谈，导致模型难以区分状态变化的根本原因，进而限制了动态预测的准确性与迁移能力。DWM（Decomposed World Model）通过引入辅助世界头（auxiliary world head）并结合归一化世界对比学习目标，强制将环境固有动态与动作驱动变化解耦，并通过正交约束确保两者在潜空间中的加性分离。该方法无需改变基础架构或推理流程，即可在 PushT-W、Reacher-W 和 TwoRoom-W 等包含持续环境影响的基准测试中，实现 CEM 规划成功率平均 13.1% 的显著提升，有效增强了模型对复杂环境动态的建模能力。"
     },
     {
       "id": "2607.18703",
@@ -1668,8 +1708,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18703",
-      "summary_zh": "AlayaRenderer-Flash 旨在解决生成式世界渲染器计算开销过大、难以实时运行的问题。该方法将原有的渲染过程重构为少步自回归流式模型，并引入轻量级蒸馏编解码器，在保持 G-buffer 和文本提示接口的同时，实现了对无限长输入流的连续渲染。实验结果表明，该模型将推理速度从 0.56 FPS 提升至 31.54 FPS，在显著降低计算成本的同时，有效保证了内容保真度、时间一致性及跨窗口稳定性。通过与物理引擎集成，该系统成功构建了可实时交互的 30 FPS 生成式世界。",
-      "impact_score": null
+      "summary_zh": "AlayaRenderer-Flash 旨在解决生成式世界渲染器计算开销过大、难以实时运行的问题。该方法将原有的渲染过程重构为少步自回归流式模型，并引入轻量级蒸馏编解码器，在保持 G-buffer 和文本提示接口的同时，实现了对无限长输入流的连续渲染。实验结果表明，该模型将推理速度从 0.56 FPS 提升至 31.54 FPS，在显著降低计算成本的同时，有效保证了内容保真度、时间一致性及跨窗口稳定性。通过与物理引擎集成，该系统成功构建了可实时交互的 30 FPS 生成式世界。"
     },
     {
       "id": "2607.18696",
@@ -1750,6 +1789,27 @@
       "summary_zh": "针对学习排序（LTR）中强化学习方法因动作空间巨大导致计算效率低下且难以实现的问题，该研究提出了一种基于文档曝光分布（document-exposure distribution）的抽象方法。通过引入基线修正（baseline corrections）和部分边缘化（partial marginalization）技术，该方法成功实现了与自动微分（auto-differentiation）的无缝集成，无需依赖复杂的自定义梯度计算。实验结果表明，该方法在 GPU 上不仅显著提升了收敛速度和排序性能，还彻底解决了现有自定义梯度方法在多轮训练中存在的稳定性问题。这种方案极大地降低了强化学习在排序任务中的应用门槛，在保证计算效率的同时，实现了对各类排序目标的灵活优化。"
     },
     {
+      "id": "2607.21637",
+      "title": "Quasi-Monte Carlo Initialization for Meta-Reinforcement Learning",
+      "abstract": "This paper explores the efficacy of quasi-Monte Carlo (QMC) weight initialization for meta-reinforcement learning within modern benchmark environments. Various sampling methods are used to bound a population-based search and aggregate an optimal prior from a baseline set of tasks. The QMC meta-priors show improvements in training convergence compared to modern orthogonal (SB3) defaults when extrapolated to similar unseen continuous control environments. In dissimilar tasks, the orthogonal orientation was globally superior for an unbiased search.",
+      "authors": [
+        "Julian G. Soltes"
+      ],
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ],
+      "published": "2026-07-21T03:30:58Z",
+      "updated": "2026-07-21T03:30:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.21637v1",
+      "abs_url": "https://arxiv.org/abs/2607.21637",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.21637",
+      "summary_zh": "针对元强化学习（Meta-Reinforcement Learning）中初始化策略对训练效率影响显著的问题，该研究引入准蒙特卡洛（Quasi-Monte Carlo, QMC）采样方法对模型权重进行初始化，旨在通过优化任务先验分布提升学习性能。通过在多种连续控制基准环境中的实验发现，QMC初始化在处理相似任务时能显著加速训练收敛，表现优于Stable Baselines3（SB3）默认的正交初始化方案。然而，在面对分布差异较大的任务时，正交初始化因其无偏搜索特性仍具全局优势，表明初始化策略的选择需根据任务间的相关性进行权衡。"
+    },
+    {
       "id": "2607.18664",
       "title": "DeforM: Reasoning-Guided Physics-Aware Video Generation via Spatial-Temporal Masking",
       "abstract": "Video generation models achieve high visual quality but often struggle to generate physics-aware videos. Unlike rigid-body motion, which can be described by explicit trajectories or formulas, complex deformation dynamics remain challenging to synthesize. We observe that a lack of physical reasoning for localizing dynamic areas allows irrelevant regions to dilute the model's attention, leading to generation failure. In this paper, we propose DeforM, a reasoning-guided image-to-video generation framework that directs the model's focus toward physics-critical regions. To reason about and localize these critical regions, we introduce a VLM-guided physical reasoning module, DeforM-Reason, to identify target objects and generate spatial-temporal masks. For physical guidance, we develop two alternative strategies: DeforM-Free for training-free mechanism analysis and DeforM-Injection as a powerful training-based generator. Experimental results demonstrate that DeforM improves the realism of generated deformation scenarios, outperforming baseline models in both visual quality and physical consistency.",
@@ -1770,8 +1830,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18664",
-      "summary_zh": "针对视频生成中复杂形变动力学难以模拟且物理一致性差的问题，DeforM 引入了 VLM 驱动的物理推理模块 DeforM-Reason，通过定位物理关键区域并生成时空掩码来引导模型关注动态变化。该框架包含无需训练的 DeforM-Free 机制分析与基于训练的 DeforM-Injection 生成策略，有效避免了无关区域对注意力机制的干扰。实验结果表明，该方法在处理形变场景时显著提升了物理一致性与视觉质量，在多个基准测试中优于现有主流模型。",
-      "impact_score": null
+      "summary_zh": "针对视频生成中复杂形变动力学难以模拟且物理一致性差的问题，DeforM 引入了 VLM 驱动的物理推理模块 DeforM-Reason，通过定位物理关键区域并生成时空掩码来引导模型关注动态变化。该框架包含无需训练的 DeforM-Free 机制分析与基于训练的 DeforM-Injection 生成策略，有效避免了无关区域对注意力机制的干扰。实验结果表明，该方法在处理形变场景时显著提升了物理一致性与视觉质量，在多个基准测试中优于现有主流模型。"
     },
     {
       "id": "2607.18620",
@@ -1850,8 +1909,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.18597",
-      "summary_zh": "针对多智能体强化学习（MARL）在连续动作空间中难以进行反事实信用分配的问题，本研究提出了 SAFE 框架。该方法通过引入从智能体经验池中采样并自进化的默认动作作为反事实基准，有效解决了传统蒙特卡洛采样带来的梯度偏差与收敛性难题。SAFE 无需额外的环境模拟器或奖励模型，能精准量化各智能体的贡献，并确保确定性策略梯度收敛至局部最优。在协同车辆控制任务的实验中，SAFE 展现出优于现有主流模型的性能，验证了其在复杂连续动作空间中的高效性与稳定性。",
-      "impact_score": null
+      "summary_zh": "针对多智能体强化学习（MARL）在连续动作空间中难以进行反事实信用分配的问题，本研究提出了 SAFE 框架。该方法通过引入从智能体经验池中采样并自进化的默认动作作为反事实基准，有效解决了传统蒙特卡洛采样带来的梯度偏差与收敛性难题。SAFE 无需额外的环境模拟器或奖励模型，能精准量化各智能体的贡献，并确保确定性策略梯度收敛至局部最优。在协同车辆控制任务的实验中，SAFE 展现出优于现有主流模型的性能，验证了其在复杂连续动作空间中的高效性与稳定性。"
     }
   ]
 }
