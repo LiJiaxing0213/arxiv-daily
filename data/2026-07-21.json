@@ -1,6 +1,6 @@
 {
   "date": "2026-07-21",
-  "generated_at": "2026-07-27T05:09:03.913203+00:00",
+  "generated_at": "2026-07-28T04:46:51.255619+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -481,6 +481,31 @@
         "rl"
       ],
       "summary_zh": "针对燃气轮机燃烧室贫燃熄火（LBO）预测中反应器网络模型构建依赖人工经验的问题，该研究提出了一种基于强化学习（RL）的优化框架。该方法采用多阶段策略，先通过聚类生成微小单元，再利用 Actor-Critic 智能体将这些单元合并为最优反应区，从而直接以 LBO 预测精度为目标进行优化。在包含 119 种组分和 841 个反应的 Jet-A 机制验证中，该模型不仅比传统的 k-means 聚类具有更高的预测保真度，能准确捕捉 LBO 趋势，还显著提升了计算效率。这一成果为快速设计空间探索提供了一种高效的降阶建模技术，可作为高保真模拟的有力补充。"
+    },
+    {
+      "id": "2607.22717",
+      "title": "TOM-GS: Editable Video Representation via Temporal Opacity Modulation of Static 3D Gaussians",
+      "abstract": "While Implicit Neural Representations (INRs) and dynamic 3D Gaussian Splatting (3DGS) achieve impressive results in video processing, they often fall short of producing representations that are easily editable. Recent methods address this by introducing complex spatial deformations or folded distributions, which constrain optimization and reduce flexibility for downstream editing. In this paper, we introduce TOM-GS, an editable video representation that forgoes complex deformations in favor of regular 3D Gaussians equipped with a continuous temporal opacity formulation. By assigning a learnable temporal mean and scale to the opacity of each Gaussian, our model enables static 3D spatial components to fade smoothly in and out of the scene. Grounded by robust, off-the-shelf pose estimation, our approach maintains a static spatial geometry that naturally supports a wide range of manual and physics-based edits. TOM-GS outperforms prior editable video representations in visual fidelity, while its reliance on standard 3D Gaussians ensures seamless compatibility with established 3D editing tools.",
+      "authors": [
+        "Marek Lisowski",
+        "Łukasz Smoliński",
+        "Kornel Howil",
+        "Piotr Biliński",
+        "Marcin Mazur",
+        "Przemysław Spurek"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-21T16:27:32Z",
+      "updated": "2026-07-21T16:27:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22717v1",
+      "abs_url": "https://arxiv.org/abs/2607.22717",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22717",
+      "summary_zh": "TOM-GS 旨在解决现有动态 3DGS 方法因依赖复杂空间形变而导致视频难以编辑的问题。该方法摒弃了复杂的形变场，转而采用静态 3D Gaussians 结合连续时间不透明度调制（Temporal Opacity Modulation）技术，通过为每个高斯球分配可学习的时间均值与尺度参数，实现场景元素的平滑显隐。这种设计不仅保持了静态空间几何结构的稳定性，还天然支持多种手动及基于物理的编辑操作。实验结果表明，TOM-GS 在视觉保真度上优于现有的可编辑视频表示方法，且由于其基于标准 3DGS 架构，能够与主流 3D 编辑工具实现无缝兼容。"
     },
     {
       "id": "2607.19243",
@@ -1129,7 +1154,7 @@
     {
       "id": "2607.18999",
       "title": "MedDDC-Eval: Diagnosis-Decoupled Evaluation of Multi-Turn Medical Consultation Agents",
-      "abstract": "Multi-turn medical consultation agents must decide what to ask, adapt to patient responses, and determine when the collected evidence is sufficient. However, coupled evaluation conflates the quality of the policy-elicited history with policy-specific terminal diagnosis generation: strong generation can compensate for a thin history, while weaker generation can obscure a rich one. We introduce MedDDC-Eval, a diagnosis-decoupled testbed that treats elicited history as the comparison object and holds the history-to-diagnosis mapping constant through a shared frozen reader. Across two held-out sources, a grounded interface and an auditable diagnosis-trajectory-efficiency (D/T/E) harness measure diagnostic usefulness, information acquisition, and efficiency. Directional semantic coverage followed by deterministic one-to-one assignment yields coherent precision-recall counts for open-ended items, with at most one credited match per prediction or reference. Holding histories fixed, changing only the diagnostic reader shifts diagnosis F1 by 2.2-19.0 points and reverses 18% and 36% of pairwise policy orderings on the Record and Dialogue splits. We further apply standard Group Relative Policy Optimization (GRPO) over interactive multi-turn rollouts to post-train Qwen3-32B using diagnosis-result and trajectory feedback. On the 100-case Record and 70-case Dialogue splits, the trained policy improves over its initialization by 9.7 and 4.6 total-score points; removing either primary signal lowers held-out joint performance. These results show that MedDDC-Eval supports controlled attribution, interpretable elicited-history measurement, and evaluation-guided evidence-acquisition policy development.",
+      "abstract": "Evaluating multi-turn medical consultation agents requires judging the diagnostic support provided by the histories they elicit through interaction. Yet coupled evaluation lets each policy both elicit the history and generate the terminal diagnosis, so a diagnosis score confounds the elicited history with the policy's own terminal diagnosis generator. We introduce MedDDC-Eval, a diagnosis-decoupled evaluation testbed over held-out cases derived from medical records and online consultations. It applies the same frozen shared diagnostic reader to every policy-elicited history, holding terminal diagnosis generation fixed across policies and enabling comparison under the shared diagnostic reader. It reports diagnostic support, information-acquisition coverage, and efficiency. LLM-assisted semantic matching followed by deterministic one-to-one assignment makes the diagnosis-trajectory-efficiency (D/T/E) scores auditable. In a fixed-history audit across eight policies, replacing each policy's own generator with the shared diagnostic reader shifts diagnosis F1 by 2.2-19.0 points and reverses 18% and 36% of pairwise orderings on the Record and Dialogue splits. To examine downstream utility, we use standard Group Relative Policy Optimization (GRPO) with a separate training-time reward that targets the same diagnosis and trajectory dimensions. Relative to its Qwen3-32B initialization, the trained policy gains 9.6 and 4.6 aggregate-score points on the held-out Record and Dialogue splits, respectively, and ablating either feedback signal reduces the aggregate score on both. Together, MedDDC-Eval supports comparison under a shared diagnostic reader and evaluation-informed policy development, while complementing end-to-end evaluation when terminal diagnosis generation is also part of the target capability.",
       "authors": [
         "Guofeng Zhang",
         "Yizeng Quan",
@@ -1146,8 +1171,8 @@
         "cs.AI"
       ],
       "published": "2026-07-21T11:32:41Z",
-      "updated": "2026-07-21T11:32:41Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.18999v1",
+      "updated": "2026-07-26T15:35:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.18999v2",
       "abs_url": "https://arxiv.org/abs/2607.18999",
       "topics": [
         "other"
@@ -1181,8 +1206,8 @@
         "cs.CV"
       ],
       "published": "2026-07-21T11:20:09Z",
-      "updated": "2026-07-21T11:20:09Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.18988v1",
+      "updated": "2026-07-25T10:38:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.18988v2",
       "abs_url": "https://arxiv.org/abs/2607.18988",
       "topics": [
         "other"
@@ -1195,7 +1220,7 @@
     },
     {
       "id": "2607.18985",
-      "title": "Athena-Brain Technical Report: An Efficient Robot Brain for General Intelligence and Embodied Interactio",
+      "title": "Athena-Brain Technical Report: An Efficient Robot Brain for General Intelligence and Embodied Interaction",
       "abstract": "Large language models (LLMs) have demonstrated remarkable capabilities in language understanding, reasoning, and world knowledge. As embodied agents become increasingly capable, there is a growing demand for compact models that can serve as an on-device brain, preserving the broad general intelligence of LLMs while enabling effective high-level interaction with embodied environments. Existing approaches, however, often prioritize either general-purpose intelligence or specialized embodied capabilities, making it challenging to satisfy both requirements within a single model. We present \\textbf{Athena-Brain-8B}, an 8B LLM designed to serve as an on-device brain for embodied intelligence for embodied intelligence. Through a multi-stage post-training pipeline consisting of General Supervised Fine-Tuning, General Reinforcement Learning, Embodied Expert training, and Model Merge, Athena-Brain-8B maintains strong general capabilities while acquiring strong high-level embodied interaction capabilities and generating concise responses for efficient embodied interaction. Experimental results demonstrate the effectiveness of Athena across both general and embodied evaluations. Compared with the corresponding Qwen3-8B thinking model, Athena-Brain-8B achieves comparable performance on general language and reasoning benchmarks while generating substantially shorter responses. On in-domain embodied benchmarks, Athena-Brain-8B consistently outperforms models of similar scale and surpasses several substantially larger frontier models evaluated zero-shot, demonstrating that compact language models can effectively integrate strong general intelligence with embodied capabilities.",
       "authors": [
         "Jialian Li",
@@ -1212,8 +1237,8 @@
         "cs.AI"
       ],
       "published": "2026-07-21T11:19:21Z",
-      "updated": "2026-07-21T11:19:21Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.18985v1",
+      "updated": "2026-07-25T09:51:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.18985v2",
       "abs_url": "https://arxiv.org/abs/2607.18985",
       "topics": [
         "other"
@@ -1290,11 +1315,11 @@
       "authors": [
         "Qiye Cai",
         "Yichuan Ma",
-        "Linyang Li",
         "Peiji Li",
         "Yongkang Chen",
         "Qipeng Guo",
         "Yicheng Zou",
+        "Linyang Li",
         "Xiaocheng Feng",
         "Bing Qin"
       ],
@@ -1303,8 +1328,8 @@
         "cs.CL"
       ],
       "published": "2026-07-21T10:47:27Z",
-      "updated": "2026-07-24T07:14:12Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.18955v3",
+      "updated": "2026-07-27T08:18:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.18955v4",
       "abs_url": "https://arxiv.org/abs/2607.18955",
       "topics": [
         "rl",
@@ -1453,6 +1478,30 @@
         "distillation"
       ],
       "summary_zh": "针对工业异常检测（IAD）中大型视觉语言模型（LVLM）难以生成精确像素级异常图的问题，OPD-IAD 提出了一种证据特权密集策略自蒸馏框架。该方法通过将特权缺陷证据蒸馏至模型的在线判断轨迹，使最终生成的语言判断能够作为语义条件，而非直接决定像素级响应。核心创新在于引入语言引导的视觉锚定（Language-guided Visual Anchoring）技术，通过重编码图像与判断条件生成语义锚点，并结合对比热图头实现像素级异常定位。实验结果显示，该方法在多个 IAD 基准测试的图像级、像素级及问答指标上均达到最优性能，有效平衡了语言语义引导与密集视觉特征的精确性。"
+    },
+    {
+      "id": "2607.22714",
+      "title": "Real-Time Semantic Segmentation with Optimized RetinaNet Architectures for Embedded Automotive Systems",
+      "abstract": "Real-time perception is a foundational requirement for advanced driver assistance systems (ADAS) and autonomous vehicles, yet embedded automotive platforms impose severe constraints on compute, memory, and power. This paper presents an optimized semantic segmentation architecture derived from the RetinaNet detection framework, adapted for dense pixel-wise prediction and tailored for deployment on resource-constrained embedded hardware. The proposed architecture, termed Opt-RetinaSeg, replaces the standard ResNet-50 backbone with a hybrid lightweight feature extractor, restructures the Feature Pyramid Network (FPN) to reduce redundant multi-scale computation, and introduces a compact segmentation head guided by focal-loss-inspired class balancing to address the severe foreground-background imbalance common in road scenes. We further apply a three-stage optimization pipeline consisting of structured channel pruning, post-training INT8 quantization, and knowledge distillation from a high-capacity teacher network. Evaluated on the Cityscapes and BDD100K datasets and deployed on an NVIDIA Jetson Xavier NX and a Qualcomm QCS610 automotive SoC, the proposed model achieves 73.9% mIoU at 70.4 FPS, representing a 7.4x inference speedup and a 4x reduction in model size relative to the ResNet-50 baseline, with less than 3% accuracy degradation. These results indicate that RetinaNet-derived architectures, when systematically optimized, are viable candidates for real-time semantic segmentation in embedded automotive perception pipelines",
+      "authors": [
+        "Sai Sidharth D"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-21T08:30:00Z",
+      "updated": "2026-07-21T08:30:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22714v1",
+      "abs_url": "https://arxiv.org/abs/2607.22714",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22714",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "针对嵌入式车载平台算力与功耗受限的挑战，Opt-RetinaSeg 将 RetinaNet 框架重构为高效的语义分割模型。该方法通过引入轻量级混合特征提取器、优化特征金字塔网络（FPN）以减少多尺度冗余计算，并采用聚焦损失（Focal Loss）改进的紧凑分割头来解决路面场景中的类别不平衡问题。通过结构化通道剪枝、INT8 量化及知识蒸馏的三阶段优化流水线，模型在 Cityscapes 和 BDD100K 数据集上表现出色。在 NVIDIA Jetson Xavier NX 和 Qualcomm QCS610 等嵌入式硬件上，该模型实现了 73.9% 的 mIoU 和 70.4 FPS 的实时推理速度，在模型体积缩小 4 倍的同时，推理速度提升了 7.4 倍，且精度损失控制在 3% 以内，验证了优化后的 RetinaNet 架构在自动驾驶感知系统中的高效应用潜力。"
     },
     {
       "id": "2607.18830",
@@ -1902,8 +1951,8 @@
         "cs.MA"
       ],
       "published": "2026-07-21T00:17:55Z",
-      "updated": "2026-07-23T08:21:10Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.18597v2",
+      "updated": "2026-07-25T03:45:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.18597v3",
       "abs_url": "https://arxiv.org/abs/2607.18597",
       "topics": [
         "rl"

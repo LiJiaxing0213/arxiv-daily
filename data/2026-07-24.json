@@ -1,6 +1,6 @@
 {
   "date": "2026-07-24",
-  "generated_at": "2026-07-27T05:09:03.907865+00:00",
+  "generated_at": "2026-07-28T04:46:51.250814+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,119 @@
   },
   "papers": [
     {
+      "id": "2607.22925",
+      "title": "Not All LLM Reasoning is Visible in the Chain-of-Thought",
+      "abstract": "A key question for AI safety is whether a language model expresses all of its reasoning in its output tokens. We demonstrate a concrete failure mode where frontier models exhibit invisible reasoning by leveraging semantically irrelevant filler tokens to improve performance on synthetic reasoning tasks. We evaluate 13 frontier language models across three tasks and find that many models benefit significantly from filler tokens, with accuracy improvements of up to 13 percentage points. The benefit depends on which tokens are used and differs across models. We further show that filler tokens enable Claude Opus 4.5 to satisfy a hidden modular arithmetic constraint without sacrificing accuracy on its primary task, demonstrating that invisible reasoning can serve objectives entirely invisible to CoT monitoring. Reinforcement learning gives Qwen3-235B strong preferences over filler token content, but neither RL nor supervised fine-tuning produces a filler token benefit that persists at test time. Our results indicate that frontier models already perform consequential computation with no interpretable trace in their output tokens.",
+      "authors": [
+        "Vatsal Baherwani",
+        "Tom Goldstein",
+        "Ashwinee Panda"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-24T21:32:48Z",
+      "updated": "2026-07-24T21:32:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22925v1",
+      "abs_url": "https://arxiv.org/abs/2607.22925",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22925",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "当前大语言模型在推理过程中可能存在“隐形推理”现象，即模型通过输出语义无关的填充字符（filler tokens）来辅助复杂任务处理，而非将所有逻辑显式表达在 Chain-of-Thought 中。针对 13 款前沿模型的研究表明，合理利用填充字符可使推理准确率提升高达 13 个百分点，且 Claude Opus 4.5 能利用这些字符在不影响主任务的前提下执行隐藏的模块化算术约束。实验发现，尽管强化学习会增强模型对填充字符内容的偏好，但这种隐形计算能力在测试阶段难以通过常规监督微调或强化学习完全复现。该发现揭示了前沿模型已具备在输出轨迹之外进行实质性计算的能力，这对当前基于 CoT 的模型可解释性与安全性评估提出了严峻挑战。"
+    },
+    {
+      "id": "2607.22864",
+      "title": "Spatial-IQ: Deconstructing Spatial Intelligence via Hierarchical Capability Tests",
+      "abstract": "Multimodal large language models (MLLMs) excel at visual interpretation but fail on spatial reasoning tasks that humans solve reliably. Existing benchmarks evaluate these models as black boxes, limiting their ability to identify the underlying causes of lower performance: when a model fails a spatial reasoning task, it remains difficult to ascertain whether the hurdle is perceptual, such as recognizing object boundaries, or cognitive, such as reasoning about occlusion to infer hidden geometry. We introduce Spatial-IQ, a hierarchical diagnostic framework that decomposes object counting in stacked 3D structures into 9 perceptual and cognitive sub-tasks organized by the developmental stages of human spatial cognition, with mental rotation as an additional target probe. Using NVIDIA Isaac Sim, we procedurally generated a diverse dataset of roughly 80,000 stacked 3D structures with per-task ground truth. We evaluate models across three output formats (free-response text, multiple-choice images, and image editing) alongside a human baseline. The Spatial-IQ framework shows that top-performing models often succeed at the target task (object counting) without succeeding on the lower-level sub-tasks intended to support it, and that models differ in how much of these hierarchical chains they preserve, often revealing shortcut behavior that raw target-task accuracy alone would obscure. Finally, we demonstrate that training models with chain-of-thought (CoT) supervision over our hierarchical sub-tasks, combined with reinforcement learning with verifiable rewards, significantly improves both spatial consistency across sub-tasks and target-task accuracy, supporting the value of the proposed decomposition as both a diagnostic tool and a training signal.",
+      "authors": [
+        "Patrick Rim",
+        "Tom Long",
+        "Ekta Prashnani",
+        "Ruth Rosenholtz",
+        "Ben Boudaoud",
+        "Peter Xenopoulos",
+        "Alex Wong",
+        "Joohwan Kim",
+        "Jae-Hyun Jung"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-24T19:09:25Z",
+      "updated": "2026-07-24T19:09:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22864v1",
+      "abs_url": "https://arxiv.org/abs/2607.22864",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22864",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对多模态大语言模型（MLLMs）在空间推理任务中表现出的“黑盒”局限性，Spatial-IQ 框架通过将 3D 堆叠物体的计数任务拆解为 9 个符合人类认知发展阶段的感知与认知子任务，旨在精准定位模型在空间推理上的能力短板。该研究利用 NVIDIA Isaac Sim 生成了包含 8 万个 3D 结构的数据集，揭示了现有模型在完成目标任务时往往依赖“捷径”而非真正的空间逻辑推理。实验表明，通过在这些层级化子任务上引入思维链（CoT）监督并结合可验证奖励的强化学习，能够显著提升模型的空间一致性及最终计数准确率。这一框架不仅为诊断模型空间智能提供了细粒度工具，也为通过任务分解提升模型推理能力提供了有效的训练范式。"
+    },
+    {
+      "id": "2607.22837",
+      "title": "Frustratingly Simple Black-Box Adaptation of Language Models via Logit Bias",
+      "abstract": "Many organizations aim to adapt language models for internal use, both to improve performance on domain-specific tasks and to address privacy concerns around sensitive data. However, such adaptation remains non-trivial: it often requires operationally challenging fine-tuning of open-source models or ad hoc prompt optimization. We study a minimal alternative based on a simple API-level control: allowing users to bias the model's logits with a user-defined vector. We develop a black-box method for learning a single context-independent logit-bias vector, added at every decoding step, without modifying model weights or requiring gradients. Starting from a KL-regularized reinforcement learning (RL) objective, we characterize when such a fixed logit-bias vector can approximate the optimal prefix-dependent correction and derive a closed-form inverse-propensity estimator from rollouts, rewards, and token probabilities. Empirically, this simple decoding-time intervention improves over base models on mathematical and reasoning benchmarks while using far fewer trainable parameters than conventional fine-tuning. Our results suggest that learned logit bias is a lightweight mechanism for adapting language models under minimal access requirements.",
+      "authors": [
+        "Ofek I. Cohen",
+        "Lior Shani",
+        "Aviv Rosenberg",
+        "Ankur Samanta",
+        "Tal Wagner",
+        "Yonathan Efroni"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-07-24T18:27:58Z",
+      "updated": "2026-07-24T18:27:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22837v1",
+      "abs_url": "https://arxiv.org/abs/2607.22837",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22837",
+      "summary_zh": "针对语言模型在特定领域应用中微调成本高、隐私保护难的问题，该研究提出了一种仅通过 API 层面调整 Logit Bias 的黑盒适配方法。该方法无需修改模型权重或获取梯度，通过学习一个与上下文无关的 Logit 偏置向量，在解码的每一步进行干预。研究基于 KL 正则化的强化学习目标，推导出了利用 Rollouts、奖励及 Token 概率计算偏置向量的闭式逆倾向估计器。实验表明，这种轻量级干预在数学和推理任务 Benchmark 上显著优于基础模型，证明了在极低访问权限下通过 Logit Bias 进行模型适配的高效性。"
+    },
+    {
+      "id": "2607.22830",
+      "title": "ID-V2V: Identity-Preserving Video Restylization",
+      "abstract": "In visual storytelling, human performances are central to creative intent and narrative meaning. However, preserving human identity and performance while enabling flexible visual edits remains challenging for generative video models. We formalize this challenge as identity-preserving video restylization, which propagates scene, lighting, and style changes specified by an edited keyframe across a source video, while preserving facial likeness and performance, including expressions, eye gaze, and lip synchronization. A key obstacle is the absence of paired training data, as identity-preserving restylized video pairs are rare in real-world settings. To address this, we propose a decoupling of source-grounded identity preservation and edit-driven video synthesis. Our key insight is that facial appearance and expression should remain invariant, with illumination being the primary permissible variation. We therefore cast identity preservation as a video relighting problem, while modeling visual edit propagation as controlled video synthesis guided by the edited keyframe. Building on this formulation, we introduce ID-V2V, a video-to-video generative framework integrating complementary control signals: relit facial regions and facial normal maps tightly constrain facial likeness and performance, while edited keyframes and depth sequences enable flexible and temporally coherent generation. This design enables constructing training pairs from a single video, eliminating the need for scarce paired data. Extensive experiments demonstrate that ID-V2V significantly outperforms existing methods in preserving facial likeness and fine-grained facial performance, supports both single- and multi-subject scenarios, and delivers high visual quality, highlighting its potential as a human-centric tool for real-world content production. The code is available at: https://github.com/Eyeline-Labs/ID-V2V.",
+      "authors": [
+        "Yuancheng Xu",
+        "Mingming He",
+        "Pablo Salamanca",
+        "Li Ma",
+        "Yash Kant",
+        "Emmett Steven",
+        "Paul Debevec",
+        "Ning Yu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-07-24T18:12:58Z",
+      "updated": "2026-07-24T18:12:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22830v1",
+      "abs_url": "https://arxiv.org/abs/2607.22830",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22830",
+      "summary_zh": "ID-V2V 旨在解决视频重风格化中难以同时保持人物身份、表情及动作一致性的难题。该方法通过解耦身份保持与编辑驱动的视频合成，将身份保留建模为视频重光照问题，并利用重光照面部区域、法线图及编辑后的关键帧作为控制信号，实现了对源视频的精确风格迁移。这种设计无需成对训练数据，仅通过单视频即可构建训练集，有效解决了数据稀缺的瓶颈。实验结果表明，ID-V2V 在保持面部相似度、精细表情及时间一致性方面均优于现有方法，在单人和多人场景下均展现出极高的视觉质量，为视频内容创作提供了强大的工具支持。"
+    },
+    {
       "id": "2607.22535",
       "title": "Robot-Factored World Models via Robot Rendering",
       "abstract": "Action-conditioned video world models predict future observations from an initial observation and an action signal. In robotics, actions influence future observations through two distinct processes: they are first realized into robot motion by the robot body and controller, and the scene then responds through contact and object motion. Conditioning directly on action commands asks the world model to learn the realization process itself, while conditioning on logged future states leaks the interaction outcomes it is meant to predict. We propose robot-factored world models, which move two robot-specific factors outside the world model. First, action realization: each command is rolled through the robot's own controller and kinematics into a deployment-available nominal trajectory, a middle signal that avoids both action-realization learning and future-state leakage. Second, robot rendering: this nominal trajectory is rendered through the robot URDF, factoring the robot's geometry, kinematics, and appearance out of the model and into explicit rendered robot geometry. To resolve depth ambiguity, we pair end-effector depth with scene depth, giving geometric cues for contact and occlusion beyond image-plane overlap. Together, camera-aware static RGB/depth context and rendered robot geometry form a shared visual world-model interface that stays consistent across viewpoints and robot embodiments, so the model sees the action only as visible robot geometry and learns how objects respond to it. Our experiments show that the rendered interface outperforms vector-conditioned baselines and generalizes to unseen robot embodiments at inference. We further demonstrate that our model generates robot manipulation videos from human demonstrations by retargeting and rendering the hand motion as robot geometry.",
@@ -50,8 +163,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22535",
-      "summary_zh": "针对动作条件视频世界模型在机器人任务中难以解耦动作实现与环境交互的问题，该研究提出了Robot-Factored World Models。该方法通过将机器人控制器与运动学模型显式集成，将动作指令转化为渲染后的几何轨迹，从而将机器人自身的几何、运动学及外观特征从模型中剥离。通过引入深度信息解决遮挡与接触的歧义，模型仅需关注物体对机器人几何变化的响应，实现了与视角及机器人本体无关的通用性。实验表明，该渲染接口在多项任务中显著优于传统的向量条件模型，并能通过重定向人类演示实现跨本体的机器人操作视频生成。",
-      "impact_score": null
+      "summary_zh": "针对动作条件视频世界模型在机器人任务中难以解耦动作实现与环境交互的问题，该研究提出了Robot-Factored World Models。该方法通过将机器人控制器与运动学模型显式集成，将动作指令转化为渲染后的几何轨迹，从而将机器人自身的几何、运动学及外观特征从模型中剥离。通过引入深度信息解决遮挡与接触的歧义，模型仅需关注物体对机器人几何变化的响应，实现了与视角及机器人本体无关的通用性。实验表明，该渲染接口在多项任务中显著优于传统的向量条件模型，并能通过重定向人类演示实现跨本体的机器人操作视频生成。"
     },
     {
       "id": "2607.22534",
@@ -78,8 +190,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22534",
-      "summary_zh": "现有单目4D重建方法多将运动视为独立的点位移，忽略了物理对象遵循刚体运动学规律的结构化特征。SM4RT提出了一种结构化运动4D重建Transformer，通过将场景运动分解为一组由SE(3)中6D旋量构成的紧凑运动基，确保同一物体上的点共享一致的刚体运动轨迹。该模型引入并行运动几何编解码器，在单次前向传播中即可从单目RGB视频中联合推断3D几何、世界坐标运动及场景运动学结构。实验结果表明，SM4RT在实现高效运动重建的同时，能够有效保持场景运动的几何结构一致性，显著提升了动态场景的理解能力。",
-      "impact_score": null
+      "summary_zh": "现有单目4D重建方法多将运动视为独立的点位移，忽略了物理对象遵循刚体运动学规律的结构化特征。SM4RT提出了一种结构化运动4D重建Transformer，通过将场景运动分解为一组由SE(3)中6D旋量构成的紧凑运动基，确保同一物体上的点共享一致的刚体运动轨迹。该模型引入并行运动几何编解码器，在单次前向传播中即可从单目RGB视频中联合推断3D几何、世界坐标运动及场景运动学结构。实验结果表明，SM4RT在实现高效运动重建的同时，能够有效保持场景运动的几何结构一致性，显著提升了动态场景的理解能力。"
     },
     {
       "id": "2607.22531",
@@ -107,11 +218,13 @@
       "pdf_url": "https://arxiv.org/pdf/2607.22531v1",
       "abs_url": "https://arxiv.org/abs/2607.22531",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22531",
-      "summary_zh": "针对多模态模型中语义理解特征（ViT）与生成特征（VAE）潜空间不匹配的问题，Twins 提出了一种通过通道拼接实现统一连续标记空间的方法，在不增加序列长度和计算成本的前提下实现理解与生成的协同。针对联合训练中出现的优化不平衡难题，研究揭示了频率偏差、内在维度及不确定性差异等根源，并引入了改进的 Focal Regression Objective。该方法通过对 VAE 高误差维度进行加权优化，有效平衡了多模态表征的学习。在 ImageNet 实验中，该方案在无需 Classifier-Free Guidance 的情况下显著提升了生成质量，同时在多模态理解任务中保持了极具竞争力的性能，成功弥合了理解与生成任务在表征上的鸿沟。",
-      "impact_score": null
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对多模态模型中语义理解特征（ViT）与生成特征（VAE）潜空间不匹配的问题，Twins 提出了一种通过通道拼接实现统一连续标记空间的方法，在不增加序列长度和计算成本的前提下实现理解与生成的协同。针对联合训练中出现的优化不平衡难题，研究揭示了频率偏差、内在维度及不确定性差异等根源，并引入了改进的 Focal Regression Objective。该方法通过对 VAE 高误差维度进行加权优化，有效平衡了多模态表征的学习。在 ImageNet 实验中，该方案在无需 Classifier-Free Guidance 的情况下显著提升了生成质量，同时在多模态理解任务中保持了极具竞争力的性能，成功弥合了理解与生成任务在表征上的鸿沟。"
     },
     {
       "id": "2607.22529",
@@ -143,8 +256,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22529",
-      "summary_zh": "针对现有大模型自进化方法在任务多样性与验证可靠性之间的矛盾，Skill Self-Play (Skill-SP) 框架通过引入“技能”作为中间桥梁，实现了深度验证与开放式探索的统一。该框架包含 Proposer、Solver 和动态 Skill Controller 三个核心组件，在强化学习循环中协同进化：Proposer 基于技能生成挑战性任务，Solver 探索最优解以突破能力边界，而 Skill Controller 则通过执行反馈动态更新技能库。这种交互式的协同进化机制有效避免了错误奖励对训练的污染，在 tool-use 和 reasoning 等基准测试中，显著提升了基座模型的能力上限，并能有效纠正初始对齐偏差较差的模型表现。",
-      "impact_score": null
+      "summary_zh": "针对现有大模型自进化方法在任务多样性与验证可靠性之间的矛盾，Skill Self-Play (Skill-SP) 框架通过引入“技能”作为中间桥梁，实现了深度验证与开放式探索的统一。该框架包含 Proposer、Solver 和动态 Skill Controller 三个核心组件，在强化学习循环中协同进化：Proposer 基于技能生成挑战性任务，Solver 探索最优解以突破能力边界，而 Skill Controller 则通过执行反馈动态更新技能库。这种交互式的协同进化机制有效避免了错误奖励对训练的污染，在 tool-use 和 reasoning 等基准测试中，显著提升了基座模型的能力上限，并能有效纠正初始对齐偏差较差的模型表现。"
     },
     {
       "id": "2607.22525",
@@ -174,11 +286,12 @@
     {
       "id": "2607.22430",
       "title": "On the Identifiability of Controlled World Models",
-      "abstract": "Learning world models that infer environment dynamics from high-dimensional observations and predict outcomes under candidate actions is central to planning and control. Joint-Embedding Predictive Architectures (JEPAs) provide a compelling framework for learning such models in representation space. Recent action-conditioned extensions perform promisingly in visual control and latent-space planning, but leave a fundamental question unresolved: when does controlled latent prediction identify both the underlying state and the controlled dynamics? This is challenging under nonlinear observations and behavior policies with limited conditional action variation, where state-dependent evolution and action effects can be statistically confounded. We establish a joint identifiability theory for controlled world models with Gaussian latent states under state-dependent Gaussian behavior policies. We identify two policy-dependent conditions: spectral separation of the predictable signal governs representation identifiability, while non-degenerate conditional action variation governs transition identifiability. We prove that when both conditions hold, every global minimizer of the JEPA objective identifies the latent state and controlled transition up to an orthogonal transformation. We further derive quantitative bounds on representation and transition identifiability under approximate optimization. Finally, we construct predictor perturbations along weakly excited action directions whose counterfactual-to-on-policy error ratio is the inverse transition-identifiability margin, revealing the cost of limited action coverage. Experiments across nonlinear observation maps and behavior policies corroborate the theory and demonstrate implications for transition identifiability, counterfactual prediction, and goal-conditioned latent planning.",
+      "abstract": "World model serves as a promising tool to infer environment dynamics under high-dimensional observations and candidate actions. Recently, LeCun's JEPA provides a compelling framework for learning such models in representation space. Its action-conditioned extension plays a central role in visual control and latent-space planning, but leaves a fundamental question: can it recover the controlled dynamics from nonlinear observations? This paper presents a joint identifiability condition for controlled world models with Gaussian latent states, which consists of two coupled components: (1) representation identifiability and (2) transition identifiability. The former depends on the spectral separation property while the latter is related to non-degenerate variation of conditional action. We prove that when this condition holds, minimizing the LeJEPA-style predictive objective can recover both latent states and controlled dynamics in the sense of orthogonal transformation. We further prove that the upper bound of transition prediction error is inversely proportional to the spectral separation margin. We also characterize an attainable amplification of counterfactual prediction error that scales inversely with the weakest conditional action-excitation margin. The theoretical predictions are empirically supported across four nonlinear observation settings.",
       "authors": [
         "Xiangteng Zhang",
         "Yang Guan",
         "Bo Zhang",
+        "Hongyang Li",
         "Ya-Qin Zhang",
         "Shengbo Eben Li"
       ],
@@ -186,15 +299,14 @@
         "cs.LG"
       ],
       "published": "2026-07-24T15:49:12Z",
-      "updated": "2026-07-24T15:49:12Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.22430v1",
+      "updated": "2026-07-27T09:57:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22430v2",
       "abs_url": "https://arxiv.org/abs/2607.22430",
       "topics": [
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22430",
-      "summary_zh": "针对高维观测下的受控世界模型，该研究探讨了在何种条件下 Joint-Embedding Predictive Architectures (JEPAs) 能实现潜在状态与受控动力学的可辨识性。研究建立了高斯潜在状态与状态依赖行为策略下的联合可辨识性理论，指出可预测信号的谱分离性决定了表征可辨识性，而非退化的条件动作变异性则决定了转移可辨识性。理论证明在满足上述条件时，JEPAs 的全局极小值可将潜在状态与受控转移识别至正交变换精度，并推导了近似优化下的定量界限。实验验证了该理论在非线性观测映射下的有效性，并揭示了动作覆盖不足对反事实预测及目标导向潜在规划的具体影响。",
-      "impact_score": null
+      "summary_zh": "针对高维观测下的受控世界模型，该研究探讨了在何种条件下 Joint-Embedding Predictive Architectures (JEPAs) 能实现潜在状态与受控动力学的可辨识性。研究建立了高斯潜在状态与状态依赖行为策略下的联合可辨识性理论，指出可预测信号的谱分离性决定了表征可辨识性，而非退化的条件动作变异性则决定了转移可辨识性。理论证明在满足上述条件时，JEPAs 的全局极小值可将潜在状态与受控转移识别至正交变换精度，并推导了近似优化下的定量界限。实验验证了该理论在非线性观测映射下的有效性，并揭示了动作覆盖不足对反事实预测及目标导向潜在规划的具体影响。"
     },
     {
       "id": "2607.22371",
@@ -286,6 +398,31 @@
         "video-gen"
       ],
       "summary_zh": "针对现有fMRI人脸解码研究中高质量数据集匮乏及动态细节恢复能力不足的问题，该研究构建了首个包含62,856对全高清（1920×1080）fMRI-视频样本的fMRI-Face数据集。在此基础上，提出的fMRI2Face框架通过Brain-derived Appearance Context提取身份特征，并结合Morphable 3D Facial Control实现对表情、姿态及非刚性运动的显式几何引导。该方法利用Neural-Controlled Video Diffusion技术，将上述控制信号整合以生成高保真视频。实验结果表明，该框架在身份保留、面部几何结构及运动一致性方面均显著优于现有基准模型，为动态人脸感知研究提供了强有力的基准与技术支撑。"
+    },
+    {
+      "id": "2607.22788",
+      "title": "FMOPF: Latent Flow Matching with Constraint-Aware Interaction Priors for AC Optimal Power Flow",
+      "abstract": "AC optimal power flow determines the minimum-cost generation dispatch under nonlinear power balance constraints and is solved thousands of times daily in electricity market operations. Learning a direct mapping from load conditions to OPF solutions can accelerate this computation, yet with deepening renewable penetration, a single optimal dispatch is no longer sufficient. Operators require a characterization of the distribution of feasible near-optimal solutions for risk quantification, sensitivity analysis, and multi-objective trade-off assessment. Supervised neural networks provide fast point predictions but cannot capture this conditional distribution. Diffusion-based generative models can sample diverse solutions in principle, yet existing methods operating in the raw state space exhibit degraded solution quality and fail to scale beyond medium-sized systems. We identify the root cause as the conflation of two distinct tasks within a single model. Compressing the high-dimensional OPF solution manifold is one task, and learning the conditional mapping from loads to that manifold is another. This paper presents FMOPF, a framework that resolves this conflation by decoupling compression from generation through latent flow matching and by explicitly modeling load-state coupling through a Constraint-Aware Interaction Prior Network. Experiments on four IEEE test systems demonstrate that FMOPF provides the most effective Newton-Raphson warm starts, achieves the lowest tail risk among generative methods, and is the first such method to scale to systems with several hundred buses while preserving full feasibility. Ablation studies confirm that the latent generation pipeline is a necessary condition for physical feasibility and that the interaction prior functions as a late-stage tail-risk controller.",
+      "authors": [
+        "Zhilin Huang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "stat.ML"
+      ],
+      "published": "2026-07-24T12:49:09Z",
+      "updated": "2026-07-24T12:49:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22788v1",
+      "abs_url": "https://arxiv.org/abs/2607.22788",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22788",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "AC Optimal Power Flow (OPF) 求解在电力市场中面临计算效率与多解分布表征的挑战，现有监督学习模型难以捕捉可行解的分布，而传统扩散模型在处理高维状态空间时存在质量下降与扩展性不足的问题。FMOPF 框架通过将解空间压缩与条件映射解耦，引入 Latent Flow Matching 技术在低维潜空间进行生成，并利用 Constraint-Aware Interaction Prior Network 显式建模负载与状态的耦合关系。该方法在四个 IEEE 测试系统上的实验表明，其不仅能提供高效的 Newton-Raphson 热启动，还在保证物理可行性的前提下，成为首个扩展至数百节点规模且具备极低尾部风险的生成式模型。消融实验进一步证实，潜空间生成管线是确保物理可行性的关键，而交互先验网络则有效充当了尾部风险的控制机制。"
     },
     {
       "id": "2607.22241",
@@ -398,7 +535,7 @@
     },
     {
       "id": "2607.22083",
-      "title": "Nanbeige4.2-3B: Unlocking Agentic Capabilities in a Compact Mode",
+      "title": "Nanbeige4.2-3B: Unlocking Agentic Capabilities in a Compact Model",
       "abstract": "We present Nanbeige4.2-3B, a compact general agentic model with 3B non-embedding parameters. It delivers strong performance across code-agent, office-agent, and complex tool-use tasks while maintaining highly competitive reasoning capabilities in mathematics, coding, and science. Nanbeige4.2-3B is pretrained from scratch on 28T tokens with a Looped Transformer that reuses the layer stack to increase capacity without adding parameters. For SFT data and trajectory construction, we expand the diversity of executable environments, task assets, and agentic scaffolds through real-world deployment and large-scale synthesis. Our RL pipeline applies mixed-mode RLHF over Think and Non-Think responses to improve overall model quality and reduce failure cases, length-controlled reasoning RL to balance accuracy and reasoning efficiency, and agentic RL with outcome and process rewards to stabilize long-horizon training. Extensive evaluations show that Nanbeige4.2-3B outperforms larger models, including Qwen3.5-9B and Gemma4-12B, across diverse agentic benchmarks while remaining competitive on reasoning and alignment tasks. Performance with OpenClaw further supports its use as a compact local personal assistant.",
       "authors": [
         "Nanbeige Lab",
@@ -433,11 +570,12 @@
         "cs.CL"
       ],
       "published": "2026-07-24T08:33:26Z",
-      "updated": "2026-07-24T08:33:26Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.22083v1",
+      "updated": "2026-07-27T02:18:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22083v2",
       "abs_url": "https://arxiv.org/abs/2607.22083",
       "topics": [
-        "rl"
+        "rl",
+        "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22083",
       "summary_zh": "Nanbeige4.2-3B 是一款仅有 3B 参数的紧凑型通用智能体模型，旨在解决轻量化模型在复杂工具使用与长程推理任务中的性能瓶颈。该模型采用 Looped Transformer 架构通过复用层堆栈提升容量，并结合大规模合成数据与多样化执行环境进行训练。核心创新在于引入了混合模式 RLHF、长度受控的推理强化学习以及结合过程与结果奖励的智能体强化学习，有效平衡了推理效率与准确性。实验结果表明，该模型在多项智能体基准测试中超越了 Qwen3.5-9B 和 Gemma4-12B 等更大规模模型，展现出作为本地个人助手的卓越潜力。"
@@ -517,6 +655,37 @@
       "summary_zh": "针对强化学习中 GRPO 算法因对所有提示词分配固定 rollout 预算而导致计算冗余与效率低下的问题，本研究提出了 VIGOR（Variance Guided Online Rollout allocation）方法。该方法摒弃了固定分配策略，转而采用基于组奖励方差的动态分配机制，即初始阶段仅对所有样本进行少量采样，随后迭代地将剩余预算集中分配给方差最大的样本，从而聚焦于高信息量的推理路径。理论分析证明了奖励方差与梯度幅值的正相关性，并推导出了 VIGOR 相较于 GRPO 的加速比。在数学推理与代码生成任务中的实验表明，VIGOR 在显著降低 rollout 需求（最高达 2.3 倍）的同时，能更高效地达到目标精度并提升代码测试通过率。"
     },
     {
+      "id": "2607.22772",
+      "title": "Generative Video Compression with Adaptive Score Distillation",
+      "abstract": "Diffusion models provide strong generative capabilities for video compression at ultra-low bitrates. Existing diffusion-based video codecs adapt base models originally developed for text-conditioned generation, whereas diffusion models designed and trained specifically for compression remain unexplored. To fill this gap, we introduce our Generative Video Codec (GenVC), built on a video diffusion model trained from scratch for compression. To our knowledge, this is the first compression-oriented video diffusion model. We realize this model directly in pixel space with a global-to-local hierarchy that recovers fine spatio-temporal details, enabling high-quality generative reconstruction from compressed representations. To accelerate inference, we distill the multi-step model into one step using distribution matching distillation (DMD). Applying DMD directly, however, drives the student toward motion-stalled reconstructions. We trace this to a teacher-side guidance failure: once student-induced perturbations leave the frozen teacher's training region, its guidance can become misleading, causing DMD updates to reinforce rather than correct the student drift. To break the resulting feedback loop, we propose Adaptive Score Distillation, which gates DMD updates according to their alignment with the ground-truth direction, enabling high-quality reconstruction with coherent motion. Experimental results show that GenVC achieves state-of-the-art perceptual quality at ultra-low bitrates, with average bitrate savings of 62.5% at matched LPIPS and 71.3% at matched FID over GLVC. Unlike prior codecs that inherit billion-scale pretrained backbones, our diffusion model has only 478.0M parameters and decodes 1080p video in a single step at 15.1 fps on an A100 GPU.",
+      "authors": [
+        "Naifu Xue",
+        "Zhaoyang Jia",
+        "Haosen Li",
+        "Zihan Zheng",
+        "Jiahao Li",
+        "Bin Li",
+        "Xiaoyi Zhang",
+        "Qi Meng",
+        "Yuan Zhang",
+        "Yan Lu"
+      ],
+      "categories": [
+        "eess.IV",
+        "cs.CV"
+      ],
+      "published": "2026-07-24T05:28:30Z",
+      "updated": "2026-07-24T05:28:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22772v1",
+      "abs_url": "https://arxiv.org/abs/2607.22772",
+      "topics": [
+        "distillation",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22772",
+      "summary_zh": "GenVC 针对超低码率视频压缩场景，提出首个从零训练的专用视频扩散模型，通过全局到局部的层级结构在像素空间实现高质量重建。为解决分布匹配蒸馏（DMD）在单步推理中导致运动停滞的问题，引入自适应分数蒸馏（Adaptive Score Distillation）技术，通过门控机制确保更新方向与真实数据对齐，有效打破了学生模型漂移的反馈循环。实验表明，该模型仅需 4.78 亿参数，在超低码率下实现了优于 GLVC 的感知质量，且在 A100 GPU 上能以 15.1 fps 的速度完成 1080p 视频的单步解码，显著提升了生成式视频压缩的效率与稳定性。"
+    },
+    {
       "id": "2607.21971",
       "title": "Teaching LLMs to Self-Evolve: Cultivating Core Meta-Skills with Reinforcement Learning",
       "abstract": "Test-time scaling through iterative self-evolution with environment feedback, as demonstrated by AlphaEvolve, shows remarkable performance gains. We hypothesize that the success of such evolution frameworks hinges on meta-skills, such as self-reflection with environment feedback, that enable effective multi-round refinement, yet are largely neglected by traditional post-training. To bridge this gap, we present MetaEvolve, a framework designed to develop these meta-skills via a data synthesis pipeline, evolution-aware reinforcement learning (RL), and inference-time evolutionary search. Concretely, we ground MetaEvolve in coding, where program execution provides natural, continuous reward signals beyond binary correctness. Building on these signals, we synthesize evolution trajectories as training data, each containing a current program, its fitness score (combining correctness and efficiency), and a history of prior attempts, and train the model via RL with verifiable rewards derived from test case execution. By training on large-scale code data, we aim to inspire generalizable domain-agnostic meta-skills that can transfer broadly to open-ended problems where such rich training signals are scarce. Across seven coding benchmarks, MetaEvolve outperforms the strongest baseline by 10.01% absolute on in-distribution tasks and 24.12% on out-of-distribution tasks. On open-ended algorithm optimization problems entirely outside the training domain, it further achieves a 46.9% relative improvement. These results demonstrate that explicitly cultivating self-evolution meta-skills offers a principled path toward more capable and autonomously self-evolving AI.",
@@ -540,6 +709,33 @@
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.21971",
       "summary_zh": "MetaEvolve 旨在解决传统大模型后训练中缺乏自我进化元技能的问题，通过强化学习培养模型在环境反馈下的多轮迭代优化能力。该框架利用代码执行产生的连续奖励信号，构建包含程序状态、适应度评分及历史尝试的演化轨迹数据，并结合演化感知强化学习（Evolution-aware RL）进行训练。核心创新在于将自我反思与多轮修正能力显式转化为模型内化的元技能，从而实现跨任务的泛化。实验表明，MetaEvolve 在七项代码基准测试中表现卓越，在分布外任务及开放式算法优化问题上分别取得了 24.12% 和 46.9% 的显著提升，证明了通过显式培养元技能可有效推动 AI 实现自主进化。"
+    },
+    {
+      "id": "2607.22766",
+      "title": "Beyond Shapley: An Influence-Based Data Auditing Pipeline for LLM Alignment and Evaluation",
+      "abstract": "The alignment of Large Language Models (LLMs) is increasingly bottlenecked by data quality. As datasets scale, massive preference and instruction-tuning corpora inevitably accumulate hidden structural contradictions, safety risks, and systemic human annotation errors. Standard dataset auditing methods, such as semantic deduplication or LLM-as-a-judge, struggle to capture the actual predictive impact of individual records and often miss deep functional rule clashes. To address this, we introduce a scalable, inference-only data valuation pipeline that approximates the Shapley value without iterative model retraining. By mapping semantic k-NN neighborhoods into a directed graph, our framework evaluates data utility directly through a reference LLM's probability distribution using zero-shot and one-shot conditional log-likelihood shifts. Our pipeline then translates these predictive influence scores into localized advantage metrics to isolate gradient-conflicting records. We demonstrate the pipeline's efficacy in sanitizing two heavily vetted alignment datasets. First, applying our pipeline to the HelpSteer2 dataset reduced the manual audit search space by 99.1%, successfully uncovering falsely-labeled records across diverse failure modes. Second, applying our automated audit strategy to Anthropic's HH-RLHF training and evaluation splits identified thousands of hidden safety and factual preference inversions. Crucially, by extending this audit to the evaluation split, we expose severe vulnerabilities in current benchmark integrity: highly capable models frequently predict the safer or more helpful response, only to be penalized by objectively flawed human ground-truth labels. Overall, our work provides a mathematically grounded, highly efficient diagnostic tool to uncover human label failures, sanitize evaluation benchmarks, and ensure the integrity of LLM alignment data.",
+      "authors": [
+        "Yunting Song",
+        "Matthew Watson",
+        "Peter Grabowski",
+        "Jun Qin"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-24T03:31:44Z",
+      "updated": "2026-07-24T03:31:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.22766v1",
+      "abs_url": "https://arxiv.org/abs/2607.22766",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.22766",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对大模型对齐过程中数据质量难以评估的问题，该研究提出了一种基于影响力的可扩展数据审计流水线，通过将语义 k-NN 邻域映射为有向图，利用参考 LLM 的条件对数似然偏移来近似 Shapley 值，从而在无需重训练的情况下量化数据效用。该方法通过计算局部优势指标有效识别出梯度冲突记录，在 HelpSteer2 数据集上将人工审计空间缩减了 99.1%，并成功定位了其中的错误标注。在 Anthropic 的 HH-RLHF 数据集上的实验进一步揭示了基准测试中存在的严重标签偏差，证明了该工具在清理对齐数据、纠正评估基准及提升模型安全性方面的显著价值。"
     },
     {
       "id": "2607.21932",
