@@ -1,6 +1,6 @@
 {
   "date": "2026-07-27",
-  "generated_at": "2026-07-28T04:46:51.247084+00:00",
+  "generated_at": "2026-07-29T04:49:37.994039+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,194 @@
   },
   "papers": [
     {
+      "id": "2607.25136",
+      "title": "Less Data, Better Alignment: Data-Centric Multi-Evaluator Agreement for Preference Optimization",
+      "abstract": "Research on preference optimization often varies the training objective while holding the data fixed. We instead ask whether a small, high-confidence set of on-policy responses can provide a reliable learning signal. Our method, DMAPO (Data-centric Multi-evaluator Agreement for Preference Optimization), generates candidate responses from the target policy, evaluates helpfulness, factuality, and conciseness with rubric-specialized evaluators, applies a process-critic correction, and retains only high-consensus desirable or undesirable examples. This procedure accepts 1,871 of 54,236 Mistral-7B candidates (3.45%). KTO trained on this set reaches 7.50 on MT-Bench, 95.5% length-controlled win rate against a text-davinci-003 reference, and 57.3% IFEval prompt accuracy. Independent pairwise evaluation also favors DMAPO over SimPO: GPT-4o yields a net win rate of 23.3 points on 129 held-out prompts and 24.0 points on 200 out-of-distribution LMSYS-Chat prompts; Claude Opus 4.7 yields 24.1 points on the held-out set. Changing the evaluator model or rubric alters the selected examples but has little effect on downstream performance. A second-backbone study yields a similar 3.41% acceptance rate, although its performance gains are more modest. Across these experiments, consensus filtering offers a data-efficient route to preference optimization for general instructions, at the cost of additional curation compute and dependence on evaluator judgments.",
+      "authors": [
+        "Zhengtao Yao",
+        "Runhao Li",
+        "Xupeng Chen",
+        "Jiayi Cheng",
+        "Chenqian Le",
+        "Michael Yue",
+        "Siheng Wang",
+        "Haoyan Xu",
+        "Yuqi Li",
+        "Chenhao Wei",
+        "Zhengdao Li",
+        "Rongchao Zhang",
+        "Guang Yang",
+        "Yidong Wang",
+        "Junhao Dong"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-27T23:05:12Z",
+      "updated": "2026-07-27T23:05:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.25136v1",
+      "abs_url": "https://arxiv.org/abs/2607.25136",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.25136",
+      "summary_zh": "针对偏好优化中数据质量参差不齐的问题，DMAPO（Data-centric Multi-evaluator Agreement for Preference Optimization）提出了一种基于多评估器共识的数据筛选策略。该方法通过特定评估器对模型生成的候选响应进行多维度打分，并结合过程批评（process-critic）修正，仅保留高共识的优质或劣质样本进行训练。实验表明，仅使用约3.45%的高质量样本进行KTO训练，即可在MT-Bench、IFEval等基准测试中取得优异表现，且在GPT-4o和Claude Opus的盲测中显著优于SimPO。该研究证明了通过精简数据规模实现高效对齐的可行性，为偏好优化提供了更具数据效率的路径。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.25123",
+      "title": "Endpoint Replay: Compressing the Recency Buffer in Deep Reinforcement Learning",
+      "abstract": "Experience replay remains one of the most practical and useful algorithmic tools in the deep reinforcement learning (DRL) toolbox. Aside from the limited success of prioritized replay and specialized approaches for large asynchronous systems, most DRL algorithms make use of a large, uniformly sampled recency buffer---even the size, one million, remains unchanged. Could we store less data, reduce redundancy, or more effectively chain experience together to speed up value propagation and still retain the performance of large buffers? In this paper, we investigate a simple compression approach that stores representative transitions derived from the end-points of a chain of connected $n$-step sequences. By curating these end-points in a smaller recency buffer, our method maintains an effective memory horizon comparable to a standard large buffer while requiring an order of magnitude less storage. Through empirical evaluation, we demonstrate that this approach prevents the systematic bias inherent in naive compression strategies and matches the performance of traditional large buffers in the Pinball environment and the Atari 2600 benchmark.",
+      "authors": [
+        "Parham Mohammad Panahi",
+        "Armin Ashrafi",
+        "Haoyu Du",
+        "Andrew Patterson",
+        "Martha White",
+        "Adam White"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-27T22:33:09Z",
+      "updated": "2026-07-27T22:33:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.25123v1",
+      "abs_url": "https://arxiv.org/abs/2607.25123",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.25123",
+      "summary_zh": "深度强化学习中传统的经验回放机制依赖于大规模的均匀采样缓冲区，这导致了存储冗余且难以高效利用数据。该研究提出了一种名为 Endpoint Replay 的压缩策略，通过仅存储 $n$-step 序列链条的端点（end-points）来构建精简的缓冲区，从而在大幅降低存储需求的同时维持有效的记忆跨度。该方法通过精心筛选代表性转换，有效避免了朴素压缩策略中常见的系统性偏差。在 Pinball 环境和 Atari 2600 benchmark 上的实验结果表明，该方法在仅需十分之一存储空间的情况下，依然能够达到与传统大规模缓冲区相当的性能表现，显著提升了价值传播的效率。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.25091",
+      "title": "Towards Robust Reinforcement Learning for Small-Scale Language Model Agents",
+      "abstract": "The alignment of Small Language Models (SLMs) in the 70--500M parameter range using reinforcement learning is often considered unstable, though the underlying failure mechanisms have not been systematically investigated. In the State-of-the-Art (SOTA) research, fifteen (model, corpus) configurations were trained using Proximal Policy Optimization (PPO). The experiments included Pythia-70M, 160M, 410M and SmolLM2-135M, 360M on the TinyStories, CNN/DailyMail, and Wikitext-103 corpora. Three reproducible failure modes were identified in small-scale language models: silent LoRA parameter freezing in standard PEFT/TRL pipelines, numerical overflow in importance ratios when using bfloat16, and catastrophic policy collapse due to reward-model error. These issues were addressed using a merge-and-reinitialize adapter technique, float32 precision during PPO updates, and a three-layer safety mechanism comprising reward whitening, importance-ratio guarding, and weight rollback. In this paper, a capacity-headroom hypothesis is proposed, which states that PPO performance at the SLM scale depends on both a fluent supervised model ($\\text{PPL}<20$) and a discriminative reward signal, rather than on the number of model parameters. The proposed system converged stably in all experiments and improved preference win rate over the SFT baseline in configurations with a fluent prior and an informative reward signal. Furthermore, it outperformed instruction-tuned baselines while requiring significantly less training data. All checkpoints, preference datasets, and training scripts are publicly released$^§$.",
+      "authors": [
+        "Md Rezwanul Haque",
+        "Md. Milon Islam",
+        "Fakhri Karray"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "math.OC",
+        "stat.CO"
+      ],
+      "published": "2026-07-27T21:30:44Z",
+      "updated": "2026-07-27T21:30:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.25091v1",
+      "abs_url": "https://arxiv.org/abs/2607.25091",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.25091",
+      "summary_zh": "针对 70M 至 500M 参数规模的小型语言模型（SLM）在强化学习对齐中表现不稳定的问题，该研究系统性地识别出 LoRA 参数冻结、bfloat16 数值溢出及奖励模型导致的策略崩溃这三大失效模式。通过引入合并重初始化适配器技术、PPO 更新时的 float32 精度计算，以及包含奖励白化、重要性比率保护和权重回滚的三层安全机制，有效解决了上述训练不稳定性。研究提出了容量余量假设（Capacity-Headroom Hypothesis），指出 SLM 的对齐效果取决于监督模型的流畅度与奖励信号的判别力，而非单纯的模型参数量。实验表明，该方案在多种数据集上实现了稳定收敛，不仅显著提升了偏好胜率，且在数据需求更少的情况下超越了现有的指令微调基准模型。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.25082",
+      "title": "PLATO: Pointer Learner for Agent and Task Openness",
+      "abstract": "Open agent systems (OASYS) are increasingly prevalent in real-world domains where the sets of agents and tasks change unpredictably over time. Such openness, including agent openness (AO) and task openness (TO), poses a fundamental challenge to multi-agent reinforcement learning (MARL), which typically assumes fixed state and action spaces. Existing methods address openness only partially: padding and masking approaches introduce artificial bounds, while recent graph-based or hypergraph methods handle one dimension of openness but still depend on restrictive assumptions. In this paper, we introduce Pointer Learner for Agent and Task Openness (PLATO), a pointer-network-based actor combined with a centralized graph neural network (GNN) critic, trained with multi-agent proximal policy optimization under a centralized training and decentralized execution paradigm. Our pointer-based actor outputs distributions directly over the current task set. This directly supports changing action spaces without masking or retraining. Our GNN critic encodes agent-task interactions as a graph that changes shape with task and agent composition. Together, these components consider AO and TO without the boundedness of existing approaches. We formalize PLATO in a Task-and-Agent-Open Markov Game (TaAgO-MG), extending prior task-open formulations, and prove it is well-defined over the resulting unbounded state and action spaces. We evaluate PLATO with the Methods for Open Agent Systems Evaluation Initiative (MOASEI) wildfire suppression domain, an environment designed for open multi-agent system evaluation, and we demonstrate strong performance and more consistent zero-shot generalization than state-of-the-art baselines in OASYS.",
+      "authors": [
+        "Alireza Saleh Abadi",
+        "Leen-Kiat Soh",
+        "Daniel Alan Redder",
+        "Adam Eck",
+        "Prashant Doshi"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-07-27T21:20:13Z",
+      "updated": "2026-07-27T21:20:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.25082v1",
+      "abs_url": "https://arxiv.org/abs/2607.25082",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.25082",
+      "summary_zh": "针对开放多智能体系统（OASYS）中智能体和任务数量动态变化导致的动作空间不固定问题，PLATO 提出了一种基于 Pointer Network 的 Actor-Critic 架构。该方法通过 Pointer-based Actor 直接在当前任务集上输出分布，无需掩码或重训练即可适应变化的动作空间，并结合 GNN Critic 对动态变化的智能体-任务交互图进行编码。研究在 TaAgO-MG 框架下形式化了该模型，并证明了其在无界状态和动作空间下的有效性。在 MOASEI 野火抑制任务中的实验表明，PLATO 相比现有方法展现出更强的性能和更稳定的零样本泛化能力。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.25069",
+      "title": "DS@GT ARC at CheckThat! 2026: LLM-Based Trace Ranking and Grouped Reward Modeling for Multilingual Numerical Claim Verification",
+      "abstract": "Automated verification of numerical claims is a challenging problem, as it requires both language understanding and quantitative reasoning. This paper describes our system for CLEF 2026 CheckThat! Task 2, which focuses on ranking reasoning traces generated by large language models (LLMs) and predicting a final verdict for numerical claims in English and Arabic. We explore two approaches. The first approach fine-tunes an LLM-based verifier using LoRA to score each reasoning trace independently as a binary classification problem, and selects the final verdict using Best-of-N selection. We further experiment with adaptive sub-claim decomposition to break complex claims into simpler parts before verification. The second approach uses a lightweight TF-IDF reward model with handcrafted numeric and temporal overlap features to score traces, and aggregates scores by verdict group to determine the final prediction. For Arabic, we compare a general multilingual model against AraBERT, a language-specific model pretrained on Arabic text. Our results show that the LLM-based approach outperforms the lightweight reward model on most metrics, particularly Recall@5, while the reward-based approach shows stronger performance on the Conflicting class. Sub-claim decomposition did not improve performance, suggesting that claim splitting introduces noise rather than aiding reasoning. For Arabic, AraBERT outperforms the multilingual baseline across most metrics.",
+      "authors": [
+        "Sagnik Sinha",
+        "Shreyas Shrestha"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-07-27T20:59:14Z",
+      "updated": "2026-07-27T20:59:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.25069v1",
+      "abs_url": "https://arxiv.org/abs/2607.25069",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.25069",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对 CLEF 2026 CheckThat! 任务中的多语言数值声明验证问题，该研究提出两种核心方案：一是基于 LoRA 微调 LLM 对推理路径进行独立评分并结合 Best-of-N 策略，二是利用 TF-IDF 奖励模型结合数值与时间特征进行分组聚合预测。实验表明，LLM 方法在 Recall@5 等指标上表现更优，而奖励模型在处理冲突类（Conflicting）声明时更具优势。此外，研究发现子声明分解（Sub-claim decomposition）反而会引入噪声，且在阿拉伯语任务中，特定语言模型 AraBERT 的表现显著优于通用多语言模型。"
+    },
+    {
+      "id": "2607.25063",
+      "title": "Similar Models Learn Differently: Final-Window Pretraining Shapes Post-Training Beyond SFT",
+      "abstract": "Developers judge a model checkpoint by how it behaves. After supervised fine-tuning (SFT), two checkpoints that perform about the same across relevant benchmarks are treated as interchangeable, equally ready for the next alignment stage, typically preference optimization. We ask whether this judgment misses a pretraining imprint: a difference that no post-SFT benchmark reveals, yet that decides how each checkpoint responds to further training. To find out, we run a controlled experiment on the final window of pretraining, the last data trained on before instruction tuning. Six branches fork from one partially pretrained checkpoint and differ only in this window: 500 million tokens, 0.1% to 1% of the tokens that precede it. Each branch trains its window on a single data source: generic web text, filtered web text, normative discourse, safety text, mathematical text, or synthetic educational text. SFT and post-training are then identical. After SFT the branches behave near-identically, within about one point on instruction following, refusal, and capability, yet the same post-training carries them to very different endpoints, under both a direct preference optimization update and a reinforcement learning update with a verifiable reward. We measure this deviation through refusal of harmful requests: when post-training begins the safety text branch refuses no more than the web text branch, yet by the end it has lost far less of its refusal. The other four branches gain little or no protection, so the effect is selective to what the window contained. The protection requires the safety text to arrive last rather than earlier in pretraining, and it reproduces on a second model family. What a model is pretrained on last shapes how it reacts to alignment. Therefore, a checkpoint should not be evaluated by its post-SFT behavior alone, and what it was trained on last should be reported with it.",
+      "authors": [
+        "Cen Lu",
+        "Yung-Chen Tang",
+        "Andrea Cavallaro"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-07-27T20:46:29Z",
+      "updated": "2026-07-27T20:46:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.25063v1",
+      "abs_url": "https://arxiv.org/abs/2607.25063",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.25063",
+      "summary_zh": "预训练阶段最后接触的数据（Final-Window Pretraining）对模型后续的对齐效果具有决定性影响，即便多个模型在 SFT 后表现出几乎相同的基准测试性能，其在后续偏好优化（如 DPO 或 RL）中的表现仍存在显著差异。研究通过在预训练末端引入不同的数据分支（如安全文本、数学文本等）进行受控实验，发现模型对齐后的安全性与能力演变高度依赖于最后阶段的训练数据。实验结果表明，安全文本在最后阶段的注入能显著提升模型在对齐过程中的拒答能力，而这种“预训练印记”在 SFT 阶段往往被掩盖。因此，模型检查点的评估不能仅依赖 SFT 后的行为，必须将末端预训练数据作为关键元数据进行记录，以准确预测模型在后续对齐中的响应特性。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.24996",
+      "title": "Calibrated Partial Resets: Preventing Policy Collapse in Continual Reinforcement Learning",
+      "abstract": "Neural networks are hindered by accumulating dormant neurons and loss of expressivity throughout training, particularly in non-stationary data settings, such as continual supervised and reinforcement learning. Recently, neuron resets have been used to maintain gradient flow and restore plasticity. However, full unit reinitialization often sacrifices peak performance and can destabilize training, leading to policy collapse. To preserve plasticity without destabilizing training, we propose Calibrated Partial Resets (CPR), an optimizer that periodically pulls low-utility neurons toward their initialization, with pull strength scaled by each neuron's utility. Unlike binary reset methods, partial resets avoid brittleness; unlike uniform decay, calibrated utility-scaling concentrates adjustment on the units that need it most. Among compared methods, only CPR avoids policy collapse over 400M training steps in SlipperyAnt, and it outperforms prior decay and reset-based methods on Continual MetaWorld and Continual MinAtar benchmarks. Ablations reveal a tunable trade-off between plasticity and peak performance, highlighting utility-scaled reinitialization as a promising direction for continual learning.",
+      "authors": [
+        "Luc McCutcheon",
+        "Evangelos Chatzaroulas",
+        "Saber Fallah"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "published": "2026-07-27T18:53:00Z",
+      "updated": "2026-07-27T18:53:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.24996v1",
+      "abs_url": "https://arxiv.org/abs/2607.24996",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.24996",
+      "summary_zh": "在持续强化学习中，神经网络常因神经元“休眠”导致表征能力下降，而传统的全量重置方法又易引发策略崩溃。Calibrated Partial Resets (CPR) 提出了一种基于神经元效用（utility）的优化策略，通过将低效用神经元按比例拉回初始化状态，在维持梯度流动与模型可塑性的同时，避免了剧烈重置带来的训练不稳定。该方法利用效用缩放机制精准调整关键单元，在 SlipperyAnt 环境中成功防止了长达 4 亿步训练后的策略崩溃。实验结果表明，CPR 在 Continual MetaWorld 和 Continual MinAtar 等基准测试中均优于现有的衰减与重置方法，有效平衡了模型的可塑性与峰值性能。",
+      "impact_score": null
+    },
+    {
       "id": "2607.24741",
       "title": "Certified Parallel-in-Time Sinkhorn for Dynamic Entropic Optimal Transport",
       "abstract": "Dynamic applications, including optimal-transport Flow Matching, repeatedly solve related entropic optimal transport problems, yet conventional distributed Sinkhorn processes frames sequentially and synchronizes after every iteration. We present TemporalSinkhorn, a parallel-in-time executor that batches future candidates and their repairs without making output accuracy speculative. A centered, row-sharded certificate accepts only a deterministic safe prefix. The remaining candidates share packed Sinkhorn updates; an online projective forgetting rate places audit milestones, while a posteriori residual checks recover from every depth underestimate. Prediction can therefore change work placement but cannot authorize an inaccurate output. On 4 A100 GPUs, a 60-run, five-seed grid at n = 2048 shows that forgetting-guided milestones reduce wall time by 1.15x-1.47x relative to auditing every packed iteration in five statistically resolved regime cells. Against a sequential soft c-transform warm start, temporal execution is 1.42x-3.55x faster across six synthetic streams, with zero marginal-tolerance violations. On Flow Matching minibatch streams, temporal execution is 3.054x-3.632x faster than sequential carry at n = 2048, with no tolerance violations. A separate fixed-kernel test on an RTX 4060 Laptop GPU gives a 4.315x geometric-mean speedup. These are complementary deployment studies rather than a controlled hardware comparison. End-to-end Flow Matching integration, optimized-solver comparisons, and multi-node validation remain open.",
@@ -44,11 +232,13 @@
       "pdf_url": "https://arxiv.org/pdf/2607.24741v1",
       "abs_url": "https://arxiv.org/abs/2607.24741",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.24741",
-      "summary_zh": "针对动态熵最优传输（Dynamic Entropic Optimal Transport）中传统 Sinkhorn 算法串行执行效率低的问题，TemporalSinkhorn 提出了一种并行时间执行框架。该方法通过批处理未来候选解并引入基于中心化行分片（row-sharded）的确定性安全证书，确保在并行计算的同时维持输出的精确性。通过在线投影遗忘率（projective forgetting rate）设置审计里程碑，并结合后验残差检查机制，该算法在不牺牲准确性的前提下实现了对计算资源的有效调度。在 Flow Matching 等任务的实验中，该方法在多 GPU 环境下显著降低了壁钟时间，最高实现了超过 4 倍的加速，且在保持零边际容差违规的同时大幅提升了计算吞吐量。",
-      "impact_score": null
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对动态熵最优传输（Dynamic Entropic Optimal Transport）中传统 Sinkhorn 算法串行执行效率低的问题，TemporalSinkhorn 提出了一种并行时间执行框架。该方法通过批处理未来候选解并引入基于中心化行分片（row-sharded）的确定性安全证书，确保在并行计算的同时维持输出的精确性。通过在线投影遗忘率（projective forgetting rate）设置审计里程碑，并结合后验残差检查机制，该算法在不牺牲准确性的前提下实现了对计算资源的有效调度。在 Flow Matching 等任务的实验中，该方法在多 GPU 环境下显著降低了壁钟时间，最高实现了超过 4 倍的加速，且在保持零边际容差违规的同时大幅提升了计算吞吐量。"
     },
     {
       "id": "2607.24731",
@@ -576,10 +766,35 @@
       "pdf_url": "https://arxiv.org/pdf/2607.24651v1",
       "abs_url": "https://arxiv.org/abs/2607.24651",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.24651",
-      "summary_zh": "视觉文档理解中，模型常因坐标输出限制导致“归因幻觉”，即答案正确但证据定位错误。该研究提出用语言引用代替坐标输出，通过多模态检索器定位引用文本，显著提升了证据召回率并降低了幻觉率。在此基础上，引入基于 GRPO 的训练方案，利用金标准答案与检索区域作为奖励信号，在无需昂贵区域标签的情况下，实现了模型引用能力的自我优化。实验表明，该方法在 CiteVQA 等基准上大幅提升了 8B 规模模型的严格归因准确率，为高效提升视觉文档理解的透明度提供了新路径。",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "视觉文档理解中，模型常因坐标输出限制导致“归因幻觉”，即答案正确但证据定位错误。该研究提出用语言引用代替坐标输出，通过多模态检索器定位引用文本，显著提升了证据召回率并降低了幻觉率。在此基础上，引入基于 GRPO 的训练方案，利用金标准答案与检索区域作为奖励信号，在无需昂贵区域标签的情况下，实现了模型引用能力的自我优化。实验表明，该方法在 CiteVQA 等基准上大幅提升了 8B 规模模型的严格归因准确率，为高效提升视觉文档理解的透明度提供了新路径。"
+    },
+    {
+      "id": "2607.24900",
+      "title": "Inverse RL Helps Align AI by Imitating Humans",
+      "abstract": "Language model alignment aims to make model behavior reliably reflect desirable properties such as helpfulness, safety, and instruction following. Current approaches typically use supervised fine-tuning on demonstrations or reinforcement learning with rewards derived from verifiers or human feedback. These paradigms leave an important question underexplored: can demonstrations alone yield an implicit reward that can be inspected, reused, and optimized on-policy to align AI? Motivated by inverse reinforcement learning, we introduce Projected Alignment Reward Estimated from Demonstrations (PARED). PARED recovers the implicit reward underlying expert demonstrations as an explicit function over a small set of response-level features, learned by a lightweight discriminator that separates demonstrations from the policy's own samples in this feature space. Unlike a standard reward model, PARED requires no task-specific preference annotations: demonstrations provide the task-specific supervision, which can be augmented with AI feedback as additional dimensions of supervision. Through experiments involving inference-time reranking and adversarial on-policy RL, we show that the recovered reward improves a base policy without a supervised loss and yields further gains when optimized after standard supervised fine-tuning. Additionally, we demonstrate that PARED can be used for contextual alignment, in which a single policy can be tailored to the preferences of different audiences.",
+      "authors": [
+        "Michał Wiliński",
+        "Liu Leqi",
+        "Chirag Nagpal"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-27T16:45:31Z",
+      "updated": "2026-07-27T16:45:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.24900v1",
+      "abs_url": "https://arxiv.org/abs/2607.24900",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.24900",
+      "summary_zh": "针对大语言模型对齐中依赖人工偏好标注的局限性，PARED（Projected Alignment Reward Estimated from Demonstrations）通过逆强化学习思路，从专家演示中直接提取隐含的奖励函数。该方法利用轻量级判别器在特征空间中区分演示数据与模型采样，无需任务特定的偏好标注即可构建显式奖励模型。实验表明，PARED 在推理时重排序和对抗性策略强化学习中表现优异，不仅能脱离监督损失提升基准策略，还能通过多维度监督实现针对不同受众的上下文对齐。这种方法为高效、可复用的模型对齐提供了新的优化范式。",
       "impact_score": null
     },
     {
@@ -888,8 +1103,8 @@
         "cs.AI"
       ],
       "published": "2026-07-27T12:18:59Z",
-      "updated": "2026-07-27T12:18:59Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.24341v1",
+      "updated": "2026-07-28T08:34:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.24341v2",
       "abs_url": "https://arxiv.org/abs/2607.24341",
       "topics": [
         "other"
@@ -1163,11 +1378,13 @@
       "pdf_url": "https://arxiv.org/pdf/2607.24083v1",
       "abs_url": "https://arxiv.org/abs/2607.24083",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.24083",
-      "summary_zh": "针对人形机器人运动控制中任务策略难以复用及运动模仿策略缺乏通用性的问题，该研究提出了一种可重用的混合运动先验（Hybrid Motion Prior, HMP）框架。该方法通过三阶段流水线，首先利用强化学习模仿人类动作，随后将专家策略蒸馏至包含残差向量量化（RVQ）码本的固定架构中，最后通过训练下游策略选择离散码本条目来完成特定任务。实验表明，HMP不仅能有效实现速度跟踪、导航及跌倒恢复等任务，且在Unitree G1机器人上实现了零样本迁移。关键创新在于通过RVQ码本实现了运动模式的解耦与重用，并引入旋转技巧（rotation trick）优化了潜在空间的组织结构，显著提升了下游任务的稳定性和训练效率。",
-      "impact_score": null
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对人形机器人运动控制中任务策略难以复用及运动模仿策略缺乏通用性的问题，该研究提出了一种可重用的混合运动先验（Hybrid Motion Prior, HMP）框架。该方法通过三阶段流水线，首先利用强化学习模仿人类动作，随后将专家策略蒸馏至包含残差向量量化（RVQ）码本的固定架构中，最后通过训练下游策略选择离散码本条目来完成特定任务。实验表明，HMP不仅能有效实现速度跟踪、导航及跌倒恢复等任务，且在Unitree G1机器人上实现了零样本迁移。关键创新在于通过RVQ码本实现了运动模式的解耦与重用，并引入旋转技巧（rotation trick）优化了潜在空间的组织结构，显著提升了下游任务的稳定性和训练效率。"
     },
     {
       "id": "2607.24062",
@@ -1218,7 +1435,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.24057",
-      "summary_zh": "针对现实世界中约束强化学习难以适应动态成本函数的问题，SafeDSR（Safe Deep Successor Representation）通过引入可学习的权重矩阵，实现了环境动力学、奖励函数与成本函数的解耦。该方法基于 Deep Successor Representation 框架，将价值函数分解为状态表示与任务特定权重的乘积，当环境中的成本结构（如障碍物移动或领域偏移）发生变化时，仅需通过监督学习更新权重矩阵，无需重新训练整个神经网络。在二维导航任务中的实验表明，SafeDSR 不仅在基础任务上表现出与现有方法相当的竞争力，更在面对动态约束变化时展现出极高的灵活性与快速适应能力。"
+      "summary_zh": "针对现实世界中约束强化学习难以适应动态成本函数的问题，SafeDSR（Safe Deep Successor Representation）通过引入可学习的权重矩阵，实现了环境动力学、奖励函数与成本函数的解耦。该方法基于 Deep Successor Representation 框架，将价值函数分解为状态表示与任务特定权重的乘积，当环境中的成本结构（如障碍物移动或领域偏移）发生变化时，仅需通过监督学习更新权重矩阵，无需重新训练整个神经网络。在二维导航任务中的实验表明，SafeDSR 不仅在基础任务上表现出与现有方法相当的竞争力，更在面对动态约束变化时展现出极高的灵活性与快速适应能力。",
+      "impact_score": null
     },
     {
       "id": "2607.24027",
@@ -1248,7 +1466,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.24027",
-      "summary_zh": "Diffusion Transformers 在视频生成中因长序列导致 Attention 计算成为推理瓶颈，现有稀疏化方法存在路由开销大及信息丢失严重的问题。Sol-Attn 提出了一种无需训练的在线 Attention 稀疏化方案，通过在 online-softmax 过程中引入即时块阈值化（on-the-fly block thresholding）与代理分数复用技术，实现了动态且可控的计算预算分配。该方法在跳过不重要块的同时，利用被丢弃块的代理分数进行贡献近似，有效缓解了稀疏化带来的精度损失。在图像与视频生成任务上的实验表明，Sol-Attn 在保持视觉质量的前提下，分别实现了 2.1 倍和 2.3 倍的端到端推理加速，显著提升了稀疏 Attention 的效率与精度平衡。"
+      "summary_zh": "Diffusion Transformers 在视频生成中因长序列导致 Attention 计算成为推理瓶颈，现有稀疏化方法存在路由开销大及信息丢失严重的问题。Sol-Attn 提出了一种无需训练的在线 Attention 稀疏化方案，通过在 online-softmax 过程中引入即时块阈值化（on-the-fly block thresholding）与代理分数复用技术，实现了动态且可控的计算预算分配。该方法在跳过不重要块的同时，利用被丢弃块的代理分数进行贡献近似，有效缓解了稀疏化带来的精度损失。在图像与视频生成任务上的实验表明，Sol-Attn 在保持视觉质量的前提下，分别实现了 2.1 倍和 2.3 倍的端到端推理加速，显著提升了稀疏 Attention 的效率与精度平衡。",
+      "impact_score": null
     },
     {
       "id": "2607.24023",
@@ -1303,7 +1522,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.24013",
-      "summary_zh": "AptAvatar 旨在解决生产级音频驱动数字人生成中推理速度与视觉质量难以兼顾的矛盾，通过 14B 参数的大模型实现高效且生动的长视频生成。该框架引入 Endpoint-Anchored Distribution Distillation 技术，通过预训练的 4 步桥接生成器作为锚点，有效引导两步学生模型实现高质量分布匹配。此外，Self-Generated History Replay 机制通过复用历史输出作为条件，在无需昂贵在线回放的情况下，显著提升了长序列生成的时序一致性与身份稳定性。实验表明，该方法仅需 2 次函数评估（NFE）即可生成 720p 高清视频，在保持视觉保真度的同时实现了 60 倍的推理加速。"
+      "summary_zh": "AptAvatar 旨在解决生产级音频驱动数字人生成中推理速度与视觉质量难以兼顾的矛盾，通过 14B 参数的大模型实现高效且生动的长视频生成。该框架引入 Endpoint-Anchored Distribution Distillation 技术，通过预训练的 4 步桥接生成器作为锚点，有效引导两步学生模型实现高质量分布匹配。此外，Self-Generated History Replay 机制通过复用历史输出作为条件，在无需昂贵在线回放的情况下，显著提升了长序列生成的时序一致性与身份稳定性。实验表明，该方法仅需 2 次函数评估（NFE）即可生成 720p 高清视频，在保持视觉保真度的同时实现了 60 倍的推理加速。",
+      "impact_score": null
     },
     {
       "id": "2607.23955",
@@ -1316,14 +1536,15 @@
         "Chenchen Zhao",
         "Yijun Chen",
         "Jicheng Zhao",
-        "Yuming Li Chuang Dai"
+        "Yuming Li",
+        "Chuang Dai"
       ],
       "categories": [
         "cs.AI"
       ],
       "published": "2026-07-27T02:59:27Z",
-      "updated": "2026-07-27T02:59:27Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.23955v1",
+      "updated": "2026-07-28T06:31:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.23955v2",
       "abs_url": "https://arxiv.org/abs/2607.23955",
       "topics": [
         "other"
@@ -1380,7 +1601,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.23909",
-      "summary_zh": "WorldDiT 旨在解决机器人策略学习中过度依赖大型预训练视觉语言模型（VLM）作为动作主干的问题。该模型采用统一的 Diffusion Transformer 架构，将动作生成与视觉世界建模深度耦合，通过在训练过程中同时预测连续动作块及未来帧的归一化 RGB Patch 目标，实现了高效的策略学习。在 LIBERO 模拟套件的测试中，该模型在参数量与成功率之间达到了极佳的帕累托前沿（Pareto frontier），证明了在十亿参数规模以下，无需大型 VLM 预训练即可实现高性能机器人控制的可行性，为未来的模型扩展研究提供了强有力的基准。"
+      "summary_zh": "WorldDiT 旨在解决机器人策略学习中过度依赖大型预训练视觉语言模型（VLM）作为动作主干的问题。该模型采用统一的 Diffusion Transformer 架构，将动作生成与视觉世界建模深度耦合，通过在训练过程中同时预测连续动作块及未来帧的归一化 RGB Patch 目标，实现了高效的策略学习。在 LIBERO 模拟套件的测试中，该模型在参数量与成功率之间达到了极佳的帕累托前沿（Pareto frontier），证明了在十亿参数规模以下，无需大型 VLM 预训练即可实现高性能机器人控制的可行性，为未来的模型扩展研究提供了强有力的基准。",
+      "impact_score": null
     },
     {
       "id": "2607.23899",
@@ -1402,7 +1624,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.23899",
-      "summary_zh": "GPT-5.1 在缺乏具身训练、仿真环境及传感器运动经验的前提下，被直接用作移动机器人的高层控制器，以探究其是否具备世界模型能力。该研究通过低分辨率第一人称图像和离散动作集，测试了模型在目标定位与交互任务中的表现。实验结果显示，模型展现了空间推理与物理理解的涌现能力，如维持物体位置的短期记忆、推断自身运动的物理后果以及执行连贯的动作序列。尽管模型在对齐策略和远距离识别上存在局限，但其表现挑战了具身智能必须依赖物理身体训练的传统观点，证明了大型多模态模型在零样本情况下具备初步的物理世界建模潜力。"
+      "summary_zh": "GPT-5.1 在缺乏具身训练、仿真环境及传感器运动经验的前提下，被直接用作移动机器人的高层控制器，以探究其是否具备世界模型能力。该研究通过低分辨率第一人称图像和离散动作集，测试了模型在目标定位与交互任务中的表现。实验结果显示，模型展现了空间推理与物理理解的涌现能力，如维持物体位置的短期记忆、推断自身运动的物理后果以及执行连贯的动作序列。尽管模型在对齐策略和远距离识别上存在局限，但其表现挑战了具身智能必须依赖物理身体训练的传统观点，证明了大型多模态模型在零样本情况下具备初步的物理世界建模潜力。",
+      "impact_score": null
     }
   ]
 }
