@@ -1,6 +1,6 @@
 {
   "date": "2026-07-30",
-  "generated_at": "2026-08-02T04:56:39.546183+00:00",
+  "generated_at": "2026-08-03T05:02:58.467312+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,226 @@
     }
   },
   "papers": [
+    {
+      "id": "2607.28864",
+      "title": "Conditioning Tree-Based Diffusions and Flows for Probabilistic Tabular Regression",
+      "abstract": "Tree-based diffusion models fit flexible conditional predictive distributions for tabular regression without a neural density estimator, but they inherit their design defaults---noising path, parameterization, training distribution, features, sampler---from the neural setting. We show these defaults are the binding constraint: what a gradient-boosted ensemble actually solves is a supervised regression problem whose conditioning they determine. We present DiffGBM, which makes them explicit along two axes. First, a Gaussian-path flow-matching trainer for $p(y \\mid x)$ that learns a velocity field directly and recovers the score algebraically, admitting few-step deterministic ODE sampling. Second, we expose the score-side recipe---residualization, EDM-style preconditioning, log-sigma time sampling, noise-level features, loss weighting, and histogram resolution---as jointly tunable axes over a shared LightGBM surface rather than one frozen bundle. This \\emph{score-flex} space represents the published recipe as a special case; across eleven tabular benchmarks under fold-0 tuning, folds-1--5 evaluation, and a matched 40-trial budget and sampler, the selected configurations beat that baseline on \\emph{every} dataset (paired Wilcoxon $11/0$, $p<10^{-3}$), with the best aggregate CRPS skill (0.725 vs.\\ 0.699) of any row. The two rows are complementary: score-flex buys accuracy with a stochastic sampler and is the slowest row, while flow matching is the cheapest sampler ($5.2\\times$ faster than the published baseline) and the best-calibrated DiffGBM row. Tuned non-diffusion baselines still win individual datasets, and stochastic ($\\varepsilon>0$) flow samplers do not Pareto-dominate the deterministic corner.",
+      "authors": [
+        "Silas Koemen"
+      ],
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-07-30T22:08:02Z",
+      "updated": "2026-07-30T22:08:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.28864v1",
+      "abs_url": "https://arxiv.org/abs/2607.28864",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.28864",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对表格回归任务中树模型扩散方法过度依赖神经网络默认配置的问题，DiffGBM 提出了一种解耦的优化框架。该方法通过引入 Gaussian-path flow-matching 技术直接学习速度场，实现了少步确定性 ODE 采样，并构建了包含残差化、预处理及损失加权等关键参数的 score-flex 可调空间，打破了传统固定配置的限制。在十一个 tabular benchmarks 上的实验表明，该方法在 CRPS 指标上显著优于现有基准，其中 flow matching 变体在采样速度上提升了 5.2 倍，而 score-flex 变体则在预测精度上表现更佳。该研究证明了通过显式调优树集成模型的扩散配置，可以有效提升概率回归的性能与灵活性。"
+    },
+    {
+      "id": "2607.28862",
+      "title": "TextCloak: Thwarting Unauthorized LLM Exploitation via RL-Driven Unlearnable Text",
+      "abstract": "The rapid development of Large Language Models (LLMs) has led to significant advances across a wide range of language tasks, while simultaneously raising growing concerns about unauthorized data exploitation and privacy leakage. Unlearnable examples (UEs) offer a promising defense by introducing carefully designed perturbations into data such that models trained on them exhibit degraded utility. However, existing methods for text protection are primarily designed for classification tasks (e.g., sentiment analysis) in discriminative language models and often rely on injecting class-specific linguistic cues, which limits their effectiveness in the open-ended generation settings of LLMs. In this work, we propose TextCloak, an RL-driven framework for protecting textual data against unauthorized LLM exploitation. TextCloak employs a generative policy that transforms batches of clean text into unlearnable examples while preserving semantic fidelity and linguistic naturalness. To optimize the policy, we introduce GRPO-UE, which rewards generated unlearnable text based on the downstream degradation they induce in fine-tuned surrogate LLMs and updates the generator parameters via group-relative policy optimization. This bi-level optimization enables the generator to discover generalizable protective patterns beyond class-specific cues. Comprehensive experiments on six publicly available datasets and nine state-of-the-art LLMs demonstrate that TextCloak consistently impairs unauthorized fine-tuning while maintaining text utility for legitimate use. Further analyses establish its transferability and robustness across model architectures, training configurations, and adaptive attacks, highlighting its broad applicability as a practical defense against unauthorized LLM exploitation.",
+      "authors": [
+        "Chengshuai Zhao",
+        "Pingchuan Ma",
+        "Dawei Li",
+        "Bohan Jiang",
+        "Zhiyuan Yu",
+        "Zhen Tan",
+        "Huan Liu"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.CR",
+        "cs.LG"
+      ],
+      "published": "2026-07-30T22:01:36Z",
+      "updated": "2026-07-30T22:01:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.28862v1",
+      "abs_url": "https://arxiv.org/abs/2607.28862",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.28862",
+      "summary_zh": "TextCloak 旨在解决大语言模型（LLM）未经授权的数据利用与隐私泄露问题，通过引入基于强化学习的生成式框架，将文本转化为“不可学习样本”（Unlearnable Examples）。该方法利用 GRPO-UE 算法，通过奖励机制诱导生成器在保持文本语义与自然度的同时，注入能导致下游 LLM 微调性能显著下降的扰动，从而摆脱了传统方法对特定分类标签的依赖。实验表明，TextCloak 在六个数据集和九种主流 LLM 上均能有效阻碍未经授权的微调，同时维持了文本在合法场景下的可用性，展现出极强的跨模型迁移能力与鲁棒性。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.28849",
+      "title": "Hypergradient-based Bilevel Reinforcement Learning with Improved Sample Complexity",
+      "abstract": "Bilevel reinforcement learning (RL) is an important framework within the literature of RL that can be used to formalize various categories of problems, such as meta-learning, hierarchical task decomposition, and reinforcement learning from human feedback (RL-HF). Most of the bilevel RL algorithms are either not scalable because of using hypergradient with Hessian, or they suffer from high sample complexity because of using penalty-based approximation methods. In this work, we propose a hypergradient-based bilevel RL algorithm using the optimality of the Boltzmann policy for the entropy regularized discounted RL objective function. Our proposed algorithm is Hessian-free and obtains an iteration complexity of $O(ε^{-1})$ and state-of-the-art sample complexity of $\\tilde{O}(ε^{-2})$ under mild regularity conditions. Further, in our convergence analysis, we are able to remove the assumption of the Polyak-Lojasiewicz (PL) condition on the outer-level objective function present in the prior state-of-the-art sample complexity work.",
+      "authors": [
+        "Naman Saxena",
+        "Mudit Gaur",
+        "Vaneet Aggarwal"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-07-30T21:21:52Z",
+      "updated": "2026-07-30T21:21:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.28849v1",
+      "abs_url": "https://arxiv.org/abs/2607.28849",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.28849",
+      "summary_zh": "针对双层强化学习（Bilevel RL）中现有算法因涉及 Hessian 矩阵计算导致扩展性差，或因采用惩罚函数近似导致样本效率低的问题，该研究提出了一种基于超梯度（Hypergradient）的优化算法。该方法利用熵正则化折扣强化学习目标函数中 Boltzmann 策略的最优性，实现了无 Hessian 矩阵计算的梯度更新。实验与理论分析表明，该算法在温和的正则性条件下，达到了 $O(ε^{-1})$ 的迭代复杂度和 $\\tilde{O}(ε^{-2})$ 的最优样本复杂度。此外，该工作在收敛性分析中成功去除了对外层目标函数 Polyak-Lojasiewicz (PL) 条件的依赖，显著提升了算法在元学习、分层任务分解及 RL-HF 等复杂场景下的适用性与理论性能。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.28826",
+      "title": "Distilling Knowledge from Large Language Models into Lightweight Reinforcement Learning Agents for Autonomous Cyber Operations",
+      "abstract": "Autonomous Cyber Operations (ACO) are increasingly important for defending enterprise networks as cyber threats continue to evolve in sophistication. ACO applications commonly employ Reinforcement Learning (RL) agents to learn defensive behaviors through interaction with environments. However, RL agents typically require extensive exploration during training, often resulting in unstable behavior and poor initial decision-making before converging toward effective defense strategies. In this work, we investigate the use of a Large Language Model (LLM) to improve autonomous defensive decision-making within an ACO environment. Through prompt engineering rather than fine-tuning, we demonstrate that an 8-billion parameter LLM pretrained on cybersecurity data can outperform a baseline RL agent in a modified CybORG CAGE Challenge 2 environment. We then propose an online policy distillation framework that transfers the LLM's defensive policy into a lightweight RL agent containing only 64,910 parameters, reducing model size by several orders of magnitude while maintaining effective defensive capabilities. This provides a pathway toward operationalizing frontier cybersecurity models within lightweight, deployable agents. To evaluate transferability, we construct CybORG scenarios ranging from 4 to 12 hosts and assess the approach across varying network configurations. We also evaluate teacher-guided RL stabilization strategies and observe that none consistently surpass the optimized teacher policy, suggesting policy-alignment limitations between reward-driven RL optimization and teacher-guided defense strategies. Our results demonstrate the potential of cybersecurity-focused LLMs as sources of expertise for autonomous cyber defense, while policy distillation provides a practical path toward operationalizing frontier cybersecurity models within efficient, scalable agents.",
+      "authors": [
+        "Konur Tholl",
+        "François Rivest",
+        "Mariam El Mezouar",
+        "Adrian Taylor",
+        "Ranwa Al Mallah"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-30T20:28:02Z",
+      "updated": "2026-07-30T20:28:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.28826v1",
+      "abs_url": "https://arxiv.org/abs/2607.28826",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.28826",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对自主网络防御（ACO）中强化学习（RL）智能体训练初期不稳定且探索效率低的问题，本研究提出利用预训练的大语言模型（LLM）作为专家知识源，通过提示工程引导防御决策。研究在 CybORG CAGE Challenge 2 环境中验证了 8B 参数的 LLM 优于基准 RL 智能体，并进一步引入在线策略蒸馏框架，将 LLM 的防御策略迁移至仅含约 6.5 万参数的轻量级 RL 智能体中。实验结果表明，该方法在保持高效防御能力的同时，实现了模型规模的量级压缩，为将前沿网络安全模型部署于资源受限的实际环境中提供了可行路径。此外，研究还发现教师引导的策略与奖励驱动的 RL 优化之间存在对齐限制，揭示了复杂网络攻防场景下策略迁移的潜在挑战。"
+    },
+    {
+      "id": "2607.28814",
+      "title": "Rolling With Resistance: Preference-Optimized LLM Counselors Can Trade Goal Persistence for Relational Attunement in Motivational Interviewing",
+      "abstract": "In Motivational Interviewing (MI), a client's sustain talk (arguments for the status quo) calls for the counselor to roll with resistance, a move that can fail in two opposite ways: capitulation (abandoning the change agenda to preserve rapport) or confrontation (arguing or directing, overriding the client's autonomy). We introduce a two-axis evaluation of counselor responses, anchored in the Motivational Interviewing Treatment Integrity (MITI) code, Goal Persistence (GP) and Relational Attunement (RA), yielding a four-quadrant framing in which rolling with resistance is high on both, and we ask whether penalizing one failure through preference optimization teaches rolling with resistance or provokes its opposite. From the expert-annotated AnnoMI corpus we build topic-disjoint Direct Preference Optimization data whose preference sets differ only in which failure is rejected, using on-policy negatives. An automatic judge, validated against AnnoMI's expert labels and rechecked by trained human coders, scores blind pairwise win-rates against each base under a firewall in which disjoint model families generate, label, and judge. Across three aligned instruction models spanning the Qwen and Llama families, penalizing confrontation reliably lowers goal persistence below parity, on every base and in every seed run, a robust cost, whereas the attunement gain is base-dependent, present on two of the three bases but absent on the third. Penalizing capitulation is inert, because these models rarely capitulate on-policy, so the trade is gated by each base's failure profile. A prompt-only control raises attunement without the goal-persistence cost, locating the cost in the optimization rather than in attunement itself.",
+      "authors": [
+        "Weiying Chen",
+        "Junlong Shen",
+        "Zhexuan Tang"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-07-30T20:16:03Z",
+      "updated": "2026-07-30T20:16:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.28814v1",
+      "abs_url": "https://arxiv.org/abs/2607.28814",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.28814",
+      "summary_zh": "动机访谈（MI）中咨询师常面临“顺应阻抗”的难题，即在保持改变目标（Goal Persistence, GP）与维护关系和谐（Relational Attunement, RA）之间寻找平衡，避免陷入妥协或对抗的极端。研究通过构建基于 AnnoMI 语料库的 Direct Preference Optimization（DPO）数据集，探究通过偏好优化惩罚特定失败模式能否提升咨询效果。实验发现，惩罚对抗行为虽能提升 RA，但往往以牺牲 GP 为代价，且效果高度依赖于基础模型（如 Qwen 和 Llama 系列）的固有失败倾向。相比之下，单纯的提示词工程（Prompt-only）能在不损害 GP 的前提下提升 RA，表明优化过程本身可能引入了不必要的性能折损。该研究揭示了在复杂对话任务中，对齐目标与优化手段之间存在微妙的权衡关系。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.28760",
+      "title": "WaiT for the Signal: Simple Frequency-Aware Flow-Matching",
+      "abstract": "As image generation models scale to ever higher resolutions, global coherence, local detail, and texture fidelity become critical axes for generation quality. However, standard flow matching treats all spatial frequencies uniformly, ignoring the natural frequency hierarchy where high-frequency bands become indistinguishable from pure noise far earlier than coarse structures. We introduce WaiT, a Wavelet-aware image Transformer that decomposes generation into coarse and fine bands via lossless wavelets. True to its name, the high-frequency bands wait for the signal: staying pure noise until coarse structure has emerged, then joining the flow for joint refinement. Since standard FID discards fine-grained detail through aggressive downsampling, we introduce a more stringent three-axis evaluation protocol to assess quality at native resolution. On ImageNet 512x512, WaiT achieves a pixel-space FID of 1.43 and is Pareto-optimal across all three axes, reducing sampling compute by up to 50%. With our largest 2B model, we set a new state-of-the-art FID of 1.3 for pixel-space models on ImageNet 512 resolution. Our formulation outperforms even the strongest latent-space models on texture fidelity, and scales seamlessly to high-resolution OpenImages and to video generation, achieving a state-of-the-art FVD of 0.84 on Kinetics-600 with no algorithmic modifications.",
+      "authors": [
+        "Krunoslav Lehman Pavasovic",
+        "Théophane Vallaeys",
+        "Stéphane Mallat",
+        "Giulio Biroli",
+        "Luke Zettlemoyer",
+        "Brian Karrer",
+        "Jakob Verbeek"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-07-30T18:26:19Z",
+      "updated": "2026-07-30T18:26:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.28760v1",
+      "abs_url": "https://arxiv.org/abs/2607.28760",
+      "topics": [
+        "rl",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.28760",
+      "summary_zh": "针对高分辨率图像生成中不同空间频率信息处理不均衡的问题，WaiT（Wavelet-aware image Transformer）利用小波变换将图像分解为粗糙与精细频带，并提出了一种频率感知的流匹配策略。该方法允许高频细节在粗糙结构生成后再逐步加入流匹配过程，从而实现更高效的联合细化。为了更准确地评估生成质量，研究引入了三轴评估协议，在 ImageNet 512x512 数据集上实现了 1.3 的像素空间 FID 新纪录，并在保持卓越纹理保真度的同时将采样计算量降低了 50%。该架构不仅在静态图像生成中表现优异，还能无缝扩展至视频生成任务，在 Kinetics-600 上取得了 0.84 的 FVD 领先指标。",
+      "impact_score": null
+    },
+    {
+      "id": "2607.28759",
+      "title": "SCMA: Structure-Conditioned and Metal-Aware Flow Matching for CT Metal Artifact Reduction",
+      "abstract": "In X-ray CT, metallic objects cause beam hardening, photon starvation, and scattering, leading to projection inconsistency, streaks, dark bands, and structural distortions that compromise clinical diagnosis and quantitative analysis. Existing metal artifact reduction (MAR) methods remain limited: optimization-based methods may leave residual artifacts or blur structures, regression networks may generalize poorly across scenarios, and generative models without sample-specific structural guidance and physical constraints may produce anatomically inconsistent structures. Flow Matching learns a continuous-time velocity field that deterministically transports a source distribution to a target distribution, providing a flexible MAR prior. However, standard unconditional Flow Matching does not exploit sample-specific structure, spatially nonuniform metal-induced degradation, or measured projections. To address these limitations, we propose SCMA, a structure-conditioned and metal-aware Flow Matching framework. First, a linear-interpolation-corrected image is fed into the velocity network with the intermediate state as a sample-specific structural condition, guiding inference toward artifact-free CT images while preserving anatomy. Second, time-varying spatial weights from the metal mask and its distance transform are incorporated into the Flow Matching loss to emphasize severe degradation within and around metal regions. Finally, conditional Flow Matching updates alternate with projection-consistency correction during inference, allowing reliable measurements outside metal traces to constrain predictions. Experiments on simulated and real CT data demonstrate that SCMA more effectively suppresses metal artifacts, preserves local anatomical structures, and reduces hallucination-like structures inconsistent with projection measurements than representative MAR methods.",
+      "authors": [
+        "Heran Wang",
+        "Jianing Sun",
+        "Xu Jiang",
+        "Genwei Ma",
+        "Xing Zhao",
+        "Jigang Duan"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-07-30T18:26:15Z",
+      "updated": "2026-07-30T18:26:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.28759v1",
+      "abs_url": "https://arxiv.org/abs/2607.28759",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.28759",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "X射线CT成像中金属物体导致的伪影严重影响临床诊断，现有方法在结构保留、泛化能力及物理一致性上存在局限。SCMA框架通过引入结构条件与金属感知机制优化Flow Matching过程，利用线性插值校正图像作为先验引导，确保生成过程对解剖结构的高度保真。该方法将金属掩模及其距离变换作为时变空间权重融入损失函数，重点强化对金属区域严重退化信息的学习。在推理阶段，通过条件Flow Matching与投影一致性校正交替迭代，有效约束了预测结果。实验结果表明，SCMA在抑制伪影、保护解剖细节及提升投影一致性方面均优于主流MAR方法，显著减少了伪影带来的结构幻觉。"
+    },
+    {
+      "id": "2607.28737",
+      "title": "Mirror Learning",
+      "abstract": "We investigate imitation learning through the lens of third-person observation and propose a framework for mirror learning: acquiring actionable policies from passive observation. While behavior cloning (BC) excels under dense, well-aligned first-person data, it fundamentally fails to leverage the rich observational signals arising from third-person demonstrations that humans and animals routinely exploit. We introduce a method that composes (i) a learned perspective transformation that places learners in demonstrators' shoes using a fine-tuned video diffusion model and (ii) an inverse dynamics model that infers action trajectories in the learners' control space. This enables the synthesis of mirror data, pseudo first-person expert data generated from third-person observations of demonstrator behavior. Empirically, we show that mirror data alone can train effective policies, and that augmenting first-person BC training with mirror data further improves downstream policy performance. Our results suggest that modern generative world models implicitly encode sufficient structure to enable a scalable and safe alternative to teleoperation-heavy data collection.",
+      "authors": [
+        "Yunpeng Liu",
+        "Matthew Niedoba",
+        "Oluwanifemi A. Adekanye",
+        "Jason Yoo",
+        "Yingchen He",
+        "Berend Zwartsenberg",
+        "Frank Wood"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-07-30T18:00:31Z",
+      "updated": "2026-07-30T18:00:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.28737v1",
+      "abs_url": "https://arxiv.org/abs/2607.28737",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.28737",
+      "summary_zh": "Mirror Learning 旨在解决传统行为克隆（BC）依赖密集且对齐的第一人称数据、难以利用第三人称观察数据的问题。该方法通过微调视频扩散模型（Video Diffusion Model）构建视角转换器，将第三人称观察转化为“身临其境”的第一人称视角，并结合逆动力学模型（Inverse Dynamics Model）推断出相应的动作轨迹，从而合成伪第一人称专家数据。实验表明，仅利用这些合成的 Mirror Data 即可训练出有效的策略，且将其与第一人称数据结合能显著提升下游任务的性能。这一研究证明了现代生成式世界模型能够有效编码空间结构，为替代高成本的远程操作数据采集提供了一种可扩展且安全的解决方案。",
+      "impact_score": null
+    },
     {
       "id": "2607.28627",
       "title": "ReToken: One Token to Improve Vision-Language Models for Visual Retrieval",
@@ -494,7 +714,8 @@
       ],
       "categories": [
         "cs.AI",
-        "cs.CL"
+        "cs.CL",
+        "cs.LG"
       ],
       "published": "2026-07-30T16:20:58Z",
       "updated": "2026-07-30T16:20:58Z",
@@ -557,11 +778,13 @@
       "pdf_url": "https://arxiv.org/pdf/2607.28394v1",
       "abs_url": "https://arxiv.org/abs/2607.28394",
       "topics": [
-        "video-gen"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.28394",
-      "summary_zh": "手部与物体交互（HOI）建模因涉及复杂的几何、语义及动态推理而极具挑战，现有研究缺乏对大模型先验知识应用机制的系统性梳理。本综述首次构建了涵盖几何、语义及视觉三大类共八种基础模型先验的分类体系，深入分析了这些先验知识在重建与生成等六大HOI任务中的注入与适配方式。研究不仅揭示了基础模型如何通过跨领域知识缓解视觉不确定性，还探讨了HOI知识在机器人具身智能中的应用，包括人类数据预训练及技能迁移。通过对现有数据集与评估协议的总结，该工作为构建更具泛化能力的HOI系统提供了理论框架，并建立了持续更新的资源库以推动领域发展。",
-      "impact_score": null
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "手部与物体交互（HOI）建模因涉及复杂的几何、语义及动态推理而极具挑战，现有研究缺乏对大模型先验知识应用机制的系统性梳理。本综述首次构建了涵盖几何、语义及视觉三大类共八种基础模型先验的分类体系，深入分析了这些先验知识在重建与生成等六大HOI任务中的注入与适配方式。研究不仅揭示了基础模型如何通过跨领域知识缓解视觉不确定性，还探讨了HOI知识在机器人具身智能中的应用，包括人类数据预训练及技能迁移。通过对现有数据集与评估协议的总结，该工作为构建更具泛化能力的HOI系统提供了理论框架，并建立了持续更新的资源库以推动领域发展。"
     },
     {
       "id": "2607.28390",
@@ -1296,6 +1519,31 @@
       "impact_score": null
     },
     {
+      "id": "2607.28698",
+      "title": "Flow Matching with Missing Data",
+      "abstract": "Flow matching assumes fully observed training data, which many real-world applications rarely provide. We propose Missing-Data Flow Matching, which treats the missing coordinates of training samples as latent variables and averages the flow matching loss over the values they could take. We first prove the correction is exact rather than approximate. Under missing completely at random with true completions, the incomplete-data objective equals the complete-data objective, so missingness changes nothing about what flow matching learns and the entire difficulty relocates to the completion model. Our finite-sample analysis then answers design questions that the algorithm leaves open, and the answers are not the ones intuition suggests. Missingness transfers estimator variance rather than adding it, one completion per example already matches complete-data variance exactly, and under a fixed evaluation budget one completion is optimal. A learned completion model contributes a single irreducible bias, which we bound by its expected conditional Wasserstein distance to the true completion law. Experiments numerically validate the theoretical predictions, show that deterministic rather than frozen imputation is what collapses the generated distribution, and place our method alongside strong classical and deep imputation baselines on real tabular data.",
+      "authors": [
+        "Fairoz Nower Khan",
+        "Nabuat Zaman Nahim",
+        "Peizhong Ju"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-07-30T10:37:01Z",
+      "updated": "2026-07-30T10:37:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.28698v1",
+      "abs_url": "https://arxiv.org/abs/2607.28698",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2607.28698",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对训练数据缺失导致 Flow Matching 难以直接应用的问题，该研究提出 Missing-Data Flow Matching 方法，将缺失坐标视为潜在变量，通过对所有可能的补全值进行损失平均来优化模型。理论分析证明，在完全随机缺失（MCAR）假设下，该目标函数与完整数据下的目标函数等价，且单次补全即可实现最优的方差控制，从而将学习难度转化为补全模型的构建。研究通过有限样本分析揭示了缺失数据对估计器方差的转移效应，并界定了补全模型带来的不可约偏差。实验结果表明，该方法在处理真实表格数据时表现稳健，且相较于冻结补全，确定性补全策略能有效避免生成分布的坍塌，在多个基准测试中展现出与经典及深度补全方法相当的竞争力。"
+    },
+    {
       "id": "2607.27973",
       "title": "TAPO: Transition-Aware Policy Optimization for LLM Agents",
       "abstract": "Recently, Reinforcement Learning (RL) has emerged as a crucial paradigm for the post-training of Large Language Model (LLM) agents. However, existing methods predominantly rely on sparse task rewards for policy optimization, failing to fully exploit another class of inherently dense supervisory signals naturally present during online interaction: environmental feedback following action execution. Recent theoretical studies suggest that generalization in multi-step, goal-oriented tasks hinges on predictive knowledge of environmental consequences. Inspired by this, we propose TAPO: Transition-Aware Policy Optimization for LLM Agents, a unified training framework that alternates between policy optimization and transition supervision. Beyond standard RL updates, TAPO repurposes rollout data to apply action-conditioned next-observation prediction supervision on a shared backbone model. This approach enhances the model's sensitivity to environmental transition dynamics and action consequences while concurrently optimizing the policy. It serves as a computationally lightweight, plug-and-play enhancement module for existing agent RL algorithms, requiring no additional expert data, extra sampling costs, or inference-time overhead. We conduct systematic experiments on WebShop and ALFWorld, integrating foundation models of various scales with different policy optimization algorithms. Empirical results demonstrate that TAPO consistently improves task performance over pure policy optimization baselines.",
@@ -1806,8 +2054,8 @@
         "cs.SD"
       ],
       "published": "2026-07-30T07:07:52Z",
-      "updated": "2026-07-30T07:07:52Z",
-      "pdf_url": "https://arxiv.org/pdf/2607.27775v1",
+      "updated": "2026-07-31T10:43:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2607.27775v2",
       "abs_url": "https://arxiv.org/abs/2607.27775",
       "topics": [
         "other"
