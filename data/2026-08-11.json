@@ -1,6 +1,6 @@
 {
   "date": "2026-08-11",
-  "generated_at": "2026-08-12T03:44:37.325576+00:00",
+  "generated_at": "2026-08-13T03:46:26.591377+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,245 @@
     }
   },
   "papers": [
+    {
+      "id": "2608.11511",
+      "title": "Let it Cook: Learning to Wait in Sequential Decision Making",
+      "abstract": "In sequential decision making, an agent typically observes its environment and acts at every timestep. However, such active participation may not always be necessary; tasks such as brewing coffee include periods that are served equally well by letting the environment evolve without constant monitoring and control. During such periods, the agent could simply wait to conserve its resources, or redirect its attention to another task. We capitalize on these opportunities by training a \"waiting policy\" that decides where and how long to wait. This involves forgoing sensing to commit to a wait action, representing a deliberate pause for a set number of timesteps. We formalize \"learning to wait\" as minimizing the frequency of sensing and decision making without sacrificing task performance (e.g., the total amount of time to complete a task). To train a waiting policy, we propose an approach that employs reinforcement learning with lexicographically ordered objectives. In experiments across 4 discrete-state household tasks and 3 continuous-state environments, we show that our approach successfully learns waiting behaviors, and can adapt pre-trained policies to wait where appropriate. While different tasks permit different amounts of waiting without sacrificing task performance, our approach consistently finds solutions with significant waiting, sometimes waiting for over 50 percent of the task duration.",
+      "authors": [
+        "Christopher Watson",
+        "Arjun Krishna",
+        "Dinesh Jayaraman",
+        "Rajeev Alur"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-11T23:55:30Z",
+      "updated": "2026-08-11T23:55:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11511v1",
+      "abs_url": "https://arxiv.org/abs/2608.11511",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11511",
+      "summary_zh": "在序列决策任务中，智能体通常需要在每个时间步进行观测与决策，但这往往导致资源浪费。该研究提出了一种“等待策略”（waiting policy），允许智能体在任务执行过程中主动选择暂停感知与动作输出，从而在不牺牲任务性能的前提下最小化决策频率。通过引入具有词典序目标的强化学习方法，智能体能够学习在何时以及等待多久，从而实现资源的高效利用。在多个离散与连续状态环境下的实验表明，该方法能显著减少感知次数，部分任务中等待时间甚至超过了总时长的50%，证明了该策略在提升决策效率方面的有效性。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.11493",
+      "title": "From Prompting to Behavioral Alignment: Personalized LLM Judges for Recommendation Evaluation",
+      "abstract": "Traditional offline recommendation evaluation relies heavily on complex, manually maintained feature pipelines that are difficult to scale. While Large Language Models (LLMs) offer a promising alternative by predicting user engagement directly from raw text logs, empirical analysis in this study identifies a critical failure mode termed bidirectional rationalization. In a zero-shot setting, LLMs are found to convincingly argue for both positive and negative user engagement outcomes on the exact same item with identical evidence, highlighting the unreliability of off-the-shelf LLMs in predicting user engagement. To resolve this, we develop and apply a sequential behavioral alignment framework pairing fine-tuning with preference optimization over paired correct and counterfactual rationales. Evaluated on real-world homepage interaction logs, this aligned reasoning approach achieves a 32.19\\% lift in Macro-F1 score over the zero-shot baseline and matches the production feature-engineered baseline. The results demonstrate that behavioral alignment mitigates bidirectional rationalization while delivering human-interpretable reasoning traces without manual pipeline overhead.",
+      "authors": [
+        "Alireza S. Ziabari",
+        "Kat Ellis",
+        "Colleen Chan",
+        "Ding Tong"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-11T23:06:39Z",
+      "updated": "2026-08-11T23:06:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11493v1",
+      "abs_url": "https://arxiv.org/abs/2608.11493",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11493",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "传统推荐系统评估依赖复杂的手动特征工程，而直接利用 LLM 进行零样本预测时，模型常出现“双向合理化”现象，即对同一条证据能给出截然相反的预测结果，导致评估不可靠。该研究提出了一种序列行为对齐框架，通过在成对的正反事实推理上进行微调与偏好优化，有效纠正了模型的逻辑偏差。在真实主页交互日志上的实验表明，该方法在 Macro-F1 指标上较零样本基线提升了 32.19%，表现与生产环境中的特征工程基线持平。这一方案在无需人工维护复杂流水线的前提下，实现了高准确度且具备人类可解释性的推荐评估。"
+    },
+    {
+      "id": "2608.11434",
+      "title": "Benchmarking LLM Judges for Mobile Agent Evaluation",
+      "abstract": "Mobile agent benchmarks increasingly rely on LLM-based judges to evaluate task completion, yet the reliability of these judges on mobile agent trajectories remains largely unexamined. We introduce MobileJudgeBench, a benchmark for systematically evaluating LLM-as-judge methods on mobile agent trajectories. Our benchmark comprises 931 human-annotated trajectories spanning 6 mobile agent benchmarks, 4 agent models, and 68 apps. We evaluate 6 judge methods (five adapted from SPA-Bench, A3 with two modes, AndroidArena, and AgentRewardBench, plus a simple baseline we design) across multiple LLM backends. Our experiments reveal three key findings. First, a simple baseline judge with sampled screenshots is competitive with, and often exceeds, purpose-built methods, indicating that more elaborate judge pipelines do not consistently improve judge quality; among competitive methods, the LLM backbone is the primary driver. Second, benchmark quality metrics reliably predict real-world judge utility: they correlate with both agent ranking fidelity for evaluation and downstream performance when judges serve as reward signals for on-policy reinforcement learning. Third, failure analysis across two LLM backends uncovers qualitatively opposite failure profiles, one conservative and the other permissive, linked to the backbone's precision-recall characteristics.",
+      "authors": [
+        "Ziqiang Wan",
+        "Li Gu",
+        "Zhixiang Chi",
+        "Zhi Liu",
+        "Seyed Mehdi Ayyoubzadeh",
+        "Yuanhao Yu",
+        "Yang Wang"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.CV"
+      ],
+      "published": "2026-08-11T21:00:46Z",
+      "updated": "2026-08-11T21:00:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11434v1",
+      "abs_url": "https://arxiv.org/abs/2608.11434",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11434",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "MobileJudgeBench 旨在解决移动端智能体评估中 LLM-as-judge 方法可靠性缺乏系统性验证的问题。该研究构建了包含 931 条人工标注轨迹的基准数据集，涵盖 6 个主流移动智能体基准、4 种智能体模型及 68 个应用，并对比了 6 种主流评测方法。实验发现，简单的截图采样基准方法表现优异，证明复杂的评测流水线并不一定能提升效果，模型底座的选择才是决定性因素。此外，基准质量指标能有效预测评测方法的真实效用，且不同 LLM 底座在评测中表现出截然相反的保守或宽松倾向，这与模型本身的精确率与召回率特性密切相关。"
+    },
+    {
+      "id": "2608.11410",
+      "title": "Unmasking Toxic Mimicry in Medical Offline Reinforcement Learning for ICU Sepsis Management via Counterfactual Clinical Audits",
+      "abstract": "Offline reinforcement learning (RL) offers considerable promise for optimizing ICU treatment decisions, yet standard evaluation metrics Mean Squared Error (MSE) and Fitted Q-Evaluation (FQE) assess only behavioral imitation and cannot detect Toxic Mimicry, a failure mode in which agents replicate harmful patterns such as treatment withdrawal during comfort-care transitions. Using the MIMIC-III database, we propose the Counterfactual Clinical Audit (CCA) framework, which stress-tests RL agents through physiological perturbations anchored in Surviving Sepsis Campaign (SSC) guidelines. We audit a Medical Decision Transformer (MedDT) and a Historical Causal Transformer (HCT-RL), the latter employing Causal Action Shielding, propensity-based importance weighting, and Conservative Q-Learning. CCA reveals that MedDT paradoxically reduces vasopressor dosage as lactate escalates, contradicting resuscitation guidelines, while HCT-RL maintains physiologically consistent responses. These findings expose a systemic misalignment between statistical fit and clinical safety, supporting counterfactual audits as a necessary evaluation standard for medical RL.",
+      "authors": [
+        "Hangqi Ren",
+        "Junyi Liao"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CY"
+      ],
+      "published": "2026-08-11T20:17:14Z",
+      "updated": "2026-08-11T20:17:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11410v1",
+      "abs_url": "https://arxiv.org/abs/2608.11410",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11410",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对ICU脓毒症管理中离线强化学习（Offline RL）存在的“毒性模仿”（Toxic Mimicry）问题，即模型在行为模仿中错误复现了撤除治疗等有害模式，本研究提出了反事实临床审计（Counterfactual Clinical Audit, CCA）框架。该框架基于《拯救脓毒症运动》（SSC）指南，通过生理扰动对MedDT和HCT-RL等模型进行压力测试，以评估其在极端临床情境下的决策安全性。实验发现，MedDT在乳酸水平升高时反而降低升压药剂量，表现出与临床指南相悖的风险；相比之下，结合了因果行动屏蔽（Causal Action Shielding）和保守Q学习（Conservative Q-Learning）的HCT-RL展现出更优的生理一致性。研究结果表明，仅依赖MSE或FQE等统计指标无法保障医疗AI的安全性，反事实审计应成为医疗强化学习评估的必要标准。"
+    },
+    {
+      "id": "2608.11381",
+      "title": "From Numbers to Judgment: Specialist LLM Agents and Reinforcement Learning for European Listed Real Estate",
+      "abstract": "We study whether the localized numerical operations and integrative judgments of financial analysis benefit from the same form of LLM specialization. Larix maps a 16-lens European listed-real-estate analysis framework to eight lens-aligned specialists; we compare a frontier LLM under monolithic versus specialist-decomposed prompting while holding the model, source evidence, task instructions, output schema, and scoring fixed. Across 19 firms spanning seven regulatory wrappers, decomposition improves the numerical-task aggregate by 15.8 percentage points but does not reliably improve, and can reduce, performance on judgment tasks, a pattern stable across four frozen-template dispatches; a single-agent control given the complete framework does not reproduce the numerical gain. Post-training Qwen3.5-9B with GRPO using task-aligned structured rewards then raises the development-split score by 12.0 points and the judgment aggregate by 14.2 points, with gains on all four sub-ceiling tasks; the gains transfer to unseen firms (+15.2 points overall; +40.4 on covenant stress) and to unseen regulatory wrappers (+4.3), with positive transfer on all three anti-memorization splits. Prompt-level decomposition thus improves modular numerical execution, whereas targeted parameter adaptation improves integrative financial judgment.",
+      "authors": [
+        "Pardis Taghavi",
+        "Santosh Bhavani"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-11T19:42:15Z",
+      "updated": "2026-08-11T19:42:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11381v1",
+      "abs_url": "https://arxiv.org/abs/2608.11381",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11381",
+      "summary_zh": "针对欧洲上市房地产金融分析任务，研究探讨了LLM在数值计算与综合判断上的表现差异。通过将分析框架拆解为八个领域专家模型（Larix），发现提示词层面的任务分解能显著提升数值计算准确率，但对综合判断任务的改善效果有限甚至存在负面影响。为解决这一瓶颈，引入基于GRPO（Group Relative Policy Optimization）的强化学习方法对Qwen3.5-9B进行针对性微调，利用结构化奖励机制有效提升了模型的判断能力。实验结果表明，该方法在未见过的公司及监管框架下表现出良好的泛化性，证明了提示词分解适用于模块化数值处理，而参数微调则是优化复杂金融判断的关键。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.11368",
+      "title": "PAIR: Pairwise-Aware Inclusion Reweighting for Adaptive Rollout Allocation in RLVR",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) spends most of its compute generating groups of long reasoning trajectories. Recent allocators reduce this cost by assigning budgets to prompts, rollouts, or tokens according to a pointwise notion of difficulty or utility. We identify a statistical mismatch: the unclipped leave-one-out group-relative score gradient is not a sum of independent point contributions, but a second-order U-statistic over pairs of rollouts. Completing one rollout therefore reveals contrast with every other completed rollout, and adaptive endpoint selection changes which pair terms are observable. We introduce PAIR (Pairwise-Aware Inclusion Reweighting), which treats short rollout prefixes as vertices and pair-gradient terms as edges of a contrast graph. A prefix-only predictor estimates correctness and remaining token cost; a convex design chooses positive continuation probabilities under an expected suffix-token budget; and each edge induced by completed vertices is inverse-weighted by its logged joint inclusion probability. Under conditionally independent on-policy rollouts and an unclipped, unstandardized objective, the resulting estimator is design-unbiased for the complete candidate-pair gradient. Across compute-matched RLVR runs on Qwen3-1.7B/4B, PAIR improves average accuracy by +1.2 and +1.4 over the strongest pointwise allocator while using 51% and 52% fewer generated tokens than full-group GRPO. A frozen-population estimator audit confirms that unweighted adaptive selection is biased, whereas pair-inclusion correction recovers the complete-pair target at matched suffix cost.",
+      "authors": [
+        "Pixel Nomand",
+        "Elena Voss",
+        "Marcus Hale",
+        "Sofia Reyes"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-11T19:24:59Z",
+      "updated": "2026-08-11T19:24:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11368v1",
+      "abs_url": "https://arxiv.org/abs/2608.11368",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11368",
+      "summary_zh": "RLVR 训练中现有的分配器多基于点对点（pointwise）难度评估，忽略了组内轨迹间的统计依赖关系，导致梯度估计存在偏差。PAIR（Pairwise-Aware Inclusion Reweighting）方法将轨迹前缀视为图的顶点，将成对轨迹间的梯度项视为边，通过对比图建模来捕捉轨迹间的对比信息。该方法引入了基于前缀的正确性预测器与凸优化设计，利用逆概率加权对成对梯度进行修正，从而在保持无偏估计的同时实现自适应的计算资源分配。在 Qwen3 模型上的实验表明，PAIR 在大幅降低生成 token 数量的同时，显著提升了推理准确率，证明了其在处理 RLVR 组内依赖性方面的优越性。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.11350",
+      "title": "Self-Evolving Embodied Agents via Skill-Harness Evolution",
+      "abstract": "Embodied agents are increasingly built as systems around foundation models, where performance depends not only on model weights but also on the skills, context, action interfaces, and execution harness surrounding the model. While supervised fine-tuning and reinforcement learning can adapt agents to new environments, they require additional data, rewards, and training runs; meanwhile, many train-free code-centric approaches rely on programmable robot APIs that may be unavailable in fixed-interface settings. We propose SHAPER, a self-evolving framework for train-free embodied adaptation that keeps model parameters frozen and improves the non-parametric agent system by evolving reusable skills and a context-code harness through target-environment rollouts. In SHAPER, the same frozen model can serve as both planner and optimizer, refining its external skills and context-code harness without parameter updates. We evaluate SHAPER on VLABench and ESI-Bench, covering embodied agents with different low-level action interfaces, and compare against pure execution, supervised fine-tuning, and test-time-scaling baselines such as verifier-free selection and voting. Our results suggest that skill-and-harness optimization is a practical route to self-evolving embodied agents when model training is expensive, unavailable, or undesirable.",
+      "authors": [
+        "Peidong Wang",
+        "Zhiming Ma",
+        "Ying Chang",
+        "Xufang Luo",
+        "Xiaocui Yang",
+        "Shi Feng",
+        "Yuqing Yang",
+        "Dongsheng Li"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.RO"
+      ],
+      "published": "2026-08-11T18:55:58Z",
+      "updated": "2026-08-11T18:55:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11350v1",
+      "abs_url": "https://arxiv.org/abs/2608.11350",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11350",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "SHAPER 框架旨在解决具身智能体在固定模型参数下难以适应新环境的问题，通过在目标环境中进行滚动测试，实现对可复用技能库和上下文代码框架（context-code harness）的非参数化演进。该方法利用冻结的预训练模型同时担任规划器与优化器，在无需更新模型权重的情况下，通过自我迭代优化外部技能接口与执行逻辑。在 VLABench 和 ESI-Bench 上的实验表明，SHAPER 在处理不同低级动作接口时，表现优于纯执行、监督微调及测试时扩展等基线方法。这一研究证明了在模型训练成本高昂或不可行的情况下，通过技能与框架的协同优化，能够有效实现具身智能体的自我进化。"
+    },
+    {
+      "id": "2608.11349",
+      "title": "Dynamics Models for Offline Hyperparameter Selection in Real-World RL",
+      "abstract": "A key obstacle to deploying reinforcement learning in real-world systems is hyperparameter selection, particularly when simulators are unavailable and online experimentation is costly. Prior work has proposed calibration models trained on offline data to approximate environment dynamics and enable offline hyperparameter selection, but these methods have so far been evaluated only in simple simulated settings. In this paper, we present the first application of calibration models in a real-world industrial setting: a municipal water treatment plant. We evaluate several calibration model approaches, including a k-nearest neighbors model with a Laplacian distance metric, on high-dimensional, non-stationary sensor data for nexting prediction tasks. Our results show that these models can generate realistic long-horizon rollouts and recover meaningful hyperparameter sensitivity trends. We further examine how calibration models scale to year-long datasets, how they support the selection of fine-tuning learning rates for pre-trained agents, and how robust they are under distribution shift. Overall, our findings provide a proof of concept for using offline dynamics models to support RL deployment in real-world environments, while highlighting important practical challenges for future work.",
+      "authors": [
+        "Jordan Coblin",
+        "Han Wang",
+        "Martha White",
+        "Adam White"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-11T18:54:51Z",
+      "updated": "2026-08-11T18:54:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11349v1",
+      "abs_url": "https://arxiv.org/abs/2608.11349",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11349",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对现实世界中强化学习（RL）部署面临的超参数选择难题，该研究首次将离线校准模型（Calibration Models）应用于市政水处理厂的工业场景。通过采用基于拉普拉斯距离度量的 k-近邻模型等方法，在处理高维、非平稳传感器数据时，能够生成逼真的长程轨迹预测并准确捕捉超参数的敏感性趋势。实验证明，该方法在支持预训练智能体微调学习率选择及应对分布偏移方面表现出良好潜力，为离线动态模型在复杂现实环境中的落地提供了关键的概念验证，同时也揭示了大规模数据集应用中的实践挑战。"
+    },
+    {
+      "id": "2608.11324",
+      "title": "Contextual Quality-Diversity Evolutionary Reinforcement Learning for HVAC Control in Tropical Commercial Buildings",
+      "abstract": "This paper proposes a contextual quality-diversity evolutionary reinforcement-learning controller, CQD-ERL, for the supervisory control of a tropical, water-cooled chiller plant and its associated air side. Rather than converging to a single scalarised policy, the controller maintains a product archive of specialised policies indexed jointly by a data- driven operating context, a cluster of daily weather and load regime, and a context-invariant behaviour descriptor, filled by a gradient-free evolutionary operator and a soft-actor-critic policy-gradient operator that share one replay buffer. Every action is filtered through a deterministic safety shield before execution. The controller is trained on a two-tier reduced-order environment representing the latent load, cooling-tower approach and humidity constraints of a Singapore commercial building, and is evaluated over a full annual backtest against an ASHRAE Guideline 36 baseline.",
+      "authors": [
+        "Tran Le Vu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.NE",
+        "math.OC"
+      ],
+      "published": "2026-08-11T18:16:59Z",
+      "updated": "2026-08-11T18:16:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11324v1",
+      "abs_url": "https://arxiv.org/abs/2608.11324",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11324",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对热带商业建筑暖通空调（HVAC）系统控制，CQD-ERL 方法通过维护一个由运行环境、天气负载模式及行为描述符共同索引的策略库，解决了单一策略难以适应多变环境的问题。该框架结合了无梯度进化算子与 Soft-Actor-Critic（SAC）策略梯度算法，并共享经验回放池，同时引入确定性安全屏蔽机制确保运行可靠性。在模拟新加坡商业建筑的降阶环境中进行训练，并在全年度回测中对比 ASHRAE Guideline 36 基准，结果表明该方法在保证安全约束的前提下，有效提升了复杂环境下的控制性能与多样性。"
+    },
     {
       "id": "2608.11204",
       "title": "Surgical WAM: A World-Action Model for Data-Efficient Surgical Robot Learning",
@@ -146,6 +385,33 @@
       "summary_zh": "针对大语言模型强化学习中多种任务（如 RLVR、RLHF 和 Agentic rollouts）混合推理时 KV-cache 资源竞争与负载不均衡的问题，MISA-T 提出了一种基于路由层的准入策略。该方法通过自适应会话准入、工作负载感知的 KV 容量分配以及驻留时间感知的 KV 记账机制，有效解决了异构任务序列结构与交互模式差异带来的调度挑战。在 Step3.7 和 Qwen3.6-35B-A3B 模型上的实验表明，MISA-T 在保持高前缀缓存命中率的同时，显著提升了 rollout 吞吐量并降低了平均迭代时间，且能精准维持训练器设定的工作负载比例，实现了推理效率与任务性能的平衡。"
     },
     {
+      "id": "2608.11291",
+      "title": "Dueling Deep Q-Learning for Intrusion Detection",
+      "abstract": "Intrusion detection systems (IDS) and automated systems for detecting and reporting cyber threats, are commonly handled via supervised machine learning methods. Though effective, these models struggle to effectively adapt to new attack types. This study proposes a novel approach by employing a reward-based, dueling Q-learning model for IDS, achieving an average accuracy of 99.68% across multiple attack classes. The proposed model has a dueling network architecture which separates its predictions into value and advantage streams. This has the benefit of improving learning efficiency and stability. The model was trained on the CIC-IDS2018, a benchmark dataset based on real-world intrusion detection scenarios, having multiple attack classes such as DDoS, botnets, and brute-force attacks. Furthermore, Explainable AI (XAI), specifically SHAP (SHapley Additive exPlanations), was also integrated into the training and evaluation process to provide interpretability into the model's predictions.",
+      "authors": [
+        "Logan Luna",
+        "Matthew P. Berkowitz",
+        "Laxima Niure Kandel",
+        "Sirio Jansen-S'anchez"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.LG"
+      ],
+      "published": "2026-08-11T16:55:00Z",
+      "updated": "2026-08-11T16:55:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11291v1",
+      "abs_url": "https://arxiv.org/abs/2608.11291",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11291",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对入侵检测系统（IDS）难以适应新型攻击的问题，本研究提出了一种基于Dueling Deep Q-Learning的强化学习方法。该模型采用Dueling网络架构，通过将预测分解为状态价值（Value）和优势函数（Advantage）两条流，显著提升了学习效率与训练稳定性。在CIC-IDS2018基准数据集上的实验表明，该模型在DDoS、僵尸网络及暴力破解等多种攻击类型中取得了99.68%的平均准确率。此外，研究还引入了SHAP（SHapley Additive exPlanations）技术，通过可解释AI（XAI）手段增强了模型决策过程的透明度与可信度。"
+    },
+    {
       "id": "2608.11052",
       "title": "Efficient Hypergradient Descent for Inverse Reinforcement Learning",
       "abstract": "Inverse reinforcement learning (IRL) aims to recover a reward function under which the resulting policy reproduces the behavior observed in expert demonstrations. A natural approach is to formulate IRL as a bilevel optimization problem, in which the inner level corresponds to policy optimization under the learned reward and the outer level measures the discrepancy between the induced policy and expert data. However, this formulation is computationally challenging in practice because the outer update requires a hypergradient involving an inverse-Hessian-vector product for the inner objective. We address this challenge by showing that, at the inner optimum, the Hessian of the inner objective is proportional to the Fisher information matrix of the policy, yielding a structured Fisher-based hypergradient closely related to Natural Hypergradient Descent. To address the resulting scalability bottleneck associated with large Fisher matrices, we approximate the required inverse-Fisher-vector product using a streaming spectral sketch, avoiding explicit construction of the Fisher matrix. We evaluate our approach against a first-order stochastic bilevel baseline across discrete- and continuous-control environments. The results demonstrate competitive policy performance and strong reward-ranking quality, while Fisher sketching reduces curvature-storage complexity and can improve computational efficiency relative to an explicit Fisher solver.",
@@ -260,11 +526,13 @@
       "pdf_url": "https://arxiv.org/pdf/2608.10996v1",
       "abs_url": "https://arxiv.org/abs/2608.10996",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10996",
-      "summary_zh": "针对开放式医学问答中缺乏自动化验证机制的问题，ConRub-Med 提出了一种基于共识准则（Consensus Rubrics）的强化学习框架。该方法通过三个异构模型生成原子化准则，并经由独立模型筛选出具有语义共识的条目，构建出包含正确覆盖、缺失信息及错误声明的三态评分机制，从而实现对模型回复的精准惩罚与奖励。在策略优化阶段，引入了基于一致性判断的 GRPO 改进策略，有效提升了模型在复杂医学场景下的临床相关性。实验结果显示，该方法在 HealthBench-Hard 等九项基准测试中表现优异，仅用 5,166 条数据便超越了更大规模数据集训练的现有模型，显著提升了医学问答的准确性与泛化能力。",
-      "impact_score": null
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对开放式医学问答中缺乏自动化验证机制的问题，ConRub-Med 提出了一种基于共识准则（Consensus Rubrics）的强化学习框架。该方法通过三个异构模型生成原子化准则，并经由独立模型筛选出具有语义共识的条目，构建出包含正确覆盖、缺失信息及错误声明的三态评分机制，从而实现对模型回复的精准惩罚与奖励。在策略优化阶段，引入了基于一致性判断的 GRPO 改进策略，有效提升了模型在复杂医学场景下的临床相关性。实验结果显示，该方法在 HealthBench-Hard 等九项基准测试中表现优异，仅用 5,166 条数据便超越了更大规模数据集训练的现有模型，显著提升了医学问答的准确性与泛化能力。"
     },
     {
       "id": "2608.10981",
@@ -480,7 +748,7 @@
         "Xingyao Wang",
         "Rui Feng",
         "Zhibin Wang",
-        "Feixiang Wang",
+        "Feixiang Yao",
         "Kelong Mao",
         "Hao Sun",
         "Zhiyao Luo",
@@ -503,8 +771,8 @@
         "cs.AI"
       ],
       "published": "2026-08-11T13:35:58Z",
-      "updated": "2026-08-11T13:35:58Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.10915v1",
+      "updated": "2026-08-12T09:22:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.10915v2",
       "abs_url": "https://arxiv.org/abs/2608.10915",
       "topics": [
         "other"
@@ -699,7 +967,7 @@
     {
       "id": "2608.10812",
       "title": "Reference-Free Post-Training of Open Large Language Models for Multilingual Machine Translation",
-      "abstract": "We study reference-free post-training for multilingual machine translation with open large language models. Starting from the supervised-finetuned MiLMMT-46-v0.1 models, we apply Group Relative Policy Optimization (GRPO) with a reward that averages two reference-free quality estimation models and is gated by language identification. We then linearly interpolate the supervised fine-tuning (SFT) and reinforcement learning (RL) model checkpoints to obtain MiLMMT-46-v1.0. Across 46 languages, the resulting models consistently improve translation quality over their SFT counterparts, outperform strong recent open baselines, including Seed-X, HY-MT2, and TranslateGemma, and achieve leading reference-free scores against evaluated proprietary systems such as Google Translate, Gemini 3 Pro, and GPT-5. We further investigate on-policy distillation and find that it reaches, but does not surpass, the quality frontier achieved by RL with checkpoint interpolation. We release the models and code to facilitate future research.",
+      "abstract": "We study reference-free post-training for multilingual machine translation with open large language models. Starting from the supervised-finetuned MiLMMT-46-v0.1 models, we apply Group Relative Policy Optimization (GRPO) with a reward that averages two reference-free quality estimation models and is gated by language identification. We then linearly interpolate the supervised fine-tuning (SFT) and reinforcement learning (RL) model checkpoints to obtain MiLMMT-46-v1.0. Across 46 languages, the resulting models consistently improve translation quality over their SFT counterparts, outperform strong recent open baselines, including Seed-X, HY-MT2, and TranslateGemma, and achieve leading reference-free scores against evaluated proprietary systems such as Google Translate, Gemini 3 Pro, and GPT-5. We further investigate on-policy distillation (OPD) and find that it reaches, but does not surpass, the quality frontier achieved by RL with checkpoint interpolation. We release the models and code to facilitate future research.",
       "authors": [
         "Chris Han",
         "Pengzhi Gao",
@@ -711,8 +979,8 @@
         "cs.AI"
       ],
       "published": "2026-08-11T11:30:38Z",
-      "updated": "2026-08-11T11:30:38Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.10812v1",
+      "updated": "2026-08-12T10:06:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.10812v2",
       "abs_url": "https://arxiv.org/abs/2608.10812",
       "topics": [
         "rl"
@@ -965,8 +1233,34 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10626",
-      "summary_zh": "多轮共情对话中，现有强化学习方法因策略能力与训练分布不匹配，难以应对用户情绪随时间演变的复杂需求。本研究提出双循环自进化框架（Dual-Loop Self-Evolution），通过冻结用户模拟器与验证器，内循环利用连续情绪奖励优化多轮策略，外循环则评估策略相关的交互效用并动态调整训练分布。该方法通过固定场景状态并优先处理处于能力边界的交互，结合分层控制器共享意图证据，有效解决了长程交互中的稀疏奖励与分布偏差问题。在 SAGE 基准测试中，该框架将 Qwen3-8B 的整体表现从 53.87 提升至 79.24，较传统统一情绪奖励强化学习方法提升了 7.23 个点，显著增强了模型在多轮对话中的共情支持能力。",
-      "impact_score": null
+      "summary_zh": "多轮共情对话中，现有强化学习方法因策略能力与训练分布不匹配，难以应对用户情绪随时间演变的复杂需求。本研究提出双循环自进化框架（Dual-Loop Self-Evolution），通过冻结用户模拟器与验证器，内循环利用连续情绪奖励优化多轮策略，外循环则评估策略相关的交互效用并动态调整训练分布。该方法通过固定场景状态并优先处理处于能力边界的交互，结合分层控制器共享意图证据，有效解决了长程交互中的稀疏奖励与分布偏差问题。在 SAGE 基准测试中，该框架将 Qwen3-8B 的整体表现从 53.87 提升至 79.24，较传统统一情绪奖励强化学习方法提升了 7.23 个点，显著增强了模型在多轮对话中的共情支持能力。"
+    },
+    {
+      "id": "2608.11274",
+      "title": "Agent Safety Should Be a Runtime Contract",
+      "abstract": "The dominant paradigm treats AI safety as a property to be instilled during model training via RLHF, DPO, or Constitutional AI. We argue this is structurally insufficient for autonomous agents that execute code, mutate files, send messages, and modify databases. Agent safety should be a runtime contract enforced by the harness, and the contract has two complementary faces. The preventive face blocks dangerous actions before they happen via sandboxes, permission gates, output filters, and trajectory monitors. The evidential face requires verifiable proof that good actions actually happened, gating task submission on hard evidence such as test runs, log captures, file diffs, and citation grounding. We ground the position in four lines of public evidence, with row-level protocols and data released in the supplementary JSON files: a survey of 52 documented AI-agent and LLM safety incidents, a false-completion audit with 31 non-contested core cases plus one disputed illustrative case, a trajectory-schema audit of 12 public agent systems and harnesses, and a title-level audit of all 28,560 papers accepted at NeurIPS, ICML, and ICLR 2023-2025 showing a pooled 8-12x imbalance between training-time and deployment-time publication. Two prior communities that needed to enforce safety, computer security and the experimental sciences, converged on runtime contracts with both preventive and evidential elements; agentic AI is now under the same pressure. We formalize an Agent Trajectory Schema and Evidence Chain, state a compositional gating proposition based on standard monitor composition, and outline a research agenda. The right unit of safety in agentic AI is the trajectory-with-checkable-evidence, not the model.",
+      "authors": [
+        "Albus W. Ng",
+        "Yi Han",
+        "Jusheng Zhang",
+        "Wenhao Wang"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-08-11T08:01:05Z",
+      "updated": "2026-08-11T08:01:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11274v1",
+      "abs_url": "https://arxiv.org/abs/2608.11274",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11274",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "当前 AI 安全主要依赖训练阶段的 RLHF 或 DPO，但这对于具备执行代码、修改文件等能力的自主智能体而言存在结构性缺陷。本研究提出将智能体安全转化为一种运行时契约（Runtime Contract），包含预防性拦截（如沙箱、权限控制）与证据性验证（如测试日志、文件差异比对）双重机制。通过对 52 起安全事故、12 个智能体系统及近三年顶会论文的审计，论证了仅靠训练无法保障安全，并正式提出了智能体轨迹模式（Agent Trajectory Schema）与证据链（Evidence Chain）框架。该研究强调智能体安全的核心单元应是“带有可验证证据的轨迹”，而非模型本身，为构建更可靠的智能体系统提供了明确的范式转变与研究议程。"
     },
     {
       "id": "2608.10567",
@@ -1071,8 +1365,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10538",
-      "summary_zh": "SKILLER 旨在解决小型语言模型在执行复杂任务时缺乏高效、可复用技能的问题，从而降低昂贵的闭源模型推理成本。该框架采用自然语言驱动的强化学习方法，利用强模型作为 Actor 和 Critic，将小型模型代理系统视为环境，并通过自然语言传播所有强化学习信号，实现针对特定执行器的技能自动生成。在 Qwen3.5-9B 和 Qwen3.5-4B 模型上的实验表明，SKILLER 在五个基准测试中显著优于现有的技能生成方法，性能提升幅度高达 4.3 至 20.4 个百分点，并在 SkillsBench 的单技能任务中成功匹配了强闭源模型的表现。",
-      "impact_score": null
+      "summary_zh": "SKILLER 旨在解决小型语言模型在执行复杂任务时缺乏高效、可复用技能的问题，从而降低昂贵的闭源模型推理成本。该框架采用自然语言驱动的强化学习方法，利用强模型作为 Actor 和 Critic，将小型模型代理系统视为环境，并通过自然语言传播所有强化学习信号，实现针对特定执行器的技能自动生成。在 Qwen3.5-9B 和 Qwen3.5-4B 模型上的实验表明，SKILLER 在五个基准测试中显著优于现有的技能生成方法，性能提升幅度高达 4.3 至 20.4 个百分点，并在 SkillsBench 的单技能任务中成功匹配了强闭源模型的表现。"
     },
     {
       "id": "2608.10537",
@@ -1123,8 +1416,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10519",
-      "summary_zh": "InfinityStar 在处理视频自回归生成时，面临高分辨率尺度下注意力计算成本过高以及现有稀疏模式难以直接迁移的问题。SparSTAR 提出了一种无需训练的块稀疏注意力机制，通过实时评估当前查询与键激活值的相关性，动态选择关键块进行前向计算，并保留必要的跨片段上下文信息。该方法揭示了跨尺度注意力模式的动态变化规律，证明了实时重计算块选择比复用掩码更具可靠性。在 720p 视频生成任务中，SparSTAR 在保持与密集注意力模型相当的 VBench 指标和重建质量的同时，实现了约 1.6 倍的端到端推理加速。",
-      "impact_score": null
+      "summary_zh": "InfinityStar 在处理视频自回归生成时，面临高分辨率尺度下注意力计算成本过高以及现有稀疏模式难以直接迁移的问题。SparSTAR 提出了一种无需训练的块稀疏注意力机制，通过实时评估当前查询与键激活值的相关性，动态选择关键块进行前向计算，并保留必要的跨片段上下文信息。该方法揭示了跨尺度注意力模式的动态变化规律，证明了实时重计算块选择比复用掩码更具可靠性。在 720p 视频生成任务中，SparSTAR 在保持与密集注意力模型相当的 VBench 指标和重建质量的同时，实现了约 1.6 倍的端到端推理加速。"
     },
     {
       "id": "2608.10513",
@@ -1159,8 +1451,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10513",
-      "summary_zh": "针对大型视觉语言模型（LVLM）易受视觉输入诱导而绕过安全对齐的问题，SafeCap 提出了一种基于图像描述（Image Captioning）的强化学习框架。该方法训练策略模型先生成安全相关的图像描述，再基于该描述生成最终答案，并通过冻结的 LLM 对描述进行反馈优化，从而引导模型主动识别并利用视觉特征中的安全线索。实验表明，在五个多模态安全基准测试中，SafeCap 相比传统的安全监督微调（SFT）、DPO 和 SafeGRPO 表现出显著优势，在提升 3.7 至 19.0 个安全百分点的同时，有效保持甚至增强了模型的视觉任务效用。这种以描述为中介的强化学习机制，为多模态安全对齐提供了一种高效且鲁棒的新范式。",
-      "impact_score": null
+      "summary_zh": "针对大型视觉语言模型（LVLM）易受视觉输入诱导而绕过安全对齐的问题，SafeCap 提出了一种基于图像描述（Image Captioning）的强化学习框架。该方法训练策略模型先生成安全相关的图像描述，再基于该描述生成最终答案，并通过冻结的 LLM 对描述进行反馈优化，从而引导模型主动识别并利用视觉特征中的安全线索。实验表明，在五个多模态安全基准测试中，SafeCap 相比传统的安全监督微调（SFT）、DPO 和 SafeGRPO 表现出显著优势，在提升 3.7 至 19.0 个安全百分点的同时，有效保持甚至增强了模型的视觉任务效用。这种以描述为中介的强化学习机制，为多模态安全对齐提供了一种高效且鲁棒的新范式。"
     },
     {
       "id": "2608.10500",
@@ -1210,8 +1501,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10499",
-      "summary_zh": "针对个性化联邦强化学习（PFRL）在稀疏奖励或非平稳环境中探索不足的问题，该研究提出了EDPFRL-IM框架，通过在本地引入基于内在动机的探索机制来提升策略学习效果。该方法利用随机网络蒸馏（RND）生成内在奖励信号，引导客户端在未知状态空间进行高效探索，同时服务器仅通过收集极简的新颖性摘要并分发全局探索先验来协调各方，有效保护了客户端的原始数据隐私。实验结果表明，该框架在多个基准测试中显著提升了策略个性化能力与样本效率，特别是在延迟和稀疏奖励系统中表现优异，为联邦学习系统提供了一种兼顾隐私保护与高效探索的灵活解决方案。",
-      "impact_score": null
+      "summary_zh": "针对个性化联邦强化学习（PFRL）在稀疏奖励或非平稳环境中探索不足的问题，该研究提出了EDPFRL-IM框架，通过在本地引入基于内在动机的探索机制来提升策略学习效果。该方法利用随机网络蒸馏（RND）生成内在奖励信号，引导客户端在未知状态空间进行高效探索，同时服务器仅通过收集极简的新颖性摘要并分发全局探索先验来协调各方，有效保护了客户端的原始数据隐私。实验结果表明，该框架在多个基准测试中显著提升了策略个性化能力与样本效率，特别是在延迟和稀疏奖励系统中表现优异，为联邦学习系统提供了一种兼顾隐私保护与高效探索的灵活解决方案。"
     },
     {
       "id": "2608.10497",
@@ -1285,15 +1575,14 @@
         "cs.CV"
       ],
       "published": "2026-08-11T04:47:44Z",
-      "updated": "2026-08-11T04:47:44Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.10479v1",
+      "updated": "2026-08-12T03:07:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.10479v2",
       "abs_url": "https://arxiv.org/abs/2608.10479",
       "topics": [
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10479",
-      "summary_zh": "针对视频帧插值（VFI）在处理大时间跨度和复杂运动时易产生模糊与伪影的问题，该研究提出了一种基于适配器的框架，将事件相机的高时间分辨率运动线索引入预训练的图像到视频扩散模型（DiT）。通过利用图像扭曲事件（IWEs）和双向稀疏光流，该方法在不改变模型架构的前提下，为扩散过程提供了空间与时间对齐的结构化引导。这种事件驱动的生成策略有效增强了插值帧的重建保真度与时间连贯性。在真实与合成数据集上的实验表明，该方法在视觉质量和定量指标上均显著优于现有的前沿插值算法。",
-      "impact_score": null
+      "summary_zh": "针对视频帧插值（VFI）在处理大时间跨度和复杂运动时易产生模糊与伪影的问题，该研究提出了一种基于适配器的框架，将事件相机的高时间分辨率运动线索引入预训练的图像到视频扩散模型（DiT）。通过利用图像扭曲事件（IWEs）和双向稀疏光流，该方法在不改变模型架构的前提下，为扩散过程提供了空间与时间对齐的结构化引导。这种事件驱动的生成策略有效增强了插值帧的重建保真度与时间连贯性。在真实与合成数据集上的实验表明，该方法在视觉质量和定量指标上均显著优于现有的前沿插值算法。"
     },
     {
       "id": "2608.10473",
@@ -1318,8 +1607,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10473",
-      "summary_zh": "离线到在线（O2O）强化学习中，直接复用离线训练的 Critic 往往会导致价值估计偏差，进而阻碍在线微调阶段的策略优化与探索效率。为此，Critic-Free Pretraining（CFP）提出了一种全新的预训练范式，即在预训练阶段完全放弃 Critic 的训练，仅保留策略网络，从而使在线微调时能从零初始化 Critic，避免了离线偏差的继承。该方法具备极强的通用性，可与多种主流 O2O 算法兼容。实验结果表明，CFP 在多项复杂任务中均能匹配甚至超越传统算法，显著提升了在线微调的性能与效率。",
-      "impact_score": null
+      "summary_zh": "离线到在线（O2O）强化学习中，直接复用离线训练的 Critic 往往会导致价值估计偏差，进而阻碍在线微调阶段的策略优化与探索效率。为此，Critic-Free Pretraining（CFP）提出了一种全新的预训练范式，即在预训练阶段完全放弃 Critic 的训练，仅保留策略网络，从而使在线微调时能从零初始化 Critic，避免了离线偏差的继承。该方法具备极强的通用性，可与多种主流 O2O 算法兼容。实验结果表明，CFP 在多项复杂任务中均能匹配甚至超越传统算法，显著提升了在线微调的性能与效率。"
     },
     {
       "id": "2608.10462",
@@ -1375,8 +1663,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10439",
-      "summary_zh": "流式视频生成面临训练与推理过程中的噪声调度不匹配问题，导致模型难以在保持推理一致性的同时覆盖多样化的噪声配置。Stream Forcing 通过将视频扩散采样重构为基于帧索引的随机过程，构建了一条从独立采样平滑过渡到推理一致性采样的连续训练轨迹。该框架引入联合校准算法与时间相关采样算法，有效平衡了训练充分性与推理效率，实现了对长序列视频生成的稳健外推。在 UCF-101 基准测试中，该方法显著提升了生成质量，FVD 指标分别在短视频生成与长序列外推任务中实现了 36.6% 和 27.9% 的性能提升。",
-      "impact_score": null
+      "summary_zh": "流式视频生成面临训练与推理过程中的噪声调度不匹配问题，导致模型难以在保持推理一致性的同时覆盖多样化的噪声配置。Stream Forcing 通过将视频扩散采样重构为基于帧索引的随机过程，构建了一条从独立采样平滑过渡到推理一致性采样的连续训练轨迹。该框架引入联合校准算法与时间相关采样算法，有效平衡了训练充分性与推理效率，实现了对长序列视频生成的稳健外推。在 UCF-101 基准测试中，该方法显著提升了生成质量，FVD 指标分别在短视频生成与长序列外推任务中实现了 36.6% 和 27.9% 的性能提升。"
     },
     {
       "id": "2608.10403",
@@ -1435,8 +1722,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10402",
-      "summary_zh": "针对大语言模型智能体（Agentic）工作负载中多轮交互导致的GPU利用率低下与重复计算问题，TideRL提出了一种基于就绪感知（Readiness-Aware）的弹性强化学习训练系统。该系统通过Continuous Task Batching技术保留滚动任务状态，利用Resource-Aware Ref-Actor Pipelining（RA²P）优化流式处理与聚合策略，并结合Elastic Resource Scaling动态调整计算资源分配。实验表明，TideRL在处理文本及多模态智能体任务时，相比同步与异步基线分别提升了最高5.6倍和33%的训练吞吐量（Goodput）。此外，该方法显著提升了KV Cache命中率，将单步训练时间缩短了44.3%，并大幅降低了GPU等待时间，在保持任务性能的同时实现了训练效率的跨越式提升。",
-      "impact_score": null
+      "summary_zh": "针对大语言模型智能体（Agentic）工作负载中多轮交互导致的GPU利用率低下与重复计算问题，TideRL提出了一种基于就绪感知（Readiness-Aware）的弹性强化学习训练系统。该系统通过Continuous Task Batching技术保留滚动任务状态，利用Resource-Aware Ref-Actor Pipelining（RA²P）优化流式处理与聚合策略，并结合Elastic Resource Scaling动态调整计算资源分配。实验表明，TideRL在处理文本及多模态智能体任务时，相比同步与异步基线分别提升了最高5.6倍和33%的训练吞吐量（Goodput）。此外，该方法显著提升了KV Cache命中率，将单步训练时间缩短了44.3%，并大幅降低了GPU等待时间，在保持任务性能的同时实现了训练效率的跨越式提升。"
     },
     {
       "id": "2608.10386",
@@ -1487,8 +1773,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10362",
-      "summary_zh": "针对边缘设备内存受限导致自适应投机解码（Speculative Decoding）切换开销过大的问题，MemSpec 提出了一种预测引导且具备内存感知能力的运行时系统。该方案通过轻量级预测器评估不同草稿模型（Draft Model）在特定上下文下的有效性，并利用主动式工作集管理机制，将草稿选择与模型加载执行解耦，从而有效降低了频繁切换带来的延迟。实验结果表明，在 Jetson Orin Nano 平台上，MemSpec 相比现有的基于 Bandit 的自适应方法，平均稳态生成吞吐量提升了 40.7%，且性能表现极其接近理论最优上限。",
-      "impact_score": null
+      "summary_zh": "针对边缘设备内存受限导致自适应投机解码（Speculative Decoding）切换开销过大的问题，MemSpec 提出了一种预测引导且具备内存感知能力的运行时系统。该方案通过轻量级预测器评估不同草稿模型（Draft Model）在特定上下文下的有效性，并利用主动式工作集管理机制，将草稿选择与模型加载执行解耦，从而有效降低了频繁切换带来的延迟。实验结果表明，在 Jetson Orin Nano 平台上，MemSpec 相比现有的基于 Bandit 的自适应方法，平均稳态生成吞吐量提升了 40.7%，且性能表现极其接近理论最优上限。"
     },
     {
       "id": "2608.10357",
@@ -1512,8 +1797,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10357",
-      "summary_zh": "针对长周期工具使用任务中多轮交互导致的上下文过长及显存占用瓶颈，SINKFLEX-RL 提出了一套模块化的强化学习训练系统。该系统整合了 Gymnasium 兼容的环境封装与 VERL 风格的数据流，采用无需独立价值模型的组相对策略优化（Group-Relative Policy Optimization），并引入了支持因果及滑动窗口掩码的 FlexAttention 路径，有效保留了模型特定的 Sink Scaling 机制。在 Tau2Bench 基准测试中，该方法显著提升了验证奖励，并在 8192 token 的长序列配置下，将峰值显存占用降低了约 19.7%，成功解决了传统 eager 模式在长上下文训练中的显存溢出问题，为高效训练长周期智能体提供了可行的技术路径。",
-      "impact_score": null
+      "summary_zh": "针对长周期工具使用任务中多轮交互导致的上下文过长及显存占用瓶颈，SINKFLEX-RL 提出了一套模块化的强化学习训练系统。该系统整合了 Gymnasium 兼容的环境封装与 VERL 风格的数据流，采用无需独立价值模型的组相对策略优化（Group-Relative Policy Optimization），并引入了支持因果及滑动窗口掩码的 FlexAttention 路径，有效保留了模型特定的 Sink Scaling 机制。在 Tau2Bench 基准测试中，该方法显著提升了验证奖励，并在 8192 token 的长序列配置下，将峰值显存占用降低了约 19.7%，成功解决了传统 eager 模式在长上下文训练中的显存溢出问题，为高效训练长周期智能体提供了可行的技术路径。"
     },
     {
       "id": "2608.10351",
@@ -1568,8 +1852,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.10333",
-      "summary_zh": "针对大模型智能体在处理复杂任务时，现有路由策略仅能通过分配任务降低成本、无法提升小模型自身能力的问题，MERA 提出了一种模型演进与路由协同的自适应框架。该方法以单次模型调用为单位，通过重放失败案例获取验证后的教师演示，将重复性过程提炼至 SkillBook，并利用监督学习与 GRPO 持续微调小模型的 LoRA 适配器。路由机制作为部署支撑，结合验证器回退策略，确保在任务质量不降的前提下实现成本优化。实验表明，经过四轮迭代，Qwen2.5-Coder-1.5B 在 HumanEval+MBPP 上的通过率从 28.7% 显著提升至 49.7%，证明了该方法能有效打破传统路由策略对小模型能力的限制，实现性能与成本的双重优化。",
-      "impact_score": null
+      "summary_zh": "针对大模型智能体在处理复杂任务时，现有路由策略仅能通过分配任务降低成本、无法提升小模型自身能力的问题，MERA 提出了一种模型演进与路由协同的自适应框架。该方法以单次模型调用为单位，通过重放失败案例获取验证后的教师演示，将重复性过程提炼至 SkillBook，并利用监督学习与 GRPO 持续微调小模型的 LoRA 适配器。路由机制作为部署支撑，结合验证器回退策略，确保在任务质量不降的前提下实现成本优化。实验表明，经过四轮迭代，Qwen2.5-Coder-1.5B 在 HumanEval+MBPP 上的通过率从 28.7% 显著提升至 49.7%，证明了该方法能有效打破传统路由策略对小模型能力的限制，实现性能与成本的双重优化。"
     },
     {
       "id": "2608.10332",
