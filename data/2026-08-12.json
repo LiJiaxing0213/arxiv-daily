@@ -1,6 +1,6 @@
 {
   "date": "2026-08-12",
-  "generated_at": "2026-08-13T03:46:26.588508+00:00",
+  "generated_at": "2026-08-14T03:44:06.244051+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,165 @@
     }
   },
   "papers": [
+    {
+      "id": "2608.12645",
+      "title": "Jagged Judges: Epistemic Stability Under Silence, Pressure, and Persistence",
+      "abstract": "LLM judges have become central infrastructure for model evaluations, online grading, and reward modeling. Judges are typically validated by accuracy on golden data, but accuracy says little about whether they are stable under re-prompting, challenge, or sustained pushback. We introduce the \\emph{Wiggle Framework}, a unified stress test for epistemic stability in LLM judges. The framework decomposes judge robustness along three dimensions: Mechanical Consistency (stability under re-prompting and reframing), Single-turn Conviction (stability under a single challenge), and Multi-turn Persistence (stability under sustained or adaptive pressure). We use the framework to study 9 frontier models across 14 judging tasks spanning safety, toxicity, AI writing detection, and political-response evaluation. Every model exhibits substantial wiggle as a judge --- flipping verdicts 25--71\\% of the time under static pushback, and 62--91\\% with an adversarial LLM persuader. Critically, we find that pressure that succeeds in changing a judge's verdict is almost always net-corrupting with respect to ground truth. Beyond the framework itself, we identify baseline jury majority strength as the most effective single-shot signal for anticipating which items wiggle. Taken together, this is the first apples-to-apples cross-dataset comparison of mechanical, conformity, and persuadability tests in a judging context.",
+      "authors": [
+        "Justin Zhao",
+        "Himaghna Bhattacharjee",
+        "Hannah Korevaar",
+        "Bhaktipriya Radharapu",
+        "Khalid El-Arini"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-12T23:14:05Z",
+      "updated": "2026-08-12T23:14:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12645v1",
+      "abs_url": "https://arxiv.org/abs/2608.12645",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12645",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "LLM 作为评估模型的核心基础设施，其判断稳定性常被忽视。Wiggle Framework 通过机械一致性、单轮信念和多轮持久性三个维度，对 9 款前沿模型在 14 项任务中的认知稳定性进行压力测试。实验发现，模型在面对静态挑战或对抗性诱导时，判断翻转率高达 25% 至 91%，且这种判断改变往往会导致准确性下降，表现出显著的认知不稳定性。研究指出，基准陪审团多数票强度是预测模型判断是否易受干扰的最有效指标，揭示了当前 LLM 评估体系在面对压力时的脆弱性。"
+    },
+    {
+      "id": "2608.12600",
+      "title": "PseudoMapLabeler: Confidence-Aware Pseudo-Label Generation for Semi-Supervised Online Mapping",
+      "abstract": "A critical challenge in deploying online HD map construction systems to real-world scenarios is the scarcity of labeled training data, which limits model generalization in diverse environments. To address this limitation, we propose a teacher-student semi-supervised learning (SSL) framework that generates high-quality pseudo-labels from unlabeled data through confidence-aware map refinement. Our approach first trains a teacher model on limited labeled data, then leverages Beta-distribution-based confidence maps to assess the reliability of predicted map elements across temporal observations. Unlike conventional filtering methods that discard entire elements, we introduce a spatial clipping technique that selectively preserves high-confidence regions while removing unreliable segments. The refined map elements serve as map priors that improve the teacher model's prediction accuracy on unlabeled data in a second pass. These enhanced predictions become pseudo-labels for training a student model from scratch, followed by fine-tuning on the original labeled data. Experimental results on the nuScenes dataset demonstrate that our teacher-student framework with refined pseudo-labels improves performance by +6.1 mAP under a low-label regime compared to training on labeled data alone, offering a practical solution to the labeled data scarcity problem in online HD map construction.",
+      "authors": [
+        "Chikao Tsuchiya",
+        "Dhaval Bhanderi",
+        "David Ilstrup",
+        "Hsinmin Cheng",
+        "Christopher Ostafew"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-12T21:18:09Z",
+      "updated": "2026-08-12T21:18:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12600v1",
+      "abs_url": "https://arxiv.org/abs/2608.12600",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12600",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "在线高清地图构建面临标注数据稀缺的挑战，PseudoMapLabeler 提出了一种基于置信度感知的教师-学生半监督学习框架。该方法利用 Beta 分布评估时间序列观测的可靠性，引入空间裁剪技术（spatial clipping）而非简单的全元素过滤，从而精准保留高置信度地图片段并生成高质量伪标签。通过将精炼后的地图先验融入迭代训练，该模型在 nuScenes 数据集上实现了显著性能提升，在低标注数据场景下较仅使用标注数据训练提升了 6.1 mAP，有效解决了在线地图构建中的数据匮乏难题。"
+    },
+    {
+      "id": "2608.12585",
+      "title": "Reasoning Jury: Multi-Model Consensus for Evaluating Reasoning Traces",
+      "abstract": "Improving reasoning LLMs requires the ability to judge the quality of long reasoning traces for effective reasoning data curation, strong training signals during reinforcement learning, and an in-depth understanding of reasoning behaviors during model performance evaluation. Additionally, surfacing reasoning mistakes that the model makes would enable improving the model's performance at runtime through providing feedback. Due to the difficulty of this complex task on long reasoning traces, single-model judges (even frontier models) do not do well at identifying reasoning defects. Additionally, leveraging frontier models during online training of reasoning LLMs is generally prohibited due to guardrails in terms of use. In this work, we introduce Reasoning Jury, a system that replaces the single judge with a jury of LLMs and a moderated consensus mechanism, to improve the fidelity of judgments for identifying reasoning defects. In reasoning jury, defects of a reasoning trace and their severity are surfaced through a deliberation where a moderator conducts a discussion amongst the jury where the jurors critique each other's judgments and get to modify their initial votes. The moderator derives a consensus through deliberation amongst jurors or consolidation of judgements. We show that Reasoning Jury with a jury of open-weight models (e.g., gpt-oss-120b) is able to significantly outperform frontier models (opus-4.6, sonnet-4.6, and gemini-3.1-pro) at correctly identifying reasoning defects. Besides accuracy performance improvements, the aggregated cost of the jury (initial verdicts, deliberations, consolidation, etc.) is a fraction (8 to 15%) of the cost of running frontier models in LLM-as-a-judge setup. We also show how these judgements can be leveraged to understand failure modes of reasoning LLMs on benchmarks, which allows much deeper understanding of a model's performance.",
+      "authors": [
+        "Congchao Wang",
+        "Diwakar Singh",
+        "Qiaozi Gao",
+        "Spyros Matsoukas",
+        "Yang Liu",
+        "Mahdi Namazifar"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-12T21:00:22Z",
+      "updated": "2026-08-12T21:00:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12585v1",
+      "abs_url": "https://arxiv.org/abs/2608.12585",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12585",
+      "summary_zh": "针对大语言模型在长推理链评估中存在的缺陷识别准确率低、且调用前沿模型成本高昂的问题，Reasoning Jury 提出了一种基于多模型共识的评估框架。该系统通过引入多个开源模型作为“陪审团”，并在“主持人”引导下进行批判性讨论与多轮投票，从而实现对推理错误及其严重程度的精准定位。实验结果表明，该方法在识别推理缺陷方面的表现显著优于 Claude 3.5 Sonnet 等前沿模型，且总运行成本仅为其 8% 至 15%。此外，该框架生成的细粒度评估结果能有效揭示模型在各类 Benchmark 上的失效模式，为推理模型的训练与性能优化提供了更深层的洞察。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.12564",
+      "title": "Scaling Automatic Research Agents via World Models",
+      "abstract": "Automating empirical research is a long-standing direction of AI. Recent automatic research (AutoResearch) agents bring this goal within reach, as modern LLMs show the capability to independently implement solutions and learn from the execution outcomes. Behind these gains, post-training (especially RL) plays a central role. In this paper, we identify a fundamental tension when scaling RL for these agents: the two components of every AutoResearch trajectory (agent generation and environment execution) scale in very different manners, since all generation shares compute through batching, while each execution occupies its exclusive sandbox and real machine time. As a result, the environment execution dominates the training cost and becomes the bottleneck as trajectories grow. To resolve this tension, we propose World Model RL (WMRL), which replaces environment execution with a world model to remove this bottleneck. Additionally, the world model can be imperfect, as its rewards are corrupted by bias and noise. Therefore, we further equip WMRL with two mitigations, Online Debiasing and Inverse-Variance Denoising, which offset the bias and suppress the noise respectively. Theoretically, we prove that both mitigations of WMRL strictly improve the convergence guarantee. Empirically, WMRL accelerates training by 3-4x on various tasks at different agent scales, while exceeding the performance of standard RL baselines. Moreover, our post-trained 4B and 9B agents outperform much larger open-weight agents of 48B and 120B on held-out benchmarks. Beyond AutoResearch, WMRL also transfers to post-training embodied VLA policies, which demonstrates the generalizability of our method.",
+      "authors": [
+        "Xiyuan Yang",
+        "Sheikh Sarwar",
+        "Jingru Cheng",
+        "Zhan Shi",
+        "Duanshun Li",
+        "Huiyuan Chen",
+        "Haiyang Zhang",
+        "Chenlei Guo",
+        "Jingrui He",
+        "Zhenyu Liao"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-12T20:11:25Z",
+      "updated": "2026-08-12T20:11:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12564v1",
+      "abs_url": "https://arxiv.org/abs/2608.12564",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12564",
+      "summary_zh": "自动研究智能体在通过强化学习（RL）进行训练时，面临生成过程与环境执行效率不匹配的瓶颈，导致环境交互成为制约扩展性的核心成本。为此，本研究提出 World Model RL（WMRL）框架，利用世界模型替代真实环境执行，并引入 Online Debiasing 和 Inverse-Variance Denoising 技术来消除模型偏差与噪声，从理论上保证了训练的收敛性。实验表明，WMRL 在各类任务中实现了 3-4 倍的训练加速，且 4B 和 9B 参数的智能体在性能上超越了 48B 及 120B 的基准模型。该方法不仅适用于 AutoResearch 领域，还能有效迁移至具身 VLA 策略的后训练中，展现了极强的通用性与扩展潜力。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.12486",
+      "title": "DIVE: Unlocking Self-Improvement in Frozen Language Models Through Diversity-Driven Skill Evolution",
+      "abstract": "Large language models (LLMs) cannot retain post-deployment experience without parameter updates. We introduce DIVE, a diversity-driven framework that enables frozen LLMs to improve by evolving persistent natural-language skills from task experience and verifier feedback. These skills encode reusable reasoning procedures, verification strategies, common failure modes, and output constraints and are both executed and revised by the same underlying model without access to a teacher model. Since natural-language skill evolution is a stochastic, non-convex search process, optimizing a single skill trajectory can overfit to sampled experience or converge to a suboptimal solution. DIVE mitigates this optimization variance by independently evolving multiple skill populations from bootstrapped experience, adaptively refining them through diverse transformations, and jointly selecting a complementary set of skills. Across six mathematical and logical reasoning tasks and multiple model families, DIVE consistently outperforms existing reasoning methods, prompt-optimization approaches, skill-development frameworks, and memory-based baselines. It achieves rapid self-improvement from accumulated experience, obtaining substantially larger performance gains with fewer rollouts than parameter-based methods such as SFT and GRPO, and prompt optimization with GEPA. Further, the resulting skills transfer across model scales and families, enabling smaller models such as GPT-5-nano to match or outperform larger counterparts, i.e., GPT-5, under conventional prompting. These results establish diversity-driven skill evolution as an effective, interpretable, and parameter-free approach to LLM self-improvement.",
+      "authors": [
+        "Siheng Xiong",
+        "Ali Payani",
+        "Oguzhan Gungordu",
+        "Faramarz Fekri"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-12T18:06:41Z",
+      "updated": "2026-08-12T18:06:41Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12486v1",
+      "abs_url": "https://arxiv.org/abs/2608.12486",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12486",
+      "summary_zh": "DIVE 旨在解决冻结参数的大语言模型（LLM）在部署后无法通过经验持续自我提升的难题。该框架通过从任务经验和验证器反馈中提取并演化自然语言技能，使模型能够自主编码推理程序、验证策略及约束条件，且无需教师模型辅助。针对单一技能演化易陷入局部最优或过拟合的问题，DIVE 采用多样性驱动的演化策略，通过并行演化多个技能种群并进行联合筛选，有效降低了优化方差。在六项数学与逻辑推理任务中，DIVE 表现出显著优于 SFT、GRPO 及 GEPA 等方法的性能，且演化出的技能具备跨模型规模与架构的迁移能力，实现了高效、可解释且无需参数更新的自我进化。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.12476",
+      "title": "Governed Persistent Memory: Source-Bound State Semantics and Fail-Closed Release for Long-Horizon Agents",
+      "abstract": "Long-term agent memory is usually treated as select--store--retrieve, but retrieval does not decide whether contradictory, superseded, retracted, deleted, or stale records may support an outgoing claim. We introduce Governed Persistent Memory (GPM), an auditable bitemporal state-transition model with source-bound admission, derived lifecycle state, current public barriers, and fail-closed structured release. Five executable clauses cover ledger integrity, source binding, conflict isolation, non-revival after retraction or deletion, and exact claim closure over a fresh view at one verified head. On a prespecified hash-frozen 3,600-case GPM-ReleaseBench, GPM matches all complete outcomes; the strongest of three intentionally simple complete policies matches 1,800/3,600 and makes unmatched releases on 50% of violation cases. A separate sealed end-to-end service evaluation exercises real ingestion and release across eight query families. In its publicly disclosed V3 arm, the governed lane is correct on 2,400/2,400 clusters versus 600/2,400 for ungoverned local Qwen2.5-7B; it repairs all 1,800 baseline failures with no regression (one-sided 95% lower bounds 99.875% and 99.834%). A later V5 reseal over Chinese- and English-command arms, with generation-date pinning and no post-freeze reducer amendment, again obtains 2,400/2,400 per arm. A production-code-independent finite model explores 331,776 semantic and 1,990,656 query states without a full-contract counterexample, and a 100,000-trace three-engine differential yields zero mismatches. These are bounded contract and implementation results, not open-world model accuracy or evidence of world truth. Governed answers in the sealed service evaluation are deterministic service outputs; the 7B result is the ungoverned comparison, not a claim that a language model itself became perfectly accurate.",
+      "authors": [
+        "Guodong Xu"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-12T18:00:42Z",
+      "updated": "2026-08-12T18:00:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12476v1",
+      "abs_url": "https://arxiv.org/abs/2608.12476",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12476",
+      "keyword_topics": [
+        "world-model"
+      ],
+      "summary_zh": "针对长周期智能体记忆中存在的陈旧、冲突或已撤回信息导致决策错误的问题，Governed Persistent Memory (GPM) 提出了一种基于双时态状态转换的审计模型。该方法通过源绑定准入、派生生命周期状态及故障关闭释放机制，确保了记忆记录的完整性与逻辑一致性。在 GPM-ReleaseBench 基准测试中，GPM 实现了 100% 的完整结果匹配，显著优于未受控的 Qwen2.5-7B 模型。端到端服务评估显示，该机制在处理复杂查询时能有效修复基线模型的所有失败案例，且在 10 万次轨迹的差分测试中未发现任何语义不一致，为智能体提供了确定性且可审计的记忆管理方案。"
+    },
     {
       "id": "2608.12314",
       "title": "StateFlow: Building, Evolving, and Accessing 3D World States for Previsualization",
@@ -151,8 +310,8 @@
         "cs.CV"
       ],
       "published": "2026-08-12T17:15:42Z",
-      "updated": "2026-08-12T17:15:42Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.12276v1",
+      "updated": "2026-08-13T07:13:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12276v2",
       "abs_url": "https://arxiv.org/abs/2608.12276",
       "topics": [
         "rl",
@@ -247,6 +406,40 @@
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12220",
       "summary_zh": "针对现有视觉语言模型（VLMs）在空间推理能力上的不足，SCOUT 提出了一种结合结构化思维链（Structured CoT）与多目标过程奖励强化学习的训练框架。该方法通过显式建模 3D 环境感知来增强空间理解深度，并利用定制的优势估计方法实现推理轨迹中细粒度步骤的信用分配，同时配套构建了 SCOUT-24k 空间推理数据集。实验结果表明，SCOUT-3B 在通用及复杂空间推理任务上显著优于基线模型，SCOUT-7B 在相关基准测试中甚至超越了 GPT-4o。此外，该模型仅通过单图训练即可展现出强大的跨域泛化能力，能够有效处理多图像及视频场景，为下一代具备空间感知能力的视觉语言模型提供了重要技术路径。",
       "impact_score": null
+    },
+    {
+      "id": "2608.12443",
+      "title": "SSPO: Structure-Aware Similarity-Weighted Preference Optimization for Neural Combinatorial Optimization",
+      "abstract": "Neural combinatorial optimization (NCO) relies on parallel solution sampling for training, yet existing methods fail to fully exploit the rich information latent in a co-sampled solution group. Preference-optimization methods anchor on the single best solution and discard fine-grained quality and structural signal from all other peers-a failure we term gradient signal polarization. Mean-based baselines instead weight peers uniformly, so structurally near-identical peers flood the baseline with redundant information and keep gradient variance high-a failure we term baseline redundancy. We propose SSPO (Structure-Aware Similarity-Weighted Preference Optimization), which scores all $B$ sampled solutions jointly through a dissimilarity-weighted leave-one-out baseline: structurally distinct peers receive higher weight, resolving both failures in a single mechanism. The baseline uses zero-parameter, problem-adaptive solution embeddings built from the encoder's existing node representations. Experiments on TSP, EFL, and JSP benchmarks show consistent gains over prior best-anchor and uniform-weight baselines. A direct comparison against uniform RLOO on TSP and EFL confirms that structure-aware weighting is the primary driver of improvement. The SSPO-trained EFL policy has been deployed in a production facility-location system at JD$\\mathord{.}$com, confirming practical viability at scale.",
+      "authors": [
+        "Yuanyu Li",
+        "Jintao Xu",
+        "Zijiang Liu",
+        "Yongzhi Qi",
+        "Ningxuan Kang",
+        "Jianshen Zhang",
+        "Wei Qi",
+        "Chen Xie",
+        "Zuo-Jun Max Shen"
+      ],
+      "categories": [
+        "stat.ML",
+        "cs.AI",
+        "cs.LG",
+        "math.OC"
+      ],
+      "published": "2026-08-12T16:04:54Z",
+      "updated": "2026-08-12T16:04:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12443v1",
+      "abs_url": "https://arxiv.org/abs/2608.12443",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12443",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "神经组合优化（NCO）在训练中往往忽略了同批次采样解之间的细粒度结构信息，导致梯度信号极化或基线冗余问题。SSPO（Structure-Aware Similarity-Weighted Preference Optimization）通过引入一种基于差异加权的留一法基线，对所有采样解进行联合评分，赋予结构差异大的解更高的权重，从而有效缓解了上述缺陷。该方法利用编码器现有的节点表示构建无参数且具备问题自适应性的解嵌入，无需额外训练开销。在 TSP、EFL 和 JSP 等基准测试中，SSPO 均显著优于传统的最佳锚点法和均匀加权基线，且已在京东的设施选址系统中成功落地，验证了其在实际大规模场景中的有效性。"
     },
     {
       "id": "2608.12203",
@@ -394,6 +587,32 @@
       "summary_zh": "针对现有3D异常检测（3DAD）中记忆库覆盖不足或重构模型易产生“捷径”的问题，MVFM-3DAD提出了一种基于流匹配的密度代理估计框架。该方法引入Bidirectional Geometric Projector (BGP)将不规则点云转化为结构化多视图表示，并利用Flow-guided Density Proxy Estimator (FDPE)在视图空间估计正常数据的参考密度，无需显式重构或雅可比行列式计算即可实现高效的异常评分。实验结果表明，该方法在Real3D-AD和MVTec3D-AD数据集上均超越了现有的主流模型，验证了其在复杂3D场景下识别异常特征的优越性。"
     },
     {
+      "id": "2608.12146",
+      "title": "RoutePack: Expert Placement and Attention-Aware Data Packing for MoE Reinforcement Learning",
+      "abstract": "Training Mixture-of-Experts (MoE) models for reinforcement learning (RL) couples two load-balancing problems: sequence composition determines dense attention work in each data-parallel microbatch, while token routing determines sparse expert work on expert-parallel ranks. Optimizing either alone can shift the bottleneck to the other. In MoE RL, rollout-time routing replay exposes every sample's sequence length and layer-wise expert demand before its training step. We present RoutePack, a hierarchical planner that coordinates state-consistent, layer-wise expert rerouting with joint attention- and expert-aware data packing over an optimizer-step window. RoutePack first places experts independently at each MoE layer using aggregate routing demand. It then packs samples into the smallest certified, or best-known feasible, number of token-capped execution rows and optimizes their DP layout with a projected EDP-shard-aware objective. The objective combines a window-normalized linear-quadratic attention proxy with per-layer physical EP-rank peaks and minimizes the accumulated cost of the slowest EDP shard. Parallel population annealing searches fixed-row feasible layouts while preserving sample coverage, capacity, nonempty cells, equal microbatch counts, and communicator topology. State-consistent materialization preserves logical top-k routing and existing MoE kernels without microbatch-level expert replication. Across Ling-3.0-Tiny and Ling-3.0-Flash, expert rerouting improves mean trainer-measured token throughput by 3.80% and 10.50%, while routing-aware packing adds another 4.86% and 3.98%, respectively. Overall, RoutePack improves throughput by 8.85% and 14.89% over the baseline.",
+      "authors": [
+        "Yibo Shen",
+        "Xudong Han",
+        "Xiaowei Zhu",
+        "Gen Li",
+        "Zhenxuan Pan"
+      ],
+      "categories": [
+        "cs.DC",
+        "cs.LG"
+      ],
+      "published": "2026-08-12T15:07:15Z",
+      "updated": "2026-08-12T15:07:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12146v1",
+      "abs_url": "https://arxiv.org/abs/2608.12146",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12146",
+      "summary_zh": "MoE强化学习训练中，序列组合导致的注意力计算瓶颈与Token路由导致的专家计算负载不平衡相互耦合，制约了整体训练效率。RoutePack提出了一种分层规划方案，利用强化学习回放阶段预知的序列长度与专家需求信息，协同优化专家放置与数据打包策略。该方法通过层级专家重路由平衡各计算节点负载，并结合感知注意力与专家需求的动态数据打包技术，最小化最慢分片（EDP-shard）的执行成本。在Ling-3.0系列模型上的实验表明，RoutePack通过协同优化显著缓解了计算瓶颈，使模型训练吞吐量分别提升了8.85%和14.89%。",
+      "impact_score": null
+    },
+    {
       "id": "2608.12107",
       "title": "Avatar-Forever: Decoupled Parallel Training for High-Quality Real-Time Infinite Avatars",
       "abstract": "Existing streaming video systems often rely on sequential, distillation-centered training pipelines to enable few-step long-video generation. However, this paradigm suffers from two limitations. First, failures or distribution shifts introduced in earlier stages affect later optimization, complicating the training process to converge. Second, the distillation-centric objective favours short-term generation but is prone to quality degradation when autoregressive errors accumulate over long rollouts. We propose Avatar-Forever, a decoupled parallel training framework for high-quality real-time infinite interactive avatars. Instead of coupling generation efficiency and long-horizon robustness under a sequential distillation pipeline, we treat them as two independent capabilities that can be trained in parallel. One branch performs full-parameter distillation to train an efficient generator with high visual quality, while another trains a lightweight long-horizon adapter via Recovery-oriented Rollout Training (RRT), which improves generation robustness under long-horizon inference conditions. Our decoupled parallel training design simplifies the overall training process and avoids unnecessary objective conflicts between few-step generation and long-horizon adaptation. We further introduce ForeverCache, a chunk-wise feature caching mechanism to substantially reduce redundant history computation during streaming inference. Built upon a 22B video foundation model, Avatar-Forever supports unbounded audio-driven avatar generation while maintaining identity consistency, motion coherence, and visual fidelity, enabling an end-to-end throughput of high-resolution 768x512 videos at 27.2 FPS on a single H100 GPU and providing a practical path toward stable digital humans.",
@@ -449,6 +668,37 @@
         "distillation"
       ],
       "summary_zh": "RT-SEMamba 针对实时语音增强（SE）任务，利用因果时频 Mamba 模块替代 Transformer，通过固定大小的循环状态传播机制，有效解决了长序列推理中的内存与带宽瓶颈。该模型引入渐进式知识蒸馏（Progressive KD）策略，将 8 层教师模型的复杂频谱输出与中间表征迁移至 1 层学生模型，在保持极低算法延迟的同时显著提升了轻量化模型的性能。实验结果表明，在 Voicebank-DEMAND 数据集上，蒸馏后的单层模型不仅取得了 3.18 的 PESQ 分数，还实现了 2.75 倍的推理加速。这一方案验证了状态空间模型结合知识蒸馏在实时语音处理中具备卓越的质量与延迟权衡能力。"
+    },
+    {
+      "id": "2608.12436",
+      "title": "Multi-AUV Ad-hoc network-based Target Tracking: A Value Gradient Guidance Multi-Agent Diffusion Reinforcement Learning Approach",
+      "abstract": "Multi-AUV ad-hoc network-based target tracking requires networked autonomous underwater vehicles (AUVs) to cooperatively track maneuvering targets under constrained acoustic communication, dynamic topology, and uncertain ocean disturbances. Although multi-agent reinforcement learning (MARL) enables decentralized coordination through centralized training, existing methods suffer from high-dimensional joint state-action modeling, noise-sensitive policy generation, leading to unstable training and degraded tracking. To address these issues, we propose VGG-MADiffRL, a value-gradient-guided multi-agent diffusion RL algorithm, and MDCA, a diffusion?based hierarchical control architecture. Leveraging underwater mission characteristics, we model sonar detection mechanisms and ocean current disturbances, formulating cooperative tracking for multi-AUV ad-hoc networks as an MDP. The proposed MDCA constitutes a three-tier closed-loop control framework: a global intelligent control layer, a local online training layer, and a physical action execution layer. This structure enables synergistic optimization across task allocation, local decision processes, and execution feedback. Within MDCA, the local online training layer is the policy learning framework; VGG-MADiffRL builds on diffusion policies and incorporates value gradients to guide action generation in the reverse denoising process, steering the generated actions towards higher expected returns. It employs twin value networks with joint optimization and soft target updates to mitigate overestimation and training oscillations, promoting more stable convergence. Experimental results show that VGG-MADiffRL consistently achieves faster convergence, higher tracking accuracy, and smoother training dynamics in cooperative tracking scenarios, validating its effectiveness and practical engineering value in dynamic underwater settings.",
+      "authors": [
+        "Jiaao Ma",
+        "Chuan Lin",
+        "Guangjie Han",
+        "Shengchao Zhu",
+        "Qian Zhu",
+        "Ying Liu",
+        "Zhenyu Wang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.MA",
+        "cs.NI"
+      ],
+      "published": "2026-08-12T14:15:35Z",
+      "updated": "2026-08-12T14:15:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12436v1",
+      "abs_url": "https://arxiv.org/abs/2608.12436",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12436",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对多自主水下航行器（AUV）在受限通信与复杂海洋环境下的协同目标跟踪难题，该研究提出了基于价值梯度引导的多智能体扩散强化学习算法 VGG-MADiffRL 及分层控制架构 MDCA。MDCA 构建了包含全局智能控制、局部在线训练与物理执行的三层闭环框架，有效解决了高维状态空间下的协同决策与任务分配问题。核心创新点在于将价值梯度引入扩散模型的反向去噪过程，通过引导动作生成以最大化预期收益，并利用双价值网络与软更新机制抑制训练震荡。实验表明，该方法在动态水下场景中显著提升了跟踪精度与收敛稳定性，展现出优异的工程应用潜力。"
     },
     {
       "id": "2608.12078",
@@ -555,8 +805,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.12032",
-      "summary_zh": "视频扩散模型在处理长3D token序列时，自注意力机制带来的二次计算开销巨大。LoSA通过观察发现约40%的块交互对注意力权重贡献极小，提出了一种无需训练的近无损稀疏注意力加速方法。该方法在推理初期计算一次注意力权重分布，锁定并保留贡献度累计达到99%的关键块索引，并在后续去噪步骤中复用这些索引以大幅降低计算量。在Wan2.1和HunyuanVideo等模型上的实验表明，LoSA在保持极高生成质量的同时，最高可实现3.2倍的推理加速，显著优于现有的稀疏化基准方法。",
-      "impact_score": null
+      "summary_zh": "视频扩散模型在处理长3D token序列时，自注意力机制带来的二次计算开销巨大。LoSA通过观察发现约40%的块交互对注意力权重贡献极小，提出了一种无需训练的近无损稀疏注意力加速方法。该方法在推理初期计算一次注意力权重分布，锁定并保留贡献度累计达到99%的关键块索引，并在后续去噪步骤中复用这些索引以大幅降低计算量。在Wan2.1和HunyuanVideo等模型上的实验表明，LoSA在保持极高生成质量的同时，最高可实现3.2倍的推理加速，显著优于现有的稀疏化基准方法。"
     },
     {
       "id": "2608.11981",
@@ -582,8 +831,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11981",
-      "summary_zh": "针对资源受限场景下小型语言模型（SLMs）的信任度问题，该研究系统评估了从头训练与模型压缩（剪枝、量化、蒸馏）两种路径在公平性、鲁棒性、隐私及伦理维度的表现。研究发现，量化在保持模型信任度方面显著优于剪枝，且通过量化压缩可靠的大型模型，能获得比从头训练的小模型更优的信任度与适应性。此外，利用可信教师模型进行知识蒸馏可进一步提升SLMs的可靠性。这些发现为开发和部署高信任度的小型语言模型提供了关键的实践指导与基准参考。",
-      "impact_score": null
+      "summary_zh": "针对资源受限场景下小型语言模型（SLMs）的信任度问题，该研究系统评估了从头训练与模型压缩（剪枝、量化、蒸馏）两种路径在公平性、鲁棒性、隐私及伦理维度的表现。研究发现，量化在保持模型信任度方面显著优于剪枝，且通过量化压缩可靠的大型模型，能获得比从头训练的小模型更优的信任度与适应性。此外，利用可信教师模型进行知识蒸馏可进一步提升SLMs的可靠性。这些发现为开发和部署高信任度的小型语言模型提供了关键的实践指导与基准参考。"
     },
     {
       "id": "2608.11980",
@@ -676,8 +924,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11967",
-      "summary_zh": "针对长程任务中局部反射决策与最终任务结果之间存在监督滞后与稀疏性的问题，LoongReflect 提出将反射建模为一种记忆控制策略，通过显式的反射与回溯动作管理可逆轨迹树。该方法引入双通道协调机制：快通道通过蒸馏特权教师的全局视角来优化反射行为，慢通道则利用基于结果的 GRPO 算法对完整轨迹进行强化学习，从而实现局部决策与全局任务成功的对齐。在多跳检索增强生成与数学推理基准测试中，该框架显著优于传统的仅基于结果的强化学习及自蒸馏基线，有效提升了智能体在复杂任务中的长程推理与纠错能力。",
-      "impact_score": null
+      "summary_zh": "针对长程任务中局部反射决策与最终任务结果之间存在监督滞后与稀疏性的问题，LoongReflect 提出将反射建模为一种记忆控制策略，通过显式的反射与回溯动作管理可逆轨迹树。该方法引入双通道协调机制：快通道通过蒸馏特权教师的全局视角来优化反射行为，慢通道则利用基于结果的 GRPO 算法对完整轨迹进行强化学习，从而实现局部决策与全局任务成功的对齐。在多跳检索增强生成与数学推理基准测试中，该框架显著优于传统的仅基于结果的强化学习及自蒸馏基线，有效提升了智能体在复杂任务中的长程推理与纠错能力。"
     },
     {
       "id": "2608.11937",
@@ -700,8 +947,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11937",
-      "summary_zh": "针对时变偏微分方程（PDEs）的基础模型虽泛化能力强，但因参数量巨大而难以作为高效的数值求解器替代方案。TREX（Teacher Rollout Extension）通过知识蒸馏框架，利用预训练教师模型生成长序列合成轨迹来扩充下游数据，并结合周期性噪声注入，引导学生模型学习长时程状态演化及局部恢复行为。该方法允许学生模型显式集成等变性（Equivariance）等特定归纳偏置，从而在保持甚至超越教师模型精度的同时，实现参数量数个数量级的缩减及推理速度十倍以上的提升。在多个 PDE 基准测试中的实验结果表明，TREX 有效平衡了模型性能与计算效率，为大规模物理模拟提供了轻量化的高效替代方案。",
-      "impact_score": null
+      "summary_zh": "针对时变偏微分方程（PDEs）的基础模型虽泛化能力强，但因参数量巨大而难以作为高效的数值求解器替代方案。TREX（Teacher Rollout Extension）通过知识蒸馏框架，利用预训练教师模型生成长序列合成轨迹来扩充下游数据，并结合周期性噪声注入，引导学生模型学习长时程状态演化及局部恢复行为。该方法允许学生模型显式集成等变性（Equivariance）等特定归纳偏置，从而在保持甚至超越教师模型精度的同时，实现参数量数个数量级的缩减及推理速度十倍以上的提升。在多个 PDE 基准测试中的实验结果表明，TREX 有效平衡了模型性能与计算效率，为大规模物理模拟提供了轻量化的高效替代方案。"
     },
     {
       "id": "2608.11922",
@@ -751,8 +997,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11913",
-      "summary_zh": "针对视频到音频（V2A）生成中时间同步性差及感知质量低的问题，HarmoniDPO 提出了一种基于偏好优化的扩散模型框架。该方法采用全局上下文与逐帧特征相结合的双重视频表征，以保留精细的动态信息；引入在线 Direct Preference Optimization (online-DPO) 技术，通过偏好反馈微调模型，显著提升了音频的感知质量与语义对齐度。此外，该框架还设计了 Dual-scale Diffusion Search (DDS) 推理算法，在测试阶段自适应优化输出保真度。实验结果表明，HarmoniDPO 在音视频同步性和主观听感质量上均优于现有主流方法，为生成符合人类偏好的高质量音频提供了有效方案。",
-      "impact_score": null
+      "summary_zh": "针对视频到音频（V2A）生成中时间同步性差及感知质量低的问题，HarmoniDPO 提出了一种基于偏好优化的扩散模型框架。该方法采用全局上下文与逐帧特征相结合的双重视频表征，以保留精细的动态信息；引入在线 Direct Preference Optimization (online-DPO) 技术，通过偏好反馈微调模型，显著提升了音频的感知质量与语义对齐度。此外，该框架还设计了 Dual-scale Diffusion Search (DDS) 推理算法，在测试阶段自适应优化输出保真度。实验结果表明，HarmoniDPO 在音视频同步性和主观听感质量上均优于现有主流方法，为生成符合人类偏好的高质量音频提供了有效方案。"
     },
     {
       "id": "2608.11829",
@@ -784,8 +1029,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11829",
-      "summary_zh": "On-policy distillation (OPD) 旨在通过强教师模型提升大语言模型的推理能力，但其真实效果仍存争议。本研究通过测试时扩展（test-time scaling）视角，对比了不同采样预算 K 下的 pass@K 与 avg@K 表现，发现 OPD 虽能显著提升小 K 值下的采样效率，但随着 K 值增大，其性能优势会逐渐向原始基座模型偏移。实验分析表明，OPD 训练过程倾向于优化模型在有限采样下的表现，却往往以牺牲大规模采样下的能力边界为代价，甚至导致部分原本可解的问题变得不可解。这些发现揭示了 OPD 本质上更像是一种“幻觉蒸馏”，其性能提升主要源于采样效率的优化，而非真正习得了教师模型的新推理能力。",
-      "impact_score": null
+      "summary_zh": "On-policy distillation (OPD) 旨在通过强教师模型提升大语言模型的推理能力，但其真实效果仍存争议。本研究通过测试时扩展（test-time scaling）视角，对比了不同采样预算 K 下的 pass@K 与 avg@K 表现，发现 OPD 虽能显著提升小 K 值下的采样效率，但随着 K 值增大，其性能优势会逐渐向原始基座模型偏移。实验分析表明，OPD 训练过程倾向于优化模型在有限采样下的表现，却往往以牺牲大规模采样下的能力边界为代价，甚至导致部分原本可解的问题变得不可解。这些发现揭示了 OPD 本质上更像是一种“幻觉蒸馏”，其性能提升主要源于采样效率的优化，而非真正习得了教师模型的新推理能力。"
     },
     {
       "id": "2608.11789",
@@ -800,15 +1044,14 @@
         "cs.CV"
       ],
       "published": "2026-08-12T08:29:54Z",
-      "updated": "2026-08-12T08:29:54Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.11789v1",
+      "updated": "2026-08-13T08:55:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11789v2",
       "abs_url": "https://arxiv.org/abs/2608.11789",
       "topics": [
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11789",
-      "summary_zh": "针对知识蒸馏中学生模型易学习到教师模型冗余特征（Shortcut）的问题，Anti-Shortcut Distillation (ASD) 提出利用教师模型训练轨迹中的负向信息来引导学习。该方法将收敛后的教师模型作为正向语义锚点，并将训练早期的教师模型作为负向参考，通过 Temporal Contrastive Loss 和 Shortcut Suppression Loss 迫使学生模型远离这些易导致过拟合的捷径特征。实验表明，ASD 在 CIFAR-100、ImageNet-100 等多个数据集的 13 组教师-学生对中表现优异，不仅显著提升了分类准确率，还在 CIFAR-100-C 等鲁棒性测试中展现出更强的抗干扰能力。机制分析证实，ASD 成功引导学生模型在几何空间上与捷径方向反向对齐，并大幅增强了其在鲁棒子空间上的投影表现。",
-      "impact_score": null
+      "summary_zh": "针对知识蒸馏中学生模型易学习到教师模型冗余特征（Shortcut）的问题，Anti-Shortcut Distillation (ASD) 提出利用教师模型训练轨迹中的负向信息来引导学习。该方法将收敛后的教师模型作为正向语义锚点，并将训练早期的教师模型作为负向参考，通过 Temporal Contrastive Loss 和 Shortcut Suppression Loss 迫使学生模型远离这些易导致过拟合的捷径特征。实验表明，ASD 在 CIFAR-100、ImageNet-100 等多个数据集的 13 组教师-学生对中表现优异，不仅显著提升了分类准确率，还在 CIFAR-100-C 等鲁棒性测试中展现出更强的抗干扰能力。机制分析证实，ASD 成功引导学生模型在几何空间上与捷径方向反向对齐，并大幅增强了其在鲁棒子空间上的投影表现。"
     },
     {
       "id": "2608.11787",
@@ -873,8 +1116,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11755",
-      "summary_zh": "针对长篇歌曲生成模型缺乏可解释性审美评估的问题，MuseCritic 提出了一种基于自然语言反馈的半标量奖励模型。该模型通过两阶段训练流程，先由教师模型进行监督微调，再利用生成的五维度审美评价作为中间表征来预测连续奖励分数，有效缓解了训练与推理间的分布偏移。实验表明，MuseCritic 在 SongEval 测试集上显著降低了均方误差，并在 Music Arena 基准测试中达到 71.35% 的最高准确率。此外，将其与 GRPO 算法结合使用，能显著提升 Muse-0.6B 模型在多项审美指标上的表现，证明了基于评价的奖励建模在优化歌曲生成质量方面的有效性。",
-      "impact_score": null
+      "summary_zh": "针对长篇歌曲生成模型缺乏可解释性审美评估的问题，MuseCritic 提出了一种基于自然语言反馈的半标量奖励模型。该模型通过两阶段训练流程，先由教师模型进行监督微调，再利用生成的五维度审美评价作为中间表征来预测连续奖励分数，有效缓解了训练与推理间的分布偏移。实验表明，MuseCritic 在 SongEval 测试集上显著降低了均方误差，并在 Music Arena 基准测试中达到 71.35% 的最高准确率。此外，将其与 GRPO 算法结合使用，能显著提升 Muse-0.6B 模型在多项审美指标上的表现，证明了基于评价的奖励建模在优化歌曲生成质量方面的有效性。"
     },
     {
       "id": "2608.11746",
@@ -896,16 +1138,18 @@
       "pdf_url": "https://arxiv.org/pdf/2608.11746v1",
       "abs_url": "https://arxiv.org/abs/2608.11746",
       "topics": [
-        "rl"
+        "other"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11746",
-      "summary_zh": "为了提升模型在未见任务中的泛化能力，该研究利用 Epiplexity（衡量计算受限学习者从数据中提取结构化信息的能力）作为核心指标，指导数据选择与合成过程。在数据选择方面，通过拟合自然数据域的训练损失缩放定律（Scaling Laws）来预测 Epiplexity 增益，并据此动态调整训练时的采样权重；在数据合成方面，将 Epiplexity 的变化作为奖励信号，利用 REINFORCE 策略梯度引导生成器产出高结构化信息的数据。实验结果表明，Epiplexity 能够有效预测模型在零样本（Zero-shot）和微调任务中的表现，证实了富含结构化信息的数据能显著增强模型跨域迁移的表征能力。",
-      "impact_score": null
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "为了提升模型在未见任务中的泛化能力，该研究利用 Epiplexity（衡量计算受限学习者从数据中提取结构化信息的能力）作为核心指标，指导数据选择与合成过程。在数据选择方面，通过拟合自然数据域的训练损失缩放定律（Scaling Laws）来预测 Epiplexity 增益，并据此动态调整训练时的采样权重；在数据合成方面，将 Epiplexity 的变化作为奖励信号，利用 REINFORCE 策略梯度引导生成器产出高结构化信息的数据。实验结果表明，Epiplexity 能够有效预测模型在零样本（Zero-shot）和微调任务中的表现，证实了富含结构化信息的数据能显著增强模型跨域迁移的表征能力。"
     },
     {
       "id": "2608.11745",
       "title": "LiveAnimate: Stable Long-Form Streaming Human Animation in Real-Time",
-      "abstract": "Pose-driven human animation synthesizes a video of a target person from a single reference image and a driving pose stream. Real-time generation is essential for interactive applications such as live streaming, telepresence, and virtual avatars, yet diffusion-based systems require minutes to hours per clip, precluding responsive interaction. We present LiveAnimate, to our knowledge the first animation system to combine real-time streaming with stable long-form generation at billion scale, built on a 14B-parameter video Diffusion Transformer (DiT). A two-stage training pipeline first adapts a pretrained bidirectional DiT into a block-causal autoregressive generator through Reference-Anchored Teacher-Forcing Adaptation, and then reduces the sampling budget to three steps through Block-wise Self-Forcing Distillation. To preserve appearance over extended streams, we introduce Pose-Retrieval Sink Attention (PR-Sink), a bounded KV-cache mechanism combining a Static Sink that permanently anchors the first generated block, a Dynamic Sink that holds a pose-retrieved historical block, and a three-slot Rolling Window. When a pose recurs, PR-Sink restores the relevant appearance context without retaining the entire sequence, so memory and per-block latency remain constant regardless of stream duration. Together with Ulysses sequence parallelism and operator fusion, these designs enable 19.63\\,FPS streaming inference on two NVIDIA H100 GPUs. On a three-minute benchmark, LiveAnimate maintains nearly constant perceptual quality and identity from the first 30 seconds to the final minute (IQA 4.047 vs.\\ 4.026), while prior systems degrade substantially or require hours of offline computation for the same rollout. These results establish a new operating point in quality, latency, and duration for interactive full-body animation.",
+      "abstract": "Pose-driven human animation synthesizes a video of a target person from a single reference image and a driving pose stream. Real-time generation is essential for interactive applications such as live streaming, telepresence, and virtual avatars, yet diffusion-based systems require minutes to hours per clip, precluding responsive interaction. We present LiveAnimate, to our knowledge the first animation system to combine real-time streaming with stable long-form generation at billion scale, built on a 14B-parameter video Diffusion Transformer (DiT). A two-stage training pipeline first adapts a pretrained bidirectional DiT into a block-causal autoregressive generator through Reference-Anchored Teacher-Forcing Adaptation, and then reduces the sampling budget to three steps through Block-wise Self-Forcing Distillation. To preserve appearance over extended streams, we introduce Pose-Retrieval Sink Attention (PR-Sink), a bounded KV-cache mechanism combining a Static Sink that permanently anchors the first generated block, a Dynamic Sink that holds a pose-retrieved historical block, and a three-slot Rolling Window. When a pose recurs, PR-Sink restores the relevant appearance context without retaining the entire sequence, so memory and per-block latency remain constant regardless of stream duration. Together with Ulysses sequence parallelism and operator fusion, these designs enable 19.63\\,FPS streaming inference on two NVIDIA H100 GPUs. On a three-minute benchmark, LiveAnimate maintains nearly constant perceptual quality and identity from the first 30 seconds to the final minute, while prior systems degrade substantially or require hours of offline computation for the same rollout. These results establish a new operating point in quality, latency, and duration for interactive full-body animation.",
       "authors": [
         "Yuxuan Zhang",
         "Haozhong Xiong",
@@ -921,15 +1165,14 @@
         "cs.CV"
       ],
       "published": "2026-08-12T07:35:52Z",
-      "updated": "2026-08-12T07:35:52Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.11745v1",
+      "updated": "2026-08-13T06:21:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11745v2",
       "abs_url": "https://arxiv.org/abs/2608.11745",
       "topics": [
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11745",
-      "summary_zh": "LiveAnimate 旨在解决基于扩散模型的姿态驱动人体动画在实时交互场景中生成速度慢、长序列生成质量下降的问题。该系统基于 14B 参数的视频 Diffusion Transformer (DiT)，通过 Reference-Anchored Teacher-Forcing Adaptation 将双向模型转化为块因果自回归生成器，并利用 Block-wise Self-Forcing Distillation 将采样步数压缩至三步。核心创新点在于引入 Pose-Retrieval Sink Attention (PR-Sink) 机制，通过静态 Sink、动态 Sink 和滚动窗口组合，在保持恒定内存和延迟的前提下，有效解决了长序列生成中的身份一致性保持难题。结合 Ulysses 序列并行与算子融合技术，该系统在两张 NVIDIA H100 GPU 上实现了 19.63 FPS 的实时推理，在三分钟长视频基准测试中展现了极高的视觉质量稳定性，显著优于现有离线或长时退化严重的动画方案。",
-      "impact_score": null
+      "summary_zh": "LiveAnimate 旨在解决基于扩散模型的姿态驱动人体动画在实时交互场景中生成速度慢、长序列生成质量下降的问题。该系统基于 14B 参数的视频 Diffusion Transformer (DiT)，通过 Reference-Anchored Teacher-Forcing Adaptation 将双向模型转化为块因果自回归生成器，并利用 Block-wise Self-Forcing Distillation 将采样步数压缩至三步。核心创新点在于引入 Pose-Retrieval Sink Attention (PR-Sink) 机制，通过静态 Sink、动态 Sink 和滚动窗口组合，在保持恒定内存和延迟的前提下，有效解决了长序列生成中的身份一致性保持难题。结合 Ulysses 序列并行与算子融合技术，该系统在两张 NVIDIA H100 GPU 上实现了 19.63 FPS 的实时推理，在三分钟长视频基准测试中展现了极高的视觉质量稳定性，显著优于现有离线或长时退化严重的动画方案。"
     },
     {
       "id": "2608.11715",
@@ -977,8 +1220,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11705",
-      "summary_zh": "大语言模型在面对相同请求时，系统提示词中赋予的不同人格特质（Traits）会导致安全决策出现显著偏差，这种“特质诱导的安全变异”现象严重影响了模型的鲁棒性。研究通过引入Trait-Induced Deviation和Trait-Induced Flip Rate量化该问题，并发现特质会扰动模型在低维子空间中的安全表征。为此，论文提出了Trait-Invariant Safety Tuning（TIST）自蒸馏框架，通过将特质条件下的行为与无特质基准对齐，实现安全行为的稳定性。进一步提出的Trait-Subspace Neutralization（TraSN）技术仅在特定子空间内强制执行不变性，实验证明该方法在提升模型抗干扰能力和安全性的同时，有效保留了通用任务性能。",
-      "impact_score": null
+      "summary_zh": "大语言模型在面对相同请求时，系统提示词中赋予的不同人格特质（Traits）会导致安全决策出现显著偏差，这种“特质诱导的安全变异”现象严重影响了模型的鲁棒性。研究通过引入Trait-Induced Deviation和Trait-Induced Flip Rate量化该问题，并发现特质会扰动模型在低维子空间中的安全表征。为此，论文提出了Trait-Invariant Safety Tuning（TIST）自蒸馏框架，通过将特质条件下的行为与无特质基准对齐，实现安全行为的稳定性。进一步提出的Trait-Subspace Neutralization（TraSN）技术仅在特定子空间内强制执行不变性，实验证明该方法在提升模型抗干扰能力和安全性的同时，有效保留了通用任务性能。"
     },
     {
       "id": "2608.11698",
@@ -999,15 +1241,14 @@
         "cs.AI"
       ],
       "published": "2026-08-12T06:15:33Z",
-      "updated": "2026-08-12T06:15:33Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.11698v1",
+      "updated": "2026-08-13T01:29:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11698v2",
       "abs_url": "https://arxiv.org/abs/2608.11698",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11698",
-      "summary_zh": "针对 On-policy distillation (OPD) 中全局奖励外推系数导致的奖励欺骗及训练不稳定问题，REOPD 提出了一种可靠性自适应奖励外推框架。该方法通过引入令牌级兼容性权重与批次级自适应预算，构建了动态令牌级系数 $\\lambda_{b,t}$，能够在保持教师对齐的同时，仅在可靠的教师参考方向上进行选择性外推。该方案无需额外的验证器、奖励模型或价值模型，仅利用标准 OPD 流程即可实现。实验结果表明，REOPD 在数学和代码生成任务中均优于或持平于 G-OPD，展现了在多教师配置下更强的细粒度可靠性适应能力。",
-      "impact_score": null
+      "summary_zh": "针对 On-policy distillation (OPD) 中全局奖励外推系数导致的奖励欺骗及训练不稳定问题，REOPD 提出了一种可靠性自适应奖励外推框架。该方法通过引入令牌级兼容性权重与批次级自适应预算，构建了动态令牌级系数 $\\lambda_{b,t}$，能够在保持教师对齐的同时，仅在可靠的教师参考方向上进行选择性外推。该方案无需额外的验证器、奖励模型或价值模型，仅利用标准 OPD 流程即可实现。实验结果表明，REOPD 在数学和代码生成任务中均优于或持平于 G-OPD，展现了在多教师配置下更强的细粒度可靠性适应能力。"
     },
     {
       "id": "2608.11674",
@@ -1034,8 +1275,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11674",
-      "summary_zh": "针对大语言模型强化学习中常见的训练不稳定、任务能力退化及响应长度膨胀问题，该研究引入 Principal-Subspace Overlap 指标，揭示了 rollout 更新与预训练权重主奇异子空间之间的几何关系，发现瞬时重叠峰值是导致性能下降的关键因素。为此提出 GCPO（Geometrically Constrained Policy Optimization）算法，通过硬双边正交投影将更新限制在互补子空间内，从根本上规避了有害的参数偏移。在 Qwen3-8B 和 GLM4-9B 模型上的实验表明，GCPO 在数学推理、代码生成及工具使用任务中均优于 GRPO、DAPO 等基线，最高提升 27.69 个点，同时有效保持了通用能力并稳定了策略熵，为强化学习后训练提供了一种具备几何可解释性的优化范式。",
-      "impact_score": null
+      "summary_zh": "针对大语言模型强化学习中常见的训练不稳定、任务能力退化及响应长度膨胀问题，该研究引入 Principal-Subspace Overlap 指标，揭示了 rollout 更新与预训练权重主奇异子空间之间的几何关系，发现瞬时重叠峰值是导致性能下降的关键因素。为此提出 GCPO（Geometrically Constrained Policy Optimization）算法，通过硬双边正交投影将更新限制在互补子空间内，从根本上规避了有害的参数偏移。在 Qwen3-8B 和 GLM4-9B 模型上的实验表明，GCPO 在数学推理、代码生成及工具使用任务中均优于 GRPO、DAPO 等基线，最高提升 27.69 个点，同时有效保持了通用能力并稳定了策略熵，为强化学习后训练提供了一种具备几何可解释性的优化范式。"
     },
     {
       "id": "2608.11669",
@@ -1065,8 +1305,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11669",
-      "summary_zh": "在利用 LLM 评分准则（Rubric）进行强化学习时，模型往往会通过过度拟合准则的局限性产生 Reward Hacking，导致在训练准则上得分上升，但在更强的 Gold Judge 评估下表现反而下降。为解决这一问题，Rubric Dropout 借鉴神经元 Dropout 思想，在训练过程中随机丢弃部分准则子集，迫使策略无法针对固定准则进行投机性优化，同时保持 GRPO 组内相对优势的稳定性。实验表明，在 HealthBench-Hard 和 ResearchQA 等任务中，采用 30%-50% 的 Dropout 比例能显著提升模型在 OOD 基准测试上的表现，有效抑制奖励欺诈现象，且无需额外计算成本。该方法证明了通过随机化奖励结构，可以显著增强模型在复杂任务中的泛化能力与鲁棒性。",
-      "impact_score": null
+      "summary_zh": "在利用 LLM 评分准则（Rubric）进行强化学习时，模型往往会通过过度拟合准则的局限性产生 Reward Hacking，导致在训练准则上得分上升，但在更强的 Gold Judge 评估下表现反而下降。为解决这一问题，Rubric Dropout 借鉴神经元 Dropout 思想，在训练过程中随机丢弃部分准则子集，迫使策略无法针对固定准则进行投机性优化，同时保持 GRPO 组内相对优势的稳定性。实验表明，在 HealthBench-Hard 和 ResearchQA 等任务中，采用 30%-50% 的 Dropout 比例能显著提升模型在 OOD 基准测试上的表现，有效抑制奖励欺诈现象，且无需额外计算成本。该方法证明了通过随机化奖励结构，可以显著增强模型在复杂任务中的泛化能力与鲁棒性。"
     },
     {
       "id": "2608.11660",
@@ -1098,8 +1337,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11660",
-      "summary_zh": "针对大语言模型在非结构化知识编辑（UKE）中难以实现知识组合推理的问题，该研究提出了混合策略自编辑方法（HPSE）。现有编辑方法仅依赖固定文本注入，导致模型无法进行多跳推理或回答原子问题，HPSE 通过将编辑过程转化为模型从特权上下文状态进行的自蒸馏，有效解决了这一局限。该方法引入混合轨迹（Hybrid Rollout）机制，在模型覆盖不足的关键点主动插入缺失事实，同时在其余部分保持策略一致性，从而弥补了纯策略蒸馏的缺陷。实验证明，HPSE 在四种主流 LLM 和多种编辑基准上均表现出显著的即插即用性能提升，有效增强了模型对注入知识的理解与组合应用能力。",
-      "impact_score": null
+      "summary_zh": "针对大语言模型在非结构化知识编辑（UKE）中难以实现知识组合推理的问题，该研究提出了混合策略自编辑方法（HPSE）。现有编辑方法仅依赖固定文本注入，导致模型无法进行多跳推理或回答原子问题，HPSE 通过将编辑过程转化为模型从特权上下文状态进行的自蒸馏，有效解决了这一局限。该方法引入混合轨迹（Hybrid Rollout）机制，在模型覆盖不足的关键点主动插入缺失事实，同时在其余部分保持策略一致性，从而弥补了纯策略蒸馏的缺陷。实验证明，HPSE 在四种主流 LLM 和多种编辑基准上均表现出显著的即插即用性能提升，有效增强了模型对注入知识的理解与组合应用能力。"
     },
     {
       "id": "2608.11631",
@@ -1175,8 +1413,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11618",
-      "summary_zh": "GVCHR 旨在解决生成式视频压缩中潜在帧编码效率低下及重构过程伪影传播的问题。该方法通过引入分层参考结构，将潜在帧按层级组织，并结合分层质量分配策略，为高频重用的底层帧分配更多比特，同时利用 Hierarchical Temporal Context Mining 挖掘短长期时序上下文以提升编码效率。在重构阶段，通过在视频扩散 Transformer 中嵌入 Hierarchical Attentive Adapter，限制潜在帧仅关注同层或底层参考，有效抑制了去噪过程中的伪影扩散。实验结果表明，GVCHR 在多个基准测试中表现优异，相比现有最优方法在 LPIPS 和 DISTS 指标上分别实现了 50.5% 和 54.0% 的 BD-rate 增益，并显著提升了视觉重构质量。",
-      "impact_score": null
+      "summary_zh": "GVCHR 旨在解决生成式视频压缩中潜在帧编码效率低下及重构过程伪影传播的问题。该方法通过引入分层参考结构，将潜在帧按层级组织，并结合分层质量分配策略，为高频重用的底层帧分配更多比特，同时利用 Hierarchical Temporal Context Mining 挖掘短长期时序上下文以提升编码效率。在重构阶段，通过在视频扩散 Transformer 中嵌入 Hierarchical Attentive Adapter，限制潜在帧仅关注同层或底层参考，有效抑制了去噪过程中的伪影扩散。实验结果表明，GVCHR 在多个基准测试中表现优异，相比现有最优方法在 LPIPS 和 DISTS 指标上分别实现了 50.5% 和 54.0% 的 BD-rate 增益，并显著提升了视觉重构质量。"
     },
     {
       "id": "2608.11616",
@@ -1194,15 +1431,14 @@
         "cs.LG"
       ],
       "published": "2026-08-12T03:52:57Z",
-      "updated": "2026-08-12T03:52:57Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.11616v1",
+      "updated": "2026-08-13T02:06:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11616v2",
       "abs_url": "https://arxiv.org/abs/2608.11616",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11616",
-      "summary_zh": "针对现有商业构思智能体局限于文本模态的问题，该研究提出了首个多模态商业构思基准 MBA-Bench，包含 3 万个涵盖六大领域且依赖视觉线索的样本。通过引入 GPT-4o 进行证据增强合成，构建了 MBA-b（盲测）和 MBA-k（已知准则）两种评估设置，并设计了针对创造力与可行性的奖励目标。模型采用 LoRA 微调与组相对策略优化（Group Relative Policy Optimization）进行训练，在 MLLM-as-a-Judge 评估中表现优异。实验结果显示，MBA-b 和 MBA-k 在多项指标上显著超越了仅依赖文本描述的基线模型，证明了多模态输入在处理复杂商业场景时的巨大潜力。",
-      "impact_score": null
+      "summary_zh": "针对现有商业构思智能体局限于文本模态的问题，该研究提出了首个多模态商业构思基准 MBA-Bench，包含 3 万个涵盖六大领域且依赖视觉线索的样本。通过引入 GPT-4o 进行证据增强合成，构建了 MBA-b（盲测）和 MBA-k（已知准则）两种评估设置，并设计了针对创造力与可行性的奖励目标。模型采用 LoRA 微调与组相对策略优化（Group Relative Policy Optimization）进行训练，在 MLLM-as-a-Judge 评估中表现优异。实验结果显示，MBA-b 和 MBA-k 在多项指标上显著超越了仅依赖文本描述的基线模型，证明了多模态输入在处理复杂商业场景时的巨大潜力。"
     },
     {
       "id": "2608.11605",
@@ -1227,8 +1463,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11605",
-      "summary_zh": "针对现有 World Action Models (WAMs) 在显式视频预测的高推理成本与直接策略模型缺乏动态感知能力之间的权衡问题，ForeWAM 提出了一种动态条件下的直接策略架构。该方法引入 Future-KV 技术，通过在当前视觉潜空间与随机未来槽位上执行单次 Video DiT 预填充，将层级键值状态复用于动作去噪过程，从而在无需解码未来视频的情况下实现对物理演化动态的感知。此外，利用冻结的潜动作教师监督动态寄存器，使模型能够隐式捕捉物体运动与交互状态。实验表明，ForeWAM 在 LIBERO 和 LIBERO-Plus 基准测试中表现优异，在无需具身数据预训练的情况下，以极高的推理效率实现了卓越的动作预测成功率。",
-      "impact_score": null
+      "summary_zh": "针对现有 World Action Models (WAMs) 在显式视频预测的高推理成本与直接策略模型缺乏动态感知能力之间的权衡问题，ForeWAM 提出了一种动态条件下的直接策略架构。该方法引入 Future-KV 技术，通过在当前视觉潜空间与随机未来槽位上执行单次 Video DiT 预填充，将层级键值状态复用于动作去噪过程，从而在无需解码未来视频的情况下实现对物理演化动态的感知。此外，利用冻结的潜动作教师监督动态寄存器，使模型能够隐式捕捉物体运动与交互状态。实验表明，ForeWAM 在 LIBERO 和 LIBERO-Plus 基准测试中表现优异，在无需具身数据预训练的情况下，以极高的推理效率实现了卓越的动作预测成功率。"
     },
     {
       "id": "2608.11604",
@@ -1252,8 +1487,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11604",
-      "summary_zh": "针对电商购物智能体在利用真实用户反馈时面临的数据异构、稀疏及噪声干扰问题，LOFA框架提出了一种无需人工标注的在线学习方案。该方法通过结合基于可验证购买结果的强化学习与反馈感知策略蒸馏技术，将对话中的用户指令转化为密集的Token级监督信号，从而有效捕捉协同行为模式与个性化偏好。实验结果表明，LOFA在真实电商日志中显著提升了推荐质量、回复有用性及用户满意度对齐效果，证明了直接从在线交互日志中学习是优化购物智能体的有效路径。",
-      "impact_score": null
+      "summary_zh": "针对电商购物智能体在利用真实用户反馈时面临的数据异构、稀疏及噪声干扰问题，LOFA框架提出了一种无需人工标注的在线学习方案。该方法通过结合基于可验证购买结果的强化学习与反馈感知策略蒸馏技术，将对话中的用户指令转化为密集的Token级监督信号，从而有效捕捉协同行为模式与个性化偏好。实验结果表明，LOFA在真实电商日志中显著提升了推荐质量、回复有用性及用户满意度对齐效果，证明了直接从在线交互日志中学习是优化购物智能体的有效路径。"
     },
     {
       "id": "2608.11601",
@@ -1278,8 +1512,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11601",
-      "summary_zh": "自动驾驶世界模型常被视为反事实模拟器，旨在预测给定替代动作下的未来场景，但直接基于历史和动作的预测往往忽略了原始轨迹中的事实信息，导致生成的未来与真实反事实结果存在偏差。该研究利用因果推理中的“溯因、行动、预测”框架量化了这一偏差，并构建了包含事实与匹配反事实结果的受控模拟基准，证实了现有模型在反事实预测上的局限性。研究提出了一种无需训练的简单流水线，通过将观测到的事实证据迁移至反事实视角，让冻结模型仅补全未知部分，显著提升了预测的准确性并降低了感知距离。这一发现揭示了当前世界模型在处理反事实推理时的核心缺陷，为未来开发更精确的驾驶模拟方法提供了重要参考。",
-      "impact_score": null
+      "summary_zh": "自动驾驶世界模型常被视为反事实模拟器，旨在预测给定替代动作下的未来场景，但直接基于历史和动作的预测往往忽略了原始轨迹中的事实信息，导致生成的未来与真实反事实结果存在偏差。该研究利用因果推理中的“溯因、行动、预测”框架量化了这一偏差，并构建了包含事实与匹配反事实结果的受控模拟基准，证实了现有模型在反事实预测上的局限性。研究提出了一种无需训练的简单流水线，通过将观测到的事实证据迁移至反事实视角，让冻结模型仅补全未知部分，显著提升了预测的准确性并降低了感知距离。这一发现揭示了当前世界模型在处理反事实推理时的核心缺陷，为未来开发更精确的驾驶模拟方法提供了重要参考。"
     },
     {
       "id": "2608.11597",
@@ -1331,8 +1564,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11573",
-      "summary_zh": "针对大语言模型在自我纠错任务中表现不佳的问题，SFS-DPO 框架通过两阶段强化学习方法实现了步骤级的自我验证与修正。第一阶段利用步骤级偏好优化（Step-level Preference Optimization）增强模型的推理能力，第二阶段则专门训练模型识别并修正错误，同时引入 SFS-DPO-R 变体，通过教师辅助的解释性理由提供更精准的纠错信号。实验结果表明，该方法在多个基准测试中均显著优于现有的步骤级训练基线，有效提升了模型自我纠错的频率与准确性，证明了强化步骤级推理对于构建鲁棒性模型的重要性。",
-      "impact_score": null
+      "summary_zh": "针对大语言模型在自我纠错任务中表现不佳的问题，SFS-DPO 框架通过两阶段强化学习方法实现了步骤级的自我验证与修正。第一阶段利用步骤级偏好优化（Step-level Preference Optimization）增强模型的推理能力，第二阶段则专门训练模型识别并修正错误，同时引入 SFS-DPO-R 变体，通过教师辅助的解释性理由提供更精准的纠错信号。实验结果表明，该方法在多个基准测试中均显著优于现有的步骤级训练基线，有效提升了模型自我纠错的频率与准确性，证明了强化步骤级推理对于构建鲁棒性模型的重要性。"
     },
     {
       "id": "2608.11562",
@@ -1380,15 +1612,14 @@
         "cs.AI"
       ],
       "published": "2026-08-12T00:17:30Z",
-      "updated": "2026-08-12T00:17:30Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.11521v1",
+      "updated": "2026-08-13T02:41:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.11521v2",
       "abs_url": "https://arxiv.org/abs/2608.11521",
       "topics": [
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.11521",
-      "summary_zh": "针对世界动作模型（WAMs）在部署时因迭代视频生成导致的高延迟问题，研究发现动作生成并不一定依赖完整的演进轨迹，仅需未来的特征表示即可。通过实验验证，固定最终的 K/V cache 几乎能保持模型原有的执行性能，这表明缓存的构建与消费可以解耦。为此，RIFT（Rollout-free Imagination via Future Tokens）提出利用学习到的 anticipation tokens，在单次骨干网络前向传播中直接构建完整的未来 K/V cache，从而省去了迭代式 rollout 过程。在 LIBERO 和 RoboTwin 2.0 等基准测试中，RIFT 在保持高成功率的同时，将动作块生成的延迟降低了 68.2% 至 89.1%，有效实现了无需迭代视频生成的实时未来条件化控制。",
-      "impact_score": null
+      "summary_zh": "针对世界动作模型（WAMs）在部署时因迭代视频生成导致的高延迟问题，研究发现动作生成并不一定依赖完整的演进轨迹，仅需未来的特征表示即可。通过实验验证，固定最终的 K/V cache 几乎能保持模型原有的执行性能，这表明缓存的构建与消费可以解耦。为此，RIFT（Rollout-free Imagination via Future Tokens）提出利用学习到的 anticipation tokens，在单次骨干网络前向传播中直接构建完整的未来 K/V cache，从而省去了迭代式 rollout 过程。在 LIBERO 和 RoboTwin 2.0 等基准测试中，RIFT 在保持高成功率的同时，将动作块生成的延迟降低了 68.2% 至 89.1%，有效实现了无需迭代视频生成的实时未来条件化控制。"
     }
   ]
 }
