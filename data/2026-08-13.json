@@ -1,6 +1,6 @@
 {
   "date": "2026-08-13",
-  "generated_at": "2026-08-16T02:45:35.927789+00:00",
+  "generated_at": "2026-08-17T02:46:47.676454+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,219 @@
     }
   },
   "papers": [
+    {
+      "id": "2608.13833",
+      "title": "AdsWorldEngine: A Self-Evolving Conversational Advertising Agent through Orchestrator and Tool Coevolution",
+      "abstract": "Conversational advertising aims to deliver useful ads within multi-turn assistant interactions. Unlike conventional query-based advertising, where the user's intent is often expressed in a short standalone query, conversational ads must infer latent commercial intent from the current user query, the assistant response, and dialogue history while also deciding whether an ad would be helpful rather than intrusive. We propose AdsWorldEngine, an agentic framework for conversational advertising. AdsWorldEngine uses an Opportunity Gate to determine whether ads should be shown, an Orchestrator to generate commercial intents, call advertising tools, and construct a top-3 ad slate, and an Evaluator to score delivered ads for offline optimization. The central contribution is an iterative actor-tool training procedure: we first train the Orchestrator with supervised fine-tuning and agentic reinforcement learning, then use high- and low-reward rollouts to construct preference data to train tools. This creates a self-improving loop in which the system learns not only how to use advertising tools, but also how to improve them from rewarded behavior. To support subjective production decisions, we introduce label grounded judgment modeling, which trains judgment models from human labels collected under explicit guidelines. It enriches labels with thinking traces, filters inconsistent rationales through reflection, and further optimizes binary judgments with a cost sensitive GRPO variant that preserves asymmetric reward gaps. Offline, AdsWorldEngine improves diversity by 60% and relevance by 80% over the current production ad delivery system. In an online A/B test, it increases RPM by 22% and ads coverage by 74%.",
+      "authors": [
+        "Simiao Zuo",
+        "Chenhui Xu",
+        "Yimeng Jia",
+        "Qiang Lou",
+        "Jian Jiao",
+        "Denis Charles"
+      ],
+      "categories": [
+        "cs.IR",
+        "cs.AI"
+      ],
+      "published": "2026-08-13T23:53:05Z",
+      "updated": "2026-08-13T23:53:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13833v1",
+      "abs_url": "https://arxiv.org/abs/2608.13833",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.13833",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "这篇论文旨在解决对话式广告中如何从多轮对话中推断用户潜在商业意图，并决定何时以非侵入式方式展示有用广告的问题。它提出了一个名为 AdsWorldEngine 的智能体框架，该框架包含一个 Opportunity Gate 来判断广告展示时机，一个 Orchestrator 来生成商业意图、调用广告工具并构建广告列表，以及一个 Evaluator 进行离线优化。核心创新在于其迭代的 actor-tool 训练过程：首先通过监督微调和智能体强化学习训练 Orchestrator，然后利用高低奖励的 rollout 数据构建偏好数据来训练工具，形成一个自我改进的循环，系统不仅学会使用广告工具，还能根据奖励行为改进工具。此外，论文引入了标签接地判断建模（label grounded judgment modeling）来处理主观生产决策，通过丰富标签、过滤不一致的理由并使用成本敏感的 GRPO 变体优化二元判断。实验结果显示，AdsWorldEngine 在离线评估中将多样性提高了 60%，相关性提高了 80%，在线 A/B 测试中将 RPM 提高了 22%，广告覆盖率提高了 74%。"
+    },
+    {
+      "id": "2608.13799",
+      "title": "Dynamic Multi-Depot Vehicle Routing with Online Requests: Event-Driven Transformer--DRL and Rolling-Horizon Benchmarking",
+      "abstract": "This paper presents an event-driven learning and benchmarking framework for the Dynamic Multi-Depot Vehicle Routing Problem with progressively revealed requests and evolving vehicle states. Masked MLP and Transformer policies are trained through behavior cloning and proximal policy optimization. Deterministic feasibility masking prevents invalid vehicle--request assignments, while fixed-prefix/flexible-suffix route commitments protect completed, active, and near-term decisions and separately measure vehicle reassignment and resequencing. The learned policies are compared with dynamic insertion heuristics and time-limited rolling-horizon optimization. In a 20-scenario policy benchmark, all methods completed every request without invalid actions, but nearest feasible achieved the lowest mean objective and outperformed the learned policies in routing quality, waiting time, stability, makespan, and runtime. Across five independent training runs, PPO had little average effect on the MLP and improved the Transformer on average, although with greater seed variability. Under the common protocol, nearest feasible achieved the lowest combined objective and route disruption, whereas rolling horizon achieved the lowest waiting times and makespan at substantially higher computational cost. The learned policies retained millisecond-level decisions and transferred to instances with up to 80 requests without retraining, but did not outperform the strongest heuristic. No single method was best across routing efficiency, service responsiveness, stability, and online computation.",
+      "authors": [
+        "Faezeh Ardali",
+        "Gerald M. Knapp"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-13T22:05:56Z",
+      "updated": "2026-08-13T22:05:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13799v1",
+      "abs_url": "https://arxiv.org/abs/2608.13799",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.13799",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究针对动态多车场车辆路径问题（Dynamic Multi-Depot Vehicle Routing Problem, DMVRP），其中请求逐步出现且车辆状态不断变化。论文提出了一种事件驱动的Transformer-DRL（深度强化学习）框架，并结合滚动时域基准测试方法，旨在解决在线请求下的车辆路径优化问题。关键创新在于引入了确定性可行性掩码（deterministic feasibility masking）来防止无效的车辆-请求分配，并采用固定前缀/灵活后缀的路径承诺机制来衡量车辆重新分配和重新排序。实验结果显示，尽管所有方法都能完成请求，但最近可行（nearest feasible）启发式算法在平均目标、路由质量、等待时间、稳定性、完工时间和运行时间方面均优于所学习的策略。所学习的策略虽然能实现毫秒级决策并泛化到多达80个请求的实例而无需重新训练，但未能超越最强的启发式算法。最终发现，没有单一方法能在路由效率、服务响应性、稳定性及在线计算成本之间取得全面最优。"
+    },
+    {
+      "id": "2608.13787",
+      "title": "From Passive Delegates to Strategic Negotiators: Reinforcing Social Reasoning in Small Language Models with SocialRL",
+      "abstract": "AI agents increasingly act on their users' behalf, handling tasks such as scheduling meetings, comparing offers, and haggling over prices. These principal-driven tasks routinely place the agent across from a counterpart (another user's agent, a seller, a recruiter) whose goals may conflict with its principal's. Yet the dispositions that make an assistant pleasant can make it a poor delegate: a friendly, helpful frontier model may disclose its principal's private information unprompted and concede at the first sign of resistance. We present SocialRL, a general recipe that trains social reasoning directly, and apply it to a 4B model across six domains: Deal-or-No-Deal, CaSiNo, Craigslist, Job Interview, Calendar, and Marketplace. Every domain is trained in-domain under the same recipe, and every policy is evaluated on all six. We find that (1) in-domain training reaches the frontier: on held-out scenarios the 4B matches or exceeds the GPT-5 family per domain, closing 73-122% of the baseline-to-frontier gap on the negotiation games, with 78% of buyer openings anchoring below target versus 3% untrained; (2) cross-domain transfer follows game structure: structurally paired games lift each other, a broad multi-issue donor lifts nearly all domains, and structurally isolated games transfer nothing; (3) guided by this transfer structure, two strategies, cascade RL and multi-teacher on-policy distillation (OPD), consolidate the per-domain specialists into a single unified 4B that reaches 0.627 average utility across all six environments, matching or exceeding GPT-4.1 (0.625), GPT-5.1 (0.619), and GPT-5.2 (0.613); (4) an explicit theory-of-mind scaffold helps only through training: distilling the ToM trace, rather than actions alone, lifts utility on every environment and generalizes better across them, and of the two ToM skills, only next-action prediction predicts negotiation outcomes.",
+      "authors": [
+        "Wenyue Hua",
+        "Zachary Huang",
+        "Tyler Payne",
+        "Safoora Yousefi",
+        "Saleema Amershi",
+        "Asli Celikyilmaz"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-08-13T21:39:12Z",
+      "updated": "2026-08-13T21:39:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13787v1",
+      "abs_url": "https://arxiv.org/abs/2608.13787",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.13787",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在解决小型语言模型（SLMs）在作为用户代理执行任务时，因缺乏社交推理能力而表现不佳的问题，例如在谈判中过早泄露信息或轻易妥协。为此，研究提出了SocialRL，一种直接训练社交推理的通用方法，并将其应用于一个4B模型，在Deal-or-No-Deal、CaSiNo等六个谈判领域进行训练和评估。关键创新点在于，SocialRL通过领域内训练使4B模型在特定任务上达到或超越GPT-5系列模型的性能，并在谈判游戏中缩小了73-122%的基线到前沿模型的差距，同时，通过级联强化学习（cascade RL）和多教师在线策略蒸馏（multi-teacher on-policy distillation, OPD）策略，将领域专家模型整合为一个统一的4B模型，其平均效用达到0.627，与GPT-4.1及更高版本相当。此外，研究发现明确的“心智理论”（theory-of-mind, ToM）支架通过训练和蒸馏ToM轨迹而非仅仅行动，能提升所有环境的效用并增强泛化能力，其中只有下一行动预测这一ToM技能能预测谈判结果。"
+    },
+    {
+      "id": "2608.13769",
+      "title": "Kolmogorov-Arnold Networks for Spatially Independent Multispectral Land Classification",
+      "abstract": "Land classification from satellite imagery is important for land management, environmental monitoring, and urban planning. Machine learning methods such as random forests and multilayer perceptrons have shown strong performance on multispectral data, while the Kolmogorov-Arnold network has emerged as an alternative architecture with compact model structures. This study evaluates the Kolmogorov-Arnold network for land classification using Landsat 8 imagery and compares it with random forest and multilayer perceptron models. The models were trained and tested on data from Edmonton, Alberta and evaluated on an independent dataset from Calgary, Alberta across five land classes: agriculture, urban, water, forest, and bare ground. For the Calgary dataset, the Kolmogorov-Arnold network matched the accuracy of the random forest and outperformed the multilayer perceptron, while requiring substantially fewer trainable parameters and providing greater interpretability.",
+      "authors": [
+        "Katherine L. Bauer",
+        "Teemu Harkonen",
+        "Simo Sarkka",
+        "Arturo Sanchez-Azofeifa"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-13T20:53:49Z",
+      "updated": "2026-08-13T20:53:49Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13769v1",
+      "abs_url": "https://arxiv.org/abs/2608.13769",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.13769",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在利用多光谱卫星图像进行土地分类，并评估Kolmogorov-Arnold Network (KAN) 在此任务上的性能。研究方法是使用Landsat 8图像数据，在加拿大埃德蒙顿训练KAN模型，并与随机森林 (Random Forest) 和多层感知机 (Multilayer Perceptron, MLP) 进行比较，然后在卡尔加里独立数据集上进行测试。关键创新点在于首次将KAN应用于多光谱土地分类，并证明其在保持高精度的同时，显著减少了可训练参数并增强了模型可解释性。实验结果显示，在卡尔加里数据集上，KAN的准确性与Random Forest相当，且优于MLP，同时参数量大幅减少，展现了KAN在遥感图像分析领域的潜力。"
+    },
+    {
+      "id": "2608.13721",
+      "title": "Capacity-Dependent Effects of Data Selection for Reasoning",
+      "abstract": "In reasoning supervised fine-tuning, candidate responses for the same instruction can differ substantially in how well they match the student's current distribution. Recent likelihood-based response selection methods suggest that responses closer to the student distribution provide more effective supervision, motivating the hypothesis that high-likelihood responses may generally be preferable for fine-tuning. In this paper, we revisit this intuition and show that the value of likelihood-based data selection depends critically on model capacity and training duration. Through controlled experiments on mathematical reasoning, using students ranging from 1.5B to 8B parameters and supervision generated by stronger teacher models, we observe a clear \\emph{capacity-dependent} ``{\\color{SMALLCOLOR}\\textbf{Fast-Fit}} / {\\color{LARGECOLOR}\\textbf{Slow-Gain}}'' pattern. High-likelihood data provides faster and more stable early improvements, especially for smaller models, but low-likelihood data becomes increasingly beneficial for larger models when training is allowed to continue longer. To explain this phenomenon, we analyze learning dynamics, showing that small models often fail to absorb low-likelihood supervision and instead fall into shallow or repetitive behaviors, while larger models are better able to move toward the teacher distribution under such data. We further provide a capacity-constrained theoretical view of distillation that clarifies how data difficulty, data span, and student capacity jointly govern transfer. Overall, our findings show that effective data selection for reasoning should be aware of model capacity and computing budget rather than based on a single universal preference for high-likelihood supervision.",
+      "authors": [
+        "Cuong Dang",
+        "Hoang Anh Just",
+        "Ruoxi Jia"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-13T19:31:46Z",
+      "updated": "2026-08-13T19:31:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13721v1",
+      "abs_url": "https://arxiv.org/abs/2608.13721",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.13721",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究探讨了在推理监督微调中，数据选择对模型性能的影响，特别是高似然（high-likelihood）响应和低似然（low-likelihood）响应的选择。研究发现，数据选择的有效性关键取决于模型容量和训练时长，提出了“Fast-Fit / Slow-Gain”模式：高似然数据能为小模型带来更快、更稳定的早期提升，而低似然数据对大模型在长时间训练后更有益。通过对数学推理任务中1.5B到8B参数模型的实验，并分析学习动态，揭示了小模型难以吸收低似然监督，而大模型能更好地利用这类数据来接近教师分布。研究还提供了一个容量受限的蒸馏理论视角，阐明了数据难度、数据跨度和学生容量如何共同影响知识迁移，最终强调了在推理任务中，有效的数据选择应考虑模型容量和计算预算，而非简单偏好高似然监督。"
+    },
+    {
+      "id": "2608.13698",
+      "title": "GRPO Beyond English: A Large-Scale Study of GRPO in Non-English and Multilingual Settings",
+      "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR), often optimized with Group Relative Policy Optimization (GRPO), has become a central recipe for improving the reasoning capabilities of pretrained language models but current studies remain heavily English-centric. We conduct a large-scale empirical study of multilingual and non-English GRPO across a wide range of base models, training languages, and different reasoning language rewards. We find that training to reason in the native language often leaves only a small gap to training for English reasoning. We further observe strong crosslingual transfer: training in one language often improves performance in many others. However, specific trends are highly model- and language-dependent. In some cases, training in a particular language induces severe regressions on out-of-domain capabilities in other languages. Our analysis shows that RLVR beyond English can provide broad crosslingual gains, but also requires broad evaluation to detect language-specific regressions.",
+      "authors": [
+        "Konstantin Dobler",
+        "Federico Scozzafava",
+        "Jonathan Janke",
+        "Mohamed Ali",
+        "Simon Lehnerer"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-08-13T18:43:33Z",
+      "updated": "2026-08-13T18:43:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13698v1",
+      "abs_url": "https://arxiv.org/abs/2608.13698",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.13698",
+      "summary_zh": "该研究旨在解决现有可验证奖励强化学习（RLVR）方法（特别是使用Group Relative Policy Optimization, GRPO）在非英语和多语言环境中应用不足的问题，因为当前研究主要集中在英语。通过对多种基础模型、训练语言和推理语言奖励进行大规模实证研究，发现用母语进行推理训练通常与英语推理训练的性能差距很小，并且观察到强大的跨语言迁移能力，即用一种语言训练可以提升多种其他语言的性能。然而，具体趋势高度依赖于模型和语言，在某些情况下，特定语言的训练可能导致其他语言的域外能力严重退化，这表明RLVR在非英语环境中虽能带来广泛的跨语言收益，但也需要广泛评估以检测语言特有的退化问题。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.13678",
+      "title": "hint$^2$: Hierarchical World Models for Inference-Time Temporal Logic Guidance",
+      "abstract": "A central goal of robot learning is to enable robots to execute rich instructions specified at runtime. Large-scale language-conditioned policies have made substantial progress toward this goal, yet still struggle with temporal structure and safety constraints. Linear Temporal Logic (LTL) provides a powerful language to express complex, non-Markovian instructions. However, guiding learned manipulation policies toward LTL satisfaction remains challenging because modern policies generate short-horizon action chunks and replan in closed loop, while almost all LTL specifications are evaluated over long-horizon trajectories. In this paper, we introduce hint$^2$, a method for guiding short-horizon policies toward satisfying complex LTL specifications at inference time using hierarchical world models. Our key idea is to derive two separate guidance objectives using each world model's abstraction level. A high-level model predicts future action-induced transitions in task-relevant atomic propositions to guide progress through the LTL automaton, while a low-level dynamics model predicts immediate state evolution for accurate local safety guidance. Our results show that hint$^2$ overcomes the limitations of current LTL-guided diffusion methods, outperforms existing inference-time steering methods in CALVIN, and successfully completes instructions with complex liveness and safety constraints more elegantly than language-conditioned alternatives. Finally, we demonstrate that hint$^2$ can handle complex instructions on a real UR5e manipulator.",
+      "authors": [
+        "Moritz Zoellner",
+        "Anastasios Manganaris",
+        "Ahmed H. Qureshi",
+        "Rohan Paleja"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-08-13T18:22:08Z",
+      "updated": "2026-08-13T18:22:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13678v1",
+      "abs_url": "https://arxiv.org/abs/2608.13678",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.13678",
+      "summary_zh": "该论文旨在解决机器人学习中，大型语言条件策略在执行运行时指定、包含复杂时间结构和安全约束的指令时遇到的挑战，特别是如何利用线性时序逻辑（LTL）指导短时策略。它提出了一种名为 hint$^2$ 的方法，通过分层世界模型在推理时为短时策略提供 LTL 指导，其核心创新在于利用两个抽象级别的世界模型：一个高层模型预测任务相关原子命题的未来转换以指导 LTL 自动机进展，一个低层动态模型预测即时状态演变以提供精确的局部安全指导。实验结果表明，hint$^2$ 克服了当前 LTL 引导扩散方法的局限性，在 CALVIN 基准测试中优于现有推理时转向方法，并能比语言条件替代方案更优雅地完成具有复杂活性和安全约束的指令，甚至在真实的 UR5e 机械臂上也能处理复杂指令。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.13671",
+      "title": "PROVE: Training-Free Prompt Recovery using Verifiable Evidence",
+      "abstract": "Modern text-to-image models can generate highly realistic images from natural-language prompts, while recent advances in prompt inversion have made it increasingly feasible to recover those prompts from generated outputs, raising new concerns for copyright protection and content ownership. As prompt marketplaces emerge, recovered prompts can enable both the unauthorized reproduction and redistribution of copyrighted creative works, and the exposure of the prompts that encode an artist's creative recipe in AI-generated content. Existing prompt inversion methods rely on gradient-based optimization, autoregressive captioning, or reinforcement learning. However, optimization-based methods often produce unreadable prompts, captioning methods hallucinate unverified details, and RL-based approaches frequently overfit to specific generators while introducing evaluation circularity. We introduce PROVE (Prompt Recovery with Verified Evidence), a training-free, black-box prompt inversion attack that reconstructs prompts by composing verifiable scene descriptions rather than optimizing token sequences, targeting both original copyrighted works and AI-generated content. The resulting prompts are fully auditable, with every recovered claim grounded in explicit image evidence, and are formalized through a precision-constrained recall maximization objective. Across MS-COCO, Flickr30K, and Lexica, using state-of-the-art text-to-image generators, PROVE consistently outperforms optimization, captioning, and RL-based baselines on image similarity (DINO, LPIPS) and text-image alignment (CLIP), without any training, generator access, or fine-tuning, demonstrating a stronger and more practical prompt inversion attack.",
+      "authors": [
+        "Rupayan Mallick",
+        "Mahsa Khoshnoodi",
+        "Sarah Adel Bargal"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-13T18:08:00Z",
+      "updated": "2026-08-13T18:08:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13671v1",
+      "abs_url": "https://arxiv.org/abs/2608.13671",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.13671",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文提出了一种名为 PROVE (Prompt Recovery with Verified Evidence) 的训练无关、黑盒提示词反演方法，旨在解决现有方法在从图像中恢复文本提示词时面临的可读性差、幻觉和过拟合问题，以应对版权保护和内容所有权的新挑战。PROVE 通过组合可验证的场景描述来重建提示词，而非优化 token 序列，确保每个恢复的声明都基于明确的图像证据，并通过一个精度受限的召回最大化目标进行形式化。在 MS-COCO、Flickr30K 和 Lexica 数据集上，PROVE 在图像相似度（DINO, LPIPS）和文本-图像对齐（CLIP）方面显著优于现有的优化、字幕生成和基于强化学习的基线方法，且无需训练、访问生成器或微调，展现出更强大和实用的提示词反演能力。"
+    },
     {
       "id": "2608.13556",
       "title": "V-RAE: Rethinking Video Latent Spaces for Generation",
@@ -73,8 +286,8 @@
         "cs.CV"
       ],
       "published": "2026-08-13T17:59:30Z",
-      "updated": "2026-08-13T17:59:30Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.13552v1",
+      "updated": "2026-08-14T09:46:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13552v2",
       "abs_url": "https://arxiv.org/abs/2608.13552",
       "topics": [
         "world-model"
@@ -1050,8 +1263,8 @@
         "cs.CV"
       ],
       "published": "2026-08-13T10:05:16Z",
-      "updated": "2026-08-13T10:05:16Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.13037v1",
+      "updated": "2026-08-14T08:06:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13037v2",
       "abs_url": "https://arxiv.org/abs/2608.13037",
       "topics": [
         "video-gen"
@@ -1149,8 +1362,8 @@
         "cs.LG"
       ],
       "published": "2026-08-13T08:53:02Z",
-      "updated": "2026-08-13T08:53:02Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.12973v1",
+      "updated": "2026-08-14T10:30:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.12973v2",
       "abs_url": "https://arxiv.org/abs/2608.12973",
       "topics": [
         "rl"
@@ -1568,6 +1781,33 @@
         "rl"
       ],
       "summary_zh": "针对大语言模型在安全对齐中面临的静态提示词难以兼顾多类别风险防御与有用性响应的问题，HiRoute 提出了一种输入自适应的分层提示词微调框架。该方法通过轻量级分层路由模块，在冻结主模型的基础上，将安全控制与响应引导解耦，利用多标签风险评分动态加权组合细粒度提示词专家。推理时，模型能根据输入意图自动选择安全分支，既能有效防御越狱攻击，又通过共享粗粒度提示词保留了通用任务性能。在多个安全基准测试中，HiRoute 在提升防御成功率的同时显著降低了良性输入的过度拒绝率，实现了安全对齐与模型有用性之间的平衡。"
+    },
+    {
+      "id": "2608.13625",
+      "title": "Reward Machines for Signal Temporal Logic",
+      "abstract": "Signal temporal logic (STL) provides a formal language for specifying real-time properties of real-valued observations, along with a quantitative robustness score for monitoring satisfaction. Control synthesis from STL specifications is of interest since manual controller design becomes infeasible as real-world systems grow in complexity. Moreover, many modern autonomous and AI-enabled systems lack accurate and complete system models, which makes optimization-based synthesis approaches unsuitable and motivates learning-based control. Prior work uses STL robustness scores as rewards in reinforcement learning (RL) to obtain control policies satisfying given specifications; however, robustness depends on execution history, leading to intractable state space expansion for general long-horizon specifications with arbitrarily nested temporal operators. This work introduces a novel automata-based approach that provides an efficient memory mechanism and associated Markovian rewards suitable for RL frameworks. Our approach constructs a timed alternating automaton from the given STL specifications, augments the state space with automaton locations and clock valuations, and derives rewards from the automaton acceptance condition. We empirically demonstrate that our approach learns policies that achieve higher robustness scores and satisfaction rates than those learned by existing approaches using robustness-based rewards.",
+      "authors": [
+        "Alper Kamil Bozkurt",
+        "Shangtong Zhang",
+        "Yuichi Motai"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-08-13T04:25:07Z",
+      "updated": "2026-08-13T04:25:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.13625v1",
+      "abs_url": "https://arxiv.org/abs/2608.13625",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.13625",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决在复杂实时系统中，使用信号时序逻辑（STL）进行控制合成时，传统基于鲁棒性分数的强化学习（RL）方法因依赖执行历史而导致状态空间爆炸的问题。它提出了一种新颖的基于自动机的方法，通过构建一个定时交替自动机（timed alternating automaton）来表示STL规范，并用自动机位置和时钟估值来扩充状态空间，从而提供高效的记忆机制和马尔可夫奖励。关键创新在于将复杂的STL规范转化为自动机，使得RL能够处理长时序、嵌套时序操作符的规范，并从自动机接受条件中导出奖励。实验结果表明，该方法学习到的策略比现有基于鲁棒性奖励的方法获得了更高的鲁棒性分数和满足率。"
     },
     {
       "id": "2608.12781",
