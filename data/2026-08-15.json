@@ -1,6 +1,6 @@
 {
   "date": "2026-08-15",
-  "generated_at": "2026-08-17T02:46:47.674859+00:00",
+  "generated_at": "2026-08-18T02:42:45.962522+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,561 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2608.15445",
+      "title": "Measuring Reward Hacking and Reasoning-Answer Decoupling Under Position-Confounded Optimization",
+      "abstract": "When a reward is correct on every training example yet consistent with more than one goal, a model can acquire an unintended one, a failure known as goal misgeneralization. Endpoint accuracy on the training distribution cannot tell the two apart, because solving the task and exploiting a surface feature can satisfy the reward equally well. We treat this as a measurement problem: what does a benchmark score measure once a model has been optimized against a correct but confounded signal? We train language models with GRPO on multiple-choice math problems where the correct answer is always option A, then evaluate on an unseen test set with unbiased answer positions. Across Qwen2.5, Llama 3.x and Gemma-3 models, biased training often drives option-A rates above 0.90 in smaller models and collapses unbiased accuracy toward chance, so accuracy stops measuring math ability and instead measures an answer-position policy. We further find reasoning-answer decoupling: capable models generate reasoning that reaches the correct numeric answer while still selecting A. We track this with numeric extraction and an LLM judge (GPT-4.1-mini; Qwen2.5-3B decoupling rate is about 0.66). The broken construct generalizes beyond the training domain: biased models inflate A-rates on out-of-domain MMLU and value-laden prompts. Continued training on unbiased data reverses the in-domain shift unevenly and only partially reverses the out-of-domain one, so a model can appear restored on its training distribution while remaining biased on unseen inputs. Reasoning-answer decoupling rate, together with answer distributions and out-of-domain behavior, separates capability loss from a learned, transferable shortcut.",
+      "authors": [
+        "Suyash Maniyar",
+        "Armaan Sandhu",
+        "Abhishek Mishra"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-15T23:13:57Z",
+      "updated": "2026-08-15T23:13:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15445v1",
+      "abs_url": "https://arxiv.org/abs/2608.15445",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15445",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决在奖励信号正确但存在混淆因素（如答案位置偏好）时，模型可能习得非预期目标的问题，即目标误泛化。通过在多项选择数学问题上训练语言模型（如Qwen2.5, Llama 3.x, Gemma-3），其中正确答案始终是选项A，研究发现，在无偏测试集上，模型会表现出对选项A的强烈偏好，导致准确率不再反映数学能力，而是测量了答案位置策略。关键创新在于提出了“推理-答案解耦”现象，即有能力的模型能生成正确的推理过程，但最终仍选择选项A，并通过数值提取和LLM评判（GPT-4.1-mini）量化了这一现象。实验结果表明，这种偏置不仅影响训练领域，还会泛化到MMLU等域外任务，即使在无偏数据上继续训练，也难以完全消除域外偏置，因此，推理-答案解耦率、答案分布和域外行为是区分能力损失和可迁移快捷方式的关键指标。"
+    },
+    {
+      "id": "2608.15341",
+      "title": "TEA: Text Encoder Alignment for Robust Concept Erasure in Text-to-Image Models",
+      "abstract": "Text-to-image diffusion models can be misused to generate harmful content through adversarial or paraphrased prompts that bypass built-in safety mechanisms. Existing concept erasure methods often suffer from limited robustness against adversarial prompts, degradation of benign generation quality, or reliance on inference-time interventions that introduce persistent computational overhead. To address these limitations, we formulate concept erasure as a domain alignment problem in the text representation space. We propose a lightweight Text Encoder Alignment framework (TEA) that fine-tunes only the text encoder while keeping the generative backbone fully frozen. Given concept--anchor prompt pairs, our method trains a discriminator to distinguish token-level representations of concept-containing prompts from those of safe anchor prompts, while updating the text encoder to make these representations indistinguishable. TEA introduces zero inference-time overhead and requires only a small number of fine-tuning steps, making it highly efficient to deploy at scale. Despite this efficiency, TEA achieves state-of-the-art erasure robustness against black-box and white-box adversarial attacks on Stable Diffusion v1.4, while preserving generation quality on benign prompts. Furthermore, TEA is model-agnostic and achieves the lowest attack success rate on Stable Diffusion v3.5, extending concept erasure to a Rectified Flow Transformer architecture with T5 conditioning where prior methods remain largely unexplored. Code is available at \\href{https://github.com/alirezafarashah/TEA.git}{https://github.com/alirezafarashah/TEA.git}",
+      "authors": [
+        "Alireza Dehghanpour Farashah",
+        "Zhuan Shi",
+        "Negar Rostamzadeh",
+        "Golnoosh Farnadi"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-15T17:46:37Z",
+      "updated": "2026-08-15T17:46:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15341v1",
+      "abs_url": "https://arxiv.org/abs/2608.15341",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15341",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文旨在解决文本到图像扩散模型中概念擦除方法在对抗性提示下鲁棒性不足、良性生成质量下降以及推理时计算开销大的问题。研究者将概念擦除重新定义为文本表示空间中的域对齐问题，并提出了一个轻量级的Text Encoder Alignment (TEA) 框架。该方法通过训练一个判别器来区分包含概念的提示和安全锚点提示的token级表示，同时更新文本编码器以使这些表示变得不可区分，从而在仅微调文本编码器的情况下实现概念擦除。TEA的关键创新在于其高效性（零推理时开销，少量微调步骤）和强大的鲁棒性，在Stable Diffusion v1.4上实现了最先进的擦除鲁棒性，对抗黑盒和白盒对抗性攻击，同时保持了良性提示的生成质量。此外，TEA还展示了模型无关性，在Stable Diffusion v3.5上取得了最低的攻击成功率，将概念擦除扩展到Rectified Flow Transformer架构。"
+    },
+    {
+      "id": "2608.15309",
+      "title": "Physiological World Models for Human State Transitions",
+      "abstract": "Continuous multimodal sensing now allows human physiology to be observed throughout daily life rather than only during occasional clinical visits. However, most health artificial intelligence systems are designed to recognize current states, estimate risks or analyse individual biomarkers. They do not directly model how physiological states change in response to real-world events, behaviours, contexts and interventions. Here we propose the Physiological World Model (PWM), an event-conditioned framework for learning these changes at the level of the whole person. We introduce the HumanState Transition Token, a structured, quality-scored unit that connects the physiological state before an event with the event or action, relevant context and intervention information, the physiological trajectory after the event, observed outcomes and data quality. We describe four capability levels, from state representation to bounded intervention planning, together with four data acquisition and validation protocols. We also propose six benchmark tasks covering HumanState representation, forecasting across multiple timescales, individualized response prediction, simulation of alternative interventions, bounded planning and reliability under distribution shift. Together, this framework provides a practical path towards personalized health management, behavioural intervention design and clinician-supervised decision support, while clearly separating prediction from causal inference and making uncertainty, safety, governance and limits of use explicit.",
+      "authors": [
+        "Chongyang Zhang",
+        "Rendong Wang",
+        "Hao Zheng",
+        "Hanwen Zhang",
+        "Yang Liu",
+        "Xiaolong Wei",
+        "Bin Chong"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-15T16:26:10Z",
+      "updated": "2026-08-15T16:26:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15309v1",
+      "abs_url": "https://arxiv.org/abs/2608.15309",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15309",
+      "keyword_topics": [
+        "world-model"
+      ],
+      "summary_zh": "这篇论文提出了一种生理世界模型（Physiological World Model, PWM），旨在解决现有健康AI系统无法直接建模生理状态如何响应真实世界事件、行为和干预的问题。该模型通过引入HumanState Transition Token，将事件前的生理状态与事件、上下文、干预措施、事件后的生理轨迹和结果连接起来，从而学习个体层面的生理变化。关键创新在于其事件条件框架和HumanState Transition Token的结构化设计，以及提出的四个能力级别和六个基准任务，为个性化健康管理和干预设计提供了实践路径。该框架旨在明确区分预测与因果推断，并强调不确定性、安全性和使用限制，为未来的研究和应用奠定了基础。"
+    },
+    {
+      "id": "2608.15296",
+      "title": "FMReward: Aligning and Evaluating Audio-Driven 3D Facial Animation with Human Preferences",
+      "abstract": "Audio-driven 3D facial animation is essential for advancing immersion and interactivity in virtual experiences. Although recent advances have shown promising capabilities, the training and evaluation of existing methods typically rely on ground-truth-based errors, which fall short of aligning with human preferences. To address this, we present a comprehensive framework that learns an automatic perceptual model from human preference data and leverages it to improve and evaluate the perceptual quality of audio-driven 3D facial animation. To begin with, we construct FMPair (Facial Motion Pairwise preference), the first human preference dataset for audio-driven 3D facial animation, which is built through a systematic annotation pipeline and comprises 65,574 annotated 3D facial motion pairs from 8,834 distinct in-the-wild audio clips. Based on the pairwise comparison dataset, we propose a Facial Motion Reward model, termed FMReward, which takes audio and 3D facial motion as inputs and predicts a perceptual quality score aligned with human preferences. Building upon FMReward, we further introduce Facial Motion reward Feedback Learning (FMFL), a direct fine-tuning algorithm that leverages a pretrained reward model to optimize diffusion-based audio-driven 3D facial animation models for better alignment with human preferences. Extensive experiments demonstrate the superiority of FMReward over other metrics in aligning with human preferences and the effectiveness of FMFL in improving the perceptual quality of audio-driven 3D facial animation.",
+      "authors": [
+        "Sijing Wu",
+        "Yunhao Li",
+        "Zhilin Gao",
+        "Huiyu Duan",
+        "Yucheng Zhu",
+        "Guangtao Zhai",
+        "Patrick Le Callet"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-15T15:54:34Z",
+      "updated": "2026-08-15T15:54:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15296v1",
+      "abs_url": "https://arxiv.org/abs/2608.15296",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15296",
+      "summary_zh": "该研究旨在解决音频驱动3D面部动画在训练和评估时，现有方法依赖于基于真实值的误差，未能与人类偏好对齐的问题。为此，研究构建了首个音频驱动3D面部动画的人类偏好数据集FMPair，包含65,574对标注的面部运动，并在此基础上提出了FMReward模型，该模型能根据音频和3D面部运动预测与人类偏好一致的感知质量分数。此外，研究还引入了Facial Motion reward Feedback Learning (FMFL) 算法，利用预训练的FMReward模型对基于扩散的动画模型进行微调，以更好地符合人类偏好。实验结果表明，FMReward在与人类偏好对齐方面优于其他指标，FMFL也有效提升了音频驱动3D面部动画的感知质量。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.15288",
+      "title": "$D^{2}R^{2}$: Discrete Diffusion with Regulation Reinforcement for Single-Cell Perturbation Prediction",
+      "abstract": "Predicting single-cell transcriptomic responses to genetic perturbations is central to functional genomics and virtual-cell modeling. Existing approaches, however, typically predict an entire expression profile as a whole, leaving the order in which individual gene responses are generated unmodeled. To address this problem, we introduce \\textbf{$D^{2}R^{2}$} (\\textbf{D}iscrete \\textbf{D}iffusion with \\textbf{R}egulation \\textbf{R}einforcement), which reformulates perturbation prediction as regulation-guided gene-wise progressive generation. A Masked Discrete Diffusion Model represents expression as ordinal tokens and reconstructs a fully masked profile step by step, allowing generated gene responses to condition those that remain masked. A Regulatory Policy Module initializes the generation policy from a gene regulatory network inferred from control cells and adapts it to the perturbation and current partially generated state. Then, group-relative policy optimization refines only the ordering policy using final perturbation-effect agreement as reward. Across Norman19 and VCC-H1, $D^{2}R^{2}$ achieves the best performance on all five metrics on Norman19 and remains competitive on H1. Controlled ablations holding the generator and generation budget fixed show that biological-prior ordering improves over random ordering and is more reliable than uncertainty-based heuristics, whereas reversing the biological-prior ordering degrades every metric. Biological analyses further show that the refined policy prioritizes regulatory genes early while promoting perturbation-specific transcription factors and responsive genes. These results establish gene generation order as an effective, controllable, and biologically interpretable dimension of single-cell perturbation prediction.",
+      "authors": [
+        "Ninghan Fan",
+        "Qi Liu",
+        "Xunuo Zhu",
+        "Yukai Sun",
+        "Luyuan Chen",
+        "Xuheng Zhou",
+        "Yuetian Du",
+        "Ming Kong",
+        "Xiaojun Zhu",
+        "Jie Liu",
+        "Zhan Zhou",
+        "Qiang Zhu"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-15T15:34:37Z",
+      "updated": "2026-08-15T15:34:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15288v1",
+      "abs_url": "https://arxiv.org/abs/2608.15288",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15288",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决单细胞转录组遗传扰动预测中，现有方法未能建模基因响应生成顺序的问题。为此，论文提出了 $D^{2}R^{2}$ 模型，它将扰动预测重构为受调控引导的基因级渐进式生成过程。模型核心是一个 Masked Discrete Diffusion Model，将表达视为有序 token 并逐步重建掩码后的表达谱，同时一个 Regulatory Policy Module 根据从对照细胞推断的基因调控网络初始化生成策略，并根据扰动和当前部分生成状态进行调整。通过以最终扰动效应一致性作为奖励进行组相对策略优化，模型仅优化排序策略。在 Norman19 和 VCC-H1 数据集上的实验表明，$D^{2}R^{2}$ 在 Norman19 上所有五项指标均达到最佳性能，并在 H1 上保持竞争力。消融实验证实，生物先验排序优于随机排序和基于不确定性的启发式方法，且反转生物先验排序会降低所有指标，表明基因生成顺序是单细胞扰动预测中一个有效、可控且具有生物学可解释性的维度。"
+    },
+    {
+      "id": "2608.15284",
+      "title": "VTInstructor: Visual Trajectory Prompting for Navigation Instruction Generation in Continuous Environments",
+      "abstract": "Navigation instruction generation from ego-centric RGB video in continuous environments is an important yet challenging task for human-robot interaction and scalable dataset construction. Prior instruction generators assume discrete viewpoint graphs with panoramic observations, where trajectory structure is explicit; in continuous environments, however, the agent receives only a dense RGB stream, making trajectory cues difficult to recover. We propose VTInstructor, the first VLN instruction generation framework for continuous environments. Our key idea is to convert implicit trajectory geometry into explicit visual trajectory prompts: EDTC condenses long RGB trajectories into navigation-critical keyframes, VTP overlays path, turn, and goal cues onto these anchors, VTMod injects the resulting trajectory signals into the visual encoder, and VT-GRPO further calibrates this spatial injection during training, all without requiring a navigation graph, pre-built map, or scene reconstruction. On the challenging R2R-CE and RxR-CE Val Unseen benchmarks, VTInstructor sets a new state of the art across all standard NLG metrics, surpassing the strongest baseline by +0.357 CIDEr and +0.109 CIDEr, respectively. Beyond automatic metrics, VTInstructor-generated instructions raise a frozen follower's success rate to 63.3%, a +14.7 percentage-point gain over the best competing instruction source, and provide consistent data augmentation gains of +3 SR points on downstream navigation tasks.",
+      "authors": [
+        "Haolin Yang",
+        "Yuxing Long",
+        "Zihan Yang",
+        "Hao Dong"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CL",
+        "cs.CV",
+        "cs.MM"
+      ],
+      "published": "2026-08-15T15:31:27Z",
+      "updated": "2026-08-15T15:31:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15284v1",
+      "abs_url": "https://arxiv.org/abs/2608.15284",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15284",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "这篇论文旨在解决在连续环境中，从第一人称RGB视频生成导航指令的挑战，该任务对人机交互和可扩展数据集构建至关重要。针对连续环境中轨迹线索难以恢复的问题，论文提出了VTInstructor框架，这是首个用于连续环境的视觉语言导航（VLN）指令生成框架。其核心创新在于将隐式轨迹几何转换为显式视觉轨迹提示：通过EDTC提取关键帧，VTP将路径、转向和目标线索叠加到这些关键帧上，VTMod将这些轨迹信号注入视觉编码器，并通过VT-GRPO在训练期间校准空间注入，整个过程无需导航图、预构建地图或场景重建。VTInstructor在R2R-CE和RxR-CE Val Unseen基准测试上取得了最先进的性能，CIDEr分数分别超越现有最佳基线0.357和0.109，并且生成的指令使“冻结跟随者”的成功率提高到63.3%，在下游导航任务中也带来了+3 SR点的持续数据增强收益。"
+    },
+    {
+      "id": "2608.15223",
+      "title": "TRACE-BN: Transferring Bangla-English Tutoring Behavior to a Sub-1B Offline Language Model",
+      "abstract": "Bangla-English tutoring requires more than producing a correct translation: learners also need explanations of grammar differences, awareness of their likely errors, and targeted practice. We present TRACE-BN, a curriculum-guided dataset of structured tutoring traces for Bangla-speaking learners of English at the CEFR A1-A2 level. Each trace combines word-level glosses, literal and natural translations, Bangla grammar explanations, a plausible learner error, and a targeted practice question with its answer. The traces are generated by Gemini 3.5 Flash Lite as the teacher model from NCTB Classes 9-10 English curriculum units, then filtered for structural validity, script integrity, and semantic duplication. We transfer the resulting structured tutoring behavior to Qwen3-0.6B using LoRA with 4-bit quantization for resource-constrained offline deployment. On held-out inputs, schema validity increases from 85.4% to 95.8%, while, against teacher-model references, chrF++ improves from 15.28 to 34.77 and BLEU from 4.52 to 21.03. Field-level evaluation by two independent judges shows improvements across translation, grammar explanation, learner-error diagnosis, and practice alignment, while a human audit supports the quality of the supervision data. The results show that curriculum-guided structured supervision can transfer multi-component tutoring behavior to a sub-1B model under these resource constraints. The dataset, model checkpoints, and code are publicly available at https://huggingface.co/datasets/RaiyanKhaan/Trace-BN",
+      "authors": [
+        "Khan Raiyan Ibne Reza",
+        "Sanjana Aktar Maria",
+        "Mohammad Tushar Abdullah",
+        "Asfee Bhuiyan Leen",
+        "Sumaiya Tabassum Nimi"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-15T13:19:17Z",
+      "updated": "2026-08-15T13:19:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15223v1",
+      "abs_url": "https://arxiv.org/abs/2608.15223",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15223",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在解决孟加拉语-英语教学中，除了翻译之外，还需要提供语法解释、预测学习者错误和针对性练习的问题。研究团队提出了TRACE-BN，这是一个课程指导的结构化辅导轨迹数据集，专为CEFR A1-A2级别的孟加拉语英语学习者设计，其中每个轨迹包含词级注释、直译和自然翻译、孟加拉语语法解释、可能的学习者错误以及带有答案的针对性练习。该数据集由Gemini 3.5 Flash Lite模型根据NCTB 9-10年级英语课程单元生成，并经过结构有效性、脚本完整性和语义重复性过滤。\n\n通过使用LoRA和4位量化技术，研究团队将这种结构化辅导行为迁移到一个小于10亿参数的离线语言模型Qwen3-0.6B上，以适应资源受限的部署环境。实验结果显示，在保留输入上，模型输出的schema有效性从85.4%提高到95.8%，相对于教师模型参考，chrF++分数从15.28提升到34.77，BLEU分数从4.52提升到21.03。两位独立评审员的现场评估表明，在翻译、语法解释、学习者错误诊断和练习对齐方面均有显著改进，人工审计也证实了监督数据的质量。这表明课程指导的结构化监督能够有效地将多组件辅导行为迁移到资源受限的亚1B模型中。"
+    },
+    {
+      "id": "2608.15215",
+      "title": "The Distributional View of Knowledge Distillation",
+      "abstract": "Token-level knowledge distillation (KD) matches two conditional distributions per position, yet the standard objectives compare them pointwise: a Kullback-Leibler gradient is blind to which wrong token receives probability mass. We develop a distributional view in which the teacher is represented not by a single softened output but by a family of multi-temperature views - marginals of the annealing path of its logits - and the student is trained against a geometry-aware aggregate of these views under an embedding-based ground cost. We formalize the resulting design space (mixtures, log-linear pooling, entropic Wasserstein barycenters, and a debiased Sinkhorn-divergence flagship in hub and path forms), prove an exact collapse result showing log-linear pooling of tempered views is equivalent to a single temperature, and give a multi-marginal Schrodinger-bridge reading that yields falsifiable predictions. On instruction-tuned Pythia pairs, experiments yield three empirical laws: (i) dispersion law - the benefit of multi-temperature aggregation grows monotonically with the effective temperature dispersion of the views, not with their number; (ii) dispersed views unlock the aggregation operator - the barycenter separates from the arithmetic mixture exactly when transport-based aggregation starts to beat averaging; and (iii) two-regime picture governed by the ceiling gap $Γ=\\mathrm{PPL}_{\\mathrm{SFT}}-\\mathrm{PPL}_{T}$: when the fine-tuned teacher barely beats a supervised student the gentle transport objective is the best KD loss but no KD beats supervised fine-tuning, whereas at a real ceiling the ranking inverts - and the sign of the fidelity-generalization correlation flips. We argue that \"which distillation loss is the best\" is not a fixed property of the loss but a function of $Γ$.",
+      "authors": [
+        "Gordei Verbii",
+        "Juho Lee"
+      ],
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-08-15T13:03:31Z",
+      "updated": "2026-08-15T13:03:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15215v1",
+      "abs_url": "https://arxiv.org/abs/2608.15215",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15215",
+      "summary_zh": "该研究针对传统知识蒸馏（KD）中逐点比较条件分布的局限性，提出了一种分布式的知识蒸馏视角。其核心创新在于将教师模型表示为一系列多温度视图（logits退火路径的边缘分布），并训练学生模型以匹配这些视图在基于嵌入的地面成本下的几何感知聚合，而非单一软化输出。研究形式化了混合、对数线性池化、熵 Wasserstein barycenters 等设计空间，并提出了去偏的 Sinkhorn 散度旗舰方法，证明了对数线性池化与单一温度等价。在指令微调的 Pythia 模型对上的实验揭示了三个经验定律：多温度聚合的收益随有效温度分散度单调增长；分散视图解锁了聚合操作符，使得基于传输的聚合优于平均；以及KD损失的效果受限于教师模型与监督学生模型之间的性能差距（ceiling gap $Γ$），当 $Γ$ 较小时，KD效果不佳，而当 $Γ$ 较大时，传输目标表现最佳。研究认为，最佳蒸馏损失的选择并非固定属性，而是 $Γ$ 的函数。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.15175",
+      "title": "LAPF: LLM-Agent-Based Path Finder Using the UAVScenes Dataset",
+      "abstract": "Uncrewed aerial vehicles (UAVs) are increasingly deployed for autonomous navigation in complex outdoor environments, where dynamic conditions and mission requirements require intelligent adaptive decision-making. Existing optimization-based, Machine Learning (ML), and Reinforcement Learning (RL) approaches often rely on predefined models or task-specific training, limiting their generalization and adaptability in uncertain scenarios. Recent Large Language Model (LLM)-assisted approaches offer promising reasoning capabilities but remain constrained by limited agentic functionality, including insufficient memory, planning, and tool interaction mechanisms.This paper proposes an LLM-Agent-Based Path Finder (LAPF) framework for autonomous UAV navigation in town-scale outdoor environments. LAPF extends LLM-assisted navigation by integrating perception, memory, planning, and action modules into a closed-loop cognitive architecture. The proposed agent leverages prior navigation experiences, performs Chain-of-Thought (CoT) reasoning, couples each detected hazard to a bounded corrective action, and dynamically refines waypoint decisions based on environmental feedback.The three independent trials per method demonstrate that LAPF achieves mean path lengths of 512.83 m and 506.37 m, compared to the straight-line optimum of 497.33 m, corresponding to path length reductions of 17.2% and 15.6% relative to CoT prompting and absolute path efficiencies of 97.1% and 98.1% in open-field and obstacle-injected scenarios, respectively. Furthermore, LAPF is the only evaluated approach that couples every detected hazard to a bounded, metric-neutral corrective action while maintaining near-goal stability, with zero clamp events in both scenarios, whereas CoT prompting increases from 9.7 to 14.0 events.",
+      "authors": [
+        "Yousef Emami",
+        "Mohammadhossein Homaei",
+        "Hao Zhou",
+        "Miguel Gutiérrez Gaitán",
+        "Atefeh Hajijamali Arani",
+        "Rui Zhang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-15T11:28:21Z",
+      "updated": "2026-08-15T11:28:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15175v1",
+      "abs_url": "https://arxiv.org/abs/2608.15175",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15175",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对无人机在复杂户外环境中自主导航面临的泛化能力不足及决策灵活性受限问题，本研究提出了基于大语言模型的智能体路径规划框架 LAPF。该框架通过整合感知、记忆、规划与行动模块，构建了闭环认知架构，利用思维链（CoT）推理技术结合环境反馈，实现了对动态障碍物的实时避障与航点动态修正。在 UAVScenes 数据集上的实验表明，LAPF 在开阔地带与障碍物场景中分别达到了 97.1% 和 98.1% 的路径效率，显著优于传统 CoT 提示方法。该方法不仅有效降低了路径长度，且在保持目标稳定性的同时，实现了对所有检测到的危险源进行精准的纠偏响应，在复杂任务中展现出卓越的自主导航与环境适应能力。"
+    },
+    {
+      "id": "2608.15156",
+      "title": "Low-Rank Dynamics-Effective Latent Carriers for Counterfactual Rollout in Learned World Models",
+      "abstract": "World models may predict the future without making clear which parts of their hidden state actually drive those predictions. We ask whether a small, directly addressable hidden-state change can place a learned world model on the intended counterfactual trajectory and then let the model continue that future on its own. We study a recurrent world model with a 192-dimensional hidden state in a controlled two-object, two-dimensional collision environment. For a bounded family of local velocity edits, we first verify that the model can natively represent and roll out the edited future. We then construct candidate low-rank carriers from training-only factual-to-counterfactual hidden differences and learn a map from the factual state and requested edit to carrier coefficients. On the registered rank grid, rank 4 is the smallest tested rank that satisfies the full development-panel criteria. A single rank-4 patch at the anchor is sufficient to redirect a 12-step autonomous rollout, with no future observations, teacher forcing, or repeated correction. The frozen procedure satisfies the preregistered replication rule across independently trained checkpoints and remains usable across nearby intervention times. Random equal-norm, wrong-object, and wrong-time controls do not explain the effect. A position-edit stress test provides a negative contrast: the intended position patch can pass the raw rollout criteria, but no-patch and random controls can pass the same criteria, and wrong-object specificity is not established. Thus, successful editing alone is not enough. We use dynamics-effective to describe an intervention that changes the model's future computation in a sustained and target-specific way under autonomous rollout. The rank-4 result identifies a compact intervention interface for the tested velocity-edit family, not a closed four-dimensional state or an intrinsic state dimension.",
+      "authors": [
+        "Yang Liu",
+        "Yuming Chen"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-15T10:13:37Z",
+      "updated": "2026-08-15T10:13:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15156v1",
+      "abs_url": "https://arxiv.org/abs/2608.15156",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15156",
+      "summary_zh": "该研究旨在解决世界模型在预测未来时，其隐藏状态中哪些部分真正驱动了这些预测的问题，并探究如何通过微小的、可直接寻址的隐藏状态变化，引导模型进入预期的反事实轨迹并自主延续。研究在一个受控的双物体、二维碰撞环境中，使用一个具有192维隐藏状态的循环世界模型，通过构建低秩载体（low-rank carriers）并学习从事实状态和请求编辑到载体系数的映射，实现了对模型未来预测的精确干预。关键创新在于发现了一个秩为4的低秩补丁（rank-4 patch）足以在锚点处重定向12步自主推演，且无需未来观测、教师强制或重复校正，证明了这种干预的动态有效性（dynamics-effective）。实验结果表明，该方法在独立训练的模型检查点之间具有可复现性，并且在临近干预时间点也保持可用，而随机对照组则无法解释其效果。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.15146",
+      "title": "PureTD: Reinforcement Learning for Backgammon Money Games with No Evaluation-time Search",
+      "abstract": "We revisit Tesauro's TD-Gammon for backgammon money games in the setting of no evaluation-time search. Both checker play and cube action (use of the doubling cube) are learned from scratch via self-play reinforcement learning (RL), with minimal hand-coded logic and no expert features. In this setting, we demonstrate that pure self-play RL suffices to train models that reach near-state-of-the-art playing strength. Specifically, for cubeful money games, our search-free model evaluates faster and is substantially stronger than the open-source engines GNU Backgammon and Open Sage running a one-move (1-ply) look-ahead search.",
+      "authors": [
+        "Alexander L. Strehl"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-15T09:46:03Z",
+      "updated": "2026-08-15T09:46:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15146v1",
+      "abs_url": "https://arxiv.org/abs/2608.15146",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15146",
+      "summary_zh": "这篇论文旨在解决西洋双陆棋（backgammon）金钱赛中，在没有评估时搜索（evaluation-time search）的情况下，如何通过强化学习提升棋手和倍数方块（doubling cube）决策的水平。论文采用纯粹的自博弈强化学习（self-play reinforcement learning, RL）方法，从零开始学习棋子走法和倍数方块操作，且仅使用最少的手动编码逻辑和专家特征。关键创新点在于证明了在无评估时搜索的设定下，纯自博弈RL足以训练出接近最先进水平的模型，并且其模型评估速度更快，在有倍数方块的金钱赛中，比运行单步（1-ply）前瞻搜索的开源引擎GNU Backgammon和Open Sage显著更强。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.15107",
+      "title": "Global Federated Learning Strategies for Building Efficient Personalized Models",
+      "abstract": "Federated learning (FL) is a practical framework that can train models on distributed user data while guaranteeing data privacy; however, due to heterogeneity in which each user has a different data distribution, problems frequently arise where both global and personalization performance deteriorate simultaneously. This dissertation presents methodologies for building efficient personalized models by identifying which strategies are effective in the global training stage and by showing how to preserve global knowledge while securing user-specific performance during local adaptation. First, we show that as data heterogeneity increases, the collapse of feature vectors is a more fundamental bottleneck than classifier weights, and propose a method that directly mitigates the discrepancy in representation magnitude between local and global models. Second, we analyze that a training approach that strengthens local alignment can induce forgetting of global knowledge (e.g., categories not observed locally), and propose a method that achieves both local alignment and global knowledge preservation by combining feature distillation based on the global model's feature vectors. Third, in federated personalized reward model learning with preference heterogeneity, we empirically verify the conventional belief that \"increasing the number of global models yields better initialization,\" and we show that when sufficient local fine-tuning is allowed, a single global initialization can instead provide stronger personalization performance. This study redefines the role of global initialization under data and preference heterogeneity and provides practical training strategies that simultaneously satisfy global knowledge preservation and personalization.",
+      "authors": [
+        "Seongyoon Kim"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-15T08:12:52Z",
+      "updated": "2026-08-15T08:12:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15107v1",
+      "abs_url": "https://arxiv.org/abs/2608.15107",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15107",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决联邦学习（FL）中因数据异构性导致的全局和个性化模型性能下降问题，通过在全局训练阶段识别有效策略并保留全局知识以实现高效的个性化模型构建。研究发现，随着数据异构性增加，特征向量的崩溃是比分类器权重更根本的瓶颈，并提出了一种直接缓解局部和全局模型之间表示幅度差异的方法。此外，研究指出强化局部对齐的训练方法可能导致全局知识遗忘，因此提出了一种结合基于全局模型特征向量的特征蒸馏方法，以同时实现局部对齐和全局知识保留。最后，在联邦个性化奖励模型学习中，研究挑战了“增加全局模型数量能带来更好初始化”的传统观点，并证明在充分的局部微调下，单一全局初始化反而能提供更强的个性化性能，从而重新定义了全局初始化的作用并提供了实用的训练策略。"
+    },
+    {
+      "id": "2608.15088",
+      "title": "Max-Q Selective Imitation for Human-in-the-Loop Online Robot Learning",
+      "abstract": "Human-in-the-loop (HIL) online reinforcement learning for real robots must absorb human interventions quickly while continuing to improve beyond the human prior. We present a training method for this setting based on two components. First, an \\emph{MC Q-chunk} critic regresses chunk-level action values onto Monte Carlo returns from the replay buffer, performing sample-average (behavior) policy evaluation so that intervention trajectories are credited directly rather than diluted by current-policy TD backups. Second, \\emph{max-Q selective imitation} updates the actor by imitating, at each state, the higher-$Q$ action between the current policy action and a buffer sample under a hard winner-take-all rule. This rule automatically switches between learning from interventions and on-policy self-improvement: when the autonomous policy is stronger, targets align with the policy distribution, reducing the policy--target-sample gap that otherwise induces execution-time distribution shift. In practice we score candidates with a standard critic ensemble mean to reduce comparison noise, without softening targets or introducing score-gap thresholds. On a real USB pick-and-insertion task with 20 demonstrations, ACT QChunk-MCBC attains 99\\% success within 30 minutes of HIL training, whereas HIL-SERL requires about 5 hours to converge. In simulation on Peg Insertion and Square, ACT/Flow Q-chunk variants similarly reach $\\ge$96\\% success within roughly half an hour of effective training, outperforming HIL-SERL, EXPO, and E2HiL on the success--time frontier.",
+      "authors": [
+        "Zihang Wang",
+        "Yishan Wang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-08-15T07:13:59Z",
+      "updated": "2026-08-15T07:13:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15088v1",
+      "abs_url": "https://arxiv.org/abs/2608.15088",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15088",
+      "summary_zh": "该论文提出了一种针对人机协作（HIL）在线机器人学习的训练方法，旨在快速吸收人类干预并持续超越人类先验。其核心在于两个组件：一是MC Q-chunk critic，通过将块级动作值回归到回放缓冲区中的蒙特卡洛回报，直接对干预轨迹进行信用分配，避免了TD备份的稀释；二是max-Q selective imitation，在每个状态下，根据当前策略动作和缓冲区样本中较高的Q值动作，以硬性“赢者通吃”规则更新actor。这种方法能够自动在从干预中学习和自主策略改进之间切换，当自主策略更强时，目标与策略分布对齐，减少了执行时可能导致分布偏移的策略-目标样本差距。在真实的USB插拔任务中，ACT QChunk-MCBC在30分钟的HIL训练内达到了99%的成功率，而HIL-SERL需要约5小时才能收敛；在模拟任务中，ACT/Flow Q-chunk变体在约半小时的有效训练内达到96%以上的成功率，在成功率-时间曲线上优于HIL-SERL、EXPO和E2HiL。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.15058",
+      "title": "MEDR: Query-Independent Frame Selection via Multi-Signal Event Modeling and Dynamic Rescoring",
+      "abstract": "Frame selection is a fundamental component of multimodal large language models, enabling long videos to be processed under limited visual-token and computational budgets. Uniform sampling preserves temporal coverage but may miss informative content that appears only briefly. To alleviate this limitation, query-dependent methods can retrieve question-relevant frames. However, because the selected frames depend on the current question, the same visual input cannot be directly shared across different questions, and frame selection must be repeated in multi-turn video dialogue. This motivates us to seek a query-independent frame selection method that preserves the reusability of a fixed visual input while improving the coverage of informative events beyond uniform sampling. We propose Multi-Signal Event Modeling and Dynamic Rescoring (MEDR), a training-free and query-independent frame selection method. Multi-Signal Event Modeling organizes complementary visual, motion, and text signals into signal-specific temporal events. Dynamic Rescoring then iteratively reevaluates each candidate relative to the current selected set, updating its score according to frame-level signal strength, additional event coverage, and temporal proximity. The resulting fixed frame set is constructed without observing the query and can be reused across different questions. On the standard benchmark evaluations, MEDR improves model accuracy by 0.63%-0.89% on Video-MME. On the long-video subset of LongVideoBench, it improves accuracy by up to 1.23% with Qwen3-VL-8B. MEDR further improves overall accuracy by 0.53%, while reusing exactly the same frame set for every question about a video.",
+      "authors": [
+        "Xinlei Pu",
+        "Weijie Shi",
+        "Wen Yang",
+        "Yi Cao",
+        "Hao Chen",
+        "Yuanjun Liu",
+        "Wenwei Ding",
+        "Jia Zhu",
+        "Jiajie Xu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-15T06:10:43Z",
+      "updated": "2026-08-15T06:10:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15058v1",
+      "abs_url": "https://arxiv.org/abs/2608.15058",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15058",
+      "keyword_topics": [
+        "video-gen"
+      ],
+      "summary_zh": "这篇论文提出了一种名为 MEDR (Multi-Signal Event Modeling and Dynamic Rescoring) 的查询无关帧选择方法，旨在解决多模态大语言模型在处理长视频时，传统均匀采样可能遗漏关键信息，而查询依赖方法又缺乏视觉输入复用性的问题。MEDR 通过多信号事件建模将视觉、运动和文本信号组织成时间事件，并利用动态重评分迭代地评估候选帧，根据帧级信号强度、事件覆盖率和时间邻近性更新分数，从而在不依赖查询的情况下构建可复用的固定帧集。实验结果显示，MEDR 在 Video-MME 基准测试中将模型准确率提高了 0.63%-0.89%，在 LongVideoBench 的长视频子集上，使用 Qwen3-VL-8B 模型时准确率提升高达 1.23%，并且在复用相同帧集的情况下，整体准确率仍能提高 0.53%。"
+    },
+    {
+      "id": "2608.15043",
+      "title": "SCOPE: Score-Isolated Agentic Optimization for Video World Models",
+      "abstract": "Video world models are increasingly used as simulators for planning and embodied decision making, yet improving them at inference time introduces a subtle evaluation problem: prompts, samplers, verifiers, and selectors may evolve together, making it difficult to attribute gains or prevent held-out feedback from shaping the final policy. We introduce \\scope (\\emph{\\scopefullname}), a framework for auditable inference-time adaptation of frozen video world models. \\scope represents external controls as a typed state, updates this state only through bounded changes supported by development evidence, and freezes the resulting policy before held-out evaluation. On Physics-IQ benchmark, \\scope improves over the exact frozen base by $+14.24$ (95\\% CI $[+8.10,+21.23]$). Controlled ablations further identify gains from scene specification, sampling, and learned selection, while the margin over the strongest matched agentic baseline remains unresolved. Cross-backbone and prospective evaluations reveal a complementary result: useful inference-time updates exist, but their benefits do not transfer uniformly across models and settings. Together, these findings suggest that reliable inference-time adaptation requires not only better proposals, but also a principled mechanism for deciding which updates should become part of the deployed system. Code is available at https://github.com/YuhuaJiang2002/SCOPE.",
+      "authors": [
+        "Yuhua Jiang",
+        "Jiaming Wang",
+        "Qingbin Liu",
+        "Feifei Gao"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-15T05:08:28Z",
+      "updated": "2026-08-15T05:08:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15043v1",
+      "abs_url": "https://arxiv.org/abs/2608.15043",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15043",
+      "summary_zh": "视频世界模型在规划和具身决策中作为模拟器日益重要，但其推理时改进面临评估难题，因为提示、采样器、验证器和选择器可能共同演化，难以归因增益。SCOPE（Score-Isolated Agentic Optimization for Video World Models）框架提出了一种可审计的、针对冻结视频世界模型的推理时自适应方法，它将外部控制表示为类型化状态，仅通过有界变化更新此状态，并在进行保留评估前冻结策略。在Physics-IQ基准测试上，SCOPE相比冻结基线提升了+14.24分，并通过受控消融实验证实了场景规范、采样和学习选择带来的增益。研究还发现，有用的推理时更新存在，但其益处在不同模型和设置间并非均匀迁移，这表明可靠的推理时自适应不仅需要更好的提议，还需要一种决定哪些更新应纳入部署系统的原则性机制。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.15042",
+      "title": "Uncovering Hidden Leptonic Correlations with Flow Matching and Autoencoders",
+      "abstract": "We perform a global search for values of the Yukawa matrices and Majorana masses in the Type-I seesaw mechanism. Using flow matching, which is a generative artificial intelligence (generative AI) method, we generate a broad set of solutions reproducing the experimentally measured values of the neutrino mass-squared differences and the mixing angles. Then, a machine learning method known as an autoencoder is applied to uncover non-trivial correlations among physical quantities in the lepton sector. Our analysis reveals new non-linear relations involving neutrino masses and CP phases. These findings may contribute to elucidating the origins of the mass hierarchies and mixing patterns among generation structure.",
+      "authors": [
+        "Haruto Kitagawa",
+        "Satsuki Nishimura",
+        "Hajime Otsuka"
+      ],
+      "categories": [
+        "hep-ph",
+        "cs.LG",
+        "hep-th"
+      ],
+      "published": "2026-08-15T05:04:52Z",
+      "updated": "2026-08-15T05:04:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15042v1",
+      "abs_url": "https://arxiv.org/abs/2608.15042",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15042",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在探索Type-I seesaw机制中Yukawa矩阵和Majorana质量的全局解空间，以重现实验测量的中微子质量平方差和混合角。研究方法是利用生成式AI技术Flow Matching生成大量符合实验数据的解决方案，随后应用自编码器（autoencoder）这一机器学习方法，揭示轻子扇区物理量之间隐藏的非平凡关联。关键创新点在于结合Flow Matching生成大规模解集与自编码器发现深层非线性关系，实验结果揭示了中微子质量和CP相位之间新的非线性关系，为理解轻子质量等级和混合模式的起源提供了新线索。"
+    },
+    {
+      "id": "2608.15041",
+      "title": "LLM-Based Hierarchical Coordinated Control with Continuation-Aware Policy Learning",
+      "abstract": "Coordinating multiple interacting units in complex engineering systems is challenging when system interactions are difficult to model, operational information is heterogeneous, and low-level actions must satisfy strict constraints. We propose an LLM-based hierarchical framework in which the LLM coordinates interacting units based on heterogeneous operational context, while task-specific controllers or optimizers generate executable and constraint-aware actions. We further introduce Continuation-Aware GRPO to capture the consequences of coordination decisions over subsequent control intervals. Rather than judging a decision only by its immediate outcome, the method also evaluates how the system evolves afterward under the current policy. We validate the framework on multi-ramp traffic control and virtual power plant (VPP) energy management, using simplified system models for training and more realistic simulators for evaluation. Across both tasks, the proposed method consistently outperforms direct task-specific control and optimization, end-to-end reinforcement learning, rule-based and RL-based hierarchical coordination, and prompting-only LLM coordinators, demonstrating the value of heterogeneous-context reasoning, hierarchical execution, and continuation-aware policy learning.",
+      "authors": [
+        "Changhong He",
+        "Jinda Gao",
+        "Xinkuan Liu",
+        "Le Zhang",
+        "Xizi Luo",
+        "Yu Mei"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-15T05:00:02Z",
+      "updated": "2026-08-15T05:00:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15041v1",
+      "abs_url": "https://arxiv.org/abs/2608.15041",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15041",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "针对复杂工程系统中单元交互建模难、操作信息异构及底层约束严格的问题，该研究提出了一种基于LLM的分层协调控制框架。该框架利用LLM处理异构操作上下文进行高层协调，并结合特定任务的控制器或优化器生成满足约束的可执行动作。核心创新点在于引入Continuation-Aware GRPO算法，通过评估决策对后续控制区间的影响，克服了仅关注即时结果的局限性。在多匝道交通控制和虚拟电厂（VPP）能量管理任务中的实验表明，该方法在性能上显著优于端到端强化学习、规则驱动及传统分层协调方案，验证了异构上下文推理与持续感知策略学习的有效性。"
+    },
+    {
+      "id": "2608.15018",
+      "title": "S2-MoE: Enabling Efficient Self-Speculative Decoding for Mixture-of-Experts on Edge Devices",
+      "abstract": "Deploying large language models (LLMs) for inference on edge devices is challenging due to severe memory and bandwidth constraints. While speculative decoding and Mixture-of-Experts (MoE) have been proposed to improve inference efficiency, naively combining them often incurs excessive verification overhead and poor expert reuse, limiting their effectiveness in memory-bound edge settings. In this work, we propose S2-MoE, an efficient self-speculative decoding framework for MoE inference on edge devices. S2-MoE reduces redundant verification through routing-aware adaptive speculative expansion, improves verification efficiency with reuse-aware expert gating, and aligns draft and target execution via shared context. Implemented in llama.cpp, S2-MoE achieves up to 5.3x speedup (about 2.0x on average) over standard autoregressive de?coding across diverse MoE models and datasets on edge devices.Code is available at https://github.com/angerybob/S2-MoE.",
+      "authors": [
+        "Haochen Huang",
+        "Shengxuan Qiu",
+        "Meng Li"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-15T04:08:04Z",
+      "updated": "2026-08-15T04:08:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15018v1",
+      "abs_url": "https://arxiv.org/abs/2608.15018",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15018",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "大型语言模型（LLMs）在边缘设备上进行推理面临内存和带宽限制，而投机解码（speculative decoding）和MoE（Mixture-of-Experts）虽能提升效率，但简单结合会导致验证开销过大和专家复用率低。S2-MoE提出了一种高效的自投机解码框架，通过路由感知的自适应投机扩展减少冗余验证，利用复用感知的专家门控提高验证效率，并通过共享上下文对齐草稿和目标执行。在llama.cpp中实现后，S2-MoE在多种MoE模型和数据集上，于边缘设备上实现了相对于标准自回归解码高达5.3倍（平均约2.0倍）的加速。"
+    },
+    {
+      "id": "2608.15006",
+      "title": "MetaReason: Precise Interleaved Multimodal Reasoning via Editing Meta Information for Solving Geometry Problems",
+      "abstract": "Although visual reasoning is crucial for solving complex geometry tasks, existing vision-language models rely heavily on text-only reasoning. Some recent methods introduce intermediate visual states to facilitate reasoning, but they are often hindered by inaccurate geometric representations and low rendering fidelity, ultimately leading to unreliable outputs. To address these limitations, we propose MetaReason, a framework for multimodal reasoning in plane geometry that leverages structured meta-information to enable accurate auxiliary-line construction. The framework first parses geometric images into meta-information, performs controllable edits with predefined tools to synthesize high-fidelity visual states, and then conducts reasoning based on these augmented views. To support this framework, we construct TutorGeo, a comprehensive dataset containing 17k image-to-meta conversion samples, 60k text-only reasoning traces, and 60k interleaved multimodal reasoning traces. Using this dataset, we combine supervised fine-tuning and reinforcement learning to develop robust multimodal reasoning capabilities. We also introduce ExamGeo, a benchmark derived from real-world examination problems that enables systematic evaluation across varying difficulty levels. Experimental results demonstrate that MetaReason significantly outperforms existing open-source models and achieves competitive performance against proprietary models.",
+      "authors": [
+        "Penghao Yin",
+        "Haomin Wang",
+        "Qihong Tang",
+        "Xiaoye Qu",
+        "Hongjie Zhang",
+        "Xiao-Ping Zhang"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.MM"
+      ],
+      "published": "2026-08-15T03:24:13Z",
+      "updated": "2026-08-15T03:24:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.15006v1",
+      "abs_url": "https://arxiv.org/abs/2608.15006",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.15006",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "为解决现有视觉语言模型在几何问题中视觉推理能力不足、依赖文本推理且中间视觉状态不准确的问题，MetaReason 提出了一种通过编辑结构化元信息进行精确交错多模态推理的框架。该方法首先将几何图像解析为元信息，然后利用预定义工具对元信息进行可控编辑以合成高保真视觉状态，最后基于这些增强视图进行推理，从而实现辅助线构造和精确推理。关键创新在于引入结构化元信息和可控编辑来生成高保真视觉状态，并构建了包含图像到元信息转换、纯文本推理和交错多模态推理轨迹的综合数据集 TutorGeo，以及用于系统评估的 ExamGeo 基准。实验结果表明，MetaReason 在 TutorGeo 上通过监督微调和强化学习相结合的方式，显著优于现有开源模型，并与专有模型表现相当。"
+    },
+    {
+      "id": "2608.14963",
+      "title": "Command-Space Counterfactual Explanations for Pareto-Conditioned Reinforcement Learning",
+      "abstract": "Pareto Conditioned Networks learn multiple multi-objective reinforcement learning behaviours by conditioning a single policy on a desired return command. However, the local mapping from command and state to action remains opaque. We propose command-space counterfactual explanations for PCNs: given a fixed state, original command, and foil action, we search, in a black-box setting, for a minimally changed desired-return command under which the same trained policy would choose the foil. Our contributions are threefold. First, we formulate PCN explanations as return-command interventions, using a return-only PCN variant that avoids the added ambiguity of horizon-conditioning. Second, we adapt adversarial machine learning methods to reinforcement-learning explanations. Third, we introduce a boundary-seeded directional search that improves over purely local optimization in the command-action landscape, resulting in our proposed approach CF-ZOO. The resulting explanations are actionable and intuitively expressed in the user's own preferences: \"If your trade-off had shifted slightly towards X, the agent would have chosen Y.\"",
+      "authors": [
+        "Joanikij Chulev",
+        "Hendrik Baier"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.HC"
+      ],
+      "published": "2026-08-15T01:32:28Z",
+      "updated": "2026-08-15T01:32:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14963v1",
+      "abs_url": "https://arxiv.org/abs/2608.14963",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14963",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该论文旨在解决 Pareto Conditioned Networks (PCNs) 在多目标强化学习中决策过程不透明的问题，即难以理解为何在给定状态和期望回报指令下会采取特定行动。为此，论文提出了一种命令空间反事实解释方法，通过在黑盒设置下搜索最小变化的期望回报指令，以解释在相同策略下为何会选择不同的行动。关键创新点在于将PCN解释形式化为回报指令干预，并引入了一种仅基于回报的PCN变体以避免 horizon-conditioning 带来的歧义；同时，该方法将对抗性机器学习技术应用于强化学习解释，并提出了一种名为 CF-ZOO 的边界种子定向搜索算法，以改进局部优化。实验结果表明，CF-ZOO 能够生成可操作且直观的解释，例如“如果你的权衡稍微偏向X，智能体就会选择Y”，从而提升了用户对PCN决策的理解。"
+    },
+    {
+      "id": "2608.14952",
+      "title": "Evidence of Absence: Cross-Modal Abductive Risk Perception to Sustain World Models When Vision Fails",
+      "abstract": "A structured world-state (entities, relations, context, and predictive cues) is designed to preserve prediction-critical content when perception degrades, but it presumes observations to populate it; when the primary visual modality is occluded or degraded, those observations may be missing. We address how to sustain the world model from a complementary modality by treating the absence of expected co-evidence as evidence of a hidden cause. The abductive framework is modality-agnostic; this article instantiates it acoustically. A microphone-array front-end estimates the bearing of engine and tire sources and extracts approach-rate evidence (Doppler when a stable tone exists, a broadband looming readout otherwise); the event \"signature present, visual co-evidence absent\" then triggers abductive inference of a hidden road user, emitting a calibrated risk advisory rather than a control command. Recoverability of the hidden state is analyzed as an identifiability question separating shared from modality-unique information, and cueing is cast as Neyman-Pearson detection under an explicit false-alarm budget. On real occluded-approach recordings at blind junctions, the method warns a mean 1.7 seconds before line-of-sight entry, matches the sustained-window variant of the published acoustic baseline's detection rate with 42% fewer false alarms, localizes to 3.4 degrees median once in view, is well calibrated (expected calibration error 0.034), and keeps hazard awareness above 0.87 under staged vision degradation that collapses a vision-only channel to 0.03. We also measure the method's limits: calibration transfers to an unseen junction almost losslessly, the signature classifier does not, and moving-ego noise is the binding deployment constraint.",
+      "authors": [
+        "Cong Xu",
+        "Ravi Sankar"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.CV",
+        "eess.SP"
+      ],
+      "published": "2026-08-15T00:38:17Z",
+      "updated": "2026-08-15T00:38:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14952v1",
+      "abs_url": "https://arxiv.org/abs/2608.14952",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14952",
+      "summary_zh": "该研究旨在解决当主要视觉感知受损时，如何通过互补模态维持世界模型的问题，特别是在自动驾驶等场景中，视觉失效可能导致对隐藏危险的感知缺失。论文提出了一种跨模态溯因风险感知框架，通过将预期协同证据的缺失视为隐藏原因的证据，以声学模态为例，利用麦克风阵列估计引擎和轮胎声源的方位和接近率（多普勒效应或宽带逼近读数），当“声学特征存在，视觉协同证据缺失”时，触发对隐藏道路使用者的溯因推理，并发出校准后的风险警报。关键创新在于其溯因框架的模态无关性，以及将隐藏状态的可恢复性视为可识别性问题，并以Neyman-Pearson检测来处理提示。实验结果表明，在真实盲区遮挡场景下，该方法平均提前1.7秒发出警告，在检测率与现有声学基线相当的情况下，将误报率降低了42%，并且在视觉严重退化的情况下，仍能将危险感知保持在0.87以上，显著优于仅依赖视觉的系统。",
+      "impact_score": null
+    }
+  ]
 }

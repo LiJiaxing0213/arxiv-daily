@@ -1,6 +1,6 @@
 {
   "date": "2026-08-14",
-  "generated_at": "2026-08-17T02:46:47.675091+00:00",
+  "generated_at": "2026-08-18T02:42:45.963658+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,245 @@
     }
   },
   "papers": [
+    {
+      "id": "2608.14945",
+      "title": "Trust Is Not Enough: Influence Calibration for On-Policy Self-Distillation in Agentic RL",
+      "abstract": "On-policy self-distillation (OPSD) gives language agents dense token-level supervision from a privileged self-teacher on the policy's own trajectories. Existing methods allocate this supervision mainly by teacher trust, but trust does not reveal whether emphasizing a token supports the current policy objective. We call this the trust-utility mismatch and introduce Influence Calibration for Self-Distillation (ICSD). For each supervised token, ICSD measures the first-order response of its importance-weighted RL surrogate contribution to a teacher-directed output perturbation. Batch-adaptive calibration converts this non-stationary signal into a bounded allocation weight while preserving the original auxiliary-loss mass within each action turn. These detached weights affect only the distillation loss and require no additional model pass. Across ALFWorld, WebShop, and Search-QA, ICSD improves all matched aggregate metrics over trust-only allocation under Group Relative Policy Optimization (GRPO) and Group-in-Group Policy Optimization (GiGPO), across two model families spanning 1.5B to 7B. At 7B, it reaches 96.1% ALFWorld success and a WebShop score of 93.1. Frozen-batch analyses show that ICSD reduces teacher-supported mass assigned to objective-opposed tokens from 60.1% to 37.8% and raises cosine compatibility with the RL gradient by 0.192. A companion repository is avail- able at https://github.com/lanqz7766/Influence-Calibration-for-On-Policy-Self-Distillation-in-Agentic-RL.",
+      "authors": [
+        "Qizhen Lan",
+        "Xi Xiao",
+        "Xiangchen Guan",
+        "Mengchen Fan",
+        "Moule Lin",
+        "Jung Im Choi",
+        "Lijing Zhu"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-14T23:56:38Z",
+      "updated": "2026-08-14T23:56:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14945v1",
+      "abs_url": "https://arxiv.org/abs/2608.14945",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14945",
+      "summary_zh": "针对语言智能体在策略内自蒸馏（OPSD）中存在的“信任-效用失配”问题，即仅依赖教师信任度无法确保监督信号符合策略目标，本研究提出了影响校准自蒸馏（ICSD）方法。该方法通过测量重要性加权强化学习代理贡献对教师扰动的响应，计算出动态分配权重，从而在不增加额外模型计算开销的前提下，精准过滤掉对目标无益的监督信号。在 ALFWorld、WebShop 和 Search-QA 等基准测试中，ICSD 显著提升了 GRPO 和 GiGPO 框架下的性能，在 7B 模型上实现了 96.1% 的 ALFWorld 成功率。实验表明，ICSD 有效降低了对目标对立 token 的错误分配，并将与强化学习梯度的余弦相似度提升了 0.192，证明了该方法在优化智能体训练效率与效果方面的优越性。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.14896",
+      "title": "Interpretable Cross-Lingual Alignment in Small Language Models: Probing Cultural and Pragmatic Reasoning in Japanese-English Bilingual LLMs",
+      "abstract": "Large language models work well on English and behave in poorly understood ways on languages typologically far from it. Japanese is a clean example, where evaluation still leans on translation quality and JGLUE-style benchmarks, which roll lexical, syntactic and pragmatic competence into a single score. The phenomena on which general-purpose models fail Japanese users are pragmatic: honorifics, in-group and out-group reference, context-sensitive politeness, zero anaphora. I introduce J-PragEval-v0, a minimal-pair benchmark isolating four such phenomena from surface fluency, and combine it with linear probes and teacher-forced log-probability evaluation to ask where inside TinySwallow-1.5B (28 layers, hidden size 1536) the corresponding contrasts live. The four features split three ways. Honorific register sits cleanly in the residual stream: 0.96 balanced accuracy at layer 15, and the model flips its preferred continuation with the scenario on 93 percent of items. Implicit subject and in-group reference are not linearly decodable at the final prompt token (0.48 and 0.38), yet flip rates are 0.77 and 0.79, so the contrast is worked out during generation rather than stored at the prompt. Indirect refusal is the negative case: 0.95 probe accuracy collapsing to a 0.43 flip rate under length-normalised teacher forcing, because the current minimal pairs conflate politeness with continuation length. I also specify Pragmatic Representation Steering, a parameter-free inference-time method that edits residual-stream activations along the class-mean-difference directions probing identifies. Feasibility is argued indirectly rather than demonstrated: the contrastive activation addition baseline, the same geometry the method would inject, recovers probe accuracy within one to two points of logistic regression wherever a linear signal exists. Scaling to Llama-3.1-Swallow-8B is the next step.",
+      "authors": [
+        "Florian Braun"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-08-14T21:04:21Z",
+      "updated": "2026-08-14T21:04:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14896v1",
+      "abs_url": "https://arxiv.org/abs/2608.14896",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14896",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": "该研究旨在探究小型语言模型（如TinySwallow-1.5B）在处理日语中文化和语用推理方面的跨语言对齐能力，尤其关注敬语、内外部指代、上下文敏感礼貌和零回指等现象，这些是现有JGLUE等基准难以单独评估的。为此，研究引入了J-PragEval-v0基准，通过最小对立句来隔离这些语用现象，并结合线性探针和教师强制对数概率评估方法，分析模型内部不同层级对这些对比的编码情况。结果发现，敬语语域的对比信息清晰地存在于残差流中，在第15层达到0.96的平衡准确率，且模型在93%的测试项上能根据情境翻转其偏好；而隐式主语和内群体指代虽然在最终提示词处线性不可解码，但翻转率较高，表明对比在生成过程中而非提示词阶段得到处理；间接拒绝则显示探针准确率高但翻转率低，因当前最小对立句混淆了礼貌与延续长度。研究还提出了Pragmatic Representation Steering这一无参数推理时方法，通过编辑残差流激活来引导语用推理，并间接证明了其可行性。"
+    },
+    {
+      "id": "2608.14851",
+      "title": "Discovering High-Quality Chess Puzzles with Offline Reinforcement Learning",
+      "abstract": "Learning and skill mastery require extensive and deliberate practice. In many learning settings, producing high-quality pedagogical materials can require a high level of domain expertise and be very time-consuming. Pedagogical materials often need to train students to engage in different thinking patterns. In some domains, such as chess, puzzles are used to help students practice their skills in calculating the next moves and recognizing known patterns on a board. Giving students a practice set of puzzles to help them learn different modes of thinking is challenging because the teacher needs to carefully balance between different motifs and how many look-ahead steps a student needs to perform. Popular online platforms like Chess.com and Lichess offer players millions of puzzles. Unlike chess tactics puzzles procured by human experts, where chess beginners can learn valuable insights, these puzzles are automatically generated and often regarded as having low pedagogical value. These platforms also rely on a heuristic to recommend puzzles to users for practice. Using the user history data over an entire year, a total of 1.5 billion puzzle-solving histories, we learn the pedagogical value of a puzzle and how to automatically choose a set of puzzles to better support chess learners using insights from offline reinforcement learning. We show that using offline policy evaluation, our trained policy has significant impact on beginners with puzzle-solving Elo range of 100--1000, particularly for the group of beginners whose learning growth was stagnant. We also performed a qualitative analysis of the puzzles discovered by our model by collecting annotation ratings from expert chess players. The success of our pipeline shows promise for a future where we can understand the pedagogical values of practice items given general user interaction data.",
+      "authors": [
+        "Allen Nie",
+        "Anirudhan Badrinath",
+        "Nicholas Tomlin",
+        "Timothy Dai",
+        "Carissa Yip",
+        "Rose E Wang",
+        "Emma Brunskill",
+        "Chris Piech"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-14T19:46:29Z",
+      "updated": "2026-08-14T19:46:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14851v1",
+      "abs_url": "https://arxiv.org/abs/2608.14851",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14851",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": "该研究旨在解决国际象棋学习中高质量教学材料（尤其是谜题）生成和推荐的挑战，现有自动生成谜题的教学价值较低。研究利用一年内15亿条谜题解题历史数据，通过离线强化学习（Offline Reinforcement Learning）方法，学习谜题的教学价值并自动选择适合国际象棋学习者的谜题集。关键创新在于将离线强化学习应用于教学内容推荐，特别是通过离线策略评估（Offline Policy Evaluation）来优化谜题选择策略。实验结果表明，该方法对谜题解题Elo范围在100-1000的初学者有显著影响，尤其能帮助学习停滞的初学者，并通过专家棋手的定性分析验证了模型发现谜题的质量。"
+    },
+    {
+      "id": "2608.14835",
+      "title": "OvDSGG: End-to-End Open-Vocabulary Dynamic Scene Graph Generation",
+      "abstract": "Dynamic scene graphs (DSGs) capture spatio-temporal interactions across videos as $\\langle$subject, predicate, object$\\rangle$ triplets, and underpin downstream tasks such as video captioning, video question answering, and action analysis. However, end-to-end dynamic scene graph generation (DSGG) methods are closed-set: they recognize only objects and predicates from a fixed training vocabulary and struggle with the long-tailed distribution of rare concepts, severely limiting their real-world applicability. Existing open-vocabulary models typically inherit pretrained large language models, resulting in multi-stage training and inference with substantial cost. We introduce OvDSGG, the first end-to-end framework for open-vocabulary DSGG. OvDSGG builds on top of an open-vocabulary Spatial Backbone and a Temporal Backbone; we further propose a Triplet Feature Extraction Module that bridges them, and a Visual-Language Alignment Module that preserves open-vocabulary recognition by learning an adaptive decision boundary in the joint visual-language feature space, without expensive knowledge distillation in existing methods. We further introduce a rigorous open-vocabulary DSGG benchmark adapted from Action Genome, with disjoint Base/Novel splits for both objects and predicates. OvDSGG significantly outperforms open-vocabulary baselines across all metrics, with zero-shot Recall@$K$ scores 10.0--20.4 percentage point higher than the next-best baseline, while on closed-set DSGG remaining competitive with state-of-the-art models. Code and benchmark are publicly available at https://github.com/jhelsby/OvDSGG/.",
+      "authors": [
+        "John Helsby",
+        "Yi Yang",
+        "Bodo Rosenhahn",
+        "Michael Ying Yang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-14T19:12:40Z",
+      "updated": "2026-08-14T19:12:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14835v1",
+      "abs_url": "https://arxiv.org/abs/2608.14835",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14835",
+      "keyword_topics": [
+        "distillation",
+        "4d-gen"
+      ],
+      "summary_zh": "这篇论文旨在解决动态场景图生成（DSGG）中开放词汇识别的挑战，现有方法通常是封闭集且难以处理长尾分布。它提出了OvDSGG，一个端到端的开放词汇DSGG框架，通过结合开放词汇空间骨干网络、时间骨干网络、三元组特征提取模块以及视觉-语言对齐模块，实现在联合视觉-语言特征空间中学习自适应决策边界，从而避免了昂贵的知识蒸馏。关键创新在于其端到端的开放词汇设计和视觉-语言对齐模块，该模块在不进行知识蒸馏的情况下保持了开放词汇识别能力。实验结果表明，OvDSGG在新的开放词汇DSGG基准测试（基于Action Genome）上显著优于现有开放词汇基线，零样本Recall@K分数高出10.0-20.4个百分点，同时在封闭集DSGG任务上与最先进模型保持竞争力。"
+    },
+    {
+      "id": "2608.14828",
+      "title": "MINT: Min-Selection Preference Distillation for Balanced Multi-Objective Alignment",
+      "abstract": "Aligning a language agent to several objectives at once is a persistent failure mode of preference-based training: when objectives are combined additively, optimization collapses onto whichever is cheapest to improve and sacrifices the rest, so a support agent learns to sound warm while giving no real help. The root issue is that an additive reward has no notion of balance. We introduce Mint (MIN-selection preference disTillation), a one-line change to preference distillation: rather than ranking sampled candidates by a weighted sum of rewards, we rank them by their weakest objective, distilling the best-balanced candidate over the most lopsided one with an unchanged DPO objective. This is the p -> negative infinity limit of a generalized-mean family spanning additive to worst-case selection. Across cooperative emotional support and adversarial negotiation, min-selection lifts both objectives while sharply cutting their imbalance; on emotional support it raises the weaker axis from 0.37 to 0.64 (p < 10^-40), surpassing human experts and persisting across full multi-turn rollouts. A turn-by-turn analysis yields our central finding: min-selection corrects imbalance in proportion to how imbalanced the reference policy is, and its benefit endures over an interaction precisely as long as that imbalance does.",
+      "authors": [
+        "Tony Tu",
+        "Sayan Chakraborty",
+        "Ruomeng Xu",
+        "Tony Qin",
+        "Austin Tian"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-08-14T19:01:56Z",
+      "updated": "2026-08-14T19:01:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14828v1",
+      "abs_url": "https://arxiv.org/abs/2608.14828",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14828",
+      "summary_zh": "该研究旨在解决多目标对齐中，当目标以加权和形式结合时，优化倾向于最容易提升的目标而牺牲其他目标的问题，导致模型无法实现平衡。为此，提出了MINT（Min-Selection Preference Distillation）方法，通过将候选样本按照其最弱目标进行排序，而非加权和，从而在DPO目标不变的情况下，蒸馏出最平衡的候选。这种方法是广义平均（generalized-mean）在p趋近于负无穷时的特例，能够从加性选择过渡到最差情况选择。实验结果表明，在情感支持和对抗性谈判任务中，MINT显著提升了两个目标并大幅降低了不平衡性；在情感支持任务中，将较弱轴的性能从0.37提高到0.64，甚至超越了人类专家，并在多轮对话中保持了效果。逐轮分析发现，MINT能根据参考策略的不平衡程度来纠正不平衡，并且其益处在交互过程中持续存在，只要不平衡性依然存在。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.14804",
+      "title": "Generated Context versus Governed State: Functional Conditions for Accountable Longitudinal Clinical Reasoning",
+      "abstract": "Large language models (LLMs) have become the dominant interface of clinical artificial intelligence, yet the interface they expose (text in, text out, one context window at a time) maintains no explicit, persistent, governed representation of what is currently true about a patient. This paper argues that longitudinal clinical reasoning is a state-estimation problem under partial observability, and that the axis on which clinical AI succeeds or fails is not the fluency of the model reading the record but the governance of the patient state it reasons over. We distinguish generated context from governed state; separate five objects that clinical AI habitually conflates (true state, observations, evidence, belief, and simulated state); define a tiered governance standard against which any clinical AI system can be audited; and show that an operational definition of accountability decomposes into four information requirements: an immutable evidence ledger with awareness-time versioning, a belief state distinct from accumulated evidence, an observation-process model, and claim-level causal typing. We are explicit that this decomposition is analytic rather than a necessity theorem, and that its value is conceptual hygiene: it converts \"accountable clinical AI\" from a slogan into an audit instrument. A six-level maturity framework separates what a system makes governable from what it can compute, locating current LLM-centric practice at high capability but low maturity. The paper is fully self-contained: the four research questions the framework poses are stated in the introduction, and the conclusion records what the paper establishes toward each; future work develops the buildable core of the architecture and the research program toward full Clinical World Models. No empirical result is claimed here.",
+      "authors": [
+        "Augusto Bernardo Pissarra",
+        "Victor Lorena de Farias Souza"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-14T18:18:31Z",
+      "updated": "2026-08-14T18:18:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14804v1",
+      "abs_url": "https://arxiv.org/abs/2608.14804",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14804",
+      "keyword_topics": [
+        "world-model"
+      ],
+      "summary_zh": "这篇论文探讨了大型语言模型（LLMs）在临床AI中面临的挑战，即它们缺乏对患者状态的明确、持久且受控的表示，这使得长期的临床推理难以实现。论文提出，长期的临床推理本质上是一个在部分可观察性下的状态估计问题，并区分了“生成上下文”（generated context）与“受控状态”（governed state），认为临床AI的成败取决于其对患者状态的治理能力。关键创新点在于，论文定义了一个分层的治理标准，并提出了实现可问责临床AI所需的四个信息要求：一个具有感知时间版本控制的不可变证据账本、一个独立于累积证据的信念状态、一个观察过程模型以及声明级别的因果类型。论文还提出了一个六级成熟度框架，指出当前以LLM为中心的实践虽然能力强大但成熟度较低，旨在将“可问责临床AI”从口号转化为可审计的工具，但本文不包含任何实证结果。"
+    },
+    {
+      "id": "2608.14791",
+      "title": "CEDAR-GRPO: Process-Aware Reinforcement Learning for General Abductive Reasoning in LLMs",
+      "abstract": "Abductive reasoning, often characterized as inference to the best explanation, is central to explanation under uncertainty, from everyday sense-making and investigation to scientific discovery. Yet LLM research has mostly studied abduction through narrow, task-specific benchmarks, making it unclear whether observed gains transfer beyond the benchmark family used for training or evaluation. We ask whether RL post-training can improve abduction as a transferable reasoning capability. We introduce CEDAR-GRPO, a process-aware framework that combines final-answer correctness with abductive rewards for evidence coverage and evidence-to-explanation directionality. Four open-weight LLMs are post-trained on a controlled, domain-neutral mixture of abductive hypothesis-generation and hypothesis-selection tasks. We evaluate them on 11 unseen tasks spanning hypothesis selection, missing-fact generation, defeasible inference, long-context investigation, clinical reasoning, code debugging, and non-abductive controls. CEDAR- GRPO improves every model on every held-out task over both base models and correctness-only GRPO, with average gains of 7.4 and 2.7 points, respectively, and a maximum gain of 30.8 points. Ablations confirm that RL, abductive reward design, and task diversity each contribute to transfer. Process-level metrics further show stronger abductive behavior, including exploration of alternatives, elimination of rivals, backtracking, and uncertainty marking.",
+      "authors": [
+        "Moein Salimi",
+        "Danial Parnian",
+        "Shaygan Adim",
+        "Amirmohammad Ebrahiminasab",
+        "Nima Alighardashi",
+        "Parsa Gholami",
+        "Sahand Akramipour",
+        "Mahdi Jafari Siavoshani",
+        "Mohammad Hossein Rohban"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-14T18:02:07Z",
+      "updated": "2026-08-14T18:02:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14791v1",
+      "abs_url": "https://arxiv.org/abs/2608.14791",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14791",
+      "summary_zh": "针对大模型在溯因推理（Abductive Reasoning）中缺乏通用迁移能力的问题，CEDAR-GRPO 引入了一种过程感知强化学习框架，通过结合最终答案正确性与证据覆盖率、证据到解释方向性等奖励机制，对模型进行领域中立的推理训练。该方法不仅优化了结果，还通过过程级奖励引导模型展现出探索替代方案、排除竞争假设及回溯等关键推理行为。在涵盖假设选择、临床推理、代码调试等 11 项未见任务的广泛评估中，CEDAR-GRPO 显著优于基准模型及仅基于正确性奖励的 GRPO，平均提升 2.7 至 7.4 个百分点，最高提升达 30.8 个百分点，验证了其在提升大模型通用溯因推理能力方面的有效性。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.14790",
+      "title": "Qwen-Video-Edit: Instruction-Based Video Editing by Repurposing an Image Editing Model",
+      "abstract": "Instruction-based video editing is commonly built on video-pretrained generative backbones: a video diffusion transformer is adapted, at considerable cost, to condition on a source video and an editing instruction. In this report we explore a different route and show that a strong instruction-based image editing model can edit videos by operating directly on video-VAE latents. Starting from Qwen-Image-Edit, we arrange the latent frames of a Wan~2.1 video VAE as tiles of one large virtual image, reuse the editor's image positional encoding for every tile, and bridge the two latent spaces with a pair of lightweight input/output projections warm-started from the editor's own patchify and unpatchify layers, so that at initialization a (static) video is embedded exactly as an image the model already understands. The whole system is then fine-tuned on the public Ditto-1M editing triplets, and a few denoising steps of Wan~2.2 serve as an optional temporal enhancer. We motivate the design with a chain of zero-training observations: the stock image editor already edits a video presented as a contact sheet; it is indifferent to whether the sheet's tokens come from one joint encode or from per-frame encodes stitched in latent space; and it even edits genuine video latents zero-shot to a clearly recognizable degree, leaving fine-tuning only a fidelity gap to close. Our results suggest that, despite the large investment in training video latent spaces, per-frame video latents remain close enough to the image domain that mature image editing priors transfer with minimal adaptation. Project Page: https://yunpeng1998.github.io/Qwen-Video-Edit-Page; Code: https://github.com/yunpeng1998/Qwen-Video-Edit; Model: https://huggingface.co/yunpeng1998/Qwen-Video-Edit.",
+      "authors": [
+        "Yunpeng Bai",
+        "Yossi Gandelsman",
+        "Michaël Gharbi",
+        "Qixing Huang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-14T18:01:29Z",
+      "updated": "2026-08-14T18:01:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14790v1",
+      "abs_url": "https://arxiv.org/abs/2608.14790",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14790",
+      "summary_zh": "该研究提出了一种新颖的指令式视频编辑方法Qwen-Video-Edit，通过重新利用强大的图像编辑模型Qwen-Image-Edit来编辑视频，而非依赖于昂贵的视频预训练生成骨干。其核心创新在于将视频VAE的潜在帧排列成一个大型虚拟图像的瓦片，并利用轻量级的输入/输出投影桥接图像和视频的潜在空间，使得模型在初始化时能将静态视频视为其已理解的图像。该系统在Ditto-1M编辑三元组上进行微调，并结合Wan~2.2的去噪步骤作为可选的时间增强器，实验结果表明，即使未经视频预训练，成熟的图像编辑先验也能以最小的适应性迁移到视频领域，实现了高质量的视频编辑效果。",
+      "impact_score": null
+    },
+    {
+      "id": "2608.14787",
+      "title": "From Positionwise Confidence to Prefix Scheduling: Verifier Skipping in Speculative Decoding",
+      "abstract": "Speculative decoding is a leading technique to reduce the cost of autoregressive generation by using a small drafter to propose several tokens, which are then verified in parallel by a larger target model. Speculative diffusion decoding (SDD) further removes sequential drafting by generating every position in a draft block in parallel with a discrete diffusion model. However, SDD still invokes the target on every block, leaving verification as a potential bottleneck. This paper recognizes that this creates a new control handle: whether to invoke the verifier at all. Thus, we study verifier skipping, a lossy policy that commits a selected draft prefix directly, and ask which confidence signal should schedule it. Interestingly, our study finds that better token predictors need not yield better schedulers: skips require contiguous high-confidence prefixes, while short skips can induce additional drafting rounds. To study this mismatch, we compare raw confidence with learned marginal and conditional survival scores under the same policy, using Strict SDD, lenience, and top-$k$ acceptance as baselines. On HumanEval with DiffuCoder-7B-Instruct and Qwen3-32B, all three confidence signals save $9.6\\%$ to $13.5\\%$ of verifier calls at the same observed pass@1 as Strict SDD. Surprisingly, raw confidence saves the most; marginal survival has higher positionwise AUROC than raw confidence at most positions, yet neither learned signal dominates online. Our analysis shows that verifier skipping is a useful new lossy axis and, surprisingly, its key challenge is prefix scheduling rather than token prediction alone.",
+      "authors": [
+        "Haoxuan Luo",
+        "Jameson Sandler",
+        "Ferdinando Fioretto"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.CL"
+      ],
+      "published": "2026-08-14T18:00:08Z",
+      "updated": "2026-08-14T18:00:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.14787v1",
+      "abs_url": "https://arxiv.org/abs/2608.14787",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14787",
+      "summary_zh": "这篇论文旨在解决推测解码（speculative decoding）中验证器（verifier）调用频繁的问题，尤其是在推测扩散解码（SDD）中，即使草稿模型并行生成，目标模型仍需对每个块进行验证。研究提出了一种名为“验证器跳过”（verifier skipping）的策略，允许直接提交选定的草稿前缀，从而减少验证器调用，并探讨了哪种置信度信号最适合调度跳过。关键创新点在于认识到验证器调用本身是一个可控变量，并发现更好的token预测器不一定能带来更好的调度器，因为跳过需要连续的高置信度前缀，而短跳过可能导致额外的草稿轮次。实验在HumanEval数据集上，使用DiffuCoder-7B-Instruct和Qwen3-32B模型，结果显示，无论是原始置信度、学习到的边际生存分数还是条件生存分数，都能在保持相同pass@1性能的同时，节省9.6%到13.5%的验证器调用，其中原始置信度节省最多。",
+      "impact_score": null
+    },
     {
       "id": "2608.14530",
       "title": "Marionette: Predicting World States, Rendering Geometry, Painting Appearance",
@@ -163,8 +402,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14430",
-      "summary_zh": "该论文旨在统一扩散模型中碎片化的强化学习（RL）算法，这些算法目前分为基于逆轨迹（reverse-trajectory）的方法和基于前向匹配（forward-matching）的方法。通过从正则化扩散-RL目标出发，并利用采样SDE之间的重要性采样，论文推导出了一个轨迹空间上的显式策略梯度估计器，该估计器包含Flow-GRPO等方法中的随机Itô积分。关键创新在于，论文进一步推导出一个等效的方差缩减值梯度形式，该形式恢复了AWM和DiffusionNFT等方法的前向匹配结构，从而揭示了这些方法家族之间的经验差距是方差缩减而非RL原理的差异。在此统一框架下，论文提出了一个多样本KDE值梯度估计器和尺度有界权重族，并在SD3.5-M和Qwen-Image模型上的实验验证了方差缩减的解释，并表明新方法优于现有的扩散-RL基线。",
-      "impact_score": null
+      "summary_zh": "该论文旨在统一扩散模型中碎片化的强化学习（RL）算法，这些算法目前分为基于逆轨迹（reverse-trajectory）的方法和基于前向匹配（forward-matching）的方法。通过从正则化扩散-RL目标出发，并利用采样SDE之间的重要性采样，论文推导出了一个轨迹空间上的显式策略梯度估计器，该估计器包含Flow-GRPO等方法中的随机Itô积分。关键创新在于，论文进一步推导出一个等效的方差缩减值梯度形式，该形式恢复了AWM和DiffusionNFT等方法的前向匹配结构，从而揭示了这些方法家族之间的经验差距是方差缩减而非RL原理的差异。在此统一框架下，论文提出了一个多样本KDE值梯度估计器和尺度有界权重族，并在SD3.5-M和Qwen-Image模型上的实验验证了方差缩减的解释，并表明新方法优于现有的扩散-RL基线。"
     },
     {
       "id": "2608.14401",
@@ -189,8 +427,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14401",
-      "summary_zh": "这篇论文旨在解决离线强化学习中，由于奖励函数和转移核未知导致无法直接估计最优动作-值函数 $Q^*$ 的问题。它提出了一种新颖的框架，将算子估计与值函数学习解耦，首先利用条件扩散模型估计奖励律和转移核，从而构建数据驱动的最优贝尔曼算子近似。接着，将这些估计器代入贝尔曼方程，通过最小化神经网络函数类上的经验贝尔曼残差来获得 $Q^*$ 的深度估计器。理论分析建立了通过条件扩散估计学习最优贝尔曼算子在总变差距离上的非渐近收敛率，并为过量贝尔曼残差风险建立了 $\\widetilde{\\mathcal O}\\bigl(n^{-\\frac{2β}{d_x+d_a+2β}}\\bigr)$ 的预言值阶段率，最终在可集中性条件下，将此残差界转化为 $Q^*$ 深度估计器的 $L^2$ 收敛率 $\\widetilde{\\mathcal O}\\bigl(n^{-\\fracβ{d_x+d_a+2β}}\\bigr)$，且不依赖于深度强化学习理论中常见的完备性假设。广泛的数值实验验证了该方法的有效性和强大的经验性能。",
-      "impact_score": null
+      "summary_zh": "这篇论文旨在解决离线强化学习中，由于奖励函数和转移核未知导致无法直接估计最优动作-值函数 $Q^*$ 的问题。它提出了一种新颖的框架，将算子估计与值函数学习解耦，首先利用条件扩散模型估计奖励律和转移核，从而构建数据驱动的最优贝尔曼算子近似。接着，将这些估计器代入贝尔曼方程，通过最小化神经网络函数类上的经验贝尔曼残差来获得 $Q^*$ 的深度估计器。理论分析建立了通过条件扩散估计学习最优贝尔曼算子在总变差距离上的非渐近收敛率，并为过量贝尔曼残差风险建立了 $\\widetilde{\\mathcal O}\\bigl(n^{-\\frac{2β}{d_x+d_a+2β}}\\bigr)$ 的预言值阶段率，最终在可集中性条件下，将此残差界转化为 $Q^*$ 深度估计器的 $L^2$ 收敛率 $\\widetilde{\\mathcal O}\\bigl(n^{-\\fracβ{d_x+d_a+2β}}\\bigr)$，且不依赖于深度强化学习理论中常见的完备性假设。广泛的数值实验验证了该方法的有效性和强大的经验性能。"
     },
     {
       "id": "2608.14332",
@@ -299,8 +536,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14277",
-      "summary_zh": "该研究旨在解决将长上下文推理能力从大型教师模型通过在策略蒸馏（OPD）转移到短上下文学生模型时遇到的实际挑战，包括分词器不匹配、师生分布不匹配、响应长度爆炸和训练不稳定。为应对这些问题，研究提出了一种名为 SimpleOPD 的方法，它在共享文本空间中进行 OPD，仅对学生和教师分词器下占据相同文本跨度的 token 进行对齐，并引入学生参考 KL 损失和掩盖特殊终止 token 的优势，以限制学生模型过度生成和保持策略稳定。实验结果表明，SimpleOPD 在 Qwen3、Qwen3.5 等多种学生模型上，尤其在自然语言数学证明方面，取得了显著提升，例如 Intern-S2-Preview 在 ProofBench 上提升了 21.2 分，达到 55.2 分，甚至超越了 Gemini-2.5-Pro，同时在 HLE 和 HiPhO 等科学基准上也展现出泛化能力。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决将长上下文推理能力从大型教师模型通过在策略蒸馏（OPD）转移到短上下文学生模型时遇到的实际挑战，包括分词器不匹配、师生分布不匹配、响应长度爆炸和训练不稳定。为应对这些问题，研究提出了一种名为 SimpleOPD 的方法，它在共享文本空间中进行 OPD，仅对学生和教师分词器下占据相同文本跨度的 token 进行对齐，并引入学生参考 KL 损失和掩盖特殊终止 token 的优势，以限制学生模型过度生成和保持策略稳定。实验结果表明，SimpleOPD 在 Qwen3、Qwen3.5 等多种学生模型上，尤其在自然语言数学证明方面，取得了显著提升，例如 Intern-S2-Preview 在 ProofBench 上提升了 21.2 分，达到 55.2 分，甚至超越了 Gemini-2.5-Pro，同时在 HLE 和 HiPhO 等科学基准上也展现出泛化能力。"
     },
     {
       "id": "2608.14221",
@@ -445,8 +681,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14144",
-      "summary_zh": "该研究旨在解决视觉在策略蒸馏（Visual On-Policy Distillation）中，当没有特权信息（如参考答案、真实区域）或更强的教师模型时，如何创建信息不对称的问题。它通过从学生模型中减去信息而非向教师模型添加特权信息来创造不对称性，从而在没有标注或额外奖励的情况下生成有效的学习信号。基于此原理，论文提出了自监督视觉在策略蒸馏（S$^2$VOPD）方法，利用不对称增强视图构建在策略学习信号，将教师模型在原始图像上的分布蒸馏到学生模型在强增强视图上的分布。实验结果表明，不对称性和增强强度对性能至关重要，且增强必须保持任务一致性。S$^2$VOPD在六个细粒度感知基准测试中将Qwen3.5-4B的性能从70.7%提升至77.4%，超越了所有对比的开源模型，甚至包括235B的Qwen3-VL，并超越了GPT-5.4，在相同训练数据下恢复了96%的特权信息方法所带来的提升。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决视觉在策略蒸馏（Visual On-Policy Distillation）中，当没有特权信息（如参考答案、真实区域）或更强的教师模型时，如何创建信息不对称的问题。它通过从学生模型中减去信息而非向教师模型添加特权信息来创造不对称性，从而在没有标注或额外奖励的情况下生成有效的学习信号。基于此原理，论文提出了自监督视觉在策略蒸馏（S$^2$VOPD）方法，利用不对称增强视图构建在策略学习信号，将教师模型在原始图像上的分布蒸馏到学生模型在强增强视图上的分布。实验结果表明，不对称性和增强强度对性能至关重要，且增强必须保持任务一致性。S$^2$VOPD在六个细粒度感知基准测试中将Qwen3.5-4B的性能从70.7%提升至77.4%，超越了所有对比的开源模型，甚至包括235B的Qwen3-VL，并超越了GPT-5.4，在相同训练数据下恢复了96%的特权信息方法所带来的提升。"
     },
     {
       "id": "2608.14135",
@@ -509,8 +744,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14125",
-      "summary_zh": "该论文旨在解决现有轻量级视觉世界模型 LeWM 在轨迹规划中，因仅依赖预测终点距离进行决策而导致的规划效果不佳问题。为此，提出 Traj-LeWM 模型，在保留 LeWM 局部动力学目标和终点得分的基础上，引入了一种目标条件下的潜在轨迹成本（Latent Trajectory Cost, LTC），用于聚合轨迹层面的信息作为补充信号。关键创新在于，Traj-LeWM 在训练阶段通过 LTC 进行轨迹偏好监督来塑造共享表示，并在规划阶段将 LTC 与终点距离结合，以纳入中间路径信息进行候选轨迹排序。实验结果表明，Traj-LeWM 在 Push-T、OGBench-Cube、Reacher 和 Two-Room 等基准测试中，性能分别比 LeWM 提高了 3%、14%、7% 和 7%，证明了轨迹级表示塑造和路径感知候选排序的互补作用。",
-      "impact_score": null
+      "summary_zh": "该论文旨在解决现有轻量级视觉世界模型 LeWM 在轨迹规划中，因仅依赖预测终点距离进行决策而导致的规划效果不佳问题。为此，提出 Traj-LeWM 模型，在保留 LeWM 局部动力学目标和终点得分的基础上，引入了一种目标条件下的潜在轨迹成本（Latent Trajectory Cost, LTC），用于聚合轨迹层面的信息作为补充信号。关键创新在于，Traj-LeWM 在训练阶段通过 LTC 进行轨迹偏好监督来塑造共享表示，并在规划阶段将 LTC 与终点距离结合，以纳入中间路径信息进行候选轨迹排序。实验结果表明，Traj-LeWM 在 Push-T、OGBench-Cube、Reacher 和 Two-Room 等基准测试中，性能分别比 LeWM 提高了 3%、14%、7% 和 7%，证明了轨迹级表示塑造和路径感知候选排序的互补作用。"
     },
     {
       "id": "2608.14122",
@@ -654,8 +888,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14043",
-      "summary_zh": "该研究旨在解决 Diffusion Transformers (DiTs) 在视频生成中高层语义规划能力有限的问题，尤其是在多模态大语言模型 (MLLM) 与扩散模型融合方面，现有方法多将 MLLM 视为冻结的特征编码器。研究系统地探索了 MLLM 与 DiT 融合生成视频的策略，包括中间表示、MLLM 生成方式以及 DiT 整合方式。研究发现，基于 EMA 的离散语义视觉 token 作为稳定且富有表现力的接口，通过自回归因果建模生成这些 token，并采用显式视觉 token 条件化比提示词优化或潜在空间桥接更有效。基于这些发现，提出了 BiVidGen 框架，其中 MLLM 生成语义视觉 token，DiT 通过多层交叉注意力结合文本和这些 token 生成视频。实验表明，BiVidGen 在语义对齐和时间连贯性方面优于微调的 DiT 基线，并在 VBench-Long 上取得了更强的性能，证明了 MLLM 进行显式视觉规划作为中间接口的有效性。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决 Diffusion Transformers (DiTs) 在视频生成中高层语义规划能力有限的问题，尤其是在多模态大语言模型 (MLLM) 与扩散模型融合方面，现有方法多将 MLLM 视为冻结的特征编码器。研究系统地探索了 MLLM 与 DiT 融合生成视频的策略，包括中间表示、MLLM 生成方式以及 DiT 整合方式。研究发现，基于 EMA 的离散语义视觉 token 作为稳定且富有表现力的接口，通过自回归因果建模生成这些 token，并采用显式视觉 token 条件化比提示词优化或潜在空间桥接更有效。基于这些发现，提出了 BiVidGen 框架，其中 MLLM 生成语义视觉 token，DiT 通过多层交叉注意力结合文本和这些 token 生成视频。实验表明，BiVidGen 在语义对齐和时间连贯性方面优于微调的 DiT 基线，并在 VBench-Long 上取得了更强的性能，证明了 MLLM 进行显式视觉规划作为中间接口的有效性。"
     },
     {
       "id": "2608.14022",
@@ -688,8 +921,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.14022",
-      "summary_zh": "ForgeWM 旨在解决动作条件视频世界模型在低延迟因果生成和响应游戏原生控制方面的挑战，尤其是在将因果蒸馏扩展到交互式世界模型时，需要处理离散键盘状态和连续鼠标运动与时间压缩的潜在块对齐问题。该方法提出一个渐进式框架，通过域适应、教师强制因果训练、因果一致性蒸馏以及与双向教师进行策略分布匹配，将双向动作条件视频生成器转化为高效的少步世界模型。ForgeWM 实现了 1、2 和 4 步的稳态去噪预算，并支持双路径部署协议，结合了延迟关键的交互和可选的重放时间细化。在 Minecraft 轨迹上，ForgeWM 在图像质量、参考对齐运动剖面一致性、动作符号准确性和鼠标控制准确性方面表现优异，并实现了最低的参考 LPIPS，该四阶段方法也适用于手柄控制的 FPS 游戏。",
-      "impact_score": null
+      "summary_zh": "ForgeWM 旨在解决动作条件视频世界模型在低延迟因果生成和响应游戏原生控制方面的挑战，尤其是在将因果蒸馏扩展到交互式世界模型时，需要处理离散键盘状态和连续鼠标运动与时间压缩的潜在块对齐问题。该方法提出一个渐进式框架，通过域适应、教师强制因果训练、因果一致性蒸馏以及与双向教师进行策略分布匹配，将双向动作条件视频生成器转化为高效的少步世界模型。ForgeWM 实现了 1、2 和 4 步的稳态去噪预算，并支持双路径部署协议，结合了延迟关键的交互和可选的重放时间细化。在 Minecraft 轨迹上，ForgeWM 在图像质量、参考对齐运动剖面一致性、动作符号准确性和鼠标控制准确性方面表现优异，并实现了最低的参考 LPIPS，该四阶段方法也适用于手柄控制的 FPS 游戏。"
     },
     {
       "id": "2608.14015",
@@ -780,8 +1012,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.13854",
-      "summary_zh": "该研究旨在解决小众多语言代码翻译中并行监督数据稀疏导致翻译不可执行的问题，尤其是在C++、Java、Python等主流语言之外的场景。研究提出了一种基于执行验证监督的偏好强化学习方法，首先将可验证的Python种子程序扩展为多语言代码池，然后利用执行结果为基础LLM生成的翻译候选进行标注，训练一个奖励模型来评估跨语言翻译质量，最后使用GRPO算法和奖励模型优化基础LLM。为评估小众翻译能力，引入了HumanEval-X++基准测试，实验结果显示，在Qwen-3.5 4B和9B模型上，该方法比未训练基线有显著提升，其中4B模型在HumanEval-X++上平均提升13%，中等语言提升21%，为多对多编程语言翻译的质量提升提供了可靠的数据生成、训练和基准测试方法。",
-      "impact_score": null
+      "summary_zh": "该研究旨在解决小众多语言代码翻译中并行监督数据稀疏导致翻译不可执行的问题，尤其是在C++、Java、Python等主流语言之外的场景。研究提出了一种基于执行验证监督的偏好强化学习方法，首先将可验证的Python种子程序扩展为多语言代码池，然后利用执行结果为基础LLM生成的翻译候选进行标注，训练一个奖励模型来评估跨语言翻译质量，最后使用GRPO算法和奖励模型优化基础LLM。为评估小众翻译能力，引入了HumanEval-X++基准测试，实验结果显示，在Qwen-3.5 4B和9B模型上，该方法比未训练基线有显著提升，其中4B模型在HumanEval-X++上平均提升13%，中等语言提升21%，为多对多编程语言翻译的质量提升提供了可靠的数据生成、训练和基准测试方法。"
     }
   ]
 }
