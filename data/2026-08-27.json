@@ -1,6 +1,6 @@
 {
   "date": "2026-08-27",
-  "generated_at": "2026-08-30T07:07:34.607571+00:00",
+  "generated_at": "2026-08-31T07:19:52.465732+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,117 @@
     }
   },
   "papers": [
+    {
+      "id": "2608.27757",
+      "title": "Beyond Search-Imitation: Prior-Directed Exploration for Searchless Chess",
+      "abstract": "Searchless chess networks reach human master strength from a single forward pass by imitating a stronger teacher: the strongest, Leela Chess Zero's (Lc0) released Chessformer, distills the visit counts of an AlphaZero-style Monte Carlo Tree Search (MCTS). Imitating a search is a poor proxy for playing without one, so we fine-tune for single-pass strength with self-play reinforcement learning (RL). Its exploration is usually supplied by an entropy bonus, the reverse Kullback-Leibler (KL) divergence to uniform. We replace it with a forward, mass-covering KL toward the network's own MCTS prior (prior-directed exploration), so exploration covers the moves the prior judges promising, and pair it with an entropy-adaptive sampling temperature, set by the value head's outcome uncertainty, that sharpens once a position is decided. In about two thousand steps it raises puzzle accuracy from 93.9% to 94.9% on a 100,000-puzzle suite and mate-in-four accuracy from 77% to 81% while holding searchless strength at or slightly above the base. Measuring tactical accuracy and playing strength together across a matched-compute sweep, we find the two dissociate: accuracy gains fall in a one-point band while ratings straddle the base, and a control fine-tuned on puzzles alone posts the study's largest tactical gains while shedding roughly 260 Elo; a better puzzle-solver is not thereby a stronger player. Distribution-level measurements show what anchoring buys: without a regularizer self-play collapses onto a single line of play, and the puzzles newly solved are the near misses whose winning move the prior kept alive. The forward-KL prior tops the rating ladder, statistically tied with a reverse-KL anchor that concentrates twice as hard and drops the hardest solutions the mass-covering prior keeps in support.",
+      "authors": [
+        "Szymon Miłosz",
+        "Piotr Duch",
+        "Szymon Grabowski"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-27T22:42:08Z",
+      "updated": "2026-08-27T22:42:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27757v1",
+      "abs_url": "https://arxiv.org/abs/2608.27757",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27757",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.27729",
+      "title": "Below the Noise Floor: Bimodal Seed Collapse and Distinct Failure Modes in Small-Model Knowledge Distillation",
+      "abstract": "Function routing -- selecting the correct API call from a fixed catalog given a natural-language request -- is a deployment problem where small students are attractive but knowledge distillation gains are typically reported single-seed, at scales where seed variance is unknown. On a 740-instance healthcare API routing task with a 1.5B Qwen student and a 20B teacher, we compare eight KD variants against supervised cross-entropy, using three to six seeds for key configurations. We find: (i) per-seed standard deviation ranges from 2.8 to 48.7 percentage points, swallowing every claimed KD gain below five points; (ii) three of seven KD variants exhibit bimodal collapse, with at least one in three to five seeds falling below 55% accuracy while the others train normally, and a fourth showing elevated variance; (iii) collapse has distinct modes -- wrong-function selection for ce_kd and ce_paraphrase, and a previously undocumented output-truncation mode for reasoning_kd, where the model emits reasoning but terminates before producing a function name (0.9% accuracy); (iv) only progressive_kd and rank_kd avoid collapse across observed seeds, with sigma <= 3.9 pp; (v) a naive cross-split +3.78 pp gain from input enrichment reverses to -2.70 pp under controlled within-split multi-seed re-testing. Single-seed evaluation is therefore unable to detect central failure modes in small-model KD.",
+      "authors": [
+        "Dipto Sumit",
+        "Sakib Ul Haque",
+        "Farig Sadeque"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-27T21:40:19Z",
+      "updated": "2026-08-27T21:40:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27729v1",
+      "abs_url": "https://arxiv.org/abs/2608.27729",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27729",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.27728",
+      "title": "Diffusion Distillation for Efficient Weather Ensembles",
+      "abstract": "Diffusion models generate skillful weather ensembles but require costly iterative sampling. We introduce a supervised energy-distance distillation method that compresses a multi-step diffusion teacher into a single-step student by aligning student forecasts with teacher samples and ground-truth observations. Experiments on global forecasting and typhoon-track prediction show that our student outperforms existing distillation methods and preserves skill for extreme events. It matches or surpasses the teacher across key metrics using only one neural function evaluation per autoregressive step.",
+      "authors": [
+        "Yiming Yang",
+        "Valentin Brekke",
+        "James Briant",
+        "Serge Guillas"
+      ],
+      "categories": [
+        "cs.LG",
+        "stat.AP"
+      ],
+      "published": "2026-08-27T21:39:50Z",
+      "updated": "2026-08-27T21:39:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27728v1",
+      "abs_url": "https://arxiv.org/abs/2608.27728",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27728",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.27678",
+      "title": "SegBench-GC: Testing Segmentation Invariance in Multi-Step Offline Goal-Conditioned Reinforcement Learning",
+      "abstract": "Offline goal-conditioned reinforcement learning (GCRL) often uses trajectory structure for future-goal sampling and multi-step targets, yet logged trajectories may be partitioned for administrative reasons that do not correspond to termination. We introduce SegBench-GC, a controlled stress test of segmentation invariance that holds transitions, source trajectories, goal sampling, optimization settings, and evaluation fixed while varying only artificial backup boundaries and whether those boundaries retain continuation value. Continuation-valid targets (CVT) provide the segmentation-consistent control: reward accumulation stops at an artificial cut, but the target bootstraps from its stored successor. In a matched-count PointMaze study with 35,000 artificial cuts, three segmentation realizations, and three optimization seeds, final 50-episode-per-task success is 50.5% uncut, 39.1% with CVT, and 19.1% when the same cuts are treated as absorbing; across segmentation realizations, naive mean success ranges from 4.8% to 31.9%. An independent published n-step baseline (n=25) from the Decoupled Q-Chunking codebase shows the same failure on Puzzle-4x5: 47.2% uncut, 58.5% CVT, and 0.27% naive across three optimization seeds. A target-level diagnostic verifies the analytic target difference to numerical precision, and learned-critic diagnostics show a large optimistic shift under naive handling while CVT remains approximately aligned with the uncut critic. CVT applies standard continuation bootstrapping rather than a new Bellman rule; the contribution is the controlled benchmark, failure isolation, and cross-learner evidence that administrative segmentation can materially change multi-step offline GCRL.",
+      "authors": [
+        "Musa Shams"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-27T20:07:36Z",
+      "updated": "2026-08-27T20:07:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27678v1",
+      "abs_url": "https://arxiv.org/abs/2608.27678",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27678",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.27672",
+      "title": "First Make It Playable, Then Make It Good: Staged Interaction Learning for Small Dialogue-Game Agents",
+      "abstract": "We present Qwen-GuidePlay-2B, a 2B-parameter language model for dialogue-game interaction. We fine-tune Qwen3.5-2B using three steps: a) SFT on only successful game trajectories from Playpen, b) weighted turn-level SFT, and c) teacher-guided SFT. The teacher model (which is a larger model) is only used to fix formatting and evaluate examples, but does not create new gold actions. Our final model scores 57.12 clemscore and 42.68 statscore on the public Playpen validation. In the officially released challenge results, our model obtains the second-highest Playpen clemscore delta among submitted systems (which is approximately +36 over its base model). Our findings suggest that imitating full trajectories helps with playability, while turn-level and teacher-guided training usually improve decision-making and increase the overall score. Alternative procedurally heavy approaches like replay-repair and hard-example mining did not help, which suggests that small models are performant simply by using careful curation strategies rather than aggressive changes. We make available both the model and the code for reproducibility.",
+      "authors": [
+        "Syed Mahbubul Huq",
+        "Pranava Madhyastha"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-27T19:58:06Z",
+      "updated": "2026-08-27T19:58:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27672v1",
+      "abs_url": "https://arxiv.org/abs/2608.27672",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27672",
+      "summary_zh": ""
+    },
     {
       "id": "2608.27455",
       "title": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes",
@@ -86,13 +197,12 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27448",
-      "summary_zh": "这篇论文提出了一种名为 TTPO（Test-Time Policy Optimization）的方法，旨在解决大型语言模型在数学推理任务中，现有后训练方法（如 RL 和 OPSD）无法在测试时进行训练的问题，因为它们依赖于真实标签。TTPO 通过结合多数投票伪标签、不对称目标函数和 token 级选择，实现了在无标签测试时进行策略优化。具体来说，TTPO 利用 OPSD 蒸馏与伪标签一致的输出，并用 Grouped RL 惩罚不一致的输出，同时在 token 级别对蒸馏和 RL 进行精细化调整，以应对伪标签错误。实验结果表明，TTPO 在五个竞赛级基准测试中达到了与有标签 OPSD 相当的性能，显著提升了 Qwen3-1.7B 模型在测试时训练的准确率，并在跨任务泛化方面表现出色。",
-      "impact_score": null
+      "summary_zh": "这篇论文提出了一种名为 TTPO（Test-Time Policy Optimization）的方法，旨在解决大型语言模型在数学推理任务中，现有后训练方法（如 RL 和 OPSD）无法在测试时进行训练的问题，因为它们依赖于真实标签。TTPO 通过结合多数投票伪标签、不对称目标函数和 token 级选择，实现了在无标签测试时进行策略优化。具体来说，TTPO 利用 OPSD 蒸馏与伪标签一致的输出，并用 Grouped RL 惩罚不一致的输出，同时在 token 级别对蒸馏和 RL 进行精细化调整，以应对伪标签错误。实验结果表明，TTPO 在五个竞赛级基准测试中达到了与有标签 OPSD 相当的性能，显著提升了 Qwen3-1.7B 模型在测试时训练的准确率，并在跨任务泛化方面表现出色。"
     },
     {
       "id": "2608.27429",
       "title": "Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron Occupation",
-      "abstract": "Chemical reactions are fundamentally transformations in electron space, yet most machine learning approaches model them either through \\textit{de novo} generation of product molecules or through heuristic graph edits that operate directly on molecular topology. We introduce MAELLE (\\textbf{M}ech\\textbf{A}nistic \\textbf{E}dit f\\textbf{L}ow-matching on e\\textbf{L}ectron r\\textbf{E}arrangements), which instead models reactions as discrete flow matching over electron occupation vectors. Concretely, we formulate the reactant-to-product mapping as a Continuous-time Markov Chain (CTMC) over the graph-structured integer-valued electron occupation space defined on all bonding, non-bonding, and hydrogen sites. To construct the intermediate edit trajectories, we generalize the discrete flow matching mixture path to discrete electron rearrangements using Optimal Transport, yielding a sequence of mechanistically interpretable edit moves without requiring elementary step annotations. MAELLE achieves competitive performance on the USPTO-480K benchmark compared with leading reaction prediction models. Beyond in-distribution accuracy, we evaluate robustness across two out-of-distribution settings - structural complexity and reaction type - and find that MAELLE maintains strong performance where existing methods degrade. Finally, because the learned flow operates over the full electron redistribution, MAELLE naturally recovers mechanistic trajectories that align with known chemistry and can predict side products of a reaction.",
+      "abstract": "Chemical reactions are fundamentally transformations in electron space, yet most machine learning approaches model them either through de novo generation of product molecules or through heuristic graph edits that operate directly on molecular topology. We introduce MAELLE (MechAnistic Edit fLow-matching on eLectron rEarrangements), which instead models reactions as discrete flow matching over electron occupation vectors. Concretely, we formulate the reactant-to-product mapping as a Continuous-time Markov Chain (CTMC) over the graph-structured integer-valued electron occupation space defined on all bonding, non-bonding, and hydrogen sites. To construct the interpolants between the reactants and products, we generalize the discrete flow matching mixture path to an edit-based formulation, where the electron moves are interpolated using Optimal Transport, yielding a mechanism-like set of moves without elementary step annotations. MAELLE achieves competitive performance on the USPTO-480K benchmark compared with leading reaction prediction models. Beyond in-distribution learning, we evaluate robustness across two out-of-distribution settings - structural complexity and reaction type - and find that MAELLE maintains strong performance where existing methods degrade. Finally, because the learned flow operates over the full electron redistribution, MAELLE naturally recovers mechanistic trajectories that align with known chemistry and can predict side products of a reaction.",
       "authors": [
         "Nguyen Xuan-Vu",
         "Octavian Susanu",
@@ -103,8 +213,8 @@
         "cs.AI"
       ],
       "published": "2026-08-27T17:50:44Z",
-      "updated": "2026-08-27T17:50:44Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.27429v1",
+      "updated": "2026-08-28T11:35:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27429v2",
       "abs_url": "https://arxiv.org/abs/2608.27429",
       "topics": [
         "other"
@@ -137,8 +247,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27420",
-      "summary_zh": "在RLVR训练中，大型语言模型（LLM）的策略熵下降会导致推理覆盖范围变窄，影响pass@$k$指标。为解决此问题，该研究提出一种通过弱模型引导来增强LLM探索的方法，即让目标LLM基于由较小、较弱模型生成的局部推理轨迹来生成答案。这些“不熟悉”的前缀能有效打破目标模型的过度自信，鼓励其探索不同的推理路径，从而保持生成多样性。实验表明，该方法在多个数学基准测试中持续优于传统RLVR，尤其在$k$值增大时性能提升更为显著，证明其能有效扩展推理覆盖范围，并且无需额外的SFT、复杂的奖励设计或提示工程。",
-      "impact_score": null
+      "summary_zh": "在RLVR训练中，大型语言模型（LLM）的策略熵下降会导致推理覆盖范围变窄，影响pass@$k$指标。为解决此问题，该研究提出一种通过弱模型引导来增强LLM探索的方法，即让目标LLM基于由较小、较弱模型生成的局部推理轨迹来生成答案。这些“不熟悉”的前缀能有效打破目标模型的过度自信，鼓励其探索不同的推理路径，从而保持生成多样性。实验表明，该方法在多个数学基准测试中持续优于传统RLVR，尤其在$k$值增大时性能提升更为显著，证明其能有效扩展推理覆盖范围，并且无需额外的SFT、复杂的奖励设计或提示工程。"
     },
     {
       "id": "2608.27409",
@@ -195,8 +304,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27406",
-      "summary_zh": "CLAP 提出了一种跨实体动作条件视频生成框架，旨在解决现有视频模型无法利用异构视频数据学习通用物理规律的问题。它通过统一末端执行器姿态、语言指令和潜在动作来协调不同机器人平台和人类视频中差异巨大的动作表示。CLAP 采用课程学习策略，首先利用无标签视频数据学习基础物理先验，然后将其映射到末端执行器动作空间，实现零样本部署到真实世界任务。实验结果表明，CLAP 在 DROID 等复杂环境中达到或超越了最先进的单实体视频模型，并通过少样本适应进一步提升了性能，为训练单实体视频世界模型提供了新范式。",
-      "impact_score": null
+      "summary_zh": "CLAP 提出了一种跨实体动作条件视频生成框架，旨在解决现有视频模型无法利用异构视频数据学习通用物理规律的问题。它通过统一末端执行器姿态、语言指令和潜在动作来协调不同机器人平台和人类视频中差异巨大的动作表示。CLAP 采用课程学习策略，首先利用无标签视频数据学习基础物理先验，然后将其映射到末端执行器动作空间，实现零样本部署到真实世界任务。实验结果表明，CLAP 在 DROID 等复杂环境中达到或超越了最先进的单实体视频模型，并通过少样本适应进一步提升了性能，为训练单实体视频世界模型提供了新范式。"
     },
     {
       "id": "2608.27367",
@@ -217,8 +325,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27367",
-      "summary_zh": "JEPA 世界模型中的 Vision Transformer 编码器通常采用固定大小，导致在不同复杂度的任务上存在资源浪费或不足。Successive Capacity Growth (SCG) 方法提出了一种任务无关的测试验证机制，使编码器从一个最小配置（1 头、2 层）开始，根据任务需求增量地扩展宽度（增加注意力头）或深度（增加 Transformer 块）。Sketched Isotropic Gaussian Regularizer (SIGReg) 确保了学习到的语义维度保持统计独立并与预测目标对齐，有效防止模型在扩展过程中崩溃。在多对象动力学任务上，SCG 触发深度扩展，将预测损失降低 20.3%，参数效率比固定大型模型高 56 倍；在 2D 导航任务上，单次宽度扩展甚至比固定大型模型提升 23%。SCG 在所有测试环境中均匹配或超越固定小型基线，实现了显著的计算和数据效率，同时保持了表示质量。",
-      "impact_score": null
+      "summary_zh": "JEPA 世界模型中的 Vision Transformer 编码器通常采用固定大小，导致在不同复杂度的任务上存在资源浪费或不足。Successive Capacity Growth (SCG) 方法提出了一种任务无关的测试验证机制，使编码器从一个最小配置（1 头、2 层）开始，根据任务需求增量地扩展宽度（增加注意力头）或深度（增加 Transformer 块）。Sketched Isotropic Gaussian Regularizer (SIGReg) 确保了学习到的语义维度保持统计独立并与预测目标对齐，有效防止模型在扩展过程中崩溃。在多对象动力学任务上，SCG 触发深度扩展，将预测损失降低 20.3%，参数效率比固定大型模型高 56 倍；在 2D 导航任务上，单次宽度扩展甚至比固定大型模型提升 23%。SCG 在所有测试环境中均匹配或超越固定小型基线，实现了显著的计算和数据效率，同时保持了表示质量。"
     },
     {
       "id": "2608.27351",
@@ -240,15 +347,14 @@
         "cs.LG"
       ],
       "published": "2026-08-27T16:48:39Z",
-      "updated": "2026-08-27T16:48:39Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.27351v1",
+      "updated": "2026-08-28T12:17:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27351v2",
       "abs_url": "https://arxiv.org/abs/2608.27351",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27351",
-      "summary_zh": "这篇论文深入探讨了进化策略（ES）在大型语言模型（LLM）推理中的应用，旨在解决其优化行为和相对于主流后训练范式（如Group Relative Policy Optimization, GRPO）的优势范围不明确的问题。研究发现，ES通过实现更广泛的推理覆盖，能够更好地利用预训练LLM的推理能力，在理论上和经验上都优于GRPO，尤其是在Pass@K性能上，ES展现出更高的Jensen-Shannon多样性，而GRPO则出现熵崩溃。在此基础上，论文提出了一种结合GRPO在Pass@1优势和ES在Pass@K优势的序贯训练策略。此外，研究还揭示了ES尽管导致显著的整体模型参数漂移，但其性能提升主要来源于稀疏的大幅度参数更新，且不会导致灾难性遗忘。最后，论文探讨了超参数设计对ES有效性的影响，指出ES在更大的LLM中需要更小的种群规模。",
-      "impact_score": null
+      "summary_zh": "这篇论文深入探讨了进化策略（ES）在大型语言模型（LLM）推理中的应用，旨在解决其优化行为和相对于主流后训练范式（如Group Relative Policy Optimization, GRPO）的优势范围不明确的问题。研究发现，ES通过实现更广泛的推理覆盖，能够更好地利用预训练LLM的推理能力，在理论上和经验上都优于GRPO，尤其是在Pass@K性能上，ES展现出更高的Jensen-Shannon多样性，而GRPO则出现熵崩溃。在此基础上，论文提出了一种结合GRPO在Pass@1优势和ES在Pass@K优势的序贯训练策略。此外，研究还揭示了ES尽管导致显著的整体模型参数漂移，但其性能提升主要来源于稀疏的大幅度参数更新，且不会导致灾难性遗忘。最后，论文探讨了超参数设计对ES有效性的影响，指出ES在更大的LLM中需要更小的种群规模。"
     },
     {
       "id": "2608.27345",
@@ -267,7 +373,7 @@
         "Junjun He",
         "Yu Qiao",
         "Yihao Liu",
-        "Jingbo Xing",
+        "Jinbo Xing",
         "Xi Chen"
       ],
       "categories": [
@@ -275,8 +381,8 @@
         "cs.AI"
       ],
       "published": "2026-08-27T16:46:38Z",
-      "updated": "2026-08-27T16:46:38Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.27345v1",
+      "updated": "2026-08-28T16:37:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27345v2",
       "abs_url": "https://arxiv.org/abs/2608.27345",
       "topics": [
         "world-model",
@@ -364,6 +470,34 @@
         "distillation"
       ],
       "summary_zh": "这篇论文提出 Naive Prompt Optimization (NPO)，一种轻量级的单谱系方法，旨在简化自主智能体在多任务场景下的提示优化。NPO 通过一个教师模型利用 rollout 反馈迭代修订提示，解决了当前提示优化器日益复杂的问题。关键创新在于证明了更强的教师模型推理能力可以在一定程度上替代优化器侧的搜索复杂性。实验结果显示，NPO 在更少的 rollout 次数下，性能与 GEPA 相当或更优，并且其优势随教师模型能力的增强而提升；在交互式游戏中，NPO 仍与 GEPA 保持竞争力，同时 NPO 优化后的提示在其他学生模型上也能带来类似的性能提升，尤其是在同家族模型间。这表明简单的线性提示优化方法可以媲美更复杂、精密的搜索过程。"
+    },
+    {
+      "id": "2608.27529",
+      "title": "Revisiting Local Context for Long-Horizon Streaming 3D Reconstruction",
+      "abstract": "Streaming 3D reconstruction from extremely long videos requires estimating camera motion and scene geometry online under bounded memory and computation. Early streaming models achieve causal, bounded-cost inference using finite context buffers or compact recurrent states, yet their estimates often deteriorate as sequences grow. Recent methods improve long-horizon stability by coupling short-range context with persistent or multi-level long-range memory. We pursue a different route: we keep the learned temporal state strictly local and formulate predictions whose targets remain independent of sequence length. We present ABot-Recon, a simple streaming model that caches KV features from only the preceding 11 frames. It predicts a point map in the current camera coordinate system together with an adjacent-frame relative pose. These predictions remain equivariant under changes of reference frame, and global poses and geometry are recovered through sequential composition. To reduce accumulated drift, a lightweight temporal refiner improves relative rotations using recent visual and motion context, while a composition-aware pose loss supervises multi-step pose composition. Extensive evaluations on challenging long-sequence benchmarks demonstrate the superior long-horizon performance of our local-context approach. On Oxford Spires, ABot-Recon achieves an ATE of 4.35 m and an RPE-R of $0.12^\\circ$, reducing both errors by approximately 40\\% relative to the best prior results.",
+      "authors": [
+        "Jiarong Han",
+        "Jincheng Xiong",
+        "Yuzhou Liu",
+        "Linzhe Shi",
+        "Changjie Wu",
+        "Ning Guo",
+        "Mu Xu",
+        "Hang Zhang",
+        "Ming Qian"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-27T15:07:38Z",
+      "updated": "2026-08-27T15:07:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27529v1",
+      "abs_url": "https://arxiv.org/abs/2608.27529",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27529",
+      "summary_zh": ""
     },
     {
       "id": "2608.27198",
@@ -546,7 +680,7 @@
     {
       "id": "2608.27073",
       "title": "SpatialCrafter: Single Image World Modeling with Generative 3D Proxies",
-      "abstract": "Explorable image-to-scene generation is essential for applications in gaming, robotics, and virtual reality. Existing methods based on video diffusion model (VDM) commonly rely on incomplete conditioning signals such as sparse point clouds or 2D panoramas, leading to stochastic hallucinations, long-term drifts and suboptimal 3D consistency. We present SpatialCrafter, a novel two-stage framework that addresses these issues by introducing a global 3D proxy for high-fidelity image-to-scene generation. Specifically, we decompose the generation process into global proxy generation and appearance refinement. For proxy generation, we propose a Point-anchored Sparse Structure~(PaSS) Flow module that predicts a spatially aligned and geometrically consistent 3D proxy. For appearance refinement, we re-frame the VDM as a Generative Deferred Refiner which synthesizes high-frequency photorealistic details upon proxy-defined scene geometry. To better integrate the proxy with the pre-trained VDM, we introduce Parallel Geometry Injection and Proxy-Aware Corruption training strategies, which improve robustness to proxy artifacts without disrupting the pretrained generative manifold. Furthermore, as no suitable dataset exists for this explorable scene generation task, we construct a new large-scale dataset of 115K scenes. To the best of our knowledge, it is the first hybrid dataset for image-to-scene generation. Extensive experiments on both synthetic and real-world datasets show that SpatialCrafter outperforms state-of-the-art methods, mitigates long-term drift, and remains robust and consistent under rapid camera motion and extreme viewpoint changes. Code, models, and the newly constructed dataset will be publicly released. See more at https://fangchuan.github.io/SpatialCrafter/.",
+      "abstract": "Explorable image-to-scene generation is essential for applications in gaming, robotics, and virtual reality. Existing methods based on video diffusion model (VDM) commonly rely on incomplete conditioning signals such as sparse point clouds or 2D panoramas, leading to stochastic hallucinations, long-term drifts and suboptimal 3D consistency. We present SpatialCrafter, a novel two-stage framework that addresses these issues by introducing a global 3D proxy for high-fidelity image-to-scene generation. Specifically, we decompose the generation process into global proxy generation and appearance refinement. For proxy generation, we propose a Point-anchored Sparse Structure~(PaSS) Flow module that predicts a spatially aligned and geometrically consistent 3D proxy. For appearance refinement, we re-frame the VDM as a Generative Deferred Refiner which synthesizes high-frequency photorealistic details upon proxy-defined scene geometry. To better integrate the proxy with the pre-trained VDM, we introduce Parallel Geometry Injection and Proxy-Aware Corruption training strategies, which improve robustness to proxy artifacts without disrupting the pretrained generative manifold. Furthermore, as no suitable dataset exists for this explorable scene generation task, we construct a new large-scale dataset of 115K scenes. To the best of our knowledge, it is the first hybrid dataset for image-to-scene generation. Extensive experiments on both synthetic and real-world datasets show that SpatialCrafter outperforms state-of-the-art methods, mitigates long-term drift, and remains robust and consistent under rapid camera motion and extreme viewpoint changes. Our project page: \\href{https://fangchuan.github.io/SpatialCrafter/}{fangchuan.github.io/SpatialCrafter/}",
       "authors": [
         "Chuan Fang",
         "Lingteng Qiu",
@@ -565,8 +699,8 @@
         "cs.RO"
       ],
       "published": "2026-08-27T12:58:37Z",
-      "updated": "2026-08-27T12:58:37Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.27073v1",
+      "updated": "2026-08-28T15:48:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27073v2",
       "abs_url": "https://arxiv.org/abs/2608.27073",
       "topics": [
         "world-model",
@@ -754,8 +888,8 @@
         "cs.MM"
       ],
       "published": "2026-08-27T11:15:39Z",
-      "updated": "2026-08-27T11:15:39Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.26971v1",
+      "updated": "2026-08-28T02:16:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.26971v2",
       "abs_url": "https://arxiv.org/abs/2608.26971",
       "topics": [
         "other"
@@ -869,6 +1003,30 @@
       "summary_zh": ""
     },
     {
+      "id": "2608.26907",
+      "title": "Climate Physics Dynamic Matching",
+      "abstract": "Deep generative models such as flow matching and diffusion models have shown potential for learning complex dynamical systems, but typically act as black boxes that neglect underlying physical structure, while physics-based models governed by partial differential equations are often incomplete due to missing source terms, or uncertain parametrisations. We present Climate Physics Dynamic Matching (ClimPhyDM), a variational simulation-free dynamics informed framework for weather forecasting that combines an advection-type physics prior with data-driven components in a variational framework. % to capture the stochasticity and multi-modality of unresolved atmospheric dynamics. On the ERA5 benchmark at hourly (42-hour) and monthly (5-month) resolutions, ClimPhyDM outperforms ClimODE, and GB-DM, keeping the lower error at extended horizon, indicating improved temporal stability and resistance to error accumulation, while its simulation-free paradigm also enables training on a single modest 12 GB consumer GPU.",
+      "authors": [
+        "Gurjeet Sangra Singh",
+        "Frantzeska Lavda",
+        "Alexandros Kalousis"
+      ],
+      "categories": [
+        "stat.AP",
+        "cs.CV",
+        "cs.LO"
+      ],
+      "published": "2026-08-27T10:07:40Z",
+      "updated": "2026-08-27T10:07:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.26907v1",
+      "abs_url": "https://arxiv.org/abs/2608.26907",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.26907",
+      "summary_zh": ""
+    },
+    {
       "id": "2608.26902",
       "title": "Tether the Subject, Release the Scene: Query-Aware Memory Routing for Long-Horizon Autoregressive Video Generation",
       "abstract": "Streaming autoregressive video models generate long videos chunk by chunk, using historical memory to maintain consistency. Existing methods typically expose subject and scene queries to history through similar policies. This stabilizes the subject, but can also lock backgrounds, viewpoints, and scene structure to previously generated states even when local motion continues. We call this failure memory-anchored scene under-progression; consistency and motion metrics alone can miss it. We introduce TetherMem, a training-free, query-aware spatiotemporal memory router for frozen video generators. TetherMem separates subject and scene queries and modulates historical access with region- and age-conditioned priors: subject queries retain identity-bearing history, while scene queries reduce reliance on subject history and stale backgrounds. Across 2,400 blinded pairwise judgments from 10 annotators, TetherMem achieves the highest estimated expected preference among eight streaming long-video baselines for overall quality (0.780) and scene progression (0.769). On complete 30-second videos, it sustains changes in background, viewpoint, and scene state while preserving subject recognizability and temporal continuity.",
@@ -920,6 +1078,34 @@
       "keyword_topics": [
         "rl"
       ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.27514",
+      "title": "Trajectory-Level Speculative Decoding for Diffusion Language Models",
+      "abstract": "Diffusion-based language models (dLLMs) enable parallel token generation through iterative denoising, but existing decoding strategies collapse to single-token generation under low confidence, severely limiting throughput. Unlike autoregressive models where speculative decoding operates on token sequences in a fixed left-to-right order, dLLMs require speculating over denoising trajectories-sequences of multi-token updates with explicit positions and unmasking orders. We develop a trajectory-level speculative framework that constructs draft denoising trajectories via confidence-stratified tree exploration and verifies them through blockwise parallel evaluation with bidirectional attention masking. Our method further introduces inter-block speculation, exploiting diffusion models' bidirectional structure to perform cross-block lookahead. We formally characterize when this approach is exact and identify trajectory drift as the fundamental cost of increased parallelism. Building on Fast-dLLM's dual-cache infrastructure, our framework reduces denoising iterations by 30-40% and increases tokens-per-step from 2.6 to 4.3, achieving 7-14x speedup over vanilla dLLMs and 1.3x over Fast-dLLM with less than 1% accuracy change across reasoning and code benchmarks.",
+      "authors": [
+        "Tianxiang Pan",
+        "Baitao Gong",
+        "Mo Guang",
+        "Hongwei Yong",
+        "Tianpeng Jiang",
+        "Yaqian Li",
+        "Zheng Cao",
+        "Kaiwen Long"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-27T09:42:20Z",
+      "updated": "2026-08-27T09:42:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27514v1",
+      "abs_url": "https://arxiv.org/abs/2608.27514",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27514",
       "summary_zh": ""
     },
     {
@@ -1195,6 +1381,28 @@
       "summary_zh": ""
     },
     {
+      "id": "2608.27508",
+      "title": "WM-R1: Training GUI Agents to Reason and leverage World Models with Reinforcement Learning",
+      "abstract": "GUI agents trained with reinforcement learning (RL) have showcased strong environment learning capabilities on mobile platforms. However, RL typically demands extensive real-environment interactions, leading to high resource costs and instability, especially in GUI scenarios. To address these, we propose WM-R1, the first reinforcement learning framework that trains mobile GUI agents with world models instead of real environments. Specifically, world models serve as the source of state transitions during all rollouts, replacing the real Android environment within the training loop. WM-R1 also embeds world models directly into the thinking process, enabling agents to reason about the consequences of candidate actions before committing to the final action. Crucially, WM-R1 eliminates the need for real-environment interaction, supports massively parallelized and step-level granularized trajectory generation grounded in world models, and introduces a multi-dimensional rule-based reward that jointly optimizes task success, trajectory efficiency, and world model utilization. For efficient training, we curate a high-quality dataset of 2000 challenging tasks. Experiments on Android mobile benchmarks demonstrate that WM-R1-trained agents significantly outperform GRPO-only baselines and inference-time simulation methods. Code is available at https://github.com/genalyu/WM-R1 .",
+      "authors": [
+        "Yu Han",
+        "Tianwen Qian"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-27T07:09:28Z",
+      "updated": "2026-08-27T07:09:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27508v1",
+      "abs_url": "https://arxiv.org/abs/2608.27508",
+      "topics": [
+        "world-model",
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27508",
+      "summary_zh": ""
+    },
+    {
       "id": "2608.26714",
       "title": "LiveVVT: High-Fidelity Video Virtual Try-On in Real Time",
       "abstract": "Diffusion-based Video Virtual Try-On (VVT) achieves high visual fidelity through bidirectional spatio-temporal modeling, but complete-clip dependence incurs prohibitive latency and computational overhead in practical continuous deployment. Naively enforcing causality disrupts pretrained bidirectional priors and substantially degrades synthesis quality. We introduce LiveVVT, a rolling streaming diffusion framework that preserves bounded bidirectional modeling within causal recurrent generation. Within a fixed-size window, LiveVVT jointly denoises multiple video chunks under bounded look-ahead, preserving local bidirectional interactions while emitting one clean chunk per iteration. Beyond the window, two complementary memories sustain long-term consistency: a bounded temporal memory propagates recent dynamics and occlusion context, whereas a persistent global appearance memory, constructed once from the target garment and a frontal try-on keyframe, anchors garment details and dressed appearance throughout the stream. We further introduce a progressive distillation framework integrating bidirectional VVT learning, teacher-trajectory regression for causal few-step adaptation, and Collaborative Matching Distillation, which couples teacher-distribution matching with rolling flow matching on real videos to align optimization with recurrent inference. Experiments on paired and unpaired long-sequence benchmarks demonstrate superior generation quality over similarly sized models, with $26\\times$ lower latency and $11\\times$ higher throughput, enabling high-fidelity real-time streaming VVT.",
@@ -1212,8 +1420,8 @@
         "cs.AI"
       ],
       "published": "2026-08-27T07:06:51Z",
-      "updated": "2026-08-27T07:06:51Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.26714v1",
+      "updated": "2026-08-28T04:29:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.26714v2",
       "abs_url": "https://arxiv.org/abs/2608.26714",
       "topics": [
         "rl",
@@ -1294,6 +1502,32 @@
       "summary_zh": ""
     },
     {
+      "id": "2608.27507",
+      "title": "Marginal Coverage Credit Reduces Redundant Exploration in Parallel State-Entropy Optimization",
+      "abstract": "Policy Gradient for Parallel State Entropy maximization (PGPSE) expands state-space coverage by training independently parameterized policies in replicated copies of the same environment. However, its pooled team-entropy score measures only collective exploration and cannot identify policies that contribute non-redundant coverage. We introduce Marginal Coverage Credit for PGPSE (MCC-PGPSE), which combines leave-one-policy-out coverage with state-owner specialization to estimate policy-specific credit. MCC-PGPSE preserves PGPSE's pooled objective and redistributes non-negative auxiliary intrinsic rewards according to these credits without changing their total mass. This redistribution is designed to discourage redundant visitation and promote complementary coverage. We evaluated MCC-PGPSE in controlled environments, seven public discrete-state benchmarks, and representative Room and Maze settings from the original PGPSE protocol. Across all tested settings, MCC-PGPSE produced positive final window gains in normalized team state entropy and state support over the Entropy baseline. Controlled-task comparisons and the fixed-suite public aggregate were significant, whereas five-seed original-protocol comparisons were directionally consistent. Ablations and credit alignment controls indicate that most gains arise from leave-one-policy-out coverage rather than non-uniform weighting, mismatched credit, or neural novelty alone. These results support contribution-conditioned auxiliary reward allocation as an interpretable approach to improving complementary coverage among parallel policies in discrete state spaces.",
+      "authors": [
+        "Junhao Cao",
+        "Hongyi Xia",
+        "Jianian Wu",
+        "Xiaopeng Yi",
+        "Lixia Huang",
+        "Ping Guo"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-27T06:24:03Z",
+      "updated": "2026-08-27T06:24:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27507v1",
+      "abs_url": "https://arxiv.org/abs/2608.27507",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27507",
+      "summary_zh": ""
+    },
+    {
       "id": "2608.26659",
       "title": "Simple Actors and Deep Critics for Scalable Reinforcement Learning",
       "abstract": "Recent progress in offline reinforcement learning (RL) has been driven by expressive generative actors such as diffusion and flow-matching policies, which capture multimodal behavior in offline datasets. However, these actors require multiple denoising or integration steps per action and thus incur substantial overhead at every decision in deployment. In this work, we revisit where capacity should be invested in an offline actor--critic method. Since the critic is used only during training and is discarded at deployment while the actor runs at every decision step, allocating capacity to the critic rather than the actor is more favorable for inference-time efficiency. However, scaling MLP critics in offline RL is known to introduce several distinct instabilities that have, in practice, kept critics shallow. We identify three distinct failure modes that arise when critics are deepened in offline RL---optimization, bootstrap-noise amplification, and value-range drift---and address each with a corresponding ingredient: a residual MLP backbone, n-step bootstrap targets, and a categorical cross-entropy loss. Combining these ingredients with a lightweight deterministic actor, we propose LAC (Light Actor, deep Critic). On OGBench, LAC matches the strongest diffusion- and flow-matching baselines while achieving up to 4x lower inference latency, comparable to one-step distilled policies without distillation. Its critic recipe also transfers across actor parametrizations.",
@@ -1313,6 +1547,28 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.26659",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.27505",
+      "title": "A Survey on Rubric-Guided Reinforcement Learning for Language Models",
+      "abstract": "Reinforcement learning from human feedback (RLHF) has become the dominant paradigm for aligning large language models (LLMs) with human preferences. However, traditional RLHF relies on scalar reward signals that lack interpretability and fail to capture the multifaceted nature of response quality. Rubric-guided reinforcement learning addresses these limitations by introducing structured, interpretable evaluation criteria, or rubrics, as the backbone of reward design, feedback generation, and policy optimization. In this survey, we introduce a Bayesian framework that defines constitutions as prior distributions $P(R)$ over evaluation criteria and rubrics as conditional instantiations $R_x \\sim P(R|x)$. Under this unified view, we present a taxonomy of rubric-guided RL along the prior-posterior axis, covering constitutional AI, instance-specific rubrics, process-level supervision, self-evolving rubrics, and their agentic and multimodal extensions. Furthermore, as rubrics are natural-language artifacts, we present a linguistic analysis of how granularity trade-offs, semantic drift, and linguistic reward hacking impact alignment reliability, identifying key open problems for future research.",
+      "authors": [
+        "Zifei Shan",
+        "Fangning Shao"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-27T05:21:07Z",
+      "updated": "2026-08-27T05:21:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27505v1",
+      "abs_url": "https://arxiv.org/abs/2608.27505",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27505",
       "summary_zh": ""
     },
     {
@@ -1394,6 +1650,32 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.26571",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.27501",
+      "title": "INSPIRE: An Internalize-Then-Improve Approach for Example-Driven Mathematical Reasoning",
+      "abstract": "Mathematical reasoning has seen rapid progress in large language models (LLMs), yet existing methods optimize predominantly for final-answer correctness, raising the question whether models truly internalize mathematical concepts or merely memorize solution patterns. In human mathematics education, example-based reasoning such as constructing counterexamples to test theorem boundaries reflects deep conceptual understanding, but remains underdeveloped in current LLMs. Enhancing this capability through preference optimization presents two key challenges: (1) the model's limited example-based reasoning ability makes constructing effective preference pairs inherently difficult; and (2) capability acquisition is progressive, as the model must first learn to adopt this strategy before learning to apply it correctly. Therefore we propose INSPIRE, an Internalize-Then-Improve approach combining Reference-Guided Student Internalization (RGSI), which produces high-quality preference candidates under the policy model's own distribution, with a stage-wise rubric preference training strategy that decomposes learning into method-oriented and correctness-oriented stages. Experiments across multiple model scales and families demonstrate consistent improvements, even surpassing larger open-source models, while evaluations on out-of-distribution benchmarks confirm no degradation in general mathematical reasoning ability.",
+      "authors": [
+        "Shuai Wang",
+        "Jiayi Kuang",
+        "Yinghui Li",
+        "Haojing Huang",
+        "Xinnian Liang",
+        "Ying Shen",
+        "Liang Lin"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-27T03:24:03Z",
+      "updated": "2026-08-27T03:24:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27501v1",
+      "abs_url": "https://arxiv.org/abs/2608.27501",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.27501",
       "summary_zh": ""
     },
     {
