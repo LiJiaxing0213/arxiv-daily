@@ -1,6 +1,6 @@
 {
   "date": "2026-08-25",
-  "generated_at": "2026-08-31T07:19:52.470221+00:00",
+  "generated_at": "2026-09-01T06:29:27.433890+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -55,8 +55,8 @@
     },
     {
       "id": "2608.25200",
-      "title": "Learning Mixtures of Plackett-Luce Models for Multi-Objective Alignment",
-      "abstract": "We consider the problem of learning a mixture of $k$ Plackett-Luce models given multi-way ranking responses from annotators that may represent heterogeneous underlying preferences. This problem has many applications in AI alignment and preference optimization. Prior work has studied mixtures of Bradley-Terry models from pairwise comparisons. However, uncovering mixture models is theoretically unidentifiable when $k$ exceeds $m/2$, where $m$ is the length of a ranking. We propose an efficient implementation to address this limitation, which involves first augmenting the rankings to a larger size by generating new responses from a base language model, followed by a gradient-based estimation to reduce inference cost in the input embedding space. Based on this procedure, we then design an expectation-maximization algorithm with these two steps to fit a mixture of Plackett-Luce models, called MoPLEx. Extensive experiments are conducted to verify this approach. First, we show that the gradient-based approximation estimates true probabilities with less than 5% error on models with up to 34 billion parameters. Second, we show that MoPLEx improves clustering and ranking accuracy by an average of 43.7% and 15.2% over baselines using single ranking and mixtures of Bradley-Terry models, on preference optimization datasets. These results demonstrate the effectiveness of MoPLEx for tackling multi-way rankings from heterogeneous preferences through measuring alignment between gradients.",
+      "title": "MoPLEx: Estimating Plackett-Luce Mixture Models for Multi-Objective Alignment",
+      "abstract": "We study learning a mixture of $k$ Plackett-Luce models from multi-way ranking responses from annotators that may represent heterogeneous underlying preferences. This problem has many applications in AI alignment and preference optimization. Prior work has studied mixtures of Bradley-Terry models from pairwise comparisons. However, estimating a mixture of multi-way ranking models can become theoretically unidentifiable when $k$ exceeds $m/2$, where $m$ is the ranking length. We design an efficient algorithm to address this issue by first augmenting the rankings to a larger size (e.g., generating comparisons from a base model), followed by a gradient-based estimation to reduce inference cost (in the input embedding space). With this procedure in mind, we then fit a mixture of Plackett-Luce (PL) models via an expectation-maximization-style iteration, or MoPLEx in short. We conduct extensive experiments to verify this algorithm. First, we find that the gradient-based approximation estimates true probabilities with less than 5% error on models with up to 34 billion parameters. Second, MoPLEx improves clustering and ranking accuracy by an average of 43.7% and 15.2% over baselines using a single PL model or a mixture of Bradley-Terry models, on UltraFeedback and PERSONA datasets. These results demonstrate the effectiveness of MoPLEx for tackling multi-way rankings following heterogeneous preferences through measuring alignment via gradients.",
       "authors": [
         "Dongyue Li",
         "Ziniu Zhang",
@@ -69,8 +69,8 @@
         "cs.CL"
       ],
       "published": "2026-08-25T22:42:37Z",
-      "updated": "2026-08-25T22:42:37Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.25200v1",
+      "updated": "2026-08-30T15:16:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.25200v2",
       "abs_url": "https://arxiv.org/abs/2608.25200",
       "topics": [
         "rl"
@@ -244,8 +244,8 @@
         "cs.LG"
       ],
       "published": "2026-08-25T19:50:47Z",
-      "updated": "2026-08-25T19:50:47Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.25100v1",
+      "updated": "2026-08-30T03:32:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.25100v2",
       "abs_url": "https://arxiv.org/abs/2608.25100",
       "topics": [
         "rl"
@@ -1329,6 +1329,32 @@
       "summary_zh": ""
     },
     {
+      "id": "2608.28675",
+      "title": "Multi-Agent Self-Improving Reinforcement Learning for Video Reasoning",
+      "abstract": "Video reasoning tasks such as grounded video question answering and temporal grounding require selecting temporal evidence that supports the query. In many current training setups, temporal supervision is applied through local objectives such as boundary regression or span generation, while verification is used mainly to rerank candidate segments at inference time. We study whether a frozen verifier can also guide training. Our multi-agent framework couples a trainable \\emph{Grounder} with a frozen \\emph{Verifier}: the Grounder samples candidate trajectories and evidence segments, the Verifier assigns query-conditioned segment scores, a group-relative policy-gradient objective favors trajectories that outperform their within-input peers, and a bootstrapped calibration loss steers temporal predictions toward verifier-preferred spans. Trained on source tasks and evaluated without target-dataset fine-tuning, a two-billion-parameter instantiation transfers zero-shot across grounded question answering, temporal grounding, and long-video question answering, reaching 28.7\\% intersection-over-union and 25.4\\% answer-grounding accuracy on a grounded-question-answering benchmark, 46.1\\% intersection-over-union on a temporal-grounding benchmark, and 54.1\\% on a long-video question-answering benchmark. Relative to a strong same-scale baseline, the gains are modest but consistent, with the clearest improvements on relevance-oriented metrics such as intersection-over-union and moderate-overlap recall. Within the tested benchmarks and transfer setting, the results support frozen verification as a training signal for evidence selection, while showing that strict boundary precision remains comparatively weaker. Code and models are available at https://anonymous.4open.science/r/MASIRL-E50C/",
+      "authors": [
+        "Mingwen Zhang",
+        "Jisheng Dang",
+        "Minqiang Yang",
+        "Bimei Wang",
+        "Bin Hu",
+        "Tat-Seng Chua"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.CL"
+      ],
+      "published": "2026-08-25T07:46:32Z",
+      "updated": "2026-08-25T07:46:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.28675v1",
+      "abs_url": "https://arxiv.org/abs/2608.28675",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28675",
+      "summary_zh": ""
+    },
+    {
       "id": "2608.24174",
       "title": "Task-Adaptive Rubrics for GUI Reward Modeling",
       "abstract": "Recent studies on GUI agents have increasingly focused on outcome reward modeling, which assigns outcome rewards by judging whether an executed trajectory satisfies the success criteria implied by the user instruction. Existing GUI reward verifiers, however, often under-specify how these criteria should be constructed for each task instance. Whether using generic rubric structures or implicit model reasoning, their judging criteria are not sufficiently task-adaptive: they can transfer checks across tasks, overlook concrete constraints in the current instruction, or become overly strict by enforcing unstated requirements. To address this limitation, we propose AdaptRubric, a Coarse-to-Fine Rubrics Framework that constructs task-adaptive judging criteria through a category-level coarse stage and an instance-level fine stage. AdaptRubric performs category-level coarse rubric retrieval by routing the instruction to a GUI task family and retrieving reusable task-family criteria, then conducts instance-level fine rubric generation to surface compact cues for concrete values, scopes, and constraints in the current instruction. Across offline reward evaluation and online reinforcement learning optimization, AdaptRubric consistently outperforms prior reward agents, improving F1 by 3.6 points over the baseline average under a matched image budget and yielding a 4.23-point task-success gain.",
@@ -1497,6 +1523,29 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.24114",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.28674",
+      "title": "Multi-exposure HDR Imaging: A Review of Pixel-level and Feature-level Reconstruction Methods",
+      "abstract": "Multi-exposure is an efficient way to capture real-world high-dynamic-range (HDR) scenes. However, HDR imaging suffers from severe ghosting artifacts in dynamic scenes due to the temporal gap between sequential exposures. In this article, we categorize the literature on two important topics on HDR imaging: multi-exposure fusion (MEF) and ghost removal. Conventional filter-based and data-driven methods are studied in pixel space and feature space. For popular deep learning-based approaches, we provide a granular taxonomy based on their alignment and fusion domains: pixel-space methods, which typically employ explicit motion compensation such as optical flow or spatial transformers, and feature-space methods, which leverage implicit alignment through deformable convolutions, attention mechanisms, or latent representation merging. Representative works are compared across different supervision settings, and key design principles are summarized. In addition, this survey summarizes commonly used datasets and evaluation metrics, discussing their applicability under diverse output forms. Finally, major bottlenecks and promising directions for future research are outlined.",
+      "authors": [
+        "Qian Tao",
+        "Wei Wang",
+        "Chaobing Zheng",
+        "Zhengguo Li"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-25T06:05:20Z",
+      "updated": "2026-08-25T06:05:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.28674v1",
+      "abs_url": "https://arxiv.org/abs/2608.28674",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28674",
       "summary_zh": ""
     },
     {

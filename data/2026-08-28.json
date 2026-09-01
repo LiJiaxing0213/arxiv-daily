@@ -1,6 +1,6 @@
 {
   "date": "2026-08-28",
-  "generated_at": "2026-08-31T07:19:52.464162+00:00",
+  "generated_at": "2026-09-01T06:29:27.427750+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,103 @@
     }
   },
   "papers": [
+    {
+      "id": "2608.28859",
+      "title": "The Halt Vector: Internalizing a Causal Steering Intervention for Efficient Reasoning",
+      "abstract": "Reasoning models do not stop when they know the answer. On DeepSeek-R1-Distill-Qwen-7B the chain of thought runs about twice as long as the model's own answer probability takes to settle, and how much of that excess is removable varies from problem to problem, so a global length penalty cannot take it out. We take it out by internalizing a causal interpretability finding into the weights. The mechanism is a halt vector: a difference-of-means direction at layer 18 of this model whose steering strength controls how long it thinks, while a replicated value axis does nothing. Installing that intervention in the weights is harder than it looks. Maximizing the scalar projection onto the direction corrupts the off-axis dimensions a frozen downstream reader depends on, and generation gets longer instead of shorter; what works is reconstructing the whole steered activation with those dimensions pinned to their natural values. Fit from 24 problems and no reinforcement learning, the halt removes about a quarter of the thinking at held accuracy across five unseen benchmarks, and the cut tracks each problem's own removable slack at 0.70. It also closes a non-termination pathology that grows with difficulty and that a decoding-time confidence hook makes worse. We do not claim to beat a well-tuned length penalty or decoding-time early exit on the raw trade-off; the contribution is how the halt is obtained.",
+      "authors": [
+        "Dylan Jayabahu",
+        "Tinuade Adeleke"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-28T21:00:29Z",
+      "updated": "2026-08-28T21:00:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.28859v1",
+      "abs_url": "https://arxiv.org/abs/2608.28859",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28859",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.28846",
+      "title": "A rigor-matched audit of periodic-step layer skipping for efficient llm inference: conflayers versus swift, with a supplemental analysis of trained routing alternatives",
+      "abstract": "Layer-skipping methods for efficient LLM inference decide, at some granularity, which transformer layers to execute for a given input. We present a rigor-matched, three-seed audit of two periodic-step, search-based methods that make this decision online at inference time and re-evaluate it every few generation steps: a confidence-gated early-exit baseline (ConfLayers) and genuine self-speculative decoding (SWIFT, Xia et al. 2024), together with vanilla autoregressive decoding, across two model scales (Qwen2.5-0.5B and Qwen2.5-1.5B) and two tasks (GSM8K reasoning and CNN/DailyMail summarization). SWIFT is the strongest method on accuracy in three of four cells; ConfLayers is dominated everywhere, with particularly large deficits on GSM8K at 1.5B. Once online-search overhead is separated from pure inference cost, SWIFT's true inference speed is faster than ConfLayers's in all four cells (5-21%), reversing the naive wall-clock ranking in three of them. ConfLayers's search overhead is small and stable (1-2% of cost), while SWIFT's is larger and more variable (up to 28.7%). We additionally examine two trained-routing methods, LayerRoute (Sikdar, 2026) and LayerDrop (Fan et al. 2020), as a supplemental analysis because they operate at coarser decision granularities. Under a verified protocol with genuine per-input gating, a genuine full-model baseline, and genuine inference-time compute skipping, both show modest speedups (1.08-1.33x) but accuracy well below the periodic-step methods, including a near-total collapse for LayerRoute on GSM8K at 1.5B (0.003 mean exact-match across three seeds). We release the full audit protocol as a template for rigor-matched efficiency comparisons.",
+      "authors": [
+        "Prateek Kumar Sikdar",
+        "Arpan Ghosh"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-28T20:33:40Z",
+      "updated": "2026-08-28T20:33:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.28846v1",
+      "abs_url": "https://arxiv.org/abs/2608.28846",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28846",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.28791",
+      "title": "Efficient Geothermal Well-Control Optimization via Diffusion-Surrogate Reinforcement Learning",
+      "abstract": "Real-time decision-making for enhanced geothermal systems (EGS) is challenging because long-term production periods involve high-dimensional control spaces and a large number of time-consuming high-fidelity hydrothermal simulations. Reinforcement learning provides a natural framework for state-dependent sequential control, but direct policy training with numerical simulators is computationally expensive. To address this issue, we propose a diffusion-surrogate guided reinforcement learning framework for long-horizon EGS well-control optimization. The reservoir temperature and pressure fields are used as system states, while injection rates are selected as control actions. A learned surrogate environment is constructed using conditional diffusion models to predict the evolution of reservoir temperature and pressure fields and a separate reward model to estimate the corresponding economic return. The surrogate environment is then integrated with Proximal Policy Optimization (PPO) for efficient policy training. Experiments on a fractured EGS benchmark show that the diffusion surrogate can accurately reproduce reservoir-state evolution over multiple control stages. The resulting surrogate-assisted PPO policy achieves competitive well-control performance compared with direct simulator-based PPO and existing optimization methods, while substantially reducing the dependence on expensive high-fidelity simulations. These results demonstrate the potential of diffusion-based surrogate environments for efficient reinforcement learning in geothermal well-control optimization.",
+      "authors": [
+        "Ruimin Dai",
+        "Guodong Chen",
+        "Randy Harsuko",
+        "Kunpeng Liu",
+        "Nori Nakata"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-28T18:52:57Z",
+      "updated": "2026-08-28T18:52:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.28791v1",
+      "abs_url": "https://arxiv.org/abs/2608.28791",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28791",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.28771",
+      "title": "ERR+: Sequential Entropy Resolution for Efficient and Decisive LLM Reasoning",
+      "abstract": "Large reasoning models achieve strong performance on complex tasks by generating extended chain-of-thought (CoT) traces via reinforcement learning with verifiable rewards (RLVR). While current RLVR methods have achieved strong results with correctness-based reward signals, they provide limited guidance on the quality of the reasoning process itself, leaving the internal reasoning structure largely unoptimized. Through empirical analysis across multiple model families, we identify a consistent pattern: correct reasoning trac es exhibit more frequent and larger token-level entropy drops within the thinking phase than incorrect ones. We propose ERR+, a two-phase RLVR framework grounded in this observation. The first phase trains with the Entropy Relief Reward (ERR), a bonus proportional to cumulative token-level entropy drops in the thinking phase, log-normalized by response length. Unlike prior methods that suppress entropy, ERR rewards the resolution of uncertainty while leaving exploratory high-entropy states unconstrained. The second phase introduces the Robust Relative Efficiency Reward, which scores each response's length against co-generated peers via a $\\tanh$-transformed within-group $z$-score. We provide a formal analysis showing that joint optimization of the two objectives induces gradient conflict in early training, motivating the sequential design . Experiments on five datasets demonstrate consistent improvements in both accuracy and response conciseness across model backbones. Our code is available at https://github.com/XrkArul/err_response",
+      "authors": [
+        "Xin Jiang",
+        "Minhao Wang",
+        "Wen Wu",
+        "Zhentao Xie",
+        "Shangheng Du",
+        "Jinxin Shi",
+        "Jiabao Zhao"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-28T18:28:50Z",
+      "updated": "2026-08-28T18:28:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.28771v1",
+      "abs_url": "https://arxiv.org/abs/2608.28771",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28771",
+      "summary_zh": ""
+    },
     {
       "id": "2608.28578",
       "title": "Aero Hand Open: A Simulation-Ready Tendon-Driven Hand for Dexterous Manipulation Learning",
@@ -83,8 +180,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28549",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2608.28541",
@@ -95,7 +191,8 @@
       ],
       "categories": [
         "cs.LG",
-        "cs.AI"
+        "cs.AI",
+        "eess.SY"
       ],
       "published": "2026-08-28T17:14:58Z",
       "updated": "2026-08-28T17:14:58Z",
@@ -188,8 +285,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28460",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2608.28447",
@@ -210,8 +306,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28447",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2608.28432",
@@ -241,8 +336,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28432",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2608.28421",
@@ -319,8 +413,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28404",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2608.28402",
@@ -577,6 +670,39 @@
       "keyword_topics": [
         "distillation"
       ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.28718",
+      "title": "RoboPhys-3D: A Comprehensive Embodied World Model Evaluation via 3D Reconstruction",
+      "abstract": "Video world models increasingly serve as data engines, action planners, and simulators for embodied AI, but conventional embodied world model (EWM) benchmarks lack a unified 3D-grounded protocol for establishing whether generated rollouts preserve the underlying 3D scene state or translate into executable actions. We introduce RoboPhys-3D, a 3D-grounded EWM benchmark built on RoboTwin 2.0, covering 50 manipulation tasks across four regimes, with 5,000 episodes and 25,000 multi-view ground-truth videos. A defining feature of RoboPhys-3D is that generated and ground-truth videos are processed through the same 3D reconstruction pipeline, enabling reconstruction-induced error to be distinguished from generation-induced error. The RoboPhys-3D benchmark organizes 50 complementary metrics into 18 sub-dimensions across four levels: pixel-level fidelity, 3D geometry consistency, state-level understanding, and task-level completeness. We further introduce Average Full Score, a hierarchical score averaging all 50 metrics for comprehensive evaluation, and RoboPhyscore, a compact task-aligned score averaging the metrics most strongly correlated with task success. Among the four representative video world models, Cosmos 3 achieves the highest RoboPhyscore (0.6330, 92.7% of ground truth), while state- and execution-grounded metrics reveal substantial failures that perceptual and vision-language model-based judgments fail to capture. RoboPhyscore further exhibits strong agreement with human evaluation (Pearson r = 0.9761 and Spearman \\r{ho} = 0.8962), demonstrating the importance of grounded, execution-aware evaluation for EWM capability.",
+      "authors": [
+        "Tianyi Wang",
+        "Jiazhou Chen",
+        "Yiming Xu",
+        "Xiangyu Li",
+        "Tianyi Zeng",
+        "Chih-Hsien Chou",
+        "Ning Lu",
+        "Liang Peng",
+        "Junfeng Jiao",
+        "Christian Claudel"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.ET",
+        "eess.SY"
+      ],
+      "published": "2026-08-28T09:44:13Z",
+      "updated": "2026-08-28T09:44:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.28718v1",
+      "abs_url": "https://arxiv.org/abs/2608.28718",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.28718",
       "summary_zh": ""
     },
     {
@@ -855,14 +981,15 @@
         "Demin Zhu",
         "Kaichen Yang",
         "Dong Wang",
+        "Linjian Mo",
         "Chenyi Zhuang"
       ],
       "categories": [
         "cs.AI"
       ],
       "published": "2026-08-28T04:17:05Z",
-      "updated": "2026-08-28T04:17:05Z",
-      "pdf_url": "https://arxiv.org/pdf/2608.27906v1",
+      "updated": "2026-08-31T09:54:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.27906v2",
       "abs_url": "https://arxiv.org/abs/2608.27906",
       "topics": [
         "rl"

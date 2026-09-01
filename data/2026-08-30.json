@@ -1,6 +1,6 @@
 {
   "date": "2026-08-30",
-  "generated_at": "2026-08-31T07:19:52.463656+00:00",
+  "generated_at": "2026-09-01T06:29:27.425090+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,880 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2608.30081",
+      "title": "Tracing Generated Samples to Training-Data Clusters in Flow-Matching Models",
+      "abstract": "Understanding which training samples influence a generated image is an important problem in generative modeling. In flow matching, training samples influence the generated image through the velocity field along the generation trajectory. Removing samples to examine their counterfactual influence changes the velocity field, and the resulting effect on the final image depends on how the change propagates through the trajectory. Consequently, local changes in the velocity field do not necessarily predict the final counterfactual effect. This work investigates attribution in flow-matching models through a hybrid analytical--learned approach, and uses it to derive trajectory-based attribution scores at the cluster level. We evaluate these attribution scores using independently retrained leave-one-cluster-out (LOO) models, and compare with several attribution baselines using two different flow-matching latent spaces. Our experiments show that semantic similarity constitutes a strong baseline, while the closed-form trajectory-based attribution is competitive in some metrics without requiring counterfactual retraining or model gradients. Our results show that attribution in flow matching depends not only on semantic similarity to training samples, but also on the latent representation, trajectory dynamics, and how influence is propagated to the final output.",
+      "authors": [
+        "Rania Briq",
+        "Ohad Fried",
+        "Michael Kamp",
+        "Stefan Kesselheim"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "published": "2026-08-30T23:08:04Z",
+      "updated": "2026-08-30T23:08:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.30081v1",
+      "abs_url": "https://arxiv.org/abs/2608.30081",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.30081",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.30067",
+      "title": "How do World Models and Policies Compose in LLM Agents? A Joint Spectral and Behavioral Account",
+      "abstract": "How do LLM agents come to both understand environments they act in and master tasks set within them? Through controlled experiments combining world-model training (next-state prediction) and policy training (reward maximization), we investigate this question. We dissect the resulting models through their additive parameter updates. Geometrically, we find effective world-model updates are low-rank and share an input-feature subspace with policy updates while writing to nearly orthogonal output directions, whether trained separately or sequentially. However, we find that, in projection interventions, the sequential update induces more robustness than separate policy RL when removing the world model's leading input directions, suggesting that it has learned alternative input pathways. Behaviorally, we find the sequentially trained agent explores a wider range of states and actions. Based on this, we ask: does policy training preserve world knowledge as well as it could? We probe this with training-free merging built on the geometrically motivated input basis plus an online world-model loss during policy RL, and show both improve over the untreated baseline. Our findings suggest world knowledge and task-directed ability can be learned in geometrically complementary forms, and that future post-training pipelines should consider how best to engineer the interface between them.",
+      "authors": [
+        "Ruize Xu",
+        "Xiao Yu",
+        "Yujin Tang",
+        "Chenming Shang",
+        "Nikhil Singh"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-30T22:21:16Z",
+      "updated": "2026-08-30T22:21:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.30067v1",
+      "abs_url": "https://arxiv.org/abs/2608.30067",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.30067",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.30051",
+      "title": "Mitigating Over-Optimization in PRM-Guided Search in Mathematical Reasoning by Optimizing the Guide",
+      "abstract": "Process reward models (PRMs) provide dense step-level guidance for search-based reasoning, enabling inference-time compute to be allocated toward promising partial solutions. However, recent evidence suggests that PRM-guided search can over-optimize imperfect process rewards, pruning viable trajectories while expanding spurious ones. In this work, we theoretically show that directly leveraging PRM score is vulnerable to verifier noise through an extreme-value effect: non-viable prefixes become more likely to receive spuriously high scores as reasoning depth increase. Therefore, we formulate the PRM-guided search as a robust optimization problem over plausible reward perturbations, termed maximin PRM-guided search, leading to a training-free robust process supervision method that preserves promising alternatives when step-level scores are noisy. Maximin PRM-guided search mitigates this failure mode by reducing sensitivity to over-optimized PRM outliers. Without fine-tuning or online adaptation, maximin search consistently improves the PRM-guided search by 17-35\\% on average, outperforming outcome- and step-level baselines in 14 out of 16 settings. Our source code is available at https://github.com/tjoo512/maximin-search.",
+      "authors": [
+        "Taejong Joo",
+        "Diego Klabjan"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-30T21:25:03Z",
+      "updated": "2026-08-30T21:25:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.30051v1",
+      "abs_url": "https://arxiv.org/abs/2608.30051",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.30051",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.30050",
+      "title": "Spec2Twin-Chain: Orchestrating Bi-Level Optimization with LLMs for Blockchain Digital Twin Construction",
+      "abstract": "Building a blockchain digital twin largely requires translating domain knowledge and specific system descriptions into a simulator architecture, calibrating its parameters against behavioral evidence, and validating the constructed twin. These steps are commonly performed through application-specific modeling efforts that can be difficult to reuse across systems and downstream decision problems. We consider automating this process through Spec2Twin-Chain, a framework that formulates blockchain digital-twin construction as a bi-level optimization problem. At the upper level, a large language model proposes and revises structurally admissible architectures using system specifications, behavioral evidence, and feedback from evaluated designs. At the lower level, a simulation-based optimizer calibrates the architecture-conditioned parameters under explicit objectives and guardrail constraints. The two levels iterate. The evaluated candidates at lower levels are retained in a global archive and used to guide subsequent proposals at upper levels. We conduct controlled experiments involving twin calibration, feedback-driven recovery, stress analysis, downstream policy optimization, and policy updating. The results demonstrate that the framework can construct behaviorally accurate twins, improve initial designs through iterative feedback, and reuse calibrated twins to support downstream decisions.",
+      "authors": [
+        "Haoting Zhang",
+        "Haoxian Chen",
+        "Jiayuan Sheng",
+        "Donglin Zhan",
+        "Zeyu Zheng",
+        "David D. Yao",
+        "Wenpin Tang"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-30T21:25:00Z",
+      "updated": "2026-08-30T21:25:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.30050v1",
+      "abs_url": "https://arxiv.org/abs/2608.30050",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.30050",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.30021",
+      "title": "Error Detection for PET/CT Radiology Reports: Domain-Specific vs Large Language Models",
+      "abstract": "Errors in radiology reports can adversely affect patient treatment, yet automated report quality assurance remains challenging because errors are often subtle and require domain expertise to detect. Although large language models (LLMs) have recently been proposed for radiology report verification, their ability to detect clinically meaningful errors beyond chest X-ray datasets remains under-explored. To this end, we present the first systematic evaluation of language models for PET/CT report error detection, comparing compact domain-specific models with SOTA open-weight LLMs. We collected 30,633 oncology FDG PET/CT reports from 23 radiologists over 10 years. We trained domain-specific BERT models to detect clinically motivated synthetic reporting errors and evaluated alongside zero-/few-shot Qwen3-32B, Gemma-3-27B and Llama-3.3-70B on a held-out benchmark of 11,500 reports. A 15M-parameter model achieved 94.4% balanced accuracy with a 5.8% false-positive rate, compared with 84.0% for the strongest prompted LLM. Task-specific adaptation of Llama-3.3-70B closed this performance gap (94.4%) but retained substantially greater computational requirements. Our results suggest that domain-specific training matters more than model scale for PET/CT report error detection, supporting compact models as an accurate and computationally efficient approach to automated radiology report quality assurance.",
+      "authors": [
+        "Hermione Warr",
+        "Harry Anthony",
+        "Lilli J Freischem",
+        "Yasin Ibrahim",
+        "Daniel R McGowan",
+        "Konstantinos Kamnitsas"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-08-30T20:23:01Z",
+      "updated": "2026-08-30T20:23:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.30021v1",
+      "abs_url": "https://arxiv.org/abs/2608.30021",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.30021",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.30005",
+      "title": "Small Language Models as Judges for Rubric-Based Reinforcement Learning",
+      "abstract": "Rubric-based reinforcement learning extends RL beyond tasks with exact answers or rule-based verifiers by scoring responses against instance-specific criteria. However, this makes reward computation expensive: training requires repeated rubric judging, often with proprietary APIs or local generative LLM judges with 7B parameters or more. We study whether smaller language models can serve as efficient and reliable rubric-based judges. To make this question measurable, we construct PointRubric and RaR-Science-Static, two pointwise rubric-based evaluation datasets with instance-specific criteria and itemwise satisfaction labels. We compare three ways of extracting criterion-level judgments from small models: Generative verdicts, Yes/No Logprob margins, and Probe judges. Across both datasets, the Qwen3-1.7B Probe judge achieves the strongest criterion-level agreement among these methods, outperforming Generative and Logprob judges. Used as a GRPO reward model, it trains a policy from 0.232 to 0.643 on RaR-Science rubric score, compared with 0.594 for an 8B Generative judge baseline, while the baseline requires 10.7$\\times$ more reward-judge time. Task and domain transfer experiments further suggest that Probe judges preserve criterion-level reward structure across settings.",
+      "authors": [
+        "Fengyu Xie",
+        "Yilun Zhao",
+        "Bingsen Chen",
+        "Arman Cohan",
+        "Chen Zhao"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T20:00:17Z",
+      "updated": "2026-08-30T20:00:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.30005v1",
+      "abs_url": "https://arxiv.org/abs/2608.30005",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.30005",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29999",
+      "title": "TEMPO: Temporally-grounded Multi-task Post-training for Large Audio-Language Models",
+      "abstract": "Large audio-language models (LALMs) describe audio at the clip level but cannot assign timestamps to the events, speakers, or sounds they identify. Despite being essential for downstream tasks like speech recognition and dense audio captioning, timestamping remains a key limitation of most LALMs. We present TEMPO (Temporally-grounded Multi-task Post-training), the first unified model to handle audio, speech, and music timestamping tasks. Our core contribution is a supervised fine-tuning (SFT) stage built on three innovations: atomic timestamp tokens, a time-aware projector that injects sinusoidal wall-clock encodings into audio frame embeddings, and a distance-aware Gaussian loss. Our training is based on a synthetic-to-real curriculum. We further introduce, to our knowledge, the first application of reinforcement learning to unified audio timestamping, using GRPO with verifiable temporal rewards that directly optimize the evaluation objectives. Rather than serving as the primary source of performance gains, GRPO acts as a refinement stage on top of the SFT checkpoint, providing modest additional improvements. To support this work, we build a training dataset containing 119K samples and an evaluation benchmark containing 10K samples, drawn from established corpora across five tasks. On this benchmark, TEMPO outperforms Audio Flamingo Next and Qwen3-Omni, two state-of-the-art LALMs explicitly trained on timestamped data. Experiments confirm that SFT delivers most of these gains, with GRPO providing consistent but moderate refinements.",
+      "authors": [
+        "Apoorva Kulkarni",
+        "Kaousheik Jayakumar",
+        "Sreyan Ghosh",
+        "Utathya Aich",
+        "Ramani Duraiswami",
+        "Dinesh Manocha"
+      ],
+      "categories": [
+        "cs.SD",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-08-30T19:49:21Z",
+      "updated": "2026-08-30T19:49:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29999v1",
+      "abs_url": "https://arxiv.org/abs/2608.29999",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29999",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29998",
+      "title": "The Intervention Gap in Latent World Models",
+      "abstract": "Planning-time intervention fidelity is a distinct, measurable property of a learned world model: whether the model's own open-loop transitions move task variables the way matched environment interventions do. In the settings we test, it is neither revealed by reward fit nor ensured by task-anchored training. Across released TD-MPC2 checkpoint sizes, episode return falls as an operator-error diagnostic on task observables grows, while reward-prediction error stays small and nearly flat, and a self-supervised world model trained without task signal preserves the same operator substantially better than a task-anchored model on the shared task. A capture-gated matched-intervention audit then localizes what fails. On Cheetah, three LeWorldModel checkpoints capture the current task query and support decodable real intervention effects; however, their imagined five-step effects are worse than predicting no effect and worse than an environment-endpoint oracle. The failure is task-direction rotation with excess gain, not feature collapse. This severe pattern is conditional: five PreJEPA seeds retain an oracle-relative deficit without it, Finger Spin experiments extend the deficit beyond locomotion with heterogeneous severity across seeds, and shared-bank effect geometry is both candidate- and support-dependent. We also test practice-side questions. In DreamerV3 the posterior distribution, not its sample, carries the current query; ensemble disagreement ranks error only near training support; and a frozen support-aware score degrades held-out error ranking in both tested transfer directions while native disagreement remains informative in both. We conclude that intervention fidelity must be audited directly, capture-first, on the model's native interface.",
+      "authors": [
+        "Donna Vakalis"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-30T19:47:51Z",
+      "updated": "2026-08-30T19:47:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29998v1",
+      "abs_url": "https://arxiv.org/abs/2608.29998",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29998",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29958",
+      "title": "RIDGE: Region-Informed Derivative-Guided Evidence Selection for Long Video Understanding",
+      "abstract": "Long videos contain far more visual content than Large Vision-Language Models (LVLMs) can process under a fixed visual-token budget, making frame selection essential. Existing query-aware selectors usually estimate frame-query relevance and build a compact subset from high-scoring frames. Although their mechanisms differ, the similarity sequence is still often treated primarily as values to rank or sample from, rather than as an ordered signal whose shape reflects how query-relevant evidence emerges, peaks, and fades over time. This can obscure frames that explain, contextualize, or follow an event, because such evidence may lie on the rising or falling sides of a nearby relevance peak and receive lower absolute scores. We propose RIDGE, a frame selection framework that reads the frame-query similarity curve as a temporal signal. By using local changes and curvature, RIDGE partitions the timeline into structural regions and applies region-specific selection to preserve event cores, transitions, buildup, aftermath, and contextual frames under a fixed budget. It is a lightweight post-processing step on precomputed frame-query scores and requires neither training nor iterative LVLM calls. Across four long-video benchmarks and three backbones, RIDGE achieves the best performance in most settings and remains competitive in the others.",
+      "authors": [
+        "Shanqing Xu",
+        "Meng Luo",
+        "Mengchen Qian",
+        "Yuhui Gao",
+        "Siyue Peng",
+        "Xiaohan Zhong",
+        "Xiaojin Zhang",
+        "Zhongyu Wei",
+        "Wei Chen",
+        "Xiang Bai"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-30T18:40:51Z",
+      "updated": "2026-08-30T18:40:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29958v1",
+      "abs_url": "https://arxiv.org/abs/2608.29958",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29958",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29953",
+      "title": "SearchWiki: Learning to Build and Navigate Knowledge Wikis for Active Information Seeking",
+      "abstract": "Flat retrieval-augmented generation treats a corpus as a bag of chunks, discarding document hierarchy and cross document structure. We introduce SearchWiki, a harness framework that synthesizes a corpus into a hierarchical, typed, navigable wiki and trains an agent, WikiResearcher-9B, to retrieve information through multi-turn tool use. The wiki organizes knowledge into three layers - document overviews, cross- document topic pages, and page-level source records; enabling progressive refinement of retrieval when initial lookup misses. We optimize the agent's navigation policy with on-policy reinforcement learning with a multi-component reward function balancing answer correctness, retrieval quality and trajectory efficiency. Evaluation on ViDoRe-V3 (8 domains), FinanceBench, and memory benchmarks (LoCoMo, LongMemEval, PersonaMem-v2) shows that WikiResearcher- 9B which is our RL-tuned Qwen 9B model, significantly outperforms same-size untrained baselines and exceeds or matches larger external models. SearchWiki paired with WikiResearcher-9B demonstrates that learned navigation over structured corpora is a superior alternative to flat retrieval.",
+      "authors": [
+        "Guransh Singh",
+        "Vishwajeet Kumar",
+        "Arkadeep Acharya",
+        "Adnan Qidwai",
+        "Jaydeep Sen",
+        "Sachindra Joshi"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-30T18:36:13Z",
+      "updated": "2026-08-30T18:36:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29953v1",
+      "abs_url": "https://arxiv.org/abs/2608.29953",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29953",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29937",
+      "title": "AcrossWAM1.0:A Modular Latent World-Action Stack for Compact Robot Policies",
+      "abstract": "Latent world-action models avoid rendering future pixels by predicting an action-relevant visual subgoal in feature space. LaWAM established this formulation, but its original presentation left the world model, multimodal backbone, and deployment checkpoint tightly coupled. We introduce AcrossWAM1.0, a modularization and scaling study of this latent world-action stack. Rather than presenting latent subgoals as a new algorithm, we make the module boundary explicit: a policy adapter produces latent-action and action-generation contexts; a retained latent world decoder grounds the predicted transition in the current scene;and a flow-matching expert generates continuous action chunks. We further separate training-only teachers from the inference graph and provide a verifiable deployment export. On 2,000 paired LIBERO episodes, replacing a Qwen3-VL-2B backbone with Qwen3.5-0.8B yields 97.45% success versus 98.00% for the 2B model (a-0.55percentage-point difference; exact McNemarp=0.266). This does not prove equivalence, but it meets a prespecified two-point retention criterion. The compact, inference-reachable checkpoint contains 1,472.6M unique parameters, 42.4% fewer than the original 2B policy, while all retained tensors are bitwise identical to the source checkpoint. Cross-family execution is additionally checked with a MiniCPM-V adapter smoke test; closed-loop cross-family transfer remains an open evaluation. AcrossWAM1.0 therefore contributes an auditable software and evaluation boundary for compact latent world-action policies, distinct from LaWAM's original latent-subgoal contribution.",
+      "authors": [
+        "Yafei Zhang",
+        "Nan Wu"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-30T18:09:17Z",
+      "updated": "2026-08-30T18:09:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29937v1",
+      "abs_url": "https://arxiv.org/abs/2608.29937",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29937",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29910",
+      "title": "Matrix-Game 3.5: Enhancing Real-Time Streaming Interactive World Models with Patch Memory",
+      "abstract": "Interactive world models extend video generation from offline clip synthesis toward persistent simulation of interactive virtual worlds, enabling applications in games, robotics, embodied agents, and XR. Achieving stable long-horizon interactive generation, however, remains challenging, as the model must simultaneously preserve scene geometry, dynamic consistency, and camera control while supporting real-time autoregressive generation. Building upon Matrix-Game 3.0, we present Matrix-Game 3.5, as shown in Figure 1, which advances real-time interactive world generation toward geometry-aware and long-horizon consistent simulation through three key improvements. First, we propose a unified geometry-aware memory framework, whose patch-memory and tiled-PRoPE components introduce no additional learnable parameters, combining explicit 3D patch retrieval with projective camera conditioning to enable geometry-consistent camera control and faithful long-horizon scene recall. Second, we introduce a static-dynamic disentangled world representation that separately models static scene geometry and dynamic subjects, preserving both geometric consistency and subject identity throughout long-horizon generation. Third, we develop a two-stage progressive real-time distillation framework that converts a bidirectional diffusion model into a few-step causal generator through Perceptual Flow Matching and curriculum based Self-Rollout DMD, enabling minute-long real-time interactive generation. Extensive experiments demonstrate that, with a unified training corpus spanning Unreal simulation environments, open-world games, and internet videos, MatrixGame 3.5 achieves strong performance in long-horizon scene recall, precise camera control, subject consistency, prompt-driven world generation, and stable real-time open-world interaction.",
+      "authors": [
+        "Runjia Qian",
+        "Zile Wang",
+        "Jihai Zhang",
+        "Kai Zou",
+        "Wei Yu",
+        "Jiaxing Li",
+        "Zexiang Liu",
+        "Yaokun Li",
+        "Fei Kang",
+        "Kaichen Huang",
+        "Mengyin An",
+        "Haobo Zhang",
+        "Biao Jiang",
+        "Jiahua Wang",
+        "Haofeng Sun",
+        "Yang Liu",
+        "Yangguang Li"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-30T17:11:00Z",
+      "updated": "2026-08-30T17:11:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29910v1",
+      "abs_url": "https://arxiv.org/abs/2608.29910",
+      "topics": [
+        "world-model",
+        "rl",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29910",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29905",
+      "title": "OrnaStyler: Ornament-Aware Latent Editing for Content-Preserving 3D Stylization",
+      "abstract": "Text-guided style editing of 3D assets is essential for adapting existing objects to diverse visual aesthetics in digital content creation. Despite rapid progress in 3D shape modeling, faithfully stylizing an existing asset remains challenging when the desired stylization involves fine-grained structural ornamentation, which requires the model to preserve the source geometry and object identity, while coherently integrating new style-specific details. We propose \\textbf{OrnaStyler}, a zero-shot framework for text-guided ornament-aware 3D stylization. Built upon rectified flow-based generative modeling, OrnaStyler introduces an inversion-guided editing strategy that recovers content-aware latent representations at both geometry and appearance levels in a staged manner to facilitate faithful editing. Our core idea is to explicitly model the spatial configuration of stylistic elements, thereby mitigating the fundamental tension between content preservation and style expression in the voxel space. Specifically, at the geometry level, we manipulate voxel representations through flow inversion to synthesize ornament-enhanced structures while preserving the spatial identity of the source asset. Then, at the appearance level, we introduce an adjacency-aware feature inpainting mechanism to harmonize newly generated ornaments with the original content, yielding coherent geometry-appearance integration. Our approach operates solely in the inference phase and enables selective editing over geometric augmentation or appearance stylization. Extensive experiments on both generated and real-world 3D assets against prior methods demonstrate that OrnaStyler achieves state-of-the-art editing performance in terms of content preservation, style fidelity, and overall visual realism. Code is available at: https://github.com/tomohiro0427/OrnaStyler",
+      "authors": [
+        "Tomohiro Aizawa",
+        "Shigeru Kuriyama",
+        "Chunzhi Gu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-30T17:00:39Z",
+      "updated": "2026-08-30T17:00:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29905v1",
+      "abs_url": "https://arxiv.org/abs/2608.29905",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29905",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29904",
+      "title": "Off-Manifold Refinement: Guiding Video Generators with a Frozen World Model",
+      "abstract": "Modern video generators routinely fail at physical dynamics: objects float, trajectories violate gravity, contacts vanish. Standard denoising and flow-matching objectives fit visual data distributions but do not explicitly penalize such physical violations. Existing remedies can improve physical consistency, but typically add substantial inference or training cost. Candidate-selection methods generate and score multiple videos, while gradient-based world-model guidance repeatedly decodes and re-encodes intermediate estimates. Generator-internal refinement adds perturbation and re-denoising loops, whereas post-training requires curated data and additional optimization. We propose Off-Manifold Refinement (OMR), an inference-time method that instead injects world-model feedback directly into a single sampling trajectory. During scheduled middle ODE steps, we augment the generator velocity with the gradient of an adapter-space V-JEPA 2.1 surprise energy. This external correction can move the latent away from the uncorrected sampling trajectory and toward regions ranked as more physically plausible by the frozen predictor, after which the generator continues rendering from the corrected state. A small trained latent-to-embedding adapter keeps the gradient tractable at inference, and both the video generator and the world model remain frozen. On our fixed 400-prompt VideoPhy-2 detailed subset, OMR lifts the joint Semantic-Adherence-and-Physical-Commonsense metric from 47.0% to 52.0% (+5.0pp absolute, +10.6% relative) over the base Wan2.2-T2V-A14B sampler. On a separate fixed 50-prompt efficiency subset, it requires $1.71 \\times$ the base runtime rather than the multiplicative cost of reward/search alternatives. Project page: https://itruonghai.github.io/omr.",
+      "authors": [
+        "Hai Nguyen-Truong",
+        "Tuan-Anh Vu",
+        "Dang Huynh"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-30T17:00:09Z",
+      "updated": "2026-08-30T17:00:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29904v1",
+      "abs_url": "https://arxiv.org/abs/2608.29904",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29904",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29897",
+      "title": "When History Is Multimodal: Rethinking Context Management for Long-Horizon Agents",
+      "abstract": "Long-horizon agents need a context manager to compress growing interaction histories into a bounded working context, via passive strategies or active strategies that decide how memory is accessed and reorganized. Meanwhile, prior optical-memory work mainly treats pixels as a dense codec for textualized histories, often presupposing that rendering context into optical memory incurs a significant performance drop relative to text, thus coupling this representation with SFT, self-distillation, or reinforcement learning to close this gap, leaving unresolved (i) how visual rendering performs as a context manager under a fair, controlled comparison, and (ii) whether this carrier offers a native advantage when history is inherently multimodal. In this paper, we formulate context management as a budget-constrained history transformation and introduce Visual Rendering (VR) as a representational context manager. Under a shared harness, policy model, trigger, and task domain, we evaluate VR on four text-centric and three multimodal benchmarks against four baselines (No Compression, Discard-All, Sliding Window, Summarization), finding visual memory is a natural carrier of native visual evidence. Building on this finding, we propose VERA (Visual Evidence-Retaining strategy for long-horizon Agents), a training-free context manager built on deterministic rendering with no exposed memory operations: on text-centric benchmarks it renders textual history as VR does, while on multimodal benchmarks it retains native visual observations instead of translating them into text. Across nearly all benchmarks, VERA cuts cumulative non-cache tokens by 31.5%-63.1% versus No Compression, matches existing managers on text-centric tasks, and achieves the highest accuracy among all baselines on multimodal tasks, supporting a modality-preserving view of long-horizon context management.",
+      "authors": [
+        "Jiaqi Su",
+        "Cong Pang",
+        "Jiawei Hong",
+        "Tiankuo Yao",
+        "Zixuan Chen",
+        "Xin Lou",
+        "Lewei Lu"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T16:46:16Z",
+      "updated": "2026-08-30T16:46:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29897v1",
+      "abs_url": "https://arxiv.org/abs/2608.29897",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29897",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29884",
+      "title": "Improving Argument Saliency Coverage in Small LLMs for Long Legal Opinion Summarization via Sequence-Level Distillation",
+      "abstract": "We show that sequence-level distillation from a capable long-context teacher model is a simple, annotation-free, and data-efficient strategy for improving argument saliency coverage in long legal opinion summarization, where small LLMs often struggle to retain the most salient argumentative content. Across student model sizes, distillation consistently surpasses tuning on expert-written summaries in our legal-opinion setting. We further demonstrate that most gains are achieved with as few as ~10 training summaries, highlighting the strong data efficiency of teacher-generated supervision. Finally, we find that summary distillation is sufficient for improvements: reasoning-chain distillation remains competitive with summary-only distillation, but provides marginal benefit when combined with summary supervision.",
+      "authors": [
+        "Mohamed Elaraby",
+        "Ahmed Elhady",
+        "Diane Litman"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T16:27:09Z",
+      "updated": "2026-08-30T16:27:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29884v1",
+      "abs_url": "https://arxiv.org/abs/2608.29884",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29884",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29860",
+      "title": "Uncertainty-Driven Replay Memory for Reinforcement Learning",
+      "abstract": "Uncertainty estimation provides promising capabilities for reinforcement learning (RL) agents. Notably, estimating uncertainty can reduce the training time and enable agents to obtain greater rewards over time by exploiting information related to whether an action would facilitate exploration of portions of an environment that are well-known versus those that are relatively unknown. In this work, we propose a novel formulation of the experience replay buffer commonly used in RL that we call uncertainty-driven replay memory (UDRM), which entails an update scheme for internally stored memories based on uncertainty estimates obtained by an RL model during training. In contrast to existing forms of RL, which typically use temporal difference error or the distribution of transitions to update the replay memory buffer and train RL controllers, our scheme biases the memory buffer to store more uncertain transitions that will improve an RL agent's generalization throughout training. Experimental results demonstrate that our proposed uncertainty-aware replay buffer enables an RL agent to obtain higher rewards during training compared to other existing uncertainty-aware RL frameworks.",
+      "authors": [
+        "Sheeraja Rajakrishnan",
+        "Alexander G. Ororbia",
+        "Travis Desell",
+        "Daniel E. Krutz"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-30T15:41:57Z",
+      "updated": "2026-08-30T15:41:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29860v1",
+      "abs_url": "https://arxiv.org/abs/2608.29860",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29860",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29856",
+      "title": "GenRubric: Self-Evolving Rubric Generation for Scalable LLM Evaluation",
+      "abstract": "Large language models are increasingly used as scalable evaluators for open-ended tasks. However, many LLM judges derive query-specific criteria during scoring, leaving the evaluation requirements insufficiently specified and their coverage difficult to audit. Query-specific rubrics make these requirements explicit, but expert-written rubrics are costly to construct, while existing automatic methods typically rely on inference-time refinement or external supervision. We introduce GenRubric, a self-evolving framework that improves rubric generation from unlabeled queries without requiring additional human annotations during self-evolution. Our approach is based on rubric-induced self-consistency: independently sampled rubrics for the same query provide partial views of its latent evaluation requirements, and a comprehensive rubric should induce a response that generalizes across these complementary evaluation views. We implement this principle through reinforcement learning, combining a cross-rubric comprehensiveness signal with group-level and criterion-level rewards for rubric quality. We train GenRubric models at 4B, 8B, and 14B scales across multiple domains. Experiments on human-annotated rubric benchmarks show that self-evolution improves the agreement between evaluations induced by generated rubrics and those induced by expert-written rubrics. The improvements further generalize to held-out domains, demonstrating the potential of self-evolving rubric generation for scalable and query-specific LLM evaluation. Code and models are publicly available at https://github.com/foggpoy/GenRubric.",
+      "authors": [
+        "Yifan Chen",
+        "Haitao Li",
+        "Qingyao Ai",
+        "Fengbin Zhu",
+        "Tat-Seng Chua",
+        "Min Zhang",
+        "Yiqun Liu"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T15:39:39Z",
+      "updated": "2026-08-30T15:39:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29856v1",
+      "abs_url": "https://arxiv.org/abs/2608.29856",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29856",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29831",
+      "title": "A^2Agent: Action-Aware Reinforcement Learning for Repository-Level Code Localization Agents",
+      "abstract": "Localizing issue-relevant code regions is a critical step in automated software engineering. However, due to their reliance on sparse trajectory-level signals, existing methods cannot identify which per-turn actions are effective and often discover correct code regions during exploration but fail to commit them. To address these limitations, we propose an action-aware reinforcement learning method that combines a per-turn reward sequence rewarding both the discovery and commitment of gold code regions with an action-level advantage estimation scheme that isolates each action's credit by grouping turns sharing the same exploration context. Extensive evaluations show that our method improves the average F1 over the state-of-the-art (SOTA) by 1.58% on SWE-Bench Verified and 8.55% on SWE-Bench Pro, with our 4B model outperforming baselines up to 8x larger. Our code is available at https://github.com/donian00/A2Agent.",
+      "authors": [
+        "Doyeon Kim",
+        "Suyoung Bae",
+        "Yumin Lee",
+        "Jee-Hyong Lee"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.SE"
+      ],
+      "published": "2026-08-30T14:53:35Z",
+      "updated": "2026-08-30T14:53:35Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29831v1",
+      "abs_url": "https://arxiv.org/abs/2608.29831",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29831",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29814",
+      "title": "FRAMEWORKERS: A Dynamic Multi-Agent Framework for AI-Generated Video Production",
+      "abstract": "Modern video generators excel at synthesizing individual clips, but complete video production requires coordinating a long sequence of interdependent creative steps, including scripting, storyboarding, generation, and editing. It further demands persistent asset management and dynamic task orchestration as intermediate outputs, dependencies, and execution states evolve over time. Existing automated systems typically rely on rigid pipelines that are difficult to adapt to diverse inputs and changing workflows, while general-purpose large language models (LLMs) remain unreliable for long-horizon orchestration and multimodal asset routing. We introduce FRAMEWORKERS, a task-centric and workspace-grounded multi-agent framework for open-ended video production. A central Director formulates video creation as dynamic task management, continuously editing a Task Stack to determine which subtask to execute next and which sub-agent to invoke. An Assistant serves as the execution layer, grounding each selected task in a shared Workspace, retrieving the required assets and context, invoking the assigned sub-agent, and persisting the resulting artifacts. Execution capabilities are exposed through modular sub-agents with registered descriptors, allowing new sub-agents to be integrated without redesigning the orchestration workflow. To improve orchestration reliability, we fine-tune the Director via supervised fine-tuning (SFT) followed by Group Relative Policy Optimization (GRPO) for descriptor-conditioned task routing. Experiments show that FRAMEWORKERS outperforms strong LLM planners in routing accuracy, recovers reliably from runtime failures, generalizes to unseen sub-agents without retraining, and achieves higher end-to-end video quality and broader task coverage than fixed pipelines, single-agent systems, and prior multi-agent approaches.",
+      "authors": [
+        "Zhendong Li",
+        "Lei Sun",
+        "Letian Shi",
+        "Deheng Zhang",
+        "Ruibo Ming",
+        "Mengshun Hu",
+        "Dannong Xu",
+        "Jian Wang",
+        "Danda Paudel",
+        "Luc Van Gool",
+        "Jinjin Gu"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-08-30T14:28:50Z",
+      "updated": "2026-08-30T14:28:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29814v1",
+      "abs_url": "https://arxiv.org/abs/2608.29814",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29814",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29804",
+      "title": "Beyond Global Realism: Virtual Try-On Evaluation and Optimization with Dimension-wise Garment Fidelity Assessment",
+      "abstract": "Virtual try-on (VTON) requires not only realistic generation but also faithful preservation of garment characteristics. However, existing evaluation metrics such as PSNR, SSIM, KID and FID struggle to measure the consistency between the generated and reference garments, particularly in capturing the multi-dimensional characteristics of garment fidelity. To address this, we propose DAT: a Dimension-wise Assessment framework for virtual Try-on, which decomposes garment consistency into seven interpretable dimensions: silhouette, color, neckline and sleeve shape, major decoration and structure, material texture, fine-detail fidelity, and logo preservation, each formulated as a discrete attribute-level prediction task. To train this specialized assessment model, we adopt a two-stage learning paradigm comprising large-scale weak supervision on 50K samples, followed by refinement on 10K higher-quality annotations obtained via multi-model voting. Furthermore, we employ weighted cross-entropy loss to mitigate the severe label imbalance inherent across evaluation dimensions. Beyond its role as an evaluation framework, the assessment model can be integrated into reinforcement learning optimization of Qwen-Image-Edit for VTON, where dimension-wise rewards are adaptively aggregated to emphasize under-optimized aspects during training. Experimental results show that our method (8B parameters) achieves state-of-the-art performance in terms of balanced accuracy, SROCC, and PLCC, outperforming strong proprietary models such as Gemini-3.1, Qwen3.7-plus, and GPT-5.5, while also serving as an effective optimization signal for reward-guided VTON generation",
+      "authors": [
+        "Kaidong Zhang",
+        "Yukang Ding",
+        "Xiaoyu Liu",
+        "Ying Chen"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-30T14:08:40Z",
+      "updated": "2026-08-30T14:08:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29804v1",
+      "abs_url": "https://arxiv.org/abs/2608.29804",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29804",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29793",
+      "title": "GridFlow: Structured Latent Flow for Seamless City-Scale 3D Point Cloud Generation",
+      "abstract": "Generating realistic 3D city environments from remote sensing data is important for simulation, urban planning, and mixed reality, yet existing point cloud generation methods are limited to single objects or bounded indoor scenes and cannot handle the scale, seamless tiling, and partial observability challenges of city-scale generation. We present \\ours{}, a multi-stage framework that generates dense, colored point clouds ($10^5$ points per $150\\text{m}{\\times}150\\text{m}$ tile) at city scale, conditioned on satellite imagery, semantic segmentation maps, and digital surface models (DSM). A \\emph{Grid-Aligned VAE} encodes each tile into a topology-preserving latent grid where tokens correspond to fixed spatial regions, enabling spatially coherent multi-modal conditioning and compact latent-space edge consistency that implicitly aligns thousands of boundary points for seamless cross-tile generation. A conditional rectified flow model synthesizes geometry latents from the fused multi-modal conditions, and an orientation-aware diffusion colorizer separately handles satellite-visible horizontal surfaces and occluded vertical façades. To support standardized evaluation, we build on public 3D data sources to introduce \\emph{City3D-MultiGen}, a benchmark of $163$K densely annotated tiles from Melbourne and London with aligned point clouds, satellite images, semantic maps, and elevation data. Experiments show that \\ours{} outperforms adapted point cloud generation baselines across all geometry metrics and produces visually coherent colored point clouds with seamless boundaries over arbitrarily large urban extents. Our benchmark details are available at https://huggingface.co/datasets/e32/City3D-MultiGen",
+      "authors": [
+        "Xinyu Wang",
+        "Muhammad Ibrahim",
+        "Atif Mansoor",
+        "Ajmal Mian"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-30T13:39:36Z",
+      "updated": "2026-08-30T13:39:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29793v1",
+      "abs_url": "https://arxiv.org/abs/2608.29793",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29793",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29783",
+      "title": "InspectorGPT: A Comparative Reasoning Enhanced VLM for Comprehensive Industrial Anomaly Detection",
+      "abstract": "Industrial anomaly detection is a critical component of modern manufacturing. Most traditional unsupervised methods rely on modelling normal feature distributions, inherently limiting generalization to unknown categories. To improve generalizability, some recent methods incorporate vision-language models (VLMs) for zero-shot detection via text prompts. However, we observe that reasoning-oriented post-training can cause anomaly discrimination to collapse, with some fine-tuned models performing worse than their base VLMs. Existing methods also provide only textual decisions or coarse boxes, without pixel-level segmentation. A more explicit detection principle comes from human inspection: anomalies are identified by comparing a query image with a defect-free reference. Inspired by this, we propose InspectorGPT, a VLM framework centered on comparative reasoning. Given a normal reference and a query image, InspectorGPT compares them to identify discrepancies and perform multiple inspection tasks with detailed reasoning. We internalize this capability through Chain-of-Thought (CoT) fine-tuning and Group Relative Policy Optimization (GRPO) with tailored, verifiable rewards. We further introduce InspectorGPT-Seg for pixel-level anomaly masks. Segmentation supervision improves anomaly discrimination but weakens semantic reasoning, while joint training fails to balance them. We therefore train the two branches separately and combine them through task-vector fusion. Extensive experiments demonstrate superior multi-dimensional performance and generalization to unseen benchmarks, validating comparative reasoning for comprehensive industrial inspection.",
+      "authors": [
+        "Weifei Chen",
+        "Honghao Zhang",
+        "Zhiyuan You",
+        "Xinyi Le"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-30T13:22:42Z",
+      "updated": "2026-08-30T13:22:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29783v1",
+      "abs_url": "https://arxiv.org/abs/2608.29783",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29783",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29748",
+      "title": "ReTrace: Rejected-Trajectory Conditioning for Speculative Decoding",
+      "abstract": "Speculative decoding accelerates autoregressive language model inference by having a lightweight draft model propose multiple candidate tokens, which are then verified in parallel by a larger target model. However, after the first rejection, standard prefix-based verification discards the remaining draft suffix, so the computation spent generating and verifying those positions does not contribute to decoding progress. Focusing on DFlash, we show that rejected positions in a rejected suffix may still align with the target continuation, indicating that the draft model can retain useful semantic and structural information despite local token-level errors. Motivated by this observation and inspired by conditional diffusion, we introduce~\\textbf{ReTrace}, a rejected-trajectory conditioning method that conditions each draft block on the rejected suffix from the previous round rather than generating it from fresh mask placeholders alone. ReTrace retains the hidden representations of the rejected suffixes, aligns them with the next draft block, refines them using target-aware correction signals from the same verification pass, and admits them into the drafter's input embeddings through gated residual fusion. Because rejected tokens are never committed and target-side verification remains unchanged, ReTrace preserves the lossless property of speculative decoding without requiring an additional model forward pass. Experiments with Qwen3 models across mathematical reasoning, code generation, and open-ended dialogue demonstrate that ReTrace consistently improves average acceptance length and end-to-end decoding speed over its DFlash backbone. By introducing cross-round conditioning without modifying within-round proposal generation, ReTrace is largely orthogonal to existing drafting improvements and might be combined with them for further gains.",
+      "authors": [
+        "Luxi Lin",
+        "Zhanpeng Zeng",
+        "Shuang Peng",
+        "Songwei Liu",
+        "Rongrong Ji"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T12:20:54Z",
+      "updated": "2026-08-30T12:20:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29748v1",
+      "abs_url": "https://arxiv.org/abs/2608.29748",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29748",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29662",
+      "title": "ACTD: Anchor-Based Cross-Tokenizer Distillation with Residual Regularization",
+      "abstract": "Knowledge distillation effectively transfers reasoning capabilities from large language models to lightweight student models. To enable knowledge transfer across disparate model families, researchers increasingly explore cross-tokenizer distillation. However, cross-tokenizer distillation remains challenging due to vocabulary and sequence misalignment, while approximate vocabulary alignment can introduce additional noise into distillation. To address these challenges, we propose Anchor-Based Cross-Tokenizer Distillation with Residual Regularization (ACTD). ACTD bridges structural heterogeneity through vocabulary and sequence alignment, while mitigating alignment noise via a novel anchor loss with residual regularization. We further extend this framework to a multi-teacher setting. Evaluated across five reasoning benchmarks with three distinct teacher models, ACTD achieves state-of-the-art performance. Moreover, its multi-teacher extension outperforms the strongest single-teacher and multi-teacher baselines, further demonstrating the robustness of our method.",
+      "authors": [
+        "Huiyi Zhang",
+        "Zijian Li",
+        "Xiaocheng Feng",
+        "Weitao Ma",
+        "Xiaoliang Yang",
+        "Yichong Huang",
+        "Bing Qin"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T08:54:48Z",
+      "updated": "2026-08-30T08:54:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29662v1",
+      "abs_url": "https://arxiv.org/abs/2608.29662",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29662",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29623",
+      "title": "MI-Distillation: Selecting from Model-Interpolated Instruct-Reasoning Data Spectrum for Chain-of-Thought Distillation",
+      "abstract": "Recent advances in large reasoning models (LRMs) have shown strong performance on complex problems through long chain-of-thought (Long CoT) reasoning. However, distilling such trajectories into smaller student models remains challenging: direct Long CoT supervision often provides limited gains and can be less effective than concise Short CoT rationales. In this work, we investigate this phenomenon from a gradient-centric perspective. Our analysis shows that Long CoT induces larger gradient magnitudes and more concentrated update directions than Short CoT, with this effect becoming more pronounced as student model capacity increases. These findings suggest that effective Long CoT distillation requires balancing the reasoning information density of reasoning trajectories with their distributional alignment to the student model. Motivated by this insight, we propose \\textbf{M}odel \\textbf{I}nterporlation \\textbf{Distillation} (\\textbf{MI-Distillation}), a framework that constructs a continuous Instruct-Reasoning data spectrum through model interpolation. To select suitable trajectories from this spectrum, we further introduce \\textbf{Seq}uential \\textbf{L}earnable \\textbf{S}urprisal \\textbf{S}core (\\textbf{SeqLSS}), which favors reasoning paths that are both informative and learnable for the student. Extensive experiments on reasoning benchmarks show that MI-Distillation consistently improves small model CoT distillation over strong Long CoT baselines.",
+      "authors": [
+        "Yangsong Lan",
+        "Renkai Hu",
+        "HongKai Zheng",
+        "Bo Zhang",
+        "Renzhi Wang",
+        "Hongliang Dai",
+        "Piji Li"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-08-30T07:32:22Z",
+      "updated": "2026-08-30T07:32:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29623v1",
+      "abs_url": "https://arxiv.org/abs/2608.29623",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29623",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29622",
+      "title": "AgenticRag-R1: Agentic Reinforcement Learning with Stack Memory for Multi-Step Reasoning, Retrieval and Memorizing",
+      "abstract": "Retrieval-Augmented Generation (RAG) improves the factuality of large language models (LLMs), yet existing RAG systems often struggle with complex, multi-step reasoning that requires adaptive retrieval and continuous revision of intermediate contexts. Recent reinforcement learning (RL)-based agentic RAG methods partially alleviate this issue, but typically rely on coarse-grained action spaces and trajectory-level rewards, resulting in weak reward assignment and a bias toward short-horizon, stereotyped reasoning template. To address, we propose AgenticRag-R1, a RL framework that deeply integrates reasoning, retrieval, and memory via a memory stack and fine-grained action space, supported by hierarchical action-aware rewards and an information-aware trajectory rejection strategy to enable effective long-horizon learning. Experiments across a diverse set of multi-hop, open-domain, and agentic reasoning benchmarks, spanning multiple backbone model sizes, demonstrate that AgenticRag-R1 consistently outperforms strong baselines. Moreover, AgenticRag-R1 learns more robust, interpretable, and memory-aware reasoning behaviors, highlighting the effect of fine-grained action modeling and information-aware optimization for long-horizon reasoning. Our code is anonymous available at https://github.com/jiangxinke/Harness-RL/tree/AgenticRAG-R1-Whitebox.",
+      "authors": [
+        "Xinke Jiang",
+        "Yue Fang",
+        "Zhibang Yang",
+        "Jiaran Gao",
+        "Zhixin Zhang",
+        "Tao Feng",
+        "Rihong Qiu",
+        "Wentao Zhang",
+        "Hongxin Ding",
+        "Ruizhe Zhang",
+        "Yongxin Xu",
+        "Yuheng Huang",
+        "Xu Chu",
+        "Junfeng Zhao",
+        "Yasha Wang"
+      ],
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "published": "2026-08-30T07:31:19Z",
+      "updated": "2026-08-30T07:31:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29622v1",
+      "abs_url": "https://arxiv.org/abs/2608.29622",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29622",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29621",
+      "title": "CineForge: Self-Improving Agents for Long-Horizon Video Generation",
+      "abstract": "Long-horizon story-driven video generation requires a production agent to coordinate narrative decomposition, state tracking, shot design, prompt construction, rendering, and revision across interdependent scenes. Existing adaptive video systems primarily refine requests or reusable skills, leaving recurring production failures disconnected from persistent, stage-targeted improvements across stories. We introduce CineForge, a self-evolving video-production agent framework that couples CineForge-Produce for video generation with CineForge-Evolve for cross-story policy evolution. CineForge-Produce organizes each source story into typed narrative, character, spatial, and cinematic states, uses them to coordinate asset and clip generation, and records the process as a canonical production trajectory. CineForge-Evolve applies Case-to-Pattern-to-Policy Evolution (CPPE) to review trajectory evidence, consolidate recurrent findings into bounded stage-local patches, and deploy validated updates through structural replay and confidence-controlled paired evaluation. To measure complete story realization, we introduce CineScope, which combines a 100-script CineScope-Data suite with a human-aligned, multiscale CineScope-Metric spanning causal state, directorial orchestration, pacing and resource allocation, and character arc. Across CineScope-Data and two public benchmarks, the evolved CineForge policy improves CineScope-Metric from 4.024 to 4.380, outperforms three long-video baselines with consistent gains under ScriptAgent, and reduces review LLM calls by 37.0% on new stories. These results establish production trajectories as actionable experience for video agents that improve cumulatively across long-form storytelling tasks.",
+      "authors": [
+        "Junxiang Liu",
+        "Lin Wang",
+        "Haiyu Shi",
+        "Hongxu Ma",
+        "Xiaoyu Yang",
+        "Chunjie Chen",
+        "Xiaoxiao Xu",
+        "Kaiqiao Zhan",
+        "Boao Wang",
+        "Shuizhou Shi",
+        "Tianyun Zhu",
+        "Jie Li",
+        "Jiangtong Li"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-08-30T07:29:46Z",
+      "updated": "2026-08-30T07:29:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29621v1",
+      "abs_url": "https://arxiv.org/abs/2608.29621",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29621",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29616",
+      "title": "JPO: Juris Policy Optimization for Structured Legal Reasoning in Criminal Judgment Prediction",
+      "abstract": "Criminal judgment prediction requires models to infer statutory articles, charges, and sentencing outcomes from case facts. Unlike standard classification tasks, it involves a structured reasoning process in which statutes should be matched with facts, charges should be justified by statutes, and sentencing outcomes should remain consistent with charges. Existing approaches optimize final labels, and while some have attempted to evaluate reasoning quality, their evaluations are indirect, often relying on LLM-generated rubrics that reflect model-internal preferences rather than the inherent logical structure of legal adjudication. We propose Juris Policy Optimization (JPO), a post-training framework for structured legal reasoning in Chinese criminal judgment prediction. JPO first uses teacher-generated rationales to supervise a standardized four-step reasoning process, and then applies reinforcement learning with a composite reward over legal prediction quality, reasoning structure completeness, and cross-step consistency. JPO further introduces token-level advantage reweighting and adaptive clipping for legally salient reasoning segments. Experiments on multiple open-source language models and three Chinese legal benchmarks show that JPO consistently improves both judgment prediction and reasoning quality over supervised fine-tuning and reinforcement learning baselines.",
+      "authors": [
+        "Zhaolu Kang",
+        "Yantao Liu",
+        "Tailong Luo",
+        "Leqi Zheng",
+        "Lei Wei",
+        "Chenghua Zhu",
+        "Junhao Gong",
+        "Jiachen Qian",
+        "Eric Hanchen Jiang",
+        "Jiaxin Liu",
+        "Yuan Wang",
+        "Hao Zhang",
+        "Zixia Wang",
+        "Rong Fu",
+        "Zheng Lin",
+        "Richeng Xuan",
+        "Zhichao Hu"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T07:14:02Z",
+      "updated": "2026-08-30T07:14:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29616v1",
+      "abs_url": "https://arxiv.org/abs/2608.29616",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29616",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29610",
+      "title": "Beyond Surface Alignment: Grounding the Dynamics of Situational Understanding and Generative Control in LLMs",
+      "abstract": "The current alignment tuning paradigm for Large Language Models (LLMs) prioritizes surface-level behaviors -- fluency, safety, and tonal consistency. While effective for casual chat, this thesis argues that such surface alignment masks a lack of grounding, creating models that are stylistically confident but situationally brittle. We propose a framework of Grounded Alignment, analyzing how models process context (Input) and structure generation (Output), then aligning these grounded behaviors to human needs. First, we evaluate failures in Situational Grounding. SitTest shows that despite large context windows, state-of-the-art models struggle to maintain a consistent \"mental model\" of a changing environment. ReCode further shows that models rely on surface heuristics rather than deep syntactic dependencies: they \"read\" extensive histories without truly \"understanding\" the evolving situation. Second, we evaluate Generative Grounding. We introduce the Branching Factor (BF) to map LLM generation, finding that standard alignment tuning constricts this landscape into premature stylistic collapse. Hindsight further shows that models often fail to understand their own generations. Finally, we propose Dynamic Control for grounded interaction. AI Realtor demonstrates context engineering to compensate for poor situational grounding. Base-Aligned Model Collaboration decouples exploration from stylistic constraints. We also present Annealed Sampling for verifiable reinforcement learning and apply these ideas to Addiction Support, where model-generated rationalization offers a communication interface for high-stakes domains. Collectively, this work moves beyond surface alignment toward agents anchored in both context and generation.",
+      "authors": [
+        "Chenghao Yang"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-08-30T07:04:03Z",
+      "updated": "2026-08-30T07:04:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29610v1",
+      "abs_url": "https://arxiv.org/abs/2608.29610",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29610",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29600",
+      "title": "Adaptive Doubly Robust Off-Policy Evaluation for Ranking Policies under Diverse User Behavior",
+      "abstract": "Off-policy evaluation (OPE) of ranking policies is challenging be- cause selecting and ordering multiple items from a candidate set makes the number of possible rankings grow combinatorially with the number of candidates and the ranking length. Consequently, Inverse Propensity Scoring (IPS), whose importance weight is the full-ranking probability ratio under the evaluation and logging policies, can have excessive variance. Independent IPS (IIPS) and Reward Interaction IPS (RIPS) reduce variance by imposing fixed assumptions on how users browse rankings, but may introduce bias when those assumptions mismatch actual behavior. Adaptive Inverse Propensity Scoring (AIPS) addresses this trade-off by adap- tively marginalizing importance weights over the actions that affect each position-wise reward. It attains minimum variance within a class of unbiased IPS-based estimators when the true user be- havior model is observed. However, its estimation accuracy may still degrade for longer rankings, and AIPS does not use a reward model for residual correction. We propose Adaptive Doubly Robust (ADR), which combines adaptive importance weighting with re- ward regression through a control-variate correction. We establish its unbiasedness when the true user behavior model is observed and characterize a sufficient condition under which it reduces vari- ance relative to AIPS. Across synthetic experiments with 10,000 simulations per condition, ADR improves mean squared error over AIPS and conventional ranking OPE estimators across a range of logged-data sizes and ranking lengths.",
+      "authors": [
+        "Kosuke Iguchi",
+        "Ren Kishimoto"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.IR"
+      ],
+      "published": "2026-08-30T06:43:36Z",
+      "updated": "2026-08-30T06:43:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29600v1",
+      "abs_url": "https://arxiv.org/abs/2608.29600",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29600",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29598",
+      "title": "On the Resilience of Text-to-Video Diffusion Models to Hardware Faults",
+      "abstract": "We present the first systematic study of the resilience of text-to-video (T2V) diffusion models under random hardware-level faults. While T2V models are widely used for automated video generation due to their ability to produce high-quality, temporally coherent, and realistic videos, their iterative denoising process and spatiotemporal dependencies introduce unique failure modes. We perform an extensive fault-injection study covering both computational and memory faults across three T2V models and a representative benchmark. Our results show that (1) a single fault can degrade overall performance by up to 3.7\\%, with semantic correctness more affected than perceptual quality; (2) memory faults are more damaging than computational faults, high-order exponent bits are particularly vulnerable, and the widely-used bfloat16 is more susceptible than alternative formats; and (3) 7-28\\% of faults cause visible artifacts, including semantic changes such as added objects, suggesting that single faults are sufficient to alter output semantics. Our findings reveal reliability risks in deployed T2V systems and motivate further research on improving fault resilience. Code: \\href{https://github.com/ztcoalson/T2V-Resilience}{https://github.com/ztcoalson/T2V-Resilience}.",
+      "authors": [
+        "Zachary Coalson",
+        "A M Aahad",
+        "Stella Doehring",
+        "Zane Ma",
+        "Sanghyun Hong"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-08-30T06:41:51Z",
+      "updated": "2026-08-30T06:41:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29598v1",
+      "abs_url": "https://arxiv.org/abs/2608.29598",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29598",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29588",
+      "title": "Call Neighbours Yourself: Graph Walks with Destination-Conditioned On-Policy Self-Distillation",
+      "abstract": "Reasoning over text-attributed graphs (TAGs) requires large language models (LLMs) to combine a node's text with evidence distributed across its neighbourhood. Existing methods fix the set of accessible neighbours before generation, forcing reasoning to operate over a static context and preventing the model from acquiring missing evidence during inference. We argue that neighbour selection should itself be part of the reasoning process. To this end, we propose Call Neighbours Yourself (CNY), a framework that enables LLMs to proactively explore graph neighbourhoods through topology-constrained graph-walk actions. Instead of reasoning over a pre-selected neighbour set, CNY exposes lightweight neighbour previews and learns when to expand candidate neighbours for additional evidence. To address the delayed-credit challenge of neighbour exploration, we introduce destination-conditioned on-policy self-distillation, which retrospectively evaluates a selected neighbour after its content is revealed and converts the resulting change in action preference into an action-level training signal. Experiments on standard TAG reasoning benchmarks under a unified raw-text setting show that CNY consistently outperforms fixed-context post-training baselines. Furthermore, the learned exploration policy transfers to unseen graphs and to a graph-level task not encountered during training. Code is available at https://github.com/superallen13/CNY.",
+      "authors": [
+        "Yilun Liu",
+        "Boyu Luo",
+        "Yanran Tang",
+        "Ruihong Qiu",
+        "Zi Huang"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-08-30T06:19:20Z",
+      "updated": "2026-08-30T06:19:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29588v1",
+      "abs_url": "https://arxiv.org/abs/2608.29588",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29588",
+      "summary_zh": ""
+    },
+    {
+      "id": "2608.29519",
+      "title": "FuncRoom-Agent: Sequential Feed-Forward 3D Functional Indoor Scene Generation",
+      "abstract": "We introduce Function-Room Generation, a new indoor 3D scene generation setting that creates rooms supporting explicit functional goals rather than merely visually plausible layouts. Existing agentic and executable methods improve controllability, but often depend on costly test-time generate--evaluate--revise loops, making functional room generation slow and computationally expensive. We address this challenge with three technical contributions. First, we design a recursive domain-specific language to effectively organize the hierarchical object compositions required by functional rooms, from room structure and major furniture to dense support-surface and nested small objects. It represents rooms as staged executable programs with explicit geometric and functional relations. Second, we propose a sequential feed-forward scene construction framework that distills recursive construction traces into a scene construction expert. At inference time, the expert writes executable DSL code stage by stage, and a deterministic executor directly instantiates each stage without teacher agents, online critics, or iterative repair. Third, we introduce ScenePRM, an execution-grounded process reward framework that improves the expert through reinforcement learning with functional, geometric, relational, and future-constructability feedback. We further establish a function-oriented benchmark and show state-of-the-art performance on both general indoor scene generation and function-room generation, achieving stronger functional completeness, relation correctness, geometric executability, and generation efficiency.",
+      "authors": [
+        "Hao Feng",
+        "Zhi Zuo",
+        "MingJian Liang",
+        "Jingyu Hu",
+        "Xiaowei Hu",
+        "Liupengfei Wu",
+        "Dian Zhang",
+        "Guoxin Fang",
+        "Zhengzhe Liu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-08-30T02:48:11Z",
+      "updated": "2026-08-30T02:48:11Z",
+      "pdf_url": "https://arxiv.org/pdf/2608.29519v1",
+      "abs_url": "https://arxiv.org/abs/2608.29519",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2608.29519",
+      "summary_zh": ""
+    }
+  ]
 }
