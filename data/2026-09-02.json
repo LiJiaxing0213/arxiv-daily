@@ -1,6 +1,6 @@
 {
   "date": "2026-09-02",
-  "generated_at": "2026-09-03T06:09:50.745525+00:00",
+  "generated_at": "2026-09-04T06:18:14.268058+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,134 @@
     }
   },
   "papers": [
+    {
+      "id": "2609.03216",
+      "title": "ProgResViT: Progressive Resolution and Width for Adaptive Vision Transformers",
+      "abstract": "Vision Transformers (ViTs) typically process every image using a fixed input resolution and model width, even though many images can be classified with substantially less computation. We introduce ProgResViT, an input-adaptive ViT that performs inference progressively across multiple rounds. The first round processes a low-resolution image with a narrow subnetwork. Inference terminates when the prediction is sufficiently confident; otherwise, the model reuses the representations produced in the current round and proceeds with a higher-resolution input and a wider subnetwork to refine its prediction. As all rounds share a single backbone, we propose Progress-Conditioned Soft Gating (PSG), which conditions token fusion and layer outputs on the current round, block, and input resolution. On image classification, applying ProgResViT to DeiT yields better accuracy-compute trade-offs than adaptive-width, adaptive-depth, and dynamic-token baselines. With knowledge distillation, a DeiT-based ProgResViT achieves 84.9% top-1 accuracy, slightly exceeding the reported DeiT-III-S accuracy under a comparable evaluation setting. We show that the same design also provides favorable accuracy-compute trade-offs for self-supervised DINO representations and downstream semantic segmentation. Code is available at https://github.com/ds-kiel/ProgResViT.",
+      "authors": [
+        "Ali Hojjat",
+        "Janek Haberer",
+        "Olaf Landsiedel"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-09-02T23:10:56Z",
+      "updated": "2026-09-02T23:10:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.03216v1",
+      "abs_url": "https://arxiv.org/abs/2609.03216",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.03216",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.03215",
+      "title": "SWIM: Student Writing Simulation via Proficiency-Conditioned Generation",
+      "abstract": "Writing proficiency manifests in how students develop content, organize ideas, choose words, and use language. Despite growing interest in LLM-based student simulation, whether LLMs can reproduce such multidimensional variation in extended writing remains largely unexplored. In this work, we explore if language models can realistically simulate student writing, and introduce SWIM, a task that formulates Student Writing sIMulation as proficiency-conditioned essay generation. We evaluate prompting, supervised fine-tuning (SFT), and reinforcement learning (RL) methods for writing simulation using automated essay scoring as a measure of profile alignment. Extensive experiments reveal that prompting provides limited proficiency control, even for strong proprietary LLMs with rubric-grounded strategies. In particular, while models can adjust content-oriented traits, they struggle to reproduce the lexical, grammatical, and organizational variation in different proficiency levels. SFT substantially improves alignment, while RL with the proposed proficiency-alignment reward yields further gains across all writing traits and essay prompts. Our findings suggest that explicit supervision enables substantially stronger profile alignment than prompting alone, while authentic low-proficiency writing remains challenging to reproduce.",
+      "authors": [
+        "Heejin Do",
+        "Jakub Kontak",
+        "Mrinmaya Sachan"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-09-02T23:10:51Z",
+      "updated": "2026-09-02T23:10:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.03215v1",
+      "abs_url": "https://arxiv.org/abs/2609.03215",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.03215",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.03181",
+      "title": "Jina-OCR-v1: Efficient Document Parsing with Speculative Decoding and Dense Verifiable Rewards",
+      "abstract": "We present Jina-OCR-v1, an end-to-end document parsing model built to serve on low-budget GPUs. It combines the compressed-vision encoder and the 3B mixture-of-experts decoder of DeepSeek-OCR, which activates about 570M parameters per token, with a FastMTP speculative decoding head that shares a single draft block recursively across K=3 prediction steps. Greedy verification makes decoding lossless. Post-training combines instruction alignment, robustness fine-tuning on difficult documents, and GRPO under dense verifiable rewards: deterministic formula, table, and structural checks that award partial credit. The training data mixes cleaned public corpora with targeted synthetic pages. At the default dynamic-resolution setting, Jina-OCR-v1 scores 91.14 on OmniDocBench v1.6 and 83.4 on olmOCR-Bench, and reaches the highest page throughput in our comparison at 2.57 pages per second. On a low-budget GPU such as the NVIDIA L4, FastMTP doubles decoding speed over greedy autoregressive decoding. The model is publicly available at https://huggingface.co/jinaai/jina-ocr-v1.",
+      "authors": [
+        "Alejandro Barón García",
+        "Feng Wang",
+        "Emilia Garcia Casademont",
+        "Han Xiao"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.CV"
+      ],
+      "published": "2026-09-02T21:49:21Z",
+      "updated": "2026-09-02T21:49:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.03181v1",
+      "abs_url": "https://arxiv.org/abs/2609.03181",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.03181",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.03153",
+      "title": "VeriPhy: Agentic Physical Reasoning for World Model Evaluation and Refinement",
+      "abstract": "Visual fluency in generated video does not imply physical reliability, and a scalar quality score alone is incapable of indicating the obligation a clip violates or the moment it fails. We present VeriPhy, an auditable physical-verification system in which a text-only planner compiles the prompt into typed physical obligations and a statically validated execution plan before any frame is observed. During execution, observations gate and scope only declared calls to frozen low-level experts (e.g., segmentation and tracking, counting, eleven typed physical measurements over the resulting tracks, depth, OCR, and audio-event detection). Each action returns a provenance-carrying evidence record whose payload, when usable, is either a typed measurement or an explicitly tagged learned state. Typed resolvers and fixed composition map usable records to a three-valued state (supported, contradicted, or unknown, surfaced as plausible, implausible, or abstain) with full provenance, so that every verdict is traceable to the evidence that produced it. We anchor evaluation in a 1,500-clip corpus of human-annotated flaw records that localize real generation failures in prompt reference, space, and time. On a 149-clip core carrying 304 such records, VeriPhy accounts for 228, against 164 for a published question-decomposition evaluator given the same clips and the same claims. Recall alone does not separate it from prompting the same backbone monolithically, which reaches 222; what separates them is that each decision retains its evidence record and provenance, making the traces auditable one verdict at a time and usable as the interface through which a critic verdict could be written back into generation.",
+      "authors": [
+        "Wenzhuo Xu",
+        "Yuchen Zhu",
+        "Chongjian Ge",
+        "Xuan Shen",
+        "Jing Shi",
+        "Jason Kuen",
+        "Yongxin Chen",
+        "Molei Tao",
+        "Christopher McComb",
+        "Noelia Grande Gutiérrez",
+        "Jiuxiang Gu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-09-02T20:36:45Z",
+      "updated": "2026-09-02T20:36:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.03153v1",
+      "abs_url": "https://arxiv.org/abs/2609.03153",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.03153",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.03100",
+      "title": "Distilling deep optical flow stereo methods to retrieve dense three-dimensional wind fields",
+      "abstract": "Geostationary atmospheric motion vectors (AMVs) provide the dense horizontal wind vectors (u,v) and heights ingested into data assimilation systems. Traditional AMVs track features using window-based cross-correlation and estimate heights via infrared brightness temperatures paired with numerical weather prediction (NWP) background states, creating a circular dependency that yields inaccurate heights, high computational cost, and sparse retrievals. Stereo winds from GEO-GEO and GEO-LEO geometrically resolve heights from parallax shifts across different poses, eliminating NWP dependence and improving accuracy, but they remain computationally heavy with limited coverage. In this work, we replace window-based tracking in stereo matching with deep optical flow for efficient, improved retrieval. Fine-tuning balances a self-supervised geometric residual loss with supervised radiosonde reconstruction. To eliminate multi-satellite overlap requirements, we distill the stereo teacher into a single-satellite student model. Chi-square and height uncertainties from the teacher are emulated by the student for quality assurance. The student generates winds across full-disk GEO imagery globally. Validation compares stereo and student models against radiosondes, operational AMVs, ERA5 reanalysis, and EarthCARE cloud profiles. Results through triple collocation show that stereo winds improve performance beyond operational AMVs for water vapor bands (6.2, 6.9, and 7.3 μm), wit degradation in the long-wave infrared (11.2 μm) band.",
+      "authors": [
+        "Thomas J. Vandal",
+        "Dong L. Wu",
+        "James L. Carr",
+        "Derek J. Posselt",
+        "Elise Penn",
+        "Tristan Ballard",
+        "August Posch",
+        "Kate Duffy"
+      ],
+      "categories": [
+        "cs.LG",
+        "physics.ao-ph"
+      ],
+      "published": "2026-09-02T19:22:45Z",
+      "updated": "2026-09-02T19:22:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.03100v1",
+      "abs_url": "https://arxiv.org/abs/2609.03100",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.03100",
+      "summary_zh": ""
+    },
     {
       "id": "2609.02886",
       "title": "SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models",
@@ -63,8 +191,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.02886",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2609.02885",
@@ -94,8 +221,38 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.02885",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.02998",
+      "title": "Verify Before You Distill: Prompt-Level Teacher Gating for On-Policy Distillation",
+      "abstract": "On-policy distillation (OPD) accelerates post-training by providing dense token-level supervision from a frozen teacher on the student's own rollouts. Vanilla OPD applies this supervision uniformly across prompts, without checking whether the teacher is reliable for each prompt. Because reverse KL is mode-seeking, a confidently wrong teacher can induce a strong yet misleading update. Distributional proxies, such as entropy or teacher-student likelihood agreement, measure uncertainty or agreement but do not directly verify outcome correctness. We introduce Teacher-Gated On-Policy Distillation (TGOPD), built on the principle that teacher reliability should be verified at the prompt level before dense supervision is admitted. TGOPD estimates reliability from a small set of verifier-scored teacher probes and routes each prompt exclusively to dense OPD when the reliability check passes or to verifier-grounded GRPO otherwise. Across 4B and 35B students in mathematics, code, and instruction following, TGOPD outperforms Vanilla OPD in all six single-domain settings and achieves higher seven-benchmark averages at both scales under multi-domain training. By using otherwise-idle teacher capacity for reliability estimation, TGOPD also reduces teacher-side compute waste in asynchronous OPD, increasing teacher-node GPU utilization from 9.8% to 78.9% in the measured 4B single-domain run.",
+      "authors": [
+        "Zhiwei Zhang",
+        "Zechen Sun",
+        "Fei Zhao",
+        "Kang Peng",
+        "Bin Liang",
+        "Huayu Deng",
+        "Yao Hu",
+        "Kam-Fai Wong",
+        "Mu Chuan"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-09-02T17:54:09Z",
+      "updated": "2026-09-02T17:54:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.02998v1",
+      "abs_url": "https://arxiv.org/abs/2609.02998",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.02998",
+      "summary_zh": ""
     },
     {
       "id": "2609.02864",
@@ -119,8 +276,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.02864",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2609.02849",
@@ -174,8 +330,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.02847",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2609.02817",
@@ -200,8 +355,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.02817",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2609.02813",
@@ -335,6 +489,67 @@
       "keyword_topics": [
         "rl"
       ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.02991",
+      "title": "TRACE: Spatiotemporal Contact Memory Graph Network Simulator for Granular Dynamics",
+      "abstract": "Learned graph simulators provide an efficient alternative to high-fidelity solvers for granular dynamics. However, granular motion depends strongly on inter-granular contact history, which is difficult to preserve when particle contacts form, break, and rearrange. Existing simulators mainly store temporal information in node features or node-level memory. Here we introduce TRACE, a graph-network simulator that stores interaction history directly on contact edges. Each edge maintains a persistent memory updated by attention-based message passing and a gated recurrent unit, while an edge-identity dictionary preserves this memory as the contact graph changes. A physics-structured decoder predicts inter-granular normal and tangential contact forces, enforces the Coulomb friction limit, and applies equal-and-opposite internal forces. The model is trained with single-step pretraining followed by autoregressive rollout fine-tuning. We evaluate TRACE on 2D and 3D granular column-collapse benchmarks. In both cases, TRACE produces stable, physically consistent long-horizon rollouts, closely reproducing the final deposit geometry and the kinetic energy released during collapse. Compared with graph network simulator (GNS) and node-memory graph neural simulator (NMGNS), TRACE reduces long-rollout position error by 31-62% and final-deposit error by 58-89% across the two benchmarks, while using fewer parameters and maintaining near-zero particle interpenetration. TRACE also achieves 12.2$\\times$ and 8.9$\\times$ speedups over the material point method (MPM) reference solver in 2D and 3D, respectively. Our code is available at https://github.com/Data-Driven-Computational-Geotechnics/TRACE.",
+      "authors": [
+        "Changjian Zhou",
+        "Negin Yousefpour",
+        "Jie Qi",
+        "Junfeng Fang",
+        "Guillermo A. Narsilio",
+        "Hans Petter Jostad"
+      ],
+      "categories": [
+        "cs.LG",
+        "math.NA",
+        "stat.ML"
+      ],
+      "published": "2026-09-02T15:30:41Z",
+      "updated": "2026-09-02T15:30:41Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.02991v1",
+      "abs_url": "https://arxiv.org/abs/2609.02991",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.02991",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.02987",
+      "title": "Tail-Likelihood Reinforcement Learning",
+      "abstract": "Reinforcement learning typically optimizes average reward. For generative policies, the average can hide an important distinction: two policies can achieve the same mean reward while having very different chances of producing a rare but high-reward rollout. This matters as sampling increases during training and inference, since its benefit depends on retaining probability mass on high-reward outcomes. We propose to optimize this coverage directly. Rather than considering only expected reward, we consider all of its upper tails: for each reward threshold, how likely is the policy to exceed it? This turns a continuous reward into a family of binary success events. We introduce Tail-Likelihood Reinforcement Learning (TailRL), which maximizes the log-probability of exceeding a randomly chosen reward threshold. Its gradient gives more weight to rare, high-reward rollouts and can be interpreted as a mixture of Best-of-(k) gradients. TailRL requires only a simple modification to the advantage function, making it compatible with existing reinforcement learning pipelines. Across object localization, maze navigation, GUI grounding, and code optimization, TailRL leverages rare high-reward training samples to avoid suboptimal solutions and yields models that benefit more from additional samples at inference time.",
+      "authors": [
+        "Shrinivas Ramasubramanian",
+        "Daman Arora",
+        "Fahim Tajwar",
+        "Guanning Zeng",
+        "Qingyang Wu",
+        "Zhongzhu Zhou",
+        "Chenfeng Xu",
+        "Haiwen Feng",
+        "Yuda Song",
+        "Aarti Singh",
+        "Ruslan Salakhutdinov",
+        "J. Andrew Bagnell",
+        "Jeff Schneider",
+        "Andrea Zanette"
+      ],
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-09-02T14:54:45Z",
+      "updated": "2026-09-02T14:54:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.02987v1",
+      "abs_url": "https://arxiv.org/abs/2609.02987",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.02987",
       "summary_zh": ""
     },
     {
@@ -639,7 +854,7 @@
       "authors": [
         "Yichong Xia",
         "Qinhong Wu",
-        "Qinhong Wu",
+        "Bin Chen",
         "Jinpeng Wang",
         "Zeyuan Chen",
         "Haoqian Wang"
@@ -649,8 +864,8 @@
         "cs.AI"
       ],
       "published": "2026-09-02T08:39:23Z",
-      "updated": "2026-09-02T08:39:23Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.02291v1",
+      "updated": "2026-09-03T02:54:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.02291v2",
       "abs_url": "https://arxiv.org/abs/2609.02291",
       "topics": [
         "other"
