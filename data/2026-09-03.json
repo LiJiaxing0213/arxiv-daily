@@ -1,6 +1,6 @@
 {
   "date": "2026-09-03",
-  "generated_at": "2026-09-06T06:19:38.421066+00:00",
+  "generated_at": "2026-09-07T06:26:51.728572+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,286 @@
   },
   "papers": [
     {
+      "id": "2609.04565",
+      "title": "Extremely Sparse Supervision Incentivizes Reasoning Ability",
+      "abstract": "Large language models demonstrate increasingly strong reasoning capabilities through effective post-training. Yet, prevailing post-training methods optimize over massive numbers of tokens, implicitly assuming that effective learning must be token-intensive. We revisit this assumption in the on-policy distillation (OPD) setting, which naturally admits dense teacher supervision at every generated token. Using the Qwen3 family, we discover a counter-intuitive phenomenon: reasoning can be effectively incentivized by an extremely small fraction of generated tokens--as few as one or two tokens per reasoning trajectory, corresponding to only 0.05% of all tokens. Surprisingly, this sparse supervision in most cases matches or surpasses full-token training in improving reasoning ability, despite excluding the vast majority of generated tokens from the training objective. This phenomenon is consistently observed across nine teacher--student configurations spanning different model scales on mathematical reasoning tasks, and is further validated on coding reasoning, Llama models and Proximal Policy Optimization (PPO)-based reinforcement learning with verifiable reward (RLVR). Interestingly, such extremely sparse supervision may be closer to the natural learning process: rather than correcting every step word by word, one reflects on a few critical reasoning steps, updates prior understanding, and continues the trial-and-error, avoiding micro-level corrections while remaining remarkably effective. Overall, our results challenge the assumption that effective post-training must be token-intensive and point to a new direction for understanding and designing more efficient post-training algorithms.",
+      "authors": [
+        "Zhishuai Liu",
+        "Xingzi Xu",
+        "Mehmet Saygin Seyfioglu",
+        "Pan Xu",
+        "Karim Bouyarmane"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-09-03T23:38:48Z",
+      "updated": "2026-09-03T23:38:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04565v1",
+      "abs_url": "https://arxiv.org/abs/2609.04565",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04565",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04531",
+      "title": "Distilled Continuous Diffusion Language Models Can Write Code in Few Steps---or One",
+      "abstract": "Language generation is almost universally treated as a sequential process: autoregressive models emit one token at a time, while diffusion language models replace token-level seriality with a long trajectory of iterative refinement. In this work, we introduce PlaidQ, a 0.7B continuous diffusion language model for code generation, and show that its trajectory can be aggressively distilled into only a few denoising steps---or even one, enabling efficient code generation. PlaidQ repurposes a pretrained autoregressive model as a bidirectional denoiser over continuous token embeddings. We distill PlaidQ with distribution matching for few-step generation and paired-trajectory supervision for one-step generation. At matched model scale, PlaidQ is competitive with discrete diffusion language models on code generation. Distillation then shifts the quality--compute frontier: a 16-step student reaches 31.78 and 40.49 pass@10 on HumanEval and MBPP+, surpassing the same PlaidQ teacher sampled for 512 steps. At the extreme, paired-trajectory distillation achieves 7.07 pass@1 on HumanEval with a single denoising step, producing functionally correct programs. Together, these results establish continuous diffusion as a viable path to few-step and one-step code generation. Broadly, continuous diffusion is not merely another representation for language: it provides an interface through which language models can inherit the acceleration and distillation machinery of continuous diffusion modeling. Training and inference code and model checkpoints are available at https://github.com/pengzhangzhi/plaidq.",
+      "authors": [
+        "Fred Zhangzhi Peng",
+        "Kaiwen Zheng",
+        "Anru R. Zhang"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-09-03T22:42:57Z",
+      "updated": "2026-09-03T22:42:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04531v1",
+      "abs_url": "https://arxiv.org/abs/2609.04531",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04531",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04518",
+      "title": "What Does Multi-Harness RL Learn? Credit Assignment and Portability in Coding Agents",
+      "abstract": "Agent reinforcement learning (RL) increasingly runs through full execution harnesses, and a multi-harness recipe mixes two choices: exposing the policy to several harnesses, and comparing their rewards inside one relative-advantage group. We isolate the second choice in repository-level coding. From one Qwen3-8B supervised warm start we replay the same frozen task-harness records from Aider, OpenHands, Qwen Code, and SWE-agent, with the same number of updates, under two rules for group-relative policy optimization (GRPO), Within (one group per task-harness pair) and Cross (harnesses pooled within a task), and score every checkpoint with a sealed SWE-bench Verified oracle on four source harnesses and a minimal harness held out of training. The evaluation harness is the dominant variable: across 24,000 sealed evaluations it moves the mean solve rate from 2.14\\% to 9.27\\%, a factor of 4.3, where the training recipe moves it by 1.16. The grouping rule is not. On the held-out harness, Cross minus Within is +0.25 pp, 95\\% confidence interval [-0.48, +1.02], at eight attempts per task, and +0.16 [-0.41, +0.72] pooled over three training seeds whose individual estimates change sign. Each rule's own seed range, 0.42 to 0.45 pp, exceeds the difference between them. Both rules place their largest gains on the same source harness. The pooled advantage carries the harness: an out-of-fold classifier recovers the generating harness from Cross's advantage +4.48 pp above the shuffled-label baseline and from Within's not at all, and the two rules still reach the same held-out score and action distribution inside each harness. Re-collecting half the training data on-policy does not change this. Cross-harness credit yields configuration adaptation and no more portable capability than within-harness credit. Multi-harness RL reports should state the grouping boundary and test under an unseen harness.",
+      "authors": [
+        "Chenqian Le",
+        "Jiayi Cheng",
+        "Qijia He",
+        "Runhao Li",
+        "Yinghao Li",
+        "Xupeng Chen"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-03T22:17:02Z",
+      "updated": "2026-09-03T22:17:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04518v1",
+      "abs_url": "https://arxiv.org/abs/2609.04518",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04518",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04489",
+      "title": "Towards Understanding Pause Token Fine-Tuning Dynamics: A Mode Retention Perspective",
+      "abstract": "Pause-token methods improve LLM reasoning by inserting special tokens into sequences. Prior work explains these gains through computational expressivity. However, there is relatively little investigation into the training dynamics of pause tokens. We explore how pause tokens reshape the training dynamics of fine-tuning. Two controlled pilots expose distinct asymmetries. On a synthetic continual-learning task, masked pauses overwrite a previously-learned distribution roughly 4x less at matched final adaptation (H1, mode retention); on a synthetic math-reasoning probe, the boundary-adjacent token comes to encode substantially more downstream-step information (H2, non-myopic compression). We formalize a training rule consistent with both - Masked Boundary Pause (MBP), pause tokens placed at reasoning-step boundaries with their loss masked. Across 1B-8B Qwen and Llama models, MBP consistently improves reasoning, achieving gains of up to 6 points on math and 2.5 points on code, while preserving general language understanding abilities. We further demonstrate that this mode-preserving strategy extend gains to GRPO. These results recast pause tokens as a training-dynamics intervention on the retention-adaptation trade-off, rather than merely an inference-time computation device.",
+      "authors": [
+        "Jaehyeon Kim",
+        "Suhwan Kim",
+        "Nakyung Lee",
+        "Yeongoon Kim",
+        "Jimin Seo",
+        "Giho Lee",
+        "Jungwoo Lee"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-09-03T21:23:04Z",
+      "updated": "2026-09-03T21:23:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04489v1",
+      "abs_url": "https://arxiv.org/abs/2609.04489",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04489",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04482",
+      "title": "Safety for Whom? Boundary-Aware Self-Distillation for Controlled LLM Safety Refusal",
+      "abstract": "Safety alignment is usually posed as a topic-level question: is this subject harmful? Deployments ask a narrower one. A civics tutor and a public-sector assistant may share a base model yet need different boundaries inside the same topic, refusing targeted political manipulation while still answering factual questions about the same election. We formulate this as narrow-boundary safety and introduce an offline self-generated framework combining controlled topic generation, coverage repair, in-distribution compensation data, and harmful-benign pairs for training and evaluation. Single-shot generation leaves 19.88% of prompts without accepted refusal traces, whereas escalating retries leave 0.20%. On political persuasion with Qwen3-8B, training on refusal data completed through Escalate increases target-domain refusal from 9.47% to 84.75% and reduces the mean unsafe-response rate across three broader harmfulness benchmarks from 26.26% to 0.14%, but increases XSTest over-refusal from 2.00% to 74.00%. In a separate matched comparison, replacing external responses with verified target-model responses reduces over-refusal from 15.20% to 5.20%. Boundary-pair data reduces comply-side over-refusal on held-out pairs from 32.94% to 4.16%, while harmful-side refusal decreases only from 91.88% to 87.72%. These results show that data composition controls the safety and usability trade-off, and that safety alignment should be evaluated on both sides of the intended refusal boundary.",
+      "authors": [
+        "Alejo López-Ávila",
+        "Iker García-Ferrero",
+        "Jezabel Garcia",
+        "Antonio Tiene",
+        "Román Orús"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-09-03T21:03:45Z",
+      "updated": "2026-09-03T21:03:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04482v1",
+      "abs_url": "https://arxiv.org/abs/2609.04482",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04482",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04444",
+      "title": "HarvestBench: Measuring Whether LLM Agents Will Pay to Avoid Killing Animals",
+      "abstract": "Benchmarks for the side effects an agent causes on the way to a goal already exist, but HarvestBench is the first to put a price on avoiding the side effect and to name that side effect as a living creature. It is a farm simulation: LLM sub-agents drive a crew of two tractors through a cooperative corn harvest, with animals in the field. The environment is a reinforcement learning gridworld, every decision is made without memory, and the harm is never named in the goal. When an animal blocks a tractor's route the autopilot stops and asks the model whether to drive on, at no fuel cost, or swerve around it for a posted fuel price. Kills are compared against two controls: rocks, which damage the tractor and are hit under 1% of the time by every model, and hay bales, which are harmless and not alive. Models can also take crops from the neighbor's field instead of their own, a second test of what they treat as moral. Across nine models and 7,201 priced decisions, 3,951 involved an animal rather than a hay bale or a rock. Kill rates range from 0.4% to 98.8%, with Terra and Sol the most merciful and GPT-4o-mini the most cruel, and they are not ordered by capability. Four of six models were sensitive to price at the 5% level, with elasticities from 0.09 to 1.69. All nine drove over wild animals more often than farmed animals on the default map, and the direction held at every map geometry in every model with room to move. The briefing mattered most: under the morality briefing the kill rate was under 6% in five of six reasoning models, and removing it raised the kill rate above 84% in all six. HarvestBench uses no LLM grader. The scorer counts events in the game log, so it is fully reproducible, and it measures what a model will pay to avoid harm rather than what it says about harm.",
+      "authors": [
+        "Jasmine Brazilek",
+        "Miles Tidmarsh",
+        "Matthias Endres",
+        "Anshuman Singh",
+        "Jeremiah Miller"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-09-03T20:05:38Z",
+      "updated": "2026-09-03T20:05:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04444v1",
+      "abs_url": "https://arxiv.org/abs/2609.04444",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04444",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04438",
+      "title": "ICM-Bench: Person-Level Identity Reasoning in Multimodal Agents with Long-Term Memory",
+      "abstract": "Long-horizon multimodal agents should remember not only what happened but also who participated. This capability depends on linking recurring faces, voices, names, person-associated objects, events, and social relations to consistent identities over time. Existing long-video and multimodal-agent benchmarks measure broad memory question answering, but they do not isolate the ability to maintain recurring person identities and reason over their cross-time relations. We introduce ICM-Bench (Identity-Centric Memory Benchmark), which, to the best of our knowledge, is the first benchmark specifically designed to evaluate identity-centric reasoning over long video memories in multimodal agents. The benchmark contains 839 synthetic clips spanning 141 minutes and 1,217 open-ended questions about six recurring adults in a one-year life album. A theme-configurable pipeline generates the video collection and associates each question with its target identities and traceable supporting evidence. We compare direct caption-memory baselines, memory-augmented agents, and graph-retrieval systems. Gemini 3.1 Pro achieves the highest overall accuracy of 74.0%, yet its score falls to 60.3% on questions that require long-term identity profiles. The results show that current systems recover many event-level memories but remain less reliable when evidence must be accumulated around a stable person.",
+      "authors": [
+        "Shidu Ren",
+        "Yunze Liu",
+        "Xing Liu",
+        "Chi-Hao Wu",
+        "Enmin Zhou",
+        "Junxiao Shen"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-09-03T19:58:51Z",
+      "updated": "2026-09-03T19:58:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04438v1",
+      "abs_url": "https://arxiv.org/abs/2609.04438",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04438",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04415",
+      "title": "REFINE: LLM Refinement over Budgeted Text-Attributed Graphs for Personalized Medical Concept Representation",
+      "abstract": "Learning rich medical concept representations is essential for EHR prediction. Text-attributed knowledge graphs (TKGs) provide a natural foundation by organizing heterogeneous medical relations together with textual semantics. However, most existing encoders process concepts uniformly across patients, despite the fact that a code's meaning and predictive value depend on patient-specific clinical context and trajectory. Learning patient-personalized concept representations from TKGs introduces two key challenges: (1) deciding how much KG context to incorporate for each observed code, and (2) aligning semantic information with the patient-specific relational structure. We propose REFINE, a KG-aware budgeted LLM graph refinement framework for patient-personalized medical concept encoding. Starting from a global TKG, REFINE constructs patient-specific temporal graphs. A sequential reinforcement learning policy selects a personalized KG expansion budget for each observed code. The resulting patient graph is processed by a heterogeneous GNN to capture relation-aware structural dependencies, while a frozen LLM uses graph-aware soft prompts to semantically refine concept representations. Experiments on MIMIC-III and MIMIC-IV show that REFINE consistently improves diverse EHR backbones, outperforms strong baselines, and demonstrates robust gains across component ablation, KG selection, and data insufficiency.",
+      "authors": [
+        "Mohsen Nayebi Kerdabadi",
+        "Arya Hadizadeh Moghaddam",
+        "Dongjie Wang",
+        "Zijun Yao"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-09-03T19:29:22Z",
+      "updated": "2026-09-03T19:29:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04415v1",
+      "abs_url": "https://arxiv.org/abs/2609.04415",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04415",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04383",
+      "title": "What Moves? Localized Motion Representations for Compositional Scene Control",
+      "abstract": "Real-world dynamics are inherently compositional: multiple entities move simultaneously within a shared scene, each exhibiting distinct motion patterns. Yet most existing video representations encode motion globally, without explicitly capturing localized motion for individual entities. Crucially, motion is defined relative to a global reference frame, including camera motion and scene layout. However, localized embeddings are often computed from cropped images or obtained by masking features after encoding, discarding the context needed to interpret motion. To address this, we introduce a promptable localized motion representation that produces persistent embeddings for user-specified regions defined by spatial masks. Rather than cropping the input or masking features, our model processes the full video and conditions motion encoding directly on the queried region. This yields temporally consistent, region-addressable embeddings that isolate local dynamics while retaining the global context required for disambiguation. We demonstrate object-level motion transfer, enabling controlled composition of dynamic scenes. Beyond generative control, our embeddings support localized action classification in multi-actor videos. Across both tasks, our approach improves controllability and outperforms global representations localized through cropping or post-hoc masking. Project Page: https://compvis.github.io/WhatMoves",
+      "authors": [
+        "Frank Fundel",
+        "Malek Ben Alaya",
+        "Thomas Ressler-Antal",
+        "Stefan Andreas Baumann",
+        "Björn Ommer"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-09-03T18:44:53Z",
+      "updated": "2026-09-03T18:44:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04383v1",
+      "abs_url": "https://arxiv.org/abs/2609.04383",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04383",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04355",
+      "title": "VLA-Precision: Asymmetric Co-Bootstrapping for Efficient Real-World Online RL of Vision-Language-Action Models",
+      "abstract": "Pretrained vision-language-action (VLA) models enable broad manipulation but remain unreliable in tasks demanding precision and repeatability. Applying real-world online reinforcement learning (RL) to VLA post-training enables autonomous trial-and-error improvement beyond demonstrations alone, but exposes two bottlenecks: 1) unreliable value signals can induce policy drift; 2) large-VLA overhead constrains throughput and sample efficiency. To address these challenges, we present VLA-Precision, an efficient real-world online RL framework featuring the Asymmetric Co-Bootstrapping (ACoB) algorithm and the ACoB-Stream architecture. Specifically, ACoB establishes asymmetric co-bootstrapping across timescales: early intervention-guided behavioral learning rapidly improves policy performance while enhancing online experience quality. As autonomous experience accumulates, global return propagation and local preference ranking progressively calibrate value estimates, yielding relative action advantages for reference-regularized policy improvement while suppressing drift. To enable ACoB on large VLAs, we develop ACoB-Stream, a closed-loop experience--policy architecture that establishes invariant-state decoupling and on-demand streaming as design principles, delivering up to 10.9$\\times$ improvements in throughput and computational efficiency. Extensive evaluations on nine high-precision chemistry tasks across four categories and four robot embodiments show that VLA-Precision achieves 98.3\\% mean success rate in 45.8 min/task, with 27.6 s episodes running at 1.2$\\times$ and 1.8$\\times$ the speeds of VLA and RL baselines. Resources are available at https://vla-precision.github.io.",
+      "authors": [
+        "Chenyu Su",
+        "Zhaolong Shen",
+        "Yuan Qian",
+        "Chen Qian",
+        "Rui Zhang",
+        "Feng Yan",
+        "Weixing Chen",
+        "Fei Zhang",
+        "Jiamin Wang",
+        "Shuang Cong",
+        "Weiwei Shang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.HC",
+        "cs.LG"
+      ],
+      "published": "2026-09-03T18:19:36Z",
+      "updated": "2026-09-03T18:19:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04355v1",
+      "abs_url": "https://arxiv.org/abs/2609.04355",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04355",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04348",
+      "title": "Object Concepts Emerge from Motion",
+      "abstract": "Object-centric visual representations are important for physical-world perception, but existing visual pretraining methods often capture semantic categories without preserving the identity and coherence of individual instances. We present a biologically inspired framework that learns object-centric representations for single images from raw videos. Our approach uses motion boundaries as a source of object-level grouping: off-the-shelf optical flow and clustering produce pseudo-instance masks, which supervise a single-image encoder with pixel-level pairwise metric learning. The framework requires neither human annotations nor camera calibration. We first obtain 195 million pseudo-labeled frames from 7,163 hours of driving and web videos, then expand the supervision to 421 million frames with Motion-Verified Self-Training, which combines model proposals with motion evidence. We train encoders up to Swin-H and distill the learned representations into a family of Swin backbones. Across monocular depth estimation, 3D object detection, 3D occupancy prediction, and end-to-end planning, the resulting models achieve competitive or superior performance relative to supervised and self-supervised pretraining baselines, with particularly strong transfer on geometry- and instance-sensitive tasks. These results show that motion-derived supervision can teach static image encoders to represent visual instances, providing a complementary direction for scalable visual pretraining.",
+      "authors": [
+        "Boshi Li",
+        "Xiaohui Wang",
+        "Xiaoyang Wu",
+        "Zhichao Li",
+        "Ya Yang",
+        "Naiyan Wang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-09-03T18:11:53Z",
+      "updated": "2026-09-03T18:11:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04348v1",
+      "abs_url": "https://arxiv.org/abs/2609.04348",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04348",
+      "summary_zh": ""
+    },
+    {
       "id": "2609.04203",
       "title": "Temporal Self-Distillation: Learning Visual State Tracking in Videos Without Supervision",
       "abstract": "We introduce S$^3$T (Self-Supervised Self-Distillation over Time), which, to the best of our knowledge, is the first fully self-contained framework for continuous video state tracking. Our method treats temporal sampling density as privileged information, based on the hypothesis that a denser view of the same clip recovers the running state more accurately. This view serves as the teacher, while a sparse-view student with the same weights learns to match its next-token distribution. The model generates its own target, so training requires no labels, separate teacher, or reward signal, and adds no inference cost. On LLaVA-OneVision-2-8B, S$^3$T improves VSTAT accuracy by $+1.74$ as a single model, $+2.38$ with souping, and $+2.70$ with additional vision-encoder adaptation, while prior self-evolving methods leave state tracking largely unchanged. The capability learned from unlabeled synthetic clips transfers to real videos, improving performance by $+7.95$ on VSTAT-YouTube state-tracking questions and $+4.50$ on MVBench Action Count.",
@@ -49,8 +329,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04203",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2609.04201",
@@ -332,7 +611,7 @@
     {
       "id": "2609.04108",
       "title": "Sequential Beats Joint: On the Interplay between On-Policy Distillation and RLVR",
-      "abstract": "Reinforcement learning with verifiable rewards (RLVR) and on-policy distillation (OPD) have emerged as two dominant methods for post-training reasoning LLMs. Prior work uses OPD's dense token-level supervision to complement the sparse RL reward, fusing the two signals within a single step: either as a \\emph{weighted-additive combination} or a \\emph{teacher-modulated rescaling} of the RL advantage. In this paper, we show that a simple two-stage scheme, OPD-then-RL, consistently outperforms pure OPD, pure RLVR, and all such joint baselines across logic and math reasoning benchmarks. Beyond the empirical results, we further provide a systematic understanding of this through pass@$k$ behavior, learning dynamics, and parameter updates, yielding a consistent explanation: OPD expands the student's coverage of teacher-supported solutions and RL sharpens within that support, while jointly optimizing the two signals causes them to interfere.To provide a practical recipe, we find that the OPD validation score is the key signal for when to switch to RL, and that OPD is a better cold start for RL than SFT. Together, our results establish OPD-then-RL as a simple yet strong way to combine the two methods, turning two entangled signals into complementary stages.",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) and on-policy distillation (OPD) have emerged as two dominant methods for post-training reasoning LLMs. Prior work uses OPD's dense token-level supervision to complement the sparse RL reward, fusing the two signals within a single step: either as a \\emph{weighted-additive combination} or a \\emph{teacher-modulated rescaling} of the RL advantage. In this paper, we show that a simple two-stage scheme, OPD-then-RL, consistently outperforms pure OPD, pure RLVR, and all such joint baselines across logic and math reasoning benchmarks. Beyond the empirical results, we further provide a systematic understanding of this through pass@$k$ behavior, learning dynamics, and parameter updates, yielding a consistent explanation: OPD expands the student's coverage of teacher-supported solutions and RL sharpens within that support, while jointly optimizing the two signals causes them to interfere. To provide a practical recipe, we find that the OPD validation score is the key signal for when to switch to RL, and that OPD is a better cold start for RL than SFT. Together, our results establish OPD-then-RL as a simple yet strong way to combine the two methods, turning two entangled signals into complementary stages.",
       "authors": [
         "Boyan Li",
         "Bingsen Chen",
@@ -347,15 +626,14 @@
         "cs.LG"
       ],
       "published": "2026-09-03T17:14:27Z",
-      "updated": "2026-09-03T17:14:27Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.04108v1",
+      "updated": "2026-09-04T07:02:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04108v2",
       "abs_url": "https://arxiv.org/abs/2609.04108",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04108",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2609.04094",
@@ -380,8 +658,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04094",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2609.04083",
@@ -437,8 +714,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04066",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2609.04063",
@@ -462,8 +738,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04063",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2609.04061",
@@ -515,8 +790,8 @@
         "cs.CL"
       ],
       "published": "2026-09-03T16:10:12Z",
-      "updated": "2026-09-03T16:10:12Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.04034v1",
+      "updated": "2026-09-04T07:34:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04034v2",
       "abs_url": "https://arxiv.org/abs/2609.04034",
       "topics": [
         "other"
@@ -1659,6 +1934,71 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.03383",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04283",
+      "title": "Joint Alignment and Distillation for Video Generation via Sample-Guided Distribution Matching",
+      "abstract": "Aligning video generative models to human preferences heavily relies on Reinforcement Learning (RL), which suffers from extensive computational overhead. Existing workflows typically treat RL and distillation as disconnected stages: applying RL before distillation incurs prohibitive computational costs, whereas applying RL after distillation frequently leads to model collapse. To overcome these limitations, we propose a unified, single-stage optimization framework grounded in Distribution Matching (DM). In the standard DM framework, distillation updates the model via a gradient direction that minimizes the gap between the real and fake models, guiding generations toward clarity and high fidelity. Building upon this, we introduce DM-Align, which derives a complementary gradient direction to guide the model toward human-preferred samples. Inspired by DPO and GRPO, our method leverages the distributional gap -- formulated from either preference pairs or intra-group exploration -- to directly construct this preference-guided gradient. By synergizing these two gradient directions, our approach eliminates the need for multi-step reward evaluation and complex ODE-SDE conversions inherent in traditional RL. Comprehensive experiments across multiple foundational video models demonstrate that this sample-guided framework robustly enhances both distillation quality and preference alignment, consistently outperforming both standalone variants and sequential two-stage pipelines.",
+      "authors": [
+        "Jiuzhou Lin",
+        "Junlong Wu",
+        "Fei Zuo",
+        "Huan Ouyang",
+        "Dewen Fan",
+        "Boheng Zhang",
+        "Huaiqing Wang",
+        "Jia Sun",
+        "Fan Yang",
+        "Houde Liu",
+        "Kehai Chen",
+        "Min Zhang",
+        "Tingting Gao",
+        "Han Li"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-09-03T04:46:46Z",
+      "updated": "2026-09-03T04:46:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04283v1",
+      "abs_url": "https://arxiv.org/abs/2609.04283",
+      "topics": [
+        "rl",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04283",
+      "summary_zh": ""
+    },
+    {
+      "id": "2609.04282",
+      "title": "Step Back to Move Forward: Reflection-Aware Preference Optimization for Visual Generation",
+      "abstract": "Diffusion models have become the mainstream paradigm for modern visual generation and have substantially advanced multimedia content synthesis, especially in text-to-image and text-to-video tasks. To further align such generative models with human preferences, reinforcement learning (RL) has recently shown strong potential as a post-training strategy. Nevertheless, existing policy gradient-based methods often explore inefficiently, making them vulnerable to local optima that may degrade semantic faithfulness and visual realism. To address these challenges, we present Reflection-Aware GRPO (RA-GRPO), a new RL-based preference alignment framework for diffusion generative models. The core idea is to improve \"forward\" generation by incorporating \"backward\" reflection during optimization. We first introduce Diffusion Reflection, which rectifies intermediate sampling trajectories by inverting the diffusion process with a weak estimator, guiding latent states toward higher-probability regions of the true data manifold. Furthermore, we introduce Counterfactual Path Synthesis to implicitly distill these rectified trajectories into the policy, enabling the model to internalize the benefits of search-based exploration without incurring inference-time overhead. Extensive experiments on T2I and T2V models demonstrate that RA-GRPO significantly outperforms existing methods, particularly in mitigating reward hacking and improving generalization. The method remains architecture-agnostic and integrates seamlessly with standard pipelines, suggesting a promising direction for stable preference alignment.",
+      "authors": [
+        "Junlong Wu",
+        "Jiuzhou Lin",
+        "Jia Sun",
+        "Boheng Zhang",
+        "Huaiqing Wang",
+        "Dewen Fan",
+        "Houde Liu",
+        "Qianqian Gan",
+        "Fan Yang",
+        "Tingting Gao"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-09-03T04:37:19Z",
+      "updated": "2026-09-03T04:37:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04282v1",
+      "abs_url": "https://arxiv.org/abs/2609.04282",
+      "topics": [
+        "rl",
+        "distillation",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04282",
       "summary_zh": ""
     },
     {

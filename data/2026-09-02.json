@@ -1,6 +1,6 @@
 {
   "date": "2026-09-02",
-  "generated_at": "2026-09-06T06:19:38.423392+00:00",
+  "generated_at": "2026-09-07T06:26:51.731492+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -157,6 +157,29 @@
       "summary_zh": ""
     },
     {
+      "id": "2609.04264",
+      "title": "Spectral-Target Physical Latent Structuring for JEPA-Style World Models",
+      "abstract": "Latent world models have become increasingly popular as a method to predict and plan in latent space rather than pixel space. Recent architectures, such as LeWorldModel (LeWM), jointly train the encoder and predictor using regularization techniques like SIGReg to prevent representation collapse. Even with such regularization preventing representation collapse, we identify a new world model failure mode of \\textit{physical representation laziness}, particularly noted in highly dynamic environments. For these lazy cases, the learned latent states do not collapse but nonetheless fail to represent key physical properties, causing ubiquitous downstream planning failure. To resolve this issue, we propose training-time auxiliary supervision with a lightweight \"Fourier auxiliary head\", which enforces physically-informed structuring of the latent space with no additional inference-time cost and can be generalized to any environment. Experimentally, we show that the auxiliary head substantially improves planning success rates in dynamic environments where the baseline LeWM exhibits physical representation laziness. It also leads to modest improvements in other environments, even when the baseline does not exhibit physical representation laziness. We further observe superior planning performance being accompanied by higher latent space correlations with key physical properties, indicating both the ability of our method to physically structure latent states and the potential planning-side benefit to the learned representation being physically structured. We also see in low-data regimes, auxiliary supervision is particularly impactful in increasing success rate. These findings support the use of our Fourier auxiliary head method to improve both overall success rate and data efficiency, while avoiding representation laziness in latent world models.",
+      "authors": [
+        "Penghao Zhu",
+        "Salvatore Penachio",
+        "Kaustav Mukherjee",
+        "Aneesh Jonelagadda"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-09-02T18:05:06Z",
+      "updated": "2026-09-02T18:05:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04264v1",
+      "abs_url": "https://arxiv.org/abs/2609.04264",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04264",
+      "summary_zh": ""
+    },
+    {
       "id": "2609.02886",
       "title": "SolarWM: Open Data and Scalable Training for Long-Horizon Video World Models",
       "abstract": "We introduce SolarWM, a fully open foundation for building interactive video world models from data preparation through long-horizon inference. Training across heterogeneous data sources and video backbones is challenging: datasets differ in temporal scale, camera geometry, visual quality, motion, and captioning styles, while video generators use distinct representations and architectures. Naive data mixing and model-specific implementations therefore produce inconsistent supervision and make results difficult to reproduce and compare. SolarWM addresses this coupling with a reconfigurable multi-source data engine and a backbone-native adaptation framework. The engine converts 1.43 million canonical clips from 10 datasets into a unified, frame-aligned contract covering visual observations, metric camera geometry, captions, quality metadata, selection decisions, and provenance, while decoupling source processing from mixture construction. Under shared camera-conditioning, training, and inference interfaces, we instantiate four 5B--33B models based on Wan2.2, LTX-2.5, and MiniMax-H3 while preserving their native representations and objectives. A unified three-stage recipe combines bidirectional adaptation, teacher-forced autoregressive initialization, and distribution matching distillation. The resulting causal models enable real-time interaction over rollouts ranging from minutes to hours after being trained on only 5s sequences. By releasing the resulting data, pipeline, recipes, weights, and framework, SolarWM provides a reproducible and extensible foundation for interactive world-model research.",
@@ -297,8 +320,8 @@
         "cs.SE"
       ],
       "published": "2026-09-02T17:33:37Z",
-      "updated": "2026-09-02T17:33:37Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.02849v1",
+      "updated": "2026-09-04T16:57:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.02849v2",
       "abs_url": "https://arxiv.org/abs/2609.02849",
       "topics": [
         "other"
@@ -312,7 +335,7 @@
     {
       "id": "2609.02847",
       "title": "RoGe: Novel View Synthesis via End-to-End Implicit Reconstruction and Generation",
-      "abstract": "Novel view synthesis from sparse inputs requires both geometric grounding from the observed views and generative priors of unobserved regions, motivating recent hybrid methods that combine reconstruction and generation. However, existing methods bridge the two with rendered images or explicit 3D representations such as point maps or 3D Gaussians. Generation is thus conditioned on a lossy and imperfect projection of the scene, inheriting its errors, and reconstruction receives no signal from generation to correct them. We present RoGe, an end-to-end unified reconstruction and generation framework that removes this explicit bridge. It targets roaming within a scene anchored by sparse views: given a few posed images and a camera trajectory, it synthesizes a temporally coherent video along that trajectory. From the sparse input views, RoGe builds an implicit scene representation with a feed-forward reconstruction model, and queries it with target camera rays to obtain per-view geometric features. These features are injected into a video diffusion model as conditioning, without any 3D intermediate. Both modules are trained jointly, so the generation objective directly shapes its own geometric conditioning. We conduct experiments on DL3DV, where RoGe outperforms reconstruction-based, generation-based, and hybrid baselines on image-level metrics and video-level temporal consistency. Ablations confirm that ray-queried implicit features outperform both raw reconstruction tokens and rendered RGB as conditioning, and that joint training brings further gains.",
+      "abstract": "Novel view synthesis from sparse inputs requires both geometric grounding from the observed views and generative priors of unobserved regions, motivating recent hybrid methods that combine reconstruction and generation. However, existing methods bridge the two with rendered images or explicit 3D representations such as point maps or 3D Gaussians. Generation is thus conditioned on a lossy and imperfect projection of the scene, inheriting its errors, and reconstruction receives no signal from generation to correct them. We present RoGe, an end-to-end unified reconstruction and generation framework that removes this explicit bridge. It targets roaming within a scene anchored by sparse views: given a few posed images and a camera trajectory, it synthesizes a temporally coherent video along that trajectory. From the sparse input views, RoGe builds an implicit scene representation with a feed-forward reconstruction model, and queries it with target camera rays to obtain per-view geometric features. These features are injected into a video diffusion model as conditioning, without any 3D intermediate. Both modules are trained jointly, so the generation objective directly shapes its own geometric conditioning. We conduct experiments on DL3DV, where RoGe outperforms reconstruction-based, generation-based, and hybrid baselines on image-level metrics and video-level temporal consistency. Ablations confirm that ray-queried implicit features outperform both raw reconstruction tokens and rendered RGB as conditioning, and that joint training brings further gains. Our project page is at https://jerry-locker.github.io/roge/.",
       "authors": [
         "Xiaolei Lang",
         "Ze Kang",
@@ -323,8 +346,8 @@
         "cs.CV"
       ],
       "published": "2026-09-02T17:32:35Z",
-      "updated": "2026-09-02T17:32:35Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.02847v1",
+      "updated": "2026-09-04T10:21:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.02847v2",
       "abs_url": "https://arxiv.org/abs/2609.02847",
       "topics": [
         "video-gen"
@@ -578,6 +601,27 @@
       "summary_zh": ""
     },
     {
+      "id": "2609.04263",
+      "title": "Quality Recovery for Quantized KV Caches via Low-Rank Attention Adaptation",
+      "abstract": "Low-bit key--value (KV) caches reduce the memory required for autoregressive decoding, but the resulting quality loss depends on the model and quantizer. We keep the quantizer fixed and distill the floating-cache model's behavior into low-rank Q/K/V projection updates while the student executes a physically packed incremental cache. Across three seeds, 4-bit affine-cache adapters recover $54.24\\%\\pm2.47\\%$ of the held-out perplexity gap on TinyLlama-1.1B and $75.96\\%\\pm4.04\\%$ on Gemma-4-12B. On the same frozen NF4 Llama-3.1-8B base, one validation-selected run per quantizer recovers $60.42\\%$ under KIVI K2V2 and $37.61\\%$ under KVarN K4V2, while preserving 180-case associative retrieval. Gemma's score on an official 4K/8K RULER subset rises from 42.80 with the unadapted 4-bit cache to 48.33 after adaptation (46.15 floating), with substantial task heterogeneity. Finally, a 2-bit rank--token sweep reduces TinyLlama's 2-bit PPL from 576.10 to $11.4000\\pm0.0059$ across three seeds, versus 10.3988 floating, but restores only 11--12 of 180 retrieval cases. These results show that low-rank projection adaptation can recover held-out quality across fixed cache formats, while perplexity recovery need not restore long-context retrieval.",
+      "authors": [
+        "Seifeldin Abdellatif"
+      ],
+      "categories": [
+        "cs.AR",
+        "cs.CL"
+      ],
+      "published": "2026-09-02T13:37:04Z",
+      "updated": "2026-09-02T13:37:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.04263v1",
+      "abs_url": "https://arxiv.org/abs/2609.04263",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.04263",
+      "summary_zh": ""
+    },
+    {
       "id": "2609.02566",
       "title": "Online Reinforcement Learning in the Met Office Unified Model through Distributed Model-Agent Coupling",
       "abstract": "Machine-learnt corrections can complement numerical weather prediction only if they adapt to the evolving model state while preserving dynamical consistency and numerical stability. To test this within a global forecasting model, we couple the Met Office (UKMO) Unified Model (UM) with distributed RL agents through rank-local tensors. A DDPG actor shares weights across the 70 vertical model levels of each atmospheric column and applies bounded potential-temperature corrections to the model tendencies. Across ten nudged training forecasts, nudging calculations towards the UKMO operational analysis provides an immediate counterfactual target. The frozen policy is then evaluated in a non-nudged forecast for inference. The coupled workflow successfully completes training and remains numerically stable in the evaluated case. Relative to a matched native UM forecast at +6 h, the learnt policy reduces Z$_{500}$ MAE in four of six latitude bands, including reductions of 45.8% and 40.8% in the northern and southern tropics. MSLP error too decreases in three bands, with a maximum reduction of 27.3% at 0-30°N. This single-case experiment demonstrates significant promise and feasibility of distributed online learning followed by non-nudged inference, laying the groundwork for RL-based bias correction and parametrisations within operational systems.",
@@ -750,8 +794,8 @@
         "cs.AI"
       ],
       "published": "2026-09-02T11:38:19Z",
-      "updated": "2026-09-02T11:38:19Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.02468v1",
+      "updated": "2026-09-04T07:50:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2609.02468v2",
       "abs_url": "https://arxiv.org/abs/2609.02468",
       "topics": [
         "other"
