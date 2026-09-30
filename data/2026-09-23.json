@@ -1,6 +1,6 @@
 {
   "date": "2026-09-23",
-  "generated_at": "2026-09-29T07:15:38.113027+00:00",
+  "generated_at": "2026-09-30T07:10:10.585393+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,55 +29,6 @@
   },
   "papers": [
     {
-      "id": "2609.28838",
-      "title": "Uncertainty-Gated Exploration Noise Suppresses Task Collapse in Online RL Fine-Tuning of a Flow-Matching Vision-Language-Action Policy",
-      "abstract": "Online reinforcement learning fine-tuning of pretrained flow-matching vision-language-action (VLA) policies promises robots that keep learning after deployment, but continued updates often destroy competence on individual tasks while the aggregate still looks healthy. We study this failure mode, which we call task collapse, under a matched small-compute budget on LIBERO-10 with a 450M-parameter SmolVLA policy trained by PPO with stochastic (SDE) sampling. Three exploration-noise policies differ in one live variable: a fixed noise scale, a ReinFlow-style learned noise network, and an uncertainty-gated controller that redistributes exploration across task streams from task-agnostic novelty and competence signals, without task labels or episode boundaries. Under the pooled definition, fixed noise collapses tasks in two of three seeds and learned noise in every seed measured to iteration 200, while the controller collapses none in any of its three seeds. Measured parameter displacement shows the controller's action expert keeps changing, while its mean applied noise is close to the fixed scale in the available logs. The matched comparison supports the controller's effect on task preservation; the separate contributions of its adaptation across states and over time are not disentangled. A lower fixed scale slows the decline but does not stop it. No arm improves on the behavior-cloning baseline in this budget. Two properties of that regime are measured beside this result, not offered as its cause: following the reference recipe, training runs in bfloat16 with no fp32 master copy, under which 96.02% of the action expert's elements stay bit-identical across three consecutive iterations, and an fp32 master copy at the reference learning rate collapses both arms in a single-seed observation. We release tools measuring per-task collapse under four definitions, rescoring noise and instrument tares.",
-      "authors": [
-        "Mehmet Turan Yardımcı",
-        "Yunus Emre Çoğurcu"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.LG"
-      ],
-      "published": "2026-09-23T23:08:10Z",
-      "updated": "2026-09-23T23:08:10Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28838v1",
-      "abs_url": "https://arxiv.org/abs/2609.28838",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28838",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28818",
-      "title": "KeyGen: Unsupervised Keypoint based Object-Centric Representations for Category-Level Policy Generalization",
-      "abstract": "Generalization in robotic manipulation requires policies to perform tasks across diverse unseen object instances that vary in shape, size, and pose. However, conventional behavior cloning (BC) methods often overfit to instance-specific geometry and appearance, limiting transfer to novel objects. We introduce KeyGen, a framework that learns canonicalized semantic 3D keypoints from point clouds and uses them as structured object-centric representations for policy learning. A visuomotor diffusion policy conditions on these keypoints together with object-centric geometry to predict full manipulation trajectories, enabling consistent geometric correspondence across object instances. To evaluate category-level generalization, we construct a photorealistic simulation benchmark with three manipulation tasks and a planning-driven data generation pipeline that produces expert trajectories across diverse object instances. Experiments show that KeyGen significantly outperforms prior methods on both seen and unseen objects under pose variation, scales effectively with additional demonstrations per object, maintains robustness to object rescaling, and achieves strong performance in both simulation and real-world manipulation.",
-      "authors": [
-        "Shuxin Cao",
-        "Liquan Wang",
-        "Masoud Moghani",
-        "Benjamin Joffe",
-        "Animesh Garg"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.AI"
-      ],
-      "published": "2026-09-23T21:53:10Z",
-      "updated": "2026-09-23T21:53:10Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28818v1",
-      "abs_url": "https://arxiv.org/abs/2609.28818",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28818",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
       "id": "2609.28813",
       "title": "CinematicVQA: Benchmarking Film-Grammar Reasoning in Large Vision-Language Models",
       "abstract": "Cinematography, the craft of visual storytelling through framing, lighting, and camera operation, fundamentally shapes how audiences perceive and emotionally engage with video content. While Large Vision Language Models (LVLMs) have made remarkable progress in video question answering, existing benchmarks primarily focus on identifying low-level techniques rather than understanding their storytelling impact. To address this, we introduce CinematicVQA, the first-of-its-kind benchmark for cinematic video understanding that goes beyond technique recognition to evaluate film-grammar reasoning, utilizing our introduced Cinematic Scene Graph (CSG), a structured representation that links filming techniques to their perceptual effects and narrative functions. Through comprehensive evaluation of state-of-the-art LVLMs, we reveal a striking semantic gap: models consistently perform higher on describing visual presentations than on identifying the underlying techniques. Surprisingly, Chain-of-Thought prompting fails to provide consistent gains and degrades performance for most models, suggesting that current LVLMs lack sufficient cinematic domain knowledge to benefit from step-by-step reasoning. Fine-tuning on \\textsc{CinematicVQA-train} yields consistent improvements, particularly for narrative function and multi-hop reasoning. Overall, \\textsc{CinematicVQA} serves both as a rigorous benchmark for cinematic evaluation in LVLMs and as a practical dataset for training more film-aware video models.",
@@ -98,31 +49,6 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28813",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28765",
-      "title": "Reinforcement Learning with Verifiable Rewards for Small Search Agents",
-      "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) performs well on problems with clear rewards, such as mathematics and coding, but whether it also works where the reward is less clear remains open. The reason-over-search recipe applies RLVR to open-domain question answering, where retrieval grounds the answer and a match against the reference supplies the reward. So far it has been demonstrated on large models, and below one billion parameters only with distillation from a larger teacher. We test the recipe on a small model. We train Qwen3.5-0.8B with Group Relative Policy Optimization (GRPO) and an interleaved Wikipedia-search tool on MuSiQue, varying only the reward across three shapes over three seeds each, and we evaluate every checkpoint held-out on a seven-benchmark question-answering suite. The recipe works: the best run reaches 0.352 average exact match against a 0.092 untrained floor, a 3.8-fold gain, with no distillation step in the training loop. The reward shape also matters. The Search-R1-faithful exact-match-only reward is the worst of the three at every seed at the matched training horizon, and it is worst even on exact match, the metric it directly optimises. We conclude that the sparse exact-match reward, RLVR's default in mathematics and code, is the wrong starting point for models of this size. The reason-over-search setting can supply a suitable reward for RLVR on small models, but small-model RLVR needs its own reward-design study rather than a scaled-down copy of a large-model recipe.",
-      "authors": [
-        "Gaurisankar Jayadas",
-        "Aske Plaat",
-        "Álvaro Serra-Gómez",
-        "Sandheep P"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.IR"
-      ],
-      "published": "2026-09-23T20:21:55Z",
-      "updated": "2026-09-23T20:21:55Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28765v1",
-      "abs_url": "https://arxiv.org/abs/2609.28765",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28765",
       "summary_zh": "",
       "impact_score": null
     },
@@ -179,87 +105,6 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28739",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28737",
-      "title": "Policy Complexity, Reaction Time, and Bounded Rationality in Reinforcement Learning",
-      "abstract": "Biological agents do not learn under conditions of unlimited computation. For humans, learning and choice are shaped by constraints on perception, attention, and working memory, which limit how much state information guides behavior and therefore bound policy complexity. Standard reinforcement learning models typically optimize reward without explicitly representing these internal costs, making them less suitable as models of biological intelligence. We derive MI-SARSA, an on-policy temporal-difference algorithm that incorporates mutual-information regularization through a learned marginal action prior and a penalty on state-specific deviations from that prior. This yields a sequential learning model in which state information is used selectively when its expected return benefit justifies the added informational cost. Critically, the same state-specific information cost that governs policy compression also generates trial-level predictions for reaction time, distinguishing MI-SARSA from most reinforcement learning models, which predict choices or returns but not latency. Empirically, MI-SARSA produces a reward-complexity tradeoff, and stronger information penalties produce simpler policies with lower control costs and faster reaction times. Under environment shift, increasing regularization reduces post-switch performance degradation but also lowers asymptotic return, revealing a robustness-capacity tradeoff. Together, these results position MI-SARSA as a model of bounded sequential learning under cognitive constraints.",
-      "authors": [
-        "James Wu",
-        "Chris R. Sims"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.IT"
-      ],
-      "published": "2026-09-23T19:28:57Z",
-      "updated": "2026-09-23T19:28:57Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28737v1",
-      "abs_url": "https://arxiv.org/abs/2609.28737",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28737",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28690",
-      "title": "TRACER: Trajectory-Aligned Learning for Multi-Turn User Simulation",
-      "abstract": "Faithful user simulation is fundamental to building, evaluating, and improving interactive AI at scale. Yet current simulators often produce plausible individual responses without reproducing the intent evolution and outcomes observed in real interactions. We propose TRACER, a multi-turn user simulator that models evolving user intent and aligns simulated trajectories with real ones. TRACER is trained in two stages: supervised fine-tuning on real user dialogues, followed by multi-turn reinforcement learning. The RL stage combines hierarchical outcome- and trajectory-level rewards with deviation-aware advantage modulation, jointly addressing reward sparsity and credit assignment challenges in long dialogues. On real customer-service sessions organized into reference cohorts, TRACER-7B surpasses the strongest baseline by 11.4 conversion F1 points, while outperforming all baselines on group-level conversion-rate error and semantic trajectory distance and generalizing to out-of-distribution scenarios. In human Turing tests, annotators identified TRACER conversations at near-chance accuracy. Building on this simulator, we further introduce the Dynamic Marketing Benchmark, which jointly evaluates persuasion and response quality via simulated interactions, revealing that higher response quality does not necessarily correspond to higher conversion rates.",
-      "authors": [
-        "Geng Chen",
-        "Ruotong Pan",
-        "Zhirui Yang",
-        "Qiqi He",
-        "Jiawei Chen",
-        "Zhang Yunfei",
-        "Chongyuan Chen",
-        "Minxuan Lv",
-        "Zheng Yang",
-        "Win-Bin Huang",
-        "Xiangyu Wu",
-        "Wenwu Ou"
-      ],
-      "categories": [
-        "cs.AI"
-      ],
-      "published": "2026-09-23T18:30:12Z",
-      "updated": "2026-09-28T09:34:28Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28690v2",
-      "abs_url": "https://arxiv.org/abs/2609.28690",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28690",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28670",
-      "title": "Beyond Static Graph World Models: Learning Stochastic Latent Dynamics over Evolving Topologies",
-      "abstract": "Graph-based world models have recently emerged as a means of learning transitions over relational state representations. However, existing approaches are largely limited to fixed-topology graphs or deterministic, fully observable environments. We propose the Graph Dynamics Model (GDM), a world model for graph-structured observations that is designed to handle the more general setting of evolving topologies in stochastic and partially observable environments. The GDM uses a sparse recurrent adjacency matrix to model topology updates and perform message passing, together with a recurrent state-space architecture for modelling stochastic transitions. Furthermore, we identify a gap in the evaluation of graph-based world models, as existing methods do not provide a means of comparing predicted and true distributions over the joint graph state comprising the interdependent topology, node features, and graph features. We therefore introduce the Graph Distribution Distance (GDD) metric, which uses maximum mean discrepancy with a graph kernel to comprehensively compare joint next-state distributions. We evaluate the GDM across several environments, including stochastic and partially observable settings. We demonstrate that GDM outperforms baseline models and displays zero-shot generalisation on large graphs.",
-      "authors": [
-        "Alex Schutz",
-        "Nick Hawes",
-        "Victor-Alexandru Darvariu"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.SI"
-      ],
-      "published": "2026-09-23T18:10:56Z",
-      "updated": "2026-09-23T18:10:56Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28670v1",
-      "abs_url": "https://arxiv.org/abs/2609.28670",
-      "topics": [
-        "world-model"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28670",
       "summary_zh": "",
       "impact_score": null
     },
@@ -340,30 +185,6 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28653",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28625",
-      "title": "RLVR landscapes for iterated multiplications can be benign: Insights from spin-glass theory",
-      "abstract": "Despite the importance of reinforcement learning with verifiable rewards (RLVR), the extent to which it can learn new reasoning capabilities remains debated. Here we study the optimization landscape of RLVR on algorithmic tasks, such as iterated group and quasigroup multiplication. To this end, we map entropy-regularized RLVR over myopic tabular policies onto an energy-based (spin-glass) model over deterministic policies. This mapping upper-bounds what RLVR can achieve, and lets us rigorously characterize the landscape in this tabular setting. We show, both theoretically and experimentally, that for a wide class of models and tasks with uncorrelated inputs, this landscape is benign, containing no local minima that could trap RLVR training. Rather, the practical difficulty of these tasks appears to stem, at least in part, from issues such as diffusive barriers and gradient-estimation error in traversing the landscape. These are genuine obstacles that can prevent a solution from being found, but they are distinct from the landscape itself being rugged. We show that these obstacles can often be mitigated through the choice of entropy regulator. Consistent with this theory, we find that a transformer trained from scratch, using only last-token rewards, successfully learns an algorithmic chain of thought for iterated non-Abelian group multiplications.",
-      "authors": [
-        "Noa Rubin",
-        "Zohar Ringel"
-      ],
-      "categories": [
-        "cs.LG",
-        "cond-mat.dis-nn",
-        "stat.ML"
-      ],
-      "published": "2026-09-23T18:00:02Z",
-      "updated": "2026-09-23T18:00:02Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28625v1",
-      "abs_url": "https://arxiv.org/abs/2609.28625",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28625",
       "summary_zh": "",
       "impact_score": null
     },
@@ -470,30 +291,6 @@
       "impact_score": null
     },
     {
-      "id": "2609.28427",
-      "title": "Context-Continuous Preference Learning for Exoskeleton Personalization",
-      "abstract": "Personalizing exoskeleton assistance across operating conditions is constrained by the time and physical effort required to collect user feedback. We examined whether a user's preference landscape varies smoothly across operating conditions and when this continuity supports learning from limited feedback. We propose Context-Continuous Preference Learning (CCPL), a Gaussian-process preference model that shares observations across nearby contexts while retaining context-specific utility estimates. We evaluated CCPL through simulations and retrospective analyses of ankle and elbow exoskeleton preference data from nine healthy adults. In simulations, CCPL improved reconstruction and preference-based Bayesian optimization relative to independent learning when preferences varied smoothly, but showed negative transfer when continuity was weak. In both human studies, full-data reference landscapes estimated separately for each participant and context tended to be more similar between nearby operating conditions. With five exposures per context, CCPL increased mean reconstruction correlation with these references from 0.644 to 0.720 for ankle assistance and from 0.476 to 0.526 for elbow assistance relative to independent learning. The five-exposure budget was approximately 37% lower for ankle and 17% lower for elbow than the estimated independent-learning budgets needed to match these correlations. CCPL also improved held-out response prediction relative to independent learning, while benefits over pooled learning varied. These findings support context continuity as a basis for sharing preference observations under limited feedback, although benefits for online personalization in humans remain to be established.",
-      "authors": [
-        "Sunin Baek",
-        "Sungwoo Park",
-        "Daekyum Kim"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.RO"
-      ],
-      "published": "2026-09-23T17:28:08Z",
-      "updated": "2026-09-23T17:28:08Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28427v1",
-      "abs_url": "https://arxiv.org/abs/2609.28427",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28427",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
       "id": "2609.28416",
       "title": "Agent-Editing World Model: Rethinking World Modeling for LLM Agents",
       "abstract": "Recent advances in large language models (LLMs) have enabled agents to tackle long-horizon tasks across diverse environments. To further improve agent performance, existing language world models typically predict environment observations, yet reconstructing high-entropy, execution-dependent tool responses offers limited value when real feedback is available. Meanwhile, agents suffer from \\emph{task-state contamination}, where unsupported assumptions and outdated plans persist in history and distort subsequent decisions. We propose the \\textbf{Agent-Editing World Model (AEWM)}, which models how reasoning and actions shape future task progress rather than simulating tool responses. AEWM combines \\textbf{Action Judge} to distinguish \\textsc{Critical}, \\textsc{Exploratory}, and \\textsc{Noisy} decisions with \\textbf{State Revision} to edit noisy reasoning--action continuations from the same observed history. \\textbf{EditAct} integrates these capabilities with real execution, directly changing the state underlying subsequent decisions rather than merely providing critiques. We train AEWM across Search, Terminal, and Software Engineering through mid-training and supervised fine-tuning. AEWM achieves 70.5\\% macro-F1 on our Action Judge benchmark, exceeding the strongest frontier baseline by 10.6 points. Across six benchmarks and three agent backbones, EditAct improves average scores by 3.2--6.7 points over the strongest baseline. Furthermore, rejection sampling fine-tuning on verified EditAct trajectories, termed \\textbf{AEWM-RFT}, improves over Self-RFT by 2.2--2.6 points across three domains without online AEWM guidance.",
@@ -548,85 +345,6 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28414",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28385",
-      "title": "When and Where to Trust the Teacher: Unifying On-Policy Distillation and GRPO through Entropy-Calibrated Credit Assignment",
-      "abstract": "Reinforcement learning with verifiable rewards (RLVR) supervises mathematical reasoning through final-answer correctness, but provides little guidance on individual tokens. On-policy distillation (OPD) supplies dense feedback on student-generated responses, yet teacher preference need not reflect correctness. Recent hybrids combine OPD and verifier-derived advantages or reweight task credit using teacher ratios. However, teacher guidance enters after verifier-based group normalization, and token reweighting need not preserve the total task credit assigned to each response. We introduce Unified Entropy-Calibrated Credit Redistribution for GRPO (UECR-GRPO), which integrates verifier and teacher signals within a single GRPO-style update at both the response and token levels. \\emph{Path-Utility Unification} (PUU) combines verifier reward and a teacher-to-anchor path log-ratio in a single KL-regularized objective. Its on-policy implementation uses a length-normalized teacher score and combines both rewards before group normalization and PPO clipping, allowing teacher evidence to influence the response ranking. \\emph{Entropy-Calibrated Redistribution} (ECR) then uses the signed teacher--old-policy token gap to redistribute the verifier-derived component. Full-vocabulary teacher entropy attenuates uncertain guidance, while a response-wise zero-sum projection preserves the total task credit and its token-wise sign before clipping. Across five mathematical reasoning benchmarks, UECR-GRPO achieves average \\(\\mathrm{Avg@12}\\) accuracies of 17.21\\% and 65.09\\% with Qwen3-1.7B and Qwen3-4B students, respectively, exceeding the strongest baseline at each scale by 0.89 and 0.56 percentage points.",
-      "authors": [
-        "Jie Zhang",
-        "Jingxiao Yang",
-        "Zhehao Huang",
-        "Yuhang Liu",
-        "Xiaolin Huang"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "published": "2026-09-23T16:58:26Z",
-      "updated": "2026-09-23T16:58:26Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28385v1",
-      "abs_url": "https://arxiv.org/abs/2609.28385",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28385",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28378",
-      "title": "ForgetMimic: Motion Unlearning for Reinforcement Learning Humanoid Control",
-      "abstract": "Humanoid control, leveraging human demonstrations, has achieved diverse, agile, and natural locomotion behaviors through reinforcement learning (RL). While this paradigm has yielded remarkable performance in physical humanoid control, how to eliminate specific motions from learned policies remains insufficiently explored. Addressing this issue is motivated by pressing safety and privacy concerns: the removal of malicious, poisoned, or suboptimal motions, as well as copyright-protected motions subject to the right to be forgotten under regulations such as the GDPR, is of critical importance. To this end, we propose {ForgetMimic}, the first motion-level unlearning method designed specifically for physical-world humanoid control. The core idea of ForgetMimic is as follows: given a policy $π_θ$ trained on $N$ motions, our method degrades performance on a target subset of $K$ motions while preserving the effectiveness of the remaining $N-K$ motions. Furthermore, we identify and resolve two key training mechanisms in robot control that lead to unlearning failure. We conduct extensive experiments on the Unitree G1 and H2 humanoid robots across 12 motions, including Dance, Fight, Flip, and others. Experimental results demonstrate that ForgetMimic effectively eliminates memory of designated motions while maintaining the normal operation of all other motions.",
-      "authors": [
-        "Xukun Luan",
-        "Zhongxiang Lei",
-        "Chen Gong",
-        "Shaowei Li",
-        "Yuanguo Bi",
-        "Jinyan Liu"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.CR",
-        "cs.LG"
-      ],
-      "published": "2026-09-23T16:54:25Z",
-      "updated": "2026-09-23T16:54:25Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28378v1",
-      "abs_url": "https://arxiv.org/abs/2609.28378",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28378",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28364",
-      "title": "LEAP-CBF: A Safety Filter for Uncertain Systems with Least-Effort Adversarial Potentials",
-      "abstract": "Control barrier functions (CBF) are a popular safety filter to ensure safety for nonlinear dynamical systems. However, when the system is subject to uncertainties and disturbances, this requires the use of robust variants of CBFs, which can be difficult to construct and can be overly conservative, especially for high-dimensional systems under input constraints. In this work, we propose a new approach to solve these challenges by introducing Least-Effort Adversarial Potentials (LEAP), a certificate that quantifies the robustness of a given state against disturbances in terms of the effort required by the disturbance to cause failure. We show that LEAP is a CBF for the undisturbed system, but can also be used to construct a safety filter that is robust to disturbances whose cumulative effort is bounded. We propose a method for constructing LEAPs with on-policy deep reinforcement learning. Next, we demonstrate LEAPs in simulation on a variety of multi-agent systems with disturbances and uncertainties. Finally, hardware experiments on a quadruped and quadrotors validate that LEAPs are well suited to tackle the disturbances and uncertainties from real-world robotic systems.",
-      "authors": [
-        "Oswin So",
-        "Eric Yu",
-        "Chuchu Fan"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.LG",
-        "math.OC"
-      ],
-      "published": "2026-09-23T16:36:11Z",
-      "updated": "2026-09-23T16:36:11Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28364v1",
-      "abs_url": "https://arxiv.org/abs/2609.28364",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28364",
       "summary_zh": "",
       "impact_score": null
     },
@@ -707,80 +425,6 @@
       "impact_score": null
     },
     {
-      "id": "2609.28182",
-      "title": "Finite-Sample Probabilistic Safety Certification for AI-Based Grid-Edge Coordination",
-      "abstract": "Coordinating large population of flexible grid-edge devices can alleviate the need for time-consuming and capital-intensive network upgrades, and AI-based control methods such as multi-agent reinforcement learning or imitation learning are promising in their real-time decision scalability. However, system operators still need an independent and rigorous way to decide whether a given AI system is safe enough for deployment. This paper develops a finite-sample probabilistic safety certification framework for black-box AI decision models in closed-loop grid operation. The central idea is to reduce the complete input--AI--grid evaluator workflow to a binary unsafe outcome under an operator-defined safety specification, and then use exact binomial inference to certify the corresponding unsafe operation probability. Given a set of held-out calibration scenarios, the framework returns the tightest one-sided upper certificate and an accept/reject deployment criterion that controls the probability of false safety certification. Because the certification is for the calibration distribution that may deviate from the future operation, we further combine the nominal certificate with physically interpretable sample-space adversarial attacks, a concept widely used in AI to investigate the fragility of AI models. Case studies on grid-edge flexibility coordination with 1{,}000-agent AI models (independent parameters) verify the finite-sample safety guarantee and the value of integrating adversarial attacks into a rolling-window training-certification-deployment flow.",
-      "authors": [
-        "Yihong Zhou",
-        "Hanbin Yang",
-        "Thomas Morstyn"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.LG",
-        "eess.SY"
-      ],
-      "published": "2026-09-23T14:24:46Z",
-      "updated": "2026-09-23T14:24:46Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28182v1",
-      "abs_url": "https://arxiv.org/abs/2609.28182",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28182",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28145",
-      "title": "RL Starts before RL: On Policy Distillation for Better Reinforcement Learning",
-      "abstract": "Reinforcement learning (RL) improves reasoning, but its performance depends on the policy from which training begins. We study on-policy distillation (OPD) as a preparation stage for RL and ask whether its benefits extend beyond improvements in the distilled model's initial accuracy. Under shared RL settings, students initialized with OPD reach higher final performance than those trained with direct RL or supervised fine-tuning followed by RL. This advantage can emerge even when OPD produces little immediate improvement in accuracy. Pre-RL Pass@k does not fully explain the benefit: similar or even higher values do not necessarily lead to better performance after RL. Behavioral analyses point to alignment with the teacher's distribution beyond top-1 agreement as a possible explanation. Such alignment may favor higher-quality reasoning paths while retaining alternatives that RL can further refine using outcome feedback. We further examine how trajectory sources and divergence objectives affect the value of distillation for subsequent RL. Standard reverse-KL OPD performs better before RL, but forward-KL OPD overtakes it afterward; with teacher-generated distillation trajectories, reverse KL remains ahead at both stages. These findings suggest that the preferred distillation objective depends on both the trajectory source and the training that follows. Our results support evaluating OPD as preparation for RL and selecting distillation choices by the performance achieved after subsequent training.",
-      "authors": [
-        "Shuai Dong",
-        "Yongfu Zhu",
-        "Yuqi Xu",
-        "Weichu Xie",
-        "Liuwenpu",
-        "Ziyue Wang",
-        "Kaiwen Tuo",
-        "Congcong Wang",
-        "Siyuan Wang",
-        "Wenqi Shao",
-        "Shuai Yang",
-        "Ji Zhao",
-        "Caoyuan Ma",
-        "Wenzheng Chang",
-        "Taiqiang Wu",
-        "Xinlei Yu",
-        "Hongrui Wu",
-        "Xiaoxuan He",
-        "Fangke Chen",
-        "Dianyi Wang",
-        "Kanghui Tian",
-        "Sirry Chen",
-        "Xingyu Liu",
-        "Xiangnan Wu",
-        "Jiawei Guo",
-        "Haowen Hou",
-        "LingHan Chen",
-        "Zhongyu Wei",
-        "Jiaqi Wang"
-      ],
-      "categories": [
-        "cs.LG"
-      ],
-      "published": "2026-09-23T14:03:46Z",
-      "updated": "2026-09-23T14:03:46Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28145v1",
-      "abs_url": "https://arxiv.org/abs/2609.28145",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28145",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
       "id": "2609.28131",
       "title": "DEAL-Grasp: Decoupled Alignment Representation for Geometry-Aware Dexterous Grasp Generation",
       "abstract": "Synthesizing realistic articulated hand-object interactions is a fundamental problem in virtual reality, embodied intelligence, and digital human applications. Existing methods for dexterous grasp synthesis typically regress or denoise poses in a joint space that couples global rigid motion with local articulation, which often yields unstable samples and physically implausible contacts. We introduce DEAL-Grasp, built upon the Decoupled Alignment (DEAL) representation, which reformulates grasp synthesis as alignment-space generation: the interaction state comprises task-space geometric anchors and articulation parameters, from which the rigid transform is recovered via closed-form Procrustes alignment while preserving local articulation. On this mixed state, we model grasp generation using heterogeneous-state flow matching with component-wise vector fields, incorporating time-adaptive physical regularization during training. At inference, grasps are synthesized solely by integrating the learned vector field, without test-time optimization or auxiliary physical guidance. Across MultiDex and zero-shot RealDex benchmarks, DEAL-Grasp attains high force-perturbation success rates alongside minimal penetration and high diversity of generated grasps, while substantially reducing native inference latency compared to optimization-heavy baselines. The project page is available at https://wmtlab.github.io/DEAL-Grasp/.",
@@ -800,82 +444,6 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28131",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28116",
-      "title": "Probabilistic and Geometry Aware Neural Surrogate of Scrape Off Layer Plasma Simulations",
-      "abstract": "Fast surrogates for tokamak boundary-plasma simulation are typically deterministic regressors mapping a global operating point to a flattened vector of cell values. Near the divertor detachment transition the steady state is not reliably single-valued. A point estimate must average over qualitatively different plasma states, and it arrives with no statement of confidence. Moreover, the flattened vector representation discards the geometric structure of the SOLPS-ITER mesh. This work addresses both problems. We unroll the curvilinear mesh into three fixed-size image tensors whose layout preserves cell adjacency and inverts exactly, letting a convolutional network act on the geometry without loss of information. A conditional flow matching model, well suited to highly sensitive systems, is then trained on this representation. The result is an efficient, scalable surrogate that captures multiple plausible outcomes even at sensitive operating points. Along a gas-puff scan, the predictive distribution splits into a hot and a cold mode across an early regime transition. A further check on synthetic data with an injected bifurcation of known size confirms the model recovers both branches rather than their average.",
-      "authors": [
-        "Gabriele Gianuzzo",
-        "Stefan Dasbach",
-        "Fleur Hendriks",
-        "Sven Wiesen",
-        "Vlado Menkovski"
-      ],
-      "categories": [
-        "cs.LG",
-        "physics.plasm-ph"
-      ],
-      "published": "2026-09-23T13:45:19Z",
-      "updated": "2026-09-23T13:45:19Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28116v1",
-      "abs_url": "https://arxiv.org/abs/2609.28116",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28116",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28107",
-      "title": "Distillation for Efficient Multitask Manipulation Policies via Conditional Flow Matching",
-      "abstract": "Advances in generative modeling have recently been extensively employed in robotics for policy learning. In particular, Conditional Flow Matching (CFM) trained with expert demonstrations has been shown to outperform existing methods on robot manipulation benchmarks. While prior work has mainly focused on single-task settings, we study the problem from a multi-task perspective, as training independent models for each task is computationally expensive. Multi-Task policy learning comes with its own set of challenges, as naively training on a concatenated dataset of demonstrations would either require increased model capacity to accommodate the added complexity or result in drops in performance. We propose to distill knowledge from single-task CFM experts into a shared multi-task policy by transferring their learned velocity fields. We combine this distillation signal with the original CFM objective to retain fidelity to the demonstrations. Experiments on RLBench show that our approach improves multi-task policy performance over naive training while maintaining a fixed model size.",
-      "authors": [
-        "Shreya Deshmukh",
-        "Imen Mahdi",
-        "Nick Heppert",
-        "Abhinav Valada"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "published": "2026-09-23T13:38:23Z",
-      "updated": "2026-09-24T10:40:35Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28107v2",
-      "abs_url": "https://arxiv.org/abs/2609.28107",
-      "topics": [
-        "rl",
-        "distillation"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28107",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.31760",
-      "title": "What Stops Recursive Self-Improvement in Robotics? Lessons from 123 Rounds of Agentic Skill Discovery",
-      "abstract": "Can a robot improve itself the way coding agents now improve software? We built an agentic system to find out. It watches a robot fail, works out which capability is missing, writes new skills or finds and installs external models, tests every change in simulation, and repeats, with no human writing robot code. We ran it for 123 improvement rounds on household manipulation tasks. This report describes what we learned. The good news is that the agent can discover capabilities on its own: noticing that its targets were out of view, it asked for an active-viewing model, debugged it, and deployed a working search skill. The bad news is that its improvements did not add up. Changes kept passing their tests, yet the target task, putting condiments on the top shelf of a fridge, never succeeded. We found that the agent was rarely the bottleneck. Three things around it were. First, chained perception modules do not understand relations. Segmenters such as SAM 3 find shelves but not \"the top shelf\", so the agent filled the gap with ever more geometric rules that never converged, when what it needed was a different kind of model. Second, skill chains lock learning onto the first step. Long tasks mostly fail early, so evidence and fixes pile up there, and later skills are rarely reached, tested, or improved. Third, what the agent learns is decided by the harness. The agent optimized exactly what the evaluator measured, including where it was wrong, and weak tests and misleading memory turned activity into a standstill. We distill these lessons into concrete recommendations for building robot systems that improve themselves, each paired with an experiment that could prove it wrong.",
-      "authors": [
-        "Jiaming Wang"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "published": "2026-09-23T13:28:38Z",
-      "updated": "2026-09-23T13:28:38Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.31760v1",
-      "abs_url": "https://arxiv.org/abs/2609.31760",
-      "topics": [
-        "distillation"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.31760",
       "summary_zh": "",
       "impact_score": null
     },
@@ -936,30 +504,6 @@
       "impact_score": null
     },
     {
-      "id": "2609.28085",
-      "title": "Curriculum Learning with GNN-based Reinforcement Learning for Job Shop Scheduling",
-      "abstract": "The job shop scheduling problem is a challenging combinatorial optimization problem, and recent reinforcement learning approaches using graph neural networks have shown promise for learning scheduling policies directly from problem instances. However, training on large instances remains computationally expensive, and generalization across instance sizes remains challenging. This paper studies curriculum learning for graph neural network-based reinforcement learning in the job shop scheduling problem by comparing it with single-size training across three target sizes: 20 x 20, 25 x 25, and 30 x 30. In the curriculum setting, the policy is first trained on smaller instances and then progressively adapted to larger target sizes, allowing scheduling behavior learned in earlier stages to support learning on larger instances. Models are evaluated on unseen instances from 8 x 8 to 30 x 30 using the optimality gap, considering both generalization across all evaluation sizes and specialization on the target size. Results show that curriculum learning consistently reduces wall-clock training time, with larger benefits as the target size increases. The strongest advantage is observed at 30 x 30, where curriculum learning reduces the mean optimality gap across all evaluation sizes by approximately 8.1 percentage points, reduces the target-size mean optimality gap by approximately 8.6 percentage points, and saves approximately 50 hours of training time.",
-      "authors": [
-        "Jayakrishnan K. Vasudevan",
-        "Jonathan Hoss",
-        "Noah Klarmann"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "published": "2026-09-23T13:23:25Z",
-      "updated": "2026-09-23T13:23:25Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28085v1",
-      "abs_url": "https://arxiv.org/abs/2609.28085",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28085",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
       "id": "2609.28078",
       "title": "LiAM-SAM: Lifecycle-Aware Memory for Robust SAM2-Based MOT",
       "abstract": "Segmentation-based multi-object tracking (MOT) with foundation video models such as SAM2 offers strong localization quality, yet remains fragile in crowded, real-world scenes. In detector-prompted SAM2 pipelines, failures typically arise at three stages of the object lifecycle: (i) erroneous or duplicate track initiation, (ii) memory drift during close interactions, and (iii) unreliable re-identification after long occlusions or re-entry. These errors corrupt object memory and accumulate over time, making long-horizon tracking unstable. In this paper, we reframe MOT as a lifecycle memory integrity problem. We present LiAM-SAM, a Lifecycle-Aware Memory (LiAM) framework with targeted mechanisms for each of the three failure modes. At track birth, to prevent faulty or duplicate initiations, we apply contrastive track initiation, which conditions each prompt on existing nearby tracked instances. To preserve memory integrity during strong interactions, we introduce motion- and geometry-grounded memory correction that resolves interaction confusions and suppresses drift. For reliable re-identification after disappearance, we maintain an adaptive context memory that promotes diverse and trustworthy references as long-term identity anchors. Finally, similarity aware spatial pruning optionally selects the memory tokens to retain at cross-attention time, improving efficiency with minimal accuracy loss. LiAM-SAM represents a modular, detector-agnostic, SAM2-based MOT system that achieves state-of-the-art HOTA and IDF1 on the evaluated benchmarks. In association-challenging environments, our ablations show that LiAM improves a detector+SAM2 baseline by +10.5 HOTA, +17.4 AssA, and reduces identity switches by 96%.",
@@ -981,28 +525,6 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28078",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28581",
-      "title": "Auditability Is Not One Property: Rule Overlap, Behavioural Agreement, and Composition in Reinforcement Learning",
-      "abstract": "Reinforcement-learning (RL) policies are often distributed as opaque neural checkpoints, while training logs show that a run occurred without explaining what the policy learned. We study whether independently trained policies can be represented and composed through auditable discrete behavioral rules. We define auditability as six separately testable predicates: trace integrity, lossless coding, rule coverage, behavioral agreement, composition quality, and value-model reliability. Our protocol uses a shared frozen symbolizer, passive rule extraction, an append-only hash-bound ledger, exact environment replay, and offline confidence-ranked arbitration with an explicit blind-spot fallback. The results place strict limits on this description layer. Rule-set overlap does not imply behavioral agreement: policies may share symbolic rules while choosing near-chance-matching actions on fresh states. The fused policy therefore selects among existing rules rather than generating a new skill. On a conflict-dominated task, an apparent fusion failure is traced to an induction/deployment mismatch: rules induced from sampled actions were evaluated under argmax actions, and deployment-consistent re-induction reverses the arbitration ordering. A fitted-Q generalized-policy-improvement diagnostic also fails in both environments, limiting claims that rule fusion is superior to value-based composition. One exploratory comparison favors rule fusion, but its comparator is post hoc, the task is partly saturated, and the fused policy remains below the strongest held-out actor. We contribute an evidence-bounded audit and composition protocol, not a claim of universal interpretability or autonomous skill generation. Future work must add temporally extended skills, cross-skill interfaces, composition search, and independent novelty audits.",
-      "authors": [
-        "Liu Hung Ming"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "published": "2026-09-23T13:11:10Z",
-      "updated": "2026-09-23T13:11:10Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28581v1",
-      "abs_url": "https://arxiv.org/abs/2609.28581",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28581",
       "summary_zh": "",
       "impact_score": null
     },
@@ -1031,55 +553,6 @@
       "impact_score": null
     },
     {
-      "id": "2609.28015",
-      "title": "Improving Ensemble Filters with Flow Matching",
-      "abstract": "Data assimilation estimates a dynamical state from partial and noisy observations. Classical ensemble filters are efficient but restrict analysis updates through finite sample covariance and affine Gaussian distribution. We introduce the Flow Ensemble Filter (FlowEF), which uses conditional flow matching to transport the forecast ensemble from a classical baseline filter to an analysis ensemble. FlowEF uses a localized Gaussian source during training, transports forecast ensemble members from a baseline filter at deployment, and conditions its velocity field on ensembles from that baseline filter and the observation. The proposed model therefore learns a nonlinear update while mapping each baseline ensemble independently. For sparsely observed dynamical systems, FlowEF improves both deterministic and probabilistic metrics over all four classical ensemble filters. It also achieves the best performance among the state-of-the-art generative data assimilation models.",
-      "authors": [
-        "Haoyuan Chen",
-        "Alexandre Thiéry"
-      ],
-      "categories": [
-        "stat.ML",
-        "cs.LG",
-        "math.DS",
-        "stat.ME"
-      ],
-      "published": "2026-09-23T12:37:45Z",
-      "updated": "2026-09-23T12:37:45Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28015v1",
-      "abs_url": "https://arxiv.org/abs/2609.28015",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28015",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28003",
-      "title": "Learning from Failures: Heterogeneous Graph Memory for Small Language Model Tool-Using Agents",
-      "abstract": "Small and medium-sized language models offer cost-effective executors for tool-using agents, making them attractive for local and large-scale deployment. However, in long-horizon and stateful environments, they often make structural errors such as missing required observations, performing premature writes, repeating failed calls, and violating action preconditions. These errors can lead to incorrect state updates, policy violations, and costly or irreversible consequences, making reliable tool execution a critical deployment challenge. Existing fine-tuning approaches require substantial data and computation, while flat memory may retrieve failed actions without preserving their causal context or safety conditions. In this paper, we propose FRESH, a Failure-aware Retrieval framework over Experience-Structured Heterogeneous graphs, which transforms historical successes and failures into structured external experience for tool-using agents. By explicitly modeling the dependencies among tasks, actions, errors, repairs, and execution conditions, FRESH helps frozen language models reuse reliable strategies, avoid recurring failures, and make safer decisions in stateful tool interactions. Experiments on $τ$-Bench and AppWorld with multiple open-source models show that FRESH consistently improves task success and tool-use reliability over no-memory agents and representative memory-based baselines.",
-      "authors": [
-        "Jiaxing Li",
-        "Lei Song",
-        "Rui Dong",
-        "Youyong Kong"
-      ],
-      "categories": [
-        "cs.LG"
-      ],
-      "published": "2026-09-23T12:31:39Z",
-      "updated": "2026-09-23T12:31:39Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28003v1",
-      "abs_url": "https://arxiv.org/abs/2609.28003",
-      "topics": [
-        "distillation"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28003",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
       "id": "2609.27988",
       "title": "Task-Induced Riemannian Metrics for Vision Transformer Feature Spaces",
       "abstract": "Methods operating on Vision Transformer (ViT) feature spaces typically rely on Euclidean distance or cosine similarity. This assumes that every direction is equally meaningful, but there is no reason to believe the true task geometry has this property. The task-sensitive geometry of the feature space is given by the pullback metric $g(F) = J(F)^\\top J(F)$, where $J$ is the Jacobian of the decoder's output fed to a task-specific distance, with respect to the features. Storing the full $g$ is infeasible at modern scales, and for dense outputs such as depth maps even forming $J$ is impractical. We show that whether a low-rank approximation of this metric can be learned depends on the model-decoder pair, and we characterize this with a matrix-free diagnostic $κ_{cap}(r)$ computable with a low number of Jacobian-vector products. For tractable pairs, we develop the Spectral Pullback Network (SPN), which learns a low-rank version of the metric from randomized power iteration, and we distill it into a $310$K-parameter importance head that predicts token importance directly from the features. When the Jacobian spectrum is too spread out for a low-rank approximation, passing the decoder's input features through a VAE bottleneck can restore tractability. Across DPT, DINOv2, CLIP, and VGGT backbones, $κ_{cap}(r)$ predicts which learned-metric architectures are viable. The importance head reaches Spearman $ρ= 0.998$ on DINOv2 CLS, and our geometric token pruning reduces the additional depth error of ToMe-based token selection by $25\\%$ on DPT depth at prune ratio $0.5$, without fine-tuning the ViT. Project page: https://cyberiada.github.io/TaskInducedViTs/",
@@ -1104,32 +577,6 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27988",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27987",
-      "title": "PCQC: Privileged Counterfactual Question Credit for Multi-Turn Medical Dialogue",
-      "abstract": "Large language models (LLMs) have made substantial progress on medical question-answering, yet effective medical dialogue also requires learning to ask questions that uncover relevant patient information. To train such dialogue policies, a common pipeline combines supervised fine-tuning with reinforcement learning (RL) based on final diagnostic correctness. However, this outcome-based supervision does not directly distinguish the contributions of individual questions and provides no question-level feedback for unexecuted alternatives. To address this gap, we introduce PCQC (Privileged Counterfactual Question Credit), which uses privileged patient information during training to learn from questions never asked. During training, PCQC makes alternative questions directly comparable at the same dialogue state by using privileged patient facts to construct their answers. A frozen diagnostic scorer evaluates the diagnostic utility of each resulting question-answer pair by how strongly it supports the correct diagnosis. PCQC turns these comparisons into relative question credit that teaches the policy which questions to favor, directly supervising both executed and unexecuted questions alongside outcome-based RL without requiring complete rollouts for the unexecuted alternatives. Extensive experiments across four medical benchmarks demonstrate that PCQC achieves 63.10% mean diagnostic accuracy, outperforming GRPO and ATPO by 4.38 and 4.21 percentage points, respectively. These gains are achieved with 33.1% fewer inquiry turns than GRPO.",
-      "authors": [
-        "Chenxuan Li",
-        "Jiayi Wan",
-        "Xinrong Chen",
-        "Zhongyu Zhao",
-        "Xuecheng Shang",
-        "Peixing Wan"
-      ],
-      "categories": [
-        "cs.LG"
-      ],
-      "published": "2026-09-23T12:15:10Z",
-      "updated": "2026-09-23T12:15:10Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27987v1",
-      "abs_url": "https://arxiv.org/abs/2609.27987",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27987",
       "summary_zh": "",
       "impact_score": null
     },
@@ -1181,84 +628,6 @@
       "impact_score": null
     },
     {
-      "id": "2609.27745",
-      "title": "Categorical Internalisation of Environmental Groupoids for Generalisable POMDP Solving",
-      "abstract": "This paper advocates category theory as a practical framework for structuring and improving rein- forcement learning in high-dimensional, partially observable environments. We model symmetries between environmental states by partitioning the state space into equivalence classes induced by sym- metry orbits, and organise each such class as a groupoid with a designated canonical representative. This allows the agent to share what it learns across many similar environmental states simultaneously, rather than treating every orientation or position as an entirely new problem. Learning is thus carried out on a symmetry-reduced state space with each orbit represented once, preserving structure while eliminating redundancy and improving sample efficiency. We implement this framework within standard reinforcement learning pipelines and evaluate two different approaches on partially observable benchmarks, demonstrating that orbit-based partitioning yields consistent performance improvements in environments exhibiting latent symmetry. Beyond these empirical results, our approach illustrates how categorical structure provides a principled bridge between abstract reinforcement learning formulations and their computational application, thereby establishing a pathway toward more structured and scalable learning systems.",
-      "authors": [
-        "Ben Opperman",
-        "Eduardo Alonso",
-        "Esther Mondragón"
-      ],
-      "categories": [
-        "cs.AI"
-      ],
-      "published": "2026-09-23T11:59:24Z",
-      "updated": "2026-09-23T11:59:24Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27745v1",
-      "abs_url": "https://arxiv.org/abs/2609.27745",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27745",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27741",
-      "title": "Limiting-Kernel Q($λ$): Bridging Short and Long Horizons",
-      "abstract": "In value-based reinforcement learning, improving the accuracy of policy evaluation has been shown to improve downstream policy optimization performance. The widely adopted family of approximations relying on $n$-step truncation yields computationally efficient value estimators but is inherently limited to a short evaluation horizon. In contrast, methods that exploit the global structure of the transition dynamics can accelerate policy evaluation, but their memory and computational requirements often limit scalability to large or continuous state spaces. To reconcile these limitations, we introduce Limiting-Kernel Q($λ$) (LKQL), an off-policy value estimator that combines $n$-step truncation with a long-horizon approximation based on the limiting kernel (LK). LKQL has the same order of complexity as $n$-step estimators and integrates directly into both on- and off-policy actor-critic algorithms. We prove that, under aperiodicity and in the near-on-policy regime, the operator underlying LKQL improves the policy evaluation convergence rate over its truncated counterpart for sufficiently large $n$, and that LKQL itself converges almost surely to the optimal values in finite Markov decision processes (MDPs) under a fixed behavior policy. On the MuJoCo continuous-control benchmark, we show that LKQL improves over $n$-step baselines in most settings, particularly on long-horizon tasks.",
-      "authors": [
-        "Tolga Ok",
-        "Arman Sharifi Kolarijani",
-        "Peyman Mohajerin Esfahani",
-        "Mohamad Amin Sharifi Kolarijani"
-      ],
-      "categories": [
-        "cs.LG",
-        "math.OC"
-      ],
-      "published": "2026-09-23T11:56:46Z",
-      "updated": "2026-09-23T11:56:46Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27741v1",
-      "abs_url": "https://arxiv.org/abs/2609.27741",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27741",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.28570",
-      "title": "DEEPO: Dual-Entropy Enhanced Policy Optimization for Hallucination in MLLMs",
-      "abstract": "Reinforcement learning (RL) is widely used to sharpen reasoning in multimodal large language models (MLLMs), yet its effect on hallucination is uneven. We trace this to two weak points in the \\emph{correction chain} from reward to parameter update. At the rollout level, hard queries---those with high semantic entropy---frequently produce unanimously wrong sample groups, collapsing the group-relative advantage to zero exactly where hallucination risk is highest. At the optimization level, confident-but-wrong tokens are gradient-invisible: a categorical policy's expected score-gradient norm vanishes as its distribution sharpens, so the predictions that most need correction receive the weakest updates. We propose Dual-Entropy Enhanced Policy Optimization (DEEPO), a dual-stage enhancement combining signal variance regularization with gradient preconditioning: semantic-entropy-triggered expert prefixes inject grounded continuations on high-uncertainty queries, providing direct supervision and restoring advantage variance, while advantage-sign-aware Renyi preconditioning counteracts logit-level saturation so correction reaches confident errors in the operational confidence regime. Both branches improve over GRPO individually; their interaction is statistically significant on VideoMMMU---the most complex long-horizon task in our evaluation suite (+4.0$, 95\\% CI [1.1, 6.9])---and additive elsewhere. DEEPO reduces hallucination while preserving accuracy and training stability.",
-      "authors": [
-        "Yingxuan Zhuang",
-        "Miao Pan",
-        "Wangjie Gan",
-        "Jingxiao Yang",
-        "Fan Wang",
-        "Weiming Liu",
-        "Cheng Tan",
-        "Xuhong Zhang",
-        "Jintao Chen"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.LG"
-      ],
-      "published": "2026-09-23T11:39:16Z",
-      "updated": "2026-09-23T11:39:16Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28570v1",
-      "abs_url": "https://arxiv.org/abs/2609.28570",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28570",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
       "id": "2609.27717",
       "title": "SkillGym: Internalizing Human Skills into LLMs for Real-World Problem Solving",
       "abstract": "Human-written agent skills encode rich workflows for real-world problem solving, but are typically used as external inference-time instructions rather than internalized as reusable model capabilities. We introduce \\texttt{SkillGym}, a framework that transforms these skills into executable, verifiable training environments for large language model agents. Its skill-to-task pipeline instantiates concrete tasks, verifies outcomes with code-based checkers, and assesses empirical skill dependence through contrastive executions. We construct and release 2,756 environments across 12 categories and collect 8,364 successful trajectories from multiple models and harnesses, averaging 49 tool calls and over 60k logged text tokens. These resources support supervised fine-tuning on verified workflows and reinforcement learning with outcome-based rewards. Under Claude Code, supervised fine-tuning improves Qwen3.5-35B-A3B by 199 Elo on GDPval-AA v2, 19.10 percentage points on Terminal-Bench 2.1, and 28.13 and 12.38 points on SkillsBench v1.1 with and without skills, respectively. Our 35B \\texttt{SkillGym-Agent} reaches 51.47\\% on skill-assisted SkillsBench, exceeding reported scores for Claude Sonnet 4.6, GPT-5.4 Mini, and DeepSeek V4 Pro. Without skills, it also surpasses skill-assisted bases under Codex and Claude Code, suggesting reusable procedural competence.",
@@ -1288,28 +657,6 @@
       "impact_score": null
     },
     {
-      "id": "2609.28564",
-      "title": "Don't Read the Log: Execution Traces Contaminate Verifiers in Video-Generation Agents",
-      "abstract": "Agentic video-generation systems close a loop between a generator and a verifier: an LLM plans shots, calls a text-to-video model, and a multimodal judge decides whether the result satisfies the request. To diagnose where a long workflow fails, recent harnesses deliberately show the judge more than the video-the agent's execution trace, its plan, the narration it synthesized. We ask whether this auxiliary text moves the judge's verdict on purely \\emph{visual} requirements, holding the frames fixed. On a benchmark of 109 generated two-event clips with manual labels, in which the requested event is either visibly completed or visibly missing, a trace that reports a successful tool call makes three open-weight Qwen-VL judges (7B, 8B, 32B) accept $78$--$90\\%$ of the failures, up from $7$--$19\\%$ without text, and a contradicting trace makes them reject up to $100\\%$ of correct clips; an instruction to ``use only the frames'' does not remove the effect. Frontier closed judges are essentially unmoved on the same clips, showing that the vulnerability is a property of the judge's learned trust in tool logs rather than of the task. Plan-derived text carries no clip-specific information, so it can only shift a judge's operating point, and in a repair loop that shift becomes a cap on the true pass rate that no repair policy can exceed; the cap matches simulation to two decimals. In the loop, contamination is exploited without any adversarial agent: an honest LLM planner that always regenerates ends with a judge pass rate of $1.00$ and a human-labelled pass rate of $0.28$, and a pipeline in which a cheap checker writes its verdict into the trace launders that checker's errors into a stronger final judge ($0.69$ false accepts).",
-      "authors": [
-        "Jian Xu"
-      ],
-      "categories": [
-        "cs.CR",
-        "cs.LG"
-      ],
-      "published": "2026-09-23T10:53:38Z",
-      "updated": "2026-09-23T10:53:38Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.28564v1",
-      "abs_url": "https://arxiv.org/abs/2609.28564",
-      "topics": [
-        "video-gen"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.28564",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
       "id": "2609.27669",
       "title": "The Path Matters: Evaluating Small Language Models Beyond Answer Accuracy in KGQA",
       "abstract": "Small language models (SLMs) are increasingly paired with knowledge graphs (KGs), yet end-to-end KG question answering conflates graph access, search, navigation, reasoning, and answer generation. This coupling makes it difficult both to determine whether an SLM can faithfully execute the reasoning path implied by a question and to attribute failures to navigation rather than to other stages of the pipeline. We isolate this capability by employing the THESEUS navigation and traceability framework and using frozen, off-the-shelf SLMs as local action policies. At each hop, the environment exposes the legal outgoing graph actions, and the model selects one executable graph action and decides whether to stop, without task-specific parameter updates, model-controlled beam search, or free-form answer generation. This controlled setting allows us to evaluate terminal-answer accuracy with Hits@1 together with path fidelity, using Path Edit Distance (PED) as the primary trajectory metric. Across the Kinship and MQuAKE-ST KGQAs, similarly sized local models differ substantially in answer accuracy and path fidelity, with the two metrics sometimes favoring different models. This model-dependent behavior also extends to prompting, as a single demonstrated trajectory can improve or degrade navigation depending on the model. These results motivate evaluating SLM graph reasoning beyond endpoint accuracy alone.",
@@ -1332,124 +679,6 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27669",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27667",
-      "title": "Robust Adversarial Reinforcement Learning with Risk Sensitivity and Critic Consistency Regularization",
-      "abstract": "Reinforcement learning (RL) achieves strong performance in sequential decision-making but remains brittle under dynamic uncertainty and distributional shifts. Robust Adversarial Reinforcement Learning (RARL) improves robustness via worst-case perturbations, but existing approaches frequently suffer from unstable optimization and degraded value estimation. In particular, overly aggressive adversaries can drive the agent toward uninformative failure states, while adversarial perturbations amplify disagreement between double critics and introduce biased value targets. We propose a unified framework, RACER (Risk-sensitive robust Adversarial critic ConsistEncy-regularized Reinforcement learning), that revisits adversarial RL from a risk-sensitive perspective. First, we introduce a state-dependent adversarial objective that adaptively regulates perturbation strength, suppressing harmful disturbances while preserving informative exploration. Second, we propose critic consistency regularization to reduce disagreement between Q-value estimators and stabilize learning. Comprehensive experiments on challenging continuous control benchmarks demonstrate that RACER consistently improves performance, robustness, and training stability over strong robust RL baselines.",
-      "authors": [
-        "Jiaxi Wu",
-        "Tiantian Zhang",
-        "Yuxing Wang",
-        "Yongzhe Chang",
-        "Xueqian Wang"
-      ],
-      "categories": [
-        "cs.LG"
-      ],
-      "published": "2026-09-23T10:37:27Z",
-      "updated": "2026-09-23T10:37:27Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27667v1",
-      "abs_url": "https://arxiv.org/abs/2609.27667",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27667",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27664",
-      "title": "Evolutionary Stability Does Not Guarantee Learning Accessibility: A Multi-Agent Reinforcement Learning Perspective on Cooperation Emergence",
-      "abstract": "Cooperation emergence is a central problem in multi-agent systems because decentralized agents must coordinate while adapting to the changing behavior of others. Evolutionary game theory identifies strategically stable outcomes, but stability under a population adjustment dynamic need not imply that finite-sample learning agents can reach the same outcome through local reward feedback. We study this distinction in a transparent three-agent governance-motivated game involving a government, a platform firm, and users. We derive replicator dynamics for the fixed stage-game incentives, evaluate the cooperative evolutionary basin on a symmetric initial-condition grid, and compare it with learning-basin estimates for three decentralized value-based learners. The learning analysis uses independent Q-learning with $\\varepsilon$-greedy action selection, scaled Boltzmann exploration, and SA--EA BQL under the same payoff environment and outcome criterion. The evolutionary basin has volume $V_E=1.00$ on the sampled grid. The empirical learning basin is $0.88$ for $\\varepsilon$-IQL and $0.00$ for both scaled Boltzmann and SA--EA BQL. Diagnostic traces show that broader action diversity and nonzero value separation can coexist with failure to sustain the cooperative joint action in this fixed configuration. These results indicate that evolutionary stability and learning accessibility are distinct properties of a coupled game--learning system. The shared-bike setting is a motivating application; the broader contribution is a framework for comparing population-level stability with the finite-sample accessibility of cooperation under specified multi-agent learning dynamics.",
-      "authors": [
-        "Yijie Wang"
-      ],
-      "categories": [
-        "cs.AI"
-      ],
-      "published": "2026-09-23T10:35:50Z",
-      "updated": "2026-09-23T10:35:50Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27664v1",
-      "abs_url": "https://arxiv.org/abs/2609.27664",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27664",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27656",
-      "title": "InternW0: A Foundational Physical World Model for Efficient Real-World Interactions",
-      "abstract": "Physical intelligence requires more than predicting how the world may evolve: predictions must remain actionable as the world continues to change. We introduce InternW0, the first instantiation of the InternW physical world model series from Shanghai AI Laboratory, built around omnimodal interfaces, asynchronous multi-frequency processing, and local physical modeling under partial observations and external influences. InternW0 jointly learns future visual dynamics and continuous robot control through an asymmetric video--action architecture with flow matching. A high-capacity video expert provides longer-horizon predictive context, while a lightweight action expert operates at a faster timescale. Instead of regenerating the future for every action update, InternW0 reuses layerwise K/V and adapts it to newly observed states through observation-conditioned context routing. Domain-specific interfaces and soft prompts support heterogeneous embodiments, while contact-aware post-training incorporates force and tactile signals for contact-rich manipulation. We train InternW0 on approximately 7,200 hours of heterogeneous robot and egocentric data, including EgoLab, a 275-hour real-laboratory egocentric dataset. Evaluation spans simulation benchmarks and real-world scientific tasks, including a 15-stage metal--organic framework synthesis workflow and 5-stage contact- and force-aware dexterous manipulation for general-purpose quantitative pipetting. These results advance scalable, asynchronous, and science-native physical world models for universal and efficient real-world interactions.",
-      "authors": [
-        "Jisong Cai",
-        "Yao Mu",
-        "Ganlin Yang",
-        "Zhe Cao",
-        "Zhangzheng Tu",
-        "Xing Gao",
-        "Kailin Li",
-        "Xinyu Zhan",
-        "Lixin Yang",
-        "Yangkun Zhu",
-        "Haoxiang Ma",
-        "Ming Zhou",
-        "Qiaojun Yu",
-        "Yufei Xue",
-        "Liqun He",
-        "Yifei Yao",
-        "Yifan Zhu",
-        "Long Ling",
-        "Bingqi Jiang",
-        "Haoyu Guo",
-        "Xueyue Zhu",
-        "Bowen Zhou",
-        "Bin Zhao",
-        "Tianfan Xue",
-        "Chunhua Shen",
-        "Weinan Zhang"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.AI"
-      ],
-      "published": "2026-09-23T10:20:56Z",
-      "updated": "2026-09-23T10:20:56Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27656v1",
-      "abs_url": "https://arxiv.org/abs/2609.27656",
-      "topics": [
-        "world-model",
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27656",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27615",
-      "title": "BiCFlow-MER: Orchestrating Discriminative and Generative Multimodal Emotion Recognition via Conditional Transport",
-      "abstract": "In multimodal emotion recognition (MER), human affective states are inferred by integrating complementary cues from multiple modalities. In audio-text MER, affective cues are often entangled with speaker style and lexical content, while cross-modal disagreement further complicates how the evidence should be integrated. Under conventional discriminative fusion, multimodal evidence is compressed into a terminal prediction, with modality-specific cues and conflict information insufficiently preserved. In large generative affective models, by contrast, affective reasoning is typically embedded in language decoding, leaving emotion evidence implicit and difficult to verify in a structured space. To address these limitations, BiCFlow-MER (Bidirectional Conditional Flow for Multimodal Emotion Recognition) is proposed as a conditional-flow framework in which audio-text MER is formulated as generative evidence transport within a structured emotion space. Within BiCFlow-MER, emotion-oriented evidence is disentangled from speaker-style and lexical-content factors to construct a conflict-aware affective condition. Guided by this condition, each utterance is transported to an explicit emotion-space endpoint through a bidirectional rectified flow. Candidate emotions are jointly verified through adaptive prototype-cloud scoring of the transported endpoint and backward class-to-condition consistency with the original multimodal condition, enabling conflict-aware recognition. BiCFlow-MER is shown to outperform all compared methods across IEMOCAP, MELD, and the zero-shot CASE benchmark. By orchestrating discriminative recognition and generative evidence modeling through conditional transport, BiCFlow-MER defines a new MER paradigm.",
-      "authors": [
-        "Yanbing Wang",
-        "Shenyue Wang",
-        "Chunyang Yu"
-      ],
-      "categories": [
-        "cs.AI",
-        "cs.SD"
-      ],
-      "published": "2026-09-23T09:36:39Z",
-      "updated": "2026-09-23T09:36:39Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27615v1",
-      "abs_url": "https://arxiv.org/abs/2609.27615",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27615",
       "summary_zh": "",
       "impact_score": null
     },
@@ -1504,70 +733,6 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27581",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27572",
-      "title": "DCRL: Decoupling and Coupling Reinforcement Learning via Policy-Reward Manifold Alignment",
-      "abstract": "Reinforcement learning (RL) has emerged as a key paradigm for improving the reasoning capabilities of large language models (LLMs). However, existing reward systems, such as rule-based and reward-model-based, often exhibit issues such as unstable optimization and reward hacking. In this work, we revisit the general reasoning of LLMs from a geometric perspective, conceptualizing it as a coupled manifold composed of three interdependent sub-manifolds: logical deduction, evaluation, and representation. Based on this perspective, response generation in RL can be interpreted as a decoupling process from the evaluation manifold, while reward estimation corresponds to a decoupling process from the logical deduction manifold. The limitations of rule-based and reward-model RL systems can be geometrically interpreted as the mismatch of policy-reward manifolds during RL process. To address the aforementioned misalignment, we propose Decoupling and Coupling Reinforcement Learning (DCRL) framework, which incorporates two key components: (1) a syllogistic logic-based prompt evolution mechanism that dynamically refines reward rubrics to enhance the expressiveness of the reward manifold; and (2) a policy-reward re-coupling mechanism that jointly updates the reward and policy models, ensuring consistent evaluation and mitigating manifold mismatch during training. Theoretical analysis and extensive experiments across multiple reasoning domains demonstrate that DCRL consistently outperforms both rule-based and reward-model baselines. Notably, a Qwen3-4B model trained under DCRL surpasses a Qwen3-32B baseline and approaches the performance of a Qwen3-235B model, highlighting superior effectiveness and generalization in RL.",
-      "authors": [
-        "Henan Sun",
-        "Zehua Li",
-        "Haitao Hu",
-        "Qifan Zhang",
-        "Jianfeng Zhang",
-        "Nuo Chen",
-        "Jia Li"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "published": "2026-09-23T08:52:35Z",
-      "updated": "2026-09-23T08:52:35Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27572v1",
-      "abs_url": "https://arxiv.org/abs/2609.27572",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27572",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27547",
-      "title": "EBRL: Asynchronous Embodied RL by Multi-Grained Resource Management",
-      "abstract": "Embodied reinforcement learning (RL) improves model capabilities with a pipeline of environment simulation, action generation, and model updates. These stages show heterogeneous CPU and GPU demands, making efficient resource utilization difficult. Recent systems overlap rollout (simulation and generation) with training for efficiency, but exclusive GPU allocation and synchronized barrier in rollout still leave substantial hardware resource waste. In this paper, we present EBRL, an asynchronous embodied RL training system with two core techniques. The asynchronous pipelined scheduler overlaps rollout and training, pipelines simulation and generation across environment groups, and carries out each environment independently, eliminating synchronization stalls. The fine-grained resource manager pools CPU cores and GPU streaming multiprocessors, and uses stage profiles and runtime feedback to adjust resource quotas and batch sizes to meet the shifting demands among stages. We implement EBRL on RLinf and evaluate it with four embodied policies and four simulation benchmarks across heterogeneous GPU testbeds. Experiments show that EBRL achieves 1.30-3.47 times the end-to-end rollout throughput and 2.5 times of training convergency compared to the SOTA embodied RL systems.",
-      "authors": [
-        "Liang Mi",
-        "Weijun Wang",
-        "Bowen Gao",
-        "Tianze Yu",
-        "Zixu Hao",
-        "Han Xiao",
-        "Xin Ding",
-        "Mingzhe Huang",
-        "Xin He",
-        "Lu Shi",
-        "Hao Wu",
-        "Haipeng Dai",
-        "Guihai Chen",
-        "Yunxin Liu",
-        "Ting Cao"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.DC"
-      ],
-      "published": "2026-09-23T08:36:21Z",
-      "updated": "2026-09-23T08:36:21Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27547v1",
-      "abs_url": "https://arxiv.org/abs/2609.27547",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27547",
       "summary_zh": "",
       "impact_score": null
     },
@@ -1683,57 +848,6 @@
       "impact_score": null
     },
     {
-      "id": "2609.27489",
-      "title": "Passing: An Endless Journey through Reconstructed Spacetime with AI-Generated Sound",
-      "abstract": "This paper introduces Passing, an interactive audiovisual installation that generates an endless journey from a single continuous monorail-window recording by reconstructing it as a spatiotemporal volume. Rather than replaying the footage linearly, the work resamples its spatial and temporal structure along nonlinear trajectories, producing a continuously passing landscape whose depth, speed, and temporal order become unstable. A camera-based viewer-presence detection system estimates whether a viewer is present in the viewing zone and uses this presence state to influence transitions among rendered video sequences. The resulting video stream is fed into SpecMaskFoley, a real-time video-to-audio synthesis model that generates a synchronized soundscape for the reconfigured image. The model is not used to reconstruct an objectively correct soundtrack, but functions as a speculative listener, proposing a possible auditory interpretation of a world whose conventional spatial and temporal premises have been disrupted. Passing distributes creative agency across the artist, who defines the rules of spacetime reconstruction; the AI model, which interprets the emergent visual flow as sound; and the audience, whose embodied presence influences the audiovisual trajectory. Through this structure, the work investigates how authorship and listening may be negotiated among human intention, machine inference, and audience interpretation. Artwork page: https://ryufurusawa.com/passing",
-      "authors": [
-        "Akira Takahashi",
-        "Chihiro Nagashima",
-        "Zhi Zhong",
-        "Shusuke Takahashi",
-        "Yuki Mitsufuji"
-      ],
-      "categories": [
-        "cs.SD",
-        "cs.AI"
-      ],
-      "published": "2026-09-23T07:48:16Z",
-      "updated": "2026-09-23T07:48:16Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27489v1",
-      "abs_url": "https://arxiv.org/abs/2609.27489",
-      "topics": [
-        "4d-gen"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27489",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27467",
-      "title": "Kairos: Grounded Forecasting of Presence and Directional Flow in 4D Scene Graphs",
-      "abstract": "Long-term autonomy in human-populated environments requires anticipating whether and how people will move at times a robot has not yet observed. Existing representations of pedestrian motion face a tradeoff: they either forecast future activity, reducing each location to a scalar rate, or model the full directional distribution, holding it fixed in time. We present Kairos, a predictive directional-flow memory that extends a hierarchical 3D scene graph (3DSG) to a 4D scene graph (4DSG). Every observed voxel of the reconstructed geometry stores a directional mixture and a presence rate, and spectral predictors forecast, for any future query time, both the probability that people are present and the full directional distribution of their motion. Pairwise flow dependence between adjacent voxels supports conditional queries, and per-voxel predictive variances yield calibrated credible intervals that tighten as observations accumulate. We evaluate Kairos on three real pedestrian environments: a robot-collected campus dataset, a shopping mall, and a station concourse recorded continuously for eleven months. Its learned state remains consistent under loop-closure corrections, and its forecasts are competitive with dedicated occupancy and flow models trained on the full detection stream, although Kairos learns from only the small fraction available to a patrolling robot. Finally, we validate the representation on a downstream encounter-probability planning task, where plans computed over the Kairos forecasts encounter more people than plans computed over any time-invariant map at an equal success rate. We provide the code at https://github.com/IacopomC/kairos.",
-      "authors": [
-        "Iacopo Catalano",
-        "Julio A. Placed",
-        "Javier Civera",
-        "Jorge Peña Queralta"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.AI"
-      ],
-      "published": "2026-09-23T07:30:00Z",
-      "updated": "2026-09-23T07:30:00Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27467v1",
-      "abs_url": "https://arxiv.org/abs/2609.27467",
-      "topics": [
-        "4d-gen"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27467",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
       "id": "2609.27455",
       "title": "Latent evolving World Action Model",
       "abstract": "World Action Models (WAMs) jointly model action generation and environment dynamics and are mostly built on pretrained Video Diffusion Models (VDMs). In VDM-based WAMs, observations are first encoded by a VAE, and the resulting compressed latents are then processed by large video diffusion backbones to extract effective features for action generation. However, this paradigm ties WAM performance and training cost to large-scale video generation pretraining, limiting WAM efficiency and scalability. In this paper, we theoretically and empirically investigate how visual representations affect action generation in WAMs. Our results show that predictive embeddings from Joint-Embedding Predictive Architecture (JEPA) encoders better support action generation than compressed VAE latents, with I-JEPA performing best in our encoder comparison. Based on these findings, we propose LeWAM, which conditions action generation on JEPA embeddings and models environment evolution by predicting future embeddings in the same space, without relying on a video diffusion backbone. We further find that imitation learning matches demonstrated actions but does not distinguish better actions from worse ones, even though small action deviations can greatly affect task success. To address this limitation without additional environment interaction or the human oversight required for resets and safety, we introduce Demonstration-Guided DPO (DemoDPO), an offline preference refinement stage that derives preference supervision directly from demonstrations. With only 0.4B trainable parameters, LeWAM achieves an average success rate of 92.28\\% on RoboTwin 2.0, comparable to that of state-of-the-art VLAs and WAMs, and maintains practical effectiveness on real-world manipulation tasks.",
@@ -1757,44 +871,6 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27455",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27450",
-      "title": "BEE: Intervention-Adaptive Real-World Reinforcement Learning with Vision-Language-Action Models",
-      "abstract": "Vision-language-action (VLA) models handle long-horizon manipulation, yet success hinges on a few precision-critical phases where millimeter-scale errors undo all prior progress. Online reinforcement learning (RL) can optimize exactly these actions, but free exploration is far too costly on real robots, which makes human corrections indispensable. However, existing online RL methods for VLAs either cannot incorporate such corrections or fold them into undifferentiated supervision. Yet human corrections are not uniformly noisy but reliable along some action dimensions and variable along others. Building on this, we introduce BEE, an intervention-adaptive framework for real-world RL on a frozen VLA that lets the policy go BEyond Expert imitation. We formulate human corrections not as actions to reproduce but as evidence about a constraint: a Correction Model predicts how a human would correct a given VLA proposal and how consistent the correction is along each action dimension. This predicted consistency sets the per-dimension tightness of a constraint on policy optimization. Where corrections are consistent the policy stays close to the human, and where they vary, the constraint relaxes. We evaluate BEE on three real-world manipulation tasks and one LIBERO-Pro simulation task at a matched online-data budget. BEE attains the highest success rate on every task, 91.2% on average against 57.5% for RLT and 42.1% for DSRL, and the lowest human intervention rate on all real-world tasks.",
-      "authors": [
-        "Weihui Zhao",
-        "Xiaohan Yan",
-        "Zunian Wan",
-        "Xuan Du",
-        "Zhaozhan Chi",
-        "Jianbo Mao",
-        "Ruipu Wu",
-        "Rushuai Yang",
-        "Houlin Li",
-        "Shukai Yang",
-        "Jing Wu",
-        "Yuxiang Yan",
-        "Yongcheng Liu",
-        "Chuankang Li",
-        "Guanghui Ren",
-        "Wei Shan",
-        "Maoqing Yao"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.AI"
-      ],
-      "published": "2026-09-23T07:14:20Z",
-      "updated": "2026-09-23T07:14:20Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27450v1",
-      "abs_url": "https://arxiv.org/abs/2609.27450",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27450",
       "summary_zh": "",
       "impact_score": null
     },
@@ -1851,310 +927,6 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27396",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27389",
-      "title": "EvoAudio: Recursive Self-Improvement for Audio Understanding",
-      "abstract": "Audio language models understand what is said far better than how it sounds. Closing this gap takes more than data. Detailed acoustic annotation is costly, labels from stronger models inherit their errors and limits, and fixed data cannot adapt as the learner improves. We therefore propose EvoAudio, a recursive self-improvement system for audio understanding. To our knowledge, it is the first to evolve the model, waveforms, questions, and difficulty in one closed loop. EvoAudio uses the current model's performance to set the focus and difficulty of the next training data. A library of audio tools then constructs questions whose answers follow from how the audio was made, providing verifiable supervision without new human annotation. Reinforcement learning updates the model, and validation decides whether it enters the next evolution round. Across 13 rounds, EvoAudio improves five models with different audio encoders and language backbones on MMSU, MMAU-Pro, and MMAR. It achieves the highest average for every backbone, raising overall performance by up to 6.3 points. The improvement unfolds over successive rounds, with each stronger model starting the next round.",
-      "authors": [
-        "Yuxiang Wang",
-        "Shengbo Cai",
-        "Yingda Shen",
-        "Ming-Hao Hsu",
-        "Qinke Ni",
-        "Liqiang Zhang",
-        "Teddy Sun",
-        "Steve Yevs",
-        "Zhizheng Wu"
-      ],
-      "categories": [
-        "cs.SD",
-        "cs.LG"
-      ],
-      "published": "2026-09-23T05:45:11Z",
-      "updated": "2026-09-23T05:45:11Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27389v1",
-      "abs_url": "https://arxiv.org/abs/2609.27389",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27389",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27385",
-      "title": "Forecast Workflow Bench: Evaluating Language-Model Decisions with Budgeted Forecast Tools",
-      "abstract": "Time-series foundation models (TSFMs) provide forecasts for operational decisions, but accuracy alone does not determine their value. Evaluating agents that use these models requires measuring decision quality and forecast cost. FWBench evaluates this capability on 1,251 electricity and cycle-hire cases using fixed forecast tools and simulated capacity contracts. Agents select models, histories and horizons, then submit capacities to minimize a stated loss-cost objective. We evaluated two hosted and eight local configurations, including small language models, and tested local models with and without TSFMs. GPT-6 Astra bought inexpensive short-horizon forecasts selectively, using 2.5% of the budget, and outperformed fixed policies when the saved decisions were scored with three loss-cost weightings. FWBench enables reproducible evaluation of how language models select and use time-series forecasts to make decisions under cost constraints.",
-      "authors": [
-        "Shunya Nagashima"
-      ],
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "published": "2026-09-23T05:35:40Z",
-      "updated": "2026-09-23T05:35:40Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27385v1",
-      "abs_url": "https://arxiv.org/abs/2609.27385",
-      "topics": [
-        "distillation"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27385",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27337",
-      "title": "Evolving Inspectable O-RAN Slicing xApps with LLMs",
-      "abstract": "Open RAN (O-RAN) slicing xApps must adapt resource allocations to changing channel conditions and traffic demands while meeting service-level agreements (SLAs). Deep reinforcement learning can produce adaptive policies, but their allocation rules remain encoded in neural-network parameters. Our goal is to retain this adaptability while making the controller's decision logic directly inspectable and editable by operators. We use a large language model (LLM) to evolve slicing controllers as compact Python programs whose decision logic remains readable and editable after optimization. The LLM proposes and revises candidates offline, while a calibrated simulator scores them, and the selected decision module runs unchanged in the O-RAN control path. On the NSF POWDER 5G testbed, the evolved controller releases resources from a guaranteed slice whose throughput target becomes unattainable under a sustained channel fade, improving best-effort throughput from 158.2 to 228.6 Mbps, a 44.5% gain over the best static allocation. Since the controllers are readable source code, their behavior can be predicted from their equations, defects can be diagnosed by reading the code, and calibration errors can be corrected with one-line edits, reducing SLA misses from 79.9% to 2.2% in one case and more than doubling fitness in another. In a four-slice trace-driven simulation calibrated to the same testbed, evolutionary search achieves higher average evaluation scores than independent prompting at a matched proposal budget, with mean normalized gains on held-out traces of 16.3% for prompting alone, 32.1% for evolution from scratch, and 51.0% for evolution from a starting program.",
-      "authors": [
-        "Faezeh Dehghan Tarzjani",
-        "Bhaskar Krishnamachari"
-      ],
-      "categories": [
-        "eess.SY",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "published": "2026-09-23T04:18:48Z",
-      "updated": "2026-09-23T04:18:48Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27337v1",
-      "abs_url": "https://arxiv.org/abs/2609.27337",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27337",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27312",
-      "title": "Turning Safety into Competence: Minimally Exploitable Robot Policies via Safety-Filtered Reinforcement Learning",
-      "abstract": "Robots deployed for competitive tasks must outmaneuver their opponents without sacrificing safety. Existing approaches, including safe reinforcement learning (RL), train a single policy to achieve task success and avoid failures simultaneously. This coupling can complicate training and leave the learned policy exploitable by deliberate attacks. We propose Safety to Competence (S2C), a two-stage RL framework that separates safety synthesis from competitive task learning. We formulate competitive interactions as safety-critical Markov games and prove that perfect filtering preserves policy non-exploitability when all players commit to safe maneuvers. S2C learns a robust safety filter via adversarial RL, embeds it in the environment during task policy training, and retains the same filter at deployment. In simulated touchdown games, S2C outperforms eight safe RL baselines, achieving the highest win rate and Elo rating, and the lowest exploitability. Hardware stress tests against a human opponent confirm S2C's competence.",
-      "authors": [
-        "Ruihan Wu",
-        "Rui Yang",
-        "Donggeon David Oh",
-        "Duy Nguyen",
-        "Haimin Hu"
-      ],
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.LG",
-        "eess.SY"
-      ],
-      "published": "2026-09-23T03:44:21Z",
-      "updated": "2026-09-23T03:44:21Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27312v1",
-      "abs_url": "https://arxiv.org/abs/2609.27312",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27312",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27309",
-      "title": "FairTest: Search-Based Fairness Testing for Multi-Agent Reinforcement Learning Systems",
-      "abstract": "Multi-agent Reinforcement Learning (MARL) trains a team of agents that share one environment and learn their policies together. Training maximizes the team return, and a high return does not imply that the rewards are shared fairly among the agents in every episode. Testing is an established way to discover the failures of deep reinforcement learning, yet few methods address the fairness of MARL. In this work, we propose FairTest, a search-based testing approach that seeks the unfair executions of a MARL policy. The design combines search guidance with test prioritization. The guidance scores each candidate with three fitness functions. One measures the fairness of the runs already performed, another predicts the fairness from abstract states and fairness features, and the third reads the decision uncertainty from the policy. Crossover and mutation derive further candidates from the observed executions. The prioritization ranks the candidates by the predicted fairness and the decision uncertainty, so that the runs reach the candidates where failures are expected. FairTest is evaluated on three environments and two MARL algorithms, and four baselines are given the same budget. It detects the most fairness failures compared to three baselines with statistical significance and large effect sizes. The failure count exceeds that of the strongest baseline by 221% on average and coverage improves by an average of 23%.",
-      "authors": [
-        "Xiaotong Wang",
-        "Xuan Xie"
-      ],
-      "categories": [
-        "cs.SE",
-        "cs.LG"
-      ],
-      "published": "2026-09-23T03:41:57Z",
-      "updated": "2026-09-23T03:41:57Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27309v1",
-      "abs_url": "https://arxiv.org/abs/2609.27309",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27309",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27307",
-      "title": "Learn How to Act from Your Own Interactions: On-Policy Self-Distillation for GUI Agents",
-      "abstract": "Graphical User Interface (GUI) agents enable the fulfillment of complex user instructions through multi-turn interactions with software environments, requiring step-wise reasoning and long-horizon memory to guide actions and retain task-relevant information, respectively. Recent on-policy self-distillation (OPSD) methods have achieved strong performance on GUI grounding, a foundational subtask for GUI agents, owing to dense token-level supervision from privilege-conditioned self-teachers. However, extending existing OPSD methods to multi-turn GUI agents is hindered by self-teachers' limited privilege-following ability and insufficient privileged guidance. In this paper, we introduce GUI-SD-v2, the next version of GUI-SD, which extends OPSD from GUI grounding to multi-turn GUI interaction and addresses key limitations through a two-stage training framework. Specifically, GUI-SD-v2 first strengthens privilege following by jointly optimizing rollouts with and without privileged guidance from the same GUI states. Furthermore, it selectively distills step-specific reasoning and memory guidance through a privilege-conditioned self-teacher, supporting action decisions and the retention of task-relevant information for subsequent interactions. Extensive experiments on two representative GUI agent benchmarks, AndroidWorld and MobileWorld, show that GUI-SD-v2 compares favorably with existing OPSD baselines while consistently outperforming the evaluated state-of-the-art methods in both Pass@1 and Pass@3 success rates. Code and training data will be publicly released.",
-      "authors": [
-        "Yan Zhang",
-        "Daiqing Wu",
-        "Huawen Shen",
-        "Liang Li",
-        "Gang Cao",
-        "Zhi Gong",
-        "Wei Dai",
-        "Xiaode Zhang",
-        "Can Ma",
-        "Yu Zhou"
-      ],
-      "categories": [
-        "cs.AI"
-      ],
-      "published": "2026-09-23T03:38:11Z",
-      "updated": "2026-09-23T03:38:11Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27307v1",
-      "abs_url": "https://arxiv.org/abs/2609.27307",
-      "topics": [
-        "distillation"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27307",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27284",
-      "title": "Hunyuan-A13B Technical Report",
-      "abstract": "We present Hunyuan-A13B, an open-source large language model based on a Mixture-of-Experts architecture. It contains 80 billion total parameters but activates only 13 billion during inference, balancing model capability, computational efficiency, and deployment cost. The model is pretrained on a rigorously filtered 20T-token corpus with enhanced STEM data curation, improving factual reliability and reasoning ability. High-quality supervised fine-tuning and large-scale reinforcement learning further enhance its overall performance. Hunyuan-A13B also introduces a dual-mode Chain-of-Thought framework that adapts reasoning depth to task complexity: fast thinking for routine queries and slow thinking for complex, multi-step problems. Evaluations show competitive performance across mathematics, science, programming, general language understanding, and agent tasks, often approaching that of much larger models. Its high inference throughput makes it suitable for latency-sensitive applications. We release Hunyuan-A13B to support open research and practical LLM deployment.",
-      "authors": [
-        "Tencent Hunyuan Team",
-        "Ao Liu",
-        "Botong Zhou",
-        "Can Xu",
-        "Chayse Zhou",
-        "ChenChen Zhang",
-        "Chengcheng Xu",
-        "Chenhao Wang",
-        "Decheng Wu",
-        "Dengpeng Wu",
-        "Dian Jiao",
-        "Dong Du",
-        "Dong Wang",
-        "Feng Zhang",
-        "Fengzong Lian",
-        "Guanghui Xu",
-        "Guanwei Zhang",
-        "Hai Wang",
-        "Haipeng Luo",
-        "Han Hu",
-        "Huilin Xu",
-        "Jiajia Wu",
-        "Jianchen Zhu",
-        "Jianfeng Yan",
-        "Jiaqi Zhu",
-        "Jihong Zhang",
-        "Jinbao Xue",
-        "Jun Xia",
-        "Junqiang Zheng",
-        "Kai Liu",
-        "Kai Zhang",
-        "Kai Zheng",
-        "Kejiao Li",
-        "Keyao Wang",
-        "Lan Jiang",
-        "Lixin Liu",
-        "Lulu Wu",
-        "Mengyuan Huang",
-        "Peijie Yu",
-        "Peiqi Wang",
-        "Qian Wang",
-        "Qianbiao Xiang",
-        "Qibin Liu",
-        "Qingfeng Sun",
-        "Richard Guo",
-        "Ruobing Xie",
-        "Saiyong Yang",
-        "Shaohua Chen",
-        "Shihui Hu",
-        "Shuai Li",
-        "Shuaipeng Li",
-        "Shuang Chen",
-        "Suncong Zheng",
-        "Tao Yang",
-        "Tian Zhang",
-        "Tinghao Yu",
-        "Weidong Han",
-        "Weijie Liu",
-        "Weijin Zhou",
-        "Weikang Wang",
-        "Wesleye Chen",
-        "Xiao Feng",
-        "Xiaoqin Ren",
-        "Xingwu Sun",
-        "Xiong Kuang",
-        "Xuemeng Huang",
-        "Xun Cao",
-        "Yanfeng Chen",
-        "Yang Du",
-        "Zhen Yang",
-        "Yangyu Tao",
-        "Yaping Deng",
-        "Yi Shen",
-        "Yigeng Hong",
-        "Yiqi Chen"
-      ],
-      "categories": [
-        "cs.AI"
-      ],
-      "published": "2026-09-23T03:21:24Z",
-      "updated": "2026-09-23T03:21:24Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27284v1",
-      "abs_url": "https://arxiv.org/abs/2609.27284",
-      "topics": [
-        "rl"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27284",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27202",
-      "title": "Reliable Federated TinyML Deployment for IoT Security",
-      "abstract": "The growing deployment of Internet of Things (IoT) devices has increased the need for privacy-preserving intrusion detection systems that operate directly on resource-constrained hardware. Federated Learning enables collaborative model training without sharing raw data, but conventional federated models are often too large and unstable for deployment on microcontroller-class devices. TinyML techniques enable compact neural networks but are typically designed for inference-only workloads. This work investigates combining Federated Learning with TinyML-based model compression for intrusion detection in IoT environments. We evaluate compression strategies including knowledge distillation, structured pruning, and quantization within a federated training pipeline. Preliminary results show that training stability plays a critical role in federated TinyML systems. In particular, server-coordinated cosine learning-rate scheduling improves Attack Recall from 46.7% to 93.85% while enabling substantial model compression and efficient edge deployment. These findings provide insights for designing lightweight and privacy preserving intrusion detection systems for IoT devices.",
-      "authors": [
-        "Younsoo Park",
-        "Seokhyoen Bae",
-        "Shasi Kumar Ramachandran Prabhu",
-        "Suman Saha",
-        "Peilong Li"
-      ],
-      "categories": [
-        "cs.CR",
-        "cs.LG"
-      ],
-      "published": "2026-09-23T01:08:21Z",
-      "updated": "2026-09-23T01:08:21Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27202v1",
-      "abs_url": "https://arxiv.org/abs/2609.27202",
-      "topics": [
-        "distillation"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27202",
-      "summary_zh": "",
-      "impact_score": null
-    },
-    {
-      "id": "2609.27197",
-      "title": "Enhancing Small Language Models for Power Outage Report Generation via Minimum Risk Training",
-      "abstract": "Minimum Risk Training (MRT) enables neural machine translation models to directly optimize sequence-level evaluation metrics instead of relying only on token- level maximum-likelihood objectives Shen et al. [2016]. Although introduced a decade ago, recent work shows renewed potential for risk-based optimization in modern language models Yang et al. [2024], Jinnai et al. [2025]. We apply MRT to power outage report generation for the Outage Data Initiative Nationwide (ODIN), transforming heterogeneous reports into standardized XML compliant with CIM IEC 61968-3. Our MRT approach improves Qwen2.5-7B-Instruct overall accuracy from 16.20% to 68.95%, demonstrating the effectiveness of sequence- level optimization for domain-specific structured generation",
-      "authors": [
-        "Hung Phan",
-        "Waqwoya Abebe",
-        "Youssef Hussein",
-        "Supriya Chinthavali",
-        "Dalton Lunga",
-        "Ali Jannesari"
-      ],
-      "categories": [
-        "cs.AI"
-      ],
-      "published": "2026-09-23T01:03:15Z",
-      "updated": "2026-09-23T01:03:15Z",
-      "pdf_url": "https://arxiv.org/pdf/2609.27197v1",
-      "abs_url": "https://arxiv.org/abs/2609.27197",
-      "topics": [
-        "distillation"
-      ],
-      "alphaxiv_url": "https://www.alphaxiv.org/abs/2609.27197",
       "summary_zh": "",
       "impact_score": null
     }
