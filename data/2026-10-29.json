@@ -1,6 +1,6 @@
 {
   "date": "2026-10-29",
-  "generated_at": "2026-11-01T07:57:50.453422+00:00",
+  "generated_at": "2026-11-02T08:00:23.269046+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -29,6 +29,394 @@
   },
   "papers": [
     {
+      "id": "2610.41076",
+      "title": "BABA-Bench: Evaluating Long-Horizon Patient-Advocacy Agents",
+      "abstract": "An LLM agent that helps a patient get care must do two things. It must reach the correct outcome, and it must follow the necessary procedure. For example, the agent must get the patient's permission before it shares the patient's records. We introduce BABA-Bench, a benchmark of 47 interactive worlds. We built each world from a de-identified, real patient advocacy case that expert advocates reviewed. In each world, the agent must find hidden information and coordinate insurers, clinics, suppliers, pharmacies, and community organizations. The engine checks each action at the time the agent does it. It checks if the agent has permission, if the agent has evidence for the action, and if the action is prohibited. We evaluated 14 frontier models with three runs on each world, for a total of 1,974 runs. Agents often reached the correct outcome by an invalid route. Of the 921 runs that reached all required outcomes, 254 (28%) did not follow the necessary procedure. Claude Opus 5 reached all required outcomes in 81.6% of its runs, but only 52.5% of its runs passed all checks. When we gave two models a verified route, their pass rates increased from 29.8% to 91.5% and from 44.0% to 97.2%. For these models, the main problem is to find a route, not to execute it.",
+      "authors": [
+        "Shriram Vasudevan",
+        "Videet Mehta",
+        "Connor Sweeney"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-10-29T23:46:24Z",
+      "updated": "2026-10-29T23:46:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.41076v1",
+      "abs_url": "https://arxiv.org/abs/2610.41076",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.41076",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.41073",
+      "title": "bf16 Rounding Silently Discards Most RL Policy Updates: A Hidden Training-Inference Mismatch and an Unbiased One-Line Fix",
+      "abstract": "Reinforcement learning (RL) post-training of language models keeps fp32 master weights in the optimizer and serves rollouts from a bf16 copy produced by round-to-nearest conversion. At the learning rates in common use, most per-step updates are smaller than half a bf16 spacing and the conversion discards them: on Qwen3-1.7B only 0.4-0.5% of served weights change per step, and the policy that generates the training data lags the optimizer by 50-150 steps. Existing mismatch corrections cannot see this lag because they compare two copies downstream of the same rounding. We propose Fair Cast: export the master with an unbiased rounding rule (stochastic rounding or error feedback) and compute the training loss on the served copy. The change is one line at the export call, adds no hyperparameters and costs 22-38 ms per export of 1.7B parameters. Across 25 matched seed-pairs on Qwen3-0.6B to 4B with AdamW and Muon, Fair Cast is ahead on 18, tied on 6 and behind on 1, with a mean gain of 6.1 points; on zebra puzzles it reaches 0.57 +/- 0.16 over four runs where round-to-nearest collapses to 0.33 +/- 0.10. It also makes the saved fp32 checkpoint agree with the served model, and it exposes the implicit lag of round-to-nearest as a regularizer that can be restored explicitly when a task needs it.",
+      "authors": [
+        "Andrew Gao",
+        "William Gao"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-10-29T23:40:32Z",
+      "updated": "2026-10-29T23:40:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.41073v1",
+      "abs_url": "https://arxiv.org/abs/2610.41073",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.41073",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.41041",
+      "title": "Before We Adapt: The Zero-Shot Generalization Bottleneck in Continual World Models",
+      "abstract": "Continual reinforcement learning (CRL) requires agents to operate under environmental changes while reusing prior knowledge whenever possible. We argue that model-based reinforcement learning provides a promising framework for this setting because learned world models (WMs) can, in principle, support change detection, knowledge reuse, adaptation, and acquisition of new knowledge. However, such benefits depend heavily on whether the learned model can generalize beyond the contexts in which it was trained. In this work, we propose to formulate this problem with a contextual Markov decision process in which context is decomposed into behavioral and physical components. This view organizes continual WM learning into reuse, adaptation, and acquisition of new knowledge. As a first step, we study direct reuse when behavioral rules remain unchanged. Using Dyna-Q and TD-MPC in controlled FourRooms tasks, we find that zero-shot reuse can degrade substantially under physical-context changes and that this behavior depends strongly on the observation representation used by the WM. Additional ablation studies and latent-space diagnostics suggest that learned representations do not automatically provide the invariances needed for reuse. These results identify representation generalization as an important bottleneck for reliable world-model reuse in CRL.",
+      "authors": [
+        "Amir Mesbah",
+        "Di Wu"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-10-29T22:32:09Z",
+      "updated": "2026-10-29T22:32:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.41041v1",
+      "abs_url": "https://arxiv.org/abs/2610.41041",
+      "topics": [
+        "world-model",
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.41041",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.41037",
+      "title": "WebOverlay: High-Throughput Vision-Only Distillation for Extreme Aspect-Ratio Web Overlay Detection",
+      "abstract": "Web overlays, such as cookie consent banners, newsletter prompts, and age gates, obstruct automated web crawlers and degrade downstream document representations. While proprietary multimodal Large Language Models (MLLMs) can accurately identify overlays, their latency and inference cost preclude web-scale ingestion. Conversely, lightweight vision models struggle with full-page renderings characterized by extreme vertical aspect ratios, where standard isotropic resizing collapses critical text features and causes false positives. In this work, we present WebOverlay, a high-throughput vision-only detector trained via distillation from a frontier vision-language teacher. We establish a dynamic tiling strategy that partitions extreme aspect-ratio web renders into aspect-preserving patches with spatial overlap, coupled with an aspect-ratio-aware boundary adjudication mechanism to eliminate boundary artifacts. To eliminate cross-modal latency overheads, our student model relies purely on visual cues, bypassing DOM tree parsing. WebOverlay significantly outperforms DOM-based heuristics and achieves competitive precision and recall against heavy proprietary MLLM baselines while delivering multiple orders of magnitude higher throughput and substantially reduced deployment costs.",
+      "authors": [
+        "Jiannan Huang",
+        "Jerry Ding",
+        "Li Yu",
+        "Zhenting Li"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.IR"
+      ],
+      "published": "2026-10-29T22:29:33Z",
+      "updated": "2026-10-29T22:29:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.41037v1",
+      "abs_url": "https://arxiv.org/abs/2610.41037",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.41037",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.41030",
+      "title": "Dreams Are Cheaper Than Flights: Curated World-Model Data Improves Aerial Detection",
+      "abstract": "Robot perception is increasingly data driven, yet field data is slow, costly, and sometimes disruptive to collect. Video world models offer a cheaper source: seeded with real frames, they extend a recorded scene into new footage with the deployment's sensor, altitude, and environment. We ask whether such synthetic data matches the utility of real field data and whether detectors trained with it perform in the field. Seeding a 7B-parameter world model with wildlife drone video, we more than double the training set with curated frames. On held-out videos from the same drones, mAP@50--95 rises 4.3\\% when these frames are added to real data and 10.3\\% when they replace it, and up to 33.5\\% on an urban benchmark. Although an expert rejects an estimated 87.5\\% of generated clips, the data costs about \\$1,100 of GPU time, against more than \\$3,200 of field labor alone for a less useful real training set. Synthetic data thus shifts data costs from fieldwork to compute.",
+      "authors": [
+        "Rugved Katole",
+        "Vedant Patil",
+        "Jenna Kline",
+        "Christopher Stewart"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-10-29T22:17:32Z",
+      "updated": "2026-10-29T22:17:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.41030v1",
+      "abs_url": "https://arxiv.org/abs/2610.41030",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.41030",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.41022",
+      "title": "Density-Guided Bootstrap Boundaries for Latent World-Model Reinforcement Learning",
+      "abstract": "Latent world models allow reinforcement learning agents to learn policies from imagined trajectories, yet determining the optimal depth of model reliance remains a fundamental challenge. Fixed imagination horizons apply uniform prediction depths regardless of trajectory reliability, exposing target values to compounding model error or over-relying on critic approximations. We introduce density-guided bootstrap boundaries, a trajectory-dependent mechanism that adapts the depth of imagined returns using a score-informed relative density proxy. The proxy accumulates the estimated divergence of a score-corrected auxiliary field formed by a feature displacement network and a noise-conditioned score estimator along imagined paths. We propose two gating mechanisms: a hard boundary that halts return expansion at a discrete state, and a soft boundary that continuously shifts the return recursion toward critic bootstrapping. Both variants preserve boundary value estimates and apply corresponding survival weights to actor and critic losses. Formulated independently of specific dynamics models and instantiated within Dreamer V3, we prove that the resulting gated Bellman operator is a strict contraction mapping and that early bootstrapping monotonically reduces conditional target variance. We clarify the theoretical assumptions distinguishing our expansion proxy from exact path likelihoods. Across continuous-control tasks and Atari Pong, empirical evaluations show that dynamic boundary selection enhances sample efficiency and late-training performance over fixed-horizon and auxiliary-enabled baselines.",
+      "authors": [
+        "Shashank Gupta",
+        "Pilhwa Lee"
+      ],
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-10-29T22:05:09Z",
+      "updated": "2026-10-29T22:05:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.41022v1",
+      "abs_url": "https://arxiv.org/abs/2610.41022",
+      "topics": [
+        "world-model",
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.41022",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40998",
+      "title": "Steering Vectors as a Training Signal in LLM Post-Training",
+      "abstract": "Steering vectors (SVs) are residual-stream directions that shift the behavior of LLMs when added to hidden states at inference time. While prior work has mainly used SVs as post-hoc controls, we ask whether the same directions can also guide parameter updates during post-training. We study this question across supervised learning, including SFT and distillation, and reinforcement learning with verifiable rewards (RLVR). Our framework considers two intervention regimes: a hidden-state hook during teacher-forced supervised training, and an advantage-repair mechanism on wrong rollouts in GRPO. For each regime, we analyze three design axes, which are the steering direction, its placement, and the operation used to combine it with training. In supervised settings, SV injection improves over plain SFT and distillation, with gains scaling with the off-policy gap and reaching up to a $12\\%$ improvement when distilling from thinking-mode teachers. These gains hold across three random seeds. In RL settings, applying a correctness-contrast direction as advantage repair on wrong rollouts, including otherwise zero-gradient all-wrong groups, recovers a learning signal that transfers to held-out math benchmarks and acts as a composable auxiliary signal that adds to existing zero-variance remedies such as entropy-aware advantage shaping. We further identify three failure boundaries. In detail, code generation can break the direction, cross-family layer transfer can break the placement, and inference-time application on an SV-trained checkpoint can break the intervention regime. Together, these results establish steering vectors as a conditional but effective training signal for LLM post-training. Our code is available here.",
+      "authors": [
+        "Tiejin Chen",
+        "Maunil Vyas",
+        "Huaiyuan Yao",
+        "Hua Wei"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-10-29T21:28:51Z",
+      "updated": "2026-10-29T21:28:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40998v1",
+      "abs_url": "https://arxiv.org/abs/2610.40998",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40998",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40992",
+      "title": "Can Personal Requirements Become Supervision for Planning?",
+      "abstract": "Managing multiple chronic conditions through diet requires satisfying disease- and medication-specific requirements jointly across meals and days while preserving established eating habits. These requirements are public in clinical guidelines and drug labels, yet turning them into a feasible plan for one person remains difficult for language-model agents. In our dietitian-approved weekly planning evaluation built from NHANES, thirteen models, from medically fine-tuned 8B models to GPT-6.1 Sol, pass fewer than 3% of complete plans through direct generation. Explicit rules, higher reasoning effort, or model-directed tools leave GPT-6.1 Sol at no more than 8%. We present Noura, which pairs LLM planning with executable personal specifications instantiated from public clinical guidance and individual health and dietary profiles. During planning, the specification grounds foods, optimizes portions, checks the complete multi-day plan, and guides revision. Our key insight is that a specification that rejects a plan can also determine what to learn from it. Noura turns executed plans and contextually credited revisions into supervision for compact models, recovering targets even from trajectories that never achieve complete success. The same specification supplies supervised targets, preferences, and rewards for post-training. On 4,993 held-out participants, Noura-SFT raises Qwen3-14B's complete-plan pass rate from 24.0% to 72.5% within the same execution loop, cuts rule violations by 97.5% with no observed critical failures, and improves dietary quality. The locally hosted 14B planner incurs fewer rule violations than its GPT-6 Luna teacher. A matched comparison shows that executed targets reduce rule violations by 41% over model-written proposals. Across four Qwen, Phi, and Llama backbones, self-training alone reduces rule violations by 41-61% on a 1,249-person population subset.",
+      "authors": [
+        "Junwei Wu",
+        "Runze Yan",
+        "Yuzhang Xie",
+        "Hanqi Luo",
+        "Ziwei Dong",
+        "Jiaying Lu",
+        "Xiao Hu",
+        "Carl Yang"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-10-29T21:20:21Z",
+      "updated": "2026-10-29T21:20:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40992v1",
+      "abs_url": "https://arxiv.org/abs/2610.40992",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40992",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40972",
+      "title": "TalkFlow: Structured Latent Flow Matching for Speech Driven Holistic Motion Generation",
+      "abstract": "Holistic co-speech motion generation aims to synthesize coordinated facial expressions, hand gestures, and body movements from speech, which is challenging due to heterogeneous part-specific dynamics, long-range temporal coherence, and cross-part coordination. Directly modeling high-dimensional motion can be unstable, while overly compact or unstructured latent spaces may lose fine-grained motion details. We present \\textbf{TalkFlow}, a structured latent flow framework for speech-driven holistic motion generation. TalkFlow learns a continuous three-stream latent representation for upper-body motion, lower-body motion, and facial expressions, preserving part-specific dynamics without forcing heterogeneous motion components into a single latent space. To maintain holistic coordination, lightweight cross-stream interactions are incorporated in both latent representation learning and flow-based generation. Conditioned on multi-level speech features, TalkFlow performs speech-conditioned latent flow matching, learning a continuous transport process from source latents to realistic motion latents. Experiments on the BEAT2 dataset demonstrate strong performance across facial expression accuracy, body gesture quality, and speech-motion synchronization. Qualitative comparisons and user studies further show that TalkFlow generates more natural, expressive, and speech-aligned holistic motion than state-of-the-art methods. The project page is available at https://xinmuwang.github.io/TalkFlow/.",
+      "authors": [
+        "Xinmu Wang",
+        "Fumi Honda",
+        "Xiang Gao",
+        "Xianfeng Gu",
+        "Xiyun Song",
+        "Heather Yu"
+      ],
+      "categories": [
+        "cs.GR",
+        "cs.CV"
+      ],
+      "published": "2026-10-29T20:59:03Z",
+      "updated": "2026-10-29T20:59:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40972v1",
+      "abs_url": "https://arxiv.org/abs/2610.40972",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40972",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40954",
+      "title": "CAMEL: Cross-Architecture Masked Embedding Learning for Ultra-Lightweight Retinal Foundation Models",
+      "abstract": "Recent progress in deep learning has substantially advanced automated grading of ophthalmologic pathologies, supported by large annotated datasets and improved representation learning. However, a significant gap remains between state-of-the-art performance and clinical scalability. In particular, foundation models have reshaped image-based medical screening and diagnosis. These large-scale architectures trained on extensive datasets learn rich, generalizable feature representations that can be adapted to a wide range of downstream tasks. In ophthalmology, RETFound, one of the most relevant foundation models for retinal images, performs strongly across classification, segmentation, and risk prediction tasks. Despite their effectiveness, foundation models are often computationally prohibitive, hindering their deployment in real-world clinical environments where hardware constraints and latency are critical. To bridge this gap, we introduce CAMEL (Cross-Architecture Masked Embedding Learning), a novel cross-architecture distillation framework that uses an asymmetric masking strategy during embedding learning to effectively transfer knowledge from massive teacher foundation models to compact, lightweight student models. Our experimental evaluation across four datasets shows that CAMEL preserves accuracy while drastically reducing computational complexity, enabling lightweight yet highly accurate models suitable for resource-limited clinical settings.",
+      "authors": [
+        "Andre Guarnier De Mitri",
+        "Giovani Decico Lucafo",
+        "Miller Matheus Lima Anacleto Rocha",
+        "Diego Furtado Silva"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-10-29T20:33:32Z",
+      "updated": "2026-10-29T20:33:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40954v1",
+      "abs_url": "https://arxiv.org/abs/2610.40954",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40954",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40947",
+      "title": "UFMF: Radar-Guided Kinematic Priors for Real-Time 4D Occupancy Forecasting",
+      "abstract": "Real-time 4D occupancy forecasting requires reliably extrapolating both ego motion and surrounding actor motion under strict latency budgets. Recent occupancy world models improve long-horizon fidelity through generative decoders and 3D volumetric modeling, yet their computational cost makes real-time deployment challenging. Light-weight BEV forecasters meet latency requirements but often blur or suppress fast-moving actors at longer horizons. We present UFMF (Ultra-Fast Multi-modal Forecaster), a real-time forecaster that keeps an attention-free diagonal state-space temporal core while injecting targeted kinematic and geometric structure where lightweight models typically fail. A radar-guided velocity-aware dynamic prior (VADP) decomposes future displacement into a linear extrapolation plus a learned horizon-dependent residual. The resulting per-cell flow fields transport a compact dynamic latent subspace during rollout. Two auxiliary training constraints complement this branch: world-frame dynamic supervision enforces inter-horizon trajectory coherence, and class-conditioned vertical-profile supervision regularizes BEV-to-3D lifting. UFMF operates at 122 FPS on a single RTX 4090 and reaches 0.45 fast-displacement mIoU on nuScenes, outperforming recent occupancy world models at a fraction of their computational cost.",
+      "authors": [
+        "Zeping Zhang",
+        "Zhuoya Zhao",
+        "Robert Laganière"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-10-29T20:24:44Z",
+      "updated": "2026-10-29T20:24:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40947v1",
+      "abs_url": "https://arxiv.org/abs/2610.40947",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40947",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40945",
+      "title": "On the Origin and Evolution of Training-Inference Mismatch in LLM Reinforcement Learning",
+      "abstract": "On-policy reinforcement learning for large language models assumes that training responses are sampled from the current policy. In practice, an inference engine samples the responses and a separate trainer computes the gradients, and the \\textbf{training-inference mismatch} between the two makes the training data off-policy. The mismatch has two sources, the numerics of the engine and the stale weights of asynchronous sampling, and a correction that stabilizes training under one source can fail under the other. \\textit{We ask which property of a mismatch source decides the correction it needs.} Evaluating the trainer at the sampler's weights splits each sampled-token error exactly into a \\textit{numerical discrepancy} of the engine and a \\textit{policy lag} of the trainer, and we follow both through training. The numerical discrepancy stays approximately constant, so it biases the updates by a nearly fixed amount, and centering the score at each prefix removes its leading bias. The policy lag is produced by the trainer's own updates: the bias it leaves enters the next update, which enlarges the next lag and closes a feedback loop. Importance weighting cuts this loop only while the lag ratio stays concentrated, and on Qwen3-1.7B it fails at the step where the effective sample size of the ratio falls below one half. From this account we derive the \\textbf{discrepancy-lag correction} (DLC), which centers the numerical discrepancy, clips the lag ratio against the sampler's weights and resynchronizes the sampler when this effective sample size falls below one half. Under a stale sampler, DLC keeps the KL divergence from on-policy training within twice the KL between two independent on-policy trainings on Qwen3-0.6B and Qwen3-1.7B, and its resynchronization prevents collapses that the per-token corrections leave and that a KL measured on the sampler's prefixes does not detect.",
+      "authors": [
+        "Yu Li",
+        "Yufa Zhou",
+        "Tian Lan"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-10-29T20:23:04Z",
+      "updated": "2026-10-29T20:23:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40945v1",
+      "abs_url": "https://arxiv.org/abs/2610.40945",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40945",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40935",
+      "title": "Let LiDAR Decide Where to Look: Geometry-Measured Token Selection for Efficient Sparse Latent World Models",
+      "abstract": "Vision-centric autonomous driving models encode thousands of image tokens per frame, yet most depict sky, buildings, or empty road---content irrelevant to planning. Worse, these tokens dilute the planner's attention: we show that randomly discarding 75% of tokens already outperforms the dense model, because the planner can concentrate on the remaining driving-critical content. Building on this finding, we present Geometry-Aware Token Selection (GATS), which uses LiDAR and radar point projections to select a small fraction of image tokens before the vision backbone runs. Because the selector operates on measured 3D geometry rather than visual features, the backbone encodes only the selected patches, cutting end-to-end FLOPs by up to $18\\times$. Each kept token receives a 3D anchor from its LiDAR point and is fed to a self-supervised latent world model that predicts future features and 3D displacements without box annotations. At 25% budget, GATS achieves a 3-sec L2 displacement error of 0.520 m on nuScenes and an EPDMS of 88.9 on NAVSIM---surpassing the dense baseline (0.573 m / 85.9) at $6.6\\times$ fewer total FLOPs. At an extreme 10% budget (24 GFLOPs, $18\\times$ reduction), it still beats the dense baseline on both nuScenes (0.537 m vs. 0.573 m L2) and NAVSIM (87.9 vs. 85.9 EPDMS). On 739 intent-critical scenarios, GATS covers 95.8% of hazardous vehicles and achieves a 0.09% collision rate---73.5% lower than the dense model (0.34%).",
+      "authors": [
+        "Zeping Zhang",
+        "Zhuoya Zhao",
+        "Robert Laganière"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-10-29T20:11:34Z",
+      "updated": "2026-10-29T20:11:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40935v1",
+      "abs_url": "https://arxiv.org/abs/2610.40935",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40935",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40927",
+      "title": "Agentic World Modeling for Agent Test-time Scaling without Environment Replica",
+      "abstract": "Test-time scaling (TTS) improves large language model agents by sampling and selecting among multiple candidate trajectories, but common realizations assume that these trajectories can be executed in parallel. This assumption breaks in realistic deployments, where enterprise workspaces and cloud services are shared and persistent, costly or infeasible to replicate, and actions may introduce irreversible side effects or cross-trajectory interference. Existing generative world models avoid direct execution, but typically compress environment state into a single prompt, limiting their ability to reliably simulate transitions under partial observability. Instead, we introduce Agentic World Modeling (AWM), which reformulates next-observation prediction as a multi-turn evidence-acquisition task. For each hypothetical action, an agentic simulator adaptively queries the real environment through safe read-only interfaces, reasons over the returned evidence, and uses executable computation to construct the resulting observation without mutating shared state. Integrated with trajectory-level TTS, AWM enables parallel exploration over a single shared environment. Across $τ$-bench, AppWorld, and OfficeBench, AWM outperforms a single-shot simulation baseline by 40.07% on average, and surpasses a trained world-model baseline by 12.36% on average. These results establish interactive, read-grounded simulation as a practical foundation for safe and scalable agentic test-time scaling in shared, non-resettable environments.",
+      "authors": [
+        "Wendi Li",
+        "Huseyin A. Inan",
+        "Wei-Ning Chen",
+        "Yanzhi Chen",
+        "Chetan Bansal",
+        "Saravan Rajmohan",
+        "Sharon Li"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.MA"
+      ],
+      "published": "2026-10-29T19:55:18Z",
+      "updated": "2026-10-29T19:55:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40927v1",
+      "abs_url": "https://arxiv.org/abs/2610.40927",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40927",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40926",
+      "title": "CoFiBreak: A Coarse-to-Fine Diversity Reward for Effective Multi-Turn Jailbreak",
+      "abstract": "Automated red teaming trains an attacker large language model (LLM) to elicit harmful responses from a victim LLM, but reinforcement learning can collapse attackers onto a narrow set of prompts when attack success is the only reward. Such a collapse of attack diversity can bias safety evaluation toward repeatedly testing near-duplicate attack patterns rather than the underlying harmful intents. Existing methods often trade off attack success or inference cost for greater content or strategy diversity. We propose CoFiBreak, a coarse-to-fine diversity reward for Group Relative Policy Optimization (GRPO) that improves attack diversity while preserving strong attack effectiveness and low inference cost. The coarse reward broadens which strategies the attacker uses by encouraging strategies underrepresented within each GRPO group, while the fine reward broadens how those strategies are realized by discouraging reuse of the same personas, framings, and output formats after harmful-intent information is removed from prompt embeddings. Diversity rewards apply only to attacks that already exceed an effectiveness threshold, so diversity cannot be gained through ineffective attacks. Since both rewards are computed only during training, CoFiBreak also retains inference efficiency. Trained with Llama3.1-8B-Instruct as the victim, CoFiBreak discovers 1.6-2.0x as many distinct successful fine-grained strategies as the strongest baseline across frontier victims on HarmBench. It reaches 98.8% ASR@10 (attack success rate with 10 generations per intent) on AdvBench with the highest diversity score among all compared methods, which is 2.1x that of the strongest-attacking baseline. The resulting attacks transfer to unseen frontier LLMs, reaching 71.0% ASR@10 on AdvBench with the unseen victim Claude-Opus-4.6. The code will be released.",
+      "authors": [
+        "Jialin Song",
+        "Xiaodong Liu",
+        "Weiwei Yang",
+        "Mingqian Feng",
+        "Chengquan Guo",
+        "Qiyao Ma",
+        "Carolyn Buractaon",
+        "Anson Ho",
+        "Wuyang Chen",
+        "Christopher White"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-10-29T19:51:36Z",
+      "updated": "2026-10-29T19:51:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40926v1",
+      "abs_url": "https://arxiv.org/abs/2610.40926",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40926",
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40798",
+      "title": "Beyond Plausible Prediction: Safety Sufficiency in Web World Models",
+      "abstract": "Web world models increasingly predict the consequences of candidate actions before agents act, yet a plausible predicted future does not necessarily support the correct safety decision. In a matched human evaluation of 3,000 predictions from ten frozen open models, 86.1% are judged semantically plausible. However, several models exhibit highly asymmetric authorisation behaviour, combining low false-safe execution with poor recall of clarifiable ASK cases and a strong preference for BLOCK. This motivates safety sufficiency: whether a predictive interface preserves and exposes the policy-decisive information required to distinguish actions that may be EXECUTED, require clarification through ASK, or should be BLOCKED. We introduce SafeWebWorld, a benchmark for evaluating safety sufficiency across five web-safety domains through action-conditioned futures, policy-decisive evidence, and policy-conditioned decisions. Under a controlled Security-Aligned Supervised Fine-Tuning protocol, evidence preservation can improve substantially while authorisation-sensitive decisions deteriorate. To determine whether this deterioration reflects loss of authorisation-sensitive score structure or a failure of the decision readout, we introduce Latent Authorisation Recovery (LAR). Frozen-score recalibration reveals substantial but backbone-dependent recovery, while paired recovery provides only a modest additional gain. Yet within-family and matched-authorisation evaluations remain poor, showing that aggregate recoverability does not imply robust fine-grained authorisation behaviour. Overall, plausible prediction, evidence preservation, and aggregate recovery are each insufficient on their own to establish robust authorisation.",
+      "authors": [
+        "Zhifei Hu",
+        "Alexandra I. Cristea",
+        "Adel Bibi",
+        "Jialin Yu"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-10-29T18:00:55Z",
+      "updated": "2026-10-29T18:00:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40798v1",
+      "abs_url": "https://arxiv.org/abs/2610.40798",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40798",
+      "summary_zh": ""
+    },
+    {
       "id": "2610.40640",
       "title": "SonoWorld4D: From One Video to a 4D Audio-Visual Scene via Diffusion Synchronization",
       "abstract": "Recent progress in visual scene generation has extended beyond static 3D scenes toward the more challenging problem of generating dynamic 4D scenes from minimal input. However, sound, despite being intrinsically coupled with dynamic objects and events, remains largely unmodeled in prior work. We introduce Video-to-4DAVScene, a new task that turns a video into an explorable, time-varying 4D audio-visual scene, and present the SonoWorld4D framework for this task. Given a monocular video, our method generates a 360 static background, reconstructs explicit motion trajectories of dynamic, sound-emitting foreground objects, and synthesizes a physically-grounded sound field consistent across multiple sources through dual-space audio diffusion synchronization. The resulting 4D scene supports real-time novel-view visual and spatial audio rendering. Evaluation on real-world dynamic scenes and a user study demonstrates SonoWorld4D generates 4D audio-visual scenes with perceptually realistic, physically grounded spatial audio consistent with scene geometry and visual content.",
@@ -50,8 +438,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40640",
-      "summary_zh": "这篇论文提出了Video-to-4DAVScene任务，旨在从单个视频生成可探索、随时间变化的4D音视频场景。SonoWorld4D框架通过生成360度静态背景、重建动态发声前景物体的显式运动轨迹，并利用双空间音频扩散同步技术合成物理上合理的多源声场来解决此任务。其关键创新在于将声音融入动态4D场景生成，通过扩散同步确保空间音频与场景几何和视觉内容一致。实验结果和用户研究表明，SonoWorld4D能够生成具有感知真实且物理上合理的空间音频的4D音视频场景，并支持实时新视角视觉和空间音频渲染。",
-      "impact_score": null
+      "summary_zh": "这篇论文提出了Video-to-4DAVScene任务，旨在从单个视频生成可探索、随时间变化的4D音视频场景。SonoWorld4D框架通过生成360度静态背景、重建动态发声前景物体的显式运动轨迹，并利用双空间音频扩散同步技术合成物理上合理的多源声场来解决此任务。其关键创新在于将声音融入动态4D场景生成，通过扩散同步确保空间音频与场景几何和视觉内容一致。实验结果和用户研究表明，SonoWorld4D能够生成具有感知真实且物理上合理的空间音频的4D音视频场景，并支持实时新视角视觉和空间音频渲染。"
     },
     {
       "id": "2610.40637",
@@ -74,8 +461,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40637",
-      "summary_zh": "world2vec 旨在解决现有世界模型在不完全捕捉环境动态的情况下，难以实现机制可解释性和科学发现的问题。它通过直接从观测和动作中学习潜在动态，而无需奖励信息，从而构建出能够忠实再现真实系统长期行为的机制性世界模型。world2vec 的关键创新在于其参数效率，它以比 DreamerV3、TD-MPC2 和 LeWM 少一个数量级的参数，实现了在像素级连续环境控制上的最先进性能。实验结果表明，world2vec 不仅在控制任务上表现出色，还能在包含 71 个吸引子的基准测试中实现准确的系统识别，证明了世界模型在科学发现领域的潜力。",
-      "impact_score": null
+      "summary_zh": "world2vec 旨在解决现有世界模型在不完全捕捉环境动态的情况下，难以实现机制可解释性和科学发现的问题。它通过直接从观测和动作中学习潜在动态，而无需奖励信息，从而构建出能够忠实再现真实系统长期行为的机制性世界模型。world2vec 的关键创新在于其参数效率，它以比 DreamerV3、TD-MPC2 和 LeWM 少一个数量级的参数，实现了在像素级连续环境控制上的最先进性能。实验结果表明，world2vec 不仅在控制任务上表现出色，还能在包含 71 个吸引子的基准测试中实现准确的系统识别，证明了世界模型在科学发现领域的潜力。"
     },
     {
       "id": "2610.40627",
@@ -135,8 +521,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40618",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40614",
@@ -164,8 +549,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40614",
-      "summary_zh": "L3G-World 旨在解决交互式世界模型在长程探索中实时保持空间一致性的挑战，现有方法因记忆随生成流长度增长而扩展性差，且显式3D记忆需要重新编码RGB渲染，难以实现实时生成。该方法引入了 Latent 3D Gaussian Memory (L3G)，它结合了前馈重建的效率和紧凑、快速可渲染的场景表示，其中每个 Gaussian 存储 VAE 潜在特征，允许记忆直接渲染到 DiT 的潜在空间。L3G-World 通过记忆更新器和视频扩散 Transformer (DiT) 的交替自回归生成空间一致的世界，记忆更新器在新的区域生成 Gaussian 并优化现有 Gaussian，使记忆随场景范围而非流长度增长。实验表明，L3G-World 在生成质量和长程空间一致性方面达到了最先进水平，与最有效的3D记忆基线相比，3D 基元减少了38.6倍，记忆更新速度快了3.2倍，记忆渲染速度快了359倍，实现了9 FPS的实时世界生成。",
-      "impact_score": null
+      "summary_zh": "L3G-World 旨在解决交互式世界模型在长程探索中实时保持空间一致性的挑战，现有方法因记忆随生成流长度增长而扩展性差，且显式3D记忆需要重新编码RGB渲染，难以实现实时生成。该方法引入了 Latent 3D Gaussian Memory (L3G)，它结合了前馈重建的效率和紧凑、快速可渲染的场景表示，其中每个 Gaussian 存储 VAE 潜在特征，允许记忆直接渲染到 DiT 的潜在空间。L3G-World 通过记忆更新器和视频扩散 Transformer (DiT) 的交替自回归生成空间一致的世界，记忆更新器在新的区域生成 Gaussian 并优化现有 Gaussian，使记忆随场景范围而非流长度增长。实验表明，L3G-World 在生成质量和长程空间一致性方面达到了最先进水平，与最有效的3D记忆基线相比，3D 基元减少了38.6倍，记忆更新速度快了3.2倍，记忆渲染速度快了359倍，实现了9 FPS的实时世界生成。"
     },
     {
       "id": "2610.40613",
@@ -230,8 +614,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40607",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40599",
@@ -321,8 +704,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40576",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40574",
@@ -347,8 +729,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40574",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40564",
@@ -377,8 +758,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40564",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40503",
@@ -395,8 +775,8 @@
         "cs.LO"
       ],
       "published": "2026-10-29T17:20:31Z",
-      "updated": "2026-10-29T17:20:31Z",
-      "pdf_url": "https://arxiv.org/pdf/2610.40503v1",
+      "updated": "2026-10-30T07:09:07Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40503v2",
       "abs_url": "https://arxiv.org/abs/2610.40503",
       "topics": [
         "other"
@@ -435,8 +815,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40495",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40476",
@@ -622,6 +1001,33 @@
       "summary_zh": ""
     },
     {
+      "id": "2610.40754",
+      "title": "DyCraft: An Agentic System for Long-Horizon 4D Scene Generation",
+      "abstract": "While frontier coding agents can generate high-quality 3D scenes and articulated assets, they struggle to create coherent long-horizon animations. When equipped with general-purpose harnesses, they frequently produce physically implausible outputs, generating objects that interpenetrate, lack physical support, or move unnaturally. Such bare agents struggle to repair these errors because they default to scripting the full animation in one pass, making it difficult to verify their work and disentangle complex spatiotemporal constraints. Drawing on the practice of human animators, we introduce DyCraft, a system for animated 3D scene generation that breaks animation into steps that coding agents can more reliably solve. DyCraft first expands the user's prompt into a detailed plan and builds a static scene. It then creates a 3D storyboard of key animation poses, where each frame is a static 3D scene that the agent can build and debug in isolation. Storyboarding decomposes the problem into pairs of verified start and end states, allowing the agent to author local motion between them with a collection of motion authoring tools. We evaluate DyCraft on 24 long-horizon, multi-shot animation tasks covering humanoid robots, human and animal characters, and physical mechanisms. Compared with a native GPT-6 agent in Codex and prior agentic baselines, DyCraft substantially reduces physical violations and generates higher-quality animated 3D scenes that are more often preferred by human raters.",
+      "authors": [
+        "Jeff Tan",
+        "Hang Dai",
+        "Zeqian Long",
+        "Yanzhe Lyu",
+        "R. Kenny Jones",
+        "Shangzhe Wu",
+        "Chen Geng",
+        "Jiajun Wu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-10-29T16:42:04Z",
+      "updated": "2026-10-29T16:42:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40754v1",
+      "abs_url": "https://arxiv.org/abs/2610.40754",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40754",
+      "summary_zh": ""
+    },
+    {
       "id": "2610.40407",
       "title": "SCARL: Sequence Confidence-Aligned Reinforcement Learning",
       "abstract": "Reinforcement learning with verifiable rewards (RLVR) improves language-model reasoning by scoring sampled responses with a rule-based verifier and reinforcing those that pass. Where a classifier's training couples predicted probability to labels, nothing ties an RLVR policy's confidence in a response to its reward: aligned training would drive responses with the same advantage toward equal confidence, yet the advantage is blind to confidence. Under this sequence-confidence misalignment, a success the policy barely found earns the same update as one it produces with near certainty, and a confident error is corrected no harder than an exploratory one. We propose SCARL (Sequence Confidence-Aligned Reinforcement Learning), which reshapes, but never re-signs, each advantage with the alignment gap between the response's group-relative confidence and the outcome its advantage certifies, normalized into shares of each class's advantage budget. Misaligned samples absorb the force, responses with the same advantage are driven toward equal confidence, and repairing the misalignment doubles as a remedy for the entropy collapse that erodes exploration. SCARL provably reduces to its base estimator when a class's confidences agree, adds no extra passes and one hyperparameter. On Qwen3-4B-Base it lifts average Pass@32 by 2.4 points over DAPO and is best among nine compute-matched methods on both coverage and per-draw accuracy; applied unchanged across four estimators and four backbones, it improves 14 of 16 settings while preserving policy entropy and widening the confidence-correctness separation. Our code is available at https://github.com/kezhh163/scarl.",
@@ -642,8 +1048,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40407",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40401",
@@ -666,8 +1071,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40401",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40373",
@@ -694,8 +1098,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40373",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40364",
@@ -771,8 +1174,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40339",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40287",
@@ -799,8 +1201,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40287",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40276",
@@ -833,8 +1234,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40276",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40264",
@@ -946,8 +1346,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40250",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40246",
@@ -1045,8 +1444,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40191",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40131",
@@ -1100,8 +1498,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40130",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40119",
@@ -1149,8 +1546,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40115",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40109",
@@ -1174,8 +1570,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40109",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40096",
@@ -1285,8 +1680,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40030",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.40018",
@@ -1337,8 +1731,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40002",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39975",
@@ -1359,8 +1752,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39975",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39934",
@@ -1382,8 +1774,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39934",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39927",
@@ -1443,8 +1834,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39835",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39825",
@@ -1466,13 +1856,12 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39825",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39812",
       "title": "GROME: GROunding Factorized MEmory into Video World Models",
-      "abstract": "Long-horizon consistency is essential for video world models, yet it becomes difficult to maintain once observed content falls outside the context window. Existing memory mechanisms either retrieve history as implicit context, which remains constrained by context capacity and entangles static and dynamic information or consolidate history into explicit global representations, which struggle to model evolving dynamics and accumulate geometric errors. To overcome these limitations, we introduce \\textbf{GROME}, a novel factorized memory framework that augments video world models for long-horizon coherence across both static scenes and dynamic entities. GROME operates via three synergistic components: 1)~\\emph{Static-Dynamic Factorization} decouples historical evidence into static and dynamic components, preserving static scene geometry and dynamic entity states separately; 2)~\\emph{Local Memory Retrieval} selects spatially aligned static history to eliminate geometric drift alongside the latest dynamic entity states to ensure temporal continuity; 3)~\\emph{Training-Free Memory Injection} seamlessly grounds the factorized memory into video world models via their native conditioning pathways. Experiments on long-horizon revisit scenarios demonstrate that GROME substantially enhances scene persistence and dynamic entity fidelity over existing methods, all while preserving the visual quality and controllability of the frozen backbone without additional training. Beyond self-rollouts, GROME readily accommodates external observations as plug-and-play memory, unlocking flexible and controllable video continuation and scene exploration.",
+      "abstract": "Long-horizon consistency is essential for video world models, yet it becomes difficult to maintain once observed content falls outside the context window. Existing memory mechanisms either retrieve history as implicit context, which remains constrained by context capacity and entangles static and dynamic information or consolidate history into explicit global representations, which struggle to model evolving dynamics and accumulate geometric errors. To overcome these limitations, we introduce GROME, a novel factorized memory framework that augments video world models for long-horizon coherence across both static scenes and dynamic entities. GROME operates via three synergistic components: 1) Static-Dynamic Factorization decouples historical evidence into static and dynamic components, preserving static scene geometry and dynamic entity states separately; 2) Local Memory Retrieval selects spatially aligned static history to eliminate geometric drift alongside the latest dynamic entity states to ensure temporal continuity; 3) Training-Free Memory Injection seamlessly grounds the factorized memory into video world models via their native conditioning pathways. Experiments on long-horizon revisit scenarios demonstrate that GROME substantially enhances scene persistence and dynamic entity fidelity over existing methods, all while preserving the visual quality and controllability of the frozen backbone without additional training. Beyond self-rollouts, GROME readily accommodates external observations as plug-and-play memory, unlocking flexible and controllable video continuation and scene exploration.",
       "authors": [
         "Fang Yu",
         "Xiaoxue Wu",
@@ -1489,16 +1878,15 @@
         "cs.LG"
       ],
       "published": "2026-10-29T10:54:32Z",
-      "updated": "2026-10-29T10:54:32Z",
-      "pdf_url": "https://arxiv.org/pdf/2610.39812v1",
+      "updated": "2026-10-30T13:16:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.39812v2",
       "abs_url": "https://arxiv.org/abs/2610.39812",
       "topics": [
         "world-model",
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39812",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39800",
@@ -1526,8 +1914,31 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39800",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40728",
+      "title": "Bayesian Distribution System State Estimation with Flow Matching",
+      "abstract": "Medium-voltage feeders have few real-time measurements, so distribution system state estimation (DSSE) rests on pseudo-measurements of the secondary substations, a prior in Bayesian terms. Weighted least squares keeps the power flow exact but reduces this prior to a mean and variance, while supervised deep learning estimators also learn the power flow and are tied to one measurement set. We propose PoSE (posterior sampling for state estimation), which keeps the Bayesian structure of DSSE and learns only what the distribution system operator does not know, namely the distribution of substation injections, modelled by a neural network trained with flow matching on historical data. The power flow equations, grid topology and measurements enter only at sampling, through a noise-aware Kalman-type correction. The neural network therefore never approximates the power flow, but every posterior sample is a physically consistent operating point, and one trained prior serves any measurement set, noise level and topology. On the IEEE 33-bus feeder, PoSE lowers the probabilistic injection error (CRPS) by 6.7-7.5% against a full-covariance Gaussian prior in all 12 tested settings. It provides reliable uncertainty: the 90% intervals contain the true injection almost exactly as often as exact posterior samples would, whereas those of supervised estimators contain it in only 37-78% of cases. On the 240-bus unbalanced three-phase Iowa feeder, it gives the lowest injection, voltage and branch-current errors of all estimators. A fast variant matches this accuracy at 0.2-0.6s per snapshot and, without retraining, beats Gaussian priors and retrained supervised estimators on seven reconfigured topologies.",
+      "authors": [
+        "Nan Lin",
+        "Peter Palensky",
+        "Pedro Vergara Barrios"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "eess.SP"
+      ],
+      "published": "2026-10-29T10:37:37Z",
+      "updated": "2026-10-29T10:37:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40728v1",
+      "abs_url": "https://arxiv.org/abs/2610.40728",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40728",
+      "summary_zh": ""
     },
     {
       "id": "2610.39721",
@@ -1557,8 +1968,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39721",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39711",
@@ -1594,8 +2004,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39711",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39682",
@@ -1625,8 +2034,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39682",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39671",
@@ -1654,8 +2062,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39671",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39664",
@@ -1682,8 +2089,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39664",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39663",
@@ -1711,8 +2117,39 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39663",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
+    },
+    {
+      "id": "2610.40726",
+      "title": "Li$^{2}$SAO: Lifting Light Singl-Rollout Asynchronous RL Optimization via Group-Relative Actor-Critic Bootstrapping",
+      "abstract": "Asynchronous reinforcement learning (RL) is becoming a mainstream paradigm for post-training large language models (LLMs), as it improves training efficiency by updating the model as rollouts arrive. Recent work argues that group-wise sampling in GRPO does not naturally fit asynchronous RL training because rollout lengths follow a long-tailed distribution, and proposes Single-rollout Asynchronous Optimization (SAO) to improve stability and off-policy behavior, especially on agentic tasks. However, SAO relies on a closed-source value model obtained from scaling value pretraining. In this paper, we analyze GRPO and LiSAO, our lightweight reproduction of SAO without the pretrained value model, on single-turn reasoning and multi-turn agentic tasks. We find that GRPO outperforms LiSAO on reasoning tasks, while the reverse holds on agentic tasks. Since the value model of LiSAO is not yet well trained , LiSAO lags behind GRPO substantially in early training steps. To address this issue, we propose Li$^{2}$SAO, which Lifts Light Single-rollout Asynchronous Optimization with group-relative actor-critic bootstrapping: while the critic is cold, a group-relative advantage trains the actor and a group-centered return trains the critic, after which training switches to single-rollout GAE. Experiments show that Li$^{2}$SAO catches up with or surpasses GRPO in early training and further raises the later performance ceiling. Code is available at https://github.com/jd-cc-coder/Li2SAO.",
+      "authors": [
+        "Zichen Bai",
+        "Yanli Wang",
+        "Yang Liu",
+        "Junhao Shi",
+        "Xueqin Liu",
+        "Jinguo Sun",
+        "Muye Li",
+        "Shaoqiang Zheng",
+        "Xuefei Diao",
+        "Zhuwei Zeng",
+        "Nan Duan",
+        "Peng Cao"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-10-29T09:02:00Z",
+      "updated": "2026-10-29T09:02:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.40726v1",
+      "abs_url": "https://arxiv.org/abs/2610.40726",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.40726",
+      "summary_zh": ""
     },
     {
       "id": "2610.39619",
@@ -1741,8 +2178,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39619",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39596",
@@ -1762,8 +2198,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39596",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39539",
@@ -1786,8 +2221,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39539",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39534",
@@ -1809,8 +2243,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39534",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39530",
@@ -1833,8 +2266,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39530",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39524",
@@ -1857,8 +2289,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39524",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39517",
@@ -1881,8 +2312,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39517",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39516",
@@ -1905,8 +2335,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39516",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39513",
@@ -1942,8 +2371,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39513",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39478",
@@ -1968,8 +2396,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39478",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39439",
@@ -1995,8 +2422,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39439",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39409",
@@ -2023,8 +2449,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39409",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39324",
@@ -2054,8 +2479,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39324",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39301",
@@ -2104,8 +2528,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39301",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39295",
@@ -2128,8 +2551,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39295",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39278",
@@ -2163,8 +2585,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2610.39278",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2610.39277",
@@ -2310,8 +2731,8 @@
         "cs.RO"
       ],
       "published": "2026-10-29T02:50:17Z",
-      "updated": "2026-10-29T02:50:17Z",
-      "pdf_url": "https://arxiv.org/pdf/2610.39232v1",
+      "updated": "2026-10-30T08:46:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2610.39232v2",
       "abs_url": "https://arxiv.org/abs/2610.39232",
       "topics": [
         "world-model",
