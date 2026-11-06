@@ -1,6 +1,6 @@
 {
   "date": "2026-11-04",
-  "generated_at": "2026-11-05T08:15:26.875987+00:00",
+  "generated_at": "2026-11-06T08:20:25.486594+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,319 @@
     }
   },
   "papers": [
+    {
+      "id": "2611.07245",
+      "title": "MAC-v2: Long-horizon model-based value expansion from pixels",
+      "abstract": "We study whether \\emph{long-horizon model-based value expansion} can serve as an effective framework in pixel-based offline reinforcement learning (RL). Long-horizon model-based value expansion from pixels is substantially harder than state-based environments, as the agent must learn both the representation and its dynamics, and errors from either can accumulate recursively over imagined trajectories. We introduce MAC-v2, which enables long-horizon model-based expansion from pixels by training a reconstruction-free latent world model with action chunking. By learning representations from prediction and control objectives, MAC-v2 does not need to encode control-irrelevant visual details that can hinder the dynamics prediction. Action chunking further mitigates the prediction error by reducing the number of recursive model predictions required for value expansion. Across diverse visual benchmarks including visual OGBench, MMBench2, Robomimic, and LIBERO-10, MAC-v2 achieves strong performance against model-free and model-based offline RL baselines. Our analyses show that long-horizon model-based value expansion is critical for the performance of MAC-v2, and that both action chunking and latent learning objectives are essential for reliable long-horizon latent imagination.",
+      "authors": [
+        "Kwanyoung Park",
+        "Sergey Levine"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-04T23:51:02Z",
+      "updated": "2026-11-04T23:51:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07245v1",
+      "abs_url": "https://arxiv.org/abs/2611.07245",
+      "topics": [
+        "world-model",
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07245",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07241",
+      "title": "$D^2$-OPD: Separating Direction and Distance in Extrapolative On-Policy Distillation",
+      "abstract": "On-policy distillation (OPD) trains a student model to match a teacher's next-token distributions on student-generated prefixes. Extrapolative OPD further extends the teacher's log-probability shift relative to a reference policy to construct stronger learning targets. However, existing methods couple extrapolation direction and distance, allowing the magnitude of the teacher's shift to dictate how far the target moves. We propose $D^2$-OPD, decoupling these two factors: a per-prefix hard KL constraint bounds the target's distance from the teacher, while an adaptive combination of the teacher's post-training shift and the initial student--teacher gap determines the extrapolation direction. We optimize the student toward this target using forward KL, providing learning signals even for low-probability tokens. We evaluate three settings: where standard OPD performs well, where it struggles with base-model initialization, and where no teacher reference is available. On mathematical reasoning benchmarks, $D^2$-OPD attains the highest score in all three settings, outperforming the strongest baseline by up to 9.45 points. Ablations validate the contributions of each component.",
+      "authors": [
+        "Bowen Fang",
+        "Dingmin Wang",
+        "Hengzhi Pei"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-11-04T23:45:46Z",
+      "updated": "2026-11-04T23:45:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07241v1",
+      "abs_url": "https://arxiv.org/abs/2611.07241",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07241",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07176",
+      "title": "VINO: Revisiting 3D Representation Learning with Volume Transformers",
+      "abstract": "Self-supervised learning has given rise to vision foundation models that learn general-purpose image representations transferable across downstream tasks, yet representation learning for 3D scenes has not achieved comparable success. Motivated by this, we identify key limitations of current 3D representation learning approaches and revisit their core design choices. We first replace the commonly used hierarchical PTv3 backbone with the Volume Transformer, a ViT-like architecture for 3D scenes. We then redesign two core objectives of modern approaches built around student-teacher networks: matching representations across views and predicting masked content from visible context. For the first objective, we separate the roles of teacher and student: the teacher provides clean, consistent targets while the student learns invariance to stronger perturbations. For the second objective, we prevent the student from accessing the masked geometry and instead require it to infer missing representations from visible context only. Finally, we redesign 2D-to-3D knowledge distillation, replacing direct regression of view-dependent image features with view-consistent supervision. Together, these changes form VINO, a framework that learns semantic representations of 3D scenes without labels. VINO substantially improves dense linear probing across indoor and outdoor benchmarks and transfers strongly to out-of-domain settings.",
+      "authors": [
+        "Adrian Kruse",
+        "Kadir Yilmaz",
+        "Daan de Geus",
+        "Francis Engelmann",
+        "Bastian Leibe"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-04T22:00:30Z",
+      "updated": "2026-11-04T22:00:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07176v1",
+      "abs_url": "https://arxiv.org/abs/2611.07176",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07176",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07149",
+      "title": "FastAFD: When Does Attention-FFN Disaggregation Pay on Rack-Scale NVLink?",
+      "abstract": "Attention-FFN disaggregation (AFD) separates attention from the experts of a mixture-of-experts (MoE) model and has been reported to raise decode throughput over colocated serving. Whether this advantage holds on rack-scale NVLink systems such as GB200 NVL72 remains unclear: prior results were obtained on other hardware, against narrower colocated baselines, or with analytical models, whereas production engines serve large MoE models on these systems with wide expert parallelism (wide EP). We build and tune FastAFD, an AFD engine for GB200 NVL72 that overlaps the MoE of one microbatch with the attention of the other, and compare it against the best vLLM wide EP setting. Experiments show that AFD has a throughput advantage of up to 1.17x over wide EP on Qwen3 and 1.16x on Qwen3.5, and matches it on MiniMax-M2.5. We derive an analytical model that predicts AFD throughput within 3% using only profiles of colocated vLLM, telling whether switching to AFD would pay off before deploying it. The model yields a concise insight: AFD's speedup factors into a batch gain (larger batches, since attention GPUs hold no expert weights), an overlap gain (shorter steps, since the MoE runs on the expert GPUs behind attention), and a disaggregation cost (the GPUs given to experts). AFD has the advantage when the two gains outweigh the cost. This view explains which models benefit from AFD, and shows that speculative decoding helps light-expert models most, where the enlarged overlap gain outweighs the larger disaggregation cost and adds a further 8% to AFD's advantage over wide EP. Looking ahead, serving the experts on accelerators that keep their weights in on-chip SRAM, such as the Groq LPX accelerators paired with Vera Rubin NVL72, would remove most of the disaggregation cost, raising the ideal speedup to 2.48x with speculative decoding. FastAFD is open source at https://github.com/hao-ai-lab/FastAFD.",
+      "authors": [
+        "Yichao Fu",
+        "Yuxuan Zhang",
+        "Minshen Zhang",
+        "Ruitian Wang",
+        "Junda Chen",
+        "Hao Zhang"
+      ],
+      "categories": [
+        "cs.DC",
+        "cs.LG"
+      ],
+      "published": "2026-11-04T21:21:57Z",
+      "updated": "2026-11-04T21:21:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07149v1",
+      "abs_url": "https://arxiv.org/abs/2611.07149",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07149",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07130",
+      "title": "Teaching Agents the \"Principle\", Not the \"Reward\"",
+      "abstract": "Reinforcement learning has achieved strong performance in many tasks by letting agents learn from nothing more than a reward signal. However, in more complex tasks, agents still struggle to learn good, generalizable policies, even with carefully designed rewards and abundant samples. We argue that this difficulty stems from the reward decoding burden: designers encode their knowledge of the desired behavior into rewards and penalties, and agents must infer this knowledge from long sequences of noisy scalars. To address this burden, we propose prescriptive policy learning (PPL), which directly teaches agents higher-level knowledge about the tasks, termed principles of behavior, such as how to maintain balance, how to accumulate energy, and how to land smoothly. Through appropriately selected key quantities and references, PPL can directly indicate at every step whether the agent follows the principles and to what extent. Our experiments show that agents can learn good, generalizable policies without any reward. Taught only simple heuristic principles, PPL agents outperform reward-based methods with far fewer samples. Their policies also transfer directly to harder settings and keep performing well, demonstrating their strong generalization ability. In summary, PPL provides a new approach in which rough knowledge of the desired behavior is enough for agents to learn good, generalizable policies, even when the system dynamics cannot be accurately modeled.",
+      "authors": [
+        "Shan Yang"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-04T20:55:19Z",
+      "updated": "2026-11-04T20:55:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07130v1",
+      "abs_url": "https://arxiv.org/abs/2611.07130",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07130",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07122",
+      "title": "Regulating Autonomous Mobility-on-Demand Operators with Fixed and Adaptive Penalties: A Multi-Agent Reinforcement Learning Approach",
+      "abstract": "Profit-maximizing Autonomous Mobility-on-Demand (AMoD) operators may exploit consumer surplus through excessive prices and underserve less profitable regions by relocating vehicles away from them. We study how penalty-based regulation of an AMoD operator in a multimodal mobility system can limit surge pricing and improve regional service availability. We model regulation as an outer control loop that acts on a learning-based operator. Static regulation with fixed penalties is formulated as a Markov Decision Process for an operator that jointly controls pricing and rebalancing, and dynamic regulation as a Partially Observable Stochastic Game in which a regulator periodically adjusts region-specific penalties in closed loop. Operator and regulator policies are learned with graph-based multi-agent reinforcement learning. In experiments with real-world Manhattan data, fixed surge pricing penalties reduce the share of travelers facing excessive prices from 22% to 1%. For regional service availability, dynamic regulation improves the regulator's reward by up to 15.6% over fixed penalties of equal mean intensity. The gains in service availability are strongest when spare fleet capacity exists, whereas service deficits persist in peak periods with highly utilized fleets. The learned regulator policy responds by reducing penalties where limited fleet capacity restricts compliance. The results identify trade-offs between regulatory targets, operator profitability, and traveler utility.",
+      "authors": [
+        "Korbinian Kügler",
+        "Carolin Schmidt",
+        "Florian Dandl",
+        "Filipe Rodrigues"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-11-04T20:38:24Z",
+      "updated": "2026-11-04T20:38:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07122v1",
+      "abs_url": "https://arxiv.org/abs/2611.07122",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07122",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07103",
+      "title": "A Night at the LLM Zoo: Data Conditioned Flow Matching for Generating Pretrained LLM Weights",
+      "abstract": "A challenge to Weight Space Learning as it expands from task specific and vision models to Large Language Models (LLMs) is the absence of a well curated and analyzed LLM population. To address this, we train such a model zoo for application to Weight Space Generation by systematically varying the data mixture composition between web text, books, mathematics, coding, and French across populations of 51M, 124M, and 355M parameter GPT-2 Models, each tier with count N = 100. We analyze these populations by cosine similarity, functional diversity, Leave-One-Mixture-Out modeling, and variance decomposition. We show that the zoo contains diverse models whose variation is structured by training mixture composition. We embed the training mixture composition to condition a Flow Matching model of complete pretrained LLM weights in Gram-PCA compressed weight space. By demonstrating zero-shot generalization to held out mixtures, measuring Continuous Ranked Probability Score skill, as well as finding minimal changes in downstream test-set perplexity and general capability benchmark scores, we show that our generator generalizes on the simplex of data mixtures to produce models that perform similarly to those in the zoo ex nihilo. Finally, we produce all source code and artifacts to support the continued expansion of Weight Space Learning and Generation into the LLM domain.",
+      "authors": [
+        "Scott Biggs",
+        "Bedionita Soro",
+        "Saumya Gupta",
+        "Bruno Andreis",
+        "Sung Ju Hwang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-04T20:16:34Z",
+      "updated": "2026-11-04T20:16:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07103v1",
+      "abs_url": "https://arxiv.org/abs/2611.07103",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07103",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07071",
+      "title": "Shaping & Monitoring Models through their Internal Representations",
+      "abstract": "We propose Mechanistic Shaping, a unified framework for shaping models through their internal representations. Mechanistic Shaping is applied during training so that models follow specifications (rules) about which concepts they express, measured via their outputs or internal representations (e.g., no harmful content), and also which concepts they rely on, i.e., what they use to make their decisions (e.g., not a candidate's gender when screening a résumé). Across multiple domains (vision, medical imaging, language), scales (up to 32B parameters), and training paradigms (classification, SFT, DPO, GRPO), we find that Mechanistic Shaping substantially reduces targeted behaviors while preserving task performance. Since training against a representation can also modify it, we ask whether shaped concepts remain monitorable, a question that depends on the class of monitors considered. We therefore introduce a hierarchy of such classes, which separates a concept that escapes one probe from a concept that is truly gone. We characterize three geometric mechanisms of circumvention: the concept can drift away from the monitor, be erased from the layer, or persist in higher-order statistics as a nonlinear encoding, which we explain through a product-code construction. Although other mechanisms may arise in different settings or at larger scales, these three account for all of our observations, and each can be detected by a matching monitor. In practice, we find that shaped concepts largely remain monitorable: refitted linear probes recover the concept in most settings, and the original probe remains reliable whenever gradients do not flow through it. Taken together, these results point to the potential of using interpretability as a tool for training, and call for a correspondingly rigorous science of interpretability-based training.",
+      "authors": [
+        "Thomas Fel",
+        "Matthew Kowal",
+        "Matt Feiszli",
+        "Satchel Grant",
+        "Andrew Lee",
+        "Chris Earls",
+        "Fatih Dinc",
+        "Vasudev Shyam",
+        "Usha Bhalla",
+        "Leon Bergen",
+        "Siddharth Boppana",
+        "Ching Fang",
+        "Michael Byun",
+        "Tristan Gallent",
+        "Nicholas Wang",
+        "Tal Haklay",
+        "Dron Hazra",
+        "Neehar Kondapaneni",
+        "Connor Watts",
+        "Ryan Panwar",
+        "Thomas Dooms",
+        "Jack Merullo",
+        "Atticus Geiger",
+        "Ekdeep Singh Lubana",
+        "Thomas McGrath",
+        "Owen Lewis"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-04T19:29:13Z",
+      "updated": "2026-11-04T19:29:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07071v1",
+      "abs_url": "https://arxiv.org/abs/2611.07071",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07071",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07069",
+      "title": "Finite-Time Convergence and Regret Guarantees for Neural Reinforcement Learning in POMDPs",
+      "abstract": "Reinforcement learning (RL) in Partially Observable Markov Decision Processes (POMDPs) is computationally challenging due to the curse of long-range dependence on history. Fortunately, recent studies have shown that a range of POMDPs that satisfy the filter stability assumption can be well approximated by a superstate Markov Decision Process (MDP) based on a truncated history in a finite-memory window, with a value gap that decays with the window length. However, existing finite-time convergence analyses on such superstate MDP surrogates are either limited to over-simplified linear function approximation or rely on an i.i.d. sampling oracle that is violated by POMDP trajectories, both of which severely limit the applicability of these theoretical results in practice. This motivates us to bridge the gap by investigating RL in POMDPs with nonlinear neural value function approximation. Our main contributions are threefold: i) We first establish a new finite-state MDP point-wise approximation error bound, which lays the foundation for our RL algorithm design and analysis in POMDPs; ii) By applying Temporal-Difference (TD) learning to POMDP-generated superstate transitions and targeting the Bellman fixed point of the superstate MDP, we prove a finite-time critic error bound with nonlinear neural value function approximation; and iii) By combining the neural critic function approximation error bound with the policy mirror descent framework, we obtain a finite-time sublinear regret against the optimal POMDP value. To the best of our knowledge, such a finite-time sublinear regret based on neural function approximation is the first in the literature for finite-memory POMDPs. Our numerical experiments also verify our theoretical results.",
+      "authors": [
+        "Jingjuan Huang",
+        "Zhiyao Zhang",
+        "Alvaro Velasquez",
+        "Nathaniel D. Bastian",
+        "Jia Liu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-04T19:25:21Z",
+      "updated": "2026-11-04T19:25:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07069v1",
+      "abs_url": "https://arxiv.org/abs/2611.07069",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07069",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07066",
+      "title": "Cooperative Multi-Agent Reinforcement Learning via Epigraph-Form Guided Exploration",
+      "abstract": "Discovering cooperative behavior in multi-agent reinforcement learning (MARL) is challenging due to the combinatorial complexity of joint state-action spaces, which hinders the emergence of coordinated behaviors from trial-and-error alone. Intrinsic rewards are often used to aid discovery, but naively combining them with team objectives can distort the learning signal, compromising task performance. In this paper, we propose EFXPLORER, a constrained exploration framework that maximizes exploration objectives subject to a constraint that preserves established task performance. We solve the resulting problem using an epigraph reformulation that introduces adaptive exploration budgets. This approach separates intrinsic rewards from task objectives and regulates exploration through task feasibility. To further encourage diverse and temporally extended exploration, we incorporate a successor distance-based intrinsic reward that captures long-horizon dependencies. Empirically, our method outperforms strong baselines and induces novel cooperative strategies across SMAX, VMAS, and MPE benchmark suites.",
+      "authors": [
+        "Sungil Son",
+        "Hoseong Jung",
+        "Dahyun Oh",
+        "H. Jin Kim"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-11-04T19:24:25Z",
+      "updated": "2026-11-04T19:24:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07066v1",
+      "abs_url": "https://arxiv.org/abs/2611.07066",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07066",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07063",
+      "title": "SD-LoRA: Training-Time Structural Distillation into LoRA for Few-Shot Vision-Language Adaptation",
+      "abstract": "Few-shot adaptation of vision-language models must balance two competing goals: learning fine-grained visual distinctions from very limited supervision and preserving the efficiency that makes frozen CLIP-like models attractive for deployment. Existing lightweight adaptation methods, including prompt tuning, LoRA, and cache-based adapters, typically supervise global image embeddings and therefore underuse token-level structure. Conversely, structure-aware methods exploit local evidence but often introduce additional inference-time computation. We propose SD-LoRA, a structural distillation framework that uses token-level graph reasoning only during training and transfers its effects into a lightweight LoRA-adapted CLIP model. During training, a heterogeneous graph teacher models patch-patch, global-local, and visual-text relations over high-resolution ViT tokens. Rather than retaining this graph at test time, SD-LoRA transfers its structural bias into the shared CLIP-LoRA backbone through implicit distillation and Prototype Predictive Alignment, which aligns graph-conditioned representations with support-derived class prototypes. At inference, the graph teacher is discarded; prediction requires only a single CLIP-LoRA forward pass and a cache-based classifier. Across 11 few-shot benchmarks, SD-LoRA improves over a strong CLIP-LoRA baseline by 2.4/1.8/3.0/2.4/2.0 percentage points in the 1/2/4/8/16-shot settings, respectively, without additional graph computation at test time. Results on base-to-novel generalization, cross-dataset transfer, out-of-distribution robustness, and calibration further show that training-time structural supervision improves both accuracy and transfer reliability. Code is available at https://github.com/MR-Sherif/SD-LoRA.git.",
+      "authors": [
+        "Mohammed Rahman Sherif Khan Mohammad",
+        "Ardhendu Behera",
+        "Sandip Pradhan",
+        "Swagat Kumar",
+        "Yonghuai Liu"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-04T19:22:47Z",
+      "updated": "2026-11-04T19:22:47Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07063v1",
+      "abs_url": "https://arxiv.org/abs/2611.07063",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07063",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.07055",
+      "title": "Expanding the Quality-Coverage Frontier with Competitive Flow Matching",
+      "abstract": "Flow matching (FM) generators often face a quality-coverage tradeoff. Inference-time techniques such as classifier-free guidance raise quality, but at the cost of coverage. We hypothesize this limitation stems from a basic property of the objective: an intermediate noisy image could correspond to many clean images, yet the model can only predict a single velocity, at best averaging over the multiple possibilities. To mitigate this, we introduce competition among predictions during training. We achieve this by augmenting the predictor with a randomly drawn low-dimensional conditioning code $z$. For each training example, we sample $K$ values of $z$ to produce $K$ candidate velocities that compete to explain the target, and apply the loss only to the best-matching candidate. This winner-take-all objective allows different modes to shape different predictions, rather than being averaged into a single compromise. Furthermore, this term naturally enables a new form of guidance, auxiliary conditioning scaling, which complements traditional guidance methods. Together, these two guidance mechanisms show that our method substantially improves the quality-coverage frontier. We validate on ImageNet-256, using two different testbeds, SiT and RAEv2. Given less than 3% of the original SiT pretraining compute for post-training, at the 67% Recall point, our method reduces $\\mathrm{FD}_{r,6}$ from 19.22 to 5.91. On RAEv2, at the 70% Recall point, it reduces $\\mathrm{FD}_{r,6}$ from 16.83 to 3.18.",
+      "authors": [
+        "Wenxuan Peng",
+        "Richard Zhang",
+        "Haitian Zheng",
+        "Jaskirat Singh",
+        "Tsai-Shien Chen",
+        "Eli Shechtman",
+        "Bharath Hariharan",
+        "Hadar Averbuch-Elor",
+        "Zongze Wu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-04T19:16:10Z",
+      "updated": "2026-11-04T19:16:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.07055v1",
+      "abs_url": "https://arxiv.org/abs/2611.07055",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.07055",
+      "summary_zh": ""
+    },
     {
       "id": "2611.06905",
       "title": "Reinforcement Learning Enables Scaling Generalist Robot Policy Improvement",
@@ -98,8 +411,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06901",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06870",
@@ -209,8 +521,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06796",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06748",
@@ -231,16 +542,15 @@
         "cs.AI"
       ],
       "published": "2026-11-04T16:26:45Z",
-      "updated": "2026-11-04T16:26:45Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.06748v1",
+      "updated": "2026-11-05T04:27:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.06748v2",
       "abs_url": "https://arxiv.org/abs/2611.06748",
       "topics": [
         "world-model",
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06748",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06731",
@@ -262,8 +572,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06731",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06728",
@@ -307,8 +616,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06728",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06711",
@@ -334,6 +642,30 @@
       "keyword_topics": [
         "rl"
       ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.06984",
+      "title": "Resource-Efficient Reinforcement Learning Post-Training through Elastic Expert Parallelism",
+      "abstract": "Reinforcement learning post-training improves the capabilities of large language models, but generating training responses is a major computational bottleneck. In mixture-of-experts models, workers that finish their assigned responses may remain occupied because their experts are still needed by workers processing longer responses. Consequently, approximately one-third of occupied worker time in the baseline occurs after local response generation finishes. Here we present FlexFloor, a system that enables earlier resource release during synchronous response generation while preserving the expert computation required by ongoing responses. FlexFloor jointly adapts response scheduling and the active group of workers. It uses historical response lengths and memory constraints to guide batching and prompt placement, then progressively releases workers while maintaining expert availability and correct communication. Compared with the verl baseline, FlexFloor generates approximately 65.40% more response tokens per unit of occupied computing time and increases response generation throughput by 52.74%, with little observed variation in rollout reward. By making reinforcement learning post-training more efficient, FlexFloor supports faster development and iterative improvement of large language models and AI agents.",
+      "authors": [
+        "Jia Wei",
+        "Ziyi Qiu",
+        "Yi Xu",
+        "Xuehai Qian"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.DC"
+      ],
+      "published": "2026-11-04T15:36:14Z",
+      "updated": "2026-11-04T15:36:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.06984v1",
+      "abs_url": "https://arxiv.org/abs/2611.06984",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06984",
       "summary_zh": ""
     },
     {
@@ -473,8 +805,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06627",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06554",
@@ -553,8 +884,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06544",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06543",
@@ -570,16 +900,15 @@
         "cs.AI"
       ],
       "published": "2026-11-04T14:11:53Z",
-      "updated": "2026-11-04T14:11:53Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.06543v1",
+      "updated": "2026-11-05T12:21:29Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.06543v2",
       "abs_url": "https://arxiv.org/abs/2611.06543",
       "topics": [
         "rl",
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06543",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06518",
@@ -622,8 +951,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06518",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06501",
@@ -697,15 +1025,14 @@
         "cs.LG"
       ],
       "published": "2026-11-04T13:18:09Z",
-      "updated": "2026-11-04T13:18:09Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.06476v1",
+      "updated": "2026-11-05T17:53:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.06476v2",
       "abs_url": "https://arxiv.org/abs/2611.06476",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06476",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06455",
@@ -753,8 +1080,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06445",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06433",
@@ -775,8 +1101,8 @@
         "cs.CV"
       ],
       "published": "2026-11-04T12:34:12Z",
-      "updated": "2026-11-04T12:34:12Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.06433v1",
+      "updated": "2026-11-05T06:45:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.06433v2",
       "abs_url": "https://arxiv.org/abs/2611.06433",
       "topics": [
         "other"
@@ -812,8 +1138,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06425",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06422",
@@ -866,8 +1191,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06395",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06377",
@@ -892,8 +1216,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06377",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06324",
@@ -918,8 +1241,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06324",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06302",
@@ -941,8 +1263,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06302",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06270",
@@ -968,8 +1289,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06270",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06255",
@@ -981,7 +1301,9 @@
         "Jong Chul Ye"
       ],
       "categories": [
-        "cs.LG"
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
       ],
       "published": "2026-11-04T10:06:32Z",
       "updated": "2026-11-04T10:06:32Z",
@@ -991,8 +1313,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06255",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06244",
@@ -1026,8 +1347,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06244",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06131",
@@ -1055,8 +1375,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06131",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06123",
@@ -1081,8 +1400,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06123",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06120",
@@ -1112,8 +1430,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06120",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06108",
@@ -1139,8 +1456,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06108",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06105",
@@ -1171,8 +1487,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06105",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06075",
@@ -1197,8 +1512,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06075",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.06061",
@@ -1225,8 +1539,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.06061",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05992",
@@ -1251,8 +1564,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05992",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05974",
@@ -1276,8 +1588,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05974",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05945",
@@ -1300,13 +1611,12 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05945",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05942",
       "title": "Reward Budgeting Reduces Premature Convergence in Reinforcement Learning for LLM Reasoning",
-      "abstract": "RL for LLM reasoning often reaches an early performance plateau as the policy distribution becomes increasingly sharp. Recent work has studied policy entropy as both a diagnostic and a control signal for this behavior. In our experiments, however, increasing entropy alone does not reliably change the eventual plateau. We analyze RL through its implicit target policy and derive a sharpness factor $κ$, together with an effective counterpart $κ_{\\mathrm{eff}}$, that describes how strongly reward or advantage gaps are translated into probability-ratio gaps. Motivated by this view, we introduce \\emph{reward budgeting}, a plug-in advantage construction that assigns a fixed total reward budget to each prompt. For binary rewards and independent on-policy rollouts, its unclipped score-function estimator follows the gradient of an exact finite-$G$ concave objective with diminishing returns, while its advantage gap decreases as more rollouts become correct. For general rewards, a shifted log-mean interpretation holds asymptotically under the stated regularity conditions. These results motivate, rather than establish exact objective equivalence for, the clipped implementations. On Qwen3-8B and Llama3.2-3B-Instruct, reward budgeting consistently improves a range of RL baselines, with gains up to +12.50 on AMC23 and +10.00 on AIME24 and AIME25. Overall, our results support an update-dynamics view of premature convergence and show that strong gains can be obtained without explicitly preserving entropy.",
+      "abstract": "RL for LLM reasoning often reaches an early performance plateau as the policy distribution becomes increasingly sharp. Recent work has studied policy entropy as both a diagnostic and a control signal for this behavior. In our experiments, however, increasing entropy alone does not reliably change the eventual plateau. We analyze RL through its implicit target policy and derive a sharpness factor $κ$, together with an effective counterpart $κ_{\\mathrm{eff}}$, that describes how strongly reward or advantage gaps are translated into probability-ratio gaps. Motivated by this view, we introduce reward budgeting, a plug-in advantage construction that assigns a fixed total reward budget to each prompt. For binary rewards and independent on-policy rollouts, its unclipped score-function estimator follows the gradient of an exact finite-$G$ concave objective with diminishing returns, while its advantage gap decreases as more rollouts become correct. For general rewards, a shifted log-mean interpretation holds asymptotically under the stated regularity conditions. These results motivate, rather than establish exact objective equivalence for, the clipped implementations. On Qwen3-8B and Llama3.2-3B-Instruct, reward budgeting consistently improves a range of RL baselines, with gains up to +12.50 on AMC23 and +10.00 on AIME24 and AIME25. Overall, our results support an update-dynamics view of premature convergence and show that strong gains can be obtained without explicitly preserving entropy.",
       "authors": [
         "Mengni Jia",
         "Mengyu Zhou",
@@ -1317,15 +1627,14 @@
         "cs.LG"
       ],
       "published": "2026-11-04T04:32:08Z",
-      "updated": "2026-11-04T04:32:08Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.05942v1",
+      "updated": "2026-11-05T07:12:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.05942v2",
       "abs_url": "https://arxiv.org/abs/2611.05942",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05942",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05929",
@@ -1347,8 +1656,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05929",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05926",
@@ -1372,8 +1680,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05926",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05917",
@@ -1400,8 +1707,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05917",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05907",
@@ -1423,8 +1729,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05907",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05894",
@@ -1449,8 +1754,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05894",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05893",
@@ -1481,8 +1785,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05893",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05890",
@@ -1506,8 +1809,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05890",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05847",
@@ -1529,8 +1831,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05847",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05842",
@@ -1552,8 +1853,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05842",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05841",
@@ -1575,8 +1875,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05841",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.05825",
@@ -1604,8 +1903,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.05825",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     }
   ]
 }
