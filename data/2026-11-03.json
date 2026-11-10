@@ -1,6 +1,6 @@
 {
   "date": "2026-11-03",
-  "generated_at": "2026-11-09T08:28:08.874807+00:00",
+  "generated_at": "2026-11-10T08:47:46.341154+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -86,17 +86,19 @@
     {
       "id": "2611.06956",
       "title": "Octopus: One Brain, Many Branches for Latent-KV Multi-Agent Reinforcement Learning",
-      "abstract": "Multi-agent LLM systems explore in parallel by spawning sub-agents with isolated context windows, whereas single-agent systems append every search and verification step into one growing trajectory. However, existing multi-agent frameworks duplicate prefix KV caches across branches, exchange findings by re-prefilling text summaries, and flatten or drop cross-branch dependencies during reinforcement learning (RL). We introduce Octopus, a single-model multi-agent RL framework in which all threads share one backbone and coordinate over a GPU-resident directed acyclic graph (DAG) of KV states through five primitives (fork, read_thread, wait_threads, rewind, commit). Octopus combines three co-designed mechanisms: (1) Zero-Copy Radix Forking, which spawns branches as $\\mathcal{O}(1)$ cursor views over shared physical KV pages; (2) Attention-Only KV Mounting, which mounts a sibling thread's terminal KV blocks directly into full-attention layers while bypassing linear-recurrent states (Gated DeltaNet / Mamba-2), cutting off-task hijacking by $21\\times$ ($57.9\\% \\to 2.7\\%$) while retaining $92.2\\%$ of full-text mutual information at zero extra KV allocation; and (3) a Packed DAG-GRPO Trainer, which packs all episode branches into one block-sparse attention pass and assigns counterfactual branch credit via leave-one-branch-out marginal rewards. Trained end-to-end with GRPO on Qwen3.5-4B over a sparse BM25 corpus, Octopus reaches $49.6\\%$ accuracy on BrowseComp-Plus ($+17.5$ points over single-agent GRPO at 143K context and $+12.5$ points over text-summary multi-agent RL) and $51.2\\%$ on OpenResearcher, outperforming dense-retrieval agents up to $250\\times$ larger while increasing training throughput $3.3\\times$ and cutting peak KV memory $2.8\\times$.",
+      "abstract": "Deep search and long-horizon reasoning unfold as branching trajectories that pursue parallel sub-queries, abandon dead-end detours, and cross-check sibling findings. Yet modern serving engines, harnesses, and RL trainers execute episodes as flat, append-only sequences: stretching a context window leaves failed detours that dilute attention, in-place edits break KV caching and recurrent states, and all-layer cache splicing overwrites hybrid recurrent working memory and triggers hijacking. We introduce Octopus, a co-designed serving runtime, memory manager, and RL framework executing episodes as a GPU-resident DAG over radix cursors (89.6% KV hit rate). Agents coordinate via five primitives: fork shares parent KV prefixes in $O(1)$ with isolated 32K budgets, rewind restores recurrent checkpoints, read_thread mounts sibling KV pages in zero copy, and wait and done synchronize results. Octopus splices sibling KV pages only into full-attention layers under monotonic position offsets while recurrent layers skip mounted spans, retaining 92.2% of full-text answer information and cutting hijacking $21\\times$ ($57.9\\% \\to 2.7\\%$) with zero new KV pages. During RL, our packed DAG kernel and DAG-GRPO objective deduplicate shared prefixes via loss masks while keeping mounted KV edges differentiable, cutting rollout-training KL divergence $32\\times$ and routing reader gradients into producer KV projections. Trained on Qwen3.5-4B with binary rewards, Octopus self-organizes a commander-worker hierarchy and latent KV mesh, lifting BrowseComp-Plus accuracy under BM25 from 26.0% (32K ReAct) and 32.1% (143K GRPO) to 49.6% (+17.5 pts; 51.2% on OpenResearcher), surpassing 9B context-editing RL (42.5%), matching o3 (49.3%), and outperforming dense-retrieval agents up to $250\\times$ larger: Tongyi-DeepResearch (44.5%), DeepSeek-R1 (16.4%), Kimi-K2 (35.4%), GPT-4.1 (36.4%), and Claude 4 Opus (36.8%).",
       "authors": [
-        "Tianming Sha"
+        "Tianming Sha",
+        "Junnan Li",
+        "Siqi Zhao"
       ],
       "categories": [
         "cs.LG",
         "cs.CL"
       ],
       "published": "2026-11-03T22:42:25Z",
-      "updated": "2026-11-03T22:42:25Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.06956v1",
+      "updated": "2026-11-06T19:39:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.06956v2",
       "abs_url": "https://arxiv.org/abs/2611.06956",
       "topics": [
         "rl"
@@ -1333,10 +1335,11 @@
     {
       "id": "2611.04825",
       "title": "UniFlow: Unified Multi-Scale Flow Matching for Time Series Generation",
-      "abstract": "Real-world time series exhibit complex dynamics across multiple temporal resolutions, yet effectively incorporating multi-scale information into generative modeling remains challenging without increasing generative complexity. We propose UniFlow, a unified framework that integrates multi-scale representation learning with efficient non-autoregressive generation through a shared-semantic discrete interface. Specifically, a multi-scale tokenizer employs shared-index voting to consolidate complementary temporal information into a single public-ID sequence, while scale-specific codebooks preserve the information required for reconstruction. Building on this unified representation, we develop geometry-aware categorical flow matching, which initializes transport from learned low-rank anchors and generates public identities non-autoregressively. This design captures multi-scale temporal structure without requiring multiple generative token streams or sequential token decoding. Experiments across four benchmarks and both short- and long-term settings demonstrate improved generative fidelity, strong cross-scale consistency, and substantial inference speedups over representative autoregressive and diffusion-based baselines. Code is available at https://github.com/William-Liwei/uniflow",
+      "abstract": "Real-world time series exhibit complex dynamics across multiple temporal resolutions, yet effectively incorporating multi-scale information into generative modeling remains challenging without increasing generative complexity. We propose UniFlow, a unified framework that integrates multi-scale representation learning with efficient non-autoregressive generation through a shared-semantic discrete interface. Specifically, a multi-scale tokenizer employs shared-index voting to consolidate complementary temporal information into a single public-ID sequence, while scale-specific codebooks preserve the information required for reconstruction. Building on this unified representation, we develop geometry-aware categorical flow matching, which initializes transport from learned low-rank anchors and generates public identities non-autoregressively. This design captures multi-scale temporal structure without requiring multiple generative token streams or sequential token decoding. Experiments across four benchmarks and both short- and long-term settings demonstrate improved generative fidelity, strong cross-scale consistency, and substantial inference speedups over representative autoregressive and diffusion-based baselines. Code is available at https://github.com/kkking-kk/UniFlow",
       "authors": [
         "Shibo Feng",
         "Wei Li",
+        "Songhua Liu",
         "Min Wu",
         "Chunyan Miao",
         "Peilin Zhao"
@@ -1346,8 +1349,8 @@
         "cs.AI"
       ],
       "published": "2026-11-03T12:53:17Z",
-      "updated": "2026-11-03T12:53:17Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.04825v1",
+      "updated": "2026-11-07T00:57:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.04825v2",
       "abs_url": "https://arxiv.org/abs/2611.04825",
       "topics": [
         "rl"
@@ -1704,8 +1707,8 @@
         "cs.LG"
       ],
       "published": "2026-11-03T10:04:34Z",
-      "updated": "2026-11-03T10:04:34Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.04614v1",
+      "updated": "2026-11-07T02:54:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.04614v2",
       "abs_url": "https://arxiv.org/abs/2611.04614",
       "topics": [
         "rl"
@@ -2062,8 +2065,8 @@
         "cs.AI"
       ],
       "published": "2026-11-03T05:59:43Z",
-      "updated": "2026-11-03T05:59:43Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.04371v1",
+      "updated": "2026-11-08T07:06:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.04371v2",
       "abs_url": "https://arxiv.org/abs/2611.04371",
       "topics": [
         "world-model"

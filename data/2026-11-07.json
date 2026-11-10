@@ -1,6 +1,6 @@
 {
   "date": "2026-11-07",
-  "generated_at": "2026-11-09T08:28:08.799928+00:00",
+  "generated_at": "2026-11-10T08:47:46.333533+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,1153 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2611.11024",
+      "title": "Phase-Conditioned Reward Shaping for Token-Efficient LLM Reasoning",
+      "abstract": "Extended reasoning can help language models solve complex problems, but long responses often contain both useful computations and redundant checks. Conventional length penalties encourage shorter responses without distinguishing the functions of intermediate steps. We propose Phase-Conditioned Reward Shaping (PCRS), a framework that combines phase identification with training-time reward allocation. We investigate two classification routes: PCRS-H with a hidden-state classifier and PCRS-T with a frozen text classifier. Our main text classifier implementation assigns overlapping reasoning, execution, and revision labels to native chunks, then uses these labels and exact repetition to adjust existing token penalties. We compare the completed configurations on six mathematical and scientific reasoning benchmarks and examine four reward-weight settings with the text classifier. Compared with a baseline using token-level length penalties, the default text classifier configuration reduces mean response length by 3.13%; sampled Pass@1 is approximately 62.07% for both methods, while oracle Pass@16 rises from 86.08% to 87.67%. These results show how phase-informed penalty allocation can reduce output volume and improve multi-attempt coverage without inference-time classification.",
+      "authors": [
+        "Zhe Chen",
+        "Xiaolin Zhou",
+        "Xiyang Hu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T23:51:27Z",
+      "updated": "2026-11-07T23:51:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.11024v1",
+      "abs_url": "https://arxiv.org/abs/2611.11024",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.11024",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10999",
+      "title": "Differentiable Agent-Based Modeling for Multi-Echelon Supply Chains: Gradient-Based Optimization of Heterogeneous Policies at Scale",
+      "abstract": "Global supply chains rely on the interactions of thousands of heterogeneous agents, posing significant challenges for optimization. While traditional optimization often assumes homogeneity to ensure tractability, Reinforcement Learning struggles with sample inefficiency when scaling to high-dimensional state spaces. We propose a Differentiable Agent-Based Model for multi-echelon inventory management. By implementing stochastic dynamics via differentiable tensor operations, we enable direct gradient propagation through the simulation. We validate the framework by recovering theoretical Newsvendor optima without supervision. Crucially, we demonstrate ``Mass Personalization'' by optimizing 10,000 distinct agent policies simultaneously in seconds, achieving a 53% cost reduction compared to scalar baselines. Furthermore, we utilize gradient sensitivity analysis to generate causal heatmaps, accurately recovering inherent lead-time delays from the computation graph. This approach bridges the gap between simulation and optimization, enabling the efficient training of self-correcting Digital Twins.",
+      "authors": [
+        "Bulent Soykan",
+        "Murtadha Alsayegh",
+        "Sean Mondesire",
+        "Ghaith Rabadi"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T22:48:31Z",
+      "updated": "2026-11-07T22:48:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10999v1",
+      "abs_url": "https://arxiv.org/abs/2611.10999",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10999",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10993",
+      "title": "DPDP: Diffusion Policy-Steered Diffusion Planner for Offline Reinforcement Learning",
+      "abstract": "In offline reinforcement learning, diffusion models fill two roles with complementary strengths. Typically guided by a critic, a diffusion policy is value-aware and favors high-return, behavior-supported actions, but it is short-sighted: it never lays out the states it intends to visit. A diffusion planner is far-sighted, synthesizing such a long-horizon trajectory, but it is only behavior-driven at execution, realizing each planned transition using only offline behavior.Each is strong exactly where the other is weak. We introduce DPDP to bring them together at the planner's execution step, where a planned transition becomes an action. Reading the planner's inverse-dynamics executor as a posterior over actions: the environment's transition likelihood relates an action to the planned next state, while the behavioral prior determines its weight under the offline data. Replacing this prior with a value-optimized diffusion policy preserves the planned transition likelihood and favors valuable actions that can serve the plan. We target the resulting clean-action distribution in two ways. A training-free sampler composes policy and inverse-dynamics scores at matched action noise levels and applies Langevin correction; this route uses a shared action noise schedule and an approximately common terminal prior. A preference objective instead amortizes the transfer into a single diffusion executor. Across D4RL, DPDP improves the planner it builds on, staying competitive with reactive diffusion policies on locomotion and leading on long-horizon navigation.",
+      "authors": [
+        "Ruyi An",
+        "Mingyuan Zhou"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-07T22:25:18Z",
+      "updated": "2026-11-07T22:25:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10993v1",
+      "abs_url": "https://arxiv.org/abs/2611.10993",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10993",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10987",
+      "title": "Horizon-Scalable Q-Learning",
+      "abstract": "Learning accurate off-policy state-action value functions (Q-functions) from offline datasets becomes harder as the task horizon grows. One-step temporal-difference (TD) learning bootstraps after every transition, so small per-step errors accumulate along the horizon, and early states can be badly misvalued even when the TD loss is small. Multi-step TD shortens this chain by following the dataset trajectory for several steps; however, since the behavior policy is often suboptimal, every followed action adds a bias, and no fixed number of steps suits a whole trajectory. In this paper, we propose Horizon-Scalable Q-Learning (HQL), a simple method that enables accurate long-horizon value learning by automatically balancing between one-step and multi-step returns. HQL extends a target through a dataset action only when the critic values it at least as highly as the best-of-N actions sampled from the BC policy, and otherwise falls back to a one-step target. We show that this rule is a principled off-policy correction that needs no action densities, which makes HQL compatible with expressive flow and diffusion policies. Experiments show that HQL avoids the failures of both one-step and multi-step TD on a combination-lock task across horizons, and outperforms prior horizon-reduction methods on long-horizon OGBench and OCBench tasks.",
+      "authors": [
+        "Haoran Xu",
+        "Pragya Srivastava",
+        "Xinjie Liu",
+        "Siddhant Agarwal",
+        "Amy Zhang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T22:03:33Z",
+      "updated": "2026-11-07T22:03:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10987v1",
+      "abs_url": "https://arxiv.org/abs/2611.10987",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10987",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10984",
+      "title": "Network Contention State Aware Dynamic Optimizer for Accelerator Collective Communication Libraries",
+      "abstract": "Collective Communication Libraries (CCL) are critical for large-scale distributed AI/ML training, yet their configurations are determined by static heuristics that do not account for real-time network conditions. Our empirical study shows that these heuristics perform near-optimally in contention-free environments, but degrade substantially under background traffic. To address this, we present a cooperative multi-agent run-time optimizer for accelerator collective communication. Our approach employs a two-agent architecture: (i) detector- a Long Short Term Memory(LSTM) recurring neural network fed classifier head with a sequential probability ratio test that distinguishes sustained contention from transient spikes; and (ii) selector- a configuration selector built on a Dueling Double DQN (D3QN) with Conservative Q-Learning that adapts configuration parameters in response. We implemented this dynamic tuner over NCCL, a widely used CCL developed by NVIDIA. When evaluated on Chameleon Cloud's isolated bare-metal cluster, this dynamic tuning approach reduces AllReduce latency by 36% over NCCL and 32% over a fully converged AutoCCL. We further evaluated it across six real AI workloads spanning convolutional networks, transformers, and recommendation architectures. Our multi-agent tuner approach delivers up to 65% speedups on Delta cluster with NVIDIA A100 GPUs and Slingshot-11 fabric internode connectivity.",
+      "authors": [
+        "Rajat Bisht",
+        "Tevfik Kosar",
+        "Anthony Skjellum",
+        "Gene Cooperman",
+        "MD S Q Zulkar Nine"
+      ],
+      "categories": [
+        "cs.DC",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-11-07T21:57:05Z",
+      "updated": "2026-11-07T21:57:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10984v1",
+      "abs_url": "https://arxiv.org/abs/2611.10984",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10984",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10981",
+      "title": "An Analysis of Reinforcement Learning with Function Approximation",
+      "abstract": "We address the problem of computing the optimal Q-function in Markov decision problems with infinite state-space. We analyze the convergence properties of several variations of Q-learning when combined with function approximation, extending the analysis of TD-learning in Tsitsiklis and Van Roy (1996) to stochastic control settings. We identify conditions under which such approximate methods converge with probability 1. We conclude with a brief discussion on the general applicability of our results and compare them with several related works.",
+      "authors": [
+        "Francisco S. Melo",
+        "Sean P. Meyn",
+        "M. Isabel Ribeiro"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-07T21:43:24Z",
+      "updated": "2026-11-07T21:43:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10981v1",
+      "abs_url": "https://arxiv.org/abs/2611.10981",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10981",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10965",
+      "title": "Bayesian transfer for offline Q-learning with multi-task Gaussian processes",
+      "abstract": "Offline reinforcement learning can benefit from data collected in related tasks, yet indiscriminate knowledge transfer may lead to negative transfer under task mismatch and limited target-data coverage. We propose a target-aware Bayesian transfer framework for offline Q-learning based on multi-task Gaussian processes that jointly model task-specific Q-functions. Source tasks are assessed using target predictive evidence and maximum mean discrepancy (MMD), while posterior uncertainty and behavior-supported action sets guide conservative Bellman updates and policy extraction. To account for the dependence induced by Bellman bootstrapping, we distinguish Bellman innovations from bootstrap errors and establish stability and predictive source-selection results under explicit regularity conditions. We further derive selection-adaptive posterior contraction and offline policy-performance bounds, identifying the structural conditions under which source information can be pooled to achieve minimax-optimal rates in a shared-function Gaussian sequence experiment. Simulation studies with heterogeneous source tasks demonstrate improved target Q-function estimation and reduced material negative transfer compared with indiscriminate source pooling. An application to human decision-making data further shows higher average expected immediate payoff than both target-only learning and matched-size random source selection. These results highlight the benefits of combining target-aware source selection with uncertainty-aware conservative learning for reliable and sample-efficient offline reinforcement learning.",
+      "authors": [
+        "Wenxing Guo"
+      ],
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-11-07T21:07:28Z",
+      "updated": "2026-11-07T21:07:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10965v1",
+      "abs_url": "https://arxiv.org/abs/2611.10965",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10965",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10945",
+      "title": "CoupledFlow: One-Step Neural Operators for Coupled Multi-Physics PDEs",
+      "abstract": "This paper introduces COUPLED FLOW, a new neural operator learning framework for multi-physics PDE systems that captures the co-evolution of multiple physical processes by modeling their cross-process interactions. Unlike existing neural operator methods that primarily target single-physics settings, COUPLED FLOW employs a novel structure-constrained flow matching algorithm to learn process- specific mean velocity fields conditioned on the full multi-physics state. This enables fast and accurate one-step prediction of coupled PDE systems that would otherwise require expensive numerical simulations. A key challenge in training COUPLED FLOW however lies in sampling structure-constrained conditional flow interpolants that capture cross-process correlations and serve as training examples for flow matching. To address this challenge, we derive a multi-physics mean-flow consistency identity that characterizes cross-process interactions and defines the structure-constrained mean-flow matching loss. To provide informative training samples for flow matching with this loss, we develop a principled method for sampling correlated conditional interpolants based on posterior multi-output Gaus- sian processes, which capture richer cross-process correlations than the commonly used endpoint-conditioned linear interpolants. We also establish a theoretical re- sult showing that the Wasserstein-2 distance between the predicted and oracle PDE solution distributions is upper-bounded in terms of the structure-constrained flow matching loss and the smoothness of the learned flow. Experiments across diverse coupled PDE benchmarks demonstrate that COUPLED FLOW consistently outperforms existing state-of-the-art neural operators and generative PDE solvers.",
+      "authors": [
+        "Trong Khiem Tran",
+        "Minh Long Bui",
+        "Phi Le Nguyen",
+        "Mrinal Sen",
+        "Sanjay Srinivasan",
+        "Trong Nghia Hoang",
+        "Jana Doppa"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T20:22:34Z",
+      "updated": "2026-11-07T20:22:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10945v1",
+      "abs_url": "https://arxiv.org/abs/2611.10945",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10945",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10875",
+      "title": "REDiff-AD: No Training and No Target Masks for Industrial Anomaly Image Generation via Diversity-Driven In-Context MMDiT",
+      "abstract": "Industrial anomaly detection is challenged by the scarcity and diversity of real defects, leaving insufficient anomalous data to effectively train downstream models. Existing anomaly generation methods often require product-specific fine-tuning, target mask annotation, or costly procedures to achieve realistic and diverse defects. We propose REDiff-AD, a framework that requires neither model training nor target masks and introduces Rectified Flow MMDiT into industrial anomaly generation for efficient sampling with fewer generation steps. Given a normal product image and a single masked reference anomaly, REDiff-AD employs in-context learning to transfer the defect appearance from the reference into the normal image. Internal attention signals generated during this process are further reused to localize the synthesized anomaly, while edge and color cues refine the localization into pixel-level pseudo-masks. Two lightweight modules further improve generation quality: adaptive reference conditioning enhances defect fidelity, while diversity guidance promotes varied defect patterns without additional training. Experiments demonstrate that REDiff-AD can well address the tradeoff between realism and diversity for anomaly pattern generation and achieve competitive downstream anomaly classification, detection, and localization performance. These results show that REDiff-AD is a simple, efficient, and effective solution for large-scale anomaly data augmentation and pixel-level data construction. Github code: https://github.com/efdefe4-droid/REDiff-AD",
+      "authors": [
+        "Chih-Yu Tsai",
+        "Chih-Heng Chang",
+        "Jian-Jiun Ding"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-07T17:57:00Z",
+      "updated": "2026-11-07T17:57:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10875v1",
+      "abs_url": "https://arxiv.org/abs/2611.10875",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10875",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10873",
+      "title": "BRAT: Bounded Residual-Aligned Training for Stable Multi-Pass LLM Post-Training",
+      "abstract": "Reinforcement learning for large language model post-training often reuses each batch of sampled rollouts for several gradient passes to amortize the cost of generation. Under such multi-pass reuse, existing objectives fail in different ways: unclipped updates collapse as the policy drifts away from the sampling policy, adding a negative baseline avoids collapse but reinforces every sampled response, and PPO-style ratio clipping cuts off gradients abruptly. We first ask why reuse is fragile. Measuring how well an update estimated from a small rollout group aligns with the KL-regularized target on held-out rollouts of the same prompts, we find that this alignment drops by nearly an order of magnitude from in-sample to held-out rollouts across three base models, suggesting that repeated passes largely overfit the sampled group. Motivated by this finding, we propose Bounded Residual-Aligned Training (BRAT), motivated by a proximal update toward a bounded reweighting of the sampling policy. BRAT assigns each token a gradient weight that decreases linearly with its probability ratio and vanishes at a trust-region boundary, and normalizes group-centered rewards by their maximum magnitude, keeping advantages zero-mean and bounded without extra hyperparameters. With four reuse passes, BRAT avoids training collapse, limits policy drift, and achieves higher average accuracy with lower seed variance on most benchmarks.",
+      "authors": [
+        "Xunlan Zhou",
+        "Yuzhe Zhao",
+        "Xuhong Huang",
+        "Feng Chen",
+        "Xuanlin Chen",
+        "Lang Feng",
+        "Bo An"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-07T17:51:57Z",
+      "updated": "2026-11-07T17:51:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10873v1",
+      "abs_url": "https://arxiv.org/abs/2611.10873",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10873",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10866",
+      "title": "The Surprising Effectiveness of Deleting Weights in LLM Post-Training",
+      "abstract": "How little of a pretrained large language model (LLM) has to change for it to acquire new capabilities? We find that zeroing fewer than 0.05% of its weights, with no other modification, matches full fine-tuning (FFT) at scale across three LLM post-training regimes: reinforcement learning with verifiable rewards, supervised fine-tuning, and on-policy distillation. Our method, Deletion Tuning, learns a binary mask over the gate projection of transformer blocks. Two practical advantages follow: the trained mask is hundreds to thousands of times smaller than the corresponding FFT checkpoint, and Deletion Tuning forgets far less, which addresses a central challenge in continual learning. Under reinforcement learning, its prior-task accuracy stays near the base level while FFT, LoRA, and random sparse fine-tuning lose up to 5.4 points. To understand why masking alone suffices, we analyze the geometry of the learned weight changes under reinforcement learning using stable rank, spectrum drift, and principal-weight overlap. Compared with LoRA and random sparse fine-tuning, Deletion Tuning is closest to FFT across the three measures.",
+      "authors": [
+        "Jack Lu",
+        "Zhenbang Yang",
+        "Mike Lasby",
+        "Tejas Pote",
+        "Yani Ioannou",
+        "Mengye Ren"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-11-07T17:33:20Z",
+      "updated": "2026-11-07T17:33:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10866v1",
+      "abs_url": "https://arxiv.org/abs/2611.10866",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10866",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10844",
+      "title": "What Broke & Why: Practical Lessons from Reinforcement Learning Post-Training",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) has become an important way to improve how language models reason, solve problems, and use tools. But getting it to work in practice is not always straightforward. Training can fail because a model receives no useful reward, learns to exploit the reward system, stops exploring, or appears to improve when the evaluation itself is misleading. In this book, we give a practical introduction to reinforcement learning post-training for language models, focusing on what works, what fails, and why. We begin with the foundations of post-training, explain GRPO and the training loop step by step, and then follow five training programs covering math reasoning, search agents, training stability, mixture-of-experts models, and software engineering tasks. Each program shows the problems encountered, the changes made, and the lessons learned. The book also examines what reinforcement learning actually changes inside a model. The remaining chapters provide a practical reference for reward design, evaluation, training tool-using agents, debugging common failures, reproducibility, rollout engines, and hardware. Written for researchers and practitioners working with open models, the book aims to help readers understand how to train models, recognize when something goes wrong, and decide what to try next.",
+      "authors": [
+        "Luv Verma"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-07T16:43:27Z",
+      "updated": "2026-11-07T16:43:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10844v1",
+      "abs_url": "https://arxiv.org/abs/2611.10844",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10844",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10841",
+      "title": "A Gamified Framework for Conflict-Driven Design: Discovering Strategies for Collaborative Resilience with Multi-Agent Learning",
+      "abstract": "Conflicting stakeholder objectives make it difficult to coordinate investments in urban resilience. We model conflict-driven urban design as a non-zero-sum digital board game in which stakeholder agents allocate scarce resources and balance individual payoffs against shared urban development and resilience objectives. We use multi-agent reinforcement learning (MARL) to train policies and examine their behavior across three settings. On a 4 x 4 board, learned policies reach about 84% of the total return found by a simulated annealing benchmark. On an 8 x 8 board with spatial and resource constraints, trained agents favor projects that improve resilience in self-play. In a 12 x 12 simulation initialized from historical maps of Tatsumi, Tokyo, trained agents achieve a mean total score of 452.1, compared with 357.3 for a random-policy baseline across 10,000 simulation runs. Gains in adaptability, sustainability, flood resistance, and greenery come with reductions in vitality and density. A human-in-the-loop interface supports replay and lets participants take over stakeholder decisions, providing a testbed for exploring these trade-offs in participatory urban planning.",
+      "authors": [
+        "Jin Gao"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-11-07T16:37:45Z",
+      "updated": "2026-11-07T16:37:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10841v1",
+      "abs_url": "https://arxiv.org/abs/2611.10841",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10841",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10824",
+      "title": "AutoC2V: Synthesis-Guided LLM Training for QoR-Optimized C++-to-Verilog Generation",
+      "abstract": "High-level synthesis (HLS) can translate C/C++ kernels into register-transfer level (RTL) designs, yet generating high-quality hardware still relies heavily on manual pragma tuning and repeated synthesis evaluation. We propose AutoC2V, a C++-to-Verilog generation framework driven by real synthesis feedback that enables large language models (LLMs) to directly generate RTL with improved quality of results (QoR) from synthesizable C++ kernels. We construct training data from real synthesis results, including synthesizable C++ source code, the corresponding Verilog RTL, QoR metrics, and optimization objectives. Using this dataset, we align the model toward synthesis-aware RTL generation through Supervised Fine-Tuning (SFT) and Group Relative Policy Optimization (GRPO). To reduce the high cost of repeatedly invoking real synthesis during GRPO, we design the QoR Prediction Reward Model (QoR RM), which predicts latency and resource metrics by encoding RTL into long-context semantic representations, thereby providing low-cost and continuous QoR reward signals for policy optimization. Experimental results demonstrate that AutoC2V not only substantially improves RTL functional pass rates, but also achieves superior latency and resource optimization compared to the unfine-tuned base model, representative HLS optimization approaches (HLSPilot, LLM-DSE, and AutoDSE), and advanced general-purpose commercial models (Claude Opus 4.8, GPT-5.5, Gemini 3.1 Pro, DeepSeek v4 Pro, and GLM-5.2). These results indicate that combining real synthesis data with efficient QoR reward modeling can further improve the ability of LLMs to generate high-quality RTL.",
+      "authors": [
+        "Guanqi Lyu",
+        "Fei Zhao",
+        "Zhaojun Lu",
+        "Jiaji He",
+        "Yongqiang Lyu"
+      ],
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "published": "2026-11-07T16:05:42Z",
+      "updated": "2026-11-07T16:05:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10824v1",
+      "abs_url": "https://arxiv.org/abs/2611.10824",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10824",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10822",
+      "title": "Learning When to Think: Adaptive Internal Computation for Reinforcement Learning",
+      "abstract": "Iterative neural policies usually spend the same computation on every decision, although the benefit of additional processing varies across states. We introduce Adaptive Internal Computation (AIC), an iterative policy that learns when to stop refining its latent representation and act. In AIC, we train action selection and stopping jointly, an expected-depth penalty values computation and intermediate value predictions provide auxiliary supervision. We show that when only some states benefit from further refinement, an ideal state-dependent allocator outperforms every state-independent stopping schedule at the same expected depth. With at most eight refinement steps per decision, AIC executes 3.3 steps on average across twelve benchmark tasks and lowers per-decision latency by 31--44% relative to a fixed eight-step policy on four control and robotics tasks. Its mean reward exceeds the best fixed-depth policy on seven tasks and trails it on four. Ablating adaptive stopping and value supervision separately shows that stopping accounts for most of the reward gain on PickCube and AntMaze, where it also executes more refinement steps and that supervision accounts for most of it on RareEvent.",
+      "authors": [
+        "Rohit Kumar Salla",
+        "Simon Stepputtis"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-11-07T16:00:03Z",
+      "updated": "2026-11-07T16:00:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10822v1",
+      "abs_url": "https://arxiv.org/abs/2611.10822",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10822",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10806",
+      "title": "WARP-JEPA: World-Model-in-the-Loop Amortized Rollout Planning for Frozen Hierarchical Joint-Embedding Predictive Architectures",
+      "abstract": "Hierarchical Joint-Embedding Predictive Architectures (H-JEPA) enable long-horizon visual control but rely on costly test-time gradient descent for planning. Our analysis reveals that iterative optimization consumes up to 97.7% of episode runtime and that low predicted rollout costs do not necessarily translate into successful control. We further identify a planning-horizon asymmetry between long-horizon top-level composition and short two-step subordinate planning. To address these challenges, we propose WARP-JEPA, a hierarchical amortized planning framework that replaces online gradient optimization with learned multi-candidate trajectory proposers while keeping the world models frozen. WARP-JEPA combines a lightweight world-model-in-the-loop causal Transformer at the top level with parallel residual MLPs at subordinate levels. The proposers are trained using model-based rollout costs and best-of-K behavior cloning, enabling efficient candidate selection without test-time gradient optimization. Across 30 frozen H-JEPA models on four benchmarks, WARP-JEPA achieves 9.6-18.8x faster episode inference on long-horizon tasks (2.9-3.0x on Cube) and improves task success by up to 33.3 percentage points. These results demonstrate that amortized planning can substantially improve both inference efficiency and control performance without retraining the world models. Code is available at https://github.com/hideinsewer/WARP-JEPA.",
+      "authors": [
+        "Junjie Li",
+        "Zhaojiacheng Zhou",
+        "Kaixiang Wang",
+        "Zihan Wang",
+        "QingSong Zhao",
+        "Jiong Lou",
+        "Jie Li"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-07T15:37:02Z",
+      "updated": "2026-11-07T15:37:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10806v1",
+      "abs_url": "https://arxiv.org/abs/2611.10806",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10806",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10800",
+      "title": "Enhancing Mathematical Reasoning in Turkish Large Language Models with Search-Based Inference and Model Merging",
+      "abstract": "We improve Turkish mathematical reasoning in Large Language Models by combining LoRA fine-tuning, weight-space model merging, and search-based inference. Using Turkish-Llama 8B-DPO with Turkish translations of MetaMath, NuminaMath, and TigerLab, we find data quality beats scale (Mix-30k best among fine-tuned; large MetaMath underperforms). Linear merging delivers the largest gains (GSM8K up to 0.63), while Ties is modest and Breadcrumbs/Slerp degrade. Search with MCTS and Tree of Thoughts improves mean LLM-judge scores for reasoning quality on a 0-100 scale. Limitations include machine translation, limited scale, and search stochasticity.",
+      "authors": [
+        "Ahmed Zeer",
+        "Osama Shbib",
+        "Muzaffer Kaan Yuce",
+        "Himmet Toprak Kesgin",
+        "Mehmet Fatih Amasyali"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T15:27:36Z",
+      "updated": "2026-11-07T15:27:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10800v1",
+      "abs_url": "https://arxiv.org/abs/2611.10800",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10800",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10785",
+      "title": "Proximal Preference Optimization: A Unified Framework for Stable and Reward-Free Alignment",
+      "abstract": "We introduce a proximal preference optimization framework that unifies the implicit reward formulation of Direct Preference Optimization (DPO) with the trust-region stability of Proximal Policy Optimization (PPO). Our framework yields two complementary algorithms. P$^2$O (Proximal Preference Optimization) introduces a clipped importance ratio directly into the DPO preference margin, producing a reward-model-free algorithm that supports safe dataset reuse, bounded policy divergence, and monotonic preference improvement guarantees. PKTO (Proximal Kahneman-Tversky Optimization) extends P$^2$O by replacing the DPO margin with KTO's prospect-theoretic utility margins, adding a self-regulating adaptive baseline that tightens the effective trust region as the policy drifts, and an asymmetric weighting that handles imbalanced or asymmetric preference datasets. We provide a unified theoretical analysis, including Kullback Leibler (KL) trust-region bounds, a policy-improvement lower bound, and convergence guarantees under multi-epoch proximal updates. Empirically, P$^2$O and PKTO match or exceed DPO and KTO in alignment quality while maintaining better stability under repeated dataset reuse across multiple LLMs on three preference benchmarks. The code base is available here.",
+      "authors": [
+        "Qisai Liu",
+        "Zhanhong Jiang",
+        "Zahid Hasan",
+        "Soumik Sarkar"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T15:10:52Z",
+      "updated": "2026-11-07T15:10:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10785v1",
+      "abs_url": "https://arxiv.org/abs/2611.10785",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10785",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10771",
+      "title": "WorldFoundry: Towards Unified Infrastructure for World Intelligence",
+      "abstract": "Visual generative models increasingly blur the line between synthesizing observations and simulating environments. Yet visual plausibility alone does not constitute successful world modeling: compelling outputs may lack persistent state, physical dynamics, or causally consistent responses to interactions. We define a generative world model as a predictive dynamical system that maintains a persistent, history-conditioned representation of an environment, updates that representation in response to actions or interventions, and generates temporally coherent trajectories that reflect outcomes under observed and counterfactual interventions. From this definition, we derive an intelligence-oriented framework spanning perceptual grounding, persistent state modeling, controllable transformation, dynamics-aware prediction, and closed-loop interaction. We present WorldFoundry, open-source infrastructure for reproducible inference and evaluation across video, 3D and 4D, embodied action, and interactive world systems. WorldFoundry unifies model and benchmark discovery, runtime and asset preparation, execution orchestration, artifact management, and interactive visualization, while modality-specific adapters preserve native inputs, execution semantics, output representations, and evaluation protocols. Explicit manifests, durable artifact contracts, and evidence-aware scorecards separate execution readiness from evaluative claims, making each claim traceable to its supporting artifacts. The catalog contains 270 model entries, 74 benchmarks, and 62 registered metric entries, with readiness and execution evidence recorded separately. WorldFoundry enables reproducible comparison of persistent, controllable dynamics across heterogeneous systems, advancing the field from perceptual synthesis toward measurable world intelligence.",
+      "authors": [
+        "Juanxi Tian",
+        "Jiadong Hou",
+        "Baiang Li",
+        "Xin Lin",
+        "Zhengbo Jiao",
+        "Weijia Zhang",
+        "Yeying Jin",
+        "Truong Nguyen",
+        "Haitian Zheng",
+        "Zhifei Zhang",
+        "Jianfei Yang",
+        "Ming-Hsuan Yang",
+        "Felix Heide",
+        "Wei Xiong",
+        "Enze Xie",
+        "Wanhua Li"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T14:59:22Z",
+      "updated": "2026-11-07T14:59:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10771v1",
+      "abs_url": "https://arxiv.org/abs/2611.10771",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10771",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10768",
+      "title": "BlenderFORGE: Framework for Optimizing Reactive 3D-Graphics Editing Ability of MLLMs",
+      "abstract": "Multimodal Large Language Models (MLLMs) have shown promise as interactive agents, yet precise, programmatic 3D graphics editing remains difficult to train because existing systems largely rely on closed-source model APIs and lack deterministic, state-verifiable execution environments. We present BlenderFORGE, a trainable data-environment-optimization framework for open-weight MLLM agents that edit explicit Blender scenes through Blender Python (bpy) code generation. BlenderFORGE targets four fundamental state-verifiable editing task families: object placement, shape-key editing, lighting adjustment, and material modification. It integrates three components: (1) a scalable perturbation-based data generation pipeline built from curated assets and large-scale 3D scene repositories; (2) an isolated Blender Sandbox for deterministic code execution, structured state export, and closed-loop reward computation; and (3) a two-stage training pipeline that uses offline teacher trajectories for cold-start Supervised Fine-Tuning (SFT) and sandbox-computed rewards for multi-turn tool-agentic Reinforcement Learning (AgentLoop-RL). Experiments across the four task families show that the resulting open-weight Qwen3-VL-8B and Qwen3.5-9B BlenderFORGE agents substantially improve over their base models and achieve competitive performance with several zero-shot proprietary MLLM baselines on selected metrics. Additional cross-benchmark evaluations and camera-reframing experiments provide evidence of transfer beyond the original training setting.",
+      "authors": [
+        "Zilin Guo",
+        "Tianrui Zhang",
+        "Yi Rong",
+        "Yichen Liu",
+        "Yuxin Guo",
+        "Jingcheng Ni",
+        "Lewei Lu",
+        "Zehuan Wu",
+        "Dan Xu"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-07T14:56:41Z",
+      "updated": "2026-11-07T14:56:41Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10768v1",
+      "abs_url": "https://arxiv.org/abs/2611.10768",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10768",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10750",
+      "title": "AERO: Adaptive Ensemble-Disagreement Routing for Oracle Feedback in Sample-Efficient Online RLHF",
+      "abstract": "Aligning Large Language Models (LLMs) with human preferences via Reinforcement Learning from Human Feedback (RLHF) has driven substantial improvements across a wide range of tasks, but the cost of acquiring preference labels remains the dominant bottleneck in the alignment pipeline. While many recent alignment methods improve sample efficiency through active exploration over candidate responses, they typically query the oracle uniformly across contexts, even for contexts where the learned reward estimates are already reliable enough to provide synthetic labels. We propose Adaptive Ensemble-disagreement Routing for Oracle feedback (AERO), a fully online RLHF algorithm built on a Dyna-style model-based RL architecture, in which an ensemble-based Epistemic Reward Model (ERM) serves both as a reward posterior for exploration and as a learned preference-feedback model for synthetic labeling. AERO uses ensemble vote entropy, a Query-by-Committee disagreement measure, combined with an adaptive thresholding mechanism to decide which contexts require oracle feedback and which can instead receive ERM-based synthetic preference labels, concentrating expensive labels where they are most informative. Empirical results across different model families and scales show that AERO achieves highly competitive alignment performance while reducing the required oracle-query budget compared to online DPO and strong active-exploration baselines.",
+      "authors": [
+        "Shrey Singhal",
+        "Nannan Huang",
+        "Haytham M. Fayek"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-07T14:12:05Z",
+      "updated": "2026-11-07T14:12:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10750v1",
+      "abs_url": "https://arxiv.org/abs/2611.10750",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10750",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10734",
+      "title": "Tiny Evidence Region Localization with Selective Contrastive On-Policy Self-Distillation",
+      "abstract": "Multimodal large language models have made progress in general visual tasks. However, limitations remain in fine-grained visual tasks requiring evidence from minute image regions. Existing methods primarily train models using evidence-related regions while overlooking the influence of extensive background regions, resulting in a limited ability to resist interference from irrelevant regions. We propose selective positive-negative on-policy self-distillation (SPN-OPSD), which considers both evidence and background regions. Supervision from both views improves the model's ability to resist interference from irrelevant regions. Furthermore, selective token-level distillation provides more informative supervision, improving the model's ability to attend to evidence regions in Fine-Grained Visual Tasks. On Qwen3.5-2B, SPN-OPSD improves accuracy on V* Bench, ZoomBench, and MME-RealWorld-Lite from 76.44%, 45.92%, and 57.43% to 84.82%, 54.56%, and 59.56%, respectively. Similar gains are also observed on Qwen3.5-0.8B.",
+      "authors": [
+        "Yujuan Pang",
+        "Wenhao Xu",
+        "Yinglei Teng"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T13:45:52Z",
+      "updated": "2026-11-07T13:45:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10734v1",
+      "abs_url": "https://arxiv.org/abs/2611.10734",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10734",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10699",
+      "title": "PLS-GS: Probabilistic Lidar Scaffolds for Compact, Surface-Aligned Gaussian Splatting",
+      "abstract": "While 3D Gaussian Splatting (3DGS) is typically optimized from images only, many robotics and mapping applications provide both camera and high-definition LiDAR data, combining rich visual appearance with accurate geometric structure. We introduce PLS-GS, a probabilistic LiDAR scaffold for Gaussian Splatting that exploits this complementary sensing setting to construct a compact 3DGS representation aligned to the measured surface. PLS-GS fits a Hierarchical Gaussian Mixture Model jointly over position and color, yielding a continuous and adaptive scaffold that eliminates the need for discrete scene partitioning such as voxel grids or octrees. The fitted mixture then guides the renderable 3DGS Gaussians: each rendering Gaussian is associated with a GMM component and constrained in the local surface frame induced by that component's covariance. A Mahalanobis support loss bounds the deviation of the rendering Gaussians from the corresponding LiDAR-derived surface. Across five large outdoor scenes, PLS-GS places primitives markedly closer to the LiDAR measurements than both image- and LiDAR-initialized baselines, while employing substantially fewer primitives, yielding a considerably more compact model and faster rendering. At matched capacity, PLS-GS places primitives closer to the LiDAR measurements, with comparable rendering quality. Code is available at https://github.com/k-harikumar/PLS-GS.",
+      "authors": [
+        "Krishnan Harikumar",
+        "Alejandro Fontan",
+        "Thierry Peynot",
+        "Emili Hernández",
+        "Niko Sünderhauf"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.RO"
+      ],
+      "published": "2026-11-07T12:33:13Z",
+      "updated": "2026-11-07T12:33:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10699v1",
+      "abs_url": "https://arxiv.org/abs/2611.10699",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10699",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10690",
+      "title": "JoVox: Joint Hierarchical Flow Matching for Lightweight Voxel Generation",
+      "abstract": "Generating high-fidelity voxels while keeping their lightweight nature remains an open problem in computer vision. Current generators are either high-fidelity but computationally heavy, or lightweight but of lower fidelity. Hierarchical methods keep the lightweight nature of voxels. However, their coarse levels, which decide where all finer cells can appear, are generated with the least information about the shape and are never revisited, so they are often plausible but wrong. Our key insight is to let finer cells take part in deciding coarse cells. To this end, we propose JoVox, a discrete flow matching framework that learns the joint distribution of all levels of the voxel hierarchy, instead of a separate distribution for each level, so that coarse cells can be predicted with finer cells already generated nearby. Within this framework, we further introduce a two-level prediction, which outputs the cells two levels finer at once instead of one level finer, halving the number of levels that the network processes and yielding voxels of higher fidelity. We also introduce an unmasking strategy that revisits early decisions once finer cells are generated and corrects inconsistencies in masked diffusion models. Our framework outperforms the baselines on both unconditional and image-conditioned voxel generation. Compared with the current state-of-the-art TRELLIS.2, we achieve 8x higher training throughput, 1/15 of the FLOPs in a forward pass, train on 4 vs. 32 GPUs, and obtain higher quality with an 11% lower Chamfer distance.",
+      "authors": [
+        "Xiangjun Tang",
+        "Jianqi Chen",
+        "Peter Wonka"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.GT"
+      ],
+      "published": "2026-11-07T12:21:25Z",
+      "updated": "2026-11-07T12:21:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10690v1",
+      "abs_url": "https://arxiv.org/abs/2611.10690",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10690",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10677",
+      "title": "Safe Offline Reinforcement Learning using Behavior Regularisation and Latent Feasibility Guidance",
+      "abstract": "Safe offline reinforcement learning (RL) seeks to learn policies that maximize return while satisfying safety constraints, using a static dataset. To characterize state-wise safety, reachability analysis identifies the feasible region, defined as the set of states from which constraints can be satisfied at every future step. Policies are commonly extracted from learned value functions with advantage-weighted regression (AWR). However, AWR relies on exponentiated weights that amplify value estimation errors, whereas behavior-regularized policy gradient methods directly utilize the action gradient of the value function and often make more effective use of learned critics. We propose Feasibility-Optimized Conditional Actor Learning (FOCAL), a method that incorporates behavior-regularized policy gradients into a conditional variational autoencoder (CVAE) actor. FOCAL optimizes this policy using a first-order objective partitioned by feasibility, updating the actor to increase return on transitions estimated to be feasible and to reduce constraint violations on transitions estimated to be infeasible. During inference, FOCAL dynamically adjusts the scale of the latent prior according to the estimated feasibility of the state to adjust the conservatism of action sampling. Theoretically, we show that for AWR, the policy update variance depends exponentially on the advantage error, whereas for FOCAL it scales linearly with the variance of the value estimation error. Across the DSRL benchmark, FOCAL satisfies the constraints on all evaluated tasks while achieving competitive or higher returns compared to baselines.",
+      "authors": [
+        "Mahesh Keswani",
+        "Parth Bhardwaj",
+        "Ankur Kumar",
+        "Raunak P. Bhattacharyya"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-07T11:48:54Z",
+      "updated": "2026-11-07T11:48:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10677v1",
+      "abs_url": "https://arxiv.org/abs/2611.10677",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10677",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10672",
+      "title": "Heterogeneous Asymmetric Contrastive Distillation",
+      "abstract": "Knowledge distillation (KD) between architectural families, e.g., from a Transformer teacher to a CNN student, is difficult because the two networks learn different representations. Logits share a label space, but heterogeneous teachers differ in logit offset, scale, and sharpness, and their non-target classes are less semantically organized. Conventional logit distillation matches these values sample by sample, asking the student to imitate how another architecture expresses its predictions. We argue that a heterogeneous teacher should pass on the relational structure of its predictions, i.e., how it arranges samples relative to one another, and propose Heterogeneous Asymmetric Contrastive Distillation (HACD) to transfer this structure. HACD maps teacher and student logits to centered, temperature-softened probability directions on a shared unit hypersphere, which removes architecture-dependent offsets and lets the temperature control how sharply peaked outputs enter the representation while keeping informative non-target classes. Each student output must then identify its own teacher target within the batch. Because every teacher target also acts as a negative for the others, HACD computes the targets on a moderately augmented view and contrasts both a moderate and a strong student view against them. HACD adds no learnable parameters and needs one teacher pass per sample. It achieves the best or second-best accuracy on 11 of 12 heterogeneous pairs on CIFAR-100, without ground-truth labels, and on 14 of 15 pairs on ImageNet-1K, improving over the reported vanilla KD results by 8.82 and 1.33 percentage points on average. Checkpoints are available at https://github.com/BTAEYANG/HACD-Heterogeneous-Asymmetric-Contrastive-Distillation; the code will be released upon publication.",
+      "authors": [
+        "Qi Wang",
+        "Jinjia Zhou"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-07T11:37:53Z",
+      "updated": "2026-11-07T11:37:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10672v1",
+      "abs_url": "https://arxiv.org/abs/2611.10672",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10672",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10660",
+      "title": "Dynamics-Informed Action Learning for Goal-Conditioned Latent Planning",
+      "abstract": "Latent world models enable visual control by planning action sequences in compact representation spaces, but a gap remains between how latent dynamics are learned and how they are used for planning. First, teacher-forced training does not expose the dynamics model to the recursively predicted latent states encountered during planning. Second, sampling-based planners typically initialize action search from goal-agnostic proposals, without exploiting the action-conditioned dynamics learned by the world model. We introduce Dynamics-Informed Action Learning (DIAL) to bridge these two gaps. During training, rollout alignment exposes the forward model to its own autoregressive latent predictions, while multi-step inverse supervision trains a lightweight inverse dynamics head to infer actions from latent-state transitions. We further apply the inverse head to model-generated transitions with its parameters held fixed, encouraging predicted rollouts to retain action-relevant information. At test time, DIAL autoregressively couples the inverse and forward dynamics to construct a dynamics-informed action sequence toward the goal, which initializes the mean of the Cross-Entropy Method (CEM) proposal distribution. The subsequent CEM search then refines this initialization using the standard sampling and updating procedure. Experiments across four visual control benchmarks demonstrate that DIAL outperforms existing latent world models and planning baselines in both standard and long-horizon scenarios.",
+      "authors": [
+        "Yinuo Jiang",
+        "Guangzhi Wang",
+        "Yiran Wang",
+        "Junfu Pu",
+        "Cheng Cheng",
+        "Honghao Chen",
+        "Cheng Cheng",
+        "Ying Shan"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-11-07T11:21:30Z",
+      "updated": "2026-11-07T11:21:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10660v1",
+      "abs_url": "https://arxiv.org/abs/2611.10660",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10660",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10658",
+      "title": "The Delta Gap: Cellular World Models for Perturbation Response Prediction Are Far Harder Than Global Correlation Implies",
+      "abstract": "Cellular world models aim to predict how cells respond to genetic perturbations, analogous to world models in reinforcement learning. Perturbation response models are evaluated almost exclusively by global Pearson correlation between predicted and observed transcriptomes. We show this metric is dominated by thousands of non-responsive genes and severely inflates apparent performance. On the Replogle K562 screen (509 unseen perturbations, 5000 genes), GEARS achieves global Pearson 0.977, but its delta Pearson is only 0.076. A trivial baseline predicting mean training delta achieves 0.267, which is 3.5x better than GEARS. Our primary contribution is methodological: we identify and quantify this delta gap as a systematic evaluation artifact, and propose delta-space evaluation as the primary benchmark. We provide two post-hoc corrections (RWR on co-expression graphs and kNN matching) and show that 2.8x of the remaining gap lies in perturbation representation geometry, not decoder capacity. We further show the gap is partially addressable end-to-end: delta-aligned training (lambda = 3.0) raises delta Pearson to 0.179 on Replogle (2.35x over GEARS) and surpasses the trivial baseline on direction accuracy (0.680 vs 0.567) and gene recovery (1.52 vs 1.19); combined with kNN it reaches 0.217. An amplitude-calibration variant (eta = 0.3) further raises gene recovery to 2.16 while reaching 0.218. Critically, these representations transfer zero-shot across cell lines: from Replogle K562 to unseen Norman A549, the delta-aligned model reaches 0.328 on 741 shared genes, 4.7x a trivial baseline and 2.1x standard GEARS. This is the first systematic quantification of the delta gap, and the first diagnostic framework localizing the residual gap to perturbation representation geometry via an oracle upper bound.",
+      "authors": [
+        "Junhui Gao"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-11-07T11:14:09Z",
+      "updated": "2026-11-07T11:14:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10658v1",
+      "abs_url": "https://arxiv.org/abs/2611.10658",
+      "topics": [
+        "world-model",
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10658",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10638",
+      "title": "SLA-Aware Task Offloading in the IoT Edge-Cloud Continuum: Class-Weighted Deep Reinforcement Learning Against an Exact Optimum",
+      "abstract": "Deep reinforcement learning (RL) is often used to decide where Internet of Things (IoT) tasks with different latency limits run in the edge-cloud continuum, yet some methods give every missed task the same penalty and few compare their agents with an optimal policy. This benchmark study builds four offloading systems small enough to solve exactly by dynamic programming and measures reward and learner against the optimum. A bonus for a met limit makes each miss cost its penalty plus the bonus, which shifts the class weights of published per-class rewards. A class-blind penalty stays 65% to 118% above the optimal cost even with a perfect learner, while a corrected per-class penalty comes within 0.13% of the optimum. With a per-class reward, tuned proximal policy optimization (PPO) agents come within 9% to 11% of the optimum in the smallest system, and the corrected one beats a tuned reservation rule in 9 of 10 seeds. In larger systems the agents stay 41% to 76% above the optimum, and a tuned rule beats their mean. Training ten times longer does not close this gap, and a PPO-Lagrangian agent with reachable targets does no better than the per-class reward.",
+      "authors": [
+        "Shilpa Golla",
+        "Tharun Kumar Korine Palli",
+        "Urmila Bandaru"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "cs.NI"
+      ],
+      "published": "2026-11-07T10:26:34Z",
+      "updated": "2026-11-07T10:26:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10638v1",
+      "abs_url": "https://arxiv.org/abs/2611.10638",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10638",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10609",
+      "title": "Reason First, Retrieve What Matters: Hypothesis-Guided Keyframe Selection for Long Video Understanding",
+      "abstract": "Long video understanding requires models to identify and reason over sparse, temporally distributed evidence within limited frame budgets. Existing keyframe selection methods typically retrieve query-relevant frames from a densely sampled candidate set before inference. However, global image-text matching incurs unnecessary computation when a small set of uniformly sampled frames already provides sufficient evidence. Query relevance alone may also overlook evidence that distinguishes competing answers, while one-shot selection offers no opportunity to correct earlier selection errors. We propose HypoKFS, a training-free, plug-and-play framework that couples keyframe selection with iterative inference by multimodal large language models (MLLMs). HypoKFS first reasons over sparsely sampled frames to construct an initial hypothesis space. The resulting answer distribution determines whether additional frame selection is needed. When needed, the retained hypotheses guide the selection of discriminative frames, followed by renewed inference and hypothesis refinement. This iterative process directs additional visual computation toward unresolved hypotheses while avoiding unnecessary global frame matching. Experiments on Video-MME, LongVideoBench, and MLVU demonstrate consistent improvements across multiple MLLM backbones. HypoKFS improves accuracy by up to 6.7 percentage points and achieves 72.9% accuracy on Video-MME at only 1.3% of the reference frame-hypothesis matching cost.",
+      "authors": [
+        "Yisong Hu",
+        "Junbo Wang",
+        "Yuke Li",
+        "Jiangbin Zheng"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T09:25:40Z",
+      "updated": "2026-11-07T09:25:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10609v1",
+      "abs_url": "https://arxiv.org/abs/2611.10609",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10609",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10562",
+      "title": "ZARA: Zero-shot Animatable and Relightable 3D Avatar reconstruction from a single image",
+      "abstract": "Recent large human reconstruction models create remarkable animatable 3D avatars from a single image, but their appearance remains entangled with the illumination and cannot be relighted. In contrast, existing 3D relightable-avatar reconstruction methods typically require person-specific optimization. We present ZARA, a zero-shot feed-forward framework that reconstructs an animatable 3D Gaussian avatar together with its intrinsic attributes from a single image. ZARA couples a pretrained large-scale human reconstruction model with a Material Transformer to inherit geometry priors while learning material-aware Gaussian representations. To preserve localized details, we introduce Gaussian-aligned material feature fusion strategy, which injects multi-scale material features onto individual Gaussians and combines them with geometry tokens. As most human-avatar datasets lack ground-truth material maps, we use pseudo-material labels as conditioning inputs and supervision targets during training. We further introduce MatFace regularization to preserve facial structure and color in albedo prediction under unreliable facial pseudo-material supervision. Extensive experiments demonstrate that ZARA reconstructs animatable and relightable humans within tens of seconds without person-specific optimization or post-processing, outperforming existing baselines in both relighting quality and materials generalization ability. As the ability of recovering the physically-based-rendering attributes of the human, ZARA also enables direct material editing of the avatar's appearance.",
+      "authors": [
+        "Yixiao Chen",
+        "Dongdong Weng",
+        "Chengfeng Zhao",
+        "Tao Gong",
+        "Zhihe Zhao",
+        "Zhe Zhu",
+        "Yue Liu",
+        "Yuan Liu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-07T08:05:16Z",
+      "updated": "2026-11-07T08:05:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10562v1",
+      "abs_url": "https://arxiv.org/abs/2611.10562",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10562",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10553",
+      "title": "Meta-Reinforcement Learning with Zero-Shot Reinforcement Learning",
+      "abstract": "Meta-reinforcement learning (meta-RL) trains agents to adapt to novel tasks from test-time experience, but requires diverse training environments and reward functions. While environments are becoming cheaper to generate, it remains difficult to anticipate every objective an agent may be asked to pursue at test time. Behavior Foundation Models (BFMs) learn policies from reward-free data and support zero-shot RL (ZSRL): adaptation to new objectives at test time using a large reward-labeled dataset. Recent work has shown that BFM task inference can instead be performed online without prior task-specific data. We note that this capability positions BFMs and meta-RL as alternative approaches for online adaptation to new reward functions in a fixed environment. We then ask whether we can extend BFMs to compete with meta-RL more broadly, including in novel environments, and identify four challenges: environment identification, online data collection, test-time exploration, and learning from mixed reward supervision. We study each individually, then propose MetaBFM, a hybrid method that addresses all four. During training, it combines supervised reward-following with unsupervised learning; at test time, it can interpolate between exploration, exploitation, and ZSRL-style reward inference. We demonstrate that MetaBFM can recover the in-distribution performance of supervised meta-RL while generalizing to reward functions outside the training set. Our work suggests that BFMs and meta-RL are complementary research directions whose combined strengths allow adaptive agents to learn more diverse behaviors from a fixed set of supervised objectives.",
+      "authors": [
+        "Jake Grigsby",
+        "Siddhant Agarwal",
+        "Yu Lei",
+        "Leonidas Varveropoulos",
+        "Yuke Zhu"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-07T07:43:39Z",
+      "updated": "2026-11-07T07:43:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10553v1",
+      "abs_url": "https://arxiv.org/abs/2611.10553",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10553",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10552",
+      "title": "Seeing Isn't Enough: Unlocking Visual Reasoning by Bridging the Reasoning-Access Gap with TIGER",
+      "abstract": "Multimodal Large Language Models (MLLMs) inherit strong textual reasoning capabilities from their language backbones and text pretraining, but often fail to apply the same level of competency to visual inputs. We show that this degradation cannot be attributed to only perception failures, by evaluating models on semantically-equivalent text and rendered-text image inputs: models can accurately read text in the images and recover near-text performance when provided their own transcriptions, but just cannot reason well on the images directly. We characterize this discrepancy as a modality reasoning-access gap, where models fail to route perceived visual content into existing reasoning machinery accessible with text. To bridge this, we propose TIGER (Text-to-Image Gap-targeted training for Enhanced Reasoning), which first mines synthetic modality counterfactuals where a model succeeds on a text problem but fails when provided the corresponding rendered image, and post-trains the model on the image input via Group Relative Policy Optimization (GRPO), along with SFT and DPO variants. Importantly, although trained exclusively on synthetic rendered-text images with no multimodal annotations, TIGER results in model performance improvements across diverse real-world visual benchmarks including geometric diagrams (MathVerse), multi-disciplinary sciences (EMMA, MMMU), complex charts (ChartQAPro), and embodied spatial reasoning (RoboSpatial-Home). TIGER also complements existing state-of-the-art RLVR visual reasoning methods, yielding further performance gains. Analysis involving reasoning-subspace activation and activation patching provide support indicating that TIGER helps to align visual-to-reasoning pathways toward text reasoning states. Our implementation is available at https://github.com/minhngh/Tiger.",
+      "authors": [
+        "Gregory Kang Ruey Lau",
+        "Minh Huynh Nguyen",
+        "Bryan Kian Hsiang Low"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-11-07T07:41:50Z",
+      "updated": "2026-11-07T07:41:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10552v1",
+      "abs_url": "https://arxiv.org/abs/2611.10552",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10552",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10523",
+      "title": "Action Transfer Across Character Body Plans in Latent-Action World Models: An Empirical Study of Animated Characters",
+      "abstract": "Latent-action world models learn actions from video without labels, and recent methods aim to share these actions across bodies. Transfer between 2D characters with different body structures remains underexplored. In this paper, we study whether an action learned from one character can make a character with a different body perform the same action. A cat, a blob and a human can all jump, but each moves its body in its own way. The usual transfer gain mixes body motion with screen movement and can assign a perfect score to a model that ignores its action. To address this, we introduce a transfer score that compares the correct action with wrong ones from the same source. We test five training objectives on a new synthetic benchmark of 2D cartoon characters with six body plans, the standard Sprites benchmark, and 431 selected animal and human animations from DeformingThings4D. With a fixed camera, a baseline that only copies the source's screen movement scores 0.71, as high as most learned models. In contrast, with a camera that follows the body, the best model reaches only 0.46 for an unseen animal family and 0.20 for humans. With this camera, a linear probe identifies the action class of unseen animal families with 66% to 86% balanced accuracy (chance 17%). The learned actions therefore retain information about which action is performed, but the correct action closes only part of the prediction error gap for a new character.",
+      "authors": [
+        "Amarnath R"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.LG"
+      ],
+      "published": "2026-11-07T06:47:48Z",
+      "updated": "2026-11-07T06:47:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10523v1",
+      "abs_url": "https://arxiv.org/abs/2611.10523",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10523",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10485",
+      "title": "Decoupling Direction and Magnitude: Language-Steered Flow Matching for Super-Resolution in the Dark",
+      "abstract": "Image super-resolution in the dark is fundamentally challenged by extreme spatial heterogeneity: severely underexposed and noisy regions demand aggressive generative enhancement to reconstruct missing details, while relatively well-exposed areas require conservative updates to prevent hallucinated textures. Standard diffusion and flow-matching models, however, rely on globally uniform integration trajectories, making them sub-optimal for such spatially varying degradations. In this paper, we propose DeLang-SR (Degradation-Language steered Super-Resolution), a one-step flow-matching framework that explicitly decouples the restoration direction and magnitude. Rather than treating low-light corruption as arbitrary latent features, DeLang-SR translates measurable physical statistics into structured degradation language, harnessing the semantic prior of pretrained text-to-image models. The degradation-language intent, complemented by image-specific visual tokens, steers the velocity field (direction) toward restoration-relevant manifolds. Simultaneously, a continuous spatial update-strength field acts as a locally varying Euler step-size field (magnitude), applying stronger integration steps in heavily degraded shadows while enforcing conservative updates in reliable regions. Experiments on paired and real dark images, together with ablations and diagnostic analyses, show that DeLang-SR provides an effective and interpretable one-step route to super-resolution in the dark. Code and pretrained models are available at https://github.com/moriyaya/DeLang-SR.",
+      "authors": [
+        "Jiaxin Gao",
+        "Ziyu Yue",
+        "Yaohua Liu",
+        "Danchen Cui",
+        "Zhihui Zhao",
+        "Zhixun Su"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-07T05:23:43Z",
+      "updated": "2026-11-07T05:23:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10485v1",
+      "abs_url": "https://arxiv.org/abs/2611.10485",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10485",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10457",
+      "title": "Represented but Not Used: Value-Policy Dissociation in LLM Agents",
+      "abstract": "Large language model (LLM) agents need to choose actions whose consequences unfold over multiple future steps, yet poor decisions do not reveal whether the model failed to represent those consequences or failed to use them. Mechanistic interpretability has studied internal representations of environment state and plans, but sequential decision making also requires evaluating how candidate actions change future outcomes. Reinforcement learning formalizes this as action value. We study this computation in Qwen2.5-7B-Instruct, Qwen2.5-32B-Instruct, and GPT-OSS-20B across a partially observed Grid environment and WebShop, a simulated web shopping environment. We find that the relative values of candidate actions are linearly decodable from intermediate hidden states, including at states where the policy prefers a worse action. We call this gap between value representation and policy choice value-policy dissociation. To investigate how represented value relates to action selection, we compare direct interventions along the value readout direction with Natural Value Transport (NVT), a transformation learned from hidden state changes that naturally result from differences in action value. While readout-direction interventions have limited and inconsistent effects, NVT more consistently influences action preferences, particularly at later layers. We also test a closed-loop controller that uses the value readout as a sensor and NVT as an actuator, observing improvements in task outcomes. These results suggest that LLM agents can represent useful prospective value without reliably translating it into policy choice.",
+      "authors": [
+        "Yuzhang Luo",
+        "Mohamed Aghzal",
+        "Liangming Pan",
+        "Ziyu Yao"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-07T04:17:31Z",
+      "updated": "2026-11-07T04:17:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10457v1",
+      "abs_url": "https://arxiv.org/abs/2611.10457",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10457",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10453",
+      "title": "BunshinRL: Splitting Live Agent Workspaces for Memory-Efficient Agentic RL",
+      "abstract": "Agentic reinforcement learning (RL) rollouts interleave model reasoning with tool calls in persistent workspaces. Scaling these rollouts incurs substantial memory costs for concurrent environments, while slow tool calls delay entire rollout batches. We present BunshinRL, an agentic RL rollout system that exploits shared environment state and recurring tool calls through three techniques: memory sharing across environments, tool-prefix caching, and speculative tool execution. These techniques build on BunshinFork, a novel live whole-workspace forking mechanism for containers. BunshinFork reconstructs process trees, shares memory copy-on-write, and preserves file, communication, and GUI state, enabling cached-state reuse and rollback after incorrect speculation. We implement BunshinRL and BunshinFork through Linux kernel module and CRIU modifications. BunshinRL reduces peak memory by up to 43%, total memory consumption by up to 51%, and end-to-end rollout latency by 23%.",
+      "authors": [
+        "Yutong Huang",
+        "Vikranth Srivatsa",
+        "Alex Asch",
+        "Yiying Zhang"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.OS"
+      ],
+      "published": "2026-11-07T04:05:17Z",
+      "updated": "2026-11-07T04:05:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10453v1",
+      "abs_url": "https://arxiv.org/abs/2611.10453",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10453",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10448",
+      "title": "ESTRA: Enabling Extreme Attention Sparsity for Training-Free Video Diffusion Acceleration",
+      "abstract": "Video diffusion transformers generate high-quality videos, but attention over long spatiotemporal sequences makes inference computationally expensive. Sparse attention reduces this cost by computing only a subset of query-key interactions exactly, and recent training-free methods further approximate the remaining interactions. These methods, however, degrade quickly at high sparsity, which limits the achievable speedup. We present ESTRA (Extreme Sparsity Through Refined Attention), a training-free acceleration method that preserves generation quality even at extreme sparsity. ESTRA concentrates exact attention computation on a small set of important key-value tokens and approximates the remaining contributions with cluster representatives. To identify these tokens efficiently, it groups similar queries and uses their representatives to score individual keys. A variance-based correction further refines the attention weights of the cluster representatives, improving the accuracy of the approximation. Experiments on Wan2.1-14B and HunyuanVideo-13B show that ESTRA establishes a new quality-efficiency frontier for training-free sparse attention, achieving $3.26\\times$ and $4.71\\times$ end-to-end speedups at 5% attention density while surpassing Sol-Attn and SVG-EAR in fidelity to dense generation and on most VBench dimensions. Even at 1% density, ESTRA remains more faithful to dense generation than Sol-Attn at 12.5%, while reaching up to $5.39\\times$ speedup.",
+      "authors": [
+        "Enhuai Liu",
+        "Yunke Wang",
+        "Yutong Wang",
+        "Changming Sun"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-07T03:58:44Z",
+      "updated": "2026-11-07T03:58:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10448v1",
+      "abs_url": "https://arxiv.org/abs/2611.10448",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10448",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10433",
+      "title": "HexIt: Learning Hexahedral Block Decomposition with Expert Iteration on Combinatorial Maps",
+      "abstract": "Decomposing a polyhedral solid into a few well-shaped hexahedral blocks is a long-standing open problem in mesh generation. We cast it as a sequential decision problem on a 3-dimensional generalised map: an agent splits edges, faces and volumes with three insert operations until every cell is a hexahedron and the mesh passes a quality threshold, and a policy that convolves over the map's involutions chooses each insert. A successful decomposition takes over a hundred decisions, and a uniformly random policy never finds one. We clone a policy from constructed decompositions and improve it by expert iteration. On held-out chamfered solids that share no boundary topology with the cloning data, the final policy solves an expected $94.4\\%$ in $20$ samples, and expert iteration raises the best-of-20 solve rate on large chamfered solids from $0.203$ to $0.355$. At matched compute, PPO, GRPO and VinePPO updates all make the cloned policy worse.",
+      "authors": [
+        "Arjun Narayanan",
+        "Per-Olof Persson"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CG"
+      ],
+      "published": "2026-11-07T03:25:23Z",
+      "updated": "2026-11-07T03:25:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10433v1",
+      "abs_url": "https://arxiv.org/abs/2611.10433",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10433",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10432",
+      "title": "D-REAL: Acceptance-Length Optimization with Unbiased Gradients for Speculative Decoding",
+      "abstract": "Speculative decoding efficiency depends on the number of consecutively accepted draft tokens, yet token-level training objectives do not directly optimize this quantity. We introduce D-REAL (Drafter Reinforcement of Expected Acceptance Length), a post-training method that directly optimizes expected acceptance length for a fixed decoding context. D-REAL weights position-wise draft-target distributional overlap by prefix survival probabilities along a draft-sampled prefix, faithfully capturing the sequential dependence of verification on earlier proposals. By accounting for the parameter dependence of the proposal distribution, we derive an unbiased gradient estimator for this single-round objective under stochastic verification. We evaluate D-REAL on DSpark and DFlash2 with Qwen3-8B as the target model across ten benchmarks. Starting from baselines whose mean acceptance length has plateaued, one epoch of D-REAL post-training consistently improves the benchmark-averaged mean acceptance length by up to 0.23 tokens across both architectures under greedy (T = 0.0) and stochastic (T = 1.0) sampling, translating into up to a 9.4% end-to-end serving throughput improvement.",
+      "authors": [
+        "Meng Wei",
+        "Yefei Chen",
+        "Antong Li",
+        "Yanan Gao",
+        "Xingliang Shi",
+        "Xin Gao",
+        "Zhiling Ye",
+        "Yun Yue",
+        "Chunxiao Guo",
+        "Peng Wei"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-07T03:19:43Z",
+      "updated": "2026-11-07T03:19:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10432v1",
+      "abs_url": "https://arxiv.org/abs/2611.10432",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10432",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10430",
+      "title": "Deploying Physically and Epistemically Compliant Agents by Distilling Belief-Space Task and Motion Planners",
+      "abstract": "In this work, we train agents to act under uncertainty according to specified, belief-dependent rules. Deep reinforcement learning (RL) can in theory train agents to follow rules if encoded into well-designed rewards, but in practice, RL fails to perfectly optimize these rewards, leading to ineffective or noncompliant agent behavior. Belief-space planners by construction produce behavior in line with developer specification, but require hand-programming online planners and belief-state estimators, adding significant engineering complexity at scale. We combine the two: we plan offline to generate a dataset of sample trajectories and then distill the plans into a policy that acts on raw observations. We propose two changes to planner distillation that address problems specific to history-based policies: Dual Averaging, a loss that combines per-timestep predictive loss and average loss on task changes, and $ρ$-Optimal Reinforcement, a feedback mechanism that reinforces the policy's own successful rollouts when these are near-optimal. We provide a sufficient condition under which static search problems with noiseless observation models is complete, and show that maximum-likelihood-observation planning implies this condition in static search with continuous beliefs. We create a challenging new domain, Scavenger, where an agent needs to gain information in order to succeed. We evaluate our distilled policy in two versions of Scavenger, one where information is provided visually and one where it is provided as a command in natural language. In either case, the learned policy attains a success rate above 90% in Scavenger, compared with at most 5% for RL. We also find that distilled planners transfer with greater than 60% success to following unseen and intentionally vague commands and greater than 75% success to following floorplans larger than those seen in training.",
+      "authors": [
+        "Phillip J. K. Christoffersen",
+        "Rachel Ma",
+        "Patrick Barragán",
+        "Dylan Hadfield-Menell"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T03:17:09Z",
+      "updated": "2026-11-07T03:17:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10430v1",
+      "abs_url": "https://arxiv.org/abs/2611.10430",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10430",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10404",
+      "title": "Coding or Cheating? An Investigation of Frontier Coding LLMs",
+      "abstract": "Frontier agentic LLMs are trained on verifiable rewards in reinforcement learning (RL) environments built from real software repositories. A passing test suite is treated as the reward for solving the task. We show that, on hard problems, frontier models often satisfy these rewards by obtaining the answer instead of deriving it, known as reward hacking. Prior reports document this behavior on public benchmarks. We test its persistence on unseen problems. In a hardened environment where the answer cannot leak, nearly every model we tested attempted to recover the answer, escalating through tiers of increasingly specialized exploitation: mining the repository history for the upstream fix, inspecting the git object store directly, and sweeping the filesystem for a possible newer copy of the source or hidden tests. These attempts were concentrated on the hardest problems, and the models differed in whether, how often, and how deeply they escalated. Our position is that this behavior is a learned shortcut, acquired in RL environments that leak the answer, not a sign of intelligence. We release agent traces for these models to support further study at https://huggingface.co/datasets/logitly-ai/reward-hacking-raw-v1.",
+      "authors": [
+        "Yuntao Gui"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T02:29:54Z",
+      "updated": "2026-11-07T02:29:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10404v1",
+      "abs_url": "https://arxiv.org/abs/2611.10404",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10404",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10393",
+      "title": "Finite Time Analysis of Risk-Sensitive RL via Noisy Power Iteration",
+      "abstract": "Estimating the principal eigenpair of a positive operator from stochastic evaluations gives rise to a noisy form of normalized power iteration: each step applies a sampled operator estimate and then renormalizes. We establish finite-time stochastic-approximation guarantees for this procedure, working in Hilbert's projective metric, which is well-suited to the multiplicative geometry of Perron--Frobenius eigenproblems. Our main application is risk-sensitive average-cost reinforcement learning (RL) with exponential utility. In this setting the Bellman equations are multiplicative, and value functions are characterized by nonlinear eigenvalue problems rather than additive fixed points. We cast both policy evaluation and control in this framework, obtaining risk-sensitive TD- and Q-learning algorithms that learn from a single Markovian trajectory. Under explicit positivity, mixing, and linear function approximation assumptions, we prove finite-time bounds on the recovered eigenvector and eigenvalue with $\\tilde{O}(ε^{-2})$ sample complexity up to problem-dependent constants. The results cover both tabular and linear function approximation regimes, and through the duality between exponential utility and KL-robust control yield finite-time guarantees for KL-robust average-cost RL as well.",
+      "authors": [
+        "Waqar Mirza",
+        "Yashaswini Murthy",
+        "Laixi Shi",
+        "Eric Mazumdar",
+        "Adam Wierman"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-07T01:59:33Z",
+      "updated": "2026-11-07T01:59:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10393v1",
+      "abs_url": "https://arxiv.org/abs/2611.10393",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10393",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10392",
+      "title": "Tiresias: Towards Language-Conditioned World Models",
+      "abstract": "World models enable planning through internal simulation, while natural language provides intuitive task specification. Yet, language-conditioned world modeling remains fragmented across domains with disparate action spaces, datasets, and evaluation protocols. We introduce LCWM, a shared task that maps an initial agent-view observation and a language instruction to an action sequence that fulfills the instruction. Its accompanying benchmark, LCWM-Bench, integrates 15 datasets across navigation, robotics, 3D gaming, and driving under a shared action interface and evaluation protocol, pairing 142,987 episodes with 428,961 instructions in three styles. We further propose Tiresias, an agent that plans via selective imagination: a language-conditioned diffusion policy generates candidate trajectories, a trajectory ranker shortlists them, and a video-pretrained world model imagines their visual consequences. A visual ranker evaluates these rollouts, complementing trajectory scores to select the final plan. Tiresias achieves competitive planning and imagination performance on LCWM-Bench. Ablations demonstrate the complementary benefits of trajectory ranking and visual verification, while experiments with alternative proposal methods show that the trained rankers remain effective beyond our diffusion policy. Together, LCWM-Bench and Tiresias provide a unified evaluation setting and an effective starting point for studying language-guided planning through world models.",
+      "authors": [
+        "Fengyi Wu",
+        "Yifei Dong",
+        "Yetong Sha",
+        "Lingdong Kong",
+        "Qiyu Hu",
+        "Bohan Xiong",
+        "Qi Dai",
+        "Alexander G. Hauptmann",
+        "Zhi-Qi Cheng"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-07T01:50:19Z",
+      "updated": "2026-11-07T01:50:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10392v1",
+      "abs_url": "https://arxiv.org/abs/2611.10392",
+      "topics": [
+        "world-model",
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10392",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10379",
+      "title": "RefineSplat: Reconstruction-Guided Object-Centric Gaussian Splatting for Open-Vocabulary Querying",
+      "abstract": "Open-vocabulary 3D scene understanding aims to segment and retrieve arbitrary objects in 3D scenes using natural language queries. Most existing methods typically follow a splat-then-segment paradigm, where 3D Gaussian Splatting is first reconstructed and then augmented with labels or language features for subsequent segmentation. However, this pipeline often suffers from view inconsistency, ambiguous object boundaries, and weak object-level correspondence, especially in complex static and dynamic scenes. Building on our prior Segment-then-Splat framework, we present RefineSplat, a reconstruction-guided extension that retains its object-centric paradigm: it first tracks objects in 2D and then reconstructs each object with a dedicated set of 3D Gaussians, preserving explicit object-Gaussian correspondence for unified open-vocabulary segmentation and retrieval. To improve robustness, we further close the loop between 2D tracking and 3D reconstruction. Since off-the-shelf video trackers can produce unreliable masks that propagate errors into object reconstruction, we introduce a reconstruction-guided feedback mechanism that refines object tracking using rendered masks and multi-view consistency. Moreover, instead of assigning each object a single language embedding, we propose a viewpoint-aware embedding assignment strategy, where each object maintains multiple view-clustered embeddings to capture view-dependent semantic cues. We also introduce Blender-OVS, a synthetic benchmark of static and dynamic sequences with exact object meshes and point clouds, enabling direct evaluation of extracted geometry. Experiments on static and dynamic benchmarks show improved rendered-view segmentation and lower object-level Chamfer distances, with competitive scene reconstruction quality.",
+      "authors": [
+        "Yiren Lu",
+        "Disheng Liu",
+        "Sreya Srinidhi",
+        "Yunlai Zhou",
+        "Yiran Qiao",
+        "Chaoda Song",
+        "Tuo Liang",
+        "Jing Ma",
+        "Huan Wang",
+        "Yu Yin"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-07T01:30:02Z",
+      "updated": "2026-11-07T01:30:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10379v1",
+      "abs_url": "https://arxiv.org/abs/2611.10379",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10379",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10369",
+      "title": "FEROM: Frontier Endogenous Reveal-Order Marginal Policy Optimization for Masked Diffusion LMs",
+      "abstract": "Masked diffusion language models generate text by iteratively unmasking positions, with practical samplers often selecting reveal positions from the model's own logits. The reveal order is therefore an endogenous latent variable of the rollout process with an enormous discrete latent space. Policy optimization objectives relying on pre-defined schedules or sampled trajectories introduce either bias or high variance. In this paper, we propose FEROM, Frontier Endogenous Reveal-Order Marginal Policy Optimization, which approximates policy gradients for the rollout-induced marginal response policy of masked diffusion LMs. FEROM derives a Rao-Blackwellized policy-gradient identity over latent reveal orders and expresses the resulting estimator as posterior edge occupancy on a reveal-state DAG. To make marginalization practical, we introduce Frontier Reveal Marginalization, a budgeted estimator that approximates this marginal edge structure by combining CDF-based computation of local probabilities of the endogenous reveal process with frontier expansion of high-mass partial states. Integrated into a GRPO-style objective, FEROM replaces single-path log-scores with a detached token-score surrogate over posterior-relevant reveal edges. Experiments on math and coding tasks show comparable or improved results over existing methods under matched scoring-state budgets. An offline proxy study further shows improved marginal-gradient approximation with increased scoring budgets.",
+      "authors": [
+        "Zian Su",
+        "Ziyang Huang",
+        "Kaiyuan Zhang",
+        "Xiangyu Zhang"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-11-07T01:07:18Z",
+      "updated": "2026-11-07T01:07:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10369v1",
+      "abs_url": "https://arxiv.org/abs/2611.10369",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10369",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.10360",
+      "title": "MambaLoc: Lightweight Indoor Localization Using Cross-Modal Knowledge Distillation",
+      "abstract": "Accurate indoor localization on resource-constrained edge devices remains challenging due to the tension between modeling fidelity and computational efficiency. Wi-Fi Channel State Information (CSI) enables low-cost deployment using existing Wi-Fi infrastructure but is heavily distorted by multipath propagation. Transformer-based solutions mitigate these effects but their quadratic complexity limits real-time edge deployment. Ultra-Wideband (UWB) provides geometrically precise ranging yet requires dedicated infrastructure. We present MambaLoc, a cross-modal distillation framework that improves the accuracy-efficiency balance in CSI-based localization. MambaLoc uses a linear-time Selective State Space Model (Mamba) as a lightweight CSI student, guided during training by a UWB-Transformer teacher. A Feature Alignment Module bridges the representational gap between heterogeneous RF modalities, allowing the CSI model to inherit UWB-derived geometric structure without UWB hardware at inference. A probabilistic Gaussian Mixture regression head models multi-modal spatial ambiguity from multipath effects, avoiding the physically implausible averaging of deterministic regression. Evaluations on a real-world dataset show MambaLoc achieves a median localization error of 0.230 m, reducing error by 22.2% over a standalone Mamba baseline, while requiring 65.1% fewer FLOPs and 58% lower inference latency than Transformer-based approaches.",
+      "authors": [
+        "Mohab Bahnassy",
+        "Omar Saqr",
+        "Hamada Rizk",
+        "Moustafa Youssef"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.NI"
+      ],
+      "published": "2026-11-07T00:49:08Z",
+      "updated": "2026-11-07T00:49:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.10360v1",
+      "abs_url": "https://arxiv.org/abs/2611.10360",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.10360",
+      "summary_zh": ""
+    }
+  ]
 }
