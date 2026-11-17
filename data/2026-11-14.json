@@ -1,6 +1,6 @@
 {
   "date": "2026-11-14",
-  "generated_at": "2026-11-16T08:23:38.911035+00:00",
+  "generated_at": "2026-11-17T09:38:02.831590+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,636 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2611.19649",
+      "title": "LoopFill: Pipelined Multi-Token Speculative Decoding for Looped Transformers",
+      "abstract": "Looped Transformers improve parameter efficiency by repeatedly applying the same Transformer layers. During autoregressive decoding, however, generating each token requires several sequential passes through these layers, leading to high decoding latency. Pipelined self-speculative methods use shallow-loop predictions to process tokens at different loops in the same batch, but each token must reach the drafting depth before the next can enter the pipeline. We introduce LoopFill, a training-free speculative decoding algorithm for looped LLM that combines multi-token suffix drafts with shallow-loop predictions in a single draft tree. Both drafters contribute to one tree, so a suffix lookup can immediately extend a shallow prediction and several future tokens can enter the pipeline together. The shared block computes the highest-scoring draft candidates at different loop depths in one batch, and full-depth verification preserves the model's autoregressive output distribution. Across seven benchmarks, LoopFill's average speedup over greedy autoregressive decoding is $5.85\\times$ on Ouro-2.6B and $5.13\\times$ on Huginn-3.5B. The speedups exceed those of LoopAhead, the strongest baseline, by \\(40\\%\\) on Ouro-2.6B and \\(25\\%\\) on Huginn-3.5B.",
+      "authors": [
+        "Siqi Zhu",
+        "Suozhi Huang",
+        "Yi Zhao",
+        "Jiaxuan You"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-14T22:35:41Z",
+      "updated": "2026-11-14T22:35:41Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19649v1",
+      "abs_url": "https://arxiv.org/abs/2611.19649",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19649",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19621",
+      "title": "Toward Planning Representations That Separate Task Structure from Visual Content",
+      "abstract": "Effective planning requires representations that preserve task-relevant geometry and object identity while ignoring visual variation that does not alter the task. Existing evaluations of visual generalization often change several factors simultaneously, making the source of a failure difficult to identify. We introduce a controlled evaluation of object-goal navigation (ObjectNav), the task of reaching an instance of a named object category, in procedurally generated ProcTHOR houses. Training and evaluation houses share floor plans, object locations, goals, and start states, while visual factors are changed individually or in combination. Across model-free reinforcement learning (RL), model-based RL, and agents using frozen pretrained visual representations, our results show that appearance changes impair navigation, but their effects differ sharply by factor. Surface material changes account for most of the average change in success, whereas clutter and lighting have little effect. The magnitude of a global image statistics shift does not reliably predict performance: changing only the goal object's appearance can substantially impair an end-to-end agent despite a small image-level change. We found that a model based agent that plans over frozen features from the pretrained DINOv2 image encoder achieves the highest success (0.83) under the full shift, but remains sensitive to surface appearance. Our experiments reveal an important requirement for planning representations: they must separate invariant spatial task structure from appearance.",
+      "authors": [
+        "Aarav Srivastava",
+        "Vishwas Sathish",
+        "Rajesh P. N. Rao"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-11-14T21:08:53Z",
+      "updated": "2026-11-14T21:08:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19621v1",
+      "abs_url": "https://arxiv.org/abs/2611.19621",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19621",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19609",
+      "title": "Before the Word: Name Information in Description-Derived States of Small Language Models, With and Without Naming Failure",
+      "abstract": "The tip-of-the-tongue (TOT) state, knowing an object but not its name, motivates this study as an analogy only. We ask whether small language models form a name-predictive state from a name-free description, and whether it differs when naming fails but description selection succeeds. In an internally pre-registered study (a frozen document, no external registry) of Qwen2-0.5B, SmolLM2-1.7B and Phi-3-mini with 200 items, we combine a similarity read-out, a Patchscopes-style read-out and activation patching with matched controls. H1 (name information in the state) was supported in all nine model-by-description-type combinations; the agreement rule was met by the similarity measure together with patching, while Patchscopes stayed near chance. Post-hoc robustness checks after internal review (logit lens, single-position patch, manipulation check) temper this reading: name information in middle layers is clearest under the multi-position patch and the similarity measure, and weak under single-position patching at 50% depth. H2' (description-paraphrase consistency of name-free states not lower in failure items) is mixed: the SmolLM2 deficit test is significant under the pre-registered specification but not robust; Phi-3 non-inferiority holds across margins and a word-overlap covariate, although its bootstrap interval includes zero; Qwen2-0.5B is inconclusive. A capacity explanation remains untested. We report vehicle-level signals only, not meaning.",
+      "authors": [
+        "Fernando Cardenas Piepereit"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-14T20:39:00Z",
+      "updated": "2026-11-14T20:39:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19609v1",
+      "abs_url": "https://arxiv.org/abs/2611.19609",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19609",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19587",
+      "title": "Explicit Regularization for Flow Matching",
+      "abstract": "Learning the underlying probability distribution from samples is a core problem in statistics and applied mathematics. Generative models based on diffusion and flow matching learn a velocity field whose flow transports a known distribution to the data distribution. They produce novel, realistic samples, although the empirical learning problem is ill posed near the data distribution. Its minimizer transports the samples onto the training data, and small perturbations of the data change the velocity field strongly near the end of the flow. The observed generalization is often attributed to implicit regularization by the network parameterization, early stopping of the training, and the time integration during sampling. Explicit regularization has advanced the theory and computation of many inverse problems and has recently been proposed to prevent memorization in generative models. With a regularizer on the magnitude of the velocity, however, the field approaches the memorizing velocity unless the regularization parameter grows to infinity fast enough, and it then stays bounded by a constant that is small only for large parameters. We show that penalizing the derivatives of order $k$ of the velocity renders the $D$-dimensional empirical problem well posed uniformly in time if $2k > D$ and the training points are in general position. Our experiments in one and two dimensions discretize the velocity with splines and use direct solvers for the regularized least-squares problems to exclude optimization error. Refining the discretization in space and time changes the error of the Hessian-regularized flows only marginally, whereas without the regularizer the error tends to that of memorization. These flows generalize, with errors comparable to or lower than those of well-tuned kernel density estimates.",
+      "authors": [
+        "Lars Ruthotto",
+        "Eran Treister"
+      ],
+      "categories": [
+        "cs.LG",
+        "math.NA"
+      ],
+      "published": "2026-11-14T19:32:21Z",
+      "updated": "2026-11-14T19:32:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19587v1",
+      "abs_url": "https://arxiv.org/abs/2611.19587",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19587",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19569",
+      "title": "Learning from Mutants: Teaching Small Language Models to Synthesise Loop Invariants",
+      "abstract": "Large language models (LLMs) have proven promising for synthesising loop invariants, a long-standing obstacle to automated program verification. Yet, frontier LLMs are typically accessible only through third-party APIs, hampering reproducibility and local deployment. Small language models (SLMs) sidestep these obstacles but require task-specific fine-tuning, for which high-quality training data is needed. We present a failure-driven data curation method for fine-tuning language models to synthesise loop invariants. Inspired by mutation testing, our approach applies semantic mutation operators to ground-truth invariants, producing semantic mutants that induce verification failure. Each mutant is paired with verifier feedback and its ground-truth counterpart, yielding training examples for feedback-guided invariant refinement. Whereas the vast space of mutants is a long-standing burden in mutation testing, it becomes an asset when generating training data, multiplying the examples obtainable from a fixed set of verified programs. We implement our approach for Dafny, augmenting an existing synthetic dataset of verified programs, and introduce a framework that iteratively refines candidate invariants using verifier feedback. On 472 DafnyBench programs, our best-performing fine-tuned Gemma-4-E4B configuration verifies 50.8% of programs zero-shot, compared to 8.1% for the base model, a 6.3$\\times$ improvement. Higher-order mutants prove more effective as training data than first-order mutants, and adding mutation-based examples to direct synthesis examples, in which invariants are removed rather than mutated, improves performance under iterative refinement. Our approach also transfers to Qwen3.5-4B, whose zero-shot verification rate rises from 9.3% to 53.6%.",
+      "authors": [
+        "Daragh King",
+        "Vasileios Koutavas"
+      ],
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "published": "2026-11-14T19:00:01Z",
+      "updated": "2026-11-14T19:00:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19569v1",
+      "abs_url": "https://arxiv.org/abs/2611.19569",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19569",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19566",
+      "title": "Bellman Residual Bracketing: Resolving the Sample Complexity of Discounted and Average-Reward RL",
+      "abstract": "We study the sample complexity of the empirical planning or plug-in approach for reinforcement learning (RL) with a generative model. We show the discounted plug-in approach finds an $\\varepsilon$-optimal policy with $O(SA (1-γ)^{-3} \\varepsilon^{-2} \\log(SA/δ))$ samples, where $S, A, γ, δ$ are the state and action sizes, discount factor, and failure probability, respectively. In the average-reward setting, we show that discounted plug-in and direct (undiscounted) plug-in achieve $O(SAH\\varepsilon^{-2}\\log(SA/δ))$ and $O(SAD\\varepsilon^{-2}\\log(SA/δ))$ complexities, respectively, where $H$ upper-bounds the optimal bias span and $D$ is the diameter. Combining with our lower bounds for nonadaptive generative models, these results resolve the minimax sample complexity of discounted RL and average-reward RL --- in both the span- and diameter-based classes --- up to constant factors. Our main technical contribution is a novel Bellman residual bracketing technique which improves the efficiency of prior absorbing-MDP-based concentration analyses.",
+      "authors": [
+        "Matthew Zurek",
+        "Yudong Chen"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.IT",
+        "math.OC",
+        "math.PR",
+        "stat.ML"
+      ],
+      "published": "2026-11-14T18:57:16Z",
+      "updated": "2026-11-14T18:57:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19566v1",
+      "abs_url": "https://arxiv.org/abs/2611.19566",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19566",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19472",
+      "title": "InvarOrd: Self-Supervised Ordinal Knowledge Distillation with Rank-Invariant Alignment for Label-Efficient Cross-Species Hyperspectral Fish Freshness Assessment",
+      "abstract": "Hyperspectral models of fish freshness rarely transfer between species, and labelling a new species is slow and destructive. Freshness is also ordinal, and standard domain alignment can erase that order. We present InvarOrd, which adapts to a new species from 30 labelled cubes (5 per rank) in three stages: self-supervised spectral pretraining on unlabelled source cubes, cross-species alignment by a shrinkage covariance discrepancy computed only within matched ranks, and ordinal distillation into a compact student. The alignment term is provably invariant to the rank means, so it gives no incentive to collapse the ordinal axis. On paired salmon and cod data (800 cubes each, 16 days), a source-trained teacher reaches 1.6 to 1.9 days mean absolute error (MAE) on the other species, with quadratic weighted kappa (QWK) below zero. The 423K-parameter student, 2.54 times smaller than its teacher, attains the lowest MAE (1.476 days) and highest within 1-day accuracy (56.1%) among 14 configurations, matching the best of six ImageNet-pretrained backbones (ConvNeXt-T, 1.503 days) at 66 times fewer parameters, 1.44ms per cube on a GPU and 5s re-adaptation. InvarOrd beats target-only training by 0.29 days (p = 0.031). Among alignment objectives, rank-invariant alignment retains the most ordinal structure (embedding rank correlation 0.183, QWK 0.112), whereas global discrepancy lowers the rank correlation to 0.049 and QWK to zero at only 0.014 days higher MAE.",
+      "authors": [
+        "Kazi Nabiul Alam",
+        "Omenuko Joseph Nwebonyi",
+        "Pooneh Bagheri Zadeh",
+        "Akbar Sheikh-Akbari"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-14T15:48:21Z",
+      "updated": "2026-11-14T15:48:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19472v1",
+      "abs_url": "https://arxiv.org/abs/2611.19472",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19472",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19466",
+      "title": "Successive Convexification in Learned World Models for Safe Offline Planning",
+      "abstract": "World models learned from offline data allow an agent to plan without further interaction with the environment, but the sampling-based planners used with them handle safety constraints only by scoring or rejecting sampled action sequences. We instead pose safe planning in the latent space of a learned world model as a successive convex program (SCP), in which a learned discrete-time control barrier function is imposed as a constraint at every step of the horizon. SCP requires smooth dynamics, so we build the networks from smoothed MaxMin activations and spectrally normalised layers, and bound the resulting linearisation error in terms of the Lipschitz bound and the smoothing width. As SCP is a local method, we start it from a sampled plan. On two Safety-Gymnasium navigation tasks with offline data, this planner has fewer violations than MPPI and CEM drawing 128 times as many samples at equal wall-clock time in our main comparison, though not significantly, and earns greater return at longer horizons, and is much safer than SCP without a sampled start. SCP converged more often on Lipschitz-bounded models. Unlike sampling, it also reports at each step whether its plan is a feasible, first-order optimal KKT point of the planning problem in the model, or that no feasible plan was found nearby. Our implementation is publicly available at https://github.com/youngers2006/scwm.",
+      "authors": [
+        "Samuel Younger"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.RO",
+        "eess.SY"
+      ],
+      "published": "2026-11-14T15:40:58Z",
+      "updated": "2026-11-14T15:40:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19466v1",
+      "abs_url": "https://arxiv.org/abs/2611.19466",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19466",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19461",
+      "title": "Program Distillation: Transferring LLM Capability from System 2 to System 0",
+      "abstract": "Recent studies leverage large language models (LLMs) to construct executable programs through environment interaction, feedback analysis, and code revision. However, prior work has mainly treated LLMs as optimizers, overlooking their ability to transfer knowledge across system levels. We propose Program Distillation (PD), a framework that formalizes the transfer of abilities from System 2 to System 0. During learning, the LLM provides task knowledge and draft strategies; at deployment, a student program executes the resulting policy. We show that this approach can improve performance while reducing inference time. We introduce PDBench, a benchmark comprising 27 discrete- and continuous-control tasks with fixed initial policies, and PDMetaHarness, a model-harness-independent meta-system for monitoring and guiding the learning process. The strongest model achieves a normalized mean score of 0.728, surpassing PPO (0.656) and Jev-like decision models (0.239), while running exclusively on CPUs and reducing inference costs. Our analysis shows that performance is largely driven by the first breakthrough during learning, and structural modifications have a slightly lower success rate than parameter modifications but typically yield larger gains. We further introduce style distillation, which enables interpretable stylistic control over the learning process. Overall, we present an analytical framework for PD and demonstrate its practical viability.",
+      "authors": [
+        "Pujun Zheng",
+        "Wanying Ren",
+        "Guoxiu He"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-14T15:33:27Z",
+      "updated": "2026-11-14T15:33:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19461v1",
+      "abs_url": "https://arxiv.org/abs/2611.19461",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19461",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19455",
+      "title": "Text Speeding Itself Up: Recency and Restraint in Session-Local Drafting",
+      "abstract": "Speculative decoding lets a cheap draft model propose tokens that a large language model verifies in a single forward pass. When the verifier keeps a KV cache, verification is cheap and drafting must be nearly free. Session-local drafters, which predict from the prompt and the text generated so far, meet that bar without training. We compare a recency-weighted, backing-off, confidence-gated session memory against prompt lookup decoding in its reference form, which copies from the earliest earlier match, and in a variant that copies from the most recent one, with paired per-prompt bootstrap intervals throughout. On general, medical, and legal text with a Mistral-7B verifier, recency accounts for the speed: most-recent lookup gains up to 0.09 in speedup over earliest-match lookup on 500-token generations, and session memory's weighting and backoff add nothing measurable on top, at 30 to 40 times the drafting cost. Energy tells a different story. On medical and legal text, unselective drafters are 14% faster than plain decoding yet use as much energy per token, while drafters that abstain on weak evidence save 3 to 4 joules per 100 tokens; a three-token minimum match length on prompt lookup matches the confidence-gated session memory. Outputs are token-identical to greedy decoding in 94% of generations, with every divergence at a numerical near-tie. Under a repetition penalty, long-generation speedups shrink from 1.4-1.7x to 1.1-1.2x, but recency still helps and the length floor is the only drafter that saves energy in both domains.",
+      "authors": [
+        "Antal van den Bosch"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-11-14T15:23:04Z",
+      "updated": "2026-11-14T15:23:04Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19455v1",
+      "abs_url": "https://arxiv.org/abs/2611.19455",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19455",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19388",
+      "title": "SARGO: Agreement-Gated Reinforcement and Suppression via On-Policy Self-Guidance for Visual Hallucination Mitigation",
+      "abstract": "Vision-language models remain susceptible to visual hallucinations, often mixing grounded information with unsupported claims in the same response. Response-level reinforcement learning assigns a shared advantage to all tokens in a response, causing negative updates to suppress correct information alongside unsupported claims. To reduce hallucination while preserving useful visual information, we introduce SARGO (Self-guided Advantage-Routed Grounding Optimization), a post-training framework for selective reinforcement and suppression through on-policy self-guidance. Direct and reciprocal weighting gives better-supported tokens stronger reinforcement on positive updates and weaker penalties on negative updates. Agreement between overall and hallucination-specific advantages selects when to apply this guidance. At the response level, a reference-calibrated reward couples factuality with the retention and expansion of grounded information, discouraging lower hallucination scores obtained through omission. Experiments on Qwen3-VL-4B, Qwen3-VL-8B, and Gemma3-4B demonstrate that SARGO outperforms the evaluated mitigation baselines across Obj-Hal, AMBER, THRONE, and SHR evaluations. SARGO achieves these gains while preserving useful visual information and general multimodal capabilities.",
+      "authors": [
+        "Jinyu Li",
+        "Zhiming Zhang",
+        "Hao Fang",
+        "Hongyao Yu",
+        "Bin Chen",
+        "Albert Ma",
+        "Shu-Tao Xia"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-14T12:53:00Z",
+      "updated": "2026-11-14T12:53:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19388v1",
+      "abs_url": "https://arxiv.org/abs/2611.19388",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19388",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19345",
+      "title": "Information Limits of Replay-Free Recurrent State Migration",
+      "abstract": "When a recurrent model is replaced, its old state may not determine what the new model would compute from the same history. We characterize the information that must be retained before the replacement is known. For a time-invariant affine linear family, the minimum continuous causal memory for order-$k$ local migration equals the reachable dimension of a lifted coefficient system minus the information in the anchor state. A controllable $d$-state model with scalar input needs at most $kd$ additional real coordinates, even when arbitrary matrix replacement directions are revealed only after streaming. A single rank-one direction can already require all $kd$. Conditional singular values and auxiliary-bit bounds distinguish this local information law from recovery at a fixed tolerance. We also give invariant-subspace and future-output constructions. Controlled experiments compare the resulting representations. In a small language model, equal-memory cubic interpolation improves mean state fidelity over third-order coefficients but provides no meaningful predictive gain. An analytic history basis preserves useful adaptation more economically in a coupled identification task. With repeated slow poles, eight history coordinates meet normalized output error $10^{-4}$ across five fitted seeds despite substantial full-state error. Splitting the poles raises the smallest tested successful width to 64.",
+      "authors": [
+        "Khizar Qureshi"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-11-14T11:34:00Z",
+      "updated": "2026-11-14T11:34:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19345v1",
+      "abs_url": "https://arxiv.org/abs/2611.19345",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19345",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19344",
+      "title": "Delay-Aware Reinforcement Learning for O-RAN Control under Stochastic Reward Feedback",
+      "abstract": "Reinforcement learning (RL) is increasingly employed for real-time control in Open Radio Access Networks (O-RANs). However, the asynchronous nature of O-RAN feedback introduces stochastic delays between actions and their observable rewards, leading to misaligned credit assignment and unstable training. This letter formulates the O-RAN control problem as a Markov decision process (MDP) with delayed and stochastic rewards, where the true reward corresponding to an action is received after an unknown delay. To address this, we propose a delay-aware deep RL framework that integrates a long short-term memory (LSTM)-based delay predictor and a temporal reward realignment module within an off-policy learning pipeline. Using empirical delay traces collected from the Open AI Cellular (OAIC) testbed, we demonstrate that the proposed framework achieves faster convergence and significantly reduces latency violations and packet drops compared to conventional RL methods that ignore feedback delay. The results confirm that reward-delay compensation is critical for reliable AI-driven O-RAN control.",
+      "authors": [
+        "Xingqi Wu",
+        "Junaid Farooq",
+        "Tao Li",
+        "Juntao Chen",
+        "Ying Wang"
+      ],
+      "categories": [
+        "cs.MA",
+        "cs.LG"
+      ],
+      "published": "2026-11-14T11:33:37Z",
+      "updated": "2026-11-14T11:33:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19344v1",
+      "abs_url": "https://arxiv.org/abs/2611.19344",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19344",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19329",
+      "title": "Gradient-Based Co-Design of Systems and Reinforcement Learning Policies with Differentiable Simulators",
+      "abstract": "Co-design is the problem of jointly optimizing the design of a system and the policy that operates it. Neither can be chosen independently: a system design is only as good as the policy trained for it, and the optimal policy changes with the design. When that policy is learned by reinforcement learning (RL), evaluating a candidate design requires a full policy training run, and the design is usually optimized by black-box search such as Bayesian optimization (BO) or evolution strategies (ES). These methods scale poorly with the design dimension and ignore the differentiable structure of modern simulators and, in particular, the sensitivity of the optimal policy with respect to the design. We instead derive a gradient-based co-design method, where the design gradient decomposes into a direct effect of changing the design at a fixed policy and an indirect effect through the design-dependent optimal policy. The indirect effect requires the sensitivity of the converged policy to the design, which we obtain by applying the implicit function theorem to the stationarity condition of the policy gradient. Based on this sensitivity, we develop a proof-of-concept co-design algorithm with stochastic value gradient (SVG)-style policy optimization, prove that it converges to an approximately stationary design, and demonstrate on a differentiable networked-system benchmark with high-dimensional design spaces that it consistently outperforms BO and ES.",
+      "authors": [
+        "Akhil S. Anand",
+        "Xun Shen",
+        "Marc Peter Deisenroth",
+        "Sebastien Gros"
+      ],
+      "categories": [
+        "cs.LG",
+        "eess.SY",
+        "math.OC"
+      ],
+      "published": "2026-11-14T10:51:14Z",
+      "updated": "2026-11-14T10:51:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19329v1",
+      "abs_url": "https://arxiv.org/abs/2611.19329",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19329",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19311",
+      "title": "Macro Control and Capability Evaluation of Black-Box World Models: A Two-Regime Framework for LLM-Agent Markets",
+      "abstract": "Large language model (LLM) agents can be organized into multi-agent markets that act as world models, mapping macro information to emergent macro dynamics while the evaluator observes only macro inputs and outputs. This paper separates a model's capability into two stages that a single aggregate score cannot separate: information simulation, from macro information to micro behavior, and macro emergence, from micro behavior to the macro outcome. We introduce a soft macro-control method that announces a public reference path day by day without touching individual decisions, orders, or matching, and a two-regime evaluation framework that measures both stages from macro observations alone. In the reference-only regime the symmetric true and flipped references share a common level R, which measures realization under the announced reference, while their paired gap B measures structural bias; in the information-injection regime external information dilutes the reference, so only the true-flipped gap Delta remains interpretable. On five single-index LLM-agent markets, announcing a target path shifts the realized path toward the announced target on both announced references under both information conditions. Relative to the no-reference path, the tracking score is higher by 0.306 and 0.415 without news and by 0.183 and 0.329 with news; within the stock/cash scan structural bias is lowest at 70/30 (B=0.042); realization peaks at a 3:7 technical share (R=0.894 versus 0.358 for technical-only); and Delta is 0.0341 with fundamental data and 0.0487 with news. Both stages use the same two observable scores, each read in the regime where it is interpretable.",
+      "authors": [
+        "Zhiyang Niu",
+        "Chuanjie Li",
+        "Huayuan Shen",
+        "Mengmeng Zhao",
+        "Jiajia Zhang"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-11-14T10:12:22Z",
+      "updated": "2026-11-14T10:12:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19311v1",
+      "abs_url": "https://arxiv.org/abs/2611.19311",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19311",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19273",
+      "title": "B-OPSD: On-Policy Self-Distillation with Self-Generated Problem Briefs",
+      "abstract": "On-Policy Self-Distillation (OPSD) has recently attracted interest because it provides dense teacher guidance without a separate, often larger teacher model. However, OPSD conditions its teacher on ground-truth solutions, which limits its use when such solutions are unavailable. We propose On-Policy Self-Distillation with Self-Generated Problem Briefs (B-OPSD). Using a prompt template, the initial model or a saved student checkpoint generates a problem brief from the question alone. The prompt asks for relevant principles, applicability conditions, and likely pitfalls, but not a final answer or a complete solution. A frozen teacher uses the brief as privileged context to guide the current student's on-policy rollouts through token-level distribution matching. B-OPSD uses no ground-truth solutions during training. Results on AIME 2024, AIME 2025, and HMMT 2025 show that both B-OPSD variants achieve higher average accuracy than OPSD at each of three Qwen3 model sizes. Code is available at https://github.com/ZevineXu/B-OPSD",
+      "authors": [
+        "Zhi Xu",
+        "Yinqi Wu",
+        "Feng Zhang",
+        "Xiaotong Zhang",
+        "Hong Yu",
+        "Han Liu"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-11-14T09:05:36Z",
+      "updated": "2026-11-14T09:05:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19273v1",
+      "abs_url": "https://arxiv.org/abs/2611.19273",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19273",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19247",
+      "title": "GameWM: Toward Next-Generation Video Games with Interaction-Centric World Models",
+      "abstract": "For more than half a century, video games have pursued better graphics, more natural interaction, and more engaging gameplay. Generative video models (VMs) now bear on all three. Neural networks already draw most of the pixels in shipped games, and recent world models let a lightweight game engine keep the world state while a VM turns the engine's coarse proxy video into final frames. These systems, however, treat the VM as a renderer that only restyles motion the engine has already authored, which leaves most of its generative capacity unused and limits the diversity a game can offer. We present GameWM, a design for next-generation games built on a clear division of labor. The GameWM-engine keeps what must be exact: rules, state, camera, and the layout of the world, which also spares the video model from having to remember it. The GameWM-VM generates what is expensive to author by hand: the look of the world and the detail of the player's interactions. One game mechanic can then be realized in many visually and physically distinct ways, while its outcome stays exactly as the engine computed it. To realize this division of labor, we build GameWM as a complete system: a data engine centered on interactions rather than exploration, an interface through which authored character sheets, scene art, and skill descriptions enter the model, and a model family from 5B to 33B parameters with a real-time causal variant for play. Together they give every player a fresh version of the same game: each player's own character, world, and skills turn the same engine mechanics into a new experience, while every event keeps the timing and outcome the GameWM-engine computed.",
+      "authors": [
+        "Bing He",
+        "Runze Wang",
+        "Fei Zha",
+        "Zhongyuan Wu",
+        "Ke Xu",
+        "Tao Zhuang",
+        "Yuxuan Xie",
+        "Zhongyuan Liu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-14T08:22:46Z",
+      "updated": "2026-11-14T08:22:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19247v1",
+      "abs_url": "https://arxiv.org/abs/2611.19247",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19247",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19215",
+      "title": "Mem2Fair: Online Fairness Control for Text-to-Video Generation via Fair Memory",
+      "abstract": "Text-to-video (T2V) generation models can produce systematically unfair demographic outcomes when prompts leave protected attributes unspecified. For example, prompts describing nurses without specifying gender may disproportionately generate videos depicting female nurses. Mitigating unfairness in T2V generation is particularly challenging: training-based methods that modify model internals require architecture-specific access and risk disrupting temporal consistency, while sampling-based methods often incur costly pre-deployment video generation. We present the first conditional online approachability formulation of attribute-level fairness for T2V generation. Building on this formulation, we introduce Mem2Fair, a plug-and-play framework that maintains concept-conditioned Fair Memory. Using generated videos at inference time as feedback, Mem2Fair selects prompt-level attribute interventions based on the deviation from each concept's prescribed fairness target, without training or separate pre-deployment sampling. Experiments demonstrate that Mem2Fair consistently improves fairness over the unmodified generator and existing baselines across multiple demographic attributes, prompt settings, and target distributions, while maintaining comparable prompt-video alignment and video quality. We further demonstrate its effectiveness on commercial black-box T2V models.",
+      "authors": [
+        "Pengyu Chen",
+        "Jiaming Zhang",
+        "Xiaohua Feng",
+        "Yuyuan Li",
+        "Chaochao Chen"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-14T07:14:23Z",
+      "updated": "2026-11-14T07:14:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19215v1",
+      "abs_url": "https://arxiv.org/abs/2611.19215",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19215",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19207",
+      "title": "On-policy distillation as a Backdoor Propagation Channel",
+      "abstract": "On-policy distillation (OPD) is emerging as an important paradigm for the post training of large language models, improving student models by leveraging supervision generated online by teacher models. However, whether this process also transfers latent security risks from teacher models to student models remains insufficiently studied. In this work, we reveal a new security risk in which an attacker first implants a conditional backdoor into the teacher model through supervised fine tuning (SFT), after which OPD can transfer the backdoor to the student model with only an extremely small proportion of trigger prompt exposure. More concerningly, we find that such backdoor transfer is substantially stronger under OPD than under conventional distillation methods, suggesting that OPD may provide an efficient channel for propagating backdoors across models. Our mechanistic analysis shows that the backdoor signal is primarily transmitted through anomalous differences in the conditional probabilities produced by the teacher model for triggered and clean inputs, and is gradually internalized into the internal representations of the student model during training. Furthermore, we investigate how to suppress such anomalous conditional probability signals at the source of distillation supervision and, based on this analysis, propose an OPD training method tailored to this conditional backdoor propagation setting to mitigate the risk of backdoor transfer induced by untrusted teacher supervision.",
+      "authors": [
+        "Zane Fu",
+        "Yanzhao Zheng",
+        "Ziting Qin",
+        "Qianshan Wei",
+        "Yi Yu",
+        "Gongli Xi",
+        "Jihuai Zhu",
+        "Baohua Dong",
+        "Hangcheng Zhu",
+        "Ruohui Huang",
+        "Gang Yu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-14T06:57:27Z",
+      "updated": "2026-11-14T06:57:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19207v1",
+      "abs_url": "https://arxiv.org/abs/2611.19207",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19207",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19200",
+      "title": "LogT: Logically Think with Images for Visual Search",
+      "abstract": "Thinking with images empowers vision-language models (VLMs) to use an external Zoom-in tool for fine-grained visual search. Recent works employ supervised fine-tuning (SFT) and reinforcement learning (RL) with tool-specific designs to enable such capabilities. However, achieving logical reasoning alongside accurate and efficient tool use remains a significant challenge. To address this, we shift the focus away from increasing RL complexity and instead identify SFT data quality as a key bottleneck. We then propose LogT (short for Logically Think with Images), a fully automated SFT data engine that explicitly enforces logic-chain-guided reasoning. LogT generates an SFT dataset featuring challenging, visually grounded questions and structured tool-use traces with human-like logic. We validate our approach by fine-tuning two base models, Qwen2.5-VL-7B and InternVL3.5-8B, on the dataset and evaluating them across seven benchmark test sets. We show that LogT-SFT based on Qwen2.5-VL-7B outperforms the state-of-the-art trained with both SFT and RL, despite using 3.1$\\times$ less data and $>120\\times$ fewer GPU hours. Furthermore, applying a simple RL recipe without tool-specific design on LogT-SFT yields a model that surpasses prior methods with complex RL setups by a substantial 9.59-point margin. In addition to strong performance gains, our model exhibits higher tool-use accuracy and efficiency, as well as more structured and logically consistent reasoning traces, directly validating the effectiveness of our approach.",
+      "authors": [
+        "Yanjun Fu",
+        "Quanzeng You",
+        "Jiadong Guo",
+        "Yujie Lu",
+        "Sai Charitha Akula",
+        "Haiping Wu",
+        "Miao Liu",
+        "Sanghamitra Dutta",
+        "Lu Yuan"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "published": "2026-11-14T06:47:45Z",
+      "updated": "2026-11-14T06:47:45Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19200v1",
+      "abs_url": "https://arxiv.org/abs/2611.19200",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19200",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19183",
+      "title": "WA-JEPA: Goal-Aware Predictive Feedback Action Refinement for a World-Action Model",
+      "abstract": "JEPA-based world models predict action consequences in latent space, but representative planning approaches rely on candidate-action search, requiring repeated evaluation of action sequences and incurring substantial online computational cost. Direct action generation avoids this search, yet how to leverage latent predictions to guide action generation given task goals remains a key challenge in translating learned physical dynamics into effective decisions. We introduce WA-JEPA, a world-action model that couples action generation, action-conditioned latent prediction, and goal-aware feedback. The model first generates an action proposal and predicts the resulting future scenes and proprioceptive states, then refines the proposal through two complementary feedback paths, using the task goal as a reference. Goal-discrepancy residual feedback (GDRF) uses differences between the latent representations of predicted scenes and the task goal to guide chunk-wise action refinement. Future-scene context feedback (FSCF) preserves fine-grained predicted scene representations to guide subsequent action refinement. Jointly learned from offline demonstrations, this process iteratively updates the same plan before execution, making future predictions directly participate in action generation without candidate-action search. We evaluate short-horizon goal reaching, long-horizon tasks, and full-task execution. The results show that goal-aware predictive feedback supports competitive task performance while maintaining a compact model and low online computational cost. Code is available at https://github.com/Dovisya/WA-JEPA.",
+      "authors": [
+        "Tao An",
+        "Weihang Liang",
+        "Tianqi Wang",
+        "Chuqing Cao",
+        "Wenming Tan",
+        "Kai Zhang",
+        "Haibo Lei",
+        "Tao Xie",
+        "Lijun Zhao",
+        "Ruifeng Li"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-14T06:06:24Z",
+      "updated": "2026-11-14T06:06:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19183v1",
+      "abs_url": "https://arxiv.org/abs/2611.19183",
+      "topics": [
+        "world-model",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19183",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19136",
+      "title": "Low-Latency LLM-Based Streaming Multi-Talker ASR with Verifiable Rewards",
+      "abstract": "LLM-based architectures offer strong generalization and instruction-following capabilities for streaming automatic speech recognition (ASR), but multi-talker use introduces coupled transcription, attribution, and latency challenges. Our wearable setting requires real-time transcription of a conversation between a near-field device wearer and a far-field partner. Because partial hypotheses are rendered on persistent sides of a dialogue UI, speaker roles cannot be permuted and each speaker tag must precede its turn. These sparse tags are weakly optimized by supervised fine-tuning (SFT), while committing to a leading tag can delay the text that follows. We therefore post-train a streaming LLM-based ASR model with reinforcement learning with verifiable rewards (RLVR), combining a fixed-role Speaker-Attributed WER (SA-WER) grader with a turn-level onset-delay reward. On an eight-direction multi-talker cohort, SA-WER RL reduces SA-WER from $20.51\\%$ for SFT to $13.14\\%$. Adding the delay objective reduces onset $p50$ by $65\\%$ (from $0.918\\,\\text{s}$ to $0.320\\,\\text{s}$) and $p90$ by $44\\%$ (from $1.389\\,\\text{s}$ to $0.780\\,\\text{s}$) relative to SA-WER-only RL, while achieving $12.70\\%$ SA-WER. These results demonstrate that fixed-role recognition quality and streaming responsiveness can be improved jointly.",
+      "authors": [
+        "Jing Pan",
+        "Ruizhi Li",
+        "Ju Lin",
+        "Jing Zheng",
+        "Florian Metze"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.SD"
+      ],
+      "published": "2026-11-14T03:56:26Z",
+      "updated": "2026-11-14T03:56:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19136v1",
+      "abs_url": "https://arxiv.org/abs/2611.19136",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19136",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19085",
+      "title": "DynaDFlash: Dynamic Feature Projection for Block Diffusion Speculators",
+      "abstract": "DFlash trains a parallel draft model on hidden features from its target model. Inspired by the previous work of DFlare that introduced per layer combinations of target hidden states, we test whether context dependent weighting of these states helps improve acceptance length of block diffusion speculators. We trained both a DFlash baseline for the Qwen 3 of block size 16, and a dynamic model that computes gates for each layer to affect the magnitude of hidden features before projection. While mean acceptance length between the dynamic model and the DFlash baseline didn't significantly differ, we notice that the dynamic model excels for drafting in the context of math. In an evaluation of 700 prompts from the MetaMathQA and Orca-Math datasets, the mean accepted length improves by 5%. We also found this lead to a 4.1% higher throughput for a subset of the same dataset in the context of speculative decoding.",
+      "authors": [
+        "Aadi Kulshrestha",
+        "Reese Chong"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-14T01:45:55Z",
+      "updated": "2026-11-14T01:45:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19085v1",
+      "abs_url": "https://arxiv.org/abs/2611.19085",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19085",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19078",
+      "title": "Assume/Guarantee Contracts for the Compositional Multi-Agent Reinforcement Learning of Heterogeneous Teams",
+      "abstract": "Multi-agent reinforcement learning (MARL) problems for heterogeneous teams require agents to collaborate to complete team tasks while making the best use of diverse agent capabilities. We introduce assume/guarantee contracts for heterogeneous multi-agent systems (AGC-MAS) and Iterative Heterogeneous Assignment for MARL (IHA-MARL). AGC-MAS contracts are compositional objects that encode the assumptions provided to, and the guarantees required of, each subtask contributing to the overall team task. We formulate contracts as tuples that specify a subtask, an automaton, timeout and success-probability requirements, and dispatch behavior. The automaton tracks an agent's high-level progress through the subtask associated with its contract and provides a natural mechanism for synchronization across contracts. Our abstraction enables robust interaction across heterogeneous low-level subtask implementations, allows heterogeneous agents to substitute for one another in satisfying contracts, and supports reuse of previously satisfied contracts in new team contexts. Having defined our theoretical framework, we develop a decomposition algorithm that breaks down a team task into a set of contracts. We then propose an iterative algorithm for task assignment and MARL that alternates between assigning contracts representing subtasks to individual agents, training the assigned agents to satisfy their contracts, and assessing their resulting capabilities to inform the next round of task assignments until the team's success probability meets the desired threshold. Our experimental results demonstrate the versatility of contracts in enabling agent substitution and contract reuse. Across three benchmarks with five seeds each, IHA-MARL achieves observed $100\\%$ final evaluation success. In CPU timing pilots, comparable baselines required approximately $7$--$11\\times$ more training-loop time.",
+      "authors": [
+        "Dominic Klukas",
+        "Cyrus Neary"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-14T01:27:53Z",
+      "updated": "2026-11-14T01:27:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19078v1",
+      "abs_url": "https://arxiv.org/abs/2611.19078",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19078",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19064",
+      "title": "Policy Optimization With Multiple Verifiers via Pareto Rankings",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) has become an important approach to improving the reasoning capabilities of large language models. In tasks such as code generation and instruction following, multiple verifiers evaluate whether a response satisfies different requirements. Their outcomes provide detailed feedback about partial success, yet this feedback is commonly aggregated into a scalar reward for policy optimization. Rewarding only complete success discards distinctions among partial solutions, while counts and weighted sums impose comparisons between responses that satisfy different subsets of requirements. We introduce Partial-Order Likelihood Policy Optimization (POLPO), which learns from the comparisons established by verification without first constructing an aggregate reward. Pareto dominance identifies responses that satisfy additional requirements without losing any already satisfied, while leaving responses with conflicting outcomes incomparable. POLPO extends the listwise likelihood underlying Direct Preference Optimization by maximizing the total probability of all complete rankings consistent with these partial orders. This objective provides supervision from verified improvements even before complete solutions are available, without requiring a prescribed ordering of incomparable responses. Experiments on code generation and instruction following demonstrate improved learning efficiency and higher rates of complete requirement satisfaction compared with scalar-reward training. These results support partial-order likelihood as an effective approach to learning from multiple verifiers.",
+      "authors": [
+        "Kai Yamashita",
+        "Shohei Taniguchi",
+        "Hiroki Furuta",
+        "Masahiro Suzuki",
+        "Yutaka Matsuo"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-14T01:15:30Z",
+      "updated": "2026-11-14T01:15:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19064v1",
+      "abs_url": "https://arxiv.org/abs/2611.19064",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19064",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.19059",
+      "title": "High-dimensional limit theorems for adaptive variants of SGD I: Ballistic limits",
+      "abstract": "We develop the high-dimensional effective dynamics for adaptive, momentum-based variants of Stochastic Gradient Descent (SGD). These effective dynamics are given by a Markov process. They key observation is that the non-Markovianity in the algorithm due to the exponential moving average and preconditioning can be treated using the method of averaging. Our approach applies to a broad class of algorithms including to Adaptive momentum estimation (ADAM), Momentum orthogonalized by Newton-Schultz (MUON), and its variants. It also applies to a broad class of learning tasks, such at tensor PCA, Gaussian projective models, teacher-student networks, and a multi-layer neural network trained on the XOR problem using a hybrid of MUON and ADAM as commonly done in practice. We demonstrate how to this technique can give precise, quantitative comparisons between algorithms. In particular, we find interesting phenomena, such as the cross-over phenomenon where online SGD has better generalization than ADAM early in training until the learning curves cross and ADAM dominates. Furthermore, we prove a version of the Edge of Stability phenomenon. In particular, we introduce an analogue of the infinity Laplacian that sharply characterizes the Edge of Stability.",
+      "authors": [
+        "Aukosh Jagannath",
+        "Varnan Sarangian"
+      ],
+      "categories": [
+        "stat.ML",
+        "cs.LG",
+        "math.PR",
+        "math.ST"
+      ],
+      "published": "2026-11-14T01:06:05Z",
+      "updated": "2026-11-14T01:06:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19059v1",
+      "abs_url": "https://arxiv.org/abs/2611.19059",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19059",
+      "summary_zh": ""
+    }
+  ]
 }

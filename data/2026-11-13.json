@@ -1,6 +1,6 @@
 {
   "date": "2026-11-13",
-  "generated_at": "2026-11-16T08:23:38.911412+00:00",
+  "generated_at": "2026-11-17T09:38:02.832606+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,195 @@
     }
   },
   "papers": [
+    {
+      "id": "2611.19019",
+      "title": "Averaged-Cost Control with Shared Feedback under Model Uncertainty",
+      "abstract": "This paper studies the shared-feedback design problem for finite-horizon averaged-cost control under model uncertainty represented by a joint law over the model parameter and initial state. One feedback map is shared across all realizations and uses only time and the current state as online inputs. We develop two methods: the nonlinear adjoint method combines forward closed-loop solves, backward adjoints, and joint-law policy gradients, while the linear moment method gives exact cost and gradient formulas for a homogeneous linear-quadratic design model by propagating conditional second moments. Numerical studies compare averaged and nominal designs for time-dependent neural feedback and static linear feedback in nonlinear Van der Pol and Stuart-Landau systems; the static gains are designed from oscillator linearizations and evaluated on the original nonlinear systems. Averaged design has lower cost in most comparisons.",
+      "authors": [
+        "Piernicola Bettiol",
+        "Daisuke Inoue",
+        "Matías Gómez-Aedo",
+        "Dante Kalise",
+        "Richard B. Vinter"
+      ],
+      "categories": [
+        "math.OC",
+        "cs.LG"
+      ],
+      "published": "2026-11-13T23:36:10Z",
+      "updated": "2026-11-13T23:36:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.19019v1",
+      "abs_url": "https://arxiv.org/abs/2611.19019",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.19019",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.18994",
+      "title": "Large language models as oncology world models",
+      "abstract": "Large language models (LLMs) can synthesize cancer patient cases, but their internal representation of oncology, or world model, has not been explored systematically. By only specifying tumor type, we show that LLMs tend to generate similar patients per cancer, with on average 81.0% to 93.2% of a cancer's patients sharing the most frequent value of each baseline feature. By systematically varying patient features in 12 clinical scenarios, we show that they follow biomarker and treatment logic in 29 of 36 model-scenario assessments, against 1 of 12 when previous treatment or frailty matters. Continuing real patient trajectories, an LLM predicted 89.9% 12-month survival, and 79.2% with similar patients as examples, against 72.2% observed. To represent these trajectories, we developed the Clinical State Space, a dynamic representation framework that we also applied to real patients. Despite the limits we show, improved world models may support digital twins, which our framework can evaluate.",
+      "authors": [
+        "Julien Vibert",
+        "Jakob Nikolas Kather"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-11-13T22:49:38Z",
+      "updated": "2026-11-13T22:49:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.18994v1",
+      "abs_url": "https://arxiv.org/abs/2611.18994",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18994",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.18979",
+      "title": "Probing Where Surprise Happens: Localized Violation-of-Expectation Evaluation of Video World Models",
+      "abstract": "Violation-of-expectation (VOE) benchmarks evaluate intuitive physics in video world models by testing whether physically impossible events produce greater prediction errors than matched possible events. However, conventional VOE evaluations aggregate prediction errors across space and time, making it unclear whether successful discrimination reflects model's understanding of physical violations at the locations and time where they occur. To address this limitation, we introduce localized VOE evaluation, a framework that measures prediction error differences between possible and impossible events within spatial regions and temporal intervals associated with physical violations. We compare global, temporally localized, and spatiotemporally localized evaluations of V-JEPA models pretrained on developmental egocentric videos or large-scale natural video datasets. Our results reveal that global and localized judgments can diverge in both directions: global aggregation can either obscure correct localized discrimination or produce apparent discrimination without corresponding localized evidence. During continued pretraining on developmental egocentric videos, agreement between global and localized judgments changes non-monotonically, while confidence in localized judgments increases despite modest improvements in accuracy. Together, these findings establish localized VOE evaluation as a complementary diagnostic for assessing intuitive physics in video world models and demonstrate that global prediction errors do not necessarily reflect the spatiotemporal evidence of physical violations.",
+      "authors": [
+        "Yanbin Xu",
+        "Ming bo Cai"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "eess.IV"
+      ],
+      "published": "2026-11-13T22:16:34Z",
+      "updated": "2026-11-13T22:16:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.18979v1",
+      "abs_url": "https://arxiv.org/abs/2611.18979",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18979",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.18963",
+      "title": "SpecRelay: Amortize or Avoid the Round Trip in Edge-Cloud Speculative Decoding",
+      "abstract": "Edge-cloud speculative decoding moves autoregressive drafting to an edge device while a larger cloud model verifies draft tokens in parallel, so that edge drafting and cloud verification overlap under a synchronous draft-verify schedule. Beyond low-latency local networks, however, the next verification request of that schedule can be sent only after the previous reply arrives, so every round still waits out a full round trip, and throughput falls as the network RTT grows. To recover this loss, we present SpecRelay, an edge-cloud LLM inference system that addresses this cost at two levels: it amortizes round trips when cloud verification is necessary and avoids them when local reasoning suffices. For cloud-bound queries, an asynchronous verification pipeline keeps fixed-budget draft trees in flight while earlier replies are still outstanding, and the cloud rejects stale requests before the target-model forward pass (the asynchronous schedule). At the query level, an RTT-conditioned router (the Latency-Aware Router) estimates quality and completion latency for three on-device modes (direct generation, Chain-of-Draft, and full reasoning) and cloud speculative decoding, selecting among them under a configurable accuracy-latency objective without adding latency during inference, since the router runs concurrently with the draft-model prefill. The asynchronous schedule alone improves decoding throughput by up to 50% over a reproduced synchronous baseline across multiple benchmarks. At matched target-model accuracy and 250 ms of added round-trip latency, the full system with the router delivers 1.95x and 1.55x the throughput of the same baseline on SPROUT and OlympiadBench, respectively, while sending only 47% and 39% of the queries to the cloud.",
+      "authors": [
+        "Jai Jain",
+        "Chihyo Ahn",
+        "Yong Liu",
+        "Charles Chen",
+        "Duc N. M Hoang",
+        "Ajay Kumar Jaiswal",
+        "Fatih Ilhan",
+        "Han-Byul Kim",
+        "Lauren Hannah",
+        "Richa Dixit",
+        "Minsik Cho",
+        "Yingyan Celine Lin",
+        "Hyesoon Kim"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-11-13T21:40:06Z",
+      "updated": "2026-11-13T21:40:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.18963v1",
+      "abs_url": "https://arxiv.org/abs/2611.18963",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18963",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.18916",
+      "title": "Simplify, Agree, Distill: Label-Free Self-Distillation with Stepping Stones",
+      "abstract": "Can a language model teach itself to reason without labels? On-policy self-distillation (OPSD) uses the model as its own teacher, but strengthens that teacher with a ground-truth solution. The natural label-free substitute, voting over the model's attempts, fails precisely on hard problems: attempts disagree, and their most common answer is often wrong. We propose STONE, a label-free alternative that moves agreement to easier related problems. The model writes these stepping stones, keeps those it solves consistently, and shows the teacher their worked solutions, with final answers removed; the student sees only the original problem. No step reads a label, and inference needs no extra context or model calls. Across five math benchmarks, the proposed method achieves the highest average accuracy for Qwen3-4B and Qwen3-8B in thinking mode. Without thinking mode, it gains 13.2 and 22.7 points, 2.5 and 2.7 times the gains of OPSD with ground-truth solutions.",
+      "authors": [
+        "Dingyang Chen",
+        "Jinfeng Xiao",
+        "Zhenyu Zhang",
+        "William Hu",
+        "Ziyu Wang",
+        "Yang Liu",
+        "Shirley Zhang",
+        "Yuan Ling",
+        "Xinyang Shen",
+        "Qi Zhang",
+        "Peijie Qiu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-11-13T20:19:20Z",
+      "updated": "2026-11-13T20:19:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.18916v1",
+      "abs_url": "https://arxiv.org/abs/2611.18916",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18916",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.18866",
+      "title": "Découpage: Directorial Audio-Visual Control for Long Multi-Shot Video Generation",
+      "abstract": "In cinematic storytelling, sound and visual transitions do not always coincide in lockstep: dialogue frequently bridges across cuts to reveal reactions or introduces new scenes via J- and L-cuts, while deliberate silences pace the scene. Existing audio-visual generative frameworks, however, lack explicit mechanisms to coordinate independent visual and acoustic timing over extended horizons. As narrative duration and shot complexity scale, these systems struggle to maintain long-range dialogue pacing, often hallucinating speech during intended silences or erroneously driving mouth movements on silent listeners. To enable fine-grained cinematic control, we present DECOUPAGE, a screenplay-driven framework for long-form, multi-shot, and multi-character joint audio-video generation. Rather than coupling modality boundaries by default, DECOUPAGE uncouples generation into independently bounded visual and acoustic tracks governed by persistent character identities. DECOUPAGE builds on a joint audio-video diffusion model with dual-schedule temporal cross-attention, incorporating a directorial Lip-sync mechanism that selectively decouples speech conditioning from visual facial dynamics during off-screen dialogue. On multi-shot conversational benchmarks, DECOUPAGE achieves precise control over shot transitions, audio timing, and visibility-aware lip synchronization, directing 15- to 60-second screenplay-driven audio-video generation with multimodal coherence.",
+      "authors": [
+        "Yifan Wang",
+        "Hao Ouyang",
+        "Qiuyu Wang",
+        "Yihao Meng",
+        "Wen Wang",
+        "Zeyue Tian",
+        "Yichong Lu",
+        "Hanlin Wang",
+        "Qingyan Bai",
+        "Zichen Liu",
+        "Yujun Shen",
+        "Qifeng Chen"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.SD"
+      ],
+      "published": "2026-11-13T19:13:17Z",
+      "updated": "2026-11-13T19:13:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.18866v1",
+      "abs_url": "https://arxiv.org/abs/2611.18866",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18866",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.18859",
+      "title": "Exstill: The Most Efficient Single-Chip Processor for the Next Token",
+      "abstract": "Generating a token with a language model requires a fixed amount of arithmetic, whose energy sets a floor beneath any hardware. For Qwen3-1.7B at a 16K-token context, gate-level measurements at 5 nm place this floor at 0.89 mJ per token, yet an NVIDIA B300 spends 391-1,120x that. The excess is the price of generality, software layers, programmable hardware and moving weights and key-value (KV) caches from external memory, and it widens with each process generation. We present a co-design approach that brings token generation close to this floor and then lowers the floor itself, optimizing silicon and model together in a gate-level search loop. Fixing one model architecture in the datapath, with weights still loadable, and holding weights and every conversation's KV cache on-die, a pre-silicon 5 nm design brings an unchanged Qwen3-1.7B token to 3.4x its floor. Co-designing the model with the circuits at fixed quality lowers the floor to 0.29 mJ and the token to 0.52 mJ, 1.8x the new floor and less than the baseline model's arithmetic alone, while on-die capacity grows from one user to twelve. Against a measured B300 serving the same twelve users, the design decodes each user's tokens 110x faster at 690x lower energy. To show that one fixed architecture can serve, as a co-processor, the latency-critical workloads around a frontier model, we introduce Polyglot-DC (1.7B and 4B, each with its own design), specialized for each job by distillation and task-specific training into its own weights. As a drafter it speeds single-user speculative decoding of large open models by up to 6.6x at the maximum reasoning effort. Its guard returns multilingual verdicts in a millisecond or less, within a point of the strongest open guard. Its agent and financial-reasoning models lead comparable open models on established benchmarks, with a reasoning turn falling from seconds to tens of milliseconds.",
+      "authors": [
+        "Valavan Manohararajah",
+        "Vithursan Thangarasa"
+      ],
+      "categories": [
+        "cs.AR",
+        "cs.LG"
+      ],
+      "published": "2026-11-13T19:10:17Z",
+      "updated": "2026-11-13T19:10:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.18859v1",
+      "abs_url": "https://arxiv.org/abs/2611.18859",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18859",
+      "summary_zh": ""
+    },
     {
       "id": "2611.18562",
       "title": "Training Reasoning Models in Simulation to Natively Use Real Robots",
@@ -86,8 +275,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18550",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.18549",
@@ -109,8 +297,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18549",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.18543",
@@ -133,8 +320,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18543",
-      "summary_zh": "这篇论文提出了一种名为 Imitation Bootstrapped Multi-Agent Reinforcement Learning (IBMARL) 的框架，旨在加速多智能体强化学习 (MARL) 的训练过程，尤其是在人类演示难以同时控制多个智能体的情况下。IBMARL 结合了 Round-Robin Behavior Cloning (R2BC) 来训练模仿策略，并在此基础上，让每个智能体同时接收来自模仿策略和强化学习策略的动作提议，由一个集中的评论家集成来选择最佳动作组合。为了优化强化学习策略，IBMARL 引入了一个门控模仿惩罚和一个软 Q 过滤的行为克隆损失，仅在评论家认为模仿动作更有价值时，才将强化学习策略正则化到模仿策略。实验结果表明，在四个合作 MARL 基准测试中，IBMARL 比基于演示的基线方法更快地超越了模仿策略，并且在其中两个任务上是唯一能超越模仿策略的方法，甚至在两个任务上超越了演示者本身的表现。",
-      "impact_score": null
+      "summary_zh": "这篇论文提出了一种名为 Imitation Bootstrapped Multi-Agent Reinforcement Learning (IBMARL) 的框架，旨在加速多智能体强化学习 (MARL) 的训练过程，尤其是在人类演示难以同时控制多个智能体的情况下。IBMARL 结合了 Round-Robin Behavior Cloning (R2BC) 来训练模仿策略，并在此基础上，让每个智能体同时接收来自模仿策略和强化学习策略的动作提议，由一个集中的评论家集成来选择最佳动作组合。为了优化强化学习策略，IBMARL 引入了一个门控模仿惩罚和一个软 Q 过滤的行为克隆损失，仅在评论家认为模仿动作更有价值时，才将强化学习策略正则化到模仿策略。实验结果表明，在四个合作 MARL 基准测试中，IBMARL 比基于演示的基线方法更快地超越了模仿策略，并且在其中两个任务上是唯一能超越模仿策略的方法，甚至在两个任务上超越了演示者本身的表现。"
     },
     {
       "id": "2611.18533",
@@ -163,8 +349,39 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18533",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.18822",
+      "title": "LongCat-Video-Avatar 1.6 Technical Report",
+      "abstract": "Recent advances in audio-driven avatar video generation have enabled increasingly realistic synthesis, yet achieving precise lip-audio synchronization, natural, human-like motion, and visual consistency over long sequences remains challenging. We present LongCat-Video-Avatar 1.6, which builds on LongCat-Video-Avatar 1.5 to improve expressive naturalness and reduce error accumulation during extended generation, e.g., exaggerated lip movements and overly red, temporally unstable lip coloration, enhance the naturalness of facial expressions and coordinated head and body movements. These improvements are driven by a refined post-training pipeline that integrates reinforcement learning, improved classifier-free guidance strategies for DMD-based few-step distillation, long-video rollouts, and on-policy distillation. Together, these refinements improve expressive realism and enable the generation of videos exceeding 10 minutes while maintaining visual quality and temporal consistency. Arena evaluations show that LongCat-Video-Avatar 1.6 outperforms its predecessor and competing commercial audio-driven avatar models, demonstrating the effectiveness of the improved post-training pipeline.",
+      "authors": [
+        "Meituan LongCat Team",
+        "Xunliang Cai",
+        "Yiqi Chen",
+        "Feng Gao",
+        "Xiaoyu Kong",
+        "Le Li",
+        "Hongyu Liu",
+        "Xiaoming Wei",
+        "Tianyu Yang",
+        "Yong Zhang",
+        "Sijie Zhao"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-13T18:42:00Z",
+      "updated": "2026-11-13T18:42:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.18822v1",
+      "abs_url": "https://arxiv.org/abs/2611.18822",
+      "topics": [
+        "rl",
+        "distillation",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18822",
+      "summary_zh": ""
     },
     {
       "id": "2611.18511",
@@ -187,8 +404,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18511",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.18494",
@@ -212,8 +428,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18494",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.18482",
@@ -238,8 +453,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18482",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.18459",
@@ -261,8 +475,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18459",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.18458",
@@ -334,8 +547,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18397",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.18393",
@@ -366,6 +578,30 @@
       "summary_zh": ""
     },
     {
+      "id": "2611.18809",
+      "title": "LEAP-LLM: Preserving lead-time structure for question-conditioned ECG interpretation",
+      "abstract": "The electrocardiogram (ECG) records cardiac electrical activity across multiple leads and is used for detecting cardiac abnormalities. Recent ECG-language models enable large language models (LLMs) to interpret cardiac signals and answer clinically relevant questions. However, existing ECG-language models typically encode the ECG independently of the clinical question, forcing the ECG representation to retain broad and potentially irrelevant signal information. Moreover, these models often aggregate information across leads which can obscure lead-specific details needed for a particular question. To tackle these limitations, we introduce LEAP-LLM, an ECG-LLM architecture for Lead-aware ECG Alignment with Prompt conditioning. LEAP-LLM uses the clinical question to guide ECG feature extraction while preserving explicit lead and temporal structure. Task-trained instruction representations distill information from the question and guide two complementary branches. The Lead branch captures question-relevant temporal patterns within each ECG lead, while the Temporal branch summarizes relevant information across leads at each temporal position. Together, they provide the LLM with compact, question-relevant ECG information while preserving lead and temporal structure. LEAP-LLM reduces modality-token count by 89.0% and prefill FLOPs by 7.2x on average relative to other ECG-LLMs baselines. Across four ECG benchmarks, LEAP-LLM achieves better performance, including a 3.4-percentage-point improvement in G12EC over the strongest prior ECG-specific method. We further show that the model adaptively emphasizes the clinically relevant anatomical lead groups for different cardiac abnormalities, with lead importance patterns consistent with established diagnostic knowledge, providing interpretable evidence that the predictions are supported by clinically meaningful ECG structure.",
+      "authors": [
+        "Aakash Agarwal",
+        "Yidan Shen",
+        "Xin Fu",
+        "Renjie Hu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-13T16:05:01Z",
+      "updated": "2026-11-13T16:05:01Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.18809v1",
+      "abs_url": "https://arxiv.org/abs/2611.18809",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18809",
+      "summary_zh": ""
+    },
+    {
       "id": "2611.18284",
       "title": "Clean Tickets, Wrong Orders: Catching Silent Errors with a Language Model in Your Browser Tab",
       "abstract": "A small language model that turns a typed order into structure can fail in two ways. It can print something broken, which any system rejects. Or it can print a clean, well formed order that nobody placed. Our companion work calls the second kind a silent error, and it is the dangerous one. We present a web demo in which a fine-tuned 0.8B parameter model runs entirely inside the visitor's browser tab, through llama.cpp compiled to WebAssembly. No order text leaves the device. The page parses orders as the visitor types, scores every ticket with the PIZZA benchmark's own matcher ported to TypeScript, refuses anything off the menu with \"?\" so the model can face the open web, and lets visitors hunt for silent errors or try to cause one. Run in the browser on all 1,357 PIZZA test orders, the deployed model writes the same output as the server evaluation for 99.0% of them and reaches the same exact match (0.882); we also report its latency on 3 consumer laptops. Demo: https://wrong.cuyor.com",
@@ -392,6 +628,29 @@
       "keyword_topics": [
         "distillation"
       ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.18807",
+      "title": "Recovered or Memorized? Investigating Dynamical Consistency and Faithfulness in World Model Latents",
+      "abstract": "World models develop internal simulators that can learn the structure and dynamics of an environment. It has been demonstrated that their internal representations are both meaningful and causal, but are these representations faithful to the governing dynamics of the environment they are learning? We introduce Anchored Recovery Certification (ARC), a procedure that utilizes a discrete Fréchet distance calculation with ground truth to evaluate dynamical consistency on candidate world models up to an affine gauge. We use the procedure on TD-MPC2 (decoder-free world model) that has learned the pendulum swing on an observation lift under varying hyperparameters at k = 5, 10, 25 steps. The model is then steered within a PCA-derived intervention subspace and compared against a ground-truth simulator using relative error to investigate dynamical faithfulness. ARC sufficiency held for TD-MPC2 most consistently at k = 10, with six of seven constraints statistically significant after Holm-Bonferroni correction, while the relative error between the simulator and the causal latent remained substantial. Further research could be conducted with decoder world models such as DreamerV3 (reconstruction loss) to investigate whether the results differ.",
+      "authors": [
+        "Jerome Francisco",
+        "Kyle Deng",
+        "George Flint",
+        "Kevin Zhu"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-13T15:05:53Z",
+      "updated": "2026-11-13T15:05:53Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.18807v1",
+      "abs_url": "https://arxiv.org/abs/2611.18807",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18807",
       "summary_zh": ""
     },
     {
@@ -496,13 +755,12 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18113",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.18099",
-      "title": "EcoVGGT: Pinned-Key Inference for Efficient and Streamable Feed-Forward 3D Reconstruction from Long Videos",
-      "abstract": "Feed-forward multi-view transformers such as VGGT recover the cameras and geometry of a video in one pass, but the cost of their cross-frame attention grows quadratically with the frame count, and their accuracy drops on long videos. Most remedies approximate attention over all frames within a budget or select a few keys by their content. We hypothesize that the keys of a long video can be chosen without looking at its content, and our experiments on VGGT and $π^3$ support it: a few dozen evenly spread frames can serve as the keys of every frame. We present EcoVGGT, a training-free inference framework whose keys form a Pinned Key Set of 31 such frames. A pin pass stores their tokens in a Scene Cache, and the other frames read it in independent batches that reproduce joint inference with these keys exactly, at a constant cost per frame. An Online Stream updates the pinned frames during recording. Six middle global blocks align the frames and form a reusable VGGT module: the Alignment Score reads their attention to flag failures, and Alignment Refocusing reduces them by fine-tuning only these blocks (3.6 GPU hours). EcoVGGT ($π^3$) matches the success rate of $π^3$ on 1,000-frame ScanNet videos at 13.8 times its speed. With refocusing, EcoVGGT (VGGT) raises the success rate of VGGT from 70% to 82% at 8.5 times its speed on 500 frames. EcoVGGT reconstructs 4,000 frames on one GPU, and EcoVGGT ($π^3$) streams 1,000 frames at 18.6 frames per second with the lowest online absolute trajectory error.",
+      "title": "Eco3R: Pinned-Key Inference for Efficient and Streamable Feed-Forward 3D Reconstruction from Long Videos",
+      "abstract": "Feed-forward multi-view transformers such as VGGT recover the cameras and geometry of a video in one pass, but the cost of their cross-frame self-attention grows quadratically with the frame count, and their accuracy drops on long videos. Most remedies approximate attention over all frames under a fixed computational budget or select a few keys by their content. We hypothesize that the keys of a long video can be selected independently of video content, and our experiments on VGGT and $π^3$ support it: a small number of uniformly sampled frames can serve as the keys of every frame. We present Eco3R, a training-free inference framework whose keys form a Pinned Key Set of 31 such frames. A pin pass stores their tokens in a Scene Cache, and the other frames read it in independent batches that reproduce joint inference with these keys exactly, at a constant cost per frame. An Online Stream updates the pinned frames during recording. Six middle global blocks align the frames and form a reusable VGGT module: the Alignment Score reads their attention to flag failures, and Alignment Refocusing reduces them by fine-tuning only these blocks (3.6 GPU hours). Eco3R ($π^3$) matches $π^3$'s success rate on 1,000-frame ScanNet videos while running 13.8 times faster. With refocusing, Eco3R (VGGT) raises VGGT's success rate from 70% to 82% while running 8.5 times faster on 500 frames. Eco3R can reconstruct sequences of up to 4,000 frames on a single A100 GPU, while Eco3R ($π^3$) streams 1,000 frames at 18.6 fps, achieving the lowest online absolute trajectory error.",
       "authors": [
         "Hongsen Cao",
         "Shanxin Yuan",
@@ -514,8 +772,8 @@
         "cs.AI"
       ],
       "published": "2026-11-13T12:26:54Z",
-      "updated": "2026-11-13T12:26:54Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.18099v1",
+      "updated": "2026-11-16T12:52:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.18099v2",
       "abs_url": "https://arxiv.org/abs/2611.18099",
       "topics": [
         "other"
@@ -579,8 +837,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.18078",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.18043",
@@ -683,8 +940,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17938",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17930",
@@ -708,8 +964,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17930",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17924",
@@ -743,8 +998,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17924",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17919",
@@ -767,8 +1021,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17919",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17917",
@@ -795,8 +1048,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17917",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17868",
@@ -818,8 +1070,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17868",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17834",
@@ -845,8 +1096,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17834",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17793",
@@ -872,8 +1122,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17793",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17790",
@@ -904,8 +1153,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17790",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17775",
@@ -934,8 +1182,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17775",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17772",
@@ -956,8 +1203,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17772",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17754",
@@ -979,8 +1225,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17754",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17751",
@@ -1001,8 +1246,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17751",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17743",
@@ -1034,8 +1278,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17743",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17644",
@@ -1069,8 +1312,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17644",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17626",
@@ -1091,8 +1333,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17626",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.17625",
@@ -1116,8 +1357,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.17625",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     }
   ]
 }
