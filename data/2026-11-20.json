@@ -1,6 +1,6 @@
 {
   "date": "2026-11-20",
-  "generated_at": "2026-11-22T08:34:16.524646+00:00",
+  "generated_at": "2026-11-23T09:32:15.382120+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -27,5 +27,1752 @@
       "name_en": "Other"
     }
   },
-  "papers": []
+  "papers": [
+    {
+      "id": "2611.27963",
+      "title": "Non-penetrating World Models",
+      "abstract": "We study a new problem of preventing object penetration in interactive video world models. To understand how existing models handle this, we introduce NoPeBench, a benchmark that evaluates how world models respond to physical obstacles. Our evaluation reveals that none of the open-source models can reliably prevent such failures. Surprisingly, however, these models already encode the information needed to predict such violations. We find that the hidden states of diffusion transformers (DiTs) can predict whether a candidate action will penetrate an obstacle. Building on this, we introduce NoPeWorld, a lightweight framework that detects and prevents penetration. Specifically, we train a small prediction head on top of a frozen DiT's hidden states to read out if a candidate action is safe or not. Unsafe actions are then replaced with safe ones that best preserve the original intent. Despite its simplicity, NoPeWorld substantially reduces the physical violation rate, averaged over six video world models, from 74% to 16%. Remarkably, our method shows zero-shot generalization to open-domain imagery, third-person viewpoints, and moving obstacles. We publicly release our code, the NoPeBench benchmark, and model weights. Project Page: https://nopeworld.github.io .",
+      "authors": [
+        "Yuhang Dai",
+        "Yinwei Wu",
+        "Ziyue Lin",
+        "Han Ji",
+        "Xingyi Yang"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T18:44:57Z",
+      "updated": "2026-11-20T18:44:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27963v1",
+      "abs_url": "https://arxiv.org/abs/2611.27963",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27963",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27919",
+      "title": "SUAF: Spectral Universal Advantage Features for Zero-Shot Policy Improvement",
+      "abstract": "Reward-independent representations enable reinforcement learning agents to reuse knowledge across tasks, but limited representation capacity raises three fundamental questions: what statistical dependence should these representations capture, which components of that dependence should be retained for policy improvement, and how does discarding the remaining components affect decision-making? We address these questions through canonical dependence analysis. For a reference policy, we construct an action-centered, positive-lag canonical dependence matrix (CDM) that isolates the additional predictive contribution of the current action beyond the current state. Its singular value decomposition yields Spectral Universal Advantage Features (SUAF), paired features that recover delayed advantage through linear reward projections. We show that the spectrum quantifies mutual information between current action and future state-action visitation conditioned on current state and determines reward specific approximation errors. Retaining the leading modes gives optimal rank-constrained approximations under both isotropic average-case and reward-uniform minimax criteria. Separating the immediate reward contrast also avoids the spectral floor arising from direct compression of the full advantage operator. To learn SUAF from reward-free data, we develop an action-centered Soft-HGR objective with bidirectional temporal-difference estimation. We further connect spectral approximation errors to sufficient conditions for policy improvement. Finite-state experiments validate the spectral predictions and feature-learning method, while zero-shot evaluations on discrete tasks and continuous-control benchmarks demonstrate the utility of the learned representations across rewards.",
+      "authors": [
+        "Huaze Tang",
+        "Runqing Miao",
+        "Tianren Peng",
+        "Lam Nguyen",
+        "Chao Wang",
+        "Jairong Li",
+        "Wenbo Ding"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T17:53:21Z",
+      "updated": "2026-11-20T17:53:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27919v1",
+      "abs_url": "https://arxiv.org/abs/2611.27919",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27919",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27891",
+      "title": "Speculative Decoding Is Less Speculative Than You Think",
+      "abstract": "Speculative decoding accelerates language-model inference by preparing candidate continuations before the target model generates them. Its efficiency depends on how well limited drafting computation anticipates the path the target will actually follow. Anticipating this path involves two sources of uncertainty: the target model's predictions and the randomness of sampling. Yet the former requires a target-model forward pass, while the latter can be fixed before drafting. Building on this observation, we introduce DICE (Draw-Informed Candidate Selection), which pre-samples and synchronizes verification randomness across drafting and verification. By combining these known draws with predictions from an existing drafter, DICE allocates computation toward continuations more likely to be used in the current sampling run. This principle guides node selection throughout draft-tree construction and extends to asynchronous prefetching, where DICE predicts which next-round drafts to prepare. Without additional drafter training or changes to the target sampling distribution, DICE achieves state-of-the-art decoding throughput across diverse settings, with speedups of up to 24.6pp over strong baselines.",
+      "authors": [
+        "Guanning Zeng",
+        "Andrea Zanette"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-20T17:33:21Z",
+      "updated": "2026-11-20T17:33:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27891v1",
+      "abs_url": "https://arxiv.org/abs/2611.27891",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27891",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27870",
+      "title": "Beyond Visual Fidelity: Comparing Categorical and Continuous World Models",
+      "abstract": "Visual world models can now generate compelling interactive worlds, but visual realism does not guarantee faithful dynamics. We systematically compare how categorical and continuous prediction shape learned dynamics under both next-token and iterative whole-frame generation. These choices are often bundled in approaches such as autoregressive token models and whole-frame flow matching. We design controlled 2D and 3D environments and evaluate dynamics validity, calibration, and visual quality. In 2D with lossless visual encoding, categorical models achieve higher rollout validity with less training compute, particularly for stochastic entities. Among categorical models, greedy decoding produces the highest rollout validity, while sampling from a next-token model yields the best-calibrated stochastic predictions. Failures in continuous models, such as disappearing game characters, echo those seen in more complex environments. Here, known dynamics let us measure their impact. In 3D, categorical models also achieve stronger long-horizon performance with less training compute. Even models with lossy tokenization remain competitive on semantic accuracy and FVD, despite lower next-frame RGB accuracy. Together, these findings make a strong case for categorical prediction as a compute-efficient route to learning world dynamics.",
+      "authors": [
+        "Sarah Parisot",
+        "Melanie Fernandez Pradier",
+        "David Bignell",
+        "Sergio Valcarcel Macua",
+        "Katja Hofmann"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T17:15:30Z",
+      "updated": "2026-11-20T17:15:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27870v1",
+      "abs_url": "https://arxiv.org/abs/2611.27870",
+      "topics": [
+        "world-model",
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27870",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27865",
+      "title": "SLICR: Strategy Logic-Guided Multi-Agent Reinforcement Learning",
+      "abstract": "Specification-guided reinforcement learning (RL) translates formal specifications of desired behavior of agents into shaped rewards. This paper introduces SLICR, a significant paradigm shift that advances the state of the art to specification-guided RL in adversarial settings under partial observability. We employ Strategy Logic (SL), which allows explicit quantification over agents' strategies and uses the linear temporal logic (LTL) to specify the agents' objectives and constraints. This enables reasoning not only about how agents should act to satisfy a specification, but also about how they should respond to the strategies and behaviors of other agents. We evaluate SLICR on three popular benchmarks: Predator-Prey, Google Research Football, and our home-grown extension of SMAC-HARD, demonstrating its effectiveness, scalability, and ability to adapt to diverse adversarial strategies.",
+      "authors": [
+        "Arshia Rafieioskouie",
+        "Matthew Lucas",
+        "Tzu-Han Hsu",
+        "Borzoo Bonakdarpour"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LO"
+      ],
+      "published": "2026-11-20T17:13:50Z",
+      "updated": "2026-11-20T17:13:50Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27865v1",
+      "abs_url": "https://arxiv.org/abs/2611.27865",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27865",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27810",
+      "title": "SLP-Bench: Evaluating and Improving Acoustic Claims of Reasoning Audio Language Models on Clinical Speech",
+      "abstract": "Audio language models (ALMs) can answer clinical questions from speech, outperforming baselines built on handcrafted acoustic features. Reasoning ALMs generate a chain of thought that refers to properties of the speaker's voice before predicting. Each statement the model makes about the voice needs to be checked against clinicians' perceptual ratings of the same recording. On clinical speech, existing evaluations score only the final answer. We introduce Speech Language Pathologist Bench (SLP-Bench), a benchmark grading each acoustic claim in the chain of thought against clinicians' perceptual ratings of the same recording. It covers five clinician-rated datasets and 25 perceptual dimensions, and assesses claims for factuality, stability under resampling, and consistency across reworded and different questions. Across ten open-weight reasoning ALMs evaluated zero-shot, claim balanced accuracy ranges from 0.52 to 0.58, claims change under resampling and rewording, and the most consistent models are not the most factual. Fine-tuning a 7B ALM with GRPO on a reward for claims that agree with clinicians raises its claim balanced accuracy from 0.54 to 0.60 and its mean kappa from 0.39 to 0.61, while preserving answer accuracy on per-dimension questions. SLP-Bench is available upon request, subject to approval by the providers of each dataset.",
+      "authors": [
+        "Côme Hosxe",
+        "Rachid Riad",
+        "Quentin Spinat"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "cs.SD"
+      ],
+      "published": "2026-11-20T16:36:57Z",
+      "updated": "2026-11-20T16:36:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27810v1",
+      "abs_url": "https://arxiv.org/abs/2611.27810",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27810",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27806",
+      "title": "Refrain: Learning Multi-Shot Consistency from Inconsistent References for A$^2$O Video Generation",
+      "abstract": "A comic-book character, a photorealistic cityscape, an oil-painted coffee cup -- such stylistically diverse references provide visual guidance across shots and frames, yet generating a coherent multi-shot video that unifies their visual styles while preserving subject identities and scene content remains challenging. Existing methods maintain cross-shot continuity through additional attention control or memory processing. However, they struggle to resolve disparate per-shot styles or handle reference-target duration mismatches within a single framework. We introduce Refrain, a unified model that learns cross-shot consistency through a self-supervised reconstruction task. Reference clips from the same original video are deliberately perturbed with distinct visual edits, and the model recovers the unedited source footage under a shared style prompt. The resulting pipeline yields DurMix-300K, which pairs independently edited references of varying durations with their original videos. Operating on the A$^2$O principle (Any Reference, Any Duration, One Timeline), Refrain maps image and video references onto a shared temporal canvas without auxiliary conditioning modules. For evaluation, experiments show that standard CLIP or DINO metrics frequently overlook stylistic clashes or misinterpret intended narrative cuts as inconsistency. We propose Shot-Debiased Consistency (SDC), which uses an extensive real-video bank to establish a baseline for style variation associated with content changes within shots. By discounting this baseline divergence, SDC evaluates cross-shot style shifts against real-world distributions, where smaller residual differences indicate higher stylistic continuity. Extensive experiments demonstrate that Refrain achieves state-of-the-art performance in cross-shot consistency, while excelling at shot timing, reference adherence, and text alignment.",
+      "authors": [
+        "Hongru Yan",
+        "Yue Wu",
+        "Jian-Wei Zhang",
+        "Liangbin Xie",
+        "Mingzhe Zheng",
+        "Shenghua Gao"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T16:33:43Z",
+      "updated": "2026-11-20T16:33:43Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27806v1",
+      "abs_url": "https://arxiv.org/abs/2611.27806",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27806",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27780",
+      "title": "Search-RSI: Expanding Search Worlds Along Multimodal Agents' Capability Frontier",
+      "abstract": "Multimodal search agents answer knowledge intensive visual questions by grounding them in retrieved evidence, and recent recipes train them on multi hop tasks that are synthesized from knowledge graphs and grown online to keep pace with the agent. These recipes, however, treat the searchable world as fixed: a new question can be well formed and verifiable while its evidence is absent from the retrieval backend, so the agent issues the right query, retrieves nothing, and is penalized as if its policy were at fault. Such unreachable negatives accumulate with every round of growth. We propose Search-RSI, a recursive self improvement framework that expands the search world along the agent's capability frontier. In each round, the current policy diagnoses its partially mastered regions of a task space spanned by hop depth, relation rarity, and distractor density; new tasks there are grown together with their evidence; and the same policy decides how they are used: candidates on which its probes disagree feed reinforcement learning, while those beyond its reach become hint guided demonstrations of its own. Keeping the policy inside this loop matters: an improver frozen at the start of training loses 3.2 points. On nine multimodal search benchmarks, Search-RSI keeps improving where static task growth saturates, raising the average accuracy of the recipe it builds on by 9.8 and 9.5 points at 9B and 27B, of which 7.0 points are out of reach for a world that is merely made consistent. The loop uses no external model and only privileged task structure that is removed before training, at 1.27x the compute of static growth.",
+      "authors": [
+        "Chengchao Lv",
+        "Yin Wang",
+        "Chunzheng Zhu",
+        "Wanli Chang"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T16:09:46Z",
+      "updated": "2026-11-20T16:09:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27780v1",
+      "abs_url": "https://arxiv.org/abs/2611.27780",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27780",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27722",
+      "title": "Beyond Math, Code, and Logic: Do Reasoning Models Transfer to Scientific Argumentation?",
+      "abstract": "Scientific discourse depends on argumentative reasoning: identifying claims, evaluating evidence, and constructing coherent responses. While recent advances in reasoning-capable language models have demonstrated strong performance on mathematical, coding, and logical benchmarks, their ability to engage in scientific argumentation remains unclear. We present the first systematic evaluation of language models across seven tasks spanning argument mining, rebuttal generation, and discourse-level reasoning using research papers, peer reviews, and grant proposals. Our study reveals that even frontier models with strong general reasoning skills struggle with domain-specific argumentative tasks, highlighting a fundamental capability gap. To address this, we introduce a training framework that explicitly scaffolds the argumentative reasoning process in language models, substantially improving their competence in scientific discourse. The resulting compact models approach or exceed the performance of much larger proprietary systems and generalize to unseen conversational settings, demonstrating reasoning transfer beyond task-specific supervision. These findings underscore that effective scientific argumentation is not an emergent property of scale, but requires explicit reasoning-aware training, and they point toward practical pathways for building AI systems that can contribute meaningfully to scientific discourse.",
+      "authors": [
+        "Buse Sibel Korkmaz",
+        "Antonio del Rio Chanona"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-11-20T15:24:08Z",
+      "updated": "2026-11-20T15:24:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27722v1",
+      "abs_url": "https://arxiv.org/abs/2611.27722",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27722",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27653",
+      "title": "Late-Time Dynamics of Flow Matching: Distance Geometry and Learning",
+      "abstract": "Generative models transform simple random inputs into samples that resemble observed data. For a finite training set, a central question is how its geometry shapes the terminal dynamics and the probabilities assigned to individual samples. We address this question for flow matching with linear interpolation between independent Gaussian and empirical samples. The squared distance to the training set generates explicit paths contracting exponentially toward the nearest sample. We prove that exact trajectories restarted at prescribed late-time states approximate these paths uniformly over all elapsed times and compact sets of starting states away from Voronoi interfaces, with an error exponentially small in the inverse squared restart noise scale. The initial mass near interfaces controls the quadratic Wasserstein error between the exact and reference laws. For Gaussian and fixed Gaussian-tube restart laws, this gives a square-root rate in the restart noise scale, uniform over time, which a two-site example shows to be sharp in general. At ties, the Clarke subdifferential characterizes the graphical limit of the rescaled velocity field. This geometry motivates two learning methods: fitting the distance potential with value and gradient supervision, and fitting velocities along explicit contraction paths. A transport estimate separates initialization mismatch, velocity error, incomplete contraction, and endpoint allocation. MNIST experiments illustrate the distinct roles of support proximity, nearest-site retention, and feature fidelity. These results connect flow matching and score-based diffusion through a common limiting geometry and show how asymptotic analysis can inform the design and evaluation of generative models.",
+      "authors": [
+        "Umberto Biccari",
+        "Junqing Huang",
+        "Kang Liu",
+        "Enrique Zuazua"
+      ],
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ],
+      "published": "2026-11-20T14:18:27Z",
+      "updated": "2026-11-20T14:18:27Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27653v1",
+      "abs_url": "https://arxiv.org/abs/2611.27653",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27653",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27645",
+      "title": "Efficient VLA Reinforcement Learning via Subchunk Rollouts in Latent World Models",
+      "abstract": "Model-based reinforcement learning (MBRL) can improve pretrained vision-language-action (VLA) policies through imagined experiences. However, existing VLA-MBRL methods primarily rely on large-scale image or video generation world models, incurring large computational overhead. Latent world models offer a more efficient alternative but face two challenges: compounding errors during recursive prediction and incompatibility with VLAs' visual input interfaces. In this work, we propose LS-MBPO, a lightweight residual MBRL framework that leverages latent world models to improve upon pretrained VLAs. LS-MBPO introduces two key techniques: (1) Hierarchical Forcing, which combines dense causal supervision with autoregressive feedback to mitigate compounding prediction errors; and (2) Latent Subchunk Rollouts, which leverage action chunks from a frozen VLA policy and a latent residual policy for successive subchunk refinement, bridging the gap between latent imagination and VLA policy execution. We further introduce a Progress-Conditioned Branch-Start Curriculum that progressively shifts rollout starting points from later to earlier task stages, enabling effective policy learning from short imagined rollouts. Extensive experiments on LIBERO, RoboTwin, and a real-world ALOHA robot show that LS-MBPO achieves superior task performance and training efficiency compared to existing methods.",
+      "authors": [
+        "Nan Tang",
+        "Han-Tao Zhang",
+        "Jing-Cheng Pang",
+        "Hao-Nan Wang",
+        "Hao-Xiang Ren",
+        "Yi-Fei Sheng",
+        "Jun-Yin Ye",
+        "Tian Xu",
+        "Fan-Ming Luo",
+        "Hao-Xin Lin",
+        "Yang Yu"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-20T14:09:06Z",
+      "updated": "2026-11-20T14:09:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27645v1",
+      "abs_url": "https://arxiv.org/abs/2611.27645",
+      "topics": [
+        "world-model",
+        "rl",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27645",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27639",
+      "title": "SOAR: Training-Free Rank-Consistent Rollout Compression for Latent World Model Planning",
+      "abstract": "Latent world models plan by rolling out hundreds of candidate action sequences through a transformer predictor, so a single decision can take tens of seconds. Existing accelerations prune spatial tokens as in vision-language models, yet a sampling-based planner uses predicted costs only to rank candidates, so a rollout can be compressed freely as long as the ranking survives. We propose SOAR, a training-free method that adapts rollout compression to each planning decision. At every decision, SOAR probes a few candidates under several token budgets and keeps the smallest budget that preserves their ranking, so it compresses as far as the current decision allows, without task labels. A closed-loop study of more than 80,000 episodes fixes the rest of the rollout: the first step, which alone reads a real observation, stays exact, and the context frame is cached rather than recomputed. On seven navigation and manipulation tasks with frozen checkpoints, SOAR matches dense-level planning success at 2.3x speedup and retains 98% at 2.5x. Our code is available at https://github.com/starrywiki/SOAR.",
+      "authors": [
+        "Anqi Li",
+        "Kai Liu",
+        "Linghe Kong",
+        "Yulun Zhang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-11-20T14:03:18Z",
+      "updated": "2026-11-20T14:03:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27639v1",
+      "abs_url": "https://arxiv.org/abs/2611.27639",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27639",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27631",
+      "title": "Learning Inside Types: Epistemic Typestates for Safe Multi-Agent Reinforcement Learning",
+      "abstract": "Type disciplines make programs safe by construction: components checked against each other's types compose into programs that cannot go wrong in the ways the types exclude. Types suit reinforcement learning: a type constrains what an agent may choose, not how it chooses, so the guarantee holds for every policy a learner produces. We introduce epistemic typestates, a type discipline for safe multi-agent reinforcement learning. An agent's type is a protocol whose states record its beliefs, the worlds it cannot rule out from its own observations and actions, and permits only actions that are safe in every world of the belief, whatever the others do within their public types. Agents learn inside their types, which are built and checked one agent at a time and run without communication. We prove type soundness and team safety, give a synthesis that is sound and complete, build types from guards when worlds are infinite, and show that shields are a special case. All proofs are mechanised in Rocq. On nine benchmarks, no typed learner causes a safety violation, and task performance does not differ significantly from that of two recent multi-agent shielding methods. Where a contract-based method fails at five and ten agents, types for ten agents are built in under a second. In the two continuous benchmarks, Lagrangian learners cause thousands of violations in every training run.",
+      "authors": [
+        "Lorenzo Bacchiani",
+        "Mario Bravetti",
+        "Giovanni Pau",
+        "Roberto Girau"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-20T13:57:03Z",
+      "updated": "2026-11-20T13:57:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27631v1",
+      "abs_url": "https://arxiv.org/abs/2611.27631",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27631",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27620",
+      "title": "Sketch2TikZ: Multi-Reward Reinforcement Learning for Converting Hand-Drawn Sketches to Executable TikZ",
+      "abstract": "Automatic digitization of hand-drawn sketches into editable formats is crucial for modern document workflows and LaTeX integration. Converting sketches into executable TikZ code provides a structured representation of diagrams, but remains challenging due to noisy and ambiguous inputs, which hinder reliable interpretation and limit the effectiveness of token-level supervision for ensuring global diagram validity. To address these challenges, we propose Sketch2TikZ, a reinforcement learning framework that optimizes sketch-to-code generation via a sequential multi-reward strategy, combining Code-Structure ($\\mathcal{R}_{cs}$), OCR ($\\mathcal{R}_{ocr}$), CleanDIFT ($\\mathcal{R}_{cd}$), and Self-Similarity ($\\mathcal{R}_{ss}$) rewards to enforce textual, visual and structural correctness. We evaluate Sketch2TikZ on the SkeTikZ and FlowChart-3B benchmarks using metrics including compilation success rate (CSR), image similarity, code similarity, and character similarity. Our method achieves near-perfect compilation success and improves visual and textual alignment over strong open-source baselines, while remaining competitive with proprietary GPT-based vision-language models. Extensive ablations demonstrate that curriculum-based reward scheduling is critical for reducing reward interference, stabilizing training and mitigating proxy over-optimization. Overall, our results highlight the effectiveness of reference-aware, multi-objective reinforcement learning for structured diagram generation from noisy sketches.",
+      "authors": [
+        "Shubham Paliwal",
+        "Arushi Jain",
+        "Monika Sharma",
+        "Manasi Patwardhan"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T13:48:48Z",
+      "updated": "2026-11-20T13:48:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27620v1",
+      "abs_url": "https://arxiv.org/abs/2611.27620",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27620",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27570",
+      "title": "WEIR: Watershed Exploration and Drift-Aware Prefix Shrinkage for Multi-Turn Agent Reinforcement Learning",
+      "abstract": "Multi-turn language model agents often receive only a single binary reward at the end of a long interaction trajectory, making it difficult to separate decisive decisions from routine steps or estimate accurate intermediate values. Prefix-tree methods improve sample efficiency by merging trajectories that share action histories, yet two structural flaws remain: naive pooling mixes stale off-policy outcomes into critic targets with fixed weights, and uniform or entropy-driven branching wastes continuations on dead-end states whose outcome is already settled. We introduce WEIR (Watershed Exploration and Intrinsic-Drift Shrinkage), an actor-critic reinforcement learning framework grounded in a Doob turn-variance conservation identity. WEIR maintains a cross-iteration canonical action-prefix tree with exponentially discounted visit counts and trains a prefix-conditioned critic toward a minimax drift-aware shrinkage target that adapts from single-trajectory returns at rare nodes to pooled empirical means at dense nodes. Using the same pre-update critic, WEIR allocates rollout budgets across tasks via Neyman stratification $B_q \\propto \\sqrt{\\hat{p}_q(1-\\hat{p}_q)}$ and directs within-task branches to watershed forks where high survival-headroom uncertainty coincides with steep value cliffs. Across four multi-hop QA benchmarks, ALFWorld, and WebShop on Qwen2.5-3B/7B-Instruct, WEIR achieves $32.18\\%$ and $37.85\\%$ average QA exact match and $84.83\\%$ and $87.81\\%$ ALFWorld success rates, outperforming CAPO by $1.50$--$3.74$ points while generating $28$--$29\\%$ fewer rollout tokens than chain sampling.",
+      "authors": [
+        "Pixel Nomand",
+        "Elena Voss",
+        "Marcus Hale",
+        "Sofia Reyes"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-20T13:05:55Z",
+      "updated": "2026-11-20T13:05:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27570v1",
+      "abs_url": "https://arxiv.org/abs/2611.27570",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27570",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27560",
+      "title": "TITAN: DRL-Based Dynamic Scheduling and Resource Allocation for Tactile Internet",
+      "abstract": "Tactile Internet (TI) applications require ultra-reliable, low-latency tactile communication alongside video traffic. However, tactile Quality of Service (QoS) requirements vary with the interaction context, making fixed resource allocation inefficient. In this paper, we propose TITAN (Two-Timescale Integrated Tactile Internet over 5G Access Networks), a dynamic scheduling and resource allocation (SRA) scheme. TITAN receives time-varying tactile QoS profiles from a higher-layer module and adapts SRA to the current QoS profile and network state. A deep reinforcement learning-based agent splits the available network bandwidth between tactile and video streams at a slow timescale, while a fast-timescale scheduler allocates resource blocks among active user equipment. Through simulations, we show that TITAN simultaneously satisfies both tactile and video QoS targets and achieves a performance gain of 7.64 percentage points (pp) in the joint satisfaction rate over the best-performing static SRA baseline.",
+      "authors": [
+        "Qingrui Fan",
+        "Vineet Gokhale",
+        "Jayakrishnan Nair",
+        "Johannes Cottyn"
+      ],
+      "categories": [
+        "cs.NI",
+        "cs.LG",
+        "eess.SP"
+      ],
+      "published": "2026-11-20T12:57:20Z",
+      "updated": "2026-11-20T12:57:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27560v1",
+      "abs_url": "https://arxiv.org/abs/2611.27560",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27560",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27554",
+      "title": "Vega-Fafnir: Is Greedy Decoding the Same Decoding? Where Rounding Noise in Speculative Verification Comes From and What Removing It Costs",
+      "abstract": "Serving engines treat the ways of running a greedy language model as interchangeable: cached or not, padded or not, alone or batched, one token or several verified at once (speculative decoding). In finite precision they round differently. We measure how often the greedy text of Qwen3-0.6B (bfloat16, 128 new tokens, GSM8K and ARC prompts) differs from a reference that decodes one token per pass. Verifying 4 guessed tokens per pass changes 60% of 150 prompts and padding changes 68%; every first divergence has a top-1 minus top-2 logit gap of 0.375 or less. A split of the noise shows that cache entries written by multi-token passes are about as noisy as the multi-token pass itself. A margin gate (fall back to one token when the gap is below a bound calibrated on separate GSM8K prompts) whose fallback reads that cache does not help: 58 of 100 prompts differ, against 61 of 100 for plain verification. Rebuilding the cache with one-token passes leaves 0 of 100 different but costs 7.2 model passes per token, against 1.0 for the reference. Fixed-width decoding makes drafted and plain decoding identical (0 of 100 prompts differ) at 0.75 passes per token. On shifted MMLU and HellaSwag prompts the rebuild gate leaves 0 of 60 different, plain verification 48 of 60. On 138 further and shifted prompts the bound was exceeded at 0.6% of positions and missed 0 of 309 flips. One GPU, one drafter, small models.",
+      "authors": [
+        "Mohammed Nayeem Khan",
+        "Navin Kumar R"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-20T12:51:06Z",
+      "updated": "2026-11-20T12:51:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27554v1",
+      "abs_url": "https://arxiv.org/abs/2611.27554",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27554",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27547",
+      "title": "GameScrub: Learning HUD Removal from Real Gameplay with Recovered Targets",
+      "abstract": "Gameplay videos are a rich source of experience for learning virtual-world dynamics, yet their frames contain heads-up displays (HUDs) that follow interface rules rather than scene dynamics. Removing HUDs would make this footage directly usable for learning world dynamics. However, training a removal model requires paired clips with and without HUDs, whereas real recordings contain only HUD-overlaid footage. Existing work synthesizes pairs by compositing HUD graphics onto HUD-free footage, requiring a separately curated clean corpus and producing HUDs that only approximate real ones. Models trained on such pairs leave 40 to 50% of real HUD elements untouched. We instead recover pseudo-clean targets directly from real recordings by inpainting HUD regions with a pretrained video diffusion model. Preventing HUD traces from leaking into recovered targets is challenging because latent video autoencoders mix information across mask boundaries. Our training-free recovery pipeline, GameScrub-Data, pre-fills HUD regions with flow-guided background estimates before encoding, excludes HUDs from scene conditioning, and confines restoration to masked regions through pixel-space compositing. The resulting pairs train GameScrub, a video diffusion removal model that handles diverse HUDs without inference-time masks or clean reference images. On the in-the-wild Game2World benchmark, GameScrub achieves an artifact-adjusted removal score of 71.95, compared with 57.86 for the strongest reference-free GameCleaner configuration, and removes 90.06% of annotated HUD elements versus 59.07%. These results demonstrate that real recordings with recovered targets can support effective HUD removal, advancing HUD-free gameplay data for world models and controllable video generation.",
+      "authors": [
+        "Mohammad Areeb Qazi",
+        "Yiyan Hu",
+        "Yanan Wang",
+        "Xuezhi Liang",
+        "Xin Li",
+        "Fan Yang",
+        "Xin Gao",
+        "Guangyi Liu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T12:45:33Z",
+      "updated": "2026-11-20T12:45:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27547v1",
+      "abs_url": "https://arxiv.org/abs/2611.27547",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27547",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27516",
+      "title": "PhiJEPA: Denoising Latent Predictions for Visual Representation Learning",
+      "abstract": "Can a predictor trained to infer hidden image regions still help a world model plan when part of an object disappears from view and the visible context is blurred? We introduce PhiJEPA, a joint-embedding predictive architecture that adapts PhiNet's two-stage prediction to masked Transformers. From sparse, photometrically corrupted context, a Transformer block predicts hidden tokens of an independently corrupted teacher view. A token-wise MLP then maps these predictions to clean teacher tokens. Controlled ablations show that the combined objective improves dense features over the tested one-stage alternatives. Pre-trained on ImageNet-1K with $5.6\\times10^{19}$ training FLOPs, PhiJEPA achieves 69.3 mIoU on linear PASCAL VOC segmentation, exceeding the evaluated I-JEPA and DSeq-JEPA checkpoints in segmentation accuracy, with 25\\% fewer training FLOPs than I-JEPA. It also improves hidden-region segmentation over Simple I-JEPA (49.1 vs.\\ 44.3 mIoU). As an application, we use the frozen encoder in DINO-WM on PushT, and reuse the pre-training predictor, which JEPAs usually discard, to complete occluded tokens without fine-tuning. In open-loop planning with simultaneous object occlusion and Gaussian blur ($σ=2$ pixels), predictor completion raises success from 33\\% to 65\\%, compared with 25\\% for Simple I-JEPA with its predictor and 40\\% for iBOT with pixel inpainting. Together, these results support two-stage latent prediction as an efficient approach to learning visual representations that remain useful under photometric degradation and support completion under partial observation.",
+      "authors": [
+        "Makoto Yamada",
+        "Yao-Hung Hubert Tsai"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "stat.ML"
+      ],
+      "published": "2026-11-20T12:07:30Z",
+      "updated": "2026-11-20T12:07:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27516v1",
+      "abs_url": "https://arxiv.org/abs/2611.27516",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27516",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27501",
+      "title": "Solar-Conditioned Flow Matching for Multitemporal Aerial Visible-to-Infrared Image Translation",
+      "abstract": "Aerial visible-to-infrared (V2IR) image translation provides scalable thermal data across the full diurnal cycle. However, existing methods predominantly learn a static mapping within narrow acquisition windows. As the thermal state evolves throughout the day, a single visible image may correspond to multiple plausible IR appearances, making V2IR translation an inherently multitemporal task. This letter proposes solar-conditioned latent flow matching (Solar-Flow), which upgrades aerial V2IR translation from static mapping to multitemporal generation. First, we design three computable physical factors, namely the solar elevation, the thermal phase clock (TPC), and the flight altitude. The TPC counts the elapsed heating and cooling hours on a continuous 24-hour axis anchored at sunrise, so the thermal state stays well defined even at hours without training samples. Second, we inject the condition into every Transformer block of a pretrained flow matching generator through adaptive layer normalization. This design preserves translation fidelity and enables multitemporal generation. Finally, we construct a paired aerial V2IR dataset covering 14 hour groups. Solar-Flow achieves multitemporal generation on this dataset, where a single visible image is translated into plausible IR images at multiple times of day, even at hours that were never seen in training.",
+      "authors": [
+        "Wenwen Fang",
+        "Bingwei Hui",
+        "Xin Chen",
+        "Zhongzhen Sun",
+        "Zhenfeng Shao"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T11:49:49Z",
+      "updated": "2026-11-20T11:49:49Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27501v1",
+      "abs_url": "https://arxiv.org/abs/2611.27501",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27501",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27500",
+      "title": "Turnout: Adaptive Attention Switching for Efficient Reasoning",
+      "abstract": "Post-hoc transformer linearization replaces the key-value cache of full attention, which grows linearly with generation length, with a fixed size state. This change reduces memory consumption but often hurts accuracy. In reasoning tasks, which require long generations, this effect is especially pronounced. In this work we introduce Turnout, a method that mitigates accuracy loss as a result of linearization, while maintaining its memory-reduction benefits. We apply post-hoc linearization to a pretrained full-attention model, training a linear path through distillation while leaving the original full-attention path unchanged. During response generation, the resulting hybrid model retains both paths and uses a learned policy to control when each layer switches from full to linear attention. We train the policy with reinforcement learning using a reward that balances answer correctness and memory use. Empirical evaluation of our method shows that the learned adaptive policy achieves a better accuracy-efficiency Pareto frontier on reasoning tasks compared to fixed switching and static hybrid baselines.",
+      "authors": [
+        "Anna Kuzina",
+        "Mart van Baalen",
+        "Paul N. Whatmough",
+        "Babak Ehteshami Bejnordi"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T11:49:13Z",
+      "updated": "2026-11-20T11:49:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27500v1",
+      "abs_url": "https://arxiv.org/abs/2611.27500",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27500",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27494",
+      "title": "Typhoon OCR 2: From Thai Document Transcription to Multilingual, Multi-Task OCR",
+      "abstract": "Typhoon OCR 1.5 focused on reading Thai documents. However, in real-world workflows, users often need to extract specific information or preserve the structure of an entire page for further processing. Typhoon OCR 2 handles both tasks in a single model, with prompt-driven extraction and structured full-page parsing. Full-page parsing covers Thai, English, and Chinese. We release compact 2B and 0.8B models adapted from open document parsers through supervised fine-tuning on curated Thai and public multilingual data, followed by Group Relative Policy Optimization (GRPO) with task rewards and a rule penalizing unfinished responses. Among evaluated open models, Typhoon OCR 2 2B scores highest on Thai MDPBench (80.7 versus 68.9 for Typhoon OCR 1.5) and on ThaiOCRBench (59.91 versus 40.45), which covers recognition, extraction, and document understanding. The 2B model remains close to its base on English olmOCR-bench (84.7 versus 84.4) and on OmniDocBench, which evaluates English and Chinese together (90.97 versus 91.03). On MDPBench, GRPO reduces the mean share of pages with repetition loops for the 2B model from 3.2% to 0.7%, with a smaller and statistically uncertain score gain for the 0.8B model. We release the model weights, Python package, and evaluation suite.",
+      "authors": [
+        "Surapon Nonesung",
+        "Natapong Nitarach",
+        "Sittipong Sripaisarnmongkol",
+        "Kunat Pipatanakul",
+        "Warit Sirichotedumrong"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-11-20T11:39:56Z",
+      "updated": "2026-11-20T11:39:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27494v1",
+      "abs_url": "https://arxiv.org/abs/2611.27494",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27494",
+      "keyword_topics": [
+        "rl"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27477",
+      "title": "Cannot Wait to Verify: Parallel Drafting to Eliminate Verifier Idle Time in Speculative Decoding",
+      "abstract": "Autoregressive inference in large transformer models is limited by token-level sequential execution, resulting in high latency and low GPU utilization. Speculative decoding (SD) mitigates this bottleneck by introducing a draft-and-verifier model. However, the drafting stage remains sequential, leaving the verifier idle and underutilizing compute. To address this, we propose a plug-and-play drafting adaptive drafting method that parallelizes inference across transformer layers during draft generation. Starting from a shared hidden state, our approach evaluates multiple layers in parallel and verifies consistency by measuring divergence in hidden-state space. Layer-wise draft states are accepted when deviations are small; otherwise, a correction step is applied. By exploiting redundancy across transformer layers, our method accelerates draft generation and improves hardware utilization without modifying architectures or requiring retraining. Experimental results on NLP tasks show that our method speeds up the drafting stage by up to $1.65\\times$ with minimal degradation in accuracy, while maintaining the same performance as SD.",
+      "authors": [
+        "Divya Jyoti Bajpai",
+        "Arun Verma",
+        "Manjesh Kumar Hanawal"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-20T11:26:57Z",
+      "updated": "2026-11-20T11:26:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27477v1",
+      "abs_url": "https://arxiv.org/abs/2611.27477",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27477",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.27459",
+      "title": "Ego2Ego: Generative Visual Perspective Taking Across Collaborators",
+      "abstract": "Visual perspective taking, the ability to infer what another person sees from their position, is fundamental to human collaboration. However, prior works reduced perspective taking to state estimation, geometric reconstruction, or discrete question answering, whereas existing cross-view video generation methods either inferred the target view from the input video alone or required an external camera that observes the target person. We introduce generative visual perspective taking: Given an ego person's egocentric video, a scene point cloud, and a collaborator's camera trajectory, the task is to generate the continuous egocentric video from the collaborator's perspective. This task is challenging given extreme viewpoint shifts, dynamic occlusions, and sparse visual overlap. We address these challenges with Ego2Ego -- a set of backbone-agnostic geometric modules that provide a pretrained video diffusion model with the 3D scene geometry shared by both interactants. Ego2Ego renders dense, temporally consistent scene coordinate maps into every view as a shared spatial reference, aligns cross-view tokens in 3D ray space through relative geometric attention, and recovers regions outside the ego person's current view from the ego person's visual memory. Experiments on the CoMind dataset across three video diffusion backbones show that Ego2Ego consistently improves visual quality, Level-2 scene layout accuracy, and collaborator motion, outperforming state-of-the-art cross-view video generation baselines on every backbone. By generating the collaborator's egocentric video more accurately, Ego2Ego brings visual perspective taking to human-robot collaboration, where it can help infer what a human collaborator sees and does, and can turn single-person recordings into synchronised multi-perspective videos for robot learning.",
+      "authors": [
+        "Chuhan Jiao",
+        "John Gideon",
+        "Anshul Gupta",
+        "Guy Rosman",
+        "Andreas Bulling"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.RO"
+      ],
+      "published": "2026-11-20T11:03:00Z",
+      "updated": "2026-11-20T11:03:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27459v1",
+      "abs_url": "https://arxiv.org/abs/2611.27459",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27459",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27443",
+      "title": "Learning When to Ask: Advisor-Aware Post-Training for SLM Agents",
+      "abstract": "Small language models (SLMs) are increasingly attractive for cheap, high-throughput agentic deployment, but they remain weak at multi-step reasoning and tool use that long-horizon tasks demand. We study how to post-train an SLM to seek advice from a stronger model and act on that advice itself, following an advisor-executor pattern. Out of the box, this pattern fails across open- and closed-source small-model families: wiring an SLM to an advisor is a harness-design matter that is not enough on its own. A post-training recipe is needed to teach the model when to ask, in a cost-aware fashion, and how to follow advice across steps. Our method, ADAPT (ADvisor-Aware Post-Training), is a multi-stage recipe that instills this behavior, learning entirely from the policy's own rollouts supervised by the environment's outcome, with no learned reward model or human annotation. Across three domains, compared to an untrained harness baseline, ADAPT improves success rate in embodied text reasoning (TextWorld) from 24.5% to 77.3%, code generation (LiveCodeBench) from 21.8% to 56.0%, and deep web search (GAIA) from 17.5% to 49.3%, while querying the advisor sparingly (~1.0-2.1 calls per task). On the two long-horizon domains it closes 70-85% of the gap to an oracle that perfectly times when to ask for advice, and on code generation it exceeds that oracle. The gains persist when the advisor is replaced by one unseen in training, showing that the learned help-seeking policy is robust to a changing advisor rather than tied to the one it was trained with.",
+      "authors": [
+        "Aasheesh Singh",
+        "Vishal Vaddina"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T10:39:02Z",
+      "updated": "2026-11-20T10:39:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27443v1",
+      "abs_url": "https://arxiv.org/abs/2611.27443",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27443",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27436",
+      "title": "THRIFTY: Cost-Constrained Reasoning-Data Synthesis for Small Language Models",
+      "abstract": "Small language models (SLMs) are increasingly attractive for efficient, specialized deployment, and are typically trained on reasoning trajectories distilled from a larger teacher LLM. Generating this synthetic data is a major cost of the pipeline, especially when the teacher is a frontier model. Existing collection methods, however, are largely cost-unaware, or at best spread a fixed sampling budget uniformly across queries. Such allocation ignores the wide variation in problem difficulty and the strategic over- or under-sampling it invites. Thus, we propose THRIFTY, a Thompson-sampling bandit controller that spends a fixed generation-token budget to collect diverse correct reasoning trajectories, casting the task as a bandits-with-knapsacks problem with a novel diversity-aware objective. It tracks each problem's success probability with an online Beta posterior and spends each token where it expects the most new distinct correct solutions. Because repeated solutions add progressively less value, THRIFTY adaptively stops resampling saturated problems, concentrates budget on under-covered ones, and retires the unsolvable at the budget's opportunity cost. On math (AIME, MATH-500) and code (LiveCodeBench) benchmarks, THRIFTY gathers up to 22% more diverse correct trajectories per generation token than both the standard uniform-sampling recipe and the strongest adaptive baseline, with the largest gains in the scarce-budget and hard-problem regimes.",
+      "authors": [
+        "Aasheesh Singh",
+        "Vishal Vaddina"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T10:32:38Z",
+      "updated": "2026-11-20T10:32:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27436v1",
+      "abs_url": "https://arxiv.org/abs/2611.27436",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27436",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27410",
+      "title": "Detecting Word-Substitution Poisoning of a RAG Knowledge Base with Relative Entropy and Runtime Verification",
+      "abstract": "A retrieval-augmented generation (RAG) system answers questions using passages it retrieves from a knowledge base, so users must trust that knowledge base. We study an attacker who quietly edits existing passages by swapping words for synonyms (PWWS, TextFooler) in a cybersecurity RAG system built from MITRE ATT&CK and CAPEC. Using a reviewed 44-question benchmark, repeated paired runs and a control corpus in which only the layout changes, we find that poisoning lowers judged answer correctness from 0.714 to 0.555. The damage comes mostly from lost evidence and refusals, not from false statements. To find the edited passages, we use relative entropy. Comparing a whole passage with normal text is a weak signal. Still, one term of the relative entropy, the log-ratio between a word and its most probable synonym, works well: with a small language model as the reference, it reaches an AUROC of 0.95 and stays near chance on the control. Used as a retrieval filter, it halves how often edited text reaches the generator, and an attacker who must keep each passage as probable under the language model fails on all 57 sections it tries. Filtering does not restore correctness, because the edited passage is usually the one that held the answer. We therefore add a runtime monitor that checks each answer against trusted MITRE STIX data and remembers the passages it rejects. On its own, it reduces exposure to edited text from 0.41 to 0.26; when it may add the trusted MITRE entry as a source, correctness rises to 0.786. We report the costs and failure cases of every defence alongside its gains.",
+      "authors": [
+        "Ali Yousefi",
+        "Nikos Komninos",
+        "Hafizul Asad"
+      ],
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T10:15:58Z",
+      "updated": "2026-11-20T10:15:58Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27410v1",
+      "abs_url": "https://arxiv.org/abs/2611.27410",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27410",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27381",
+      "title": "VMSA: Video Memory Skill Agent for Long Video Understanding",
+      "abstract": "Long-video question answering requires retrieving and integrating relevant evidence from videos spanning hours or even days. Recent agentic approaches organize video information into external memories and iteratively retrieve evidence to answer questions. However, effective retrieval and reasoning remain challenging, as agents must determine what information to search for, which memory sources to access, and how to connect evidence across distant temporal intervals. To address these challenges, we propose Video Memory Skill Agent (VMSA), a framework that jointly designs structured video memories and memory skills for long-video understanding. VMSA constructs three complementary memory components. Segment Caption Memory and Entity Event Memory serve as searchable evidence sources, while Entity-Aware Episode Memory provides broad yet detailed video context to guide evidence retrieval and reasoning. To further support effective memory utilization, VMSA induces memory skills from successful agent trajectories, incrementally refining or extending a compact skill library to guide iterative evidence retrieval, reasoning, and verification. Across seven long-video question-answering benchmarks, VMSA achieves the highest accuracy on all three week-long egocentric benchmarks, outperforming the strongest baseline by up to 9.4% on Ego-R1 Bench, and the best or competitive performance on four additional benchmarks. Ablation studies further demonstrate the contributions of all three memory components and memory skills, with memory skills also improving temporal evidence localization.",
+      "authors": [
+        "Changin Choi",
+        "Jungwon Park",
+        "Jungmin Ko",
+        "Jimyeong Kim",
+        "Wonjong Rhee"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T09:46:06Z",
+      "updated": "2026-11-20T09:46:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27381v1",
+      "abs_url": "https://arxiv.org/abs/2611.27381",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27381",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27376",
+      "title": "Composable Soft-Prompt Distillation of RL Experts: Toward Continual Post-Training",
+      "abstract": "RL post-training typically produces domain experts that must then be consolidated into one model, and as new experts keep arriving, this consolidation becomes a continual process. Weight merging and multi-teacher on-policy distillation (MOPD) must re-consolidate the whole model whenever an expert is added, and can erode capabilities outside the target domains. We propose Composable Soft-Prompt Distillation (CSPD), which keeps the pre-RL model frozen, distills each RL expert independently into a soft prompt, and composes experts by concatenating their prompts without joint training. A single soft prompt suffices to distill an RL expert, recovering at least 90% of the teacher's gain in 22 of 23 math, code, and agent settings. Independently trained prompts compose well. In a multi-expert setting, the average rises with every expert added, and the full composition matches MOPD (67.83 vs. 67.79). The composition generalizes best across six held-out benchmarks. Input-space adaptation adds little serving overhead, keeping throughput within 1.5% of the unadapted backbone and reaching 2.40x that of rank-4 LoRA. These results point toward continual post-training on a fixed backbone.",
+      "authors": [
+        "Zhen Zhang",
+        "Changyi Yang",
+        "Xuehai He",
+        "Chengzhi Liu",
+        "Yutong Yin",
+        "Ziyue Liu",
+        "Zhuoran Yin",
+        "Yangmin Li",
+        "Zhihan Liu",
+        "Jisen Li",
+        "Mingyu Jin",
+        "Chuhan Li",
+        "Zhaotian Weng",
+        "Ruoyu He",
+        "Wenyao Gao",
+        "Jiaxin Deng",
+        "Chenwei Wu",
+        "Hui Shen",
+        "Wenhao Chai",
+        "Chenyang Zhao",
+        "Zhuofan Ying",
+        "Kieran Liu",
+        "Andrew Chen",
+        "Pony Ma",
+        "Zhaoran Wang",
+        "Alkesh Patel",
+        "Zhe Gan",
+        "Xin Eric Wang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-11-20T09:42:47Z",
+      "updated": "2026-11-20T09:42:47Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27376v1",
+      "abs_url": "https://arxiv.org/abs/2611.27376",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27376",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27368",
+      "title": "Testing for Coordination Failures in Cooperative Multi-Agent Reinforcement Learning",
+      "abstract": "Deep parallel cooperative multi-agent reinforcement learning (CMARL)} trains multiple agents that all act at every time step to optimize a common objective. Like single-agent RL, CMARL can produce unsafe behaviors that violate implicit safety requirements not captured by the reward, and these behaviors are hard to explain. However, testing CMARL policies for safety has received less attention than the safety testing of single-agent RL policies. In this paper, we propose DisQ, a test case selection method that identifies failure-revealing states in value-based CMARL by exploiting a signal specific to trained Q-learning agents. The signal is the Q-value gap, an explainable metric that flags a state when the agents' estimates of the achievable return diverge by more than a calibrated threshold. DisQ selects such states for execution and skips those without a gap. Our experiments in four CMARL benchmark environments show that, in most of the evaluated configurations, DisQ improves failure detection over single-agent RL testing methods applied to CMARL, namely random testing and search-based testing with genetic algorithms. Our main contributions are the Q-value gap, an indicator of potential miscoordination computable from a single state without executing the system, and DisQ, a test case selection method that adapts existing single-agent testing methods to CMARL.",
+      "authors": [
+        "Dennis Gross",
+        "Jørn Eirik Betten",
+        "Helge Spieker"
+      ],
+      "categories": [
+        "cs.MA",
+        "cs.AI",
+        "cs.SE"
+      ],
+      "published": "2026-11-20T09:39:32Z",
+      "updated": "2026-11-20T09:39:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27368v1",
+      "abs_url": "https://arxiv.org/abs/2611.27368",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27368",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27365",
+      "title": "WePM: Hierarchical Conflict Reconciliation for Unified MLLMs",
+      "abstract": "Bringing multimodal intelligence from the cloud to users' devices keeps sensitive data local and reduces inference cost, but deploying a specialized model per capability duplicates vision-language capacity under tight memory and compute budgets. We formalize heterogeneous capability density (HCD), measuring how broadly and effectively a model serves heterogeneous task families per unit of resident inference memory. High HCD across representation, generation, and decision raises two challenges: these capabilities need visual evidence at different spatial granularities under a fixed token budget, and separately collected task corpora yield conflicting updates to shared parameters, while cross-task paired supervision is costly and ambiguous for open-ended inputs. We present WePM, a family of pocket models unifying representation, generation, and decision within one vision-language backbone. Multi-Granularity Visual Budgeting (MGVB) allocates a fixed visual-token budget across global, regional, and fine-grained banks; Unified Listwise Knowledge Distillation (ULKD) enriches separately collected data with soft teacher guidance, avoiding cross-task paired annotation; Stable and Efficient Multitask Optimization (SEMO) regulates each task's contribution through explicit loss weights and exposure schedules, with sequential gradient accumulation under memory constraints. In the joint representation-generation setting, WePM outperforms all baselines across five evaluation groups, raising the Joint score from 38.15 to 52.74. In single-task evaluation, WePM-4B attains the best average score over 30 embedding, 39 generation, and seven typed-decision benchmarks (72.86, 62.41, 61.11). Against the separate-model stack with the highest HCD, WePM achieves slightly higher balanced performance with 61.9% less resident weight memory, a 2.64-fold higher HCD.",
+      "authors": [
+        "Zhiqiang Yuan",
+        "Qiwei Yan",
+        "Liwei Yang",
+        "Jinzhe Liu",
+        "Yang Liu",
+        "Zhongyan Hou",
+        "Liyan Xu",
+        "Peixiang Luo",
+        "Jiapei Zhang",
+        "Ying Deng",
+        "Jie Zhou",
+        "Jinchao Zhang"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-20T09:34:56Z",
+      "updated": "2026-11-20T09:34:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27365v1",
+      "abs_url": "https://arxiv.org/abs/2611.27365",
+      "topics": [
+        "other"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27365",
+      "keyword_topics": [
+        "distillation"
+      ],
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27348",
+      "title": "Breaking the Long Horizon: Short-Horizon Process Supervision for Long-Form Generation in LLMs",
+      "abstract": "Long-form generation is increasingly important for agentic LLM systems, yet current reinforcement learning methods typically optimize an entire document with a single outcome-level reward. This delayed and coarse-grained supervision makes it difficult to localize errors and assign credit across semantically distinct parts of the output. To address this, we propose a short-horizon framework that reformulates long-form generation through semantic decomposition into segment-level decisions. Each segment is generated with prefix-conditioned context, allowing cross-segment coherence to be preserved while keeping supervision local. The generated segments are then scored with rubric-based rewards for adherence, coherence, and relevance, enabling explicit local supervision at the segment level. These local rewards are used to compute step-wise advantages, yielding localized policy updates. To isolate the effect of supervision granularity, we instantiate both outcome-level supervision and our short-horizon process reward method (SH-PRM) under the same GRPO framework. Across multiple LLMs and two long-form generation benchmarks, SH-PRM consistently outperforms outcome-level supervision and strong inference-time baselines under the same optimizer and comparable budgets. Further analyses suggest that these gains primarily arise from improved credit assignment. Overall, our results suggest that aligning supervision granularity with the semantic structure of long-form generation is an effective design principle for long-form LLM training.",
+      "authors": [
+        "Heyang Xu",
+        "HanWen Hao",
+        "Qianren Mao",
+        "Zhuo Liu",
+        "Qili Zhang",
+        "Sheng Yang",
+        "Jianxin Li"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-11-20T09:21:42Z",
+      "updated": "2026-11-20T09:21:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27348v1",
+      "abs_url": "https://arxiv.org/abs/2611.27348",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27348",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27344",
+      "title": "Learning Interaction Dynamics via Motion-Region Guidance for Robotic Video World Models",
+      "abstract": "Action-conditioned video world models imagine future observations under candidate robot actions, providing a promising visual tool for robot policy evaluation and interaction simulation. However, existing video world models often optimize global reconstruction errors instead of emphasizing interaction-relevant regions. As a result, they may preserve overall scene appearance but overlook local interaction details, leading to physically implausible outcomes such as hallucinated contact effects and inconsistent robot-object interactions. We introduce MoReWorld, a unified motion-region-guided framework that uses a shared motion region, the part of the environment that moves in response to the robot's actions, to focus dynamics learning and video generation on interaction-relevant regions. The same motion region guides local motion prediction, region-aware supervision, and motion-gated future-feature conditioning. At inference time, the motion region is predicted as a motion probability map from visual history and robot actions, without requiring future observations or ground-truth motion labels. On WorldSimProbe, MoReWorld achieves the highest overall simulator-faithfulness score, with the strongest performance on local consistency, global consistency, and interaction dynamics. These results indicate that motion-region guidance helps the model preserve scene-level consistency while more faithfully predicting action-conditioned interaction dynamics.",
+      "authors": [
+        "Yongkang He",
+        "Xiaofen Xing",
+        "Xiangmin Xu"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-11-20T09:20:22Z",
+      "updated": "2026-11-20T09:20:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27344v1",
+      "abs_url": "https://arxiv.org/abs/2611.27344",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27344",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27336",
+      "title": "Zing-1.0: A Playable World System Built on Controllable Rendering",
+      "abstract": "We present Zing-1.0, a Playable World System built on Controllable Rendering. An executable engine resolves player actions under the world's rules and produces proxy video from the updated state. A streaming video model synthesizes the player's view from this proxy, and the runtime delivers it to inform subsequent actions. (1) Principle and system. We formulate Controllable Rendering and define the interfaces among world construction, world execution, observation synthesis, and the interaction runtime. To our knowledge, this is the first implementation-independent specification of a Playable World System. (2) AI-native engine. WorldKit provides structured authoring tools and reusable character, camera, and control components for coding agents to construct executable proxy worlds. It supports extensible interactions and precise geometric motion control while separating executable behavior from final visual appearance. (3) Streaming renderer. We adapt MiniMax-H3 for block-causal autoregressive generation and incremental decoding. Proxy video constrains structure and motion, while text and separate scene and subject references specify appearance. We train the generator on diverse tasks and distill it to generate each block in a few denoising steps. The renderer leads the compared streaming editors on OpenVE (3.90) and LongV2VBench (3.44). On StreamEval, Zing-1.0 scores 57.86 on instruction editing and 54.06 on reference editing, exceeding the published baselines on both tracks. (4) Interaction infrastructure. We build an Interaction Runtime that routes player actions to WorldKit while supporting in-play prompt and reference updates. Cross-block joint execution and sparse attention with compressed K/V reduce inference overhead. With the DiT on a single H200 and encoding and decoding on one H100 each, the serving system achieves a steady-state throughput of 23.82 FPS at $832\\times480$.",
+      "authors": [
+        "Wenbo Zhang",
+        "Guoli Zhang",
+        "Xuewen Yu",
+        "Xueliang Yang",
+        "Jiangqiao Yan",
+        "Teng Xia",
+        "Xinmiao Wu",
+        "Zeyang Tian",
+        "Haoze Sun",
+        "Jinghui Niu",
+        "Hongli Ning",
+        "Zhiyuan Liu",
+        "Xinna Liu",
+        "Weimin Liu",
+        "Jialin Liu",
+        "Tianpeng Li",
+        "Kejun Li",
+        "Jun Li",
+        "Jiawen Li",
+        "Yirong He",
+        "Haoyuan Guo",
+        "Bosheng Gong",
+        "Junhao Gao",
+        "Xiaoxiao Fu",
+        "Xuezhi Chen",
+        "Shengdong Chen",
+        "Mingyang Chen",
+        "Diying Chen",
+        "Yinglun Chai",
+        "Yiwen Cai"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T09:13:31Z",
+      "updated": "2026-11-20T09:13:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27336v1",
+      "abs_url": "https://arxiv.org/abs/2611.27336",
+      "topics": [
+        "distillation",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27336",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27288",
+      "title": "Preserving Pretrained CFG Structure in RL for Diffusion Models with Conditional Contrast Regularization",
+      "abstract": "Reinforcement Learning (RL) has become an important component in the post-training of diffusion models. In practice, however, standard RL often improves the target reward without reliably preserving holistic generation quality, leading to unstable reward-quality trade-offs that we view as a form of reward hacking. Since Classifier-Free Guidance (CFG) is known to improve visual clarity, prompt alignment, and perceptual quality in generation, we investigate whether its underlying structure can serve as a useful prior during RL. We present a unified geometric view that interprets both CFG and RL as correction vectors in a common prediction space, and identify the projection of the RL-induced correction onto the pretrained CFG correction as a useful diagnostic of quality-related structural preservation. Geometric analysis and rotation intervention further show that the pretrained CFG direction carries information useful for generation quality that reward-driven RL updates do not necessarily preserve. Based on this insight, we propose Conditional Contrast Regularization (CCR), which uses the frozen reference model's conditional contrast as a local structural prior during RL. Experiments across multiple reward settings and backbones show that CCR more consistently preserves generation quality while maintaining competitive reward, yielding a better reward-quality trade-off than standard RL and generic regularization methods.",
+      "authors": [
+        "Yunfei Zheng",
+        "Xiaolong Wang",
+        "Dandan Zheng",
+        "Xianjun Deng",
+        "Shenghao Liu",
+        "Wei Xiang",
+        "Yuqian Li",
+        "Laurence Tianruo Yang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-11-20T08:27:32Z",
+      "updated": "2026-11-20T08:27:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27288v1",
+      "abs_url": "https://arxiv.org/abs/2611.27288",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27288",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27286",
+      "title": "Belief-State Management Meets Rubric Rewards for Agentic Forecasting",
+      "abstract": "Current large language model (LLM) agents still struggle to forecast real-world events. This stems from two primary limitations: i) standard ReAct harness accumulates reasoning and evidence within one growing context, and ii) outcome-based rewards in forecasting lead to a slow and noisy signal that cannot distinguish sound reasoning from lucky guesses. To address these, we introduce a forecasting training framework including harness design and post-training. For the harness side, we propose Proactive Belief-State Management (PBM), equipping agents with a fold tool to compress lengthy context into compact belief states and reset the context for subsequent exploration. For the training side, we develop SEIPH, a five-dimensional, outcome-blind rubric, providing process-quality rewards. Using the rubric-based reward, we post-train a 35B model with PPO and GRPO, yielding DeepForecaster-PPO and DeepForecaster-GRPO. Theoretically, we prove that idealized fold-based stopping converges and calibrated local rewards reduce segment-level gradient variance. Empirically, DeepForecaster-PPO (35B) achieves the best Brier score on both ForecastBench and Polymarket-Sim, outperforming frontier agents based on DeepSeek-V4-Pro (1.6T), Kimi-K2.6 (1T), and GPT-5.5. DeepForecaster-GRPO ranks second on both FutureX metrics. Ablations reveal that PBM also improves the untrained base model without any training. Calibration analysis shows that DeepForecaster-PPO makes more accurate high-confidence predictions than Qwen3.6 and GPT-5.5. Trajectory analysis further shows that forecasts generally improve from the first to the final belief state as agents gather evidence and revise their judgments.",
+      "authors": [
+        "Jingyi Chai",
+        "Yun Liao",
+        "Hao Lu",
+        "Kemeng Zhang",
+        "Bingyang Zheng",
+        "Yujie Ge",
+        "Xiangrui Liu",
+        "Linfeng Zhang",
+        "Siheng Chen"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-11-20T08:26:40Z",
+      "updated": "2026-11-20T08:26:40Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27286v1",
+      "abs_url": "https://arxiv.org/abs/2611.27286",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27286",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27273",
+      "title": "Do Companies Deliver on Their IPO Claims?",
+      "abstract": "Initial public offering (IPO) filings describe what a company does and what it intends to become. Yet whether individual forward-looking claims are subsequently realized is difficult to assess. We introduce Vision Follow-Through (VFT), a benchmark and agentic pipeline that separates claim extraction, category assignment, verifiability, and evidence-grounded follow-through assessment. \\vftclaims{} contains 5,066 human-annotated claim spans from 50 IPO filings, while \\vftverify{} adds verifiability tiers, follow-through outcomes, and cited later evidence for 1,000 claims. Across language models, classifying human-annotated claims is substantially easier than extracting claims from full filings. Extraction coverage also varies sharply by category, with Organizational/Culture claims recovered far less often than Market Opportunity claims. Follow-through assessment poses a separate challenge: model judgments diverge from human assessments in different ways rather than exhibiting a single consistent bias. These results show that reliable assessment of corporate follow-through requires both finding the relevant claims and grounding subsequent judgments in later evidence.",
+      "authors": [
+        "Vidhyakshaya Kannan",
+        "Shiv Banafar",
+        "Michael Galarnyk",
+        "Sagnik Nandi",
+        "Soumeya Kannan",
+        "Shauray Arora",
+        "Abanoub Abdelmalak",
+        "Sudheer Chava"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-11-20T08:12:23Z",
+      "updated": "2026-11-20T08:12:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27273v1",
+      "abs_url": "https://arxiv.org/abs/2611.27273",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27273",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27268",
+      "title": "Budgeted Safety Verification for Streaming Video Generation",
+      "abstract": "A streamed video generator releases each chunk the moment that it is produced, so a safety decision that waits for the finished clip arrives after the harm has been seen. We measure a guardrail by exposure, the harmful frames a viewer is shown, and ask where a fixed moderation budget should be spent. The accurate detector reads decoded frames with a video language model and is too expensive for every chunk, so our guard reads hidden states the generator has computed already and spends a cheap score on deciding when to call it. On 599 streams from a distilled causal generator the undefended model shows 46.25 harmful frames of 81. The video model on every chunk leaves 0.91 frames at 80.1 scored per benign stream, and the same model triggered by our guard leaves 2.35 at 5.3. Spending that budget at random leaves 37.20 frames, so the gain is in the ordering, and a frame detector in the same role gives up almost six, so the judging stage must read the chunk as a clip. The ordering is worth more as the stream lengthens, and the guard carries to a second system. An independent guardrail model agrees with our oracle at $κ=0.74$, and a blinded audit by 50 participants puts its precision at 96.1% and recall at 82.8%. Warning. This paper contains examples of generated content that some readers may find disturbing or offensive in nature.",
+      "authors": [
+        "Yuxin Cao",
+        "Ziqi Ding",
+        "Jiayu Zhang",
+        "Xianglin Yang",
+        "Wei Song",
+        "Jin Song Dong"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T08:07:25Z",
+      "updated": "2026-11-20T08:07:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27268v1",
+      "abs_url": "https://arxiv.org/abs/2611.27268",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27268",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27266",
+      "title": "PP-CFG: Polarity-Preserving Guidance for Controllable Few-Step Image and Video Generation",
+      "abstract": "Few-step diffusion distillation reduces sampling cost but often weakens adjustable classifier-free guidance (CFG) and runtime negative prompting. We introduce PP-CFG, an architecture that keeps positive and negative text conditions separate and combines their attention responses with opposite signs within a shared visual backbone. Its Scale-Time Polarity Mixer refines each condition using the guidance scale and denoising timestep, allowing prompt influence to vary throughout generation. The student retains a continuous scale input and selectable negative prompts with one visual backbone pass per step. We evaluate PP-CFG on Wan2.1 for video generation with distribution matching distillation (DMD), and on Qwen-Image with both latent consistency model (LCM) distillation and DMD. PP-CFG achieves 81.46 VBench in four steps and lower video teacher-student distances across guidance scales than step-distilled DMD. On NegElement-1K, our benchmark of 1,000 matched image and video prompt cases, it achieves higher target-removal rates than the corresponding teachers. These experiments support the method's generality across attention architectures, generation modalities, and distillation objectives while retaining competitive generation quality.",
+      "authors": [
+        "Junyi He",
+        "Xu Peng",
+        "Chengming Xu",
+        "Sixiao Zheng",
+        "Donghao Luo",
+        "Chao Wen",
+        "Peng Tang",
+        "Xijie Huang",
+        "Chengjie Wang",
+        "Yanwei Fu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T08:05:41Z",
+      "updated": "2026-11-20T08:05:41Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27266v1",
+      "abs_url": "https://arxiv.org/abs/2611.27266",
+      "topics": [
+        "distillation",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27266",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27252",
+      "title": "Beyond Prompt Imitation: Capability-Aware Video Generation with Smaller Models",
+      "abstract": "Inference-time methods that lift a small open video generator toward a proprietary one are compared through preference scores, which never say how much of the gap to a target video they close. We introduce the oracle control ladder, which hands a fixed student progressively richer information from a target clip and reads the closure of each fidelity metric at each rung as an empirical headroom reference for the methods that must synthesize that information. On 954 clips of the principal student, a dense caption reproduces little of the appearance and almost none of the motion of a target, a first frame closes half of the appearance gap and a tenth of the motion gap, a depth video closes three quarters of the motion gap and leaves color untouched, and the two together close 64 to 94% of every fidelity gap across four teachers, while a second student agrees on the rungs that it accepts. An item response model forecasts which rung closes which clip with held-out AUC of 0.76 to 0.95 on the fidelity criteria and serves as the prior of a budgeted selection policy. When controls are free, a fixed dense-control rung is hard to improve upon, and once controls are priced the policy lies above the fixed-rung frontier at matched cost and survives critics that ruin critic-driven search.",
+      "authors": [
+        "Ziqi Ding",
+        "Yuxin Cao",
+        "Kai Ye",
+        "Yaobo Yang",
+        "Wei Song"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T07:58:10Z",
+      "updated": "2026-11-20T07:58:10Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27252v1",
+      "abs_url": "https://arxiv.org/abs/2611.27252",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27252",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27227",
+      "title": "CreditFilter: Calibrated Token Weights over the Within-Response Entropy Rank for RLVR",
+      "abstract": "Critic-free reinforcement learning with verifiable rewards (RLVR) typically assigns a uniform advantage to every token. Token-reweighting heuristics like the 80/20 mask favor high-entropy tokens, but fail to measure a token's actual impact on the outcome. We formalize this impact as the forking value: the variance of the success probability over the policy's next-token choices. The expected forking values along a response sum exactly to the reward variance. Token credit is thus, in expectation over a prompt's responses, a fixed budget spent at the forks. This motivates weights that redistribute credit within a response. The forking value factorizes into a fork consequence, which requires costly continuations to estimate, and a fork probability, which the softmax provides. On Qwen3-8B-Base, this fork probability decays exponentially with a token's within-response entropy rank at class-specific rates, revealing that most tokens carry negligible forking value. CreditFilter weights each token by an exponential window over the same rank. The window is calibrated to this fork-probability envelope, under an approximately flat fork consequence. CreditFilter needs no extra forward passes and is stabilized by difficulty damping and an entropy-gated fallback. Averaged over three seeds, it outperforms DAPO by 7.7 points on MATH500 and by 10.5 and 9.1 points on AIME24 and AIME25. Its dynamically adaptive variant matches it. The ablations show that both parts matter: ranking tokens within each response rather than across the batch, and matching the window's decay rate to the envelope. Code is available at https://github.com/yoctta/CreditFilter.",
+      "authors": [
+        "Hanqing Zhao",
+        "Liuyue Xie",
+        "Rong-Cheng Tu",
+        "Xu Zhang",
+        "Davide Modolo",
+        "Dacheng Tao"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T07:25:44Z",
+      "updated": "2026-11-20T07:25:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27227v1",
+      "abs_url": "https://arxiv.org/abs/2611.27227",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27227",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27217",
+      "title": "CoPyro: Feeding Copy Proposals to Parallel Drafters",
+      "abstract": "Speculative decoding accelerates language generation by letting a target model verify several draft tokens in one forward pass. Earlier neural drafters such as EAGLE extend each candidate sequence one token at a time. Recent work has turned to parallel drafters such as DFlash, which predict a whole block at once. Another approach uses n-gram retrieval to find an earlier occurrence of the current context suffix and copy the tokens that followed it directly into the draft. We introduce CoPyro, which feeds these copied tokens into a parallel drafter in place of masks. The drafter learns from context which tokens to keep and which to revise as it predicts the block in its usual forward pass. Across eight benchmarks on Qwen3-4B, CoPyro improves overall acceptance length for all four parallel drafters tested, with gains of 2.19-5.08% when trained on 100K samples. With DFlash trained on 710K samples, overall gains range from 1.08% to 2.00% across the tested model sizes and temperatures. Code generation benefits most in both settings. On Qwen3-8B, processing the proposals adds an average of 0.24 ms per decoding round in Transformers.",
+      "authors": [
+        "Hong-Kai Zheng",
+        "Piji Li"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-11-20T07:11:06Z",
+      "updated": "2026-11-20T07:11:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27217v1",
+      "abs_url": "https://arxiv.org/abs/2611.27217",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27217",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27179",
+      "title": "Inject, Encode, Navigate: Feature-Wise Time Injection for Rectified Flow with Bidirectional Feature Encoding",
+      "abstract": "Vision-model-based robotic navigation has gained increasing popularity, yet existing approaches still struggle to deliver effective and efficient navigation performance, \\textit{e.g.}, diffusion-based policies that require costly iterative denoising. In this work, we propose three improvements to bridge these gaps. First, we adopt a rectified flow framework to reduce the required inference steps to one while achieving comparable or even superior performance. Second, we leverage a bidirectional Mamba-based visual encoder that employs selective state-space modeling to more effectively capture bidirectional temporal dependencies across observation frames, even with longer input sequences. Most importantly, we find that naïvely combining these two components to balance accuracy with inference speed yields no further performance gains or even produces inferior results. Upon extensive analysis, we realized that the root cause lies in the fact that the Hydra-derived temporal context is shared unchanged across all flow timesteps, and timestep information is introduced only within the velocity network. This weak coupling limits the model's ability to adaptively exploit temporal visual features at different flow states. To address this, we propose a feature-wise timestep conditioning design that explicitly conditions the visual embedding on the flow timestep, enabling noise-level-aware trajectory generation, thereby restoring a meaningful gradient pathway and enabling coherent interaction between the rectified flow and the temporal encoder. Extensive quantitative and qualitative experiments across multiple datasets demonstrate that our approach consistently outperforms both baseline and competitive methods.",
+      "authors": [
+        "Xiaogang Wang",
+        "Debasish Mishra",
+        "Jia Hao Toh",
+        "Wangsheng Liu",
+        "Yash Shah"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "published": "2026-11-20T06:10:09Z",
+      "updated": "2026-11-20T06:10:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27179v1",
+      "abs_url": "https://arxiv.org/abs/2611.27179",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27179",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27164",
+      "title": "PhysForce: Physics-aware Force Control for Interactive Video World Model",
+      "abstract": "Interactive video world models aim to predict how visual environments evolve in response to user interventions, including physically consistent state changes induced by applied forces. Existing methods often represent forces as motion trajectories, which may introduce inappropriate motion priors, causing the model to over-rely on encoded displacement patterns. More fundamentally, the model's internal representations do not reliably localize force-induced state changes, making it difficult to associate applied forces with their resulting physical responses. Also, limited force-annotated data make it difficult to produce physically consistent and temporally stable predictions in unseen scenarios. To address these limitations, we propose PhysForce, a two-stage framework that integrates supervised fine-tuning and reinforcement learning through three complementary components. During supervised fine-tuning, (1) the Latent Force Intervention Encoder maps force location, direction, and magnitude into the video latent space without exposing future motion; and (2) the Physics Attribution Network associates force interventions with localized changes in the latent state, strengthening the learning of physical responses to applied forces. During reinforcement learning, (3) Physics-Aware Reinforcement Learning uses self-supervised rewards on out-of-distribution videos to improve physical consistency and generalization. Extensive experiments show that PhysForce improves force responsiveness, physical consistency, and generalization, demonstrating its effectiveness for interactive video world models.",
+      "authors": [
+        "Xuancheng Xu",
+        "Xiaofeng Wang",
+        "Yue Ma",
+        "Zheng Zhu",
+        "Bing-Kun Bao"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T05:49:14Z",
+      "updated": "2026-11-20T05:49:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27164v1",
+      "abs_url": "https://arxiv.org/abs/2611.27164",
+      "topics": [
+        "world-model",
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27164",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27162",
+      "title": "Hierarchical Hybrid-Coordinate Flow Matching for Accurate and Physically Plausible Apo-to-Holo Protein Generation",
+      "abstract": "Predicting holo-like protein conformations from apo structures is essential in structure-based drug design. Most existing apo-to-holo models operate in Cartesian space and achieve strong global accuracy. However, high global accuracy does not ensure physically valid local backbone geometry. Internal-coordinate models offer local control and validity, but regressive generation can amplify angular errors, known as the lever-arm effect. We introduce CrypticFlow, a hierarchical flow-matching model that combines these two complementary representations. An ESM-3-conditioned E(3)-equivariant graph network first generates sparse C$α$ anchors in Cartesian space. A conditional midpoint Transformer then recursively fills the gaps in local internal coordinates. During recursive generation, the decoder constrains the distance between each midpoint and any sequence-adjacent parent anchor to the corresponding apo C$α$-C$α$ distance. On the D3PM test split, CrypticFlow achieves the lowest median and mean C$α$ RMSD at published baseline capacities. Across five independent training models, the median and mean direct RMSD are 1.333 $\\pm$ 0.056 angstroms and 2.766 $\\pm$ 0.041 angstroms, respectively. The quality of local geometry also improves substantially. Our model achieves 99.58 $\\pm$ 0.02% adjacent-distance fidelity and 95.87 $\\pm$ 0.25% pseudo-angle fidelity, measured within 0.2 angstroms and 20° of the holo reference. Then, we reconstruct the predicted C$α$-only traces into all-atom structures using the cg2all coarse-to-all-atom backmapping method and evaluate their physical and geometric quality with MolProbity. Our model achieves a MolProbity score of 3.034 $\\pm$ 0.054, outperforming the evaluated baselines. These results show that a hierarchical flow-matching model with hybrid coordinates can recover global accuracy while retaining local fidelity.",
+      "authors": [
+        "Minjong Kim",
+        "Jaemin Sim",
+        "Dongwoo Kim",
+        "Myunghyun Jang",
+        "Eun-Sol Kim",
+        "Juyong Lee"
+      ],
+      "categories": [
+        "cs.LG",
+        "q-bio.BM"
+      ],
+      "published": "2026-11-20T05:47:46Z",
+      "updated": "2026-11-20T05:47:46Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27162v1",
+      "abs_url": "https://arxiv.org/abs/2611.27162",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27162",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27155",
+      "title": "The Vulnerability Window: Decision Instability in Quantized Reward Models",
+      "abstract": "Reward models and LLM judges are routinely quantized to 4 bits so that scoring many candidates stays affordable, and the usual check is that benchmark accuracy barely moves. That check is close to blind. Across eight reward models from two families (0.6B-8B), three generative judges and four 4-bit quantizers, quantization rewrites 1.1-12.3% of pairwise preference decisions on RewardBench while aggregate accuracy moves by as little as 0.03 points (p = 1.00), because the errors it fixes and introduces cancel. Flips concentrate where the full-precision margin is small relative to the quantization noise scale sigma: a Gaussian approximation Phi(-|m|/sigma) describes the aggregate rate, over-predicting it in all 30 scalar settings and failing for generative judges, and occupancy of the resulting vulnerability window falls from 25% to 7% with model size, which is what makes small judges fragile. The churn stays within noise under benign best-of-16 and becomes clear under adversarial pressure for some quantizers (146:54 harmful:helpful flips on one family, reversing sign on another). Downstream it changes what ships: across six (model, quantizer) pairs from two families, 14.6-65.7% of problems get a different best-of-64 selection while only 2.6-9.6% get a different final answer, with selections changing 5-8x more often than answers in every pair, and the pair the benchmark calls identical (0.03 points, p = 1.00) still changes 34.5% of them. Benchmark churn ranks that downstream change (rho = 0.89); benchmark accuracy does not order it reliably. Held-out audits then locate the useful diagnostic in the margin rather than the Gaussian: every margin-based predictor orders flips identically (AUC 0.927), and on the level a directly measured churn rate wins in-distribution. As a routing signal it is matched by plain top-k. The contribution is the characterization, not the model.",
+      "authors": [
+        "Omkar Shewale",
+        "Deepak Kumar",
+        "Divakar Kumar Yadav"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "published": "2026-11-20T05:39:34Z",
+      "updated": "2026-11-20T05:39:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27155v1",
+      "abs_url": "https://arxiv.org/abs/2611.27155",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27155",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27149",
+      "title": "Where Structure Enters a World Model: From Predictive Fit to Physical Rollout",
+      "abstract": "Predictive world models learn to forecast observations, but accurate short-term predictions do not necessarily produce physically coherent behavior over longer horizons. We investigate how incorporating physical structure can strengthen world models while retaining their underlying predictive objectives. Across token-based models of planetary motion and JEPA-style visual models of mechanical systems, we study conserved-quantity supervision, symmetry-aware representations, temporal consistency, and learned structured dynamics. In planetary motion, angular-momentum supervision improves autonomous next-token forecasting, while the benefits of temporal regularization depend on the accompanying physical objective and representation. In visual models, generating rollouts through supervised energy-based dynamics heads produces more faithful trajectories and phase-space evolution. Together, these findings highlight the importance of how physical structure participates in prediction: improvements in an auxiliary physical readout or a local acceleration estimate do not automatically translate into more reliable long-horizon behavior. Evaluations across initial conditions and physical parameter shifts further reveal where these benefits persist and where generalization remains limited. Our study supports physical structure as a practical means of improving predictive world models and provides a unified framework for understanding its effects on representations, learned transitions, and autonomous rollouts. The central lesson is that effective physical inductive biases should help models both represent physical regularities and use them to generate future states.",
+      "authors": [
+        "Panayiotis Christou",
+        "Satyapragnya Kar",
+        "Flavjo Xhelollari",
+        "Parijat Dube",
+        "Rajarshi Das"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-20T05:31:08Z",
+      "updated": "2026-11-20T05:31:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27149v1",
+      "abs_url": "https://arxiv.org/abs/2611.27149",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27149",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27133",
+      "title": "MAPES: Multi-Value Alignment Pipeline via Expert Specialization",
+      "abstract": "Aligning large language models (LLMs) with human preferences requires simultaneously satisfying multiple, often competing values. Existing preference optimization methods collapse these into a single implicit signal, and even multi-objective extensions optimize within a shared parameter space, leaving cross-value conflicts unresolved. We propose MAPES, a multi-value alignment paradigm in which conflict resolution is a first-class concern at every pipeline stage: it first decomposes supervision into value-specific experts trained in isolated parameter subspaces, then recomposes them via preference-aware value merging and a lightweight harmonization stage that aligns the merged model with the expert ensemble. Across five preference alignment benchmarks, MAPES outperforms strong direct preference optimization (DPO) variants and multi-objective baselines on the benchmark-level average, with no large degradation on GSM8K and GPQA; matched controls isolate the contribution of each stage.",
+      "authors": [
+        "SungHo Kim",
+        "SangKeun Lee"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-20T05:07:54Z",
+      "updated": "2026-11-20T05:07:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27133v1",
+      "abs_url": "https://arxiv.org/abs/2611.27133",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27133",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27131",
+      "title": "Distillation with Errors: Sparse Unbiased Backpropagation for Knowledge Distillation",
+      "abstract": "Knowledge distillation (KD) trains a student to match a teacher's output distribution. However, full-vocabulary KD requires costly output-head backpropagation. To reduce this cost, we introduce Distillation with Errors (DWE). Our key insight is that minibatch training already approximates the training gradient, so per-position backpropagation does not need to be exact. DWE therefore exploits the zero-sum structure of logit gradients to construct sparse paired gradient estimates whose expectation matches the full-vocabulary gradient. It then uses geometry-aware pairing and stratified sampling to further reduce estimation variance. We prove that the estimator is unbiased and evaluate DWE's gradient estimation accuracy and training efficiency. At the same sampling budget, DWE reduces hidden-state and output-weight gradient MSE by 63.5% and 57.9%, respectively, compared with importance sampling. In off-policy KD, it achieves up to a $1.95\\times$ output-head speedup and reduces training time by 10.4-15.7% relative to full-vocabulary KD. In on-policy distillation (OPD), it achieves up to a $2.20\\times$ output-head speedup. DWE maintains competitive downstream performance in both settings. Our code is available at https://github.com/dwe-lab/DWE.",
+      "authors": [
+        "Yuyang Zhang",
+        "Yuxin Li"
+      ],
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-11-20T05:06:05Z",
+      "updated": "2026-11-20T05:06:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27131v1",
+      "abs_url": "https://arxiv.org/abs/2611.27131",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27131",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27124",
+      "title": "A Plan or an Adversarial Example? A Round-Trip Check for Latent World Models",
+      "abstract": "If we optimize an image until a classifier is confident it shows a cat, we may get an adversarial example, not a cat. Planning with a latent world model is a similar search for actions whose predicted future is closest to the goal. Is the result a plan, or an adversarial example of the world model? We show that it can be either. On the released DINO-WM and LeWM, more iterations of the cross-entropy method (CEM) lower the predicted cost but lose up to half of the problems CEM had already solved. The model's own predictions do not reveal these failures. We propose a simple test that executes the plan after every iteration and counts the problems a planner solves and then loses. Unlike an image, a plan comes with its actions, which our round-trip check reads back from the predicted states with a small network, penalizing mismatches. The check reads back the sum of each block of five actions, the part that two consecutive predicted states determine. Without retraining the world model and at only 0.2% to 3.1% more planning time, it improves the widely used planners CEM and MPPI on three released world models, and gains more where planners lose more problems. Without replanning, success rises from 0.39 to 0.76 on Wall with DINO-WM and from 0.56 to 0.94 for MPPI on JEPA-WM. With replanning (MPC), it rises from 0.70 to 0.81 on Cube with LeWM.",
+      "authors": [
+        "Huiyuan Tian",
+        "Chih-Yung Wen",
+        "Shijian Li"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "published": "2026-11-20T04:49:56Z",
+      "updated": "2026-11-20T04:49:56Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27124v1",
+      "abs_url": "https://arxiv.org/abs/2611.27124",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27124",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27119",
+      "title": "CTRL: Concurrent Training and Rollout for LLM Reinforcement Learning via GPU Co-Residency",
+      "abstract": "Reinforcement learning (RL) post-training of large language models runs two GPU workloads with different hardware demands: rollout decoding, which is dominated by memory access and whose batch shrinks as responses finish, and a dense learner. Current systems either time-share every GPU between them, paying serial phases and switches, or split GPUs into pools whose sizes change only in whole devices. We present CTRL, which makes co-residency a third RL execution layout: every GPU runs a learner rank beside a persistent rollout engine, sharing the device under CUDA MPS. A host-owned learner makes the layout fit: optimizer state stays in host memory, and policy weights stream layer by layer through a bounded GPU window. A publication gate trains each ready batch first and waits only before releasing the next policy, keeping a dropless staleness bound. A step-time bound guides compute-share selection, and a GPU-time ledger explains overlap and sharing costs. On H100, A800, and RTX 4090 GPUs with Qwen3 models, CTRL achieves 1.11-2.24$\\times$ the throughput of the stronger of verl's asynchronous baselines across 24 workload settings with the staleness limit set to two, and 1.23$\\times$ verl's colocate_async on eight H100 GPUs. With the same learner, co-residency is 1.10-1.26$\\times$ faster than time-sharing on all three platforms and 1.10-1.30$\\times$ faster than the best measured whole-GPU split on H100 DAPO-Math workloads at 256-528 trajectories per step, on four and eight GPUs.",
+      "authors": [
+        "Ruijia Yang",
+        "Ruikai Li",
+        "Zeyi Wen"
+      ],
+      "categories": [
+        "cs.DC",
+        "cs.LG"
+      ],
+      "published": "2026-11-20T04:42:26Z",
+      "updated": "2026-11-20T04:42:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27119v1",
+      "abs_url": "https://arxiv.org/abs/2611.27119",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27119",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27083",
+      "title": "How Far Does Lossless Re-tokenization Move an RLVR Update?",
+      "abstract": "Language models assign different probabilities to token sequences that decode to the same string. In reinforcement learning from verifiable rewards (RLVR), a trainer that re-encodes sampled text may train on a different token sequence with the same reward. We ask how far this moves a training update, and whether the movement has a consistent direction. From one checkpoint, we compare updates on the same rollouts, canonical and with selected tokens split into two pieces, against an update on a different batch. On Qwen2.5-0.5B with three-digit addition, splitting about one token in 25 moves the update 0.556 times as far as replacing the batch. The ratio rises with the fraction split in four models and depends on which tokens are split; within a checkpoint, the displacements share a direction across batches. In a tabular model with one table per tokenization and a single sampled string, we prove that whenever two strings below an unsampled prefix differ in probability, only the zero full-gradient step agrees across tokenizations, however it is weighted. In an audit that decodes and re-encodes resampled rollouts, re-encoding touches up to 5.2% of rollouts but at most 0.08% of tokens, far below the split fractions we test. Training on fixed rollouts, the canonical arm finishes ahead in 14 of 18 pre-registered pairs; the interval for the mean accuracy difference includes zero over all pairs and excludes it only under the registered exclusion rule, which favours the canonical arm.",
+      "authors": [
+        "Zhe Dong",
+        "Fang Qin"
+      ],
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-11-20T03:53:22Z",
+      "updated": "2026-11-20T03:53:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27083v1",
+      "abs_url": "https://arxiv.org/abs/2611.27083",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27083",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27074",
+      "title": "Hindsight Forcing: Learning Better History from the Future in Autoregressive Video Diffusion",
+      "abstract": "Few-step autoregressive video diffusion enables real-time streaming generation, with each generated chunk serving as historical context for subsequent generation. To avoid the memory explosion of backpropagation through time, previous self-rollout methods typically truncate cross-chunk gradients or detach historical latents. As a result, earlier denoising computations receive no downstream feedback through the generated history on how to synthesize frames that facilitate subsequent generation, leading to visual drift and structural collapse as rollouts extend. To address this limitation, we propose Hindsight Forcing, which allows historical chunks to learn directly from future outcomes by decoupling forward generation from backward credit assignment via a latent straight-through bridge. In the forward pass, each chunk completes a full multi-step rollout to update the KV cache. In the backward pass, the bridge routes gradients from future losses back to a single selected denoising step per historical chunk, training both the context writer and historical denoiser on shared parameters without retaining the full trajectory graph. Remarkably, Hindsight Forcing requires no additional model parameters, architecture modifications, or separate trajectory replay. Extensive experiments on VBench demonstrate that Hindsight Forcing outperforms existing baselines in overall visual quality and dynamic motion, while ablation studies validate the benefit of supervising historical denoising. Code is available at https://github.com/haonanAN309/Hindsight-Forcing.",
+      "authors": [
+        "Haonan An",
+        "Yihang Tao",
+        "Yu Guo",
+        "Renlong Chen",
+        "Jiasheng Zhang",
+        "Yuguang Fang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T03:39:32Z",
+      "updated": "2026-11-20T03:39:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27074v1",
+      "abs_url": "https://arxiv.org/abs/2611.27074",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27074",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27070",
+      "title": "$R^2$: Recognizing and Reducing Redundant Visual Tool Use",
+      "abstract": "Recent studies have shown that visual tools can improve multimodal reasoning. However, the effects of tools vary substantially across samples, and benchmark accuracy alone does not reveal whether tool interactions are beneficial or redundant. We present $R^2$, a framework that recognizes and reduces redundant visual tool use in vision-language models. We first introduce a sample-level Category Analysis of Tool Utility (CAT), which categorizes samples according to whether a model can benefit from tools. This analysis reveals that benchmark scores may obscure a model's tool-use ability. Across seven benchmarks, samples benefiting from tools account for at most 12.44% of each benchmark, while the majority gain little from tool interaction or are even harmed by it. To assess individual calls, we propose the Visual Feedback Dependency (VFD) metric, which compares the likelihood of the same subsequent reasoning under actual and alternative visual feedback without an external evaluator or trajectory regeneration. Redundancy-Aware GRPO (RA-GRPO) combines this dependency signal with a category-conditioned base call cost to assign relative efficiency advantages among correct trajectories, supplementing outcome-based supervision. Across the seven benchmarks, RA-GRPO reduces the mean number of tool calls by 12.39% relative to Vanilla GRPO at comparable benchmark accuracy. Evaluated by tool-utility category, RA-GRPO improves category macro-average accuracy over Vanilla GRPO by 3.35 percentage points.",
+      "authors": [
+        "Yilin Zhao",
+        "Jinyu Wang",
+        "Wenming Yang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T03:38:36Z",
+      "updated": "2026-11-20T03:38:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27070v1",
+      "abs_url": "https://arxiv.org/abs/2611.27070",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27070",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27068",
+      "title": "Decision Models Are General-Purpose Process Reward Models",
+      "abstract": "Reinforcement learning (RL) from verifiable outcomes gives a language agent one reward per episode: every step is credited alike, and nothing about the task is learned when all rollouts fail. The last mile, step-level credit, usually requires step labels, a learned critic, costly LLM judges or hand-written rules. We introduce DM-PRM, which turns a general-purpose decision model -- one answering yes/no questions with probabilities -- into a general-purpose process reward model (PRM), zero-shot: no step labels, no fine-tuning, no critic. DM-PRM asks one question per step and adds the standardised answers to the advantage. It plugs into any policy-gradient method; one model, with one question text per environment, serves household tasks, web shopping and multiple RL methods. With Qwen2.5-1.5B it lifts GRPO by over twenty points on ALFWorld and over ten on WebShop, overtakes GiGPO on ALFWorld and learns in far fewer iterations; it also improves GiGPO and GraphGPO on both benchmarks and reaches the highest success of our comparison, ahead of critic-based PPO and of state-of-the-art GiGPO, HGPO and GraphGPO. Its scores locate useful steps in failed rollouts, and trained agents drop idle actions and explore instead of circling. DM-PRM shows that step credit need not be learned: it can be asked for.",
+      "authors": [
+        "Jiajun Fan",
+        "Qinglong Zheng",
+        "Ziwen Wang",
+        "Bangji Yang",
+        "Neil He",
+        "Ruihan Guo",
+        "Chaoran Cheng",
+        "Ge Liu"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-20T03:36:18Z",
+      "updated": "2026-11-20T03:36:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27068v1",
+      "abs_url": "https://arxiv.org/abs/2611.27068",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27068",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27063",
+      "title": "V2VFusion: Text-Controlled Video-to-Video Diffusion for Degradation-Aware Video Fusion",
+      "abstract": "Video fusion integrates complementary information in multiple source video streams into a single sequence for complete scene perception. Existing methods perform frame-wise fusion and lack unified spatio-temporal modeling across sequences, damaging temporal coherence across sequences. When dealing with degradations, they also ignore temporal dynamics and overload a single network with diverse degradations, leading to limited and imbalanced degradation suppression. To address these issues, we propose V2VFusion, the first unified video-to-video fusion framework that directly generates temporally coherent, high-quality fused videos from degraded multi-source inputs. By reformulating video fusion as a video-to-video conditional generation problem in latent diffusion space, our approach holistically models spatio-temporal dependencies across entire sequences and intrinsically ensures sequence-level consistency. On this basis, a text-guided degradation-conditioned ControlNet bridges high-level textual degradation descriptions with low-level visual priors, enabling interpretable and controllable guidance for structure-preserving fusion beyond purely data-driven conditioning. To handle heterogeneous and compound degradations, a state-modulated degradation-aware hierarchical mixture-of-experts module decouples expert selection into diffusion-state-aware filtering and degradation-aware routing. It prevents unreliable routing and fosters expert specialization to mitigate representation conflicts among diverse degradations. Experiments on infrared-visible, multi-exposure, and multi-focus video fusion tasks and complex degradations validate that V2VFusion surpasses existing methods in fusion quality and temporal stability. The code is available at https://github.com/ChenDoubleJ/V2VFusion.",
+      "authors": [
+        "Jiajun Chen",
+        "Han Xu",
+        "Yunfei Huang",
+        "Zhuoya Zhang",
+        "Guangcan Liu",
+        "Jiayi Ma"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T03:30:12Z",
+      "updated": "2026-11-20T03:30:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27063v1",
+      "abs_url": "https://arxiv.org/abs/2611.27063",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27063",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27061",
+      "title": "PACE: Policy Augmentation and Compensation With Explicit Disturbance Estimation for Robust Locomotion",
+      "abstract": "Reinforcement learning has made quadrupedal locomotion remarkably robust. To handle unmodeled dynamics and external disturbances, domain randomization is usually employed to make a policy hedge against every condition it might meet. However, maintaining accurate tracking across varying dynamics and generalizing beyond the sampled range remain challenging. Here we show that explicitly estimating the disturbance and feeding the resulting estimation back into both the policy and the controller can relax this compromise. We introduce Policy Augmentation and Compensation with Explicit disturbance estimation (PACE). The framework lumps payload variations, center-of-mass (CoM) shifts, actuator degradation, and external forces into one joint-space disturbance. A nonlinear observer subsequently recovers this disturbance online without requiring joint acceleration measurements. The disturbance estimation provides feedforward torque compensation as the foundational control pathway and further augments the policy observation to enable disturbance-aware action generation. Considering the learning difficulty of fast-varying contact effects, we further provide an analytical contact estimation approach from joint and inertial measurements, without demanding force sensors. Across eleven simulated dynamics conditions, PACE reduces velocity-tracking error by 18.1% to 57.0% against state-of-the-art baselines, and maintains improved tracking under out-of-distribution (OOD) commands. Notably, in real-world experiments, the deployed real robot carried an 11.5 kg payload, nearly equal to its own mass. It also negotiated unseen 16 cm step-downs and crossed five outdoor terrains. The policy was trained exclusively on flat ground in simulation with at most 3 kg of added mass.",
+      "authors": [
+        "Shixuan Han",
+        "Yuyang Wang",
+        "Jingting Jia",
+        "Zeshuai Chen",
+        "Jindou Jia",
+        "Kexin Guo",
+        "Xiang Yu"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T03:28:57Z",
+      "updated": "2026-11-20T03:28:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27061v1",
+      "abs_url": "https://arxiv.org/abs/2611.27061",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27061",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27032",
+      "title": "Disentangling Verbalized Evaluation Awareness and Refusal through Neuron-Level Intervention",
+      "abstract": "As large reasoning models (LRMs) become more capable, reliable evaluation becomes essential. LRMs can sometimes recognize that they are being evaluated, a phenomenon known as \\emph{evaluation awareness}. This phenomenon raises concerns about whether safety behavior, particularly refusal behavior, generalizes from evaluation to deployment. Prior work manipulates \\emph{verbalized evaluation awareness (VEA)} through activation steering and observes higher refusal rates when VEA is present, but the mechanisms underlying this connection remain poorly understood. We identify \\emph{VEA neurons} by contrasting their activations in VEA and non-VEA reasoning segments. Intervening on 5,000 VEA neurons reduces the VEA rate from 12.6--51.8\\% to at most 1.4\\% across the model benchmark combinations in our main experiments, and lowers a probe score for unverbalized evaluation awareness (unVEA). In QwQ-32B, VEA-neuron intervention also reduces refusal even in rollouts without VEA; VEA text itself explains only 4--10\\% of the decrease. We further show that their down-projection vectors contain refusal components, and preserving these components during intervention partially restores refusal while maintaining VEA suppression, accounting for about half of the refusal decrease and providing a mechanistic explanation for the connection between evaluation awareness and refusal. Finally, across the OLMo 3 SFT, DPO, and RLVR checkpoints, the VEA rate on SorryBench and StrongREJECT is similar after SFT and DPO but substantially higher after RLVR, alongside an increase in the number of VEA neurons. Together, these findings show that VEA text itself has a limited effect on refusal, and that VEA neurons integrate evaluation awarenss and refusal.",
+      "authors": [
+        "Jingyuan Feng",
+        "Gouki Minegishi",
+        "Andrew Gambardella",
+        "Takeshi Kojima",
+        "Yusuke Iwasawa"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-20T03:05:18Z",
+      "updated": "2026-11-20T03:05:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27032v1",
+      "abs_url": "https://arxiv.org/abs/2611.27032",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27032",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27029",
+      "title": "Mind World Models: Joint Learning of Motor EEG Representations and Action-Conditioned World Dynamics",
+      "abstract": "Motor decoding from electroencephalography (EEG) supports non-invasive brain-computer interfaces, yet existing methods either rely on costly cue-based trials and coarse categorical labels or use pretraining objectives that do not directly capture how movement unfolds, limiting their ability to learn transferable motor representations. To this end, we propose the Mind World Model (MWM), a framework that learns motor EEG representations from scalable naturalistic EEG and egocentric video without action annotations. MWM treats EEG observed up to the current frame as the latent action of a world model: a mind model encodes the EEG, and a world model uses it to predict the representation of a future frame, yielding a movement-grounded pretraining objective. We further introduce the Lateralization-Aware Transformer (LAT), which uses frame averaging to separate shared bilateral from side-specific lateral features, encoding hemispheric correspondence to reduce the burden of learning left-right relationships from data. MWM pretraining produces two models: a mind model for downstream motor decoding and a world model that can be adapted to prediction conditioned on real actions, opening a scalable and flexible path to collect egocentric data for embodied AI. Across 9 classification and 7 regression tasks, the mind model improves task-averaged balanced accuracy by 5.9% and Pearson correlation by 16.2% relative to the strongest baseline in each task family. Compared with an inverse-dynamics latent-action baseline, the world model achieves lower prediction error and benefits 3.3 times more from matched real actions within recordings and 4.7 times more on held-out subjects.",
+      "authors": [
+        "Weikang Qiu",
+        "Zheng Huang",
+        "Tinglin Huang",
+        "Yujun Yan",
+        "Rex Ying"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-20T03:00:38Z",
+      "updated": "2026-11-20T03:00:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27029v1",
+      "abs_url": "https://arxiv.org/abs/2611.27029",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27029",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27024",
+      "title": "ReactDrive: Self-Reactive Driving World Model",
+      "abstract": "The world evolves through the dynamics of its constituent entities and their interactions, with changes in one entity influencing the behavior of others. To simulate this evolution under different actions, interactive world models need to capture the resulting agent responses as part of the world's own dynamics. In autonomous driving, errors in modeling these responses can misrepresent maneuver safety and undermine the reliability of generated videos used for policy evaluation and learning. To formalize this intrinsic requirement for driving world model, we define self-reactivity as the capability to model agent responses from observed history and a specified ego action, and generate visual futures that reflect those responses without prescribed future agent trajectories. To realize this capability, we introduce ReactDrive, a driving world model that jointly learns agent dynamics and visual generation through a shared agent state representation. Within this framework, dynamics supervision grounds a reactive dynamics prior in observed agent states, while the video objective jointly optimizes the self-reactivity and visual realism. Experiments show improved agent responses, ego controllability, and video quality, a 96.0% preference for agent reactivity in human comparisons across five baselines, and better downstream planning through augmentation with generated videos. We hope this work encourages the community to recognize self-reactivityas a foundational capability for developing and evaluating interactive world models. Project page: https://reactdrive.github.io/ .",
+      "authors": [
+        "Yifan Wang",
+        "Xiaoqi Wang",
+        "Cho-Ying Wu",
+        "Wenbin He",
+        "Chenyu You",
+        "Liu Ren"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T02:54:59Z",
+      "updated": "2026-11-20T02:54:59Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27024v1",
+      "abs_url": "https://arxiv.org/abs/2611.27024",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27024",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27011",
+      "title": "FoRe: A Force-Guided Framework for Autonomous Grasp Recovery in Vision-Language-Action Models",
+      "abstract": "Vision-language-action (VLA) models have demonstrated strong performance in grasp-based manipulation, yet reliable recovery from local grasping failures remains challenging. Specifically, in pick-and-place tasks, policies may continue transport after a failed grasp instead of retrying, potentially reflecting overreliance on proprioceptive cues for stage progression and limited retry supervision. Existing recovery approaches typically rely on deployment-time guidance or demonstration augmentation. We introduce Force-guided Recovery (FoRe), a framework for autonomous recovery from local grasping failures. Using force feedback, FoRe partitions demonstrations into approach-grasp and transport-placement stages to train separate policies. To supplement limited retry supervision, FoRe then initializes a dedicated retry policy from the approach-grasp policy and refines it through local reinforcement learning (RL) from post-failure states. To avoid inappropriate stage progression, a controller combines force feedback with grasp-command status at inference to coordinate the stage policies, detect grasp failures, and invoke the retry policy. We also construct LIBERO-SUCTION, a force-augmented suction manipulation benchmark adapted from LIBERO, with complete demonstration trajectories for policy training. FoRe consistently improves task success rates for VLA-Adapter and $π_{0.5}$ on LIBERO-SUCTION, LIBERO, and real-world tasks. On LIBERO-SUCTION, average absolute gains are 18.4% and 6.5%, respectively. The corresponding real-world absolute gains are 25.0% and 21.7%. FoRe also remains effective with only one demonstration per task on both simulation benchmarks.",
+      "authors": [
+        "Shuai Peng",
+        "Yongkai Liao",
+        "Yuxin Cheng",
+        "Haoyuan Wang",
+        "Jian Huang"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T02:39:15Z",
+      "updated": "2026-11-20T02:39:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27011v1",
+      "abs_url": "https://arxiv.org/abs/2611.27011",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27011",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.27003",
+      "title": "S2D-Splat: Static-First Gaussian Reconstruction of Dynamic Driving Scenes with Layer-Wise Feature Guidance",
+      "abstract": "Moving objects introduce cross-frame inconsistencies that complicate camera estimation and static geometry recovery in driving scenes. Recent feed-forward Gaussian methods explicitly separate static and dynamic primitives, but often estimate camera parameters and geometry from shared features that jointly encode both components, leaving static reconstruction susceptible to dynamic interference. To address this challenge, we propose S2D-Splat, a feed-forward framework for static-first Gaussian reconstruction with layer-wise feature guidance. Our framework separates static and dynamic features before camera and geometry estimation, enabling the static branch to recover camera parameters and static 3D Gaussians with reduced dynamic interference. Intermediate static features are cached at each layer and reused as fixed conditioning at corresponding layers of the dynamic branch. This asymmetric information flow preserves the established static representations while providing stable geometric context for reconstructing dynamic 3D Gaussians. An instance-level motion decoder further queries the fused static and dynamic representations to estimate object trajectories, supporting motion-aligned Gaussian fusion and temporal interpolation. Experiments on Waymo and zero-shot evaluations on nuScenes and the MM-AU accident dataset demonstrate that S2D-Splat outperforms existing approaches on most evaluated metrics and generalizes to highly dynamic, pre-collision driving scenarios.",
+      "authors": [
+        "Jinheng Li",
+        "Tianchen Deng",
+        "Bufan Zhang",
+        "Qu Chen",
+        "Jianwu Fang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T02:33:36Z",
+      "updated": "2026-11-20T02:33:36Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27003v1",
+      "abs_url": "https://arxiv.org/abs/2611.27003",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27003",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.26998",
+      "title": "Reward Integrity in Adversarial Reinforcement Learning for LLM Guardrail Red-Teaming",
+      "abstract": "We study reward fidelity in an adversarial reinforcement-learning loop for red-teaming financial-services language-model guardrails. Apparent wins can arise when an attack omits prescribed personally identifiable information (PII), or when a reward judge credits a response that did not break the targeted policy. On attacker-generated and public benchmark examples, TypeSafe Jev checks whether the prescribed PII is present. For outcome scoring, we compare the decision models TypeSafe Jev, Laya (pretrained and post-trained), and pretrained CLM-8B with logged Opus 4.8 judgements from a replay corpus. Post-training markedly improves Laya's agreement with the judge. A separate author-reviewed off-target set establishes that Opus can award false wins. The findings motivate specialised decision-model judges for checking prescribed PII in attack inputs and scoring target responses against the intended policy.",
+      "authors": [
+        "Chengming Liu",
+        "Leon Viti",
+        "Hongxu Chen",
+        "Erdem Kemik",
+        "Mary-Anne Williams",
+        "Ruth Oliver"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-20T02:26:54Z",
+      "updated": "2026-11-20T02:26:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.26998v1",
+      "abs_url": "https://arxiv.org/abs/2611.26998",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26998",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.26981",
+      "title": "ViewDreamer: A Robot World Model beyond Fixed Camera Setups",
+      "abstract": "Video generation models are increasingly important for robot learning, yet most generate each camera view separately or tile all views in a fixed layout. Robot demonstrations, however, are captured by synchronized cameras whose number, placement, and order vary across embodiments. We present ViewDreamer, a single world model that handles variable sets of cameras by disentangling per-view generation from cross-view interaction. Each view follows the generation path of a pretrained single-view model, and views interact only through shared slot tokens. We stabilize multi-view training with a curriculum that gradually increases the number of views. Cross-View Slot Agreement uses visual foundation models to group geometrically and semantically similar regions across views into shared slots. On RoboView-Bench, which covers one to four cameras, ViewDreamer achieves the best generation quality among the models evaluated and improves cross-view consistency over independent per-view generation. These gains carry over to our world-action model (WAM) and action-conditioned world model (AC-WM). Our WAM outperforms the FastWAM-Joint baseline on LIBERO-Plus, RoboTwin 2.0, and RoboDojo, and on a real Franka robot. Both variants improve out-of-domain generalization to various camera settings and scenes.",
+      "authors": [
+        "Ye Mao",
+        "Jinhui Xiong",
+        "Egor Larionov",
+        "Shiyang Lu",
+        "Krystian Mikolajczyk",
+        "Wei Ye"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T01:58:31Z",
+      "updated": "2026-11-20T01:58:31Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.26981v1",
+      "abs_url": "https://arxiv.org/abs/2611.26981",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26981",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.26963",
+      "title": "Causal Diffusion for Extreme Super-Resolution in Interactive Games",
+      "abstract": "Existing game super-resolution methods typically operate at moderate upscaling factors, struggling to recover fine visual details from extremely low-resolution inputs (e.g., 120p). At such resolutions, super-resolution shifts from reconstructing existing information toward synthesizing missing visual details. While video diffusion models offer powerful generative priors for this challenging task, their dependence on future frames limits their applicability to interactive games. We present CIDER, a causal diffusion framework for extreme game super-resolution that synthesizes high-frequency details from current and past low-resolution frames, guided by G-buffers (depth and motion vectors) to preserve scene structure and temporal consistency. We collect data from two AAA games (Cyberpunk 2077 and Black Myth: Wukong). To reduce inference load, we develop a lightweight latent projection encoder tailored to ultra-low-resolution inputs, fine-tune a decoder (TAE) on our high-resolution outputs, and distill the diffusion model to reach interactive frame rates. Our experiments demonstrate high-fidelity 8$\\times$ upscaling from 120p to 960p at around 13 FPS, outperforming state-of-the-art game upscalers in visual quality and showing potential for 16$\\times$ magnification.",
+      "authors": [
+        "Christina Zhang",
+        "Jenna Kang",
+        "Colin Groth",
+        "Akshay Jindal",
+        "Stavros Diolatzis",
+        "Qi Sun"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T01:30:44Z",
+      "updated": "2026-11-20T01:30:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.26963v1",
+      "abs_url": "https://arxiv.org/abs/2611.26963",
+      "topics": [
+        "distillation",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26963",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.26954",
+      "title": "Learning Video Foresight Reasoning from Unlabeled Videos via On-Policy Self-Distillation",
+      "abstract": "Video foresight reasoning requires vision-language models to anticipate future events or next actions from currently observed videos. Existing methods fit future captions, rationales, or full visual states, but face two limitations. First, they rely on annotations or external large models for supervision, limiting scalability. We address this with an on-policy self-distillation framework that turns past-future video pairs into a natural self-supervised signal without extra annotations or LLM supervision. Second, they treat the whole future clip as equally valuable, although most of it is irrelevant context information. We address this by defining a foresight score, from which we obtain a contrastive privilege advantage that drives the model to learn the most valuable future information. Since the score is intractable, we optimize a tractable lower-bound surrogate that interpolates this advantage, computed between the true and a random reference future, with a teacher-student distillation advantage; together, they amplify decision-relevant content information and suppress irrelevant context information. We call the resulting framework Future-OPSD. On open-ended prediction and closed-ended planning, Future-OPSD improves base models by up to 14.2 and 15.9 points without compromising general video understanding. Code will be available at https://jingchensun.github.io/future-opsd/",
+      "authors": [
+        "Jingchen Sun",
+        "Jiaxing Zhang",
+        "Qingqiao Hu",
+        "Dingqiang Ye",
+        "Yuqi Jia",
+        "Yijun Liang",
+        "Di Fu",
+        "Yunjie Tian",
+        "Dongdi Zhao",
+        "Changyou Chen"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T01:08:12Z",
+      "updated": "2026-11-20T01:08:12Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.26954v1",
+      "abs_url": "https://arxiv.org/abs/2611.26954",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26954",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.26933",
+      "title": "Tokenize Moments, Not Frames: Tokenizer-Aware Budget Allocation for Training-Free Video LLM Acceleration",
+      "abstract": "Video large language models (LLMs) represent each video with thousands of visual tokens, and training-free accelerators that prune or merge these tokens lose accuracy on long videos. Analyzing frame similarity and the vision tokenizers of 16 open models, we trace this loss to a step before token selection. Under a token budget, the frames of a long video are sampled farther apart than the roughly 2 s over which frames remain similar. The two-frame 3D patches of models such as Qwen-VL then blend two unrelated scenes into each visual token, a double exposure that arises before any pruning or merging. Fixed-size tokenizers such as InternVL's avoid this blend but respond differently to the same reduction. We propose ESSENCE, a training-free method that tokenizes moments, segments within which frames remain similar, rather than frames. Before encoding, a closed-form rule uses the sampling interval and the tokenizer class to set the number of token grids and the dimension to reduce; visual tokens are then released from later LLM layers. Against five recent accelerators on Qwen3-VL, Qwen2.5-VL and InternVL3.5, ESSENCE achieves higher accuracy in 58 of 60 comparisons at matched mean time to first token (TTFT). With 80% of the tokens, it matches the average accuracy of the full Qwen models at $1.6\\times$ faster TTFT; on GLM-4.1V, it exceeds the full model by up to 3.4 points. Code is available at: https://github.com/zhkandsrz/ESSENCE.",
+      "authors": [
+        "Zirui Zhao",
+        "Kai Liu",
+        "Linghe Kong"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T00:34:57Z",
+      "updated": "2026-11-20T00:34:57Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.26933v1",
+      "abs_url": "https://arxiv.org/abs/2611.26933",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26933",
+      "summary_zh": ""
+    }
+  ]
 }
