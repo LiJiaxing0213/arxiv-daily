@@ -1,6 +1,6 @@
 {
   "date": "2026-11-20",
-  "generated_at": "2026-11-23T09:32:15.382120+00:00",
+  "generated_at": "2026-11-24T11:24:18.663369+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,376 @@
     }
   },
   "papers": [
+    {
+      "id": "2611.28402",
+      "title": "Plan Big, Paint Small: Semantic-Aware Computation Allocation for Efficient Autoregressive Video Generation",
+      "abstract": "Autoregressive (AR) video diffusion streams a video chunk by chunk, but large AR models are too slow for real-time use. We ask where in an AR rollout a large model is actually needed. Pairing Krea-Realtime-14B with Self-Forcing-1.3B, which share their latent space and denoising schedule, we find that the order of the two models matters: when the 14B model generates only the first chunk and the 1.3B model continues, the rollout keeps 95\\% of the 14B model's semantic advantage, whereas the reverse allocation keeps 16\\% at about ten times the cost. The large model decides what the video shows; the small model only has to carry it forward. We turn this into BigSmall, a training-free planner--renderer sampler. The 14B model plans the opening chunk and sketches the chunks in which content changes, which preserves motion, and the 1.3B model renders the rest; a faster variant, BigSmall, plans only the opening chunk. A cross-model KV cache that is approximate, windowed and lazy lets the planner leave and re-enter the rollout at low cost. On VBench, BigSmall is $3.02\\times$ faster than the 14B model at an unchanged semantic score and motion, and $1.55\\times$ faster than SDVG, which lets the small model draft first; BigSmall reaches $3.77\\times$ at the same semantic score, trading away 10\\% of the motion. On minute-long videos (LoCoT2V-Bench), where the 14B model degrades when it reads its own long history, BigSmall is $3.14\\times$ faster than the 14B model and scores higher ($+1.78$).`",
+      "authors": [
+        "Yixuan Luo",
+        "Yanjing Li"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T23:09:44Z",
+      "updated": "2026-11-20T23:09:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28402v1",
+      "abs_url": "https://arxiv.org/abs/2611.28402",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28402",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28397",
+      "title": "TOGO: Take One Image Editor, Get One Video Editor for Free",
+      "abstract": "Instruction-based image editors are trained on millions of edit pairs and follow instructions far more reliably than current video editors. We show that this ability can be transferred to video editing without any training. Our key observation is that a growing number of image editors and video generators share the same latent space. Their velocity fields can therefore be combined at sampling time: the difference between the editor's velocity under the instruction and under a neutral prompt, which we call the \\emph{edit velocity}, can be added to the sampler of a video model. Added naively, however, it blurs the video, alters the background and flickers. An analysis of the edit velocity explains why. It is small and reliable only at coarse scales and high noise levels, not concentrated on the edited object, and uncorrelated across frames. From these properties, we derive a simple guidance operator that amplifies the edit velocity and restricts it in noise level, space, and time. The video model then turns the incoherent per-frame signal into a temporally coherent edit. Our method, TOGO, combines Qwen-Image-Edit with the Wan2.1 video model without training or fine-tuning. On FiVE-Bench, it raises the edit success rate from 47.0\\% (the same video model without the editor) to 65.6\\%, above the best published method (59.2\\%). At the same time, it maintains the background PSNR and obtains the best LPIPS and SSIM of all methods. Because the video editor is assembled at inference time, it can be upgraded to any newer image editor that shares the latent space with no cost.",
+      "authors": [
+        "Yixuan Luo",
+        "Jose Caballero",
+        "Yanjing Li"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T23:04:39Z",
+      "updated": "2026-11-20T23:04:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28397v1",
+      "abs_url": "https://arxiv.org/abs/2611.28397",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28397",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28351",
+      "title": "Coupling-Aware Reinforcement Learning for Co-Evolving Graph Games",
+      "abstract": "Building hydrogen station networks, electric vehicle charging grids, or vaccine distribution systems requires coordinating two separately operated graphs, demand-side facilities and the supply-side networks they depend on, where each operator's payoff depends on the other's choices. We formalize this as the Co-Evolving Graph Game (CEGG), a setting that sits between facility location, interdependent-network analysis, and graph-based multi-agent reinforcement learning (MARL) but is not jointly addressed by any of them. We propose Cross-Graph Attention with Policy Mirror Descent (CGA-PMD), pairing cross-graph attention, which lets each agent read only the partner-graph nodes structurally coupled to its own, with a policy mirror descent update for stable training. Across three reward domains and a range of practical network scales, we find that the structure of the coupling selects which method wins: at small scale most methods are competitive, but as scale grows or coupling becomes irregular, CGA-PMD is the one method that stays reliable: it attains the highest success count on each of five real city networks, while own-only, unmasked-attention, and Proximal Policy Optimization (PPO)-based variants degrade in distinct ways. Our theoretical analysis addresses the optimizer side: the Kullback-Leibler (KL)-regularized update admits an iteration-uniform cumulative drift bound, whereas the clip update admits no such bound on the iterations where the clip does not bind. The implementation is available at https://github.com/Mina-Kim-Github/cegg-cga-pmd.",
+      "authors": [
+        "Mina Kim",
+        "Guanghui Lan",
+        "Benoit Montreuil"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.MA"
+      ],
+      "published": "2026-11-20T22:01:24Z",
+      "updated": "2026-11-20T22:01:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28351v1",
+      "abs_url": "https://arxiv.org/abs/2611.28351",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28351",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28350",
+      "title": "Two Actions from One State: Fork Futures Teach JEPA World Models to Compare",
+      "abstract": "JEPA world models are trained to predict logged transitions but used to compare counterfactual actions from one state. The logged behavior data show one action per state, and under a local linear approximation we prove the action response is unidentified along any direction the policy never varies within a state. We therefore supplement behavior data with measured outcomes of alternative actions from the same state. Our fork futures execute two actions from one restored state, and their outcome difference cancels the state term, identifying the action response on the sampled span. The resulting model, Fork-JEPA, matches predicted to measured differences, anchors the logged successor with behavior prediction, and adds a lookback head that keeps the predecessor recoverable, all at training time, leaving planning unchanged. On three visual control tasks, behavior-only training leaves the predicted action effect no better than a constant guess. Fork-JEPA makes it readable and raises planning success by up to 14\\% over LeWM, its base model. Where the action response changes across hidden zones, it nearly doubles cross-zone success, and 1,024 fork pairs beat 1.2M extra behavior steps. Our project is available at https://fork-jepa.github.io/.",
+      "authors": [
+        "Yihao Wu",
+        "Runjia Zeng",
+        "Tongyan Wang",
+        "Renzhong Huang",
+        "Chongzhou Fang",
+        "Qifan Wang",
+        "Fan Heng",
+        "Dongfang Liu"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T22:01:18Z",
+      "updated": "2026-11-20T22:01:18Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28350v1",
+      "abs_url": "https://arxiv.org/abs/2611.28350",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28350",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28349",
+      "title": "Grammar-as-a-Draft: More Tokens per Speculative Decoding Step on Grammar-Constrained Structured Outputs",
+      "abstract": "Under structured outputs (JSON schemas, regexes, tool calls), speculative drafters do not see the grammar constraint and repeatedly propose invalid keys, delimiters, and indentation, while the grammar engine already knows which tokens must come next. We present Grammar-as-a-Draft (GaaD), which treats the grammar as a second drafter. Before each verify step, the scheduler merges the drafter's proposal with grammar-forced tokens into one draft row: matching tokens stay as GRAMMAR, the proposal is cut where it leaves the forced path, and forced tokens fill the rest of a row wider than the drafter's proposal. The verify step accepts GRAMMAR drafts without computing their logits, composing with any drafter with no new kernels or compilation on the critical path. Because grammars fix text rather than tokens, committing canonical forced tokens changes the output distribution relative to grammar-masked target decoding. We implement GaaD in vllm-torchtpu and an independent Rust serving runtime, evaluating on TPU v7x with MTP, DFlash, and n-gram drafters on a JSON character-profile benchmark. GaaD raises average acceptance length from 2.06 to 5.43 (MTP, Qwen3.5-0.8B), 1.99 to 5.31 (MTP, Qwen3.5-35B-A3B), 1.57 to 4.13 (DFlash, Qwen3-4B), and 1.30 to 3.64 (n-gram, Qwen3-4B), decoding 2.66-2.81x faster at batch size 1 and 1.14-1.70x at batch size 64. In Rust, MTP+GaaD is 2.23x faster on Qwen3.5-0.8B, 2.02x on Qwen3.5-397B-A17B-FP8, and 1.22x at 128 concurrent requests. Under mixed traffic (25-50% structured), GaaD finishes the workload 1.03-1.23x sooner (structured requests 2.2-3.2x sooner) while plain-text TPOT rises 7-42%. We also show grammar-masked greedy decoding can pick non-canonical tokenizations, so GaaD can yield different valid outputs that an fp32 reference finds equally likely.",
+      "authors": [
+        "John Zhang",
+        "Silky Arora"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T22:00:38Z",
+      "updated": "2026-11-20T22:00:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28349v1",
+      "abs_url": "https://arxiv.org/abs/2611.28349",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28349",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28345",
+      "title": "Toward Adversarially Robust World Models",
+      "abstract": "Latent dynamic world models have proven to be highly versatile tools for embodied artificial intelligence systems, enabling online action planning, safe policy evaluation, and scalable policy learning. However, this versatility makes world models a vulnerable and centralized point of failure as a compromised model can impact planning, evaluation, and training at once. Therefore it is critical that the security and robustness properties of world models are properly understood before they are universally deployed in embodied AI systems. In this work we take a unifying approach towards this understanding, developing two novel attacks against world models, named state hallucination and dynamic shift attacks, aimed directly at impacting downstream systems, and proposing a new theoretical lens through which to study the robustness of latent dynamic world models. Through our analysis we identify robust latent space encoders as the key component of robust world models. We empirically validate this finding on four separate latent dynamic world model families, studying Dino World Model, Le World Model, r2Dreamer, and Cosmos 3, demonstrating significant improvements in robustness through adversarial encoder model training.",
+      "authors": [
+        "Ethan Rathbun",
+        "Jonathan Nöther",
+        "Christopher Amato",
+        "Alina Oprea",
+        "Goran Radanović"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.CR"
+      ],
+      "published": "2026-11-20T21:51:44Z",
+      "updated": "2026-11-20T21:51:44Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28345v1",
+      "abs_url": "https://arxiv.org/abs/2611.28345",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28345",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28331",
+      "title": "Decision models for UAVBench and the viability of edge deployment",
+      "abstract": "Small language models are often proposed for reasoning onboard a drone. However, a good benchmark score does not tell us whether a model will actually run, and run usefully, on an edge computer. In this paper we study three related questions using the UAV decision benchmark, UAVBench. First, are small structured decision models good candidates for these tasks? Second, can an ordinary local machine (a Mac) screen candidate models before we test them on physical devices? Third, what software and resource limits govern deployment? Our main Mac evaluation covers 24 model configurations on the same 2,000 validated multiple-choice questions from UAVBench. These include 20 size-and-precision configurations of 11 generative models, plus four open-weight structured decision models that received no additional UAVBench-specific training. A structured decision model, H2O Lightning 4B, achieved the highest accuracy we observed, scoring 77.65% on the Mac. This shows that these models are well suited to this kind of task. However, when we tried to deploy the decision models, we ran into conversion and runtime limits on the edge devices we tested, which we describe in detail. To test local screening, we ran matched evaluations of two generative models on both the Mac and a Qualcomm RB3 board. The accuracies did not match exactly, but the ranking did. LFM2 2.6B ranked above Qwen2.5 1.5B on both platforms. This supports using a local machine to shortlist candidates. That said, individual answers still differed between platforms, so testing on the actual hardware remained necessary.",
+      "authors": [
+        "Matthew Michelson",
+        "Goran Muric",
+        "Adrien Bibal",
+        "Steven Minton"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.PF"
+      ],
+      "published": "2026-11-20T21:29:42Z",
+      "updated": "2026-11-20T21:29:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28331v1",
+      "abs_url": "https://arxiv.org/abs/2611.28331",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28331",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28319",
+      "title": "Learning a Food World Model That Predicts the Next State from Production Data",
+      "abstract": "Food assembly robots pick ingredients from a pan, and every pick must deliver a target weight. We learn a world model of food picking from 61,773 production picks, labeled automatically by a camera and a scale (self-supervised learning). From the pre-pick heightmap of the pan on a 2.5 mm grid, the commanded pick action, the food and the utensil, the model predicts the post-pick heightmap and the picked mass with uncertainty. We evaluate the mass prediction on 12,294 held-out picks of nine foods. The production controller keeps each pick near its commanded target. The model's root-mean-square error (RMSE) of 10.93 g is 9% lower than that of the commanded target or of a per-food mean. This RMSE is 24% lower than that of the controller's internal mass estimate. Gradient-boosted trees on 20 hand-crafted features have a 0.2 g lower RMSE, but they predict only the mass, not the next state that planning and policy learning need. Using the predicted uncertainty, we decline the most uncertain picks and answer 89.4% of picks with an RMSE of 10.28 g. The prediction barely responds to the commanded volume and depth, because they vary little in closed-loop production. The model also fails without warning at target weights not seen in training. Future directions include action-primitive conditioning and a more general model across foods and utensils. We give recommendations for learning world models from production data.",
+      "authors": [
+        "Inkyu Sa",
+        "Gaurav Kuppa",
+        "Steve Van der Hoeven",
+        "Konstantin Stulov",
+        "Rajat Bhageria",
+        "Luis Rayas"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-11-20T21:15:30Z",
+      "updated": "2026-11-20T21:15:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28319v1",
+      "abs_url": "https://arxiv.org/abs/2611.28319",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28319",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28318",
+      "title": "Selection Policies for Equal-Byte Mixed-Precision Quantization of Small Language Models",
+      "abstract": "Can changing which matrices receive 2, 4, or 8 bits improve a small language model without increasing its parameter storage? I compare two parent-selection rules in the same genetic algorithm: a binary-tournament variant and an Alternis-inspired rule. A separate baseline samples repaired random allocations without crossover or mutation. All three use the same MLX affine quantizer, byte ceiling, initialization and candidate allowance within each study. An exploratory study on Qwen3.5-2B evaluates 90 allocations per run. The main study on Qwen3-1.7B evaluates 500 distinct allocations per run over 10 paired seeds. Against uniform four-bit, tournament reduces held-out next-token negative log-likelihood (NLL) by 0.0616 on AG News and 0.0152 on IMDb on average, improving all 10 seeds on each corpus at identical parameter storage. Alternis improves five seeds and ties five on AG News; on IMDb its mean gain is near zero. Random returns uniform four-bit in every seed. The tournament representative answers 156 of 400 ARC-Challenge questions correctly versus 163 for uniform; no accuracy gain is demonstrated on this subset. The result favors this tournament variant for text prediction under the tested protocol, not for compression ratio or task accuracy.",
+      "authors": [
+        "Smit Anand"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-11-20T21:09:42Z",
+      "updated": "2026-11-20T21:09:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28318v1",
+      "abs_url": "https://arxiv.org/abs/2611.28318",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28318",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28298",
+      "title": "Language Model Harnesses can be Compositional Generalizers",
+      "abstract": "Modern language models (LMs) are post-trained and deployed as agents inside a \"harness\", but standard harness designs accumulate context that the neural network is forced to generalize to, making training for long-horizon tasks expensive and time-consuming. We study an alternative emerging path: training inherently neurosymbolic LM harnesses, which externalize and manage context programmatically to compose existing LM capabilities. We hypothesize that training around these harnesses can offer a better return on compute by enabling compositional generalization, as they can learn to decompose complex problems so that every observation their neural LM receives is locally in-distribution, even when the full task is novel. We find that harnesses like the Recursive Language Model (RLM) learn such decompositions readily under reinforcement learning post-training: (1) we demonstrate that training only on short tasks can generalize to tasks 2-64$\\times$ longer while the base neural LM improves less, and (2) training on one domain transfers to novel domains that share latent structure. On messier, complex tasks, we find that we can target individual LLM calls within a harness by generating and training on easier, synthetically generated surrogate environments with fake tool / sub-calls, a technique we call surrogate harness training. From this finding, we train RLM-27B on synthetic data, and show it improves Qwen3.8-27B in the same RLM harness on a hard suite of long-context tasks like CTC-Bench and ExpertLongBench by 26.9% on average while using $\\sim$2$\\times$ fewer tokens at inference time. Finally, we show that harnesses can compose over these newly learned decompositions using recursive sub-harness calls.",
+      "authors": [
+        "Alex L. Zhang",
+        "Souradip Chakraborty",
+        "Omar Khattab"
+      ],
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T20:31:19Z",
+      "updated": "2026-11-20T20:31:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28298v1",
+      "abs_url": "https://arxiv.org/abs/2611.28298",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28298",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28286",
+      "title": "Scalable Beckmann Maps Improve One-step Generation",
+      "abstract": "Beckmann Transport Models (BTM) learn one-step generative maps end-to-end from data, without a teacher, a distillation stage, or pretrained features. We introduce Scalable Beckmann Maps (SBM), which bring to BTM the two ingredients behind the quality of modern multistep generators: classifier-free guidance (CFG) and a training recipe that scales, while keeping sampling at a single network evaluation. CFG combines conditional and unconditional velocity or score predictions, which a Beckmann map does not have. Our guidance rests on one observation: the BTM current is a positive multiple of an autonomous denoising field, to which CFG applies as it does to a velocity. With exact denoisers this gives guided BTM. In practice we substitute the map's own conditional and null predictions for the denoisers, which requires no additional network and introduces a bias that we characterize. We show that the guided update is consistent with a guided conservation equation, and that guidance can move the boundaries between basins, sending more noise to the modes a condition favors. Trained from scratch in the latent of a representation autoencoder, SBM reaches a one-step FID of 1.6 on ImageNet 256x256 without a teacher or a feature loss, outperforming the Improved-MeanFlow baseline with 3.2x fewer FLOPs. In text-to-image generation it reaches a GenEval score of 0.86 with one network evaluation. As a world model, where we train without guidance, the recipe alone outperforms DriftWorld on all five metrics of two robot-manipulation benchmarks, with 1.9-2.8x less training compute and no pretrained auxiliary feature encoder.",
+      "authors": [
+        "Ulrik Unneberg",
+        "Shiyi Wang",
+        "Lee Cheuk-Kit",
+        "Felix Berg",
+        "Boris Kozinsky",
+        "Yilun Du",
+        "Michael S. Albergo",
+        "Eric Vanden-Eijnden"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-20T20:07:05Z",
+      "updated": "2026-11-20T20:07:05Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28286v1",
+      "abs_url": "https://arxiv.org/abs/2611.28286",
+      "topics": [
+        "world-model",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28286",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28277",
+      "title": "Temporal Logic Tensor Networks: Foundations of Temporal Reasoning in Neural Networks",
+      "abstract": "In dynamic scenes---football matches, traffic streams, surgery, or assembly---actions unfold at fundamentally different time scales: in football, a kick happens in milliseconds, a possession lasts seconds, and complex events such as a successful pass followed by a goal combine multiple atomic actions over extended durations. Models trained solely on visual data struggle to learn effectively across different time scales, lacking a principled way of reasoning across fine-grained instants and broader intervals. Neither point-wise nor purely interval semantics suffices: the former fragments events into frame-level snapshots lacking overall event identification; the latter treats intervals as atomic truth-values, ignoring state trajectories. We introduce Temporal Logic Tensor Networks (tLTN), a differentiable neuro-symbolic framework addressing this duality via a formal, multi-sorted logic where events and states are structurally interdependent. Extending Interval Logic Tensor Networks (ILTN), tLTN grounds state predicates as fuzzy truth-value paths over time points, while events are first-class entities with learnable trapezoidal fuzzy durations and differentiable Allen-style relations. A compositional semantics fuses static, event-structural, and state-dynamic satisfaction into a single differentiable LTN grounding. Crucially, the modalities constrain each other bidirectionally: the interval layer dictates where point-wise constraints (e.g., Until, Since) are evaluated, restricting them to event-defined spans; conversely, the point-wise layer validates interval relations, rejecting them if underlying state dynamics contradict the relation. Through controlled synthetic examples, we show when single-modality learning fails and how this localization reduces frame-level computational cost on long traces.",
+      "authors": [
+        "Edjard Mota",
+        "Artur d'Avila Garcez",
+        "Maria Azevedo",
+        "Odalisio Neto"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-20T19:56:17Z",
+      "updated": "2026-11-20T19:56:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28277v1",
+      "abs_url": "https://arxiv.org/abs/2611.28277",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28277",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28274",
+      "title": "Neural Fidelity Calibration for Informative Sim-to-Real Adaptation",
+      "abstract": "Deep reinforcement learning (RL) can transfer agile robot skills from simulation to the real world, but closing the sim-to-real gap by domain randomization requires expert physics knowledge, and simulator calibration from real data typically targets a few hand-picked parameters. Even then, simulators miss real-world effects, and environments reconstructed from onboard perception inherit sensing errors that limit policy improvement. We propose Neural Fidelity Calibration (NFC), which uses conditional flow matching to calibrate simulator physical parameters and residual fidelity domains online during deployment. Residual fidelity captures sim-to-real dynamics discrepancies and perception-induced environment uncertainty. NFC operates in a latent space so that realistic environments can be sampled from the inferred posterior for real-to-sim policy fine-tuning. The framework is informative: the pretrained policy is fine-tuned only when an anomaly is detected, sequential NFC seeds its proposal from the simulation-pretrained estimator, and a hallucination policy modulates posterior uncertainty following optimism in the face of uncertainty. NFC attains the most accurate posteriors among established simulation-based inference methods on five robots with up to 39 physical parameters and a 128x128 residual terrain. On a wheeled robot with a broken wheel axle deployed on snow, mud, and wet grass, NFC raises success on rough terrain from 26% to 70% and reduces orientation jerk by 88%. Code and videos will be released upon publication.",
+      "authors": [
+        "Youwei Yu",
+        "Lantao Liu"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "published": "2026-11-20T19:55:23Z",
+      "updated": "2026-11-20T19:55:23Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28274v1",
+      "abs_url": "https://arxiv.org/abs/2611.28274",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28274",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28265",
+      "title": "DeFlowCritic: Dense Latent Reward Alignment for Text-to-Image Flow Matching Models",
+      "abstract": "Online reinforcement learning (RL) has emerged as a powerful paradigm for aligning text-to-image flow matching models with complex user intent. However, existing methods typically rely on sparse rewards computed only from final decoded images. This delays credit assignment across the denoising trajectory and makes training computationally expensive. Moreover, simply combining multiple rewards does not reliably produce a Pareto trade-off, where gains in compositional accuracy often degrade aesthetic quality. In this work, we propose DeFlowCritic, an efficient online RL framework based on Dense Latent Reward Alignment. Unlike prior work, our method provides dense supervision on intermediate latents, enabling early-stage guidance for the denoising trajectory. To achieve this, we introduce an internal critic that evaluates noisy latents using features extracted directly from the diffusion model, a representation inherently better suited for latent-space reward estimation than standard image encoders. We construct a high-quality reward-modeling dataset with continuous scores for critic training, capturing compositional correctness on high-quality reference images. The resulting dense reward enables efficient online RL training and inference-time scaling. Experiments show that our method achieves a superior balance between prompt faithfulness and visual quality on GenEval2 and T2I-CompBench++ benchmarks. The approach also generalizes across text-to-image flow matching models, including SD3.5-Medium, SD3.5-Large, and FLUX.1-dev.",
+      "authors": [
+        "Zeeshan Khan",
+        "Xin Yu",
+        "Shizhe Chen",
+        "Cordelia Schmid"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T19:49:16Z",
+      "updated": "2026-11-20T19:49:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28265v1",
+      "abs_url": "https://arxiv.org/abs/2611.28265",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28265",
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28227",
+      "title": "Feedback Shortcut: Speculative Decoding for Latent Feedback Transformers",
+      "abstract": "Feeding each position's top-layer hidden state back into the next position's input improves Transformer performance. However, this feedback breaks speculative decoding, since verifying a drafted token requires the top-layer state from its preceding position, which forces the draft to rely on an approximate stand-in. Training the model to adapt to this stand-in can lower the exact-decoding performance ceiling, while using it at inference time further introduces approximation error. We propose Feedback Shortcut to address both bottlenecks. First, state alignment trains a lightweight projection from multi-token prediction head states to stand-ins, leaving base model training untouched. Second, pipelined correction re-evaluates each draft using its predecessor's newly computed state, a much closer proxy to true feedback. Running this correction inside the verification pass of subsequent drafts improves accuracy with zero extra calls. Across 135M and 780M scales, Feedback Shortcut stays within $10^{-4}$ bits per byte of the exact-decoding ceiling on Paloma and accelerates decoding by 2.4-2.8x with about 2% more training compute than the latent feedback Transformer. At large batch sizes, skipping correction still preserves Transformer speed and over 80% of latent feedback's gains.",
+      "authors": [
+        "Benhao Huang",
+        "Xuezhe Ma",
+        "Hector Liu"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-20T19:02:38Z",
+      "updated": "2026-11-20T19:02:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28227v1",
+      "abs_url": "https://arxiv.org/abs/2611.28227",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28227",
+      "summary_zh": "",
+      "impact_score": null
+    },
     {
       "id": "2611.27963",
       "title": "Non-penetrating World Models",
@@ -136,7 +506,7 @@
       "title": "SLICR: Strategy Logic-Guided Multi-Agent Reinforcement Learning",
       "abstract": "Specification-guided reinforcement learning (RL) translates formal specifications of desired behavior of agents into shaped rewards. This paper introduces SLICR, a significant paradigm shift that advances the state of the art to specification-guided RL in adversarial settings under partial observability. We employ Strategy Logic (SL), which allows explicit quantification over agents' strategies and uses the linear temporal logic (LTL) to specify the agents' objectives and constraints. This enables reasoning not only about how agents should act to satisfy a specification, but also about how they should respond to the strategies and behaviors of other agents. We evaluate SLICR on three popular benchmarks: Predator-Prey, Google Research Football, and our home-grown extension of SMAC-HARD, demonstrating its effectiveness, scalability, and ability to adapt to diverse adversarial strategies.",
       "authors": [
-        "Arshia Rafieioskouie",
+        "Arshia Rafieioskouei",
         "Matthew Lucas",
         "Tzu-Han Hsu",
         "Borzoo Bonakdarpour"
@@ -146,8 +516,8 @@
         "cs.LO"
       ],
       "published": "2026-11-20T17:13:50Z",
-      "updated": "2026-11-20T17:13:50Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.27865v1",
+      "updated": "2026-11-23T16:49:20Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27865v2",
       "abs_url": "https://arxiv.org/abs/2611.27865",
       "topics": [
         "other"
@@ -227,8 +597,8 @@
         "cs.AI"
       ],
       "published": "2026-11-20T16:09:46Z",
-      "updated": "2026-11-20T16:09:46Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.27780v1",
+      "updated": "2026-11-23T07:30:33Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27780v2",
       "abs_url": "https://arxiv.org/abs/2611.27780",
       "topics": [
         "other"
@@ -263,6 +633,35 @@
         "distillation"
       ],
       "summary_zh": ""
+    },
+    {
+      "id": "2611.28193",
+      "title": "FastD4RT: Training-Free Acceleration of Dynamic 4D Reconstruction and Tracking",
+      "abstract": "Query-based 4D reconstruction models such as D4RT encode a video once into a global scene representation and obtain outputs by decoding independent point queries. However, inference is often influenced by dense outputs and long videos. Although D4RT separates encoding from decoding, a dense output still requires one decoder query for every pixel of every frame, and a long video is still encoded as many overlapping segments. In this work, we analyze the inference cost of D4RT and show that a large part of it is redundant. In particular, we find that the later decoder blocks attend to a small set of tokens shared by all queries. Based on these findings, we propose FastD4RT, a training-free framework that accelerates D4RT. By exploiting the smoothness of the outputs over time and across pixels, FastD4RT encodes and decodes only at sparse anchors and recovers the remaining outputs via interpolation. It decodes the remaining queries against a shared token set selected once per segment. We further characterize the errors introduced by both components. Experimental results show that FastD4RT accelerates D4RT by about 5 times on average across all its tasks with competitive accuracy, and further improves accuracy on long videos. Our code is available at https://github.com/Lycheemeng/fastd4rt.",
+      "authors": [
+        "Meng Bi",
+        "Yili Jin",
+        "Kaiyuan Hu",
+        "Xize Duan",
+        "Jiaxin Huang",
+        "Hong Huang",
+        "Xue Liu"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T15:04:28Z",
+      "updated": "2026-11-20T15:04:28Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28193v1",
+      "abs_url": "https://arxiv.org/abs/2611.28193",
+      "topics": [
+        "video-gen",
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28193",
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27653",
@@ -593,8 +992,8 @@
         "cs.CL"
       ],
       "published": "2026-11-20T11:39:56Z",
-      "updated": "2026-11-20T11:39:56Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.27494v1",
+      "updated": "2026-11-23T06:14:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27494v2",
       "abs_url": "https://arxiv.org/abs/2611.27494",
       "topics": [
         "other"
@@ -651,7 +1050,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27459",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27443",
@@ -674,7 +1074,8 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27443",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27436",
@@ -696,7 +1097,8 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27436",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27410",
@@ -719,7 +1121,8 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27410",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27381",
@@ -744,7 +1147,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27381",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27376",
@@ -792,7 +1196,8 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27376",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27368",
@@ -816,7 +1221,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27368",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27365",
@@ -840,8 +1246,8 @@
         "cs.AI"
       ],
       "published": "2026-11-20T09:34:56Z",
-      "updated": "2026-11-20T09:34:56Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.27365v1",
+      "updated": "2026-11-23T09:40:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27365v2",
       "abs_url": "https://arxiv.org/abs/2611.27365",
       "topics": [
         "other"
@@ -876,7 +1282,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27348",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27344",
@@ -901,7 +1308,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27344",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27336",
@@ -943,15 +1351,16 @@
         "cs.CV"
       ],
       "published": "2026-11-20T09:13:31Z",
-      "updated": "2026-11-20T09:13:31Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.27336v1",
+      "updated": "2026-11-23T03:49:54Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27336v2",
       "abs_url": "https://arxiv.org/abs/2611.27336",
       "topics": [
         "distillation",
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27336",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27288",
@@ -980,7 +1389,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27288",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27286",
@@ -1009,7 +1419,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27286",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27273",
@@ -1036,7 +1447,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27273",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27268",
@@ -1061,7 +1473,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27268",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27266",
@@ -1091,7 +1504,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27266",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27252",
@@ -1115,7 +1529,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27252",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27227",
@@ -1141,7 +1556,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27227",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27217",
@@ -1162,7 +1578,34 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27217",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28175",
+      "title": "A world model for longitudinal health-trajectory prediction in older adults across multinational cohorts",
+      "abstract": "Aging is characterized by continuously evolving health states, yet most existing prediction models focus on static health risk at isolated time points rather than explicitly modelling how health trajectories unfold over time. We developed a health world model based on the Joint-Embedding Predictive Architecture to represent evolving health states and simulate future trajectories under specified actions. The model combines a state encoder, an action- and context-conditioned predictor, a stop-gradient target encoder, and clinical outcome heads. We trained the model on the US Health and Retirement Study (HRS) and evaluated it without refitting in the English Longitudinal Study of Ageing (ELSA) and the China Health and Retirement Longitudinal Study (CHARLS). Open-loop evaluation assessed discrimination and calibration for mortality and worsening of activities of daily living (ADL) and instrumental activities of daily living (IADL). In the held-out HRS test set, the areas under the receiver operating characteristic curve (AUROCs) for mortality, ADL worsening, and IADL worsening were 0.89, 0.93, and 0.93 at the first horizon and 0.84, 0.84, and 0.85 at the fifth horizon, respectively. Predicted risks stratified subsequent outcomes across horizons. Across the evaluated horizons, mortality AUROC ranged from 0.867 to 0.881 in ELSA and from 0.796 to 0.801 in CHARLS. Simulated trajectories preserved the expected risk ordering across predefined action regimes. In counterfactual simulations, changes in lifestyle actions shifted predicted risks in directions consistent with observed associations. The model provides a framework for longitudinal risk prediction and action-conditioned simulation in older adults.",
+      "authors": [
+        "Jingyi Wu",
+        "Chenghua Guo",
+        "Qianlin Zuo",
+        "Pengfei Li",
+        "Luxia Zhang"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-20T06:16:26Z",
+      "updated": "2026-11-20T06:16:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28175v1",
+      "abs_url": "https://arxiv.org/abs/2611.28175",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28175",
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27179",
@@ -1187,7 +1630,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27179",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27164",
@@ -1212,7 +1656,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27164",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27162",
@@ -1231,14 +1676,15 @@
         "q-bio.BM"
       ],
       "published": "2026-11-20T05:47:46Z",
-      "updated": "2026-11-20T05:47:46Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.27162v1",
+      "updated": "2026-11-23T03:52:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27162v2",
       "abs_url": "https://arxiv.org/abs/2611.27162",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27162",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27155",
@@ -1261,7 +1707,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27155",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27149",
@@ -1285,7 +1732,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27149",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27133",
@@ -1306,7 +1754,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27133",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27131",
@@ -1328,7 +1777,8 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27131",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27124",
@@ -1351,7 +1801,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27124",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27119",
@@ -1374,7 +1825,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27119",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27083",
@@ -1395,7 +1847,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27083",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27074",
@@ -1420,7 +1873,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27074",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27070",
@@ -1442,7 +1896,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27070",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27068",
@@ -1469,7 +1924,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27068",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27063",
@@ -1494,7 +1950,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27063",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27061",
@@ -1521,7 +1978,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27061",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27032",
@@ -1545,7 +2003,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27032",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27029",
@@ -1569,7 +2028,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27029",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27024",
@@ -1594,7 +2054,8 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27024",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27011",
@@ -1619,7 +2080,32 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27011",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
+    },
+    {
+      "id": "2611.28167",
+      "title": "VideoJSON: A Minimal Harness Beats Purpose-Built Memory for Ultra-Long Video Understanding",
+      "abstract": "Answering questions over days or weeks of video requires searching for scattered clues across long timelines. Existing video agents rely on complex memory graphs and fixed retrieval pipelines, which restrict how the agent can search. We propose VideoJSON, a minimal harness for ultra-long video understanding that keeps the memory simple and lets a coding agent write its own search programs. During indexing, a vision-language model turns each minute of video into a single JSON record containing a dense caption and structured fields such as events, entities, places, and speech transcripts. At query time, the agent writes Python or Bash programs in a sandboxed container to filter, link, and read these records over multiple steps, without task-specific training or raw video access. On four ultra-long video benchmarks, VideoJSON with DeepSeek V4.1 Flash outperforms MAGIC-Video by 7.0, 20.0, and 24.75 points on EgoLifeQA, Ego-R1-Bench, and MM-Lifelong Week, and beats the best prior EgoMemReason score by 12.6 points. Across four policy models of increasing capability, VideoJSON's average score rises by up to 11.58 points over the weakest model, compared with at most 5.50 points for MAGIC-Video. Ablations show that both agentic code search and the structured JSON records drive these gains, while adding hourly summaries, extra tools, or video access changes the average score by less than 1.5 points. In addition, fine-tuning Qwen-3.5-Flash on 64 VideoJSON trajectories from an unrelated 100-hour livestream improves its MM-Lifelong scores by up to 8.25 points. Code will be open-sourced after publication.",
+      "authors": [
+        "Wenqi Marshall Guo",
+        "Kuan-Hao Huang",
+        "Junda Chen",
+        "Hao Zhang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-20T02:38:38Z",
+      "updated": "2026-11-20T02:38:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28167v1",
+      "abs_url": "https://arxiv.org/abs/2611.28167",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28167",
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.27003",
@@ -1643,7 +2129,8 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27003",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.26998",
@@ -1668,7 +2155,8 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26998",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.26981",
@@ -1694,7 +2182,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26981",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.26963",
@@ -1720,7 +2209,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26963",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.26954",
@@ -1749,7 +2239,8 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26954",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     },
     {
       "id": "2611.26933",
@@ -1772,7 +2263,8 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26933",
-      "summary_zh": ""
+      "summary_zh": "",
+      "impact_score": null
     }
   ]
 }
