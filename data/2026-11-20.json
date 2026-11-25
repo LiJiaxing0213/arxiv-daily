@@ -1,6 +1,6 @@
 {
   "date": "2026-11-20",
-  "generated_at": "2026-11-24T11:24:18.663369+00:00",
+  "generated_at": "2026-11-25T10:16:17.793900+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -47,8 +47,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28402",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28397",
@@ -70,8 +69,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28397",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28351",
@@ -94,8 +92,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28351",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28350",
@@ -123,13 +120,12 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28350",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28349",
-      "title": "Grammar-as-a-Draft: More Tokens per Speculative Decoding Step on Grammar-Constrained Structured Outputs",
-      "abstract": "Under structured outputs (JSON schemas, regexes, tool calls), speculative drafters do not see the grammar constraint and repeatedly propose invalid keys, delimiters, and indentation, while the grammar engine already knows which tokens must come next. We present Grammar-as-a-Draft (GaaD), which treats the grammar as a second drafter. Before each verify step, the scheduler merges the drafter's proposal with grammar-forced tokens into one draft row: matching tokens stay as GRAMMAR, the proposal is cut where it leaves the forced path, and forced tokens fill the rest of a row wider than the drafter's proposal. The verify step accepts GRAMMAR drafts without computing their logits, composing with any drafter with no new kernels or compilation on the critical path. Because grammars fix text rather than tokens, committing canonical forced tokens changes the output distribution relative to grammar-masked target decoding. We implement GaaD in vllm-torchtpu and an independent Rust serving runtime, evaluating on TPU v7x with MTP, DFlash, and n-gram drafters on a JSON character-profile benchmark. GaaD raises average acceptance length from 2.06 to 5.43 (MTP, Qwen3.5-0.8B), 1.99 to 5.31 (MTP, Qwen3.5-35B-A3B), 1.57 to 4.13 (DFlash, Qwen3-4B), and 1.30 to 3.64 (n-gram, Qwen3-4B), decoding 2.66-2.81x faster at batch size 1 and 1.14-1.70x at batch size 64. In Rust, MTP+GaaD is 2.23x faster on Qwen3.5-0.8B, 2.02x on Qwen3.5-397B-A17B-FP8, and 1.22x at 128 concurrent requests. Under mixed traffic (25-50% structured), GaaD finishes the workload 1.03-1.23x sooner (structured requests 2.2-3.2x sooner) while plain-text TPOT rises 7-42%. We also show grammar-masked greedy decoding can pick non-canonical tokenizations, so GaaD can yield different valid outputs that an fp32 reference finds equally likely.",
+      "title": "Grammar-as-a-Drafter: More Tokens per Speculative Decoding Step on Grammar-Constrained Structured Outputs",
+      "abstract": "Speculative decoding speeds up generation by letting a lightweight drafter propose tokens that the target model verifies in one forward pass. Under structured outputs (JSON schemas, regular expressions, tool-call formats), the drafter works against a constraint it does not know, so its proposals for keys, delimiters, and indentation are often rejected or invalid, even though the grammar engine already knows the next tokens. We present Grammar-as-a-Drafter (GaaD), which makes the grammar a second drafter. Before each verify step, the scheduler merges the drafter's proposal with grammar-forced tokens (out-degree 1 in the grammar automaton) into one draft row of width $K$ (which can exceed the drafter's proposal length $K_M$): matching tokens are promoted to GRAMMAR, the proposal is truncated where it disagrees, and grammar tokens fill the remaining slots. The verify step accepts GRAMMAR drafts without computing their logits, composing with any drafter without adding kernels or compilation on the critical path. Because grammars fix text rather than tokens, accepting canonical GRAMMAR drafts with probability 1 preserves grammar validity but can shift the output distribution relative to grammar-masked decoding. We implement GaaD in vllm-torchtpu and an independent Rust serving runtime, and evaluate it on TPU v7x with MTP, DFlash, and n-gram drafters on a JSON character-profile benchmark. GaaD raises average acceptance length from 2.06 to 5.43 for MTP (Qwen3.5-0.8B; 1.99 to 5.31 on Qwen3.5-35B-A3B), 1.57 to 4.13 for DFlash, and 1.30 to 3.64 for n-gram (Qwen3-4B), decoding 2.66-2.81x faster at batch size 1 and 1.14-1.70x faster at batch size 64. In the Rust runtime, MTP with GaaD is 2.23x faster on Qwen3.5-0.8B and 2.02x on Qwen3.5-397B-A17B-FP8 (1.22-1.69x at high concurrency). Under mixed traffic, GaaD finishes workloads 1.03-1.23x sooner while modestly raising plain-text TPOT.",
       "authors": [
         "John Zhang",
         "Silky Arora"
@@ -139,15 +135,14 @@
         "cs.AI"
       ],
       "published": "2026-11-20T22:00:38Z",
-      "updated": "2026-11-20T22:00:38Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.28349v1",
+      "updated": "2026-11-24T03:21:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.28349v2",
       "abs_url": "https://arxiv.org/abs/2611.28349",
       "topics": [
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28349",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28345",
@@ -172,8 +167,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28345",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28331",
@@ -197,8 +191,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28331",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28319",
@@ -225,8 +218,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28319",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28318",
@@ -247,8 +239,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28318",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28298",
@@ -271,8 +262,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28298",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28286",
@@ -300,8 +290,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28286",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28277",
@@ -324,8 +313,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28277",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28274",
@@ -348,8 +336,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28274",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28265",
@@ -372,8 +359,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28265",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28227",
@@ -395,8 +381,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28227",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27963",
@@ -421,8 +406,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27963",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27919",
@@ -449,8 +433,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27919",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27891",
@@ -471,8 +454,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27891",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27870",
@@ -498,8 +480,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27870",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27865",
@@ -579,8 +560,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27806",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27780",
@@ -660,8 +640,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28193",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27653",
@@ -685,8 +664,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27653",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27645",
@@ -718,8 +696,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27645",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27639",
@@ -743,8 +720,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27639",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27631",
@@ -819,8 +795,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27570",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27560",
@@ -869,8 +844,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27554",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27547",
@@ -898,8 +872,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27547",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27516",
@@ -922,8 +895,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27516",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27501",
@@ -974,8 +946,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27500",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27494",
@@ -1024,8 +995,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27477",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27459",
@@ -1050,8 +1020,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27459",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27443",
@@ -1074,8 +1043,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27443",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27436",
@@ -1097,8 +1065,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27436",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27410",
@@ -1121,8 +1088,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27410",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27381",
@@ -1140,15 +1106,14 @@
         "cs.AI"
       ],
       "published": "2026-11-20T09:46:06Z",
-      "updated": "2026-11-20T09:46:06Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.27381v1",
+      "updated": "2026-11-24T01:29:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27381v2",
       "abs_url": "https://arxiv.org/abs/2611.27381",
       "topics": [
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27381",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27376",
@@ -1189,15 +1154,14 @@
         "cs.CL"
       ],
       "published": "2026-11-20T09:42:47Z",
-      "updated": "2026-11-20T09:42:47Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.27376v1",
+      "updated": "2026-11-24T02:06:13Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.27376v2",
       "abs_url": "https://arxiv.org/abs/2611.27376",
       "topics": [
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27376",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27368",
@@ -1221,8 +1185,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27368",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27365",
@@ -1282,8 +1245,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27348",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27344",
@@ -1308,8 +1270,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27344",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27336",
@@ -1359,8 +1320,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27336",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27288",
@@ -1389,8 +1349,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27288",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27286",
@@ -1419,8 +1378,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27286",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27273",
@@ -1447,8 +1405,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27273",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27268",
@@ -1473,8 +1430,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27268",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27266",
@@ -1504,8 +1460,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27266",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27252",
@@ -1529,8 +1484,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27252",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27227",
@@ -1556,8 +1510,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27227",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27217",
@@ -1578,8 +1531,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27217",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28175",
@@ -1604,8 +1556,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28175",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27179",
@@ -1630,8 +1581,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27179",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27164",
@@ -1656,8 +1606,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27164",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27162",
@@ -1683,8 +1632,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27162",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27155",
@@ -1707,8 +1655,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27155",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27149",
@@ -1732,8 +1679,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27149",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27133",
@@ -1754,8 +1700,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27133",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27131",
@@ -1777,8 +1722,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27131",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27124",
@@ -1801,8 +1745,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27124",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27119",
@@ -1825,8 +1768,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27119",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27083",
@@ -1847,8 +1789,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27083",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27074",
@@ -1873,8 +1814,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27074",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27070",
@@ -1896,8 +1836,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27070",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27068",
@@ -1924,8 +1863,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27068",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27063",
@@ -1950,8 +1888,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27063",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27061",
@@ -1978,8 +1915,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27061",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27032",
@@ -2003,8 +1939,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27032",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27029",
@@ -2028,8 +1963,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27029",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27024",
@@ -2054,8 +1988,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27024",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27011",
@@ -2080,8 +2013,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27011",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.28167",
@@ -2104,8 +2036,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.28167",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.27003",
@@ -2129,8 +2060,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.27003",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.26998",
@@ -2155,8 +2085,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26998",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.26981",
@@ -2182,8 +2111,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26981",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.26963",
@@ -2209,8 +2137,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26963",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.26954",
@@ -2239,8 +2166,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26954",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.26933",
@@ -2263,8 +2189,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.26933",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     }
   ]
 }
