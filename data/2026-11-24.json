@@ -1,6 +1,6 @@
 {
   "date": "2026-11-24",
-  "generated_at": "2026-11-25T10:16:17.784011+00:00",
+  "generated_at": "2026-11-26T09:56:09.152680+00:00",
   "topics": {
     "world-model": {
       "name_zh": "世界模型",
@@ -28,6 +28,549 @@
     }
   },
   "papers": [
+    {
+      "id": "2611.33525",
+      "title": "Deletion You Can Check: Auditing LLM Unlearning",
+      "abstract": "A common indication that a fine-tuned model has forgotten a deleted record is a membership-inference score near chance (ROC-AUC $\\approx 0.5$). This reading is sound only if the comparison population represents how the record should behave after a valid deletion---a counterfactual that is rarely validated. We test this premise in a controlled $2\\times2$ study pairing two membership-inference benchmarks, ArxivMIA and BookMIA, with two language models, Llama-3.2-1B and Qwen2.5-1.5B. Exact retraining validates the membership reference: it lies within the prespecified chance band on ArxivMIA but reaches $0.122$ on BookMIA, causing the same metric to reject an empirical deletion reference. A post-hoc BookMIA/Qwen diagnostic replaces benchmark label-0 records with same-pool, never-fine-tuned records and moves the reference from $0.257$ to $0.523$, supporting population mismatch in that cell. Each approximate-unlearning checkpoint is judged jointly on membership removal, deletion-targeted shift beyond non-deletion variation, and utility. On the admitted ArxivMIA/Llama axis, no tested configuration of gradient ascent with retain descent (GA+GD), negative-preference optimization with retain training (NPO-RT), or teacher--student unlearning (SCRUB) passes. A score near chance is not evidence of forgetting until a reference establishes what chance means.",
+      "authors": [
+        "Mayank Gulati",
+        "Gerhard Wunder"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-24T23:01:38Z",
+      "updated": "2026-11-24T23:01:38Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33525v1",
+      "abs_url": "https://arxiv.org/abs/2611.33525",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33525",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33515",
+      "title": "Evaluation and Restoration of Safety in Reasoning-Tuned LLMs",
+      "abstract": "Open-source LLMs that are optimized for reasoning, such as VibeThinker, aim to democratize AI by bringing high-capability models to users with limited resources. They are broadly available but lack regulation and external guardrails; therefore, in order to integrate them safely into human society, it is critical that they perform in a safe manner. There are popular and intuitive arguments for why improved reasoning should improve safety, but recent evidence suggests that, in fact, the opposite may be true. This paper aims to characterize and mitigate this issue. First, it develops a metric for evaluating LLMs optimized for reasoning, and shows that increasing reasoning across multiple model families increases the unsafe rate in all cases. Second, it proposes a method for restoring safety by combining evolution strategies with a post-training guardrail (ESPG). Compared to alternative methods for safety post-training such as GRPO, ESPG is simple to implement, requires no GPU memory beyond that of inference, and works with remarkably few training samples (e.g.\\ 30), yet makes the model significantly safer. The study thus establishes a path towards safe post-training of open-source AI models.",
+      "authors": [
+        "Ehsan Latif",
+        "Roberto Dailey",
+        "Risto Miikkulainen",
+        "Elliot Meyerson"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-24T22:46:08Z",
+      "updated": "2026-11-24T22:46:08Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33515v1",
+      "abs_url": "https://arxiv.org/abs/2611.33515",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33515",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33470",
+      "title": "Dynamic Reasoning in Next-Gen Detection and Response: An Empirical Study of LLM Triage, Reinforcement Tuning, and Adversarial Evasion",
+      "abstract": "We present an end-to-end empirical study of dynamic reasoning in next-generation detection and response pipelines, evaluating how static classifiers, graph-based signal fusion, and large language model (LLM) triage agents perform under strict human-analyst attention budgets (Recall at B alerts/day). Across 56 reproducible experiments spanning a multi-layer enterprise-and-cloud simulator and four public datasets (SOREL-20M, BODMAS, LANL, and DARPA Transparent Computing), we test twelve architectural claims governing modern fleet-scale defense. First, we show that fleet growth halves recall at a fixed analyst budget even at negligible compute cost (<$0.0003 per million events), and that rarity-weighted graph risk propagation outperforms GraphSAGE without neural training. Second, evaluating frontier reasoning models (Gemini) and fine-tuned open-weight models (Qwen3-4B) for alert triage reveals that unconstrained LLM auto-closure eliminates 90% of false positives while silently discarding 31-44% of true attack cases. Third, post-training with Group Relative Policy Optimization (GRPO) causes severe reward hacking on unseen attack classes, suppressing up to 86% of novel attacks compared to two-epoch supervised fine-tuning. Finally, against an adaptive adversary generating plausible cover stories in benign telemetry fields, LLM triage evasion rises sharply unless gated by a deterministic policy harness prior to model invocation.",
+      "authors": [
+        "Jeremy Canale"
+      ],
+      "categories": [
+        "cs.AI",
+        "cs.CR"
+      ],
+      "published": "2026-11-24T21:48:03Z",
+      "updated": "2026-11-24T21:48:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33470v1",
+      "abs_url": "https://arxiv.org/abs/2611.33470",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33470",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33469",
+      "title": "Differentially Private Policy Optimization in Linear MDPs with Adversarial Rewards",
+      "abstract": "Reinforcement learning (RL) in personalized services often relies on sensitive interaction data. Motivated by the need to protect these data, we study differentially private (DP) policy optimization in episodic linear Markov decision processes (MDPs) with unknown transitions and adaptive adversarial linear rewards under full-information feedback. This setting poses two key challenges: past trajectories are repeatedly reused for policy evaluation, and reward choices may depend on previously released private statistics. The proposed algorithm combines batched proximal policy optimization (PPO) updates with optimistic policy evaluation, using private regression statistics and reward estimates to protect both trajectories and reward functions under joint differential privacy (JDP). With all other parameters fixed, our high-probability regret bound retains the same leading $\\widetilde{O}\\left(K^{3/4}\\right)$ dependence on the number of episodes $K$ as the corresponding non-private bound for batched optimistic PPO. The additional privacy terms scale as $\\widetilde{O} \\left(K^{5/8}\\right)$ and $\\widetilde{O} \\left(K^{1/2}\\right)$. Thus, privacy incurs only lower-order additive costs in $K$, even under adaptive adversarial rewards.",
+      "authors": [
+        "Yi He"
+      ],
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-11-24T21:46:00Z",
+      "updated": "2026-11-24T21:46:00Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33469v1",
+      "abs_url": "https://arxiv.org/abs/2611.33469",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33469",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33467",
+      "title": "SplatWAM: Splatting World Action Models for Real-Time 3D Imagination",
+      "abstract": "World models typically predict future observations in pixel or latent space, limiting their ability to directly represent true 3D scene evolution. We present SplatWAM (Splatting World Action Model), a generative world model that learns action-conditioned dynamics directly over compact 3D Gaussian primitives. A tokenizer SplatWAM-T first encodes a variable number of unposed views into a fixed budget of Gaussian tokens. A dynamics model SplatWAM-D then predicts future Gaussian states in a single forward pass per action, using log-Euclidean covariance coordinates and differentiable rendering supervision to facilitate learning in an explicit 3D space. Each predicted state can be rasterized from arbitrary viewpoints, enforcing a shared 3D representation across views by construction. On OGBench Scene, SplatWAM renders novel views 12x faster than video world models (~80 FPS on an RTX 5090) with up to 2.0 dB higher PSNR. We further introduce SplatWAM-P, a lightweight flow-matching policy head jointly trained with the dynamics model. Across 8 task suites, model-free Gaussian-token policies outperform pixel-based counterparts by up to 24.8 percentage points. SplatWAM-P improves over Latent Particle World Model (LPWM) by 12 percentage points and matches HIQL without a learned value function. On LIBERO, our ~1B model outperforms WorldVLA (~7B) and the robot-pretrained OpenVLA (~7B), while matching OpenVLA-OFT when both are trained without large-scale robot pretraining. Code and checkpoints will be released.",
+      "authors": [
+        "Frank Tsu-Fang Lu",
+        "Karthik Sundar Senthilkumar",
+        "Christopher Thirgood",
+        "Oscar Mendez",
+        "Simon Hadfield"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-11-24T21:43:32Z",
+      "updated": "2026-11-24T21:43:32Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33467v1",
+      "abs_url": "https://arxiv.org/abs/2611.33467",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33467",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33460",
+      "title": "Fast Muscle-Driven Whole-Body Motion Tracking with a Differentiable World Model",
+      "abstract": "Tracking motion capture with a whole-body musculoskeletal model means coordinating hundreds of muscles through contact, and current controllers take hours to days of GPU time to train, so every tuning decision is expensive. SuperMimic trains a tracking policy by backpropagating through the rollouts of a learned world model. We extend it to MS-Human-700 (700 muscles) and MyoFullBody (354 muscles), with MuJoCo's activation dynamics inside the world model. To make its training fast, our recipe takes the speedups developed for the Unitree G1, replaces three of their settings that fail on muscles, and adds four changes of our own: observations without muscle geometry, data collection concurrent with the updates, Beta exploration noise that keeps every excitation in $[0,1]$, and 50 Hz control. On one RTX 5090 it trains MS-Human-700 in 6.3 minutes to the held-out return that SuperMimic's published hyperparameters reach in 3.9 hours, 37$\\times$ sooner, and in 20 minutes to lower tracking errors than theirs after 10 hours. It trains MyoFullBody 34$\\times$ sooner without retuning. Ablations show what is specific to muscles: a higher policy learning rate stalls half of the runs, and clipped Gaussian noise adds a tonic co-contraction that Beta noise avoids. Finally, refining the policy's actions through the world model at test time lowers the position error by a further 26% with no held-out clip failing, and reaches the same return after 5.1 instead of 6.3 minutes of training. Code, the training recipe and videos are on the project page https://muscle-supermimic.beanpow.top.",
+      "authors": [
+        "Kaibo He",
+        "Maciej Bakowicz",
+        "Shihe Zhou",
+        "Yusen Feng",
+        "Yanan Sui",
+        "Dhanush Radhakrishnan"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "published": "2026-11-24T21:36:26Z",
+      "updated": "2026-11-24T21:36:26Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33460v1",
+      "abs_url": "https://arxiv.org/abs/2611.33460",
+      "topics": [
+        "world-model"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33460",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33457",
+      "title": "Playfulness as Feedback for Agentic Game Development",
+      "abstract": "Coding agents can generate runnable games from natural-language descriptions. However, a runnable game does not guarantee an excellent gameplay experience for players. In our view, a playful game should provide 1) reliable core functionality, 2) appealing visual design and assets, and 3) rich gameplay that supports exploration and progression. How agents can improve these aspects of playfulness remains underexplored. In our work, we propose Play2Evolve, a recursive game development framework with three stages: Initialization, Refinement, and Evolution. Using playfulness as feedback, agents playtest the game and diagnose issues in its functionality, visual presentation, and gameplay. Their feedback guides bug fixes and asset improvements. It also helps agents propose new gameplay and aesthetic goals for continued game evolution. To enrich game materials, we combine a video generation model with code to create appealing static and dynamic assets and integrate them into interactive gameplay. Finally, Play2Evolve achieves state-of-the-art performance among the evaluated methods, scoring 60.05 on GameCraft-Bench compared with 50.81 after Game Initialization and 52.46 for Play2Code. Human overall-quality ratings reach 3.67, compared with 2.38 and 2.43, respectively. Our code will be released at https://github.com/showlab/Play2Evolve.",
+      "authors": [
+        "Weijia Mao",
+        "Kevin Qinghong Lin",
+        "Zhen Fang",
+        "Danze Chen",
+        "Dongxing Mao",
+        "Mike Zheng Shou"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-24T21:30:09Z",
+      "updated": "2026-11-24T21:30:09Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33457v1",
+      "abs_url": "https://arxiv.org/abs/2611.33457",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33457",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33452",
+      "title": "HumblePRM: Improving VLM Abstention in Ambiguous Situations through Process Reward Modeling",
+      "abstract": "Reliable deployment of Vision Language Models (VLMs) requires that a model's expressed confidence remain grounded in what it can actually see, and that it recognize when the visual evidence is too ambiguous to commit to a confident response. Standard post-training uses outcome reward models (ORMs) that supervise only the final decision, rewarding a confident answer regardless of whether the image supports one, while existing methods either tend to detect uncertainty post-hoc or assume an objective verdict always exists. We instead split multimodal reasoning into two stages: perception, where the model must factually describe the scene, and calibration, where it must judge whether that evidence is sufficient to commit to a conclusion. We introduce HumblePRM, a lightweight process reward model (PRM) that scores each stage independently, rewarding agreement between evidence and expressed confidence rather than outcome correctness alone. Training with HumblePRM increases abstention due to uncertainty on ambiguous inputs considerably while leaving accuracy on clear images roughly unchanged. We also find that the improvement transfers to Gemma 4 E4B, a larger, popular edge model. Our findings show that process reward supervision is a promising route to VLMs with better calibrated abstention, ensuring more reliability rather than unpredictable behavior.",
+      "authors": [
+        "Saket Reddy",
+        "Ke Yang",
+        "ChengXiang Zhai"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-11-24T21:20:03Z",
+      "updated": "2026-11-24T21:20:03Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33452v1",
+      "abs_url": "https://arxiv.org/abs/2611.33452",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33452",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33437",
+      "title": "ViCARD: Visual Credit Assignment with Reward-Gated Distillation for Multimodal Reasoning",
+      "abstract": "Visual reasoning requires models to identify relevant visual evidence and use it to derive correct answers. Outcomebased reinforcement learning (RL) faces two key challenges in this regime: it yields no learning signal when perceptual errors cause all sampled responses to fail, and it broadcasts a uniform advantage across every token within a response. Conversely, while visual self-distillation offers dense guidance from evidence-centered image crops, student learning from token distributions alone often fails to elicit correct final answers. Motivated by an audit of training rollouts that exposes these complementary failure modes, we introduce ViCARD (Visual Credit Assignment with RewardGated Distillation), which integrates per-token visual supervision with verified correctness rewards. For each rollout group, we leverage a teacher with its input image cropped to the relevant visual area, and use this to provide per-token supervision to the student while also valuing correctness. If all sampled rollouts fail, ViCARD samples an additional crop-teacher answer and activates on-policy distillation only if that answer is correct. Together, these mechanisms provide fine-grained visual credit within informative reward groups and a learning signal for otherwise uninformative all-fail groups. Extensive comparisons across model scales demonstrate that ViCARD improves fine-grained visual reasoning performance over RL and distillation baselines, while retaining broad visual reasoning capabilities.",
+      "authors": [
+        "Zijian Huang",
+        "Jiasi Chen"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-11-24T21:04:02Z",
+      "updated": "2026-11-24T21:04:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33437v1",
+      "abs_url": "https://arxiv.org/abs/2611.33437",
+      "topics": [
+        "rl",
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33437",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33426",
+      "title": "Scalpel and Brush: Pruning and Targeted Weight Editing of a Small Language Model by a Single LLM Agent",
+      "abstract": "It has recently been shown that an LLM can itself edit the weights of a language model, yet it remains unclear which part of such a result is due to the agent and which part is reproduced by a random edit of the same shape, by an instruction in the prompt, or by a standard procedure without an LLM. We unify repair and pruning as sparse weight edits to optimize a metric we specify, using BLEU as an example: three tasks -- targeted weight repair (\"brush\"), structured MLP neuron pruning (\"scalpel\", zeroing pruned weights), and layer removal with repair - are assigned to a DeepSeek Harness agent powered by DeepSeek-V4.1-Flash, with up to 50 dev evaluations. We study Qwen2.5-Math-1.5B-Instruct in three independent runs per task, with final evaluation on two hidden splits. On ordinary differential equations, changing at most 0.0084% of weights raised test BLEU by 24-32% on second-order equations and by a factor of 1.8-2.5 on equations with polynomial right-hand sides. An independent substitution check showed that higher BLEU reflects notation alignment rather than improved correctness. Masks that remove 12.5-15% of MLP neurons shrink the model by 9.4-11.2% with mean BLEU loss of at most 0.01 on both hidden splits, whereas standard pruning with equal shares per layer failed the constraint at all tested shares. On seven-class GoEmotions classification, edits raise macro-F1 from 0.100 to 0.396-0.451 on test and from 0.175 to 0.455-0.476 on holdout. A ridge-based classifier written into agent-selected weight rows yields macro-F1 of 0.424 and 0.464. Pruning search with the same evaluation limit removes 15.9% of neurons versus 14-21.4% for agent runs passing the hidden check. Standard procedures without an LLM reproduce much of the performance once given the location and form of intervention found by the agent; a comparison of agentic and non-agentic search remains open.",
+      "authors": [
+        "Sergei Koltcov",
+        "Vera Ignatenko",
+        "Anton Surkov",
+        "Rabie Abdultawab Ramadan"
+      ],
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-11-24T20:48:19Z",
+      "updated": "2026-11-24T20:48:19Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33426v1",
+      "abs_url": "https://arxiv.org/abs/2611.33426",
+      "topics": [
+        "distillation"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33426",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33417",
+      "title": "Temporal Selective Exploration for Reinforcement Learning-Guided Continuous-Discrete Flow Matching in 3D Molecular Design",
+      "abstract": "Flow matching has shown strong potential in generative tasks, while its optimization via Reinforcement Learning (RL) remains underexplored, especially in continuous-discrete mixed settings. Moreover, flow matching is formulated as an Ordinary Differential Equation (ODE), whose deterministic trajectories do not naturally support RL optimization. Introducing stochasticity by converting the entire trajectory into a Stochastic Differential Equation (SDE) is a common practice. Nevertheless, not all timesteps contribute to the final outcomes, and redundant exploration introduces additional noise. Furthermore, in multi-objective settings, some objectives may dominate the optimization while others receive insufficient updates. In this study, we propose an RL-guided continuous-discrete flow matching framework with temporal selective exploration for 3D de novo molecular design. Specifically, our method jointly optimizes continuous and discrete flow matching for atomic coordinates and molecular identities, respectively, while restricting exploration to timesteps that primarily contribute to target properties, reducing ineffective exploration. We also introduce a reward-based advantage calibration mechanism to mitigate objective dominance in multi-objective optimization. The framework is applied to design inhibitors for both the well-studied target protein EGFR and the challenging Pin1 protein. We identify some novel candidate inhibitors, supported by in silico validation.",
+      "authors": [
+        "Lianghong Chen",
+        "Yan Yi Li",
+        "Gen Zhou",
+        "Yuxi Long",
+        "Ganlin Feng",
+        "Mike Domaratzki",
+        "Pingzhao Hu"
+      ],
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-11-24T20:41:30Z",
+      "updated": "2026-11-24T20:41:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33417v1",
+      "abs_url": "https://arxiv.org/abs/2611.33417",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33417",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33409",
+      "title": "A Semantics-First Approach to Multimodal Video Captioning with Frozen Encoders and Stabilized Reinforcement Learning",
+      "abstract": "We propose the Audio-Visual Query Transformer (AVQFormer), a highly efficient architecture built upon a 2.7B parameter LLM featuring a fixed-length $K=16$ semantic alignment module, stabilized via Adaptive Self-Critical Sequence Training (ASCST) with Entropy Regularization. Multimodal Large Language Models (LLMs) often rely on global audio representations to compensate for inefficient, frame-based visual encoders. While our Phase 1 prompted evaluations demonstrate that the Multimodal Base Model achieves strong deep semantic alignment (scoring 0.889 on BERTScore F1), optimizing this architecture for legacy metrics reveals a performance gap. We explore this gap as a hypothesis we term temporal alignment friction: a conflict where global audio representations disrupt the chronological sequence of visual frames, leading to penalties under visually-focused evaluation metrics. Consequently, by stripping away the audio, our Video-Only ablation conforms more closely to this rigid syntax, achieving 63.0 CIDEr. While trailing larger models such as Qwen2.5-VL (67.4 CIDEr), this establishes a strong baseline for sub-3B parameter LLM-based models. This indicates that CIDEr, as applied to datasets such as MSR-VTT, may exhibit a bias toward visually grounded syntax, limiting its ability to fully capture multimodal semantic richness.",
+      "authors": [
+        "Albert Chiwara",
+        "Erhan Guven"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-11-24T20:35:34Z",
+      "updated": "2026-11-24T20:35:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33409v1",
+      "abs_url": "https://arxiv.org/abs/2611.33409",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33409",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33393",
+      "title": "Can a Short Video Clip Verify a Model Fix?",
+      "abstract": "A developer who reproduces a video model's error on a short clip can replay that clip after an update. How often does a correct clip answer mean the original test now passes? On 960 prespecified CG-Bench questions, we updated from Qwen2-VL-2B-Instruct to Qwen2.5-VL-7B-Instruct. Accuracy on a 64-frame sample spanning the full video rose from 27.9% to 33.3%. Before scoring the newer model, we froze 388 clips on which the older model reproduced its exact reference error. The updated model passed the reference on 51 of 116 clip passes (44.0%, 95% Wilson interval 35.3-53.0%) and on 16 of 272 clip failures (5.9%). Closing cases on a clip pass would have declared 65 unresolved reference failures fixed. Requiring a clip pass would have missed 16 of the 67 reference fixes (23.9%). In a separate 1,028-video study with different checkpoints and direct option scoring, only 15 clips passed, and the 16-frame reference confirmed one. For the generated-answer update, the short replay identified cases worth checking, while the original input remained necessary to verify individual fixes.",
+      "authors": [
+        "Raj Shan"
+      ],
+      "categories": [
+        "cs.MM",
+        "cs.LG"
+      ],
+      "published": "2026-11-24T20:17:22Z",
+      "updated": "2026-11-24T20:17:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33393v1",
+      "abs_url": "https://arxiv.org/abs/2611.33393",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33393",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33392",
+      "title": "BreathSplat: Grounding One Smooth Motion in the Breathing Phase for 4D Cone-Beam CT",
+      "abstract": "Four-dimensional cone-beam computed tomography (4D-CBCT) images the anatomy of a breathing patient, but sees each breathing phase from only a few angles. Breathing, however, is a smooth motion that repeats; it has a phase. Existing methods exploit this either by reconstructing the anatomy as a function of the breathing phase, often through bins, or by estimating smooth dynamic motions in time. Yet none of these grounds one smooth motion in the phase. We thus propose to share projections across breathing phases with splines. Specifically, we represent the 4D volume with dynamic Gaussians whose motion uses B-splines in space and time. We ground the motion state in the respiratory phase, which we read from well-studied conventional surrogates. Projections at the same phase in different breathing cycles then constrain the same anatomy and motion. On simulated lung scans, our method, BreathSplat, outperforms recent dynamic methods in reconstruction and motion accuracy, including those given the ground-truth phase. We further show qualitatively, on two real patient scans, that our method provides clearer reconstructions than the state of the art.",
+      "authors": [
+        "Sujong Shin",
+        "Sang-Il Choi",
+        "Kwang Moo Yi"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-24T20:16:51Z",
+      "updated": "2026-11-24T20:16:51Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33392v1",
+      "abs_url": "https://arxiv.org/abs/2611.33392",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33392",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33387",
+      "title": "Synchronizing Cameras via 3D Object Relationships",
+      "abstract": "In this paper, we synchronize multiple videos of the same dynamic event through object relationships. Driven by dynamic reconstruction and novel view synthesis, many recent synchronization methods rely on pixel-level evidence, such as point correspondences across views or the photometric losses of a reconstructed scene. In dynamic scenes, however, fast motion and occlusions make the moving regions that carry much of the timing information hard to match across views. We thus propose to bring back the traditional wisdom that objects are reliable cues for global reasoning about cameras. Measured in 3D, the relationships between objects, such as the distance between two people, are stable across all views up to scale; they can serve as cues for alignment. To compare these relationships across cameras, we only need the identity of each object in every view, as the cues are relational. We obtain these identities by giving a vision-language model a few frames of every camera and prompting it to identify the objects in the scene. We then segment and track each identified object through every video with an open-vocabulary segmentor. To obtain the 3D locations of objects, we use a pretrained depth estimator. Where depth or segmentation fails, we complement these 3D cues with 2D motion from point tracks. Finally, we synchronize the cameras by finding the temporal offsets at which the cues of different cameras agree best, first for each camera pair and then for all cameras jointly with robust optimization. We evaluate our method on four standard benchmarks, outperforming the state of the art.",
+      "authors": [
+        "Sujong Shin",
+        "Sang-Il Choi",
+        "Kwang Moo Yi"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-24T20:10:55Z",
+      "updated": "2026-11-24T20:10:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33387v1",
+      "abs_url": "https://arxiv.org/abs/2611.33387",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33387",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33378",
+      "title": "DreamTour: Layout Steering for Training-Free World Exploration",
+      "abstract": "Video diffusion and world models generate plausible videos but do not reliably match the requested camera direction and travel distance. We present DreamTour, a training-free framework that generates camera tours from a single image with more accurate control over camera motion. DreamTour first uses a frozen image inpainting prior to extend the photograph beyond its original field of view while preserving the input pixels. Depth-based rendering of this extended scene along the requested camera path produces approximate target views that serve as spatial guidance. We introduce Layout Steering, which aligns early video latents with these views through decaying low-frequency corrections, leaving later denoising to refine appearance and dynamics. For longer tours, we autoregressively generate the video segments, repeating guidance construction from each segment's final frame to maintain camera control across the full trajectory. DreamTour improves directional accuracy and travel calibration on VBench while maintaining competitive video quality. On WorldScore, it strengthens camera control and scene consistency across chained movements. Together, these results demonstrate that training-free spatial guidance enables more accurate and consistent camera control in pretrained video diffusion and world models.",
+      "authors": [
+        "Srikumar Sastry",
+        "Meher Gitika Karumuri",
+        "Chenqi Li",
+        "Sarosij Bose",
+        "Mellon Zhang",
+        "Allen Tu",
+        "Ziyang Long",
+        "Yen-Liang Lin",
+        "Alexander Schwing",
+        "Nathan Jacobs"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-24T20:05:52Z",
+      "updated": "2026-11-24T20:05:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33378v1",
+      "abs_url": "https://arxiv.org/abs/2611.33378",
+      "topics": [
+        "world-model",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33378",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33374",
+      "title": "VersionGS: Compact and Motion-Robust Dynamic Gaussian Splatting via Versioned Gaussians",
+      "abstract": "Recent dynamic Gaussian splatting methods encode temporal change, either as smooth functions of time or as constrained updates between frames. We observe that their reconstruction quality degrades significantly under fast motion. In challenging dance sequences, their PSNR drops by 1.1-4.0 dB on high-motion frames compared to low-motion frames. To overcome this limitation, we propose VersionGS, a method that directly encodes per-frame Gaussian states and uses motion estimation only to guide reconstruction. Within each group of frames, unchanged Gaussians keep their current versions in a shared dictionary, while modified Gaussians are appended as new versions. To maximize version reuse, we introduce selective sequential construction, which refines the Gaussians selected by optical flow, photograph differences or rendering errors and leaves the others unchanged. The dictionary is then pruned, fine-tuned with simulated quantization and encoded as images. Adjusting the pruning ratio trades off storage and quality without rebuilding the dictionary. On the fast dance sequences of DanceNet3D, VersionGS improves foreground PSNR by 2.7 dB over the best baseline, and its PSNR decreases by less than 0.3 dB on the highest-motion frames. On N3DV and Technicolor, it requires 6.0x and 5.7x less storage than TAD-GS, the strongest baseline overall, while achieving even higher PSNR. Finally, playback is fast and requires no motion model or neural network, only a 3DGS rasterizer.",
+      "authors": [
+        "Shihang Wei",
+        "Yichi Zhang",
+        "Fengqing Zhu"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-24T20:03:06Z",
+      "updated": "2026-11-24T20:03:06Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33374v1",
+      "abs_url": "https://arxiv.org/abs/2611.33374",
+      "topics": [
+        "4d-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33374",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33371",
+      "title": "MotifFlow: Training-Free, Self-Contained Style Transfer from Color to Motif in Rectified Flow Transformers",
+      "abstract": "Expressive style transfer must reproduce a painting's palette, brushwork, and characteristic motifs while retaining the content image's structure. Attention injection is effective in U-Net-based diffusion models, but adapting it to FLUX often transfers color without capturing the style's distinctive brushwork. Our analysis across backbones links this gap to how injected features are integrated across neighboring spatial locations. We introduce MotifFlow, a training-free, self-contained framework that combines style injection with style-alignment guidance in FLUX. Injection supplies style features during generation but does not explicitly encourage the model's native attention output to align with them. We therefore use the discrepancy between native and injected attention outputs to guide latent-space updates, encouraging the evolving image to develop the style's distinctive brushwork and motifs. Style encoding, guidance, and synthesis all use the same frozen backbone, without auxiliary image encoders or trained adapters. A single strength parameter controls the transition from color transfer to pronounced brushwork and motifs, with additional support for regional stylization and style mixing. Experiments on 1,000 content-style pairs show that MotifFlow better matches the local textures of the style image than baseline methods and produces more consistent stylization than injection alone. The same design extends to FLUX.2.",
+      "authors": [
+        "Chun Xie",
+        "Itaru Kitahara"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-24T20:02:24Z",
+      "updated": "2026-11-24T20:02:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33371v1",
+      "abs_url": "https://arxiv.org/abs/2611.33371",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33371",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33368",
+      "title": "Searching Ultra-Long Videos with Decision Models",
+      "abstract": "Understanding ultra-long videos requires retrieving sparse, query-relevant evidence from extensive video histories. Existing similarity-based retrieval methods are efficient, but they encode the question and the video content independently and thus often miss evidence whose relevance requires reasoning over both. Generative large language models (LLMs) can perform such reasoning, but they typically generate text over multiple rounds of search, which makes each query slow and costly. In this work, we introduce DeLoVi (Decision Models for Long Video), a framework that leverages pretrained decision models to retrieve evidence from ultra-long videos. Like an LLM, a decision model reads the question together with the candidate evidence, so it can reason over both. Unlike an LLM, it directly outputs a relevance score without generating text, which makes it fast and inexpensive. We first present DeLoVi-S, a simple method that generates captions for short video clips and uses a decision model to rank those captions by their relevance to a question. A generative LLM then answers the question using the top-ranked captions. Despite its simplicity, DeLoVi-S achieves state-of-the-art performance on three ultra-long video understanding benchmarks, EgoLifeQA, EgoMemReason, and MM-Lifelong, and generalizes effectively to long-video understanding benchmarks, VideoMME-L and LVBench. However, DeLoVi-S scores every caption for every question, so its cost grows linearly with video length. To reduce this cost, we propose an automated policy evolution framework that iteratively refines the memory construction and retrieval policies around a fixed pretrained decision model. The resulting method, DeLoVi-E, maintains comparable performance while reducing input tokens by 34x on average compared with DeLoVi-S. It also runs over 3x faster than the best prior method on EgoLifeQA while achieving higher accuracy.",
+      "authors": [
+        "Ce Zhang",
+        "Baiqi Li",
+        "Seongsu Ha",
+        "Gedas Bertasius"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-24T20:01:15Z",
+      "updated": "2026-11-24T20:01:15Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33368v1",
+      "abs_url": "https://arxiv.org/abs/2611.33368",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33368",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33339",
+      "title": "Temporal Weight Surgery: Repairing Video Grounding with LLM Editors",
+      "abstract": "A surgeon first finds what is wrong, then fixes only that part. We use this idea for video grounding, where video-language models often find the right moment in a long video but write its time wrong. In Temporal Weight Surgery (TWS), a general-purpose LLM reads the model's weights and activations, finds where the error arises and repairs it there, without gradients. Separate sessions find the same cause, and this diagnosis of where and why the model fails is our main contribution. Three GPT-6 Astra sessions trace a dropped digit in TimeLens-8B to one MLP layer, and the largest edit gains 7.9 mIoU on 1,215 unseen questions and 18.3 on videos of 30 minutes or more. Two Claude Opus 5.5 sessions trace minutes written as seconds in Qwen3-VL-8B to the separator and gain 2.9 and 1.3. Before any edit, its answers often have the right minute and the wrong separator, and fixing only the separator lifts their mIoU from 13.1 to 19.2. Every improving edit beats a random edit of its size, and the edited models run as fast as before.",
+      "authors": [
+        "Ali Asgarov",
+        "Chris Thomas"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.CL"
+      ],
+      "published": "2026-11-24T19:25:42Z",
+      "updated": "2026-11-24T19:25:42Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33339v1",
+      "abs_url": "https://arxiv.org/abs/2611.33339",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33339",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33316",
+      "title": "What Does RL Post-Training Teach Text-to-Image Models? A Skill-Wise Analysis of Flow-GRPO",
+      "abstract": "Reinforcement learning (RL) post-training has become a standard way to improve text-to-image flow models: Flow-GRPO lifts the GenEval score of SD3.5-M from 0.63 to 0.95, a gain read as the model having learned compositional generation. We ask how much of that gain the base model's own samples already contained, by measuring pass@k over shared noise seeds, one skill at a time, before and after RL, on prompts never used in training. The answer differs by skill. On four of GenEval's six skills, where 32 base samples already solve almost every prompt, the gain is sharpening: one post-trained sample is worth 4 to 10 base samples, and pass@32 barely moves. On spatial relations it is unlocking: pass@32 rises from 0.69 to 1.00, 128 base samples do not match one post-trained sample, and prompts the base model never solved in 32 samples are solved 93% of the time, as often as those it solved. The benchmark average, 31 base samples per post-trained sample, describes no skill. Relations carry 35% of the gain; of the other 65%, selecting among 8 base samples with the judge behind the reward recovers nine tenths. We propose an account of when each occurs: within a prompt, a group-relative update re-weights only the outcomes its samples contain, and a flow policy cannot widen the noise that produces them; across prompts, shared parameters let successes on some prompts repair a deficit common to many. The same anatomy applies to a text-rendering checkpoint. The account's predictions are tested with a checkpoint trained without KL, within-prompt diversity, and controlled training that holds object classes out, where sharpening comes first and transfers, and unlocking follows, on practised objects before unseen ones.",
+      "authors": [
+        "Cheng Zhang",
+        "Jiesong Liu"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-11-24T19:06:14Z",
+      "updated": "2026-11-24T19:06:14Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33316v1",
+      "abs_url": "https://arxiv.org/abs/2611.33316",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33316",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33296",
+      "title": "CoSMo: A Compact Spectral Space of Body Motion in Video",
+      "abstract": "We introduce CoSMo, a compact spectral space of body motion in video, in which each motion is a single code that can be compared and edited without training, transferred to a new subject, interpolated, composed, scaled in intensity and detail, or sampled anew. Our encoder expresses how a clip's DINOv2 features change over time in a fixed temporal basis, the discrete cosine transform (DCT), and compresses this change into 384 numbers. Because each frequency band is the same cosine pattern in every code, codes are aligned in time, ordered from coarse to fine, and can be blended or added without matching frames. What stays constant over a clip cancels, and keeping fewer frequencies leaves less of the performer and scene. The encoder is trained on real videos and on synthetic motions of several characters, and lightweight adapters let a frozen image-to-video model render any code with any subject. On unseen videos, our code ranks the same motion on other bodies higher than DisMo, a per-frame representation, while its nearest neighbors show the same performer about 40% less often with a seven times more compact code. In generation, without per-motion training, CoSMo transfers motion more faithfully than FlexiAct and a text-prompt baseline, at least as faithfully as DisMo on automatic metrics and clearly better between humanoid bodies, and its blends keep much more of both source motions than DisMo's. Users rank CoSMo first nearly twice as often as DisMo for motion transfer (59% vs. 30%), place it top-two 94% of the time, and prefer it in 76% of the interpolation comparisons.",
+      "authors": [
+        "Maham Tanveer",
+        "Hao Zhang"
+      ],
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-11-24T19:00:16Z",
+      "updated": "2026-11-24T19:00:16Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33296v1",
+      "abs_url": "https://arxiv.org/abs/2611.33296",
+      "topics": [
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33296",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33268",
+      "title": "JetDiffusion: Pushing the Speed Limits of Video Generation with NVFP4 Sparse Attention",
+      "abstract": "Attention over long sequences is a major computational bottleneck in video generation, which can be alleviated through sparsity and low-bit quantization. We propose JetDiffusion, a video generation system built on trainable Video Sparse Quantized Attention (VSQA), with custom inference kernels that combine native NVFP4 computation and kernel fusion. At 90% sparsity, VSQA accelerates attention by 8-29x compared with FlashAttention on different hardwares. To further accelerate video generation, we combine VSQA with NVFP4 linear quantization and step distillation. Although each technique can individually preserve generation quality, jointly adapting to all three remains challenging, particularly under aggressive NVFP4 quantization. Through empirical studies, we develop an effective staged training recipe that enables stable adaptation to quantization, sparsity, and few-step denoising. On Wan2.1-14B, the resulting model achieves 273x end-to-end video generation speedup on the RTX 5090 while maintaining comparable video quality.",
+      "authors": [
+        "Yulun Wu",
+        "Zihan Min",
+        "Minshen Zhang",
+        "Kaiqin Kong",
+        "Ji Xie",
+        "Will Lin",
+        "Junda Chen",
+        "Wenxuan Tan",
+        "Aryan Kumar",
+        "Loay Rashid",
+        "Qingyu Yin",
+        "Hao Zhang"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-11-24T18:59:48Z",
+      "updated": "2026-11-24T18:59:48Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33268v1",
+      "abs_url": "https://arxiv.org/abs/2611.33268",
+      "topics": [
+        "distillation",
+        "video-gen"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33268",
+      "summary_zh": ""
+    },
     {
       "id": "2611.33153",
       "title": "DiaCap: Jointly Learning Who Speaks When for Audiovisual Dialogue Captioning",
@@ -82,8 +625,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33148",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.33141",
@@ -109,8 +651,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33141",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.33133",
@@ -159,13 +700,12 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33111",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.33102",
       "title": "Reinforcement Learning Can Be Recovered From Its Own Rollouts",
-      "abstract": "Broadly speaking, reinforcement learning (RL) post-training converts compute into model capabilities by training on model-generated data. Typically, the rollouts are discarded after each update, and the knowledge acquired during RL resides in the model weights. In this work, we investigate how much of this knowledge is retained in the rollouts themselves. A natural first attempt is to replay the original RL algorithm on archived rather than freshly generated rollouts, but this leads to catastrophic collapse. We provide a simple explanation for this phenomenon, which in turn suggests a remedy: maximum likelihood on the archived rollouts. Surprisingly, starting from the same base model and replaying the rollouts in the order in which they were generated, without any distinction between correct and incorrect responses, is sufficient to recover the performance of online RL. In fact, a single maximum likelihood update per rollout batch closely tracks the entire learning curve of online RL. Furthermore, maximum likelihood on the rollouts of the last few RL steps often suffices to recover the final model's performance. This suggests that much of the compute invested in RL goes into discovering an improved sampling distribution rather than learning it from samples.",
+      "abstract": "Broadly speaking, reinforcement learning (RL) post-training converts compute into model capabilities by training on model-generated data. Typically, the rollouts are discarded after each update, and the knowledge acquired during RL resides in the model weights. In this work, we investigate how much of this knowledge is retained in the rollouts themselves. A natural first attempt is to replay the original RL algorithm on archived (rather than freshly generated) rollouts, but this generally leads to catastrophic collapse. We provide a simple explanation for this phenomenon, which in turn suggests a remedy we call maximum likelihood replay: fitting the model to its archived rollouts. Surprisingly, starting from the same base model and replaying the rollouts in the order in which they were generated, without any distinction between correct and incorrect responses, is sufficient to recover the performance of online RL. In fact, a single maximum likelihood update per rollout batch closely tracks the entire learning curve of online RL. Furthermore, maximum likelihood replay on the rollouts of the last few RL steps often suffices to recover the final model's performance. This suggests that much of the compute invested in RL goes into discovering an improved sampling distribution rather than learning it from samples.",
       "authors": [
         "Jiayi Sheng",
         "Jingwen Gu",
@@ -180,15 +720,14 @@
         "cs.LG"
       ],
       "published": "2026-11-24T18:38:06Z",
-      "updated": "2026-11-24T18:38:06Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.33102v1",
+      "updated": "2026-11-25T18:46:02Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33102v2",
       "abs_url": "https://arxiv.org/abs/2611.33102",
       "topics": [
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33102",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.33101",
@@ -259,8 +798,37 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33096",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33263",
+      "title": "What, Who, and When: Structured Harm Assessment for Mental Health Safety via Short Reasoning",
+      "abstract": "The growing use of large language models (LLMs) for mental health support raises important safety concerns. Existing guard models primarily identify categories of harmful content, often overlooking the context needed to determine an appropriate response. We introduce a clinically grounded taxonomy that characterizes harm along three dimensions: what the harm is, who is involved, and when it occurs. It further separates harm characterization from intervention decisions, thus enabling safety policies to be specified outside the model weights through explicit, clinician-curated instructions that can be updated and audited. We validate the taxonomy with expert clinicians and validate a panel of LLM judges to scale annotation. Relabeling public benchmarks in this taxonomy shows that they rarely contain harm directed at the user, which accounts for nearly half of the harm in real conversations. We then train MindGuard2, a 35B-A3B reasoning-based guard model using supervised fine-tuning on short reasoning traces followed by reinforcement learning with a reasoning-length penalty, to minimize inference overhead while preserving the benefits of reasoning. On two public benchmarks and real-world conversations, MindGuard2 achieves balanced accuracy comparable to the substantially larger GLM-5.3 at approximately 10x lower median latency, advancing the accuracy-latency Pareto frontier. Furthermore, it achieves low false-positive rates at high recall, helping balance the need to detect unsafe situations against the risk of unnecessary interventions that may disrupt support and undermine user trust. We release a safety guardrail model with SOTA performance trained on synthetic data, together with synthetic conversations and annotations of public benchmarks in our taxonomy.",
+      "authors": [
+        "Catarina Botelho",
+        "António Farinhas",
+        "John Mendonça",
+        "Areti Vassilopoulos",
+        "Inês Gonçalves",
+        "Maya D'Eon",
+        "Hugo Pitorro",
+        "Laura Cabello",
+        "Carrie Spadine",
+        "Nuno M. Guerreiro",
+        "Ricardo Rei"
+      ],
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-11-24T18:12:21Z",
+      "updated": "2026-11-24T18:12:21Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33263v1",
+      "abs_url": "https://arxiv.org/abs/2611.33263",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33263",
+      "summary_zh": ""
     },
     {
       "id": "2611.33064",
@@ -285,8 +853,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33064",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.33035",
@@ -334,8 +901,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33016",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.33011",
@@ -379,15 +945,14 @@
         "cs.AI"
       ],
       "published": "2026-11-24T17:29:40Z",
-      "updated": "2026-11-24T17:29:40Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.33004v1",
+      "updated": "2026-11-25T16:05:24Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33004v2",
       "abs_url": "https://arxiv.org/abs/2611.33004",
       "topics": [
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33004",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32996",
@@ -550,8 +1115,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32900",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32884",
@@ -574,8 +1138,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32884",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32848",
@@ -597,8 +1160,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32848",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32825",
@@ -618,8 +1180,8 @@
         "q-bio.NC"
       ],
       "published": "2026-11-24T15:40:38Z",
-      "updated": "2026-11-24T15:40:38Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.32825v1",
+      "updated": "2026-11-25T05:42:22Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.32825v2",
       "abs_url": "https://arxiv.org/abs/2611.32825",
       "topics": [
         "other"
@@ -653,8 +1215,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32821",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32820",
@@ -679,8 +1240,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32820",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32816",
@@ -728,8 +1288,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32812",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32811",
@@ -753,8 +1312,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32811",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32810",
@@ -777,8 +1335,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32810",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32786",
@@ -806,8 +1363,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32786",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32776",
@@ -815,21 +1371,21 @@
       "abstract": "Latent world models enable goal-directed planning from offline visual data, but prediction alone does not specify which action-related distinctions their representations should preserve. Inverse dynamics provides auxiliary supervision, yet squared-error action regression rewards additional information only through changes in the conditional action mean. We propose Contrastive Identification of Actions (CIA), which identifies the executed action among alternatives sampled from a history-conditioned behavior proposal. Comparing actions plausible in the same context targets information supplied by the next latent beyond history. Under exact behavior matching, we show that CIA can reward action information that leaves optimal inverse-regression error unchanged, and verify this distinction through a controlled learning example. CIA achieves higher planner-averaged mean success than the base world model and a regression inverse-dynamics baseline across five visual control benchmarks, without modifying the planner.",
       "authors": [
         "Hayeong Lee",
-        "Youngjun Suh. Byung-Jun Lee"
+        "Youngjun Suh",
+        "Byung-Jun Lee"
       ],
       "categories": [
         "cs.AI"
       ],
       "published": "2026-11-24T15:08:12Z",
-      "updated": "2026-11-24T15:08:12Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.32776v1",
+      "updated": "2026-11-25T05:36:55Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.32776v2",
       "abs_url": "https://arxiv.org/abs/2611.32776",
       "topics": [
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32776",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32745",
@@ -855,8 +1411,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32745",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32691",
@@ -879,8 +1434,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32691",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32687",
@@ -903,8 +1457,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32687",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32675",
@@ -927,8 +1480,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32675",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32663",
@@ -951,8 +1503,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32663",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32660",
@@ -985,8 +1536,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32660",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32654",
@@ -1015,8 +1565,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32654",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32645",
@@ -1043,8 +1592,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32645",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32642",
@@ -1071,8 +1619,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32642",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32639",
@@ -1102,8 +1649,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32639",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32630",
@@ -1126,8 +1672,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32630",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32617",
@@ -1152,8 +1697,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32617",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32562",
@@ -1183,8 +1727,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32562",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32547",
@@ -1208,8 +1751,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32547",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32539",
@@ -1236,8 +1778,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32539",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32529",
@@ -1265,8 +1806,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32529",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32496",
@@ -1290,8 +1830,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32496",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32483",
@@ -1319,8 +1858,7 @@
         "world-model"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32483",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32482",
@@ -1344,8 +1882,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32482",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32473",
@@ -1369,8 +1906,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32473",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32472",
@@ -1395,8 +1931,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32472",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32467",
@@ -1421,8 +1956,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32467",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32452",
@@ -1443,8 +1977,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32452",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32445",
@@ -1474,8 +2007,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32445",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32443",
@@ -1501,8 +2033,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32443",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32432",
@@ -1527,8 +2058,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32432",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32423",
@@ -1555,8 +2085,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32423",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32410",
@@ -1583,8 +2112,7 @@
         "video-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32410",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32406",
@@ -1606,8 +2134,7 @@
         "rl"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32406",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32396",
@@ -1630,8 +2157,7 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32396",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32390",
@@ -1661,8 +2187,7 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32390",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
     },
     {
       "id": "2611.32384",
@@ -1688,8 +2213,29 @@
         "distillation"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32384",
-      "summary_zh": "",
-      "impact_score": null
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33232",
+      "title": "How Many Samples Is RL Worth? Best-of-N versus RL Post-Training for Text-to-Image Models",
+      "abstract": "Reinforcement learning (RL) on a reward that can be checked automatically has become a common last step in the training of text-to-image models. A simpler way to get more correct images is best-of-N: draw N images from the base model and keep the one that a picker prefers. We ask how many base model samples one RL sample is worth, and call this number the exchange rate. We measure it for Stable Diffusion 3.5 Medium and its public Flow-GRPO checkpoint on 398 new prompts in the style of GenEval, the benchmark behind the RL reward, with human labels on every prompt and two automatic judges other than the reward. The answer depends on the prompt. Four fifths of the prompts do not ask for a position (for example, one object left of another). On these, the base model catches up: best-of-16 with an off-the-shelf vision-language model (VLM) as the picker is about as good as one RL image. A person who looks through up to 3 base images finds a correct one as often as one RL image is correct. On the prompts that ask for a position, RL is far ahead: a person finds a correct image among 8 base images for only 52% of the prompts, against 92% for one RL image. Over all prompts, our primary test, which we fixed in advance, finds best-of-16 with the VLM picker 9.3 points behind one RL image when both automatic judges must pass an image. People see a smaller gap, 5.5 and 6.5 points in two checks. FLUX.1-dev shows a similar gap in the same test. RL also solves 20 prompts that the base model misses in 128 tries, and 1,024 tries recover half of them. The automatic judges are wrong in opposite directions: a detector-based judge like the reward, as used in our primary test, reports a larger gap than people see, and VLM judges report little or none. Comparisons of RL with best-of-N should therefore check the selected images by hand.",
+      "authors": [
+        "Salil Bhatnagar"
+      ],
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-11-24T10:49:30Z",
+      "updated": "2026-11-24T10:49:30Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33232v1",
+      "abs_url": "https://arxiv.org/abs/2611.33232",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33232",
+      "summary_zh": ""
     },
     {
       "id": "2611.32357",
@@ -1810,8 +2356,8 @@
         "cs.LG"
       ],
       "published": "2026-11-24T10:12:44Z",
-      "updated": "2026-11-24T10:12:44Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.32316v1",
+      "updated": "2026-11-25T17:26:17Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.32316v2",
       "abs_url": "https://arxiv.org/abs/2611.32316",
       "topics": [
         "rl"
@@ -1837,8 +2383,8 @@
         "cs.SD"
       ],
       "published": "2026-11-24T10:08:38Z",
-      "updated": "2026-11-24T10:08:38Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.32311v1",
+      "updated": "2026-11-25T13:37:37Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.32311v2",
       "abs_url": "https://arxiv.org/abs/2611.32311",
       "topics": [
         "4d-gen"
@@ -1892,8 +2438,8 @@
         "cs.CV"
       ],
       "published": "2026-11-24T09:55:49Z",
-      "updated": "2026-11-24T09:55:49Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.32297v1",
+      "updated": "2026-11-25T16:09:52Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.32297v2",
       "abs_url": "https://arxiv.org/abs/2611.32297",
       "topics": [
         "distillation"
@@ -2004,6 +2550,54 @@
         "4d-gen"
       ],
       "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.32231",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33229",
+      "title": "Effect-Driven Skill Abstractions for Offline Reinforcement Learning",
+      "abstract": "We seek to learn discrete skill abstractions to facilitate long-horizon, goal-conditioned reinforcement-learning (RL) tasks. Recent approaches have shown success by quantizing actions via clustering or reconstruction. However, these objectives lead to skills that are not directly related to what the current state affords or what the goal requires. Instead, we argue that goal-directed skills should be driven by \\emph{how they affect the state} of the agent. To realize this, we introduce a novel quantization method for action chunks that optimizes next-state predictions conditioned on the current state and action. This objective encourages skills to be distinguished by the future states they lead to, resulting in a vocabulary that spans diverse outcomes reachable from a given state. Our framework can easily be paired with common offline RL methods by replacing their continuous actor head with a discrete one that selects among the learned skills. We can execute these skills in the environment by converting them back to continuous actions using a trained low-level controller. Experiments on benchmark navigation and manipulation tasks largely show substantial and consistent improvements over both the continuous-actor baselines and reconstruction-based discretizations. Our project page can be found at: https://burcukilic.github.io/projects/effect-driven-skill-abstractions/.",
+      "authors": [
+        "Burcu Kilic",
+        "David Drexel",
+        "Emre Ugur",
+        "Justus Piater"
+      ],
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "published": "2026-11-24T09:08:25Z",
+      "updated": "2026-11-24T09:08:25Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33229v1",
+      "abs_url": "https://arxiv.org/abs/2611.33229",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33229",
+      "summary_zh": ""
+    },
+    {
+      "id": "2611.33228",
+      "title": "Soft Decentralized Expected SARSA: Equilibrium Selection via Gradual Adaptation",
+      "abstract": "We introduce Soft Decentralized Expected SARSA (SDES), a modification of Decentralized Q-learning in which agents maintain persistent exploration and update their acting Q-values gradually rather than switching directly to newly learned best responses when updating. We prove convergence to $ε$-greedy Nash equilibria in weakly acyclic stochastic games for sufficiently large batch sizes. We then show, in the repeated Prisoner's Dilemma with memory, that soft updating can reshape basins of attraction without changing the equilibrium set. In the deterministic limit, we derive analytical basin bounds governed by the Q-value differences between actions in the target policies and show that reducing the policy learning rate can favor either cooperative or competitive equilibria. These results suggest that soft updating is not merely a stabilization device but also a mechanism of equilibrium selection in decentralized learning.",
+      "authors": [
+        "Giuseppe Martucci",
+        "Janusz M. Meylahn",
+        "Gurdal Arslan",
+        "Serdar Yuksel"
+      ],
+      "categories": [
+        "cs.MA",
+        "cs.LG"
+      ],
+      "published": "2026-11-24T09:07:39Z",
+      "updated": "2026-11-24T09:07:39Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.33228v1",
+      "abs_url": "https://arxiv.org/abs/2611.33228",
+      "topics": [
+        "rl"
+      ],
+      "alphaxiv_url": "https://www.alphaxiv.org/abs/2611.33228",
       "summary_zh": ""
     },
     {
@@ -2421,8 +3015,8 @@
         "cs.AI"
       ],
       "published": "2026-11-24T06:36:34Z",
-      "updated": "2026-11-24T06:36:34Z",
-      "pdf_url": "https://arxiv.org/pdf/2611.32053v1",
+      "updated": "2026-11-25T11:13:34Z",
+      "pdf_url": "https://arxiv.org/pdf/2611.32053v2",
       "abs_url": "https://arxiv.org/abs/2611.32053",
       "topics": [
         "rl",
